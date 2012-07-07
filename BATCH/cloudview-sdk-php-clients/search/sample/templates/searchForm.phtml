@@ -1,0 +1,20 @@
+<!-- Search Form -->
+<form id="searchForm" name="searchForm" action="search.php" method="GET" onsubmit="cleanContext();">
+  <div id="searchFieldWrapper">
+	<table width="100%" cellspacing="0">
+	  <tbody>
+		<tr>
+		  <td width="100%">
+			<input id="searchField" type="text" name="q" value="<?= $query ?>"/>
+		  </td>
+		  <td style="width: 110px;">
+			<input id="searchSubmit" type="submit" value="Search" />
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+	<? if ($answer): ?>
+	<input type="hidden" id="searchContext" name="C" value="<?= $answer->getInfos()->context ?>" />
+	<? endif; ?>
+  </div>
+</form>

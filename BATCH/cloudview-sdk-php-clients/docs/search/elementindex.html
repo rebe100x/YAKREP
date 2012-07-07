@@ -1,0 +1,1151 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title></title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<a name="top"></a>
+<h2>Full index</h2>
+<h3>Package indexes</h3>
+<ul>
+	<li><a href="elementindex_default.html">default</a></li>
+</ul>
+<br />
+<div class="index-letter-menu">
+	<a class="index-letter" href="elementindex.html#a">a</a>
+	<a class="index-letter" href="elementindex.html#c">c</a>
+	<a class="index-letter" href="elementindex.html#g">g</a>
+	<a class="index-letter" href="elementindex.html#h">h</a>
+	<a class="index-letter" href="elementindex.html#i">i</a>
+	<a class="index-letter" href="elementindex.html#l">l</a>
+	<a class="index-letter" href="elementindex.html#m">m</a>
+	<a class="index-letter" href="elementindex.html#n">n</a>
+	<a class="index-letter" href="elementindex.html#q">q</a>
+	<a class="index-letter" href="elementindex.html#r">r</a>
+	<a class="index-letter" href="elementindex.html#s">s</a>
+	<a class="index-letter" href="elementindex.html#t">t</a>
+	<a class="index-letter" href="elementindex.html#u">u</a>
+	<a class="index-letter" href="elementindex.html#v">v</a>
+	<a class="index-letter" href="elementindex.html#x">x</a>
+	<a class="index-letter" href="elementindex.html#z">z</a>
+	<a class="index-letter" href="elementindex.html#_">_</a>
+</div>
+
+	<a name="a"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">a</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$ADD_CATEGORY_GROUP</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$ADD_CATEGORY_GROUP">SearchParameter::$ADD_CATEGORY_GROUP</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to add category group. Note that you can override the settings of an existing group. Syntax: groupId@rootPath[@directory:inHits:maxCategories:maxCategoryTreeDepth:maxCategoriesPerLevel:sortFunction], ex: Source@Top/Source:1::3</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$ADD_HIT_META</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$ADD_HIT_META">SearchParameter::$ADD_HIT_META</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to add hit meta from an index field. This is allow to dynamically override the list of RetrivedField defined in the Search Logic used. Not that the Search Logic is not modified and this setting is only applied to the current query. There are two syntaxes depending whether in data is stored using the CSV format in the index field or not. (MultiRetrievedField in the Search Logic Config).</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$ADD_VIRTUAL_FIELD</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$ADD_VIRTUAL_FIELD">SearchParameter::$ADD_VIRTUAL_FIELD</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to add a new virtual field definition. Then this virtual field be can retrieved in the hits using SearchParameter#ADD_HIT_META parameter meta, and it can also be used to sort the results using the SearchParameter#SORT parameter. Note that you can override an existing definition.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">addCategoryGroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodaddCategoryGroup">SearchQuery::addCategoryGroup()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Adds a new category group in the search results. Does not modify the search logic, this setting is only used for the current query.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">addMetaFromField</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodaddMetaFromField">SearchQuery::addMetaFromField()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Retrieve a meta from the specified index field. (does not modify the search logic)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">addMetasFromCSVField</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodaddMetasFromCSVField">SearchQuery::addMetasFromCSVField()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Retrieve a list of meta from the specified index field which content is CSV encoded. (does not modify the search logic)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">addParameter</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodaddParameter">SearchQuery::addParameter()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Adds a search parameter which is composed by a name and a value.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">addRefinement</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodaddRefinement">SearchQuery::addRefinement()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Adds a refinement  A refinement is way to precise your query by adding restriction to  a set of categories related terms. A refinement can be a selection  or an exclusion of a category (or related term).</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">addSearchParameter</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodaddSearchParameter">SearchQuery::addSearchParameter()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Adds a search parameter to your query.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">addSecurityToken</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodaddSecurityToken">SearchQuery::addSecurityToken()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Adds a security token</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">addSummaryMetaFromField</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodaddSummaryMetaFromField">SearchQuery::addSummaryMetaFromField()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Retrieve a summarized meta from the specified index field. (does not modify the search logic)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">addVirtualField</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodaddVirtualField">SearchQuery::addVirtualField()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Add a virtual which can then be used for the sorting  or be retrieved using addMetaFromField(String, String, boolean, Integer)</div>
+					</dd>
+		</dl>
+	<a name="c"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">c</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$CANCEL_REFINE</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$CANCEL_REFINE">SearchParameter::$CANCEL_REFINE</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to remove a refinement. This refinement can be in the context or a refinement that have been added with REFINE  parameter or SearchQuery.addRefinement(String, boolean).</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$COLLAPSING</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$COLLAPSING">SearchParameter::$COLLAPSING</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to configure the collapsing of the results. Supported values: &quot;disabled&quot;, &quot;lsb_only&quot;, &quot;msb_only&quot;, &quot;enabled&quot;</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$CONTEXT</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$CONTEXT">SearchParameter::$CONTEXT</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used set the search context. This context is available in the Answer (via getContext) and in the SearchAnswer via getInfos().get(&quot;context&quot;) The search context allows to chain queries easily without having to keep the parameters used in the previous queries.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">cancelRefinement</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodcancelRefinement">SearchQuery::cancelRefinement()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Removes a refinement from the list of refinements  Warning, on the 4.6 product, the refinements defined in the context can not be removed with this method, see <a href="default/SearchParameter.html#var$ZAP_REFINE">SearchParameter::$ZAP_REFINE</a> instead</div>
+					</dd>
+			<dt class="field">
+						Category
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Category.html">Category</a> in Category.php</div>
+							<div class="index-item-description">The Category is the main component of the navigation. The category is a node of the category tree as it may hold a list children categories</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">Category.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_Category.php.html">Category.php</a> in Category.php</div>
+					</dd>
+			<dt class="field">
+						CategoryGroup
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/CategoryGroup.html">CategoryGroup</a> in CategoryGroup.php</div>
+							<div class="index-item-description">Top level component of the category tree which holds a list of categories</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">CategoryGroup.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_CategoryGroup.php.html">CategoryGroup.php</a> in CategoryGroup.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">categoryTreeIterator</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/CategoryGroup.html#methodcategoryTreeIterator">CategoryGroup::categoryTreeIterator()</a> in CategoryGroup.php</div>
+							<div class="index-item-description">returns an iterator which allows iterate over the categories keeping the order of the categories in tree</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">createSearchClient</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClient.html#methodcreateSearchClient">SearchClient::createSearchClient()</a> in SearchClient.php</div>
+					</dd>
+		</dl>
+	<a name="g"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">g</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">getCategories</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/CategoryGroup.html#methodgetCategories">CategoryGroup::getCategories()</a> in CategoryGroup.php</div>
+							<div class="index-item-description">a list of categories (which is in fact a tree has each category can hold a list of categories)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getCategories</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Category.html#methodgetCategories">Category::getCategories()</a> in Category.php</div>
+							<div class="index-item-description">get the children categories</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getCategoryGroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Hit.html#methodgetCategoryGroup">Hit::getCategoryGroup()</a> in Hit.php</div>
+							<div class="index-item-description">a CategoryGroup for this result defined by the specified name  The categories contained in these groups can used as refinements for the navigation.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getCategoryGroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchAnswer.html#methodgetCategoryGroup">SearchAnswer::getCategoryGroup()</a> in SearchAnswer.php</div>
+							<div class="index-item-description">returns a CategoryGroup defined by its name</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getCategoryGroups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Hit.html#methodgetCategoryGroups">Hit::getCategoryGroups()</a> in Hit.php</div>
+							<div class="index-item-description">a list of CategoryGroup retrieved for this result.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getCategoryGroups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchAnswer.html#methodgetCategoryGroups">SearchAnswer::getCategoryGroups()</a> in SearchAnswer.php</div>
+							<div class="index-item-description">returns an array of categoryGroup which contains category tree</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getCollapsing</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetCollapsing">SearchQuery::getCollapsing()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Warning, this feature is not currently supported on the 4.6 product</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getDocument</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Hit.html#methodgetDocument">Hit::getDocument()</a> in Hit.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getDocumentPreview</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Hit.html#methodgetDocumentPreview">Hit::getDocumentPreview()</a> in Hit.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getHightlightedText</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/MetaValue.html#methodgetHightlightedText">MetaValue::getHightlightedText()</a> in MetaValue.php</div>
+							<div class="index-item-description">returns an array of strings representing the highlighted value of the metadata item value. If the value does not contain highlighting informations, this method will return an array with a single string containing the flat value</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getHits</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchAnswer.html#methodgetHits">SearchAnswer::getHits()</a> in SearchAnswer.php</div>
+							<div class="index-item-description">returns the results that have matched the query</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getId</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/RelatedTerm.html#methodgetId">RelatedTerm::getId()</a> in RelatedTerm.php</div>
+							<div class="index-item-description">returns the id of the RelatedTerm</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getId</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Category.html#methodgetId">Category::getId()</a> in Category.php</div>
+							<div class="index-item-description">get the id of the Category, this id can be used for a refinement (must be prefixed by a &quot;+&quot; or &quot;-&quot; for an exclusion when using <a href="default/SearchParameter.html#var$REFINE">SearchParameter::$REFINE</a>)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getInfos</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchAnswer.html#methodgetInfos">SearchAnswer::getInfos()</a> in SearchAnswer.php</div>
+							<div class="index-item-description">returns an array containing informations relative to the Answer</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getInfos</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/RelatedTerm.html#methodgetInfos">RelatedTerm::getInfos()</a> in RelatedTerm.php</div>
+							<div class="index-item-description">returns an array containing informations relative to the RelatedTerm</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getInfos</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Category.html#methodgetInfos">Category::getInfos()</a> in Category.php</div>
+							<div class="index-item-description">return an associative array ontaining informations relative to the Category.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getLanguage</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetLanguage">SearchQuery::getLanguage()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the query language</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getMeta</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Hit.html#methodgetMeta">Hit::getMeta()</a> in Hit.php</div>
+							<div class="index-item-description">a Meta defined by the specified name</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getMetas</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Hit.html#methodgetMetas">Hit::getMetas()</a> in Hit.php</div>
+							<div class="index-item-description">an array containing all the Metas for the Hit</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getName</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/CategoryGroup.html#methodgetName">CategoryGroup::getName()</a> in CategoryGroup.php</div>
+							<div class="index-item-description">the name of the group (the id of the XMLV10 AnswerGroup)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getName</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Meta.html#methodgetName">Meta::getName()</a> in Meta.php</div>
+							<div class="index-item-description">returns the name of the metadata item</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getName</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#methodgetName">SearchParameter::getName()</a> in SearchParameter.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getParameter</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetParameter">SearchQuery::getParameter()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the parameter with the given name  if several search parameters have the same name only  the first one will be returned</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getParameters</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetParameters">SearchQuery::getParameters()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns all the parameters with the given name or all parameters if no name is given</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getParent</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Category.html#methodgetParent">Category::getParent()</a> in Category.php</div>
+							<div class="index-item-description">get the parent category within the category tree (ex: for the category with the following path &quot;Top/Source/nntp/microsoft&quot; the parent category returned will have the following path &quot;Top/Source/nntp&quot;)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getPath</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Category.html#methodgetPath">Category::getPath()</a> in Category.php</div>
+							<div class="index-item-description">get the full path of the category (ex: &quot;Top/Author/Martin&quot;)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getQuery</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetQuery">SearchQuery::getQuery()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the query string</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getRefinements</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetRefinements">SearchQuery::getRefinements()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the current refinements Excluded refinements are prefixed with &quot;-&quot; others are prefixed with &quot;+&quot;</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getRelatedTerms</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchAnswer.html#methodgetRelatedTerms">SearchAnswer::getRelatedTerms()</a> in SearchAnswer.php</div>
+							<div class="index-item-description">returns an array of terms linked with the query. These are part of the navigation as their id are used for refinements.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getResults</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClient.html#methodgetResults">SearchClient::getResults()</a> in SearchClient.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getResultsAsDocument</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClient.html#methodgetResultsAsDocument">SearchClient::getResultsAsDocument()</a> in SearchClient.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getResultsAsSimplifiedObject</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClient.html#methodgetResultsAsSimplifiedObject">SearchClient::getResultsAsSimplifiedObject()</a> in SearchClient.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getResultsAsString</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClient.html#methodgetResultsAsString">SearchClient::getResultsAsString()</a> in SearchClient.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getResultsSetLength</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetResultsSetLength">SearchQuery::getResultsSetLength()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the number of results that will be retrieved</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getResultsSetStart</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetResultsSetStart">SearchQuery::getResultsSetStart()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the index of the first result to retrieve</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getRoot</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/CategoryGroup.html#methodgetRoot">CategoryGroup::getRoot()</a> in CategoryGroup.php</div>
+							<div class="index-item-description">the root path of the group (ex: &quot;Top/Source&quot;)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getSearchContext</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetSearchContext">SearchQuery::getSearchContext()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the search context (if it has been set)  (equivalent to <a href="default/SearchParameter.html#var$CONTEXT">SearchParameter::$CONTEXT</a>)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getSearchLogic</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetSearchLogic">SearchQuery::getSearchLogic()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the logic (default query) that will be used</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getSecurityTokens</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetSecurityTokens">SearchQuery::getSecurityTokens()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the current security tokens</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getSortField</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetSortField">SearchQuery::getSortField()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the field on which the results will be sorted</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getSpellCheckSuggestions</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchAnswer.html#methodgetSpellCheckSuggestions">SearchAnswer::getSpellCheckSuggestions()</a> in SearchAnswer.php</div>
+							<div class="index-item-description">returns a array of spell suggestions relative to the query</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getState</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/RelatedTerm.html#methodgetState">RelatedTerm::getState()</a> in RelatedTerm.php</div>
+							<div class="index-item-description">returns the state of the RelatedTerm (refined, excluded or &quot;displayed&quot; when refined or excluded)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getState</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Category.html#methodgetState">Category::getState()</a> in Category.php</div>
+							<div class="index-item-description">get the state of the category (Category::$STATE['REFINED'], Category::$STATE['EXCLUDED'] or Category::$STATE['DISPLAYED'])</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getStringValue</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/MetaValue.html#methodgetStringValue">MetaValue::getStringValue()</a> in MetaValue.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getSuggestedText</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SpellCheckSuggestion.html#methodgetSuggestedText">SpellCheckSuggestion::getSuggestedText()</a> in SpellCheckSuggestion.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getThumbnail</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Hit.html#methodgetThumbnail">Hit::getThumbnail()</a> in Hit.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getTimeout</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodgetTimeout">SearchQuery::getTimeout()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns the query timeout</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getTimes</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchAnswer.html#methodgetTimes">SearchAnswer::getTimes()</a> in SearchAnswer.php</div>
+							<div class="index-item-description">returns an array containing search timing informations</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getTitle</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/RelatedTerm.html#methodgetTitle">RelatedTerm::getTitle()</a> in RelatedTerm.php</div>
+							<div class="index-item-description">returns the title of the related term</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getTitle</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Category.html#methodgetTitle">Category::getTitle()</a> in Category.php</div>
+							<div class="index-item-description">get the category title (in general the path chunk, ex: Martin for Top/Author/Martin)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getUrl</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Hit.html#methodgetUrl">Hit::getUrl()</a> in Hit.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getValue</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Meta.html#methodgetValue">Meta::getValue()</a> in Meta.php</div>
+							<div class="index-item-description">returns the first value of the meta, or null if there no value</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getValue</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#methodgetValue">SearchParameter::getValue()</a> in SearchParameter.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getValues</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Meta.html#methodgetValues">Meta::getValues()</a> in Meta.php</div>
+							<div class="index-item-description">returns an array containing the list of the values</div>
+					</dd>
+		</dl>
+	<a name="h"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">h</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						Hit
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Hit.html">Hit</a> in Hit.php</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">Hit.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_Hit.php.html">Hit.php</a> in Hit.php</div>
+					</dd>
+		</dl>
+	<a name="i"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">i</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">isHighlighted</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/MetaValue.html#methodisHighlighted">MetaValue::isHighlighted()</a> in MetaValue.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">isSortAscending</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodisSortAscending">SearchQuery::isSortAscending()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Returns whether the sort is ascending or not, assuming the <a href="default/SearchQuery.html#methodsetAscendingSort">SearchQuery::setAscendingSort()</a> method or <a href="default/SearchParameter.html#var$SORT_ASCENDING">SearchParameter::$SORT_ASCENDING</a> parameter have been used</div>
+					</dd>
+		</dl>
+	<a name="l"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">l</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$LANG</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$LANG">SearchParameter::$LANG</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to set the query language</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$LOGIC</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$LOGIC">SearchParameter::$LOGIC</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used set the logic (default query) that will be used.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">leafCategoriesIterator</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/CategoryGroup.html#methodleafCategoriesIterator">CategoryGroup::leafCategoriesIterator()</a> in CategoryGroup.php</div>
+							<div class="index-item-description">returns an iterator which allows iterate over the categories keeping the order of the categories in tree</div>
+					</dd>
+		</dl>
+	<a name="m"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">m</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						Meta
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Meta.html">Meta</a> in Meta.php</div>
+							<div class="index-item-description">Holds a metadata item which can multivalued</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">Meta.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_Meta.php.html">Meta.php</a> in Meta.php</div>
+					</dd>
+			<dt class="field">
+						MetaValue
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/MetaValue.html">MetaValue</a> in MetaValue.php</div>
+							<div class="index-item-description">Holds of the value of metadata item which can highlighted or not</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">MetaValue.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_MetaValue.php.html">MetaValue.php</a> in MetaValue.php</div>
+					</dd>
+		</dl>
+	<a name="n"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">n</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$NRESULTS</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$NRESULTS">SearchParameter::$NRESULTS</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to set the number of results that will be retrieved</div>
+					</dd>
+		</dl>
+	<a name="q"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">q</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$QUERY</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$QUERY">SearchParameter::$QUERY</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to set the query string ex: &quot;exalead OR author:bourdoncle&quot; See &quot;Query Language Guide&quot; for more details</div>
+					</dd>
+		</dl>
+	<a name="r"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">r</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$REFINE</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$REFINE">SearchParameter::$REFINE</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to add a refinement A refinement is way to precise by your query by adding restriction to a set of categories. A refinement can be a selection (category id prefixed by a &quot;+&quot;) or an exclusion (category id prefixed by a &quot;-&quot;) of a category.</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$REMOVE_CATEGORY_GROUP</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$REMOVE_CATEGORY_GROUP">SearchParameter::$REMOVE_CATEGORY_GROUP</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to remove a category group. (the parameter value is category group id)</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$REMOVE_HIT_META</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$REMOVE_HIT_META">SearchParameter::$REMOVE_HIT_META</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to remove a meta from hits (parameter value retrieved field name)</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$REMOVE_VIRTUAL_FIELD</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$REMOVE_VIRTUAL_FIELD">SearchParameter::$REMOVE_VIRTUAL_FIELD</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to remove a virtual definition definition using its name.</div>
+					</dd>
+			<dt class="field">
+						RelatedTerm
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/RelatedTerm.html">RelatedTerm</a> in RelatedTerm.php</div>
+							<div class="index-item-description">The RelatedTerm is a component used for the navigation. It represents a term linked with the current query.</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">RelatedTerm.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_RelatedTerm.php.html">RelatedTerm.php</a> in RelatedTerm.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">removeCategoryGroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodremoveCategoryGroup">SearchQuery::removeCategoryGroup()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Removes a Category Group that may have been defined in the search logic or with <a href="default/SearchQuery.html#methodaddCategoryGroup">SearchQuery::addCategoryGroup()</a></div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">removeMeta</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodremoveMeta">SearchQuery::removeMeta()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Remove a hit meta that can be defined in the search logic (the search logic is not modified) or within this SearchQuery</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">removeParameter</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodremoveParameter">SearchQuery::removeParameter()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Removes the parameter(s) with the given name  if several parameters have the same name they all will be removed</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">removeSearchParameter</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodremoveSearchParameter">SearchQuery::removeSearchParameter()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Removes the specified parameter</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">removeSecurityToken</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodremoveSecurityToken">SearchQuery::removeSecurityToken()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Removes a security token from the list of security tokens</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">removeVirtualField</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodremoveVirtualField">SearchQuery::removeVirtualField()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Note that only the virtual field definition will be removed, if the field is retrieved as the meta,  the meta must be also be removed.</div>
+					</dd>
+		</dl>
+	<a name="s"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">s</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$SECURITY</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$SECURITY">SearchParameter::$SECURITY</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to add a security token Security tokens are pushed by connectors thanks to the meta &quot;security&quot; When security token check is enabled on the search server, the documents must have the provided security tokens to be retrieved. Note that the token &quot;EVERYBODY&quot; is automatically added so there is no need to add it in your query.</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$SORT</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$SORT">SearchParameter::$SORT</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to set the field on which the results will be sorted Note that you can't sort on alphanumerical and category fields</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$SORT_ASCENDING</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$SORT_ASCENDING">SearchParameter::$SORT_ASCENDING</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to set whether the sort is ascending or not</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$START</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$START">SearchParameter::$START</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to set the index of the first result to retrieve (starts from 0)</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$STATE</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/Category.html#var$STATE">Category::$STATE</a> in Category.php</div>
+							<div class="index-item-description">DISPLAYED: State of a category which is not currently used for a refinement or an exclusion.</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$STATIC_RANKING_EXPRESSION</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$STATIC_RANKING_EXPRESSION">SearchParameter::$STATIC_RANKING_EXPRESSION</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to set the static ranking expression</div>
+					</dd>
+			<dt class="field">
+						SearchAnswer
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchAnswer.html">SearchAnswer</a> in SearchAnswer.php</div>
+							<div class="index-item-description">SearchAnswer is a simplified view of a XMLV10 Answer</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">SearchAnswer.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_SearchAnswer.php.html">SearchAnswer.php</a> in SearchAnswer.php</div>
+					</dd>
+			<dt class="field">
+						SearchClient
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClient.html">SearchClient</a> in SearchClient.php</div>
+							<div class="index-item-description">Component used to send queries to an HTTP XMLV10 SearchAPI and format the response to different formats.</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">SearchClient.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_SearchClient.php.html">SearchClient.php</a> in SearchClient.php</div>
+					</dd>
+			<dt class="field">
+						SearchClientException
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClientException.html">SearchClientException</a> in SearchClient.php</div>
+					</dd>
+			<dt class="field">
+						SearchParameter
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html">SearchParameter</a> in SearchParameter.php</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">SearchParameter.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_SearchParameter.php.html">SearchParameter.php</a> in SearchParameter.php</div>
+					</dd>
+			<dt class="field">
+						SearchQuery
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html">SearchQuery</a> in SearchQuery.php</div>
+							<div class="index-item-description">SearchQuery holds the different search settings that are used to configure your search  The SearchQuery can be configured using the different setters or by adding SearchParameters using the method addParameter. (The way can be more be more convenient if you build your SearchQuery from an HTTP request or any key/value structure.</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">SearchQuery.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_SearchQuery.php.html">SearchQuery.php</a> in SearchQuery.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setAscendingSort</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetAscendingSort">SearchQuery::setAscendingSort()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Sets whether the sort is ascending or not</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setCollapsing</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetCollapsing">SearchQuery::setCollapsing()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Allows to configure the collapsing</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setLanguage</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetLanguage">SearchQuery::setLanguage()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Sets the query language</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setQuery</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetQuery">SearchQuery::setQuery()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Sets the query string (equivalent to <a href="default/SearchParameter.html#var$QUERY">SearchParameter::$QUERY</a>)</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setResultsSetLength</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetResultsSetLength">SearchQuery::setResultsSetLength()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Sets the number of results that will be retrieved</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setResultsSetStart</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetResultsSetStart">SearchQuery::setResultsSetStart()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Set the index of the first result to retrieve</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setSearchContext</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetSearchContext">SearchQuery::setSearchContext()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Sets the search context.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setSearchLogic</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetSearchLogic">SearchQuery::setSearchLogic()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Sets the logic (default query) that will be used</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setSortField</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetSortField">SearchQuery::setSortField()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Sets the field on which the results will be sorted on  Note that you can't sort on alphanumerical and category fields</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setStaticRankingExpression</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetStaticRankingExpression">SearchQuery::setStaticRankingExpression()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Sets the static ranking expression to use for this query</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setSuggestedText</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SpellCheckSuggestion.html#methodsetSuggestedText">SpellCheckSuggestion::setSuggestedText()</a> in SpellCheckSuggestion.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setTimeout</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodsetTimeout">SearchQuery::setTimeout()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Sets the query timeout</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setValue</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#methodsetValue">SearchParameter::setValue()</a> in SearchParameter.php</div>
+					</dd>
+			<dt class="field">
+						SpellCheckSuggestion
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SpellCheckSuggestion.html">SpellCheckSuggestion</a> in SpellCheckSuggestion.php</div>
+							<div class="index-item-description">Spelling suggestion</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">SpellCheckSuggestion.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_SpellCheckSuggestion.php.html">SpellCheckSuggestion.php</a> in SpellCheckSuggestion.php</div>
+					</dd>
+		</dl>
+	<a name="t"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">t</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$TARGET</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$TARGET">SearchParameter::$TARGET</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to set the search target on a 5.0 product</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$TIMEOUT</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$TIMEOUT">SearchParameter::$TIMEOUT</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to set the query timeout (ms).</div>
+					</dd>
+		</dl>
+	<a name="u"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">u</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$url</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClient.html#var$url">SearchClient::$url</a> in SearchClient.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">unSetStaticRankingExpression</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#methodunSetStaticRankingExpression">SearchQuery::unSetStaticRankingExpression()</a> in SearchQuery.php</div>
+							<div class="index-item-description">Remove the static ranking expression for the current query</div>
+					</dd>
+		</dl>
+	<a name="v"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">v</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$version</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClient.html#var$version">SearchClient::$version</a> in SearchClient.php</div>
+					</dd>
+		</dl>
+	<a name="x"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">x</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$xmlResponse</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchClient.html#var$xmlResponse">SearchClient::$xmlResponse</a> in SearchClient.php</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">XMLV10Parser.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_XMLV10Parser.php.html">XMLV10Parser.php</a> in XMLV10Parser.php</div>
+					</dd>
+		</dl>
+	<a name="z"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">z</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$ZAP_REFINE</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#var$ZAP_REFINE">SearchParameter::$ZAP_REFINE</a> in SearchParameter.php</div>
+							<div class="index-item-description">Key of the parameter used to &quot;zap&quot; refinement which consists in removing the refinement and adding the father if possible.</div>
+					</dd>
+		</dl>
+	<a name="_"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">_</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">__construct</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchParameter.html#method__construct">SearchParameter::__construct()</a> in SearchParameter.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">__construct</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#method__construct">SearchQuery::__construct()</a> in SearchQuery.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">__toString</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/SearchQuery.html#method__toString">SearchQuery::__toString()</a> in SearchQuery.php</div>
+					</dd>
+		</dl>
+
+<div class="index-letter-menu">
+	<a class="index-letter" href="elementindex.html#a">a</a>
+	<a class="index-letter" href="elementindex.html#c">c</a>
+	<a class="index-letter" href="elementindex.html#g">g</a>
+	<a class="index-letter" href="elementindex.html#h">h</a>
+	<a class="index-letter" href="elementindex.html#i">i</a>
+	<a class="index-letter" href="elementindex.html#l">l</a>
+	<a class="index-letter" href="elementindex.html#m">m</a>
+	<a class="index-letter" href="elementindex.html#n">n</a>
+	<a class="index-letter" href="elementindex.html#q">q</a>
+	<a class="index-letter" href="elementindex.html#r">r</a>
+	<a class="index-letter" href="elementindex.html#s">s</a>
+	<a class="index-letter" href="elementindex.html#t">t</a>
+	<a class="index-letter" href="elementindex.html#u">u</a>
+	<a class="index-letter" href="elementindex.html#v">v</a>
+	<a class="index-letter" href="elementindex.html#x">x</a>
+	<a class="index-letter" href="elementindex.html#z">z</a>
+	<a class="index-letter" href="elementindex.html#_">_</a>
+</div>	</body>
+</html>

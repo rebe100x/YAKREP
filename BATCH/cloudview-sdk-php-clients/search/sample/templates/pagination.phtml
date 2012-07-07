@@ -1,0 +1,36 @@
+<?php 
+$currentPage = ($answerInfos['start'] / RESULTS_PER_PAGE) + 1;
+$lastPage =  ceil($answerInfos['nhits'] / RESULTS_PER_PAGE);
+?>
+
+<!-- Pagination -->
+<div class="paginater">
+  <ul>
+  <!-- First page and previous page links -->
+  <? if ($answerInfos['start'] > 0): ?>
+	<li><a href="javascript:void(0);" onclick="refine({'b': 0});">&lt;&lt;</a></li>
+	<li><a href="javascript:void(0);" onclick="refine({'b': <?= $answerInfos['start'] - RESULTS_PER_PAGE ?>});">&lt;</a></li>
+  <? endif; ?>
+
+  <!-- Page numbers -->
+  <? for ($i = MAX(1, $currentPage - 5), $c = 0;
+	  $i <= $lastPage && $c < RESULTS_PER_PAGE;
+	  $i++, $c++): ?>
+	<? if ($i === $currentPage): ?>
+	  <li><b><?= $i ?></b></li>
+	<? else: ?>
+	  <li><a href="javascript:void(0);" onclick="refine({'b': <?= ($i - 1) * RESULTS_PER_PAGE ?>});"><?= $i ?></a></li>
+	<? endif; ?>
+  <? endfor; ?>
+
+  <!-- Next page and last page links -->
+  <? if ($currentPage < $lastPage
+	  && $answerInfos['nhits'] > 0): ?>
+	<li><a href="javascript:void(0);" onclick="refine({'b': <?= $answerInfos['start'] + RESULTS_PER_PAGE ?>});">&gt;</a></li>
+	<li><a href="javascript:void(0);" onclick="refine({'b': <?= ceil($answerInfos['nhits'] / RESULTS_PER_PAGE) ?>});">&gt;&gt;</a></li>
+  <? endif; ?>
+  </ul>
+
+  <br/>Total pages: <?= $lastPage ?>
+
+</div>

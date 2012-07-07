@@ -1,0 +1,107 @@
+<? if ($error && empty($answer)): ?>
+
+  <!-- If we have an error :( -->
+  <h2><?= L::error_occurred ?>:</h2>
+  <?= $error ?>
+
+<?
+   else:
+?>
+
+<!-- spell suggestion -->
+<?php
+if (count($answer->getSpellCheckSuggestions()))
+{
+?>
+<div id="didumean">
+<?php
+    echo "Did you mean: ";
+    foreach($answer->getSpellCheckSuggestions() as $spell)
+    {
+        echo $spell->getSuggestedText();
+    }
+    echo "?";
+?>    
+</div>
+<?php
+}
+?>
+
+<!-- Normal Display -->
+<div id="informations">
+
+  <div id="viewControls">
+	<?= L::sort_by ?>:
+	<select id="sortFields" onchange="refine({'s': this.value, 'sa': this.getSelected()[0].getAttribute('sa')});">
+	  <option value="" as="0"><?= L::relevance ?></option>
+	  <? foreach ($sortingFields as $name => $field): ?>
+	  <option value="<?= clean($field) ?>" sa="0"><?= $name ?> (<?= L::ascending?>)</option>
+	  <option value="<?= clean($field) ?>" sa="1"><?= $name ?> (<?= L::descending?>)</option>
+	  <? endforeach; ?>
+	</select>
+  </div>
+
+  <?= L::results ?> <b><?= $answerInfos['start'] + 1 ?> - <?= count($answer->getHits()) + $answerInfos['start'] ?></b>
+  <?= L::of_about ?> <b><?= (string) $answerInfos['nmatches'] ?></b> <?= L::for_query ?> <b><?= $query ?></b>
+</div>
+
+<div id="hits">
+
+<? if (count($answer->getHits())): ?>
+
+  <!-- Hits Displaying -->
+	<? foreach ($answer->getHits() as $hit): ?>
+	  <div class="hit" id="hit_<?= $hit->did ?>">
+
+		<!-- Thumbnail displaying -->
+		<? if ($hit->getThumbnail()): ?>
+		  <img src="<?= $hit->getThumbnail() ?>" class="thumbnail" />
+		<? else: ?>
+		  <img src="images/thumbnail-unavailable.gif" class="thumbnail" />
+		<? endif; ?>
+
+		<!-- Title -->
+		<h3><?= getHighlightedMetaValue($hit->getMeta("title")->getValue()); ?></h3>
+
+		<!-- Iteration over metas -->
+		<div class="abstract">
+		  <? foreach ($hit->getMetas() as $meta): ?>
+		   <b><?= $meta->getName() ?>:</b> 
+		  	<?  foreach ($meta->getValues() as $value): ?> 
+			<?= getHighlightedMetaValue($value); ?>
+		  <? 	endforeach; ?>
+		  <br/>
+		  <?  endforeach; ?>
+		</div>
+
+		<!-- Document's URI display -->
+		<div class="uri">Uri: <?= $hit->getUrl() ?> - <a href="<?= $hit->getDocumentPreview($answer->getArg('$wseq')) ?>">preview</a></div>
+
+    <!-- Document's categories display -->
+    <div class="categories">
+    <?php
+      foreach ($hit->getCategoryGroups() as $catGroup) {
+      	echo $catGroup->getName() . " - ";
+      	foreach ($catGroup->getCategories() as $cat) {
+      		echo $cat->getPath() . ' - ';
+      	}
+      } 
+    ?>
+    </div>
+
+	  </div>
+   <? endforeach; ?>
+
+<? else: ?>
+
+  <h3><?= L::no_results ?> &quot;<?= $query ?>&quot;</h3>
+
+<? endif; ?>
+</div>
+
+<!-- Pagination -->
+<? if (count($answer->getHits())): ?>
+  <? include('pagination.phtml'); ?>
+<? endif; ?>
+
+<? endif; ?>

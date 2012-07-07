@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Exalead - Search</title>
+
+	<link href="images/favicon.ico" rel="icon" />
+	<link href="images/favicon.ico" rel="shortcut icon" />
+
+	<!-- CSS StyleSheets -->
+	<link href="css/apogee.css" media="all" rel="stylesheet" type="text/css" />
+
+	<!-- Javascripts -->
+	<script type="text/javascript" src="js/mootools-1.2.1-core-yc.js"></script>
+	<script type="text/javascript" src="js/apogee.js"></script>
+
+  </head>
+<?
+$bodyclass = '';
+if (array_key_exists('sidebar_left', $templates)) $bodyclass .= 'sidebared-left ';
+if (array_key_exists('sidebar_right', $templates)) $bodyclass .= 'sidebared-right';
+?>
+  <body class="<?= $bodyclass ?>">
+
+  <!--[if IE]>
+	<style type="text/css">
+	  h2 { font-size: 1.4em; }
+	  h3 { font-size: 1.2em; }
+	</style>
+  <![endif]-->
+
+	<? if (array_key_exists('header', $templates)): ?>
+	<div id="header">
+	  <? include($templates['header']); ?>
+	</div>
+	<? endif; ?>
+
+	<!-- Sidebar Containers -->
+	<? if (array_key_exists('sidebar_left', $templates)): ?>
+	<div id="sidebar" class="left">
+		<? include($templates['sidebar_left']); ?>
+	</div>
+	<? endif;
+	if (array_key_exists('sidebar_right', $templates)): ?>
+	<div id="sidebar" class="right">
+		<? include($templates['sidebar_right']); ?>
+	</div>
+	<? endif; ?>
+
+	<!-- Main Container -->
+	<div id="mainContainer">
+	  <? include($templates['content']); ?>
+	</div>
+
+  </body>
+</html>

@@ -1,0 +1,339 @@
+/*
+ * APOGEE PHP FRONT CSS STYLESHEET
+ */
+
+/* GLOBAL SETTINGS */
+html, body {
+	height: 100%;
+}
+
+body {
+	font-size: 13px;
+	font-family: arial,sans-serif;
+	font-size-adjust: none;
+	padding: 20px;
+	margin: 0px;
+}
+
+body * {
+	margin: 0px;
+	padding: 0px;
+}
+
+a img {
+	border: none;
+}
+
+a, a:visited {
+	color: #3279BE;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* HEADER */
+
+#header {
+	border-bottom: 2px solid #AAA;
+	margin-bottom: 20px;
+}
+
+/* SEARCH FORM */
+
+table#searchHeader {
+	width: 100%;
+	border-spacing: 0px;
+}
+
+table#searchHeader td.logo {
+	width: 203px;
+}
+
+table#searchHeader td.fields {
+	padding: 12px 10px 0px 15px;
+}
+
+#searchForm div#searchFieldWrapper {
+	width: 100%;
+	background: white;
+	border-color: #707070 #CCCCCC #CCCCCC;
+	border-style: solid;
+	border-width: 1px;
+}
+
+#searchForm div#searchFieldWrapper table td {
+	border-top: 1px solid #CACACA;
+}
+
+#searchForm div#searchFieldWrapper input#searchField {
+	border: 0px;
+	font-size: 30px;
+	height: 39px;
+	width: 100%;
+}
+
+#searchForm div#searchFieldWrapper input#searchSubmit {
+	cursor: pointer;
+	border: 0px;
+	background: #EAEAEA;
+	border: 1px solid #EAEAEA;
+	border-left: 1px solid #CCC;
+	font-size: 25px;
+	height: 39px;
+	color: black;
+	width: 110px;
+}
+
+/* SIDEBAR CONTAINER (contains refines) */
+
+div.left {
+	float: left;
+}
+
+div.right {
+	float: right;
+}
+
+#sidebar {
+	width: 220px;
+	padding: 10px;
+	padding-left: 25px;
+	border: 2px solid #3279BE;
+	-moz-border-radius: 5px;
+}
+
+/* IE6 Hack. */
+body > div#sidebar {
+	padding-left: 10px;
+}
+
+#sidebar h2 {
+	color: #AAA;
+}
+
+/* Index Page */
+
+#indexContainer {
+	padding-top: 100px;
+	text-align: center;
+}
+
+#indexContainer #searchForm {
+	width: 500px;
+	margin: auto;
+}
+
+#indexContainer #searchForm div#searchFieldWrapper {
+	_position: static; /* Only understandable by IE6 and below */
+}
+
+/* RESULTATS */
+
+div#mainContainer {
+	position: relative;
+	margin: 0px 10px;
+}
+
+body.sidebared-right div#mainContainer {
+	margin-right: 260px;
+}
+
+body.sidebared-left div#mainContainer {
+	margin-left: 260px;
+}
+
+div#informations {
+	color: #707070;
+	margin-bottom: 15px;
+}
+
+div#informations b {
+	color: #ED6813;
+}
+
+div#informations div#viewControls {
+	float: right;
+}
+
+div#informations img {
+	vertical-align: middle;
+}
+
+/* Hit Styles */
+
+div.hit {
+	position: relative;
+	margin: 0px 0px 10px 130px;
+}
+
+div#hits div.hit {
+	/* IE Hack to have min-height to 90px */
+	height: auto !important;
+	height: 90px;
+	min-height: 90px;
+}
+
+body.sidebared-right div.hit {
+	clear: left;
+}
+
+body.sidebared-left div.hit {
+	clear: right;
+}
+
+div.hit h3 {
+	font-size: 1.4em;
+	font-weight: normal;
+	color: #3279BE;
+}
+
+div.hit div.abstract {
+	padding: 5px 0px 2px 0px;
+}
+
+div.hit div.uri {
+	font-size: 0.8em;
+	color: green;
+	padding-left: 10px;
+}
+
+div.hit img.thumbnail {
+	width: 120px;
+	height: 90px;
+	border: 1px solid #AAA;
+	position: absolute;
+	top: 0px;
+	left: -130px;
+}
+
+/* Pagination */
+
+div.paginater {
+	margin: 20px 0px;
+	text-align: center;
+}
+
+div.paginater li {
+	display: inline;
+	margin: 3px;
+	font-weight: bold;
+}
+
+div.paginater li a {
+	background: #F6F6F6;
+  border: 1px solid;
+	padding: 3px 6px;
+	text-decoration: none;
+}
+
+div.paginater li a:hover {
+  color: #000;
+}
+
+
+/** REFINES **/
+
+div#userRefines {
+	margin-bottom: 5px;
+}
+
+div#userRefines li {
+	list-style-type: none;
+}
+
+div#refines {
+	overflow: hidden;
+}
+
+div#refines h4 {
+	margin: 3px 0px 3px 0px;
+}
+
+div.refines ul {
+	margin-left: 15px;
+	list-style-type: disc;
+}
+
+div.refines li.state_1,
+div.refines li.state_2 {
+	margin: 0px -10px;
+	padding: 0px 10px;
+}
+
+div.refines li.state_1 {
+	background: #CFC;
+}
+
+div.refines li.state_2 {
+	background: #FCC;
+}
+
+div.refines li.state_1 span {
+	font-weight: bold;
+	color: green;
+}
+
+div.refines li.state_2 span {
+	font-weight: bold;
+	color: red;
+}
+
+div.refines a.refine_remove {
+	font-weight: bold;
+	float: right;
+}
+
+div.refines li i {
+	color: #666;
+	font-size: 0.9em;
+}
+
+div.refines a.refine_remove:hover {
+	color: red;
+}
+
+div#refines > div#userRefines > ul {
+	margin-left: 0px;
+}
+
+/** PREVIEW **/
+
+#preview {
+	height: 500px;
+	padding: 15px;
+}
+
+#preview legend {
+	padding: 3px 5px;
+	margin-left: 10px;
+}
+
+#preview iframe {
+	height: 490px;
+	width: 100%;
+	border: none;
+}
+
+#previewHeader .thumbnail {
+	width: 90px;
+	height: 65px;
+	left: -100px;
+}
+
+#previewHeader div#searchFieldWrapper {
+	width: 300px;
+}
+
+#previewHeader div#searchFieldWrapper input#searchField {
+	font-size: 15px;
+	padding-right: -100px;
+	height: 21px;
+}
+
+#previewHeader div#searchFieldWrapper input#searchSubmit {
+	font-size: 12px;
+	height: 21px;
+	width: 55px;
+}

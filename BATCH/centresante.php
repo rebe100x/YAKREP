@@ -1,4 +1,9 @@
 <?php
+/* batch for Yakwala prot horaire
+ * read csv and merge columns
+ * intro a new column for diagnostic
+ * 
+ * */
 ini_set('display_errors',1);
 $filenameInput = "./input/centresante2011_3.csv";
 $filenameOutput = "./output/centresante2011_3.csv";

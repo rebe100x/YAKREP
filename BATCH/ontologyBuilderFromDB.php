@@ -1,6 +1,8 @@
 <?php 
 
-/* READ DB AND CREATE THE ONTOLOGY FILE
+/* READ DB AND CREATE THE ONTOLOGY FILE FOR EXALEAD
+ *  NOT FINISHED !!!!
+ * 
  * */
 
 ini_set('display_errors',1);

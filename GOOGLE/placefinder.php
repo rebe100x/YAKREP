@@ -1,4 +1,10 @@
 <?php 
+/* CALL TO GMAP
+ * enter q=htmlenncode(string) in GET param 
+ * return the JSON XY
+ * 
+ * */
+
 if(!empty($_GET['q'])){
 $url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$_GET['q']."&sensor=false";
 $ch = curl_init();

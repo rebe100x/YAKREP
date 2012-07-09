@@ -1,4 +1,9 @@
 <?php 
+/* READ A TEXT FILE
+ * RETURN AN XML ONTOLGY FILE FOR EXALEAD
+ * -- USED FOR THE QUARTIER DATA ONTOLOGY --
+ * 
+ * */
 ini_set('display_errors',1);
 $inputFile ='./input/quartier.txt';
 $outputFile ='./output/quartier.xml';

@@ -1,4 +1,9 @@
 <?php
+/* Bacth for Yakwala proto horaire :
+ * update X and Y with GMAP () original file precision was not enough
+ * 
+ * */
+
 ini_set('display_errors',1);
 $filenameInput = "./input/horaire_full.csv";
 $filenameOutput = "./output/horaire_full.csv";

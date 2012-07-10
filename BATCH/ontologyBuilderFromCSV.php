@@ -6,7 +6,7 @@
  * if not get the XY with GMAP
  * Introduce in mongodb the place ( collection LIEU )
  * */
-
+require_once("../LIB/library.php");
 ini_set('display_errors',1);
 $inputFile ='./input/voies.csv';
 $outputFile ='./output/adresse.xml';
@@ -17,8 +17,11 @@ $ontolgyXML = simplexml_load_file($templateFile);
 $m = new Mongo(); // connexion
 $db = $m->selectDB("yakwala");
 $placeColl = $db->place;
+$batchlogColl = $db->batchlog;
+
 
 $row = 0;
+
 
 if (($handle = fopen($inputFile, "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
@@ -28,12 +31,16 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
                 $csvHead =  $data;
             }else{
             	
-	            /*
+	            /*debug
 	            for ($c=0; $c < $num; $c++) {
 	                echo 'data'.$c.'-'.$data[$c] . "<br />\n";
 	                echo '  row:'.$row;
 	            }*/
 	        
+            	//debug
+            	if($row >10)
+            	   exit;
+            	   
 	            $tab[$row-1] = $data;
 	            //$line = str_replace("\r\n", "", $line);
 		        $streetName = utf8_encode($data[3]);
@@ -53,53 +60,96 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
 		        $form = $entry->addChild('Form');
 		        $form->addAttribute('level','exact');
 		        
-		        // CHECK IN DB IF THE PLACE EXISTS
-		        $query = array( "title" => $streetName);
-	            $place = $placeColl->findOne($query);
-		        if(empty($place)){
-		        	/*
-		        	// GET THE XY
-		        	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$_GET['q']."&sensor=false";
-					$ch = curl_init();
-					curl_setopt($ch,CURLOPT_URL,$url);
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
-					$result = curl_exec($ch);
-					curl_close($ch);
-					//echo $result;
-					$json = json_decode($result);
-					$res = json_encode($json->results[0]->geometry->location);
-		        	*/
-		        	$placeColl->save(array("title"=>$streetName,
-		        	    "content"=>$streetHisto,
-		        	    "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
-		        	    "yakCat"=> array(array("id"=>1,"name"=>"place","level"=>1),array("id"=>1,"name"=>"street","level"=>2)),
-		        	     "creationDate" => mktime(),
-		        	     "lastModifDate" => mktime(),
-		        	    "lt"=>9,
-                        "lg"=>7,
-		        		"status" =>0,
-		        	    "user" => 0
-		        	 )	        	
-		        	);
-		        }
-	           
-            }
-        
-            
+		        
+		        $location = getLocationGMap(utf8_decode($streetName));
+		        
+		        if(!empty($location))
+                    $status = 1;
+                 else
+                     $status = 10;
+                     
+		        $res = $placeColl->findOne(array('title'=>$streetName));
+		        if(empty($res)){
+			    $placeColl->save(array(
+			        	    "title"=>$streetName,
+			        	    "content"=>$streetHisto,
+			        	    "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
+			        	    "access"=>1,  
+	                        "licence"=> "ODBL Paris" ,
+	                        "outGoingLink" =>"",
+	                        "creationDate" => mktime(),
+			        	    "lastModifDate" => mktime(),
+			        	    "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
+			        		"status" =>$status,
+			        	    "user" => 0,
+			        	    "zone"=>1
+			        	 ));
+		        }else{
+			        $placeColl->update(array("_id"=> $res['_id']),array(
+	                            "title"=>$streetName,
+	                            "content"=>$streetHisto,
+	                            "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
+	                            "access"=>1,  
+	                            "licence"=> "ODBL Paris" ,
+	                            "outGoingLink" =>"",
+	                            "creationDate" => mktime(),
+	                            "lastModifDate" => mktime(),
+	                            "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
+	                            "status" =>$status,
+	                            "user" => 0,
+	                            "zone"=>1
+	                         ));
+		          	
+                }
+            }	    
         $row++;
     }
+    
     fclose($handle);
 }
 
 
 $res  = $ontolgyXML->asXML($outputFile);
 
-if($res == 1)
-	echo "<br>".$row." lines written. Ontology saved here : ".$outputFile;
-else
-	'error';
+if($res == 1){
+	$log .= $row." lines written. Ontology saved here : ".$outputFile;
+	$status = 0;
+}
+else{
+    $log .= "Error";
+    $status = 0;
+}
+	
+echo "<br>".$log;
 
+$batchlogColl->save(
+    array(
+    "batchName"=>$_SERVER['PHP_SELF'],
+    "datePassage"=>mktime(), // now
+    "dateNextPassage"=>2143152000, // far future = one shot batch
+    "log"=>$log,
+    "status"=>$status
+    ));
+    
 
+/*
+array({
+    title:"place Maurice Couve de Murville",
+    content :"",
+    thumb : ""
+    origin:"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",   
+    access: 1
+    licence: "ODBL Paris"
+    outGoingLink : ""
+    creationDate : 132154654,
+    lastModifDate : 132132165,
+    location : [2.032545,48.132165]
+    status : 1,
+    user : 0,
+    zone: 1
+    }
+)   
+    
 
 
 ?>

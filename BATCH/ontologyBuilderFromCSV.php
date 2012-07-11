@@ -6,6 +6,8 @@
  * if not get the XY with GMAP
  * Introduce in mongodb the place ( collection LIEU )
  * */
+ini_set ('max_execution_time', 0);
+set_time_limit(0);
 require_once("../LIB/library.php");
 ini_set('display_errors',1);
 $inputFile ='./input/voies.csv';
@@ -38,71 +40,77 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
 	            }*/
 	        
             	//debug
-            	if($row >10)
-            	   exit;
-            	   
-	            $tab[$row-1] = $data;
-	            //$line = str_replace("\r\n", "", $line);
-		        $streetName = utf8_encode($data[3]);
-		        $streetHisto = utf8_encode($data[6]);
-		        if(empty($streetName)){
-		           echo '<br> Check Name line '.$row;
-		        }
-		        
-		        //if(empty($streetHisto))
-	            //   echo '<br> Check Histo line '.$row;
-	
-		        echo '<br> name'.$streetName;
-		        
-		        // CREATE ONTOLOGY
-		        $entry = $ontolgyXML->Pkg[0]->addChild('Entry');
-		        $entry->addAttribute('display', $streetName);
-		        $form = $entry->addChild('Form');
-		        $form->addAttribute('level','exact');
-		        
-		        
-		        $location = getLocationGMap(utf8_decode($streetName));
-		        
-		        if(!empty($location))
-                    $status = 1;
-                 else
-                     $status = 10;
-                     
-		        $res = $placeColl->findOne(array('title'=>$streetName));
-		        if(empty($res)){
-			    $placeColl->save(array(
-			        	    "title"=>$streetName,
-			        	    "content"=>$streetHisto,
-			        	    "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
-			        	    "access"=>1,  
-	                        "licence"=> "ODBL Paris" ,
-	                        "outGoingLink" =>"",
-	                        "creationDate" => mktime(),
-			        	    "lastModifDate" => mktime(),
-			        	    "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
-			        		"status" =>$status,
-			        	    "user" => 0,
-			        	    "zone"=>1
-			        	 ));
-		        }else{
-			        $placeColl->update(array("_id"=> $res['_id']),array(
-	                            "title"=>$streetName,
-	                            "content"=>$streetHisto,
-	                            "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
-	                            "access"=>1,  
-	                            "licence"=> "ODBL Paris" ,
-	                            "outGoingLink" =>"",
-	                            "creationDate" => mktime(),
-	                            "lastModifDate" => mktime(),
-	                            "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
-	                            "status" =>$status,
-	                            "user" => 0,
-	                            "zone"=>1
-	                         ));
-		          	
+            	echo '<br>row:'.$row."<br>";
+            	
+            	if($row > 1000)
+                    exit;
+                
+	            	if($row <1000 && $row >=150){
+	            	  
+		            $tab[$row-1] = $data;
+		            //$line = str_replace("\r\n", "", $line);
+			        $streetName = utf8_encode($data[3]);
+			        $streetHisto = utf8_encode($data[6]);
+			        if(empty($streetName)){
+			           echo '<br> Check Name line '.$row;
+			        }
+			        
+			        //if(empty($streetHisto))
+		            //   echo '<br> Check Histo line '.$row;
+		
+			        echo '<br> name :'.utf8_decode($streetName);
+			        
+			        // CREATE ONTOLOGY
+			        $entry = $ontolgyXML->Pkg[0]->addChild('Entry');
+			        $entry->addAttribute('display', $streetName);
+			        $form = $entry->addChild('Form');
+			        $form->addAttribute('level','exact');
+			        
+			        
+			        $location = getLocationGMap(utf8_decode($streetName));
+			        
+			        if(!empty($location))
+	                    $status = 1;
+	                 else
+	                     $status = 10;
+	                     
+			        $res = $placeColl->findOne(array('title'=>$streetName));
+			        if(empty($res)){
+				    $placeColl->save(array(
+				        	    "title"=>$streetName,
+				        	    "content"=>$streetHisto,
+				        	    "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
+				        	    "access"=>1,  
+		                        "licence"=> "ODBL Paris" ,
+		                        "outGoingLink" =>"",
+		                        "creationDate" => mktime(),
+				        	    "lastModifDate" => mktime(),
+				        	    "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
+				        		"status" =>$status,
+				        	    "user" => 0,
+				        	    "zone"=>1
+				        	 ));
+			        }else{
+				        $placeColl->update(array("_id"=> $res['_id']),array(
+		                            "title"=>$streetName,
+		                            "content"=>$streetHisto,
+		                            "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
+		                            "access"=>1,  
+		                            "licence"=> "ODBL Paris" ,
+		                            "outGoingLink" =>"",
+		                            "creationDate" => mktime(),
+		                            "lastModifDate" => mktime(),
+		                            "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
+		                            "status" =>$status,
+		                            "user" => 0,
+		                            "zone"=>1
+		                         ));
+			          	
+	                }
                 }
-            }	    
+           }	    
         $row++;
+            
     }
     
     fclose($handle);
@@ -112,7 +120,7 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
 $res  = $ontolgyXML->asXML($outputFile);
 
 if($res == 1){
-	$log .= $row." lines written. Ontology saved here : ".$outputFile;
+	$log = $row." lines written. Ontology saved here : ".$outputFile;
 	$status = 0;
 }
 else{

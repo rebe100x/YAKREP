@@ -1,5 +1,30 @@
 <?php 
 ini_set('display_errors',1);
+
+/* call to webservice to get and store a preview of the link 
+ * return true if success
+ * */
+function getApercite($link){
+	
+	$fullpath = "thumb/".md5($link).'.jpeg';
+	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;
+	$ch = curl_init ($img);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+    $rawdata=curl_exec($ch);
+    curl_close ($ch);
+    if(file_exists($fullpath)){
+        unlink($fullpath);
+    }
+    $fp = fopen($fullpath,'x');
+    fwrite($fp, $rawdata);
+    fclose($fp);
+	
+	
+}
+
+
 /* call to gmap
  * retrun a php array(X,Y)
  * ready to go in mongo

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <Ontology xmlns="exa:com.exalead.mot.components.ontology">
   <Pkg path="ON.quartier">
-  </Pkg>
+  <Entry display="rue Baillet"><Form level="exact"/></Entry><Entry display="rue Bailleul"><Form level="exact"/></Entry><Entry display="place des Magasins de l'Op&#xE9;ra Comique"><Form level="exact"/></Entry><Entry display="Grand Balcon"><Form level="exact"/></Entry><Entry display="rue Baltard"><Form level="exact"/></Entry><Entry display="place Maurice Barr&#xE8;s"><Form level="exact"/></Entry><Entry display="place Basse"><Form level="exact"/></Entry><Entry display="rue Andr&#xE9; Pieyre de Mandiargues"><Form level="exact"/></Entry><Entry display="place de Sydney"><Form level="exact"/></Entry><Entry display="place de la Commune de Paris"><Form level="exact"/></Entry></Pkg>
 </Ontology>

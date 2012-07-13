@@ -1,4 +1,5 @@
 <?php 
-$ascii = ord("Ã¨");
+
+$ascii = ord('ô');
 var_dump($ascii);
 ?>

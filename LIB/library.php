@@ -21,6 +21,7 @@ function getApercite($link){
     fwrite($fp, $rawdata);
     fclose($fp);
 	
+    return $fullpath;
 	
 }
 
@@ -34,7 +35,7 @@ function getApercite($link){
  * */
 function getLocationGMap($q,$output = 'PHP',$debug = 0){
 	
-	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".urlencode(utf8_encode($q))."&sensor=false";
+	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".urlencode(($q))."&sensor=false";
     echo ($debug==1)?'<br>'.$url:"";
     
 	$ch = curl_init();
@@ -69,25 +70,9 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 function rewriteArrondissementParis($romanLetters){
 	$output = $romanLetters;
 
-	// filter input fro EXALEAD 
-	/*$pattern[0] = '/(/';
-	$replacement[0] = '';
-	$pattern[1] = '/)/';
-    $replacement[1] = '';
-    $pattern[2] = '/,/';
-    $replacement[2] = '';
-    $pattern[3] = '/arrondissement/';
-    $replacement[3] = '';
-    $pattern[4] = '/\./';
-    $replacement[4] = '';
-    $pattern[5] = '/-/';
-    $replacement[5] = '';
-    
-    
-	$romanLetters = preg_replace($pattern, $replacement, $romanLetters);
-*/
+	
 	$romanLetters = str_replace(array('(',')','arrondissement',',','.','-',' '),'',$romanLetters);
-	echo "romanLetters".$romanLetters;
+	
 	switch($romanLetters){
 		case 'Ier':
 		case 'Ie':

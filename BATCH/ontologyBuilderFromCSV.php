@@ -42,11 +42,11 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
             	//debug
             	echo '<br>row:'.$row."<br>";
             	
-            	if($row > 1000)
+            	if($row > 10)
                     exit;
                 
-	            	if($row <1000 && $row >=150){
-	            	  
+	            	//if($row < 2500 && $row >=1005){
+                    if($row < 500){
 		            $tab[$row-1] = $data;
 		            //$line = str_replace("\r\n", "", $line);
 			        $streetName = utf8_encode($data[3]);
@@ -66,31 +66,34 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
 			        $form = $entry->addChild('Form');
 			        $form->addAttribute('level','exact');
 			        
-			        
-			        $location = getLocationGMap(utf8_decode($streetName));
-			        
-			        if(!empty($location))
-	                    $status = 1;
-	                 else
-	                     $status = 10;
-	                     
-			        $res = $placeColl->findOne(array('title'=>$streetName));
+			       
+			        $res = $placeColl->findOne(array('title'=>$streetName,'status'=>1));
+
 			        if(empty($res)){
-				    $placeColl->save(array(
+
+			        	$location = getLocationGMap(utf8_decode($streetName),'PHP',1);
+                    
+	                    if(!empty($location))
+	                        $status = 1;
+	                     else
+	                         $status = 10;	
+				    
+	                         $placeColl->save(array(
 				        	    "title"=>$streetName,
 				        	    "content"=>$streetHisto,
 				        	    "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
 				        	    "access"=>1,  
 		                        "licence"=> "ODBL Paris" ,
 		                        "outGoingLink" =>"",
-		                        "creationDate" => mktime(),
-				        	    "lastModifDate" => mktime(),
+		                        "creationDate" => new MongoDate(gmmktime()),
+				        	    "lastModifDate" => new MongoDate(gmmktime()),
 				        	    "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
 				        		"status" =>$status,
 				        	    "user" => 0,
 				        	    "zone"=>1
 				        	 ));
 			        }else{
+			        	
 				        $placeColl->update(array("_id"=> $res['_id']),array(
 		                            "title"=>$streetName,
 		                            "content"=>$streetHisto,
@@ -98,9 +101,9 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
 		                            "access"=>1,  
 		                            "licence"=> "ODBL Paris" ,
 		                            "outGoingLink" =>"",
-		                            "creationDate" => mktime(),
-		                            "lastModifDate" => mktime(),
-		                            "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
+		                            "creationDate" => new MongoDate(gmmktime()),
+		                            "lastModifDate" => new MongoDate(gmmktime()),
+		                            "location"=>array('lat'=>0,'lng'=>0),
 		                            "status" =>$status,
 		                            "user" => 0,
 		                            "zone"=>1
@@ -133,8 +136,8 @@ echo "<br>".$log;
 $batchlogColl->save(
     array(
     "batchName"=>$_SERVER['PHP_SELF'],
-    "datePassage"=>mktime(), // now
-    "dateNextPassage"=>2143152000, // far future = one shot batch
+    "datePassage"=>new MongoDate(gmmktime()), // now
+    "dateNextPassage"=>new MongoDate(2143152000), // far future = one shot batch
     "log"=>$log,
     "status"=>$status
     ));

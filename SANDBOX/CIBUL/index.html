@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Ajax With Jquery</title>
+		
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+				$(".button").click(function() {
+					var url = $("input#url").val();
+					if (url == "") {   
+						$("input#url").focus();  
+						return false;  
+					}
+
+					var dataString = 'cibulUrl='+ url;
+
+					$.ajax({
+						type: "POST",
+						url: "process.php",
+						data: dataString,
+						success: function(data) {
+							$('#display').html(data);
+						}
+					}, "json");
+					return false;
+				});
+			});
+		</script>
+	</head>
+		
+
+	<body>
+		<form id="formCibul">
+
+			<label for="url">Enter cibul event url :</label>
+			<input id="url" name="url" type="text" value="" />
+			<br/>
+			<input type="submit" class="button" value="Send" />
+
+		</form>
+		<div id="display"></div>
+	</body>
+</html>

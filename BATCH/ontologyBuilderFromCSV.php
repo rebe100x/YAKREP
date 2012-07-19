@@ -21,9 +21,11 @@ $db = $m->selectDB("yakwala");
 $placeColl = $db->place;
 $batchlogColl = $db->batchlog;
 
-
+$countInsert = 0;
+$countUpdate = 0;
+$countGMap = 0;
 $row = 0;
-
+$flagForceUpdate = (empty($_GET['forceUpdate']))?0:1;
 
 if (($handle = fopen($inputFile, "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
@@ -40,25 +42,30 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
 	            }*/
 	        
             	//debug
-            	echo '<br>row:'.$row."<br>";
+            	echo '<br><b>--- row:'.$row."</b>";
             	
-            	if($row > 10)
-                    exit;
-                
-	            	//if($row < 2500 && $row >=1005){
-                    if($row < 500){
+            	
+	            	if($row < 500 && $row >=0){
+                    
 		            $tab[$row-1] = $data;
 		            //$line = str_replace("\r\n", "", $line);
-			        $streetName = utf8_encode($data[3]);
-			        $streetHisto = utf8_encode($data[6]);
+			        $streetName = ($data[3]);
+			        $streetHisto = ($data[6]);
+		            $streetArr = ($data[29]);
+		            
+		            $streetArr = getZipCodeFromParisArr($streetArr);
+		            
 			        if(empty($streetName)){
 			           echo '<br> Check Name line '.$row;
+			        }else{
+			        	$streetNameClean = suppr_accents($streetName);
+			            
 			        }
-			        
 			        //if(empty($streetHisto))
 		            //   echo '<br> Check Histo line '.$row;
 		
-			        echo '<br> name :'.utf8_decode($streetName);
+			        echo '<br><b>Name :</b>'.utf8_decode($streetName);
+			        echo '<br><b>Name :</b>'.utf8_decode($streetNameClean);
 			        
 			        // CREATE ONTOLOGY
 			        $entry = $ontolgyXML->Pkg[0]->addChild('Entry');
@@ -67,17 +74,21 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
 			        $form->addAttribute('level','exact');
 			        
 			       
-			        $res = $placeColl->findOne(array('title'=>$streetName,'status'=>1));
+			        $res = $placeColl->findOne(array('title'=>$streetName));
 
-			        if(empty($res)){
-
-			        	$location = getLocationGMap(utf8_decode($streetName),'PHP',1);
-                    
-	                    if(!empty($location))
+			        if(empty($res) && $flagForceUpdate == 0){
+                        echo "<br>Location not found in DB, we start inserting...";
+			        	$location = getLocationGMap(urlencode(utf8_decode($streetNameClean)),'PHP',1);
+                        $countGMap++;
+	                    if(!empty($location)){
 	                        $status = 1;
-	                     else
+	                        echo "<br>Found location with GMap<br>";
+	                    }
+	                     else{
+	                     	echo "<br>GMap failed to find location. The place is stored in status 10.<br>";
 	                         $status = 10;	
-				    
+	                     }
+	                         $countInsert++;  
 	                         $placeColl->save(array(
 				        	    "title"=>$streetName,
 				        	    "content"=>$streetHisto,
@@ -85,29 +96,47 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
 				        	    "access"=>1,  
 		                        "licence"=> "ODBL Paris" ,
 		                        "outGoingLink" =>"",
+	                            "yakCat" => array('idCat'=>1, 'name'=>'adresse', 'level'=>1),   
 		                        "creationDate" => new MongoDate(gmmktime()),
 				        	    "lastModifDate" => new MongoDate(gmmktime()),
 				        	    "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
+	                            "address"=> $streetName.", ".$streetArr.", Paris, France",
 				        		"status" =>$status,
 				        	    "user" => 0,
 				        	    "zone"=>1
 				        	 ));
 			        }else{
-			        	
-				        $placeColl->update(array("_id"=> $res['_id']),array(
-		                            "title"=>$streetName,
-		                            "content"=>$streetHisto,
-		                            "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
-		                            "access"=>1,  
-		                            "licence"=> "ODBL Paris" ,
-		                            "outGoingLink" =>"",
-		                            "creationDate" => new MongoDate(gmmktime()),
-		                            "lastModifDate" => new MongoDate(gmmktime()),
-		                            "location"=>array('lat'=>0,'lng'=>0),
-		                            "status" =>$status,
-		                            "user" => 0,
-		                            "zone"=>1
-		                         ));
+			        	if($flagForceUpdate == 1){
+				        	$countUpdate++;
+				        	echo "<br>Location found in DB, but running with forceUpdate => we update.";
+				        	$location = getLocationGMap(urlencode(utf8_decode($streetName)),'PHP',1);
+	                        $countGMap++;
+	                        if(!empty($location)){
+	                            $status = 1;
+	                            echo "<br>Found location with GMap<br>";
+	                        }
+	                         else{
+	                            echo "<br>GMap failed to find location. The place is stored in status 10.<br>";
+	                             $status = 10;  
+	                         }
+					        $placeColl->update(array("_id"=> $res['_id']),array(
+			                            "title"=>$streetName,
+			                            "content"=>$streetHisto,
+			                            "origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
+			                            "access"=>1,  
+			                            "licence"=> "ODBL Paris" ,
+			                            "outGoingLink" =>"",
+					                    "yakCat" => array('idCat'=>1, 'name'=>'adresse', 'level'=>1),
+			                            "creationDate" => new MongoDate(gmmktime()),
+			                            "lastModifDate" => new MongoDate(gmmktime()),
+			                            "location"=>array('lat'=>$location[0],'lng'=>$location[1]),
+					                    "address"=> $streetName.", ".$streetArr.", Paris, France",
+			                            "status" =>$status,
+			                            "user" => 0,
+			                            "zone"=>1
+			                         ));
+			        	}else
+			        	    echo "<br>Location found in DB, we don't do anything.";
 			          	
 	                }
                 }
@@ -123,7 +152,10 @@ if (($handle = fopen($inputFile, "r")) !== FALSE) {
 $res  = $ontolgyXML->asXML($outputFile);
 
 if($res == 1){
-	$log = $row." lines written. Ontology saved here : ".$outputFile;
+	$log = "<br><br>=================<br>Success :".$row." lines written. Ontology saved here : ".$outputFile."<br><br>Data inserted in DB: 
+	<br>Inserted : ".$countInsert."
+	<br>Updated : ".$countUpdate."
+	<br>Calls to GMap : ".$countGMap;
 	$status = 0;
 }
 else{

@@ -35,7 +35,7 @@ function getApercite($link){
  * */
 function getLocationGMap($q,$output = 'PHP',$debug = 0){
 	
-	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".urlencode(($q))."&sensor=false";
+	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$q."&sensor=false";
     echo ($debug==1)?'<br>'.$url:"";
     
 	$ch = curl_init();
@@ -58,13 +58,13 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
     
 }
 /*test*/
-//$res = getLocationGMap('109, rue de M�nilmontant');
+//$res = getLocationGMap('109, rue de M�nilmontant');
 //var_dump($res);
 
 
 /** Rewrite the arrondissements of Paris to fit gmap type
- * enter VIe or VIeme or VI�me
- * output 6�me arrondissement
+ * enter VIe or VIeme or VI�me
+ * output 6�me arrondissement
  * 
  * */
 function rewriteArrondissementParis($romanLetters){
@@ -82,117 +82,117 @@ function rewriteArrondissementParis($romanLetters){
 		
         case 'IIe':
             case 'IIeme':
-                case 'II�me':
+                case 'II�me':
             $output = '2e arrondissement';
         break;
         
         case 'IIIe':
             case 'IIIeme':
-                case 'III�me':
+                case 'III�me':
             $output = '3e arrondissement';
         break;
         
         case 'IVe':
             case 'IVeme':
-                case 'IV�me':
+                case 'IV�me':
             $output = '4e arrondissement';
         break;
         
         case 'Ve':
             case 'Veme':
-                case 'V�me':
+                case 'V�me':
             $output = '5e arrondissement';
         break;
         
         case 'VIe':
             case 'VIeme':
-                case 'VI�me':
+                case 'VI�me':
             $output = '6e arrondissement';
         break;
         
         case 'VIIe':
             case 'VIIeme':
-                case 'VII�me':
+                case 'VII�me':
             $output = '7e arrondissement';
         break;
         
         case 'VIIIe':
             case 'VIIIeme':
-                case 'VIII�me':
+                case 'VIII�me':
             $output = '8e arrondissement';
         break;
         
         case 'IXe':
             case 'IXeme':
-                case 'IX�me':
+                case 'IX�me':
             $output = '9e arrondissement';
         break;
         
         case 'Xe':
             case 'Xeme':
-                case 'X�me':
+                case 'X�me':
             $output = '10e arrondissement';
         break;
         
         case 'XIe':
         	case 'XIeme':
-                case 'XI�me':
+                case 'XI�me':
             $output = '11e arrondissement';
         break;
         
         case 'XIIe':
         	case 'XIIeme':
-        		case 'XII�me':
+        		case 'XII�me':
             $output = '12e arrondissement';
         break;
         
         case 'XIIIe':
         	case 'XIIIeme':
-        		case 'XIII�me':
+        		case 'XIII�me':
             $output = '13e arrondissement';
         break;
         
         case 'XIVe':
         	case 'XIVeme':
-        		case 'XIV�me':
+        		case 'XIV�me':
             $output = '14e arrondissement';
         break;
         
         case 'XVe':
         	case 'XVeme':
-        		case 'XV�me':
+        		case 'XV�me':
             $output = '15e arrondissement';
         break;
         
         case 'XVIe':
             case 'XVIeme':
-        	   case 'XVI�me':
+        	   case 'XVI�me':
             $output = '16e arrondissement';
         break;
         
         case 'XVIIe':
         case 'XVIIeme':
-        	case 'XVII�me':
+        	case 'XVII�me':
             $output = '17e arrondissement';
         break;
         
         case 'XVIIIe':
         	case 'XVIIIeme':
-        		case 'XVIII�me':
+        		case 'XVIII�me':
         
             $output = '18e arrondissement';
         break;
         
         case 'XIXe':
         	case 'XIXeme':
-        		case 'XIX�me':
+        		case 'XIX�me':
         
             $output = '19e arrondissement';
         break;
         
         case 'XXe':
         case 'XXeme':
-        case 'XX�me':
+        case 'XX�me':
             $output = '20e arrondissement';
         break;
         
@@ -208,4 +208,110 @@ function rewriteArrondissementParis($romanLetters){
 $res = rewriteArrondissementParis('XXe');
 var_dump($res);
 */
+
+
+/*Clean all accentuated char
+ **/
+
+function suppr_accents($str)
+{
+  $avant = array('À','Á','Â','Ã','Ä','Å','Ā','Ă','Ą','Ǎ','Ǻ','Æ','Ǽ',
+'Ç','Ć','Ĉ','Ċ','Č','Ð','Ď','Đ',
+'É','È','Ê','Ë','Ē','Ĕ','Ė','Ę','Ě','Ĝ','Ğ','Ġ','Ģ',
+'Ĥ','Ħ','Ì','Í','Î','Ï','Ĩ','Ī','Ĭ','Į','İ','ĺ','ļ','ľ','ŀ','ł','Ǐ','Ĳ','Ĵ','Ķ','Ĺ','Ļ','Ľ','Ŀ','Ł',
+'Ń','Ņ','Ň','Ñ','Ò','Ó','Ô','Õ','Ö','Ō','Ŏ','Ő','Ơ','Ǒ','Ø','Ǿ','Œ','Ŕ','Ŗ','Ř',
+'Ś','Ŝ','Ş','Š','Ţ','Ť','Ŧ','Ũ','Ù','Ú','Û','Ü','Ū','Ŭ','Ů','Ű','Ų','Ư','Ǔ','Ǖ','Ǘ','Ǚ','Ǜ',
+'Ŵ','Ý','Ŷ','Ÿ','Ź','Ż','Ž',
+'à','á','â','ã','ä','å','ā','ă','ą','ǎ','ǻ','æ','ǽ','ç','ć','ĉ','ċ','č','ď','đ',
+'è','é','ê','ë','ē','ĕ','ė','ę','ě','ĝ','ğ','ġ','ģ','ĥ','ħ',
+'ì','í','î','ï','ĩ','ī','ĭ','į','ı','ǐ','ĳ','ĵ','ķ',
+'ñ','ń','ņ','ň','ŉ','ò','ó','ô','õ','ö','ō','ŏ','ő','ơ','ǒ','ø','ǿ','œ',
+'ŕ','ŗ','ř','ś','ŝ','ş','š','ß','ţ','ť','ŧ',
+'ù','ú','û','ü','ũ','ū','ŭ','ů','ű','ų','ǔ','ǖ','ǘ','ǚ','ǜ','ư','ŵ','ý','ÿ','ŷ','ź','ż','ž','ƒ','ſ');
+  $apres = array('A','A','A','A','A','A','A','A','A','A','A','AE','AE',
+'C','C','C','C','C','D','D','D',
+'E','E','E','E','E','E','E','E','E','G','G','G','G',
+'H','H','I','I','I','I','I','I','I','I','I','I','I','I','I','I','I','IJ','J','K','L','L','L','L','L',
+'N','N','N','N','O','O','O','O','O','O','O','O','O','O','O','O','OE','R','R','R',
+'S','S','S','S','T','T','T','U','U','U','U','U','U','U','U','U','U','U','U','U','U','U','U',
+'W','Y','Y','Y','Z','Z','Z',
+'a','a','a','a','a','a','a','a','a','a','a','ae','ae','c','c','c','c','c','d','d',
+'e','e','e','e','e','e','e','e','e','g','g','g','g','h','h',
+'i','i','i','i','i','i','i','i','i','i','ij','j','k',
+'n','n','n','n','n',
+'o','o','o','o','o','o','o','o','o','o','o','o','oe',
+'r','r','r','s','s','s','s','s','t','t','t',
+'u','u','u','u','u','u','u','u','u','u','u','u','u','u','u','u','w','y','y','y','z','z','z','f','s');
+  return str_replace($avant, $apres, $str);
+}
+
+
+/***/
+function getZipCodeFromParisArr($str){
+	switch($str){
+		case 'Ier':
+			$str = '75001';
+		break;
+		case 'IIe':
+			$str = '75002';
+        break;
+        case 'IIIe':
+        	$str = '75003';
+        break;
+        case 'IVe':
+        	$str = '75004';
+        break;
+        case 'Ve':
+        	$str = '75005';
+        break;
+        case 'VIe':
+        	$str = '75006';
+        break;
+        case 'VIIe':
+        	$str = '75007';
+        break;
+        case 'VIIIe':
+        	$str = '75008';
+        break;
+        case 'IXe':
+        	$str = '75009';
+        break;
+        case 'Xe':
+        	$str = '75010';
+        break;
+        case 'XIe':
+        	$str = '75011';
+        break;
+        case 'XIIe':
+        	$str = '75012';
+        break;
+        case 'XIIIe':
+        	$str = '75013';
+        break;
+        case 'XIVe':
+        	$str = '75014';
+        break;
+        case 'XVe':
+        	$str = '75014';
+        break;
+        case 'XVIe':
+        	$str = '75016';
+        break;
+        case 'XVIIe':
+        	$str = '75017';
+        break;
+        case 'XVIIIe':
+        	$str = '75018';
+        break;
+        case 'XIXe':
+        	$str = '75019';
+        break;
+        case 'XXe':
+        	$str = '75020';
+        break;
+	}
+	return $str;
+	
+}
+
 ?>

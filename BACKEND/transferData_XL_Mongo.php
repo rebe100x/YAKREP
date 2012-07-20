@@ -8,7 +8,7 @@
  * adressetext : same but in the text of the news
  * yakdicotitle : an entity found in the yakdico ( bois de Boulogne .... )
  * yakdicotext :  same in the text of the news
- * arrondissementtitle : an arrondissement like VIe or 6ème arrondissement
+ * arrondissementtitle : an arrondissement like VIe or 6ï¿½me arrondissement
  * arrondissemementtext : same in the text of the news
  * quartiertitle : like : "quartier Latin"
  * quartiertext : same in the text of the news 
@@ -257,7 +257,7 @@ if(!empty($_GET['q'])){
 				     }else{    // FROM GMAP
 				     	echo "<br> Call to GMAP: ".$loc.', Paris, France';
 				     	$logCallToGMap++;
-				        $resGMap = getLocationGMap($loc.', Paris, France','PHP',1);
+				        $resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($loc.', Paris, France'))),'PHP',1);
 				        //$resGMap =  array(48.884134,2.351761);
 				        if(!empty($resGMap)){
 				        	echo "<br> GMAP found the coordinates of this location ! ";
@@ -318,7 +318,7 @@ if(!empty($_GET['q'])){
 		            $info['access'] = 2;
 		            $info['licence'] = "reserved";
 		            $info['heat'] = "80";
-		            $info['yakCat'] = array("id"=>1,"name"=>utf8_encode("actualités"),"level"=>1);
+		            $info['yakCat'] = array("id"=>1,"name"=>utf8_encode("actualitï¿½s"),"level"=>1);
 		            $info['freeTag'] = $freeTag;
 		            $info['creationDate'] = new MongoDate(gmmktime());
 		            $info['lastModifDate'] = new MongoDate(gmmktime());
@@ -400,8 +400,8 @@ $batchlogColl->save(
 
 /*
  array({
-    title:"Le tramway se raccroche à son dernier tronçon",
-    content :"Encore quelques mois et les riverains et usagers du T3 pourront récolter les fruits de leur patience : le tramway parisien circulera alors du pont du Garigliano (XVe) à la porte de la Chapelle...",
+    title:"Le tramway se raccroche ï¿½ son dernier tronï¿½on",
+    content :"Encore quelques mois et les riverains et usagers du T3 pourront rï¿½colter les fruits de leur patience : le tramway parisien circulera alors du pont du Garigliano (XVe) ï¿½ la porte de la Chapelle...",
     thumb : ""
     origin:"leparisien.fr", 
     access: 1 

@@ -1,0 +1,173 @@
+INFO
+	title
+	content
+	thumb : le thumbnail
+	origin : source of the info ( leparisien.fr, username,  )
+	access : 1 public - 2 privé ( API )
+	licence : type de licence
+	outGoingLink : lien vers l'info sur le web
+	heat 0->100 : chaleur de l'info : 80 par défaut
+    print : flags if need to be printed on the map / fils info
+	yakType : 1 actu, 2 agenda, 3 promo, 4 conversation	
+	yakCat [{ mongoId }]
+	yakTag [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
+	freeTag [{}]
+	creationDate
+	lastModifDate
+	dateEndPrint : date max de print sur le front
+	address : string : mainly for debug // we will see if we keep this field in the future
+	location[x,y]
+	status : flag for the workflow : 1: OK , 10 alert gmap not found
+	user : who created the info ( 0 for a batch )
+	zone : used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee, 4 Other
+	contact : object : only if different from the place contact ( ex: for an expo the museaum and the expo do not have the same contact )
+	address :debug field : the location string found by the semantic factory ( the string sent to gmap, used only for the rss parsing )
+	placeId : {ID PLACE} : id of the place matched with in db
+	
+	->EXEMPLE: 
+array({
+	title:"Le tramway se raccroche à son dernier tronçon",
+	content :"Encore quelques mois et les riverains et usagers du T3 pourront récolter les fruits de leur patience : le tramway parisien circulera alors du pont du Garigliano (XVe) à la porte de la Chapelle...",
+	thumb : ""
+	origin:"leparisien.fr",	
+	access: 1 
+	licence: ""
+	outGoingLink : "http://www.leparisien.fr/paris-75/paris-75005/le-tramway-se-raccroche-a-son-dernier-troncon-09-07-2012-2083234.php"
+	heat : 80
+	print : 1
+	yakType : 1
+	yakCat : [yakCat] => Array (
+    [0] => MongoId Object (
+        [$id] => 504d89c5fa9a957004000000
+    )
+    [1] => MongoId Object (
+        [$id] => 504d89cffa9a957004000001
+    )
+)
+	yakTag : [{}]
+	freeTag : array("tramway")
+	creationDate : 132154654,
+	lastModifDate : 132132165,
+	location : [48.839032,2.268741]
+	status : 1,
+	user : 0,
+	zone: 1,
+	contact : {
+				'tel':'012222222',
+				'mobile':'06111111':,
+				'transportation':'metro ligne 2 station Jaurès',
+				'web':'http://www.thewebsite.com',
+				'opening':'Tlj de 9h à 20h'
+				},
+	}
+	address :{ 
+				'street':'',
+				'zipcode':'',
+				'city':'Paris',
+				'country':'France',
+			},
+	placeId : { MongoId Object (
+				[$id] => 504d994bfa9a95680b0001be
+				)}		
+)
+	
+	
+	
+	
+	
+PLACE
+	title : name of the place ( can be a building, an area, a street ... )
+	content : some text to describe the place
+	thumb : a local link to a picture of the place
+	origin : where did we get this info
+	access : 1 - public / 2 - privé for the api ( all open data is public )
+	licence : copy the licence of the file you used
+	yakCat [{Mongo ID idyakCat}]
+	yakTag [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
+	freeTag [{}]
+	creationDate
+	lastModifDate
+	location[x,y]
+	status : flag for the workflow : 1 is validated
+	user : who created the info ( 0 for a batch )
+	zone : used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee , 4 Other
+	address :{ 
+				'street':'',
+				'zipcode':'',
+				'city':'Paris',
+				'country':'France',
+			},
+	contact : {
+				'tel':'012222222',
+				'mobile':'06111111':,
+				'transportation':'metro ligne 2 station Jaurès',
+				'web':'http://www.thewebsite.com',
+				'opening':'Tlj de 9h à 20h',
+				'closing' :'1 er mai',
+				'special opening': 'nocturne le vendredi'
+				},
+	openingBinary : 01010101100 // the binay code for opening time // SEE LATER 
+	
+	->EXEMPLE: 
+array({
+	title:"place Maurice Couve de Murville",
+	content :"",
+	thumb : ""
+	origin:"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",	
+	access: 1
+	licence: "ODBL Paris"
+	outGoingLink : ""
+	yakCat => Array (
+    [0] => MongoId Object (
+        [$id] => 504d89c5fa9a957004000000
+    )
+    [1] => MongoId Object (
+        [$id] => 504d89cffa9a957004000001
+    )
+)
+	yakTag [{}]
+	freeTag [{}]
+	creationDate : 132154654,
+	lastModifDate : 132132165,
+	location : [2.032545,48.132165]
+	address : "place Maurice Couve de Murville, Paris, France"
+	status : 1,
+	user : 0, // this is a batch
+	zone: 1
+	}
+)	
+
+array(
+	"title"=>"place Maurice Couve de Murville",
+	"content" =>"",
+	"thumb" => ""
+	"origin"=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",	
+	"access"=> 1
+	"licence"=> "ODBL Paris"
+	"outGoingLink" => ""
+	"creationDate" => 132154654,
+	"lastModifDate" => 132132165,
+	"location" => [2.032545,48.132165]
+	"status" => 1,
+	"user" => 0,
+	"zone"=> 1
+)		
+
+--------------------------------
+YAKCAT
+--------------------------------
+
+title : name of the category
+path : path to the cat, delimiter #
+ancestors : array of ancestors'name
+ancestorsId : array of ancestors'ids
+parent : direct parent
+parentId : direct parent Id
+level : 1 for root, used as short cut for retrieving cat ( for the front's forms
+tag : : array of tag to make multi criteria search
+creationDate => new MongoDate
+lastModifDate => new MongoDate
+thumb => link to a thumbnail
+status : 1 is enabled on the front, 2 is enable but not on the front, 3 is disabled
+
+	

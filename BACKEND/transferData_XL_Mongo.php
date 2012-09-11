@@ -8,7 +8,7 @@
  * adressetext : same but in the text of the news
  * yakdicotitle : an entity found in the yakdico ( bois de Boulogne .... )
  * yakdicotext :  same in the text of the news
- * arrondissementtitle : an arrondissement like VIe or 6ème arrondissement
+ * arrondissementtitle : an arrondissement like VIe or 6鮥 arrondissement
  * arrondissemementtext : same in the text of the news
  * quartiertitle : like : "quartier Latin"
  * quartiertext : same in the text of the news 
@@ -51,7 +51,7 @@ $logLocationInDB = 0;
 $logDataInserted = 0;
 $logDataUpdated = 0;
 $yakType = 1; // actu
-$yakCatName = array('Actualités'); // actu
+$yakCatName = array('Actualiés'); // actu
 $yakCatId = array(); 
 $placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
 
@@ -106,11 +106,12 @@ if(!empty($_GET['q'])){
 	
 	$defaultGeoloc = array(48.851875,2.356374);
 	echo '<br> Default location of the feed : Paris';
-	//We only get the last 3 days
-	$searchDate = date('Y/m/d',(mktime()-86400*7));
+	//We only get the last X days
+	$daysBack = 3;
+	$searchDate = date('Y/m/d',(mktime()-86400*$daysBack));
 	$url = "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$q."&of=json&b=0&hf=1000&s=document_item_date";
 	
-	echo '<br> URL CALLED : '.$url.'<br>';
+	echo '<br>Days back : '.$daysBack.'<br> URL CALLED : '.$url.'<br>';
 	$ch = curl_init();
 	curl_setopt($ch,CURLOPT_URL,$url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
@@ -296,6 +297,7 @@ if(!empty($_GET['q'])){
 			 
 		// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
 		if(sizeof($locationTmp ) > 0){
+			$placeArray = array();
 			foreach($locationTmp as $loc){
 				echo "<br>Location found by XL : ".$loc;
 				//check if in db
@@ -393,9 +395,17 @@ if(!empty($_GET['q'])){
 	
 		// NOTE:  WE INTRODUCE MULTIPLE INFO IF WE HAVE MULTIPLE LOCATIONS
 		$i = 0;
-		var_dump($placeArray);
+		
+		//var_dump($placeArray);
 	
 		foreach($placeArray as $geolocItem){
+			
+			$datePubArray1 = explode(' ',$datePub);
+			$datePubArrayD = explode('/',$datePubArray1[0]);
+			$datePubArrayT = explode(':',$datePubArray1[1]);
+			
+			$tsPub = gmmktime($datePubArrayT[0],$datePubArrayT[1],$datePubArrayT[2],$datePubArrayD[0],$datePubArrayD[1],$datePubArrayD[2]);
+			echo "<br>time: ".$datePubArrayT[0]."-".$datePubArrayT[1]."-".$datePubArrayT[2]."-".$datePubArrayD[0]."-".$datePubArrayD[1]."-".$datePubArrayD[2];
 			$info = array();
 			$info['title'] = $title;
 			$info['content'] = $content;
@@ -409,9 +419,10 @@ if(!empty($_GET['q'])){
 			$info['yakCat'] = $yakCatId;
 			$info['yakType'] = $yakType; // actu
 			$info['freeTag'] = $freeTag;
+			$info['pubDate'] = new MongoDate($tsPub);
 			$info['creationDate'] = new MongoDate(gmmktime());
 			$info['lastModifDate'] = new MongoDate(gmmktime());
-			$info['dateEndPrint'] = new MongoDate(gmmktime()+2*86400); // + 2 days
+			$info['dateEndPrint'] = new MongoDate(gmmktime()+3*86400); // + 3 days
 			$info['print'] = $print;
 			$info['status'] = $status;
 			$info['user'] = 0;
@@ -486,31 +497,6 @@ $batchlogColl->save(
     
 
 
-
-/*
- array({
-    title:"Le tramway se raccroche à son dernier tronçon",
-    content :"Encore quelques mois et les riverains et usagers du T3 pourront récolter les fruits de leur patience : le tramway parisien circulera alors du pont du Garigliano (XVe) à la porte de la Chapelle...",
-    thumb : ""
-    origin:"leparisien.fr", 
-    access: 1 
-    licence: ""
-    outGoingLink : "http://www.leparisien.fr/paris-75/paris-75005/le-tramway-se-raccroche-a-son-dernier-troncon-09-07-2012-2083234.php"
-    heat : 80
-    print : 1
-    yakCat : array({id:1,name:"transport",level:1})
-    yakTag : [{}]
-    freeTag : "tramway"
-    creationDate : 132154654,
-    lastModifDate : 132132165,
-    dateEndPrint : 132152165
-    location : [48.839032,2.268741]
-    status : 1,
-    user : 0,
-    zone: 1
-    }
-)
-*/
 ?>
 </body>
 </html>

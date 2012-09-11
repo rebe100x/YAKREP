@@ -12,8 +12,9 @@ INFO
 	yakCat [{ mongoId }]
 	yakTag [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
 	freeTag [{}]
-	creationDate
-	lastModifDate
+	pubDate : publication date in the feed
+	creationDate : creation  in db (for debug)
+	lastModifDate : modfi in db ( for debug )
 	dateEndPrint : date max de print sur le front
 	address : string : mainly for debug // we will see if we keep this field in the future
 	location[x,y]

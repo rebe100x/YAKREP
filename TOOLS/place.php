@@ -78,6 +78,16 @@
 			"city" => "",
 			"country" => "",
 		);
+		$this->contact = array (
+			"tel" => "",
+			"mobile" => "",
+			"transportation" => "",
+			"web" => "",
+			"opening" => "",
+			"closing" => "",
+			"special opening" => "",
+		);
+		
 		$this->status = 0;
 		$this->user = 0;
 		$this->zone = 1;

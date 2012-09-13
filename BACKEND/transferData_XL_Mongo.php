@@ -57,7 +57,7 @@ $placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
 $persistDays =  3;
 $flagForceUpdate = (empty($_GET['forceUpdate']))?0:1;
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
-$daysBack = 10;//We only get the last X days
+$daysBack = 15;//We only get the last X days
 if(!empty($_GET['q'])){
     
     if($flagForceUpdate)
@@ -110,6 +110,11 @@ if(!empty($_GET['q'])){
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
 			$persistDays =  14;
+        break;
+		case 'france3-faitsdivers':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;
         break;
 	}
 	
@@ -513,6 +518,7 @@ $batchlogColl->save(
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=paris-bouge\"/>".$_SERVER['PHP_SELF']."?q=paris-bouge</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=exponaute\"/>".$_SERVER['PHP_SELF']."?q=exponaute</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=agenda-culturel-75\"/>".$_SERVER['PHP_SELF']."?q=agenda-culturel-75</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=france3-faitsdivers\"/>".$_SERVER['PHP_SELF']."?q=france3-faitsdivers</a>" ;
     echo "<br>To print all text of the info add &showAllText=1";    
     
 

@@ -54,10 +54,10 @@ $yakType = 1; // actu
 $yakCatName = array('Actualiés'); // actu
 $yakCatId = array(); 
 $placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
-
+$persistDays =  3;
 $flagForceUpdate = (empty($_GET['forceUpdate']))?0:1;
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
-
+$daysBack = 10;//We only get the last X days
 if(!empty($_GET['q'])){
     
     if($flagForceUpdate)
@@ -69,45 +69,56 @@ if(!empty($_GET['q'])){
         case 'leparisien75':
 			$yakType =  1;
 			$yakCatName = array('Actualités');
+			$persistDays =  3;
 		break;
         case 'telerama':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
+			$persistDays =  10;
         break;
 		case 'concertandco':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture','Musique','Concert');
+			$persistDays =  7;
 		break;
         case 'expo-a-paris':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture','Exposition');
+			$persistDays =  7;
 		break;
         case 'paris-bouge':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
+			$persistDays =  180;
 		break;
         case 'sortir-a-paris':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
+			$persistDays =  7;
 		break;
         case 'figaro-culture':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
+			$persistDays =  7;
 		break;
         case 'exponaute':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture','Exposition');
+			$persistDays =  14;
 		break;
         case 'agenda-culturel-75':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
+			$persistDays =  14;
         break;
 	}
 	
-	$defaultGeoloc = array(48.851875,2.356374);
+	$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+	$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+	
+	$geolocYakCatId = "504d89f4fa9a958808000001"; // GEOLOC : @TODO softcode this
+	
 	echo '<br> Default location of the feed : Paris';
-	//We only get the last X days
-	$daysBack = 3;
 	$searchDate = date('Y/m/d',(mktime()-86400*$daysBack));
 	$url = "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$q."&of=json&b=0&hf=1000&s=document_item_date";
 	
@@ -142,7 +153,8 @@ if(!empty($_GET['q'])){
 		$yakdicotitle = array();
 		$yakdicotext = array();
 		$locationTmp = array();
-		$geoloc = array();
+		$geolocGMAP = array();
+		$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
 		$freeTag = "";
 		echo '<hr>';
 		$metas = $hit->metas;
@@ -295,9 +307,10 @@ if(!empty($_GET['q'])){
 			}
 		}
 			 
+		$placeArray = array();	 
 		// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
 		if(sizeof($locationTmp ) > 0){
-			$placeArray = array();
+			
 			foreach($locationTmp as $loc){
 				echo "<br>Location found by XL : ".$loc;
 				//check if in db
@@ -320,48 +333,54 @@ if(!empty($_GET['q'])){
 						echo "<br> GMAP found the coordinates of this location ! ";
 						$status = 1;
 						$print = 1;
-						$geoloc[] = $resGMap;
+						$geolocGMAP = $resGMap['location'];
+						$addressGMAP = $resGMap['address'];
 					}else{
 						echo "<br> GMAP did not succeed to find a location, we store the INFO in db with status 10.";
 						$status = 10;
-						$geoloc[] = array(0,0);
+						$geolocGMAP = array(0,0);
+						$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
 						$print = 0;
 					} 
 					// we store the result in PLACE for next time
-					foreach($geoloc as $geolocItem){
-						$place = array(
-									"title"=> $loc,
-									"content" =>"",
-									"thumb" => "",
-									"origin"=>$q,    
-									"access"=> 2,
-									"licence"=> "Yakwala",
-									"outGoingLink" => "",
-									"creationDate" => new MongoDate(gmmktime()),
-									"lastModifDate" => new MongoDate(gmmktime()),
-									"location" => array("lat"=>$geolocItem[0],"lng"=>$geolocItem[1]),
-									"status" => $status,
-									"user" => 0,
-									"zone"=> 1,
-									
-								  );
-								  
-						$res = $placeColl->findOne(array('title'=>$loc));
-						//echo '---<br>';
-						//var_dump($res);
-						//echo '---<br>';
-						if(empty($res)){// The place is not in db
-							echo "<br> The location does not exist in db, we create it.";
-							$placeColl->save($place); 
-						}else{ // The place already in DB, we update if the flag tells us to
-							if($flagForceUpdate ==  1){
-								echo "<br> The location exists in db and we update it.";
-								$placeColl->update(array("_id"=> $res['_id']),$place); 
-							}else
-							   echo "<br> The location exists in db => doing nothing.";
-						}
-						$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocItem[0],'lng'=>$geolocItem[1]);
-					 }
+					
+					$place = array(
+								"title"=> $loc,
+								"content" =>"",
+								"thumb" => "",
+								"origin"=>$q,    
+								"access"=> 2,
+								"licence"=> "Yakwala",
+								"outGoingLink" => "",
+								"yakCat" => array(new MongoId($geolocYakCatId)), 
+								"creationDate" => new MongoDate(gmmktime()),
+								"lastModifDate" => new MongoDate(gmmktime()),
+								"location" => array("lat"=>$geolocGMAP[0],"lng"=>$geolocGMAP[1]),
+								"status" => $status,
+								"user" => 0,
+								"zone"=> 1,
+								"address" => $addressGMAP,
+							  );
+							  
+							  
+					$res = $placeColl->findOne(array('title'=>$loc));
+					//echo '---<br>';
+					//var_dump($res);
+					//echo '---<br>';
+					if(empty($res)){// The place is not in db
+						echo "<br> The location does not exist in db, we create it.";
+						$placeColl->save($place); 
+						$placeColl->ensureIndex(array("location"=>"2d"));
+					}else{ // The place already in DB, we update if the flag tells us to
+						if($flagForceUpdate ==  1){
+							echo "<br> The location exists in db and we update it.";
+							$placeColl->update(array("_id"=> $res['_id']),$place); 
+							$placeColl->ensureIndex(array("location"=>"2d"));
+						}else
+						   echo "<br> The location exists in db => doing nothing.";
+					}
+					$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1]);
+				 
 				 }         
 			}
 			
@@ -383,6 +402,7 @@ if(!empty($_GET['q'])){
 			$print = 0;
 			$geoloc = array($defaultGeoloc);
 			$status = 1;
+			$placeArray[] = array('_id'=>$defaultPlaceId,'lat'=>$defaultGeoloc[0],'lng'=>$defaultGeoloc[1]);	
 		}
 		
 	
@@ -422,13 +442,13 @@ if(!empty($_GET['q'])){
 			$info['pubDate'] = new MongoDate($tsPub);
 			$info['creationDate'] = new MongoDate(gmmktime());
 			$info['lastModifDate'] = new MongoDate(gmmktime());
-			$info['dateEndPrint'] = new MongoDate(gmmktime()+3*86400); // + 3 days
+			$info['dateEndPrint'] = new MongoDate(gmmktime()+$persistDays*86400); // 
 			$info['print'] = $print;
 			$info['status'] = $status;
 			$info['user'] = 0;
 			$info['zone'] = 1;
 			$info['location'] = array("lat"=>$geolocItem['lat'],"lng"=>$geolocItem['lng']);
-			$info['address'] = $locationTmp[$i++];
+			$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
 			$info['placeId'] = new MongoId($geolocItem['_id']);
 			
 			// check if data is not in DB

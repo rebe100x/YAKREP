@@ -47,14 +47,37 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
     $json = json_decode($result);
     
     if(sizeof($json->results) > 0){
-	    $res = $json->results[0]->geometry->location;
+	    //$res = $json->results[0]->geometry->location;
+		$res = $json->results[0];
+		$address = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
+		foreach($res->address_components as $itemAddress){
+			if(in_array("route",$itemAddress->types))
+				$address['street'] = $itemAddress->long_name;
+			if(in_array("sublocality",$itemAddress->types))
+				$address['arr'] = $itemAddress->long_name;
+			if(in_array("locality",$itemAddress->types))
+				$address['city'] = $itemAddress->long_name;
+			if(in_array("administrative_area_level_2",$itemAddress->types))
+				$address['state'] = $itemAddress->long_name;
+			if(in_array("administrative_area_level_1",$itemAddress->types))
+				$address['area'] = $itemAddress->long_name;
+			if(in_array("country",$itemAddress->types))
+				$address['country']= $itemAddress->long_name;
+			if(in_array("postal_code",$itemAddress->types))
+				$address['zip']= $itemAddress->long_name;
+				
+		}
+		
+		$location = $json->results[0]->geometry->location;
+		
+		$res = array("address"=>$address,"location"=>array($location->lat,$location->lng));
 	    if($output == 'JSON')    
 	        $res = json_encode($res);
 	    if($output == 'PHP')    
-	        $res = array($res->lat,$res->lng);
+	        $res = $res;
     }else
         $res = 0;
-            
+     
     return $res;
     
 }

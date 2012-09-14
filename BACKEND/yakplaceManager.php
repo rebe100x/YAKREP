@@ -10,6 +10,7 @@ $place = $db->place;
 
 
 $record = array(
+	"_id"=>"50517fe1fa9a95040b000007",
 	"title"=>"Paris",
 	"content" =>"",
 	"thumb" => "",
@@ -32,7 +33,7 @@ $record = array(
 	"zone"=> 1
 	
 );	
-
+$place->ensureIndex(array("location"=>"2d"));
 $place->save($record);
                     
 echo $record['_id'];                    

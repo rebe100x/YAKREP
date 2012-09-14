@@ -1,5 +1,7 @@
 <?php
 
+require_once("../LIB/library.php");
+
  class Place
  {
  	// name of the place ( can be a building, an area, a street ... )
@@ -20,13 +22,13 @@
  	// copy the licence of the file you used
  	public $licence;
 
- 	// [{Mongo ID idyakCat}]
- 	public $outGoingLink;
-
  	// [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
- 	public $yakCat;
+ 	public $yakTag;
 
- 	public $freeTag;
+ 	//Mongo ID idyakCat
+	public $yakCat;
+
+	public $freeTag;
 
  	public $creationDate;
 
@@ -53,10 +55,10 @@
  		$this->content = '';
  		$this->thumb = '';
  		$this->origin = '';
- 		$this->access = 2;
+ 		$this->access = 1;
  		$this->licence = '';
  		$this->outGoingLink = '';
- 		$this->yakCat = array (
+ 		$this->yakTag = array (
 			"enfants" => "0",
 			"handicapés" => "0",
 			"personnes agées" => "0",
@@ -81,15 +83,30 @@
 		$this->contact = array (
 			"tel" => "",
 			"mobile" => "",
+			"mail" => "",
 			"transportation" => "",
 			"web" => "",
 			"opening" => "",
 			"closing" => "",
 			"special opening" => "",
 		);
-		
+
 		$this->status = 0;
 		$this->user = 0;
 		$this->zone = 1;
  	}
+
+ 	function getLocation($query, $debug)
+ 	{
+ 		$loc = getLocationGMap($qury,'PHP', $debug);
+
+ 		if ($loc != 0)
+ 		{
+ 			$this->location["lat"] = $loc["location"]["lat"];
+ 			$this->location["lng"] = $loc["location"]["lng"];
+ 		}
+ 	}
+
+ 	
+
  }

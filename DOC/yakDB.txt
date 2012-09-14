@@ -55,7 +55,8 @@ array({
 	zone: 1,
 	contact : {
 				'tel':'012222222',
-				'mobile':'06111111':,
+				'mobile':'06111111',
+				'mail':'rebe100x@gmail.com'
 				'transportation':'metro ligne 2 station Jaurès',
 				'web':'http://www.thewebsite.com',
 				'opening':'Tlj de 9h à 20h'
@@ -100,7 +101,8 @@ PLACE
 			},
 	contact : {
 				'tel':'012222222',
-				'mobile':'06111111':,
+				'mobile':'06111111',
+				'mail':'rebe100x@gmail.com'
 				'transportation':'metro ligne 2 station Jaurès',
 				'web':'http://www.thewebsite.com',
 				'opening':'Tlj de 9h à 20h',

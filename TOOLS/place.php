@@ -127,7 +127,7 @@ require_once("../LIB/library.php");
 
  	function getLocation($query, $debug)
  	{
- 		$loc = getLocationGMap($qury,'PHP', $debug);
+ 		$loc = getLocationGMap($query,'PHP', $debug);
 
  		if ($loc != 0)
  		{

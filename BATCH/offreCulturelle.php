@@ -18,9 +18,14 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 2000, ";")) !== FALSE) {
 		
 		if ($row > 0) {
+
+			foreach ($data as $key => $value) {
+				data[$key] = utf8_encode($value);
+			}
+
 			// Field 60 is the country where the event takes place but
 			// it seems that everyone misuses it and fill only field 5
-			if ($data[5] == "France") {
+			if ($data[4] == "France") {
 				$currentPlace = new Place();
 
 				$currentPlace->title = $data[38];
@@ -32,12 +37,11 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				$currentPlace->address["city"] = $data[15];
 				$currentPlace->address["country"] = $data[5];
 
-				$resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ' ' . $currentPlace->address["country"]))));
+				$query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
 
-				print "<pre>";
-				var_dump($resGMap);
-				print "</pre>";
-				break;
+				$currentPlace->getLocation($query, 0);
+				
+				$currentPlace->saveToMongoDB();
 			}
 		}
 		

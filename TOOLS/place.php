@@ -138,7 +138,7 @@ require_once("../LIB/library.php");
  	function getLocation($query, $debug)
  	{
  		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
- 		
+
  		if ($loc != 0)
  		{
  			$this->location["lat"] = $loc["location"][0];

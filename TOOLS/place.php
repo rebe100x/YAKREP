@@ -122,6 +122,15 @@ require_once("../LIB/library.php");
 			"zone"			=> 	$this->zone,
 		);	
 
+		$rangeQuery = array('title' => $this->title, 'address' => $this->address);
+
+		$cursor = $place->find($rangeQuery);
+		foreach ($cursor as $doublon) {
+    		//TODO : gérer la mise à jour des doublons
+    		//var_dump($doublon);
+    		return 1;
+		}
+
 		$place->save($record);
 		return $record['_id'];
  	}

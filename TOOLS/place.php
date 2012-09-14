@@ -67,6 +67,7 @@ require_once("../LIB/library.php");
 			"gratuit" => "0",
 			"animaux" => "0",
 		);
+		$this->yakCat = array('');
  		$this->freeTag = '';
  		$this->creationDate = time();
  		$this->lastModifDate = time();
@@ -98,15 +99,50 @@ require_once("../LIB/library.php");
 
  	function getLocation($query, $debug)
  	{
- 		$loc = getLocationGMap($qury,'PHP', $debug);
-
+ 		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
+ 		
  		if ($loc != 0)
  		{
- 			$this->location["lat"] = $loc["location"]["lat"];
- 			$this->location["lng"] = $loc["location"]["lng"];
+ 			$this->location["lat"] = $loc["location"][0];
+ 			$this->location["lng"] = $loc["location"][1];
+ 			return true;
  		}
+ 		return false;
  	}
 
+ 	function setCatActu()
+ 	{
+ 		$this->yakCat[] = new MongoId("504d89c5fa9a957004000000");
+ 	}
  	
+	function setCatCulture()
+ 	{
+ 		$this->yakCat[] = new MongoId("504d89cffa9a957004000001");
+ 	}
 
+ 	function setCatGeoloc()
+ 	{
+ 		$this->yakCat[] = new MongoId("504d89f4fa9a958808000001");
+ 	}
+
+ 	function setCatEducation()
+ 	{
+ 		$this->yakCat[] = new MongoId("504dbb06fa9a95680b000211");
+ 	}
+
+ 	function setCatTheatre()
+ 	{
+ 		$this->yakCat[] = new MongoId("504df6b1fa9a957c0b000004");
+ 	}
+ 	
+ 	function setCatExpo()
+ 	{
+ 		$this->yakCat[] = new MongoId("504df70ffa9a957c0b000006");
+ 	}
+ 	
+ 	function setCatCinema()
+ 	{
+ 		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
  }

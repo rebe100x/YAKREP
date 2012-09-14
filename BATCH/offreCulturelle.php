@@ -18,6 +18,11 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 2000, ";")) !== FALSE) {
 		
 		if ($row > 0) {
+
+			foreach ($data as $key => $value) {
+				data[$key] = utf8_encode($value);
+			}
+
 			// Field 60 is the country where the event takes place but
 			// it seems that everyone misuses it and fill only field 5
 			if ($data[4] == "France") {
@@ -35,11 +40,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				$query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
 
 				$currentPlace->getLocation($query, 0);
-
-				print "<pre>";
-				print_r($currentPlace);
-				print "</pre>";
-				break;
+				
+				$currentPlace->saveToMongoDB();
 			}
 		}
 		

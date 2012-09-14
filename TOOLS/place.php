@@ -1,5 +1,7 @@
 <?php
 
+require_once("../LIB/library.php");
+
  class Place
  {
  	// name of the place ( can be a building, an area, a street ... )
@@ -91,5 +93,33 @@
 		$this->status = 0;
 		$this->user = 0;
 		$this->zone = 1;
+ 	}
+
+ 	function saveToMongoDB() {
+ 		$m = new Mongo();
+		$db = $m->selectDB("yakwala");
+		$place = $db->place;
+
+		$record = array(
+			"title"			=>	$this->title,
+			"content" 		=>	$this->content,
+			"thumb" 		=>	$this->thumb,
+			"origin"		=>	$this->origin,	
+			"access"		=>	$this->access,
+			"licence"		=>	$this->licence,
+			"outGoingLink" 	=>	$this->outGoingLink,
+			"yakCat" 		=>	$this->yakCat,
+			"creationDate" 	=>	new MongoDate(gmmktime()),
+			"lastModifDate" =>	new MongoDate(gmmktime()),
+			"location" 		=>	$this->location,
+			"address" 		=>	$this->address,
+			"contact"		=>	$this->contact,
+			"status" 		=>	$this->status,
+			"user"			=> 	$this->user, 
+			"zone"			=> 	$this->zone,
+		);	
+
+		$place->save($record);
+		return $record['_id'];
  	}
  }

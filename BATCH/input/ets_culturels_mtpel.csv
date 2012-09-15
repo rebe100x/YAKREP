@@ -1,0 +1,43 @@
+;;Adresse;;;;;;;;;;Jours/Horaires;;;;;;;;
+Type de service;Nom du service;N°;BTQ;Voie;CP;Ville;Complément d'adresse;Téléphone;Email;Fax;Période;L;M;M;J;V;S;D;a.m./p.m.;Commentaire
+CULTURE;Médiathèque Emile Zola;218;;Bd de l'aéroport international;34000;Montpellier;;04 67 34 87 00;;;PS;FERME;12:00/19:00;10:00/19:00;12:00/21:00;12:00/19:00;10:00/18:30;14:30/18:00;;
+CULTURE;Médiathèque Emile Zola;218;;Bd de l'aéroport international;34000;Montpellier;;04 67 37 84 00;;;HPS;FERME;12:00/19:00;10:00/19:00;12:00/21:00;12:00/19:00;10:00/18:30;FERME;;
+CULTURE;Médiathèque Federico Fellini;;;Place Paul Bec;34000;Montpellier;;04 99 06 27 47;mediathequefellini@montpellier-agglo.com;;PS;FERME;12:00/19:00;10:00/19:00;12:00/21:00;12:00/19:00;10:00/18:30;14:30/18:00;;
+CULTURE;Médiathèque Federico Fellini;;;Place Paul Bec;34000;Montpellier;;04 99 06 27 47;;;HPS;FERME;12:00/19:00;10:00/19:00;12:00/21:00;12:00/19:00;10:00/18:30;FERME;;
+CULTURE;Médiathèque Victor Hugo;207;;rue Guillaume Janvier;34070;Montpellier;;04 67 27 17 17;mediathequevictorhugo@montpellier-agglo.com;;;FERME;12:30/18:00;10:00/12:30 13:30/18:00;15:00/19:00;15:00/18:00;10:00/12:30 13:30/18:00;FERME;;
+CULTURE;Médiathèque J.J. Rousseau;230;;avenue du Bitterrois;34080;Montpellier;;04 67 10 70 20;mediathequejjrousseau@montpellier-agglo.com;;;FERME;12:30/18:00;10:00/12:30 13:30/18:00;15:00/19:00;15:00/18:00;10:00/12:30 13:30/18:00;FERME;;
+CULTURE;Médiathèque Garcia Lorca;162;;avenue de Palavas;34070;Montpellier;;04 99 13 39 49;mediathequegarcialorca@montpellier-agglo.com;;;FERME;14:00/18:30;10:00/13:00 14:00/18:00;14:30/18:30;14:00/18:00;10:00/13:00 14:00/18:00;FERME;;
+CULTURE;Médiathèque W. Shakespeare;150;;avenue Paul Bringuier;34080;Montpellier;;04 67 16 34 20;mediathequeshakespeare@montpellier-agglo.com;;;FERME;12:30/18:00;10:00/12:30 13:30/18:00;15:00/18:30;15:00/18:30;10:00/12:30 13:30/18:00;FERME;;
+CULTURE;Médiathèque La Gare;;;avenue du Grand Jeu;34570;Pignan;;04 67 47 61 69;mediathequelagare@montpellier-agglo.com;;;FERME;10:00/12:30 16:00/19:00;10:00/12:30 14:00/19:00;13:30/17:30;16:00/19:00;10:00/12:30 13:30/17:30;FERME;;
+CULTURE;Médiathèque Françoise Giroud;15;;avenue de la Cave Coopérative;34160;Castries;;04 67 10 43 80;mediathequefrancoisegiroud@montpellier-agglo.com;;;FERME;15:00/19:00;10:00/12:30 13:30/18:30;16:00/19:00;12:30/18:30;10:00/12:30 13:30/18:30;FERME;;
+CULTURE;Médiathèque Aimé Césaire;;;Allée rose de France;34170;Castelnau le Lez;(place du marché);04 67 02 78 85;mediathequeaimecesaire@montpellier-agglo.com;;;FERME;10:00/12:30 15:00/19:00;10:00/12:30 13:30/19:00;15:00/18:00;15:00/19:00;10:00/12:30 13:30/17:30;FERME;;
+CULTURE;Médiathèque Paul Langevin;1071;;avenue de la Justive de Castelnau;34090;Montpellier;quartier Hôpitaux Facultés;04 67 72 58 76;mediathequepaullangevin@montpellier-agglo.com;;;FERME;15:00/18:30;10:00/12:30 15:00/18:30;FERME;15:00/18:30;10:00/12:30;FERME;;
+CULTURE;Médiathèque J.P. Sartre;4;;rue Samain;34070;Montpellier;quartier Montpellier Centre;04 67 07 92 86;mediathequejeanpaulsartre@montpellier-agglo.com;;;FERME;16:00/18:00;10:00/12:00 14:00/18:00;FERME;16:00/18:00;10:00/12:00;FERME;;
+CULTURE;Médiathèque Jean de la Fontaine;;;avenue du Château;34880;Lavérune;Château des Evêques;04 99 53 03 55;med-jdlf-liste@montpellier-agglo.com;;;FERME;10:00/12:30 15:00/18:00;10:00/12:30 13:30/18:30;FERME;15:00/19:00;9:30/13:30;FERME;;
+CULTURE;Médiathèque Albert Camus;12;;rue Albert Camus;34830;Clapiers;;04 67 56 46 20;mediathequealbertcamus@montpellier-agglo.com;;;FERME;14:00/19:00;10:00/13:00 14:00/19:00;14:00/17:30;14:00/19:00;10:00/13:00 14:00/17:30;FERME;;
+CULTURE;Médiathèque George Sand;235;;Bd des Moures;34750;Villeneuve les Maguelone;;04 67 69 97 17;mediathequegeorgesand@montpellier-agglo.com;;;FERME;10:00/12:00 14:00/19:00;10:00/12:00 14:00/19:00;14:00/18:00;14:00/19:00;10:00/12:00 14:00/18:00;FERME;;
+CULTURE;Musée Fabre;39;;Bd Bonne Nouvelle;34000;Montpellier;;04 67 14 83 00;musee.fabre@montpellier-agglo.com;;;FERME;10:00/18:00;10:00/18:00;10:00/18:00;10:00/18:00;10:00/18:00;10:00/18:00;;
+CULTURE;Musée Fabre;39;;Bd Bonne Nouvelle;34000;Montpellier;;04 67 14 83 00;musee.fabre@montpellier-agglo.com;;Expo d'été;FERME;10:00/19:00;10:00/19:00;10:00/19:00;10:00/19:00;10:00/19:00;10:00/19:00;;
+CULTURE;Hôtel Sabatier d'Espeyran;;;rue Montpellieret;34000;Montpellier;;04 67 14 83 00;;;;FERME;14:00/18:00;14:00/18:00;14:00/18:00;14:00/18:00;14:00/18:00;14:00/18:00;;
+CULTURE;Musée Henri Prades - Site archéologique Lattara;390;;Route de Pérols;34970;Lattes;;04 67 99 77 20;museelattes.conservation@montpellier-agglo.com;;;"10:00/12:00
+13:30/17:30";FERME;"10:00/12:00
+13:30/17:30";"10:00/12:00
+13:30/17:30";"10:00/12:00
+13:30/17:30";14:00/18:00;14:00/18:00;;
+CULTURE;Musée Henri Prades - Site archéologique Lattara;390;;Route de Pérols;34970;Lattes;;04 67 99 77 20;museelattes.conservation@montpellier-agglo.com;;Expositions;"10:00/12:00
+13:30/17:30";FERME;"10:00/12:00
+13:30/17:30";"10:00/12:00
+13:30/17:30";"10:00/12:00
+13:30/17:30";14:00/19:00;14:00/19:00;;
+CULTURE;Planétarium Galilée;100;;Allée Ulysse;34000;Montpellier;;04 67 13 26 26;planetarium@montpellier-agglo.com;;PS;"9:00/12:00
+14:00/16:30
+sur réservation";"9:00/12:00
+14:00/16:30
+sur réservation";FERME;"9:00/12:00
+14:00/16:30
+sur réservation";"9:00/12:00
+14:00/16:30
+sur réservation";13:30/21:00;13:30/18:00;;
+CULTURE;Planétarium Galilée;100;;Allée Ulysse;34000;Montpellier;;04 67 13 26 26;planetarium@montpellier-agglo.com;;HPS;13:30/18:00;13:30/18:00;13:30/19:30;13:30/18:00;13:30/18:00;13:30/21:00;13:30/18:00;;
+CULTURE;Aquarium Mare Nostrum;;;Allée Ulysse;34000;Montpellier;;04 67 13 05 50;;;;10:00/19:00;10:00/19:00;10:00/19:00;10:00/19:00;10:00/19:00;10:00/19:00;10:00/19:00;;
+CULTURE;Aquarium Mare Nostrum;;;Allée Ulysse;34000;Montpellier;;04 67 13 05 50;;;Juillet-août;10:00/20:00;10:00/20:00;10:00/20:00;10:00/20:00;10:00/20:00;10:00/20:00;10:00/20:00;;

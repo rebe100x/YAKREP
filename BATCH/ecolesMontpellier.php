@@ -25,6 +25,11 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
 foreach ($ecoles as $fields)
 {
+
+	foreach ($fields as $key => $value) {
+				$fields[$key] = utf8_encode($value);
+	}
+			
 	if ($count > 0)
 	{
 		$place = new Place();

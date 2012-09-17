@@ -25,7 +25,7 @@ $record = array(
 	"status" => 1
 );*/
 
-
+/*
 $record = array(
 	"title"=> "Cinéma",
 	"path" => "Culture, Cinéma",
@@ -40,6 +40,7 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
+*/
 /*
 $record = array(
 	"title"=> "Exposition",
@@ -55,6 +56,22 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );*/
+
+
+$record = array(
+	"title"=> "Musée",
+	"path" => "Culture, Musée",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"tag" => array("musées"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 
 $yakcat->save($record);
 var_dump($record);

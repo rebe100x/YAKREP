@@ -35,13 +35,17 @@
  * 
  * */
 
+$deploy = 'dev'; 
+
 ini_set ('max_execution_time', 0);
 set_time_limit(0);
 ini_set('display_errors',1);
 require_once("../LIB/library.php");
+require_once("../LIB/conf.php");
+$conf = new conf($deploy);
 
 $m = new Mongo(); 
-$db = $m->selectDB("yakwala");
+$db = $m->selectDB($conf->db());
 $infoColl = $db->info;
 $placeColl = $db->place;
 $yakcatColl = $db->yakcat;
@@ -57,7 +61,7 @@ $placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
 $persistDays =  3;
 $flagForceUpdate = (empty($_GET['forceUpdate']))?0:1;
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
-$daysBack = 15;//We only get the last X days
+$daysBack = 1;//We only get the last X days
 if(!empty($_GET['q'])){
     
     if($flagForceUpdate)

@@ -1,5 +1,7 @@
 <?php 
 
+$deploy = 'dev'; 
+
 class conf
 {
     private $db;

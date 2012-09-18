@@ -1,0 +1,9 @@
+<Ontology xmlns="exa:com.exalead.mot.components.ontology">
+	<Pkg path="yakdicotitle" >
+		<Entry display="Vel d'Hiv"><Form level="normalized"/></Entry>
+		<Entry display="Ateliers d'Art de France"><Form level="normalized"/></Entry>
+		<Entry display="parc des Expositions"><Form level="normalized"/></Entry>
+		<Entry display="bois de Vincennes"><Form level="normalized"/></Entry>
+		<Entry display="bois de Boulogne"><Form level="normalized"/></Entry>
+	</Pkg>
+</Ontology>

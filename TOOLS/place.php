@@ -167,6 +167,16 @@ require_once("../LIB/library.php");
  	{
  		$this->yakCat[] = new MongoId("504dbb06fa9a95680b000211");
  	}
+ 	
+ 	function setCatElementaire()
+ 	{
+ 		$this->yakCat[] = new MongoId("5056bae5fa9a95200b000001");
+ 	}
+ 	
+ 	function setCatMaternelle()
+ 	{
+ 		$this->yakCat[] = new MongoId("5056baddfa9a95200b000000");
+ 	}
 
  	function setCatTheatre()
  	{

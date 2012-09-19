@@ -1,3 +1,7 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd"> 
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
 <?php
 /* batch for Yakwala to parse "ecoles de Montpellier"
  * read csv and create "Place" objects
@@ -35,7 +39,7 @@ foreach ($ecoles as $fields)
 		$place = new Place();
 
 		$place->title = $fields[3];
-		$place->content = $fields[4];
+		$place->freeTag = $fields[25];
 		$place->origin = 'http://opendata.montpelliernumerique.fr/Effectifs-scolaires';
 		$place->access = 1;
 		$place->license = 'http://www.etalab.gouv.fr/pages/licence-ouverte-open-licence-5899923.html';
@@ -57,6 +61,12 @@ foreach ($ecoles as $fields)
 		$place->getLocation($query, 0);
 		
 		$place->setCatEducation();
+		$place->setCatDico();
+		
+		if ($fields[2] == 'E')
+			$place->setCatElementaire();
+		else if ($fields[2] == 'M')
+			$place->setCatMaternelle();
 		
 		echo 'Insertion dans la base de données';
 		echo '<br/>';
@@ -64,6 +74,9 @@ foreach ($ecoles as $fields)
 	}
 	$count++;
 }
+
+//A modifier plus tard apres avoir gere les doublons
+echo $count.' données ont été insérées';
 
 
 

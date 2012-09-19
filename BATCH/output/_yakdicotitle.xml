@@ -4,6 +4,9 @@
     <Entry display="Vel d'Hiv">
       <Form level="normalized" />
     </Entry>
+    <Entry display="Ateliers d'Art de France">
+      <Form level="normalized" />
+    </Entry>
 	<Entry display="parc des Expositions">
       <Form level="normalized" />
     </Entry>
@@ -23,6 +26,9 @@
       <Form level="normalized" />
     </Entry>
 	<Entry display="tunnel des Halles">
+      <Form level="normalized" />
+    </Entry>
+	<Entry display="la Petite Ceinture">
       <Form level="normalized" />
     </Entry>
 	<Entry display="Hotel de Ville">

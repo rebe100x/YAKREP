@@ -155,6 +155,7 @@ $record = array(
 	"status" => 1
 );
 */
+/*
 $record = array(
 	"title"=> "Planétarium",
 	"path" => "CULTURE, Planétarium",
@@ -168,7 +169,7 @@ $record = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
-);
+);*/
 /*
 $record = array(
 	"title"=> "Aquarium",
@@ -185,6 +186,34 @@ $record = array(
 	"status" => 1
 );
 */
+/*
+$record = array(
+	"title"=> "Loisir",
+	"path" => "LOISIR",
+	"pathN" => "LOISIR",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+*/
+
+
+$record = array(
+	"title"=> "Espace vert",
+	"path" => "Loisir, Espace vert",
+	"pathN" => "LOISIR, EXPACE VERT",
+	"ancestors" => array("Loisir"),
+	"parent" => "Loisir",
+	"ancestorsId" => array(new MongoId("50596c9cfa9a953c14000000")),
+	"parentId" => new MongoId("50596c9cfa9a953c14000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 
 $yakcat->save($record);
 var_dump($record);

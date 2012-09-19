@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" >
+<channel>
+	<title><![CDATA[TEST FEED]]></title>
+	<link><![CDATA[http://www.test.yakwala.fr]]></link>
+	<description><![CDATA[]]></description>
+	<generator>Feediz</generator>
+	<lastBuildDate>Wed, 19 Sep 2012 09:46:07 +0200</lastBuildDate>
+	<copyright><![CDATA[]]></copyright>
+	
+	<item>
+		<title><![CDATA[Des bonbons au jardin d'Acclimatation ]]></title>
+		<description><![CDATA[This is a text]]></description>
+		<link><![CDATA[]]></link>
+		<pubDate>Tue, 18 Sep 2012 19:30:00 +0200</pubDate>
+		<guid isPermaLink="false" ><![CDATA[www.yakwala.fr/123456789]]></guid>
+	</item>
+</channel>
+</rss>

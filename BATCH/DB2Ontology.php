@@ -12,7 +12,7 @@ ini_set('display_errors',1);
 $outputFile ='./output/'.$pkg.'.xml';
 $templateFile ='./input/ontologyTemplate.xml';
 
-
+require_once("../LIB/library.php");
 require_once("../LIB/conf.php");
 $conf = new conf($deploy);
 
@@ -32,9 +32,9 @@ $ontolgyXML= '<Ontology xmlns="exa:com.exalead.mot.components.ontology">
 foreach($places as $place){
 //var_dump($place);
 	$row++;
-	echo '<br>place:'.$place['title'];
+	echo '<br>place:'.indexForOntology($place['title']);
 	$ontolgyXML.= '
-		<Entry display="'.$place['title'].'"><Form level="normalized"/></Entry>';	
+		<Entry display="'.indexForOntology($place['title']).'"><Form level="normalized"/></Entry>';	
 }
 $ontolgyXML.= '
 	</Pkg>

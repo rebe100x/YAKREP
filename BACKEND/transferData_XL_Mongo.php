@@ -48,6 +48,7 @@ $infoColl = $db->info;
 $placeColl = $db->place;
 $yakcatColl = $db->yakcat;
 $batchlogColl = $db->batchlog;
+$statColl = $db->stat;
 $logCallToGMap = 0;
 $logLocationInDB = 0;
 $logDataInserted = 0;
@@ -115,6 +116,16 @@ if(!empty($_GET['q'])){
         break;
 		case 'france3-faitsdivers':
 			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;
+        break;
+		case 'france3-faitsdivers':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;
+        break;
+		case 'testfeed':
+			$yakType =  10; // actu
 			$yakCatName = array('Actualités');
 			$persistDays =  3;
         break;
@@ -497,6 +508,23 @@ if(!empty($_GET['q'])){
     $log = "<br><br><br><br><br>===BACTH SUMMARY====<br>Total data parsed : ".$item.".<br> Total Data inserted: ".$logDataInserted.".<br> Total Data updated :".$logDataUpdated." (call &forceUpdate=1 to update)   <br>Call to gmap:".$logCallToGMap.". <br>Locations found in Yakwala DB :".$logLocationInDB."<br><br><br>";
 
     echo $log;
+
+	
+    
+$statColl->save(
+    array(
+    "batchName"=>$_SERVER['PHP_SELF'],
+	"argument"=>$q,
+    "datePassage"=>new MongoDate(gmmktime()),
+    "parsed"=>$item,
+	"inserted"=>$logCallToGMap,
+	"callGMPA"=>$logDataUpdated,
+	"foundInDb"=>$logLocationInDB,
+	"daysBack"=>$daysBack,
+    ));
+    
+    
+
     
 $batchlogColl->save(
     array(
@@ -506,8 +534,7 @@ $batchlogColl->save(
     "log"=>$log,
     "status"=>1
     ));
-    
-    
+       
 }
 
     echo "no request<br>try this :";
@@ -521,7 +548,8 @@ $batchlogColl->save(
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=exponaute\"/>".$_SERVER['PHP_SELF']."?q=exponaute</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=agenda-culturel-75\"/>".$_SERVER['PHP_SELF']."?q=agenda-culturel-75</a>" ;
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=france3-faitsdivers\"/>".$_SERVER['PHP_SELF']."?q=france3-faitsdivers</a>" ;
-    echo "<br>To print all text of the info add &showAllText=1";    
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=testfeed\"/>".$_SERVER['PHP_SELF']."?q=testfeed</a>" ;
+    echo "<br>To print all text of the info add ti url : &showAllText=1";    
     
 
 

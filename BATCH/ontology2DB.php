@@ -31,7 +31,7 @@ foreach($ontolgyXML as $key0 => $value){
 			// CHECK IF DATA EXISTS IN DB
 			$res = $placeColl->findOne(array('title'=>$streetName));
 			
-			if(empty($res) && $row < 5){
+			if(empty($res)){
 				echo "<br>Location not found in DB, we start inserting...";
 				$resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($streetName.', Paris, France'))),'PHP',1);
 				$geolocGMAP = $resGMap['location'];

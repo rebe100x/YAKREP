@@ -5,5 +5,15 @@
 		<Entry display="parc des Expositions"><Form level="normalized"/></Entry>
 		<Entry display="bois de Vincennes"><Form level="normalized"/></Entry>
 		<Entry display="bois de Boulogne"><Form level="normalized"/></Entry>
+		<Entry display="bassin de la Villette"><Form level="normalized"/></Entry>
+		<Entry display="jardin d'Acclimatation"><Form level="normalized"/></Entry>
+		<Entry display="jardin des Plantes"><Form level="normalized"/></Entry>
+		<Entry display="tunnel des Halles"><Form level="normalized"/></Entry>
+		<Entry display="la Petite Ceinture"><Form level="normalized"/></Entry>
+		<Entry display="Hotel de Ville"><Form level="normalized"/></Entry>
+		<Entry display="H&#xf4;tel de Ville"><Form level="normalized"/></Entry>
+		<Entry display="porte de la Chapelle"><Form level="normalized"/></Entry>
+		<Entry display="porte Clignancourt"><Form level="normalized"/></Entry>
+		<Entry display="porte de Montmartre"><Form level="normalized"/></Entry>
 	</Pkg>
 </Ontology>

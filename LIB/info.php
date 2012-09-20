@@ -1,6 +1,6 @@
 <?php
 
-require_once("./library.php");
+require_once("library.php");
 
  class Info
  {
@@ -51,8 +51,6 @@ require_once("./library.php");
  	// date max de print sur le front
 	public $dateEndPrint;
 	
-	public $address;
-	
 	public $location;
 	
 	// flag for the workflow : 1: OK , 10 alert gmap not found
@@ -70,7 +68,7 @@ require_once("./library.php");
 	// debug field : the location string found by the semantic factory ( the string sent to gmap, used only for the rss parsing )
 	public $address;
 	
-	public $placeId
+	public $placeId;
  	
 
  	function __construct() {
@@ -202,6 +200,11 @@ require_once("./library.php");
  	function setCatEducation()
  	{
  		$this->yakCat[] = new MongoId("504dbb06fa9a95680b000211");
+ 	}
+ 	
+ 	function setCatEcole()
+ 	{
+ 		$this->yakCat[] = new MongoId("5056b89bfa9a95180b00000111");
  	}
  	
  	function setCatElementaire()

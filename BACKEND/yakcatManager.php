@@ -25,7 +25,7 @@ $record = array(
 	"status" => 1
 );*/
 
-
+/*
 $record = array(
 	"title"=> "Cinéma",
 	"path" => "Culture, Cinéma",
@@ -40,6 +40,7 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
+*/
 /*
 $record = array(
 	"title"=> "Exposition",
@@ -55,6 +56,135 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );*/
+
+/*
+$record = array(
+	"title"=> "Yakdico",
+	"path" => "Géolocalisation, Yakdico",
+	"pathN" => "GEOLOCALISATION#YAKDICO",
+	"ancestors" => array("Géolocalisation"),
+	"parent" => "Géolocalisation",
+	"ancestorsId" => array(new MongoId("504d89f4fa9a958808000001")),
+	"parentId" => new MongoId("504d89f4fa9a958808000001"),
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+*/
+/*
+$record = array(
+	"_id"=>"504d89f4fa9a958808000001",
+	"title"=> "Géolocalisation",
+	"path" => "Géolocalisation",
+	"pathN" => "GEOLOCALISATION",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+*/
+
+/*
+$record = array(
+	"title"=> "Ecole",
+	"path" => "Education, Ecole",
+	"pathN" => "EDUCATION#ECOLE",
+	"ancestors" => array("Education"),
+	"parent" => "Education",
+	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211")),
+	"parentId" => new MongoId("504dbb06fa9a95680b000211"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+*/
+
+$record = array(
+	"_id"=>"5056baddfa9a95200b000000",
+	"title"=> "Maternelle",
+	"path" => "Education, Ecole, Maternelle",
+	"pathN" => "EDUCATION#ECOLE#MATERNELLE",
+	"ancestors" => array("Education", "Ecole"),
+	"parent" => "Ecole",
+	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211"),new MongoId("5056b89bfa9a95180b000001")),
+	"parentId" => new MongoId("5056b89bfa9a95180b000001"),
+	"level" => 3,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+/*
+$record = array(
+	"title"=> "Elémentaire",
+	"path" => "Education, Ecole, Elémentaire",
+	"pathN" => "EDUCATION#ECOLE#ELEMENTAIRE",
+	"ancestors" => array("Education","Ecole"),
+	"parent" => "Ecole",
+	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211"),new MongoId("5056b89bfa9a95180b000001")),
+	"parentId" => new MongoId("5056b89bfa9a95180b000001"),
+	"level" => 3,
+	"thumb" => "",
+	"tag"=> array("Primaire"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);*/
+
+
+/*
+$record = array(
+	"title"=> "Médiathèque",
+	"path" => "CULTURE, Médiathèque",
+	"pathN" => "CULTURE, MEDIATHEQUE",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"level" => 2,
+	"thumb" => "",
+	"tag"=> array("Biblithèque"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+*/
+$record = array(
+	"title"=> "Planétarium",
+	"path" => "CULTURE, Planétarium",
+	"pathN" => "CULTURE, PLANETARIUM",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+/*
+$record = array(
+	"title"=> "Aquarium",
+	"path" => "CULTURE, Aquarium",
+	"pathN" => "CULTURE, AQUARIUM",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+*/
 
 $yakcat->save($record);
 var_dump($record);

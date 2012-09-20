@@ -2,6 +2,8 @@
 /* 
  * 
  * */
+ 
+// @TODO : mettre place.php dans LIB : TOOL c'est reservé aux outils
 require_once("../TOOLS/place.php");
 require_once("../LIB/library.php");
 
@@ -15,12 +17,13 @@ $row = 0;
 $currentPlace;
 
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
+
     while (($data = fgetcsv($handle, 2000, ";")) !== FALSE) {
 		
 		if ($row > 0) {
 
 			foreach ($data as $key => $value) {
-				data[$key] = utf8_encode($value);
+				$data[$key] = utf8_encode($value);
 			}
 
 			// Field 60 is the country where the event takes place but
@@ -47,5 +50,6 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 		
 		$row++;
     }
+	echo 'elo';
     fclose($handle);
 }

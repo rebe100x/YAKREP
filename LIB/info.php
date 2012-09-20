@@ -1,16 +1,16 @@
 <?php
 
-require_once("../LIB/library.php");
+require_once("./library.php");
 
- class Place
+ class Info
  {
- 	// name of the place ( can be a building, an area, a street ... )
+ 	// name of the info
  	public $title;
  	
- 	// some text to describe the place
+ 	// some text to describe the info
  	public $content;
  	
- 	// a local link to a picture of the place
+ 	// a local link to a picture of the info
  	public $thumb;
 
  	// where did we get this info
@@ -21,34 +21,57 @@ require_once("../LIB/library.php");
 
  	// copy the licence of the file you used
  	public $licence;
-
- 	// [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
- 	public $yakTag;
-
- 	//Mongo ID idyakCat
+ 	
+ 	public $outGoingLink;
+ 	
+ 	// the importance of the info 0->100
+ 	public $heat; 
+ 	
+ 	// flags if need to be printed on the map / fils info
+ 	public $print;
+ 	
+ 	// 1 actu, 2 agenda, 3 promo, 4 conversation
+ 	public $yakType;	
+ 	
+	//Mongo ID idyakCat
 	public $yakCat;
-
+	
+	// [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
+ 	public $yakTag;
+	
 	public $freeTag;
-
- 	public $creationDate;
+	
+	// publication date in the feed
+	public $pubDate;
+	
+	public $creationDate;
 
  	public $lastModifDate;
-
- 	// flag for the workflow : 1 is validated
- 	public $location;
-
- 	public $address;
-
- 	public $contact;
-
- 	// flag for the workflow : 1 is validated
- 	public $status;
-
- 	// who created the info ( 0 for a batch )
+ 	
+ 	// date max de print sur le front
+	public $dateEndPrint;
+	
+	public $address;
+	
+	public $location;
+	
+	// flag for the workflow : 1: OK , 10 alert gmap not found
+	public $status;
+	
+	// who created the info ( 0 for a batch )
  	public $user;
-
- 	// used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee , 4 Other
+ 	
+	// used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee , 4 Other
  	public $zone;
+ 	
+ 	// object : only if different from the place contact ( ex: for an expo the museaum and the expo do not have the same contact )
+	public $contact;
+	
+	// debug field : the location string found by the semantic factory ( the string sent to gmap, used only for the rss parsing )
+	public $address;
+	
+	public $placeId
+ 	
 
  	function __construct() {
  		$this->title = '';
@@ -58,6 +81,10 @@ require_once("../LIB/library.php");
  		$this->access = 1;
  		$this->licence = '';
  		$this->outGoingLink = '';
+ 		$this->heat = 80;
+ 		$this->print = 0;
+ 		$this->yakType = 0;
+ 		$this->yakCat = array('');
  		$this->yakTag = array (
 			"enfants" => "0",
 			"handicapés" => "0",
@@ -69,17 +96,19 @@ require_once("../LIB/library.php");
 		);
 		$this->yakCat = array('');
  		$this->freeTag = '';
+ 		$this->pubDate = '';
  		$this->creationDate = time();
  		$this->lastModifDate = time();
- 		$this->location = array (
-			"lat" => "",
-			"lng" => "",
-		);
-		$this->address = array (
+ 		$this->dateEndPrint = '';
+ 		$this->address = array (
 			"street" => "",
 			"zipcode" => "",
 			"city" => "",
 			"country" => "",
+		);
+ 		$this->location = array (
+			"lat" => "",
+			"lng" => "",
 		);
 		$this->contact = array (
 			"tel" => "",
@@ -92,15 +121,16 @@ require_once("../LIB/library.php");
 			"special opening" => "",
 		);
 
-		$this->status = 1;
+		$this->status = 0;
 		$this->user = 0;
 		$this->zone = 1;
+		$this->placeId = '';
  	}
 
  	function saveToMongoDB() {
  		$m = new Mongo();
 		$db = $m->selectDB("yakwala");
-		$place = $db->place;
+		$info = $db->info;
 
 		$record = array(
 			"title"			=>	$this->title,
@@ -109,16 +139,23 @@ require_once("../LIB/library.php");
 			"origin"		=>	$this->origin,	
 			"access"		=>	$this->access,
 			"licence"		=>	$this->licence,
-			"outGoingLink" 	=>	$this->outGoingLink,
+			"outGoingLink"	=>	$this->outGoingLink,
+			"heat"			=>	$this->heat,
+			"print"			=>	$this->print,
+			"yakType"		=>	$this->yakType,
 			"yakCat" 		=>	$this->yakCat,
+			"freeTag"		=>	$this->freeTag,
+			"pubDate"		=>	$this->pubDate,
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
+			"dateEndPrint"	=> 	$this->dateEndPrint,
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,
 			"contact"		=>	$this->contact,
 			"status" 		=>	$this->status,
 			"user"			=> 	$this->user, 
 			"zone"			=> 	$this->zone,
+			"placeid"		=>	$this->placeid,
 		);	
 
 		$rangeQuery = array('title' => $this->title, 'address' => $this->address);
@@ -130,7 +167,7 @@ require_once("../LIB/library.php");
     		return 1;
 		}
 
-		$place->save($record);
+		$info->save($record);
 		return $record['_id'];
  	}
 
@@ -145,11 +182,6 @@ require_once("../LIB/library.php");
  			return true;
  		}
  		return false;
- 	}
-
- 	function setCatYakdico()
- 	{
- 		$this->yakCat[] = new MongoId("5056b7aafa9a95180b000000");
  	}
 
  	function setCatActu()
@@ -187,31 +219,11 @@ require_once("../LIB/library.php");
  		$this->yakCat[] = new MongoId("504df6b1fa9a957c0b000004");
  	}
  	
- 	function setCatMusee()
- 	{
- 		$this->yakCat[] = new MongoId("50535d5bfa9a95ac0d0000b6");
- 	}
- 	
  	function setCatExpo()
  	{
  		$this->yakCat[] = new MongoId("504df70ffa9a957c0b000006");
  	}
  	
-	function setCatPlanetarium()
- 	{
- 		$this->yakCat[] = new MongoId("5056bf3ffa9a95180b000005");
- 	}
- 	
- 	function setCatMediatheque()
- 	{
- 		$this->yakCat[] = new MongoId("5056bf35fa9a95180b000004");
- 	}
-
- 	function setCatAquarium()
- 	{
- 		$this->yakCat[] = new MongoId("5056bf28fa9a95180b000003");
- 	}
-
  	function setCatCinema()
  	{
  		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");

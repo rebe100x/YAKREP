@@ -58,7 +58,6 @@ require_once("../LIB/library.php");
  		$this->access = 1;
  		$this->licence = '';
  		$this->outGoingLink = '';
- 		$this->yakCat = array('');
  		$this->yakTag = array (
 			"enfants" => "0",
 			"handicapés" => "0",
@@ -93,7 +92,7 @@ require_once("../LIB/library.php");
 			"special opening" => "",
 		);
 
-		$this->status = 0;
+		$this->status = 1;
 		$this->user = 0;
 		$this->zone = 1;
  	}
@@ -148,6 +147,11 @@ require_once("../LIB/library.php");
  		return false;
  	}
 
+ 	function setCatYakdico()
+ 	{
+ 		$this->yakCat[] = new MongoId("5056b7aafa9a95180b000000");
+ 	}
+
  	function setCatActu()
  	{
  		$this->yakCat[] = new MongoId("504d89c5fa9a957004000000");
@@ -183,19 +187,53 @@ require_once("../LIB/library.php");
  		$this->yakCat[] = new MongoId("504df6b1fa9a957c0b000004");
  	}
  	
+ 	function setCatMusee()
+ 	{
+ 		$this->yakCat[] = new MongoId("50535d5bfa9a95ac0d0000b6");
+ 	}
+ 	
  	function setCatExpo()
  	{
  		$this->yakCat[] = new MongoId("504df70ffa9a957c0b000006");
  	}
  	
+	function setCatPlanetarium()
+ 	{
+ 		$this->yakCat[] = new MongoId("5056bf3ffa9a95180b000005");
+ 	}
+ 	
+ 	function setCatMediatheque()
+ 	{
+ 		$this->yakCat[] = new MongoId("5056bf35fa9a95180b000004");
+ 	}
+
+ 	function setCatAquarium()
+ 	{
+ 		$this->yakCat[] = new MongoId("5056bf28fa9a95180b000003");
+ 	}
+
  	function setCatCinema()
  	{
  		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
  	}
  	
- 	function setCatDico()
+ 	function setZoneParis()
  	{
- 		$this->yakCat[] = new MongoId("5056b7aafa9a95180b000000");
+ 		$this->zone = 1;
  	}
- 	
+
+ 	function setZoneMontpellier()
+ 	{
+ 		$this->zone = 2;
+ 	}
+
+ 	function setZoneEghezee()
+ 	{
+ 		$this->zone = 3;
+ 	}
+
+ 	function setZoneOther()
+ 	{
+ 		$this->zone = 4;
+ 	}
  }

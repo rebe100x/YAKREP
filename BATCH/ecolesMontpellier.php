@@ -8,7 +8,7 @@
  * call to GMap to enrich location
  * 
  * */
-require_once('../TOOLS/place.php');
+require_once('../LIB/place.php');
 require_once('../LIB/info.php');
 
 ini_set('display_errors',1);
@@ -67,7 +67,7 @@ foreach ($ecoles as $fields)
 		$place->getLocation($query, 0);
 		
 		$place->setCatEducation();
-		$place->setCatDico();
+		$place->setCatYakdico();
 		
 		if ($fields[2] == 'E')
 			$place->setCatElementaire();

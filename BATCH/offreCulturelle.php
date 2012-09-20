@@ -3,8 +3,7 @@
  * 
  * */
  
-// @TODO : mettre place.php dans LIB : TOOL c'est reservé aux outils
-require_once("../TOOLS/place.php");
+require_once("../LIB/place.php");
 require_once("../LIB/library.php");
 
 ini_set('display_errors',1);
@@ -36,8 +35,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				$currentPlace->licence = $licence;
 
 				$currentPlace->address["street"] = $data[6] . " " . $data[7] . " " . $data[8] . " " . $data[9];
-				$currentPlace->address["zipcode"] = $data[14];
-				$currentPlace->address["city"] = $data[15];
+				$currentPlace->address["zipcode"] = $data[13];
+				$currentPlace->address["city"] = $data[14];
 				$currentPlace->address["country"] = $data[5];
 
 				$query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];

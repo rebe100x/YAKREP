@@ -193,4 +193,9 @@ require_once("../LIB/library.php");
  		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
  	}
  	
+ 	function setCatDico()
+ 	{
+ 		$this->yakCat[] = new MongoId("5056b7aafa9a95180b000000");
+ 	}
+ 	
  }

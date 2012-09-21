@@ -123,15 +123,25 @@ require_once("../LIB/library.php");
 
 		$rangeQuery = array('title' => $this->title, 'address' => $this->address);
 
-		$cursor = $place->find($rangeQuery);
-		foreach ($cursor as $doublon) {
-    		//TODO : gérer la mise à jour des doublons
-    		//var_dump($doublon);
-    		return 1;
+		$doublon = $place->findOne($rangeQuery);
+		if ($doublon != NULL) {
+    		print_r("Doublon avant:\n");
+    		var_dump($doublon);
+    		if ($doublon['location'] == array()) {
+    			$doublon['location'] = $this->location;
+    		}
+    		if ($doublon['contact'] == array()) {
+    			$doublon['contact'] = $this->contact;
+    		}
+    		$doublon['lastModifDate'] = new MongoDate(gmmktime());
+    		print_r("Doublon apres:\n");
+    		var_dump($doublon);
+    		return $doublon['_id'];
 		}
-
-		$place->save($record);
-		return $record['_id'];
+		else {
+			$place->save($record);
+			return $record['_id'];
+		}
  	}
 
  	function getLocation($query, $debug)

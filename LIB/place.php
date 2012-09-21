@@ -1,6 +1,6 @@
 <?php
 
-require_once("../LIB/library.php");
+require_once("library.php");
 
  class Place
  {
@@ -19,8 +19,8 @@ require_once("../LIB/library.php");
  	// 1 - public / 2 - privé for the api ( all open data is public )
  	public $access;
 
- 	// copy the licence of the file you used
- 	public $licence;
+ 	// copy the license of the file you used
+ 	public $license;
 
  	// [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
  	public $yakTag;
@@ -56,7 +56,7 @@ require_once("../LIB/library.php");
  		$this->thumb = '';
  		$this->origin = '';
  		$this->access = 1;
- 		$this->licence = '';
+ 		$this->license = '';
  		$this->outGoingLink = '';
  		$this->yakTag = array (
 			"enfants" => "0",
@@ -108,9 +108,10 @@ require_once("../LIB/library.php");
 			"thumb" 		=>	$this->thumb,
 			"origin"		=>	$this->origin,	
 			"access"		=>	$this->access,
-			"licence"		=>	$this->licence,
+			"license"		=>	$this->license,
 			"outGoingLink" 	=>	$this->outGoingLink,
 			"yakCat" 		=>	$this->yakCat,
+			"yakTag" 		=>	$this->yakTag,
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
 			"location" 		=>	$this->location,
@@ -155,6 +156,11 @@ require_once("../LIB/library.php");
  			return true;
  		}
  		return false;
+ 	}
+
+ 	function setTel($tel, $type = "tel")
+ 	{
+		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
  	}
 
  	function setCatYakdico()

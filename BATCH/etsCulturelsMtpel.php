@@ -8,11 +8,10 @@
  * */
 
 include_once "../LIB/place.php";
-include_once "../LIB/library.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/ets_culturels_mtpel.csv";
 $origin = "http://data.montpellier-agglo.com/?q=node/200";
-$licence = "Licence ouverte";
+$license = "licence ouverte";
 
 $row = 0;
 $callGmap = 0;
@@ -36,14 +35,15 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
 			$currentObject->title = $data[1];
 			$currentObject->origin = $origin;
-			$currentObject->licence = $licence;
+			$currentObject->license = $license;
 			$currentObject->address["street"] = $address;
 			$currentObject->address["zipcode"] = $data[5];
 			$currentObject->address["city"] = $data[6];
 			$currentObject->address["country"] = "France";
-			$currentObject->contact["tel"] = $data[8];
+			$currentObject->setTel($data[8], "tel");
 			$currentObject->contact["mail"] = $data[9];
-			$currentObject->zone = 2;
+			$currentObject->setZoneMontpellier();
+
 			$currentObject->contact["opening"] = "L: " . $data[12] .
 													", M: " . $data[13] .
 													", M: " . $data[14] .
@@ -52,7 +52,6 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 													", S: " . $data[17] .
 													", D: " . $data[18];
 			$currentObject->yakTag["couvert, intérieur"] = 1;
-			$currentObject->yakTag["enfants"] = 1;
 
 			
 			// Get location with gmap
@@ -77,28 +76,32 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			elseif (stristr($data[1], "Planétarium")) {
 				//echo "Planétarium : $data[1] <br/>";
 				$currentObject->setCatPlanetarium();
+				$currentObject->yakTag["enfants"] = 1;
 			}
 			elseif (stristr($data[1], "Aquarium")) {
 				//echo "Aquarium : $data[1] <br/>";
 				$currentObject->setCatAquarium();
+				$currentObject->yakTag["enfants"] = 1;
 			}
 			else {
 				//echo "autres (musée) : $data[1] <br/>";
 				$currentObject->setCatMusee();
 			}
 
-			//$currentObject->saveToMongoDB();
+			/*print "<pre>";
+	    	print_r($currentObject);
+	    	print "</pre>";
+*/
+			print $currentObject->saveToMongoDB() . "<br>";
 		}
 
 		$i++;
 		$row++;
+
     }
 
     print "Call to gmap : " . $callGmap . "<br>";
-    print "<pre>";
-    print_r($currentObject);
-    print "</pre>";
-
+   
     fclose($handle);
 }
 

@@ -21,7 +21,6 @@ $info;
 $origin = 'http://opendata.montpelliernumerique.fr/Effectifs-scolaires';
 $license = 'http://www.etalab.gouv.fr/pages/licence-ouverte-open-licence-5899923.html';
 $access = 1;
-$zone = 2;
 $user = 0;
 
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
@@ -59,10 +58,10 @@ foreach ($ecoles as $fields)
 		$place->contact['tel'] = $fields[5];
 		$place->status = 2;
 		$place->user = $user;
-		$place->zone = $zone;
+		$place->setZoneMontpellier();
 		
 		$query = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
-		echo 'Appel à GMap';
+		echo 'Call to GMap: ' . $query;
 		echo '<br/>';
 		$place->getLocation($query, 0);
 		
@@ -74,7 +73,7 @@ foreach ($ecoles as $fields)
 		else if ($fields[2] == 'M')
 			$place->setCatMaternelle();
 		
-		echo 'Insertion de la place dans la base de données';
+		echo 'Insertion of the Place in DB';
 		echo '<br/>';
 		$placeId = $place->saveToMongoDB();
 		
@@ -97,9 +96,8 @@ foreach ($ecoles as $fields)
 		$info->status = 1;
 		$info->print = 1;
 		$info->yakType = 3; // A CONFIRMER
-		$info->zone = $zone;
-		$info->zone = $zone;
-		echo "Insertion de l'info dans la base de données";
+		$info->setZoneMontpellier();
+		echo "Insertion of the Info in DB";
 		echo '<br/>';
 		$info->saveToMongoDB();
 	}
@@ -107,7 +105,7 @@ foreach ($ecoles as $fields)
 }
 
 //A modifier plus tard apres avoir gere les doublons
-echo $count.' données ont été insérées';
+echo $count.' data has been inserted';
 
 
 

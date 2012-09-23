@@ -36,6 +36,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				if (trim($data[38]) == "") {
 					continue;
 				}
+
 				$currentPlace->title = ucwords(strtolower($data[38]));
 
 				$currentPlace->origin = $origin;
@@ -45,6 +46,11 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				if (trim($data[8]) == "") {
 					continue;
 				}
+
+				$currentPlace->address["street"] = $data[6] . " " . $data[7] . " " . $data[8] . " " . $data[9];
+				$currentPlace->address["zipcode"] = $data[13];
+				$currentPlace->address["city"] = $data[14];
+				$currentPlace->address["country"] = $data[5];
 
 				// If zone isn't Paris or Montpellier, skip
 				if (preg_match("/paris/i", $currentPlace->address["city"])) {
@@ -57,14 +63,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 					continue;
 				}
 
-				$currentPlace->address["street"] = $data[6] . " " . $data[7] . " " . $data[8] . " " . $data[9];
-				$currentPlace->address["zipcode"] = $data[13];
-				$currentPlace->address["city"] = $data[14];
-				$currentPlace->address["country"] = $data[5];
-
-
 				// Finding yakcats
-				if ($data[2] == "Musées" || preg_match("/musee/i", $suppr_accents($currentPlace->title)) || preg_match("/musee/i", $suppr_accents($data[20])) ) {
+				if ($data[2] == "Musées" || preg_match("/musee/i", suppr_accents($currentPlace->title)) || preg_match("/musee/i", suppr_accents($data[20])) ) {
 					$currentPlace->setCatMusee();
 				}
 				else if ($data[2] == "Organisme de Spectacle") {
@@ -77,9 +77,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 					$currentPlace->setCatCulture();
 				}
 
-				foreach ($currentPlace as $key => $value) {
-					print_r($value->prettyPrint() . "<hr/>");
-				}
+				print_r($currentPlace->prettyPrint() . "<hr/>");
 
 				//var_dump($currentPlace);
 
@@ -90,8 +88,6 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				//$currentPlace->getLocation($query, 0);
 				
 				//$currentPlace->saveToMongoDB();
-
-				break;
 			}
 		}
 		

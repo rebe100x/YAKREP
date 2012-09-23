@@ -252,9 +252,9 @@ require_once("library.php");
  	}
 
  	function prettyPrint() {
- 
- 		$str .= "<div>\n";
- 		$str .= "\t<h2>" . $this->title . "</h2>\n";
+
+ 		$str = "<div>\n";
+ 		$str .= "\t<h4>" . $this->title . "</h4>\n";
  		$str .= "\t<p>YakCats: ";
 
  		foreach ($this->humanCat as $key => $value) {
@@ -262,8 +262,6 @@ require_once("library.php");
  		}
 
  		$str .= "</p>\n";
-
- 		$str .= var_dump($this);
 
  		$str .= "</div>";
  		

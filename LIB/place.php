@@ -28,6 +28,9 @@ require_once("library.php");
  	//Mongo ID idyakCat
 	public $yakCat;
 
+	//Human categories
+	public $humanCat;
+
 	public $freeTag;
 
  	public $creationDate;
@@ -68,6 +71,7 @@ require_once("library.php");
 			"animaux" => "0",
 		);
 		$this->yakCat = array('');
+		$this->humanCat = array('');
  		$this->freeTag = '';
  		$this->creationDate = time();
  		$this->lastModifDate = time();
@@ -145,8 +149,7 @@ require_once("library.php");
 		}
  	}
 
- 	function getLocation($query, $debug)
- 	{
+ 	function getLocation($query, $debug) {
  		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
 
  		if ($loc != 0)
@@ -158,98 +161,112 @@ require_once("library.php");
  		return false;
  	}
 
- 	function setTel($tel, $type = "tel")
- 	{
+ 	function setTel($tel, $type = "tel") {
 		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
  	}
 
- 	function setCatYakdico()
- 	{
+ 	function setCatYakdico() {
+ 		$this->humanCat[] = "YakDico";
  		$this->yakCat[] = new MongoId("5056b7aafa9a95180b000000");
  	}
 
- 	function setCatActu()
- 	{
+ 	function setCatActu() {
+ 		$this->humanCat[] = "Actu";
  		$this->yakCat[] = new MongoId("504d89c5fa9a957004000000");
  	}
  	
-	function setCatCulture()
- 	{
+	function setCatCulture() {
+ 		$this->humanCat[] = "Culture";
  		$this->yakCat[] = new MongoId("504d89cffa9a957004000001");
  	}
 
- 	function setCatGeoloc()
- 	{
+ 	function setCatGeoloc() {
+ 		$this->humanCat[] = "Geoloc";
  		$this->yakCat[] = new MongoId("504d89f4fa9a958808000001");
  	}
 
- 	function setCatEducation()
- 	{
+ 	function setCatEducation() {
+ 		$this->humanCat[] = "Education";
  		$this->yakCat[] = new MongoId("504dbb06fa9a95680b000211");
  	}
  	
- 	function setCatElementaire()
- 	{
+ 	function setCatElementaire() {
+ 		$this->humanCat[] = "Elementaire";
  		$this->yakCat[] = new MongoId("5056bae5fa9a95200b000001");
  	}
  	
- 	function setCatMaternelle()
- 	{
+ 	function setCatMaternelle() {
+ 		$this->humanCat[] = "Maternelle";
  		$this->yakCat[] = new MongoId("5056baddfa9a95200b000000");
  	}
 
- 	function setCatTheatre()
- 	{
+ 	function setCatTheatre() {
+ 		$this->humanCat[] = "Theatre";
  		$this->yakCat[] = new MongoId("504df6b1fa9a957c0b000004");
  	}
  	
- 	function setCatMusee()
- 	{
+ 	function setCatMusee() {
+ 		$this->humanCat[] = "Musee";
  		$this->yakCat[] = new MongoId("50535d5bfa9a95ac0d0000b6");
  	}
  	
- 	function setCatExpo()
- 	{
+ 	function setCatExpo() {
+ 		$this->humanCat[] = "Expo";
  		$this->yakCat[] = new MongoId("504df70ffa9a957c0b000006");
  	}
  	
-	function setCatPlanetarium()
- 	{
+	function setCatPlanetarium() {
+ 		$this->humanCat[] = "Planetarium";
  		$this->yakCat[] = new MongoId("5056bf3ffa9a95180b000005");
  	}
  	
- 	function setCatMediatheque()
- 	{
+ 	function setCatMediatheque() {
+ 		$this->humanCat[] = "Mediatheque";
  		$this->yakCat[] = new MongoId("5056bf35fa9a95180b000004");
  	}
 
- 	function setCatAquarium()
- 	{
+ 	function setCatAquarium() {
+ 		$this->humanCat[] = "Aquarium";
  		$this->yakCat[] = new MongoId("5056bf28fa9a95180b000003");
  	}
 
- 	function setCatCinema()
- 	{
+ 	function setCatCinema() {
+ 		$this->humanCat[] = "Cinema";
  		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
  	}
  	
- 	function setZoneParis()
- 	{
+ 	function setZoneParis() {
  		$this->zone = 1;
  	}
 
- 	function setZoneMontpellier()
- 	{
+ 	function setZoneMontpellier() {
  		$this->zone = 2;
  	}
 
- 	function setZoneEghezee()
- 	{
+ 	function setZoneEghezee() {
  		$this->zone = 3;
  	}
 
- 	function setZoneOther()
- 	{
+ 	function setZoneOther() {
  		$this->zone = 4;
+ 	}
+
+ 	function prettyPrint() {
+ 
+ 		$str .= "<div>\n";
+ 		$str .= "\t<h2>" . $this->title . "</h2>\n";
+ 		$str .= "\t<p>YakCats: ";
+
+ 		foreach ($this->humanCat as $key => $value) {
+ 			$str .= $value . " ";
+ 		}
+
+ 		$str .= "</p>\n";
+
+ 		$str .= var_dump($this);
+
+ 		$str .= "</div>";
+ 		
+ 		return $str;
  	}
  }

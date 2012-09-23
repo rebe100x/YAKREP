@@ -232,4 +232,24 @@ require_once("library.php");
  		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
  	}
  	
+ 	function setZoneParis()
+ 	{
+ 		$this->zone = 1;
+ 	}
+
+ 	function setZoneMontpellier()
+ 	{
+ 		$this->zone = 2;
+ 	}
+
+ 	function setZoneEghezee()
+ 	{
+ 		$this->zone = 3;
+ 	}
+
+ 	function setZoneOther()
+ 	{
+ 		$this->zone = 4;
+ 	}
+ 	
  }

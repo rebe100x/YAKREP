@@ -16,7 +16,6 @@ INFO
 	creationDate : creation  in db (for debug)
 	lastModifDate : modfi in db ( for debug )
 	dateEndPrint : date max de print sur le front
-	address : string : mainly for debug // we will see if we keep this field in the future
 	location[x,y]
 	status : flag for the workflow : 1: OK , 10 alert gmap not found
 	user : who created the info ( 0 for a batch )

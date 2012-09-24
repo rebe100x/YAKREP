@@ -60,7 +60,7 @@ $placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
 $persistDays =  3;
 $flagForceUpdate = (empty($_GET['forceUpdate']))?0:1;
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
-$daysBack = 1;//We only get the last X days
+$daysBack = 3;//We only get the last X days
 if(!empty($_GET['q'])){
     
     if($flagForceUpdate)

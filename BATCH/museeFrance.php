@@ -44,8 +44,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$currentPlace->address["city"] = $data[7];
 			$currentPlace->address["country"] = "France";
 			$currentPlace->setWeb($data[8]);
-			$currentPlace->setMail("mail@mail.com");
-
+			
 			//Gestion des horaires et fermetures des musées
 			if ($data[2] != "NON" && empty($data[9]) && empty($data[10]))
 			{
@@ -75,14 +74,12 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				$currentPlace->setZoneMontpellier();
 			else
 				$currentPlace->setZoneOther();
-
-			print "<pre>";
-	    	print_r($currentPlace);
-	    	print "</pre>";
 			
 			print "<b>$currentPlace->title</b> : ";
 
-			$locationQuery = $data[4] . ", " . $data[6] . " " . $data[7];
+			$locationQuery = $query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
+				
+			//echo $locationQuery;
 			$debug = 0;
 			switch ($currentPlace->saveToMongoDB($locationQuery, $debug)) {
 					case '1':
@@ -101,7 +98,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 						$insert++;
 						break;
 				}
-				break;
+				//var_dump($currentPlace);
 			}
 
 		$row++;
@@ -113,7 +110,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
     print "<br>________________________________________________<br>
     		museeFrance : done <br>";
-    print "Rows : " . $row . "<br>";
+    print "Rows : " . ($row-1) . "<br>";
     print "Call to gmap : " . ($insert+$locError) . "<br>";
     print "Location error (call gmap) : " . $locError . "<br>";
     print "Insertions : " . $insert . "<br>";

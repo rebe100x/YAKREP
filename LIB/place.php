@@ -109,7 +109,7 @@ require_once("../LIB/conf.php");
 		$different = 0;
 			
 		if ($doublon != NULL) {
-			
+			//print_r($doublon['contact']);
 			foreach ($doublon['contact'] as $key => &$value) {
 				if (empty($value) && !empty($this->contact[$key])) {
 					$value = $this->contact[$key];
@@ -119,8 +119,9 @@ require_once("../LIB/conf.php");
 			}
 			//Updated duplicate
     		if ($different > 0) {
+    			//var_dump($doublon);
 	    		$update = array('contact' => $doublon['contact'], 'lastModifDate' => new MongoDate(gmmktime()));
-	    		$place->update(array('_id' => $doublon['_id']), $update);
+	    		$place->update($rangeQuery, $update);
 	    		//var_dump($doublon);
 	    		return 2;
 	    	}
@@ -134,12 +135,12 @@ require_once("../LIB/conf.php");
  	function getLocation($query, $debug) {
  		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
  		
- 		//print_r($loc);
+ 		print_r($loc);
 
  		if ($loc['status'] == "OK")
  		{
- 			$this->location["lat"] = $loc["location"]["lat"];
- 			$this->location["lng"] = $loc["location"]["lng"];
+ 			$this->location["lat"] = $loc["location"][0];
+ 			$this->location["lng"] = $loc["location"][1];
  			return true;
  		}
  		print "Gmap error for address : " . $loc['address'];
@@ -177,14 +178,12 @@ require_once("../LIB/conf.php");
 			"zone"			=> 	$this->zone,
 		);
 
-		$place->save($record);
-		$place->ensureIndex(array("location"=>"2d"));
-
 		// Gestion des doublons
 		$ret = $this->getDoublon();
 		if ($ret == 0) {
 			if ($this->getLocation($locationQuery, $debug)) {
-				$this->saveToMongoDB();
+				$place->save($record);
+				$place->ensureIndex(array("location"=>"2d"));
 				return  $record['_id'];
 			}
 			else {

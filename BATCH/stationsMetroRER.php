@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 <?php
-/* batch for Yakwala to parse "ecoles de Montpellier"
+/* batch for Yakwala to parse "stations de Metro et RER"
  * read csv and create "Place" and "Info" objects
  * call to GMap to enrich location
  * 
@@ -12,28 +12,28 @@ require_once('../LIB/place.php');
 require_once('../LIB/info.php');
 
 ini_set('display_errors',1);
-$filenameInput = "./input/VilleMTP_MTP_EffectifSco_2012.csv";
+$filenameInput = "./input/stationsMetroRER.csv";
 $row = 0;
 $count = 0;
-$ecoles;
+$stations;
 $place;
 $info;
-$origin = 'http://opendata.montpelliernumerique.fr/Effectifs-scolaires';
-$license = 'http://www.etalab.gouv.fr/pages/licence-ouverte-open-licence-5899923.html';
+$origin = 'http://www.data.gouv.fr/donnees/view/Trafic-annuel-entrant-par-station-564116';
+$license = 'http://www.data.gouv.fr/Licence-Ouverte-Open-Licence';
 $access = 1;
 $user = 0;
 
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {     
-		if($row > 0){
-			$ecoles[$row] = $data;
+		if($row > 1){
+			$stations[$row] = $data;
 		}
 		$row++;
     }
     fclose($handle);
 }
 
-foreach ($ecoles as $fields)
+foreach ($stations as $fields)
 {
 	foreach ($fields as $key => $value) {
 				$fields[$key] = utf8_encode($value);
@@ -43,35 +43,37 @@ foreach ($ecoles as $fields)
 	{
 		$place = new Place();
 
-		$place->title = $fields[3];
-		$place->freeTag = $fields[25];
+		$place->title = 'Station '.$fields[3];
+		
+		$place->content = 'Lignes de correspondances: ';
+		if ($fields[5] != '0')
+			$place->content .= $fields[5].' ';
+		if ($fields[6] != '0')
+			$place->content .= $fields[6].' ';
+		if ($fields[7] != '0')
+			$place->content .= $fields[7].' ';
+		if ($fields[8] != '0')
+			$place->content .= $fields[8].' ';
+		if ($fields[9] != '0')
+			$place->content .= $fields[9];
+		
 		$place->origin = $origin;
 		$place->access = $access;
 		$place->license = $license;
-		$place->yakTag["enfants"] = 1;
-		$place->yakTag["couvert, intérieur"] = 1;
-		$place->address['street'] = $fields[7].' '.$fields[11];
-		$place->address['zipcode'] = $fields[13];
-		$place->address['city'] = 'Montpellier';
+		$place->address['zipcode'] = '750'.$fields[11];
+		$place->address['city'] = $fields[10];
 		$place->address['country'] = 'France';
 		
-		$place->contact['tel'] = $fields[5];
 		$place->status = 2;
 		$place->user = $user;
-		$place->setZoneMontpellier();
+		$place->setZoneParis();
 		
 		$query = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
 		echo 'Call to GMap: ' . $query;
 		echo '<br/>';
 		$place->getLocation($query, 0);
 		
-		$place->setCatEducation();
-		$place->setCatYakdico();
-		
-		if ($fields[2] == 'E')
-			$place->setCatElementaire();
-		else if ($fields[2] == 'M')
-			$place->setCatMaternelle();
+		//$place->setCatStation();
 		
 		echo 'Insertion of the Place in DB';
 		echo '<br/>';
@@ -79,24 +81,19 @@ foreach ($ecoles as $fields)
 		
 		$info = new Info();
 		$info->placeid = $placeid;
-		$info->title = 'info rentrée 2012';
-		/* A CONFIRMER
-		if ($fields[23] < 0)
-			str = 'Fermeture de classes';
-		*/
-		$info->content = $fields[22] . ' classes. Capacité max: ' . $fields[21] . ' élèves. Remplissage des classes: ' . $fields[24] . '.Ouvertures de classes: ' . $fields[23]; 
+		$info->title = $place->title;
+		$info->content = $fields[4];
 		$info->origin = $origin;
 		$info->access = $access;
 		$info->license = $license;
 		$info->pubDate = '';
 		$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
-		$info->heat = 1;
-		$info->yakTag["enfants"] = 1;
-		$info->setCatEcole();
+		//$info->heat = 1;
+		$info->setCatYakdico();
 		$info->status = 1;
 		$info->print = 1;
-		$info->yakType = 3; // A CONFIRMER
-		$info->setZoneMontpellier();
+		$info->yakType = 3;
+		$info->setZoneParis();
 		echo "Insertion of the Info in DB";
 		echo '<br/>';
 		$info->saveToMongoDB();
@@ -104,7 +101,6 @@ foreach ($ecoles as $fields)
 	$count++;
 }
 
-//A modifier plus tard apres avoir gere les doublons
 echo $count.' data has been inserted';
 
 

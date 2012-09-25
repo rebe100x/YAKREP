@@ -134,8 +134,7 @@ require_once("../LIB/conf.php");
 
  	function getLocation($query, $debug) {
  		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
- 		
- 		print_r($loc);
+ 		//print_r($loc);
 
  		if ($loc['status'] == "OK")
  		{
@@ -148,7 +147,7 @@ require_once("../LIB/conf.php");
  	}
 
  	/* Save object in db
- 	** Return value : 	0 : save done - 1 : Gmap error - 2 : updated duplicate 
+ 	** Return value : 	_id : save done - 1 : Gmap error - 2 : updated duplicate 
 	** 					- 3 : Duplicate without insertion
 	**/
 	function saveToMongoDB($locationQuery, $debug) {
@@ -194,7 +193,7 @@ require_once("../LIB/conf.php");
 			return $ret;
 		}
  	}
-
+ 	
  	function setTitle($title)
  	{
  		$this->title = ucwords(strtolower($title));

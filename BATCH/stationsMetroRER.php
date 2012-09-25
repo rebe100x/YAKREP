@@ -19,7 +19,6 @@ $update = 0;
 $locError = 0;
 $doublon = 0;
 $count = 0;
-$stations;
 $place;
 $info;
 $origin = 'http://www.data.gouv.fr/donnees/view/Trafic-annuel-entrant-par-station-564116';
@@ -27,121 +26,118 @@ $license = 'http://www.data.gouv.fr/Licence-Ouverte-Open-Licence';
 $access = 1;
 $user = 0;
 
-if (($handle = fopen($filenameInput, "r")) !== FALSE) {
-    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {     
-		if($row > 1){
-			$stations[$row] = $data;
+if (($handle = fopen($filenameInput, "r")) !== FALSE) 
+{
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
+    {     
+		if($row > 2)
+		{
+			foreach ($data as $key => &$value) {
+				$value = utf8_encode($value);
+			}
+			$place = new Place();
+
+			$place->setTitle('Station '.$data[3]);
+		
+			$place->content = 'Lignes de correspondances: ';
+			if ($data[5] != '0')
+				$place->content .= $data[5].' ';
+			if ($data[6] != '0')
+				$place->content .= $data[6].' ';
+			if ($data[7] != '0')
+				$place->content .= $data[7].' ';
+			if ($data[8] != '0')
+				$place->content .= $data[8].' ';
+			if ($data[9] != '0')
+				$place->content .= $data[9];
+		
+			$place->origin = $origin;
+			$place->access = $access;
+			$place->license = $license;
+			$place->address['zipcode'] = '750'.$data[11];
+			$place->address['city'] = $data[10];
+			$place->address['country'] = 'France';
+		
+			$place->status = 2;
+			$place->user = $user;
+			$place->setZoneParis();
+		
+			$locationQuery = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
+			/*echo 'Call to GMap: ' . $query;
+			echo '<br/>';
+			$place->getLocation($query, 0);*/
+		
+			//$place->setCatStation();
+		
+			$debug = 0;
+			switch ($place->saveToMongoDB($locationQuery, $debug)) 
+			{
+				case '1':
+					$locError++;
+					break;
+				case '2':
+					print "updated <br>";
+					$update++;
+					break;
+				case '3':
+					print "doublon <br>";
+					$doublon++;
+					break;
+				default:
+					print "insert (1 call to gmap)<br>";
+					$insert++;
+					break;
+			}
+			
+			$info = new Info();
+			//$info->placeid = $placeid;
+			$info->setTitle($place->title);
+			$info->content = $data[4];
+			$info->origin = $origin;
+			$info->access = $access;
+			$info->license = $license;
+			$info->pubDate = '';
+			$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
+			//$info->heat = 1;
+			$info->setCatYakdico();
+			$info->status = 1;
+			$info->print = 1;
+			$info->yakType = 3;
+			$info->setZoneParis();
+
+			$debug = 0;
+			switch ($info->saveToMongoDB($locationQuery, $debug)) 
+			{
+				case '1':
+					$locError++;
+					break;
+				case '2':
+					print "updated <br>";
+					$update++;
+					break;
+				case '3':
+					print "doublon <br>";
+					$doublon++;
+					break;
+				default:
+					print "insert (1 call to gmap)<br>";
+					$insert++;
+					break;
+			}
 		}
 		$row++;
     }
     fclose($handle);
+    
+    print "<br>________________________________________________<br>
+    		museeFrance : done <br>";
+    print "Rows : " . ($row-1) . "<br>";
+    print "Call to gmap : " . ($insert+$locError) . "<br>";
+    print "Location error (call gmap) : " . $locError . "<br>";
+    print "Insertions : " . $insert . "<br>";
+    print "Updates : " . $update . "<br>";
+    print "Doublons : " . $doublon . "<br>";
 }
-
-foreach ($stations as $fields)
-{
-	foreach ($fields as $key => $value) {
-				$fields[$key] = utf8_encode($value);
-	}
-			
-	if ($count > 0)
-	{
-		$place = new Place();
-
-		$place->setTitle('Station '.$fields[3]);
-		
-		$place->content = 'Lignes de correspondances: ';
-		if ($fields[5] != '0')
-			$place->content .= $fields[5].' ';
-		if ($fields[6] != '0')
-			$place->content .= $fields[6].' ';
-		if ($fields[7] != '0')
-			$place->content .= $fields[7].' ';
-		if ($fields[8] != '0')
-			$place->content .= $fields[8].' ';
-		if ($fields[9] != '0')
-			$place->content .= $fields[9];
-		
-		$place->origin = $origin;
-		$place->access = $access;
-		$place->license = $license;
-		$place->address['zipcode'] = '750'.$fields[11];
-		$place->address['city'] = $fields[10];
-		$place->address['country'] = 'France';
-		
-		$place->status = 2;
-		$place->user = $user;
-		$place->setZoneParis();
-		
-		$locationQuery = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
-		/*echo 'Call to GMap: ' . $query;
-		echo '<br/>';
-		$place->getLocation($query, 0);*/
-		
-		//$place->setCatStation();
-		
-		echo 'Insertion of the Place in DB';
-		echo '<br/>';
-		$debug = 0;
-		switch ($place->saveToMongoDB($locationQuery, $debug)) 
-		{
-			case '1':
-				$locError++;
-				break;
-			case '2':
-				print "updated <br>";
-				$update++;
-				break;
-			case '3':
-				print "doublon <br>";
-				$doublon++;
-				break;
-			default:
-				print "insert (1 call to gmap)<br>";
-				$insert++;
-				break;
-		}
-		
-		$info = new Info();
-		//$info->placeid = $placeid;
-		$info->setTitle($place->title);
-		$info->content = $fields[4];
-		$info->origin = $origin;
-		$info->access = $access;
-		$info->license = $license;
-		$info->pubDate = '';
-		$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
-		//$info->heat = 1;
-		$info->setCatYakdico();
-		$info->status = 1;
-		$info->print = 1;
-		$info->yakType = 3;
-		$info->setZoneParis();
-		echo "Insertion of the Info in DB";
-		echo '<br/>';
-		$debug = 0;
-		switch ($info->saveToMongoDB($locationQuery, $debug)) 
-		{
-			case '1':
-				$locError++;
-				break;
-			case '2':
-				print "updated <br>";
-				$update++;
-				break;
-			case '3':
-				print "doublon <br>";
-				$doublon++;
-				break;
-			default:
-				print "insert (1 call to gmap)<br>";
-				$insert++;
-				break;
-		}
-	}
-	$count++;
-}
-
-echo $count.' data has been inserted';
 
 
 

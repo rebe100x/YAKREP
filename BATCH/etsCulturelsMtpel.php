@@ -92,14 +92,17 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 	    	print_r($currentObject);
 	    	print "</pre>";
 */
+			print '<hr><b>'.$currentObject->title.'</b><br>';
 			print $currentObject->saveToMongoDB() . "<br>";
+			$i++;
+
 		}
 
-		$i++;
 		$row++;
 
     }
 
+	print "Data parser : " . $i . "<br>";
     print "Call to gmap : " . $callGmap . "<br>";
    
     fclose($handle);

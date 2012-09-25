@@ -126,8 +126,9 @@ require_once("library.php");
  	}
 
  	function saveToMongoDB() {
- 		$m = new Mongo();
-		$db = $m->selectDB("yakwala");
+ 		$conf = new conf();
+		$m = new Mongo(); 
+		$db = $m->selectDB($conf->db());
 		$info = $db->info;
 
 		$record = array(
@@ -166,6 +167,7 @@ require_once("library.php");
 		}
 
 		$info->save($record);
+		$info->ensureIndex(array("location"=>"2d"));
 		return $record['_id'];
  	}
 

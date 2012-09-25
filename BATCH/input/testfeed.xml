@@ -7,7 +7,7 @@
 	<generator>Feediz</generator>
 	<lastBuildDate>Wed, 19 Sep 2012 09:46:07 +0200</lastBuildDate>
 	<copyright><![CDATA[]]></copyright>
-	
+</channel>	
 	<item>
 		<title><![CDATA[Des bonbons au jardin d'Acclimatation ]]></title>
 		<description><![CDATA[This is a text]]></description>
@@ -15,5 +15,12 @@
 		<pubDate>Tue, 18 Sep 2012 19:30:00 +0200</pubDate>
 		<guid isPermaLink="false" ><![CDATA[www.yakwala.fr/123456789]]></guid>
 	</item>
-</channel>
+		<item>
+		<title><![CDATA[ c'est un test porte d'Auteuil]]></title>
+		<description><![CDATA[This is a text]]></description>
+		<link><![CDATA[]]></link>
+		<pubDate>Tue, 18 Sep 2012 19:30:00 +0200</pubDate>
+		<guid isPermaLink="false" ><![CDATA[www.yakwala.fr/13541654]]></guid>
+	</item>
+
 </rss>

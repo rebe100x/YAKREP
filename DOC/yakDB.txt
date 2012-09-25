@@ -10,7 +10,7 @@ INFO
     print : flags if need to be printed on the map / fils info
 	yakType : 1 actu, 2 agenda, 3 promo, 4 conversation	
 	yakCat [{ mongoId }]
-	yakTag [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
+	yakTag ["enfants","handicapés","personnes agées,"couvert",'intérieur',"gay friendly","gratuit","animaux"]
 	freeTag [{}]
 	pubDate : publication date in the feed
 	creationDate : creation  in db (for debug)

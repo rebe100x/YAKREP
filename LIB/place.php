@@ -1,6 +1,9 @@
 <?php
 
 require_once("library.php");
+require_once("../LIB/conf.php");
+
+
 
  class Place
  {
@@ -102,9 +105,11 @@ require_once("library.php");
  	}
 
  	function saveToMongoDB() {
- 		$m = new Mongo();
-		$db = $m->selectDB("yakwala");
-		$place = $db->place;
+		$conf = new conf();
+		$m = new Mongo(); 
+		$db = $m->selectDB($conf->db());
+
+ 		$place = $db->place;
 
 		$record = array(
 			"title"			=>	$this->title,
@@ -130,8 +135,8 @@ require_once("library.php");
 
 		$doublon = $place->findOne($rangeQuery);
 		if ($doublon != NULL) {
-    		print_r("Doublon avant:\n");
-    		var_dump($doublon);
+    		//print_r("Doublon avant:\n");
+    		//var_dump($doublon);
     		if ($doublon['location'] == array()) {
     			$doublon['location'] = $this->location;
     		}
@@ -139,12 +144,13 @@ require_once("library.php");
     			$doublon['contact'] = $this->contact;
     		}
     		$doublon['lastModifDate'] = new MongoDate(gmmktime());
-    		print_r("Doublon apres:\n");
-    		var_dump($doublon);
+    		//print_r("Doublon apres:\n");
+    		//var_dump($doublon);
     		return $doublon['_id'];
 		}
 		else {
 			$place->save($record);
+			$place->ensureIndex(array("location"=>"2d"));
 			return $record['_id'];
 		}
  	}

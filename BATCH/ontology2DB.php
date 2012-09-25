@@ -6,13 +6,17 @@
 ini_set ('max_execution_time', 0);
 set_time_limit(0);
 require_once("../LIB/library.php");
+require_once("../LIB/conf.php");
 ini_set('display_errors',1);
 $inputFile ='./input/ontology.xml';
 
 $ontolgyXML = simplexml_load_file($inputFile);
 
-$m = new Mongo(); // connexion
-$db = $m->selectDB("yakwala");
+$conf = new conf();
+
+$m = new Mongo(); 
+$db = $m->selectDB($conf->db());
+
 $placeColl = $db->place;
 $batchlogColl = $db->batchlog;
 

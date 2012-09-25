@@ -16,8 +16,10 @@ $templateFile ='./input/ontologyTemplate.xml';
 
 $ontolgyXML = simplexml_load_file($templateFile);
 
-$m = new Mongo(); // connexion
-$db = $m->selectDB("yakwala");
+$conf = new conf();
+
+$m = new Mongo(); 
+$db = $m->selectDB($conf->db());
 $placeColl = $db->place;
 $batchlogColl = $db->batchlog;
 

@@ -33,6 +33,8 @@ function getApercite($link){
  * 
  * if no location from gmap, status = 10
  * call exemple : $resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($loc.', Paris, France'))),'PHP',1);
+ 
+ * return value : array('status'=>'OK','location'=>array(lat,lng),'address'=>array(street,arr,city,state,area,country,zip))
  * */
 function getLocationGMap($q,$output = 'PHP',$debug = 0){
 	

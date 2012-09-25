@@ -1,17 +1,21 @@
 <?php 
 
-$deploy = 'dev'; 
+ini_set ('max_execution_time', 0);
+set_time_limit(0);
+ini_set('display_errors',1);
+
 
 class conf
 {
+	private $deploy = 'dev'; 
     private $db;
 	private $fronturl;
 	private $backurl;
 	private $thumburl;
 	
 
-	function __construct($env){
-		switch($env){
+	function __construct(){
+		switch($this->deploy){
 			case 'dev':
 				$this->db = 'yakwala';
 				$this->fronturl = 'http://dev.yakwala.fr';
@@ -20,15 +24,15 @@ class conf
 			break;
 			case 'preprod':
 				$this->db = 'yakwala_preprod';
-				$this->fronturl = 'http://preprod.yakwala.fr';
-				$this->backurl = 'http://preprod.backend.yakwala.fr';
-				$this->thumburl = 'http://preprod.backend.yakwala.fr/BACKEND/thumb/';				
+				$this->fronturl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62501';
+				$this->backurl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com/PREPROD/YAKREP/';
+				$this->thumburl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com/PREPROD/YAKREP/BACK/thumb';				
 			break;
 			case 'prod':
 				$this->db = 'yakwala';
-				$this->fronturl = 'http://prod.yakwala.fr';
-				$this->backurl = 'http://prod.backend.yakwala.fr';
-				$this->thumburl = 'http://prod.backend.yakwala.fr/BACKEND/thumb/';
+				$this->fronturl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62500';
+				$this->backurl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com/YAKREP/';
+				$this->thumburl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com/YAKREP/BACK/thumb';
 			break;
 			
 		}

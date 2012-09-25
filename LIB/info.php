@@ -68,7 +68,7 @@ require_once("library.php");
 	// debug field : the location string found by the semantic factory ( the string sent to gmap, used only for the rss parsing )
 	public $address;
 	
-	public $placeId;
+	public $placeid;
  	
 
  	function __construct() {
@@ -122,7 +122,7 @@ require_once("library.php");
 		$this->status = 0;
 		$this->user = 0;
 		$this->zone = 1;
-		$this->placeId = '';
+		$this->placeid = '';
  	}
 
  	function saveToMongoDB() {
@@ -159,7 +159,7 @@ require_once("library.php");
 
 		$rangeQuery = array('title' => $this->title, 'address' => $this->address);
 
-		$cursor = $place->find($rangeQuery);
+		$cursor = $info->find($rangeQuery);
 		foreach ($cursor as $doublon) {
     		//TODO : gérer la mise à jour des doublons
     		//var_dump($doublon);

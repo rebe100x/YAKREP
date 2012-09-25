@@ -14,6 +14,10 @@ $origin = "http://opendata.montpelliernumerique.fr/Etablissements-publics";
 $license = "licence ouverte";
 
 $row = 0;
+$insert = 0;
+$update = 0;
+$locError = 0;
+$doublon = 0;
 $callGmap = 0;
 $etsPublics = array('');
 $fieldsProcessed = array('');
@@ -31,7 +35,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			
 			$currentObject = new Place;
 
-			$currentObject->title = $data[5];
+			$currentObject->setTitle($data[5]);
 			$currentObject->origin = $origin;
 			$currentObject->license = $license;
 			$currentObject->address["street"] = $data[10];
@@ -39,7 +43,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$currentObject->address["city"] = $data[12];
 			$currentObject->address["country"] = "France";
 			$currentObject->setTel($data[16], "tel");
-			$currentObject->contact["mail"] = $data[18];
+			$currentObject->setMail($data[18]);
 			$currentObject->setZoneMontpellier();
 			$currentObject->location["lat"] = $data[6];
 			$currentObject->location["lng"] = $data[7];
@@ -124,15 +128,29 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			/*print "<pre>";
 	    	print_r($currentObject);
 	    	print "</pre>";
-*/
-			print '<hr><b>'.$currentObject->title.'</b><br>';
-			print $currentObject->saveToMongoDB() . "<br>";
+			*/
+			$debug = 0;
+			switch ($currentObject->saveToMongoDB($locationQuery, $debug)) 
+			{
+				case '1':
+					$locError++;
+					break;
+				case '2':
+					print "updated <br>";
+					$update++;
+					break;
+				case '3':
+					print "doublon <br>";
+					$doublon++;
+					break;
+				default:
+					print "insert (1 call to gmap)<br>";
+					$insert++;
+					break;
+			}
 			$i++;
-
 		}
-
 		$row++;
-
     }
 
 	print "Data parsed: " . $i . "<br>";

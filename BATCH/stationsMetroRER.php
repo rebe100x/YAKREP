@@ -14,6 +14,10 @@ require_once('../LIB/info.php');
 ini_set('display_errors',1);
 $filenameInput = "./input/stationsMetroRER.csv";
 $row = 0;
+$insert = 0;
+$update = 0;
+$locError = 0;
+$doublon = 0;
 $count = 0;
 $stations;
 $place;
@@ -43,7 +47,7 @@ foreach ($stations as $fields)
 	{
 		$place = new Place();
 
-		$place->title = 'Station '.$fields[3];
+		$place->setTitle('Station '.$fields[3]);
 		
 		$place->content = 'Lignes de correspondances: ';
 		if ($fields[5] != '0')
@@ -68,20 +72,38 @@ foreach ($stations as $fields)
 		$place->user = $user;
 		$place->setZoneParis();
 		
-		$query = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
-		echo 'Call to GMap: ' . $query;
+		$locationQuery = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
+		/*echo 'Call to GMap: ' . $query;
 		echo '<br/>';
-		$place->getLocation($query, 0);
+		$place->getLocation($query, 0);*/
 		
 		//$place->setCatStation();
 		
 		echo 'Insertion of the Place in DB';
 		echo '<br/>';
-		$placeid = $place->saveToMongoDB();
+		$debug = 0;
+		switch ($place->saveToMongoDB($locationQuery, $debug)) 
+		{
+			case '1':
+				$locError++;
+				break;
+			case '2':
+				print "updated <br>";
+				$update++;
+				break;
+			case '3':
+				print "doublon <br>";
+				$doublon++;
+				break;
+			default:
+				print "insert (1 call to gmap)<br>";
+				$insert++;
+				break;
+		}
 		
 		$info = new Info();
-		$info->placeid = $placeid;
-		$info->title = $place->title;
+		//$info->placeid = $placeid;
+		$info->setTitle($place->title);
 		$info->content = $fields[4];
 		$info->origin = $origin;
 		$info->access = $access;
@@ -96,7 +118,25 @@ foreach ($stations as $fields)
 		$info->setZoneParis();
 		echo "Insertion of the Info in DB";
 		echo '<br/>';
-		$info->saveToMongoDB();
+		$debug = 0;
+		switch ($info->saveToMongoDB($locationQuery, $debug)) 
+		{
+			case '1':
+				$locError++;
+				break;
+			case '2':
+				print "updated <br>";
+				$update++;
+				break;
+			case '3':
+				print "doublon <br>";
+				$doublon++;
+				break;
+			default:
+				print "insert (1 call to gmap)<br>";
+				$insert++;
+				break;
+		}
 	}
 	$count++;
 }

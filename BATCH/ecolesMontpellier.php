@@ -14,6 +14,10 @@ require_once('../LIB/info.php');
 ini_set('display_errors',1);
 $filenameInput = "./input/VilleMTP_MTP_EffectifSco_2012.csv";
 $row = 0;
+$insert = 0;
+$update = 0;
+$locError = 0;
+$doublon = 0;
 $count = 0;
 $ecoles;
 $place;
@@ -41,21 +45,23 @@ foreach ($ecoles as $fields)
 			
 	if ($count > 0)
 	{
-		$place = new Place();
+		/*$place = new Place();
 
 		$place->title = $fields[3];
 		$place->freeTag = $fields[25];
 		$place->origin = $origin;
 		$place->access = $access;
 		$place->license = $license;
-		$place->yakTag["enfants"] = 1;
-		$place->yakTag["couvert, intérieur"] = 1;
+		$place->setTagChildren();
+		//$place->yakTag["enfants"] = 1;
+		//$place->yakTag["couvert, intérieur"] = 1;
 		$place->address['street'] = $fields[7].' '.$fields[11];
 		$place->address['zipcode'] = $fields[13];
 		$place->address['city'] = 'Montpellier';
 		$place->address['country'] = 'France';
 		
-		$place->contact['tel'] = $fields[5];
+		$place->setTel($fields[5], "tel");
+		//$place->contact['tel'] = $fields[5];
 		$place->status = 2;
 		$place->user = $user;
 		$place->setZoneMontpellier();
@@ -75,11 +81,13 @@ foreach ($ecoles as $fields)
 		
 		echo 'Insertion of the Place in DB';
 		echo '<br/>';
-		$placeid = $place->saveToMongoDB();
+		$placeid = $place->saveToMongoDB();*/
 		
 		$info = new Info();
+		//
 		$info->placeid = $placeid;
-		$info->title = 'info rentrée 2012';
+		//
+		$info->setTitle('info rentrée 2012');
 		/* A CONFIRMER
 		if ($fields[23] < 0)
 			str = 'Fermeture de classes';
@@ -91,15 +99,40 @@ foreach ($ecoles as $fields)
 		$info->pubDate = '';
 		$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
 		$info->heat = 1;
-		$info->yakTag["enfants"] = 1;
+		$place->setTagChildren();
+		//$info->yakTag["enfants"] = 1;
 		$info->setCatEcole();
 		$info->status = 1;
 		$info->print = 1;
 		$info->yakType = 3; // A CONFIRMER
 		$info->setZoneMontpellier();
+		$info->address['street'] = $fields[7].' '.$fields[11];
+		$info->address['zipcode'] = $fields[13];
+		$info->address['city'] = 'Montpellier';
+		$info->address['country'] = 'France';
+		$locationQuery = $fields[3] . ' ' . $info->address['street'] . ' ' . $info->address['zipcode'] . ' ' . $info->address['city'] . ', ' . $info->address['country'];
+		
 		echo "Insertion of the Info in DB";
 		echo '<br/>';
-		$info->saveToMongoDB();
+		$debug = 0;
+		switch ($info->saveToMongoDB($locationQuery, $debug)) 
+		{
+			case '1':
+				$locError++;
+				break;
+			case '2':
+				print "updated <br>";
+				$update++;
+				break;
+			case '3':
+				print "doublon <br>";
+				$doublon++;
+				break;
+			default:
+				print "insert (1 call to gmap)<br>";
+				$insert++;
+				break;
+		}
 	}
 	$count++;
 }

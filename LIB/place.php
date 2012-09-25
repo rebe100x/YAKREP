@@ -64,17 +64,9 @@ require_once("../LIB/conf.php");
  		$this->access = 1;
  		$this->license = '';
  		$this->outGoingLink = '';
- 		$this->yakTag = array (
-			"enfants" => "0",
-			"handicapés" => "0",
-			"personnes agées" => "0",
-			"couvert, intérieur" => "0",
-			"gay friendly" => "0",
-			"gratuit" => "0",
-			"animaux" => "0",
-		);
-		$this->yakCat = array('');
-		$this->humanCat = array('');
+ 		$this->yakTag = array();
+		$this->yakCat = array();
+		$this->humanCat = array();
  		$this->freeTag = '';
  		$this->creationDate = time();
  		$this->lastModifDate = time();
@@ -104,7 +96,61 @@ require_once("../LIB/conf.php");
 		$this->zone = 1;
  	}
 
- 	function saveToMongoDB() {
+ 	function getDoublon()
+ 	{
+ 		$conf = new conf();
+		$m = new Mongo(); 
+		$db = $m->selectDB($conf->db());
+ 		$place = $db->place;
+
+ 		$rangeQuery = array('title' => $this->title, 'address' => $this->address);
+ 		
+		$doublon = $place->findOne($rangeQuery);
+		$different = 0;
+			
+		if ($doublon != NULL) {
+			
+			foreach ($doublon['contact'] as $key => &$value) {
+				if (empty($value) && !empty($this->contact[$key])) {
+					$value = $this->contact[$key];
+					//print "$key : " . $this->contact[$key] . "<br/>";
+					$different++;
+				}
+			}
+			//Updated duplicate
+    		if ($different > 0) {
+	    		$update = array('contact' => $doublon['contact'], 'lastModifDate' => new MongoDate(gmmktime()));
+	    		$place->update(array('_id' => $doublon['_id']), $update);
+	    		//var_dump($doublon);
+	    		return 2;
+	    	}
+    		return 3;
+		}
+		else {
+			return 0;
+		}
+ 	}
+
+ 	function getLocation($query, $debug) {
+ 		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
+ 		
+ 		//print_r($loc);
+
+ 		if ($loc['status'] == "OK")
+ 		{
+ 			$this->location["lat"] = $loc["location"]["lat"];
+ 			$this->location["lng"] = $loc["location"]["lng"];
+ 			return true;
+ 		}
+ 		print "Gmap error for address : " . $loc['address'];
+ 		return false;
+ 	}
+
+ 	/* Save object in db
+ 	** Return value : 	0 : save done - 1 : Gmap error - 2 : updated duplicate 
+	** 					- 3 : Duplicate without insertion
+	**/
+	function saveToMongoDB($locationQuery, $debug) {
 		$conf = new conf();
 		$m = new Mongo(); 
 		$db = $m->selectDB($conf->db());
@@ -129,46 +175,47 @@ require_once("../LIB/conf.php");
 			"status" 		=>	$this->status,
 			"user"			=> 	$this->user, 
 			"zone"			=> 	$this->zone,
-		);	
+		);
 
-		$rangeQuery = array('title' => $this->title, 'address' => $this->address);
+		$place->save($record);
+		$place->ensureIndex(array("location"=>"2d"));
 
-		$doublon = $place->findOne($rangeQuery);
-		if ($doublon != NULL) {
-    		//print_r("Doublon avant:\n");
-    		//var_dump($doublon);
-    		if ($doublon['location'] == array()) {
-    			$doublon['location'] = $this->location;
-    		}
-    		if ($doublon['contact'] == array()) {
-    			$doublon['contact'] = $this->contact;
-    		}
-    		$doublon['lastModifDate'] = new MongoDate(gmmktime());
-    		//print_r("Doublon apres:\n");
-    		//var_dump($doublon);
-    		return $doublon['_id'];
+		// Gestion des doublons
+		$ret = $this->getDoublon();
+		if ($ret == 0) {
+			if ($this->getLocation($locationQuery, $debug)) {
+				$this->saveToMongoDB();
+				return  $record['_id'];
+			}
+			else {
+				return 1;
+			}
 		}
 		else {
-			$place->save($record);
-			$place->ensureIndex(array("location"=>"2d"));
-			return $record['_id'];
+			return $ret;
 		}
  	}
 
- 	function getLocation($query, $debug) {
- 		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
-
- 		if ($loc != 0)
- 		{
- 			$this->location["lat"] = $loc["location"][0];
- 			$this->location["lng"] = $loc["location"][1];
- 			return true;
- 		}
- 		return false;
+ 	function setTitle($title)
+ 	{
+ 		$this->title = ucwords(strtolower($title));
  	}
 
+ 	//type = tel or mobile
  	function setTel($tel, $type = "tel") {
 		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
+ 	}
+
+ 	function setWeb ($web) {
+ 		$pattern = "@^(http(s?)\:\/\/)?(www\.)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*(\/)?([a-z0-9][_a-z0-9\-\/\.\&\?\+\=\,]*)*$@i";
+		if (preg_match($pattern, $web))
+			$this->contact['web'] = $web;
+ 	}
+
+	function setMail ($mail) {
+		$mail = strtolower($mail);
+		if (filter_var($mail, FILTER_VALIDATE_EMAIL))
+ 			$this->contact['mail'] = $mail;
  	}
 
  	function setCatYakdico() {
@@ -196,16 +243,11 @@ require_once("../LIB/conf.php");
  		$this->yakCat[] = new MongoId("504dbb06fa9a95680b000211");
  	}
  	
- 	function setCatElementaire() {
- 		$this->humanCat[] = "Elementaire";
- 		$this->yakCat[] = new MongoId("5056bae5fa9a95200b000001");
+ 	function setCatPrimaire() {
+ 		$this->humanCat[] = "Primaire";
+ 		$this->yakCat[] = new MongoId("5061a0d3fa9a95f009000000");
  	}
  	
- 	function setCatMaternelle() {
- 		$this->humanCat[] = "Maternelle";
- 		$this->yakCat[] = new MongoId("5056baddfa9a95200b000000");
- 	}
-
  	function setCatTheatre() {
  		$this->humanCat[] = "Theatre";
  		$this->yakCat[] = new MongoId("504df6b1fa9a957c0b000004");
@@ -243,6 +285,34 @@ require_once("../LIB/conf.php");
  	
  	function setZoneParis() {
  		$this->zone = 1;
+ 	}
+
+ 	function setTagChildren() {
+ 		$this->yakTag[] = "Children";
+ 	}
+
+ 	function setTagDisabled() {
+ 		$this->yakTag[] = "Disabled";
+ 	}
+
+	function setTagElderly() {
+ 		$this->yakTag[] = "Elderly person";
+ 	}
+
+ 	function setTagIndoor() {
+ 		$this->yakTag[] = "Indoor";
+ 	}
+
+ 	function setTagGay() {
+ 		$this->yakTag[] = "Gay friendly";
+ 	}
+
+ 	function setTagFree() {
+ 		$this->yakTag[] = "Free";
+ 	}
+
+ 	function setTagPets() {
+ 		$this->yakTag[] = "Pets";
  	}
 
  	function setZoneMontpellier() {

@@ -12,11 +12,16 @@ require_once("../LIB/place.php");
 require_once("../LIB/library.php");
 
 ini_set('display_errors',1);
-$filenameInput = "./input/offreCulturelle.csv";
+$filenameInput = "./input/offreCulturelle_testDoublons.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Agenda---Offres-culture-2011-30382214";
 $licence = "Licence ouverte";
 
 $row = 0;
+$update = 0;
+$doublon = 0;
+$insert = 0;
+$locError = 0;
+
 $currentPlace;
 
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
@@ -78,11 +83,28 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				}
 
 				print_r($currentPlace->prettyPrint() . "<hr/>");
+				
+				$query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
+				$debug = 1;
 
+				switch ($currentPlace->saveToMongoDB($query, $debug)) {
+					case '1':
+						$locError++;
+						break;
+					case '2':
+						$update++;
+						break;
+					case '3':
+						$doublon++;
+						break;
+					default:
+						$insert++;
+						break;
+				}
+				
 				//var_dump($currentPlace);
 
-				//$query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
-
+				
 				//print_r("GMap query: " . $query . "\n");
 
 				//$currentPlace->getLocation($query, 0);
@@ -93,6 +115,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 		
 		$row++;
     }
+    print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
     fclose($handle);
     print_r("offreCulturelle done.\n");
 }

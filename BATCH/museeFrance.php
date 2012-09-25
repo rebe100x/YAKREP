@@ -14,7 +14,11 @@ $origin = "http://www.data.gouv.fr/donnees/view/Liste-des-Mus%C3%A9es-de-France-
 $license = "licence ouverte";
 
 $row = 0;
-$callGmap = 0;
+$insert = 0;
+$update = 0;
+$locError = 0;
+$doublon = 0;
+
 $etsCulturels = array('');
 $fieldsProcessed = array('');
 $i=0;
@@ -25,75 +29,96 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
         $num = count($data);
         
 		if($row > 0){
-			foreach ($data as $key => $value) {
-				$data[$key] = utf8_encode($value);
+			foreach ($data as $key => &$value) {
+				$value = utf8_encode($value);
 			}
 			
-			$currentObject = new Place;
+			$currentPlace = new Place;
 
-			$currentObject->title = $data[4];
-			$currentObject->origin = $origin;
-			$currentObject->license = $license;
-			$currentObject->address["street"] = $data[5];
-			$currentObject->address["zipcode"] = $data[6];
-			$currentObject->address["city"] = $data[7];
-			$currentObject->address["country"] = "France";
-			$currentObject->contact["web"] = $data[8];
-			
+			$currentPlace->setTitle($data[4]);
+
+			$currentPlace->origin = $origin;
+			$currentPlace->license = $license;
+			$currentPlace->address["street"] = $data[5];
+			$currentPlace->address["zipcode"] = $data[6];
+			$currentPlace->address["city"] = $data[7];
+			$currentPlace->address["country"] = "France";
+			$currentPlace->setWeb($data[8]);
+			$currentPlace->setMail("mail@mail.com");
+
+			//Gestion des horaires et fermetures des musées
 			if ($data[2] != "NON" && empty($data[9]) && empty($data[10]))
 			{
 				if ($data[2] == "OUI")
-					$currentObject->contact["closing"] = "Fermé";
+					$currentPlace->contact["closing"] = "Fermé";
 				else
-					$currentObject->contact["closing"] = $data[2];
+					$currentPlace->contact["closing"] = $data[2];
 			}
 			else
 			{
-				$currentObject->contact["closing"] = $data[9];
-				$currentObject->contact["opening"] = $data[10];
+				$currentPlace->contact["closing"] = $data[9];
+				$currentPlace->contact["opening"] = $data[10];
 				if (!empty($data[11]))
-					$currentObject->contact["special opening"] = "Nocturnes : ". $data[11];
+					$currentPlace->contact["special opening"] = "Nocturnes : ". $data[11];
 			}
 
-			$currentObject->yakTag["couvert, intérieur"] = 1;
-			
-			// Get location with gmap
-			$query = $data[4] . ", " . $data[6] . " " . $data[7];
-			$debug = 0;
-			if (!$currentObject->getLocation($query, $debug))
-			{
-				$query = $data[5] . ", " . $data[6] . " " . $data[7];
-				$currentObject->getLocation($query, $debug);
-			}
-			$callGmap++;
+			$currentPlace->setTagIndoor();
 
 			// YakCat
-			$currentObject->setCatCulture();
-			$currentObject->setCatYakdico();
-			$currentObject->setCatGeoloc();
-			$currentObject->setCatMusee();
+			$currentPlace->setCatYakdico();
+			$currentPlace->setCatGeoloc();
+			$currentPlace->setCatMusee();
 			
 			if ($data[1] == "PARIS")
-				$currentObject->setZoneParis();
+				$currentPlace->setZoneParis();
 			elseif ($data[1] == "HERAULT")
-				$currentObject->setZoneMontpellier();
+				$currentPlace->setZoneMontpellier();
 			else
-				$currentObject->setZoneOther();
+				$currentPlace->setZoneOther();
 
 			print "<pre>";
-	    	print_r($currentObject);
+	    	print_r($currentPlace);
 	    	print "</pre>";
 			
-			print $data[4] . " : ". $currentObject->saveToMongoDB() . "<br>";
-		}
+			print "<b>$currentPlace->title</b> : ";
 
-		$i++;
+			$locationQuery = $data[4] . ", " . $data[6] . " " . $data[7];
+			$debug = 0;
+			switch ($currentPlace->saveToMongoDB($locationQuery, $debug)) {
+					case '1':
+						$locError++;
+						break;
+					case '2':
+						print "updated <br>";
+						$update++;
+						break;
+					case '3':
+						print "doublon <br>";
+						$doublon++;
+						break;
+					default :
+						print "insert (1 call to gmap)<br>";
+						$insert++;
+						break;
+				}
+				break;
+			}
+
 		$row++;
+		$i++;
 
     }
 
-    print "Call to gmap : " . $callGmap . "<br>";
-   
     fclose($handle);
+
+    print "<br>________________________________________________<br>
+    		museeFrance : done <br>";
+    print "Rows : " . $row . "<br>";
+    print "Call to gmap : " . ($insert+$locError) . "<br>";
+    print "Location error (call gmap) : " . $locError . "<br>";
+    print "Insertions : " . $insert . "<br>";
+    print "Updates : " . $update . "<br>";
+    print "Doublons : " . $doublon . "<br>";
+    
 }
 

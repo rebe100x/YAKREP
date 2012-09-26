@@ -3,9 +3,11 @@ ini_set ('max_execution_time', 0);
 set_time_limit(0);
 ini_set('display_errors',1);
 require_once("../LIB/library.php");
+require_once("../LIB/conf.php");
 
-$m = new Mongo(); // connexion
-$db = $m->selectDB("yakwala");
+$conf = new conf();
+$m = new Mongo(); 
+$db = $m->selectDB($conf->db());
 $place = $db->place;
 
 $records = array();

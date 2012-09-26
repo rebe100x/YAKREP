@@ -183,4 +183,30 @@ lastModifDate => new MongoDate
 thumb => link to a thumbnail
 status : 1 is enabled on the front, 2 is enable but not on the front, 3 is disabled
 
-	
+
+--------------------------------
+USER
+--------------------------------
+
+name : 
+bio : 
+mail : email
+address => array(
+				'street'=>'',
+				'zipcode'=>'75000',
+				'city'=>'Paris',
+				'country'=>'France',
+			),
+web : url website
+tag : array("tag","tag")
+thumb => link to a thumbnail
+type : 1: normal, 2 media, 3 assoc, 4 Entreprise, 5 Institution
+login : 
+password : 
+usersubsc : array({iduser})
+tagsubsc : array({"tag","tag","tag"})
+placesubsc : array({idplace})
+home : array(lat,lng)
+creationDate => new MongoDate
+lastModifDate => new MongoDate
+lastLoginDate => new MongoDate

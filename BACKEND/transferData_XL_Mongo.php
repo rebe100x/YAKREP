@@ -37,7 +37,7 @@
 
 require_once("../LIB/library.php");
 require_once("../LIB/conf.php");
-$conf = new conf($deploy);
+$conf = new conf();
 
 $m = new Mongo(); 
 $db = $m->selectDB($conf->db());

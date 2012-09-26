@@ -4,9 +4,13 @@ ini_set ('max_execution_time', 0);
 set_time_limit(0);
 ini_set('display_errors',1);
 require_once("../LIB/library.php");
+require_once("../LIB/conf.php");
 
-$m = new Mongo(); // connexion
-$db = $m->selectDB("yakwala");
+$conf = new conf();
+$m = new Mongo(); 
+$db = $m->selectDB($conf->db());
+
+
 $yakcat = $db->yakcat;
 
 /*
@@ -104,38 +108,23 @@ $record = array(
 );
 */
 
+
 $record = array(
-	"_id"=>"5056baddfa9a95200b000000",
-	"title"=> "Maternelle",
-	"path" => "Education, Ecole, Maternelle",
-	"pathN" => "EDUCATION#ECOLE#MATERNELLE",
+	"title"=> "Primaire",
+	"path" => "Education, Ecole, Primaire",
+	"pathN" => "EDUCATION#ECOLE#PRIMAIRE",
 	"ancestors" => array("Education", "Ecole"),
 	"parent" => "Ecole",
 	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211"),new MongoId("5056b89bfa9a95180b000001")),
 	"parentId" => new MongoId("5056b89bfa9a95180b000001"),
 	"level" => 3,
 	"thumb" => "",
+	"tag"=> array("Elémentaire","Maternelle"),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
 
-/*
-$record = array(
-	"title"=> "Elémentaire",
-	"path" => "Education, Ecole, Elémentaire",
-	"pathN" => "EDUCATION#ECOLE#ELEMENTAIRE",
-	"ancestors" => array("Education","Ecole"),
-	"parent" => "Ecole",
-	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211"),new MongoId("5056b89bfa9a95180b000001")),
-	"parentId" => new MongoId("5056b89bfa9a95180b000001"),
-	"level" => 3,
-	"thumb" => "",
-	"tag"=> array("Primaire"),
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
-);*/
 
 
 /*
@@ -199,7 +188,7 @@ $record = array(
 );
 */
 
-
+/*
 $record = array(
 	"title"=> "Espace vert",
 	"path" => "Loisir, Espace vert",
@@ -213,7 +202,7 @@ $record = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
-);
+);*/
 
 $yakcat->save($record);
 var_dump($record);

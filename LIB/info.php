@@ -20,7 +20,7 @@ require_once("library.php");
  	public $access;
 
  	// copy the licence of the file you used
- 	public $licence;
+ 	public $license;
  	
  	public $outGoingLink;
  	
@@ -80,7 +80,7 @@ require_once("library.php");
  		$this->thumb = '';
  		$this->origin = '';
  		$this->access = 1;
- 		$this->licence = '';
+ 		$this->license = '';
  		$this->outGoingLink = '';
  		$this->heat = 80;
  		$this->print = 0;
@@ -166,7 +166,7 @@ require_once("library.php");
  			$this->location["lng"] = $loc["location"][1];
  			return true;
  		}
- 		print "Gmap error for address : " . $loc['address'];
+ 		print "Gmap error for address : " . $loc['address'] . "<br>";
  		return false;
  	}
  	
@@ -184,7 +184,7 @@ require_once("library.php");
 			"thumb" 		=>	$this->thumb,
 			"origin"		=>	$this->origin,	
 			"access"		=>	$this->access,
-			"licence"		=>	$this->licence,
+			"license"		=>	$this->license,
 			"outGoingLink"	=>	$this->outGoingLink,
 			"heat"			=>	$this->heat,
 			"print"			=>	$this->print,

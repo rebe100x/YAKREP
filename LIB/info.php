@@ -208,8 +208,8 @@ require_once("library.php");
 		$ret = $this->getDoublon();
 		if ($ret == 0) {
 			if ($this->getLocation($locationQuery, $debug)) {
-				$place->save($record);
-				$place->ensureIndex(array("location"=>"2d"));
+				$info->save($record);
+				$info->ensureIndex(array("location"=>"2d"));
 				return  $record['_id'];
 			}
 			else {
@@ -282,6 +282,11 @@ require_once("library.php");
  		$this->yakCat[] = new MongoId("504dbb06fa9a95680b000211");
  	}
  	
+ 	function setCatEcole() {
+ 		$this->humanCat[] = "Ecole";
+ 		$this->yakCat[] = new MongoId("5056b89bfa9a95180b000001");
+ 	}
+ 	
  	function setCatPrimaire() {
  		$this->humanCat[] = "Primaire";
  		$this->yakCat[] = new MongoId("5061a0d3fa9a95f009000000");
@@ -322,10 +327,6 @@ require_once("library.php");
  		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
  	}
  	
- 	function setZoneParis() {
- 		$this->zone = 1;
- 	}
-
  	function setTagChildren() {
  		$this->yakTag[] = "Children";
  	}
@@ -352,6 +353,10 @@ require_once("library.php");
 
  	function setTagPets() {
  		$this->yakTag[] = "Pets";
+ 	}
+ 	
+ 	function setZoneParis() {
+ 		$this->zone = 1;
  	}
 
  	function setZoneMontpellier() {

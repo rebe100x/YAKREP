@@ -126,7 +126,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
     fclose($handle);
     
     print "<br>________________________________________________<br>
-    		museeFrance : done <br>";
+    		stationsMetroRER : done <br>";
     print "Rows : " . ($row-1) . "<br>";
     print "Call to gmap : " . ($insert+$locError) . "<br>";
     print "Location error (call gmap) : " . $locError . "<br>";

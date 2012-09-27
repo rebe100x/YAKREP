@@ -38,7 +38,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info = new Info();
 			$info->setTitle('info rentrée 2012');
 			/* A CONFIRMER
-			if ($fields[23] < 0)				
+			if ($data[23] < 0)				
 				str = 'Fermeture de classes';
 			*/
 			$info->content = $data[22] . ' classes. Capacité max: ' . $data[21] . ' élèves. Remplissage des classes: ' . $data[24] . '.Ouvertures de classes: ' . $data[23]; 
@@ -48,12 +48,13 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->pubDate = '';
 			$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
 			$info->heat = 1;
-			$place->setTagChildren();
+			$info->setTagChildren();
 			//$info->yakTag["enfants"] = 1;
 			$info->setCatEcole();
 			$info->status = 1;
 			$info->print = 1;
 			$info->yakType = 3; // A CONFIRMER
+			$info->setTel($data[5], "tel");
 			$info->setZoneMontpellier();
 			$info->address['street'] = $data[7].' '.$data[11];
 			$info->address['zipcode'] = $data[13];
@@ -86,7 +87,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 	fclose($handle);
 	
 	print "<br>________________________________________________<br>
-    		museeFrance : done <br>";
+    		ecolesMontpellier : done <br>";
     print "Rows : " . ($row-1) . "<br>";
     print "Call to gmap : " . ($insert+$locError) . "<br>";
     print "Location error (call gmap) : " . $locError . "<br>";

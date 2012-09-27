@@ -127,10 +127,9 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			{
 				$currentObject->setCatPetanque();
 			}
-			/*print "<pre>";
-	    	print_r($currentObject);
-	    	print "</pre>";
-			*/
+			
+			$locationQuery = $currentObject->title . ' ' . $currentObject->address['street'] . ' ' . $currentObject->address['zipcode'] . ' ' . $currentObject->address['city'] . ', ' . $currentObject->address['country'];
+		
 			$debug = 0;
 			switch ($currentObject->saveToMongoDB($locationQuery, $debug)) 
 			{
@@ -160,7 +159,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
     fclose($handle);
     
     print "<br>________________________________________________<br>
-    		museeFrance : done <br>";
+    		etsPublicsMtpl : done <br>";
     print "Rows : " . ($row-1) . "<br>";
     print "Call to gmap : " . ($insert+$locError) . "<br>";
     print "Location error (call gmap) : " . $locError . "<br>";

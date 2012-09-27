@@ -16,7 +16,7 @@ $yakcat = $db->yakcat;
 $records = array();
 
 
-$record[]= array(
+$records[]= array(
 	"title"=> "Théâtre",
 	"path" => "Culture, Théâtre",
 	"ancestors" => array("Culture"),
@@ -32,7 +32,7 @@ $record[]= array(
 );
 
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Cinéma",
 	"path" => "Culture, Cinéma",
 	"ancestors" => array("Culture"),
@@ -47,7 +47,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Exposition",
 	"path" => "Culture, Exposition",
 	"ancestors" => array("Culture"),
@@ -62,7 +62,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Yakdico",
 	"path" => "Géolocalisation, Yakdico",
 	"pathN" => "GEOLOCALISATION#YAKDICO",
@@ -77,7 +77,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"_id"=>"504d89f4fa9a958808000001",
 	"title"=> "Géolocalisation",
 	"path" => "Géolocalisation",
@@ -89,7 +89,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Ecole",
 	"path" => "Education, Ecole",
 	"pathN" => "EDUCATION#ECOLE",
@@ -106,7 +106,7 @@ $record[] = array(
 
 
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Primaire",
 	"path" => "Education, Ecole, Primaire",
 	"pathN" => "EDUCATION#ECOLE#PRIMAIRE",
@@ -125,7 +125,7 @@ $record[] = array(
 
 
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Médiathèque",
 	"path" => "CULTURE, Médiathèque",
 	"pathN" => "CULTURE, MEDIATHEQUE",
@@ -141,7 +141,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Planétarium",
 	"path" => "CULTURE, Planétarium",
 	"pathN" => "CULTURE, PLANETARIUM",
@@ -155,7 +155,7 @@ $record[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
-$record[] = array(
+$records[] = array(
 	"title"=> "Aquarium",
 	"path" => "CULTURE, Aquarium",
 	"pathN" => "CULTURE, AQUARIUM",
@@ -170,7 +170,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Loisir",
 	"path" => "LOISIR",
 	"pathN" => "LOISIR",
@@ -181,7 +181,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Espace vert",
 	"path" => "Loisir, Espace vert",
 	"pathN" => "LOISIR, EXPACE VERT",
@@ -196,7 +196,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Sport",
 	"path" => "SPORT",
 	"pathN" => "SPORT",
@@ -207,7 +207,130 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
+	"title"=> "Patinoire",
+	"path" => "Sport, Patinoire",
+	"pathN" => "SPORT#PATINOIRE",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Volley",
+	"path" => "Sport, Volley",
+	"pathN" => "SPORT#VOLLEY",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Piscine",
+	"path" => "Sport, Piscine",
+	"pathN" => "SPORT#PISCINE",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"tag"=> array("piscine, natation"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Gymnase",
+	"path" => "Sport, Gymnase",
+	"pathN" => "SPORT#GYMNASE",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Football",
+	"path" => "Sport, Football",
+	"pathN" => "SPORT#FOOTBALL",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"tag"=> array("football, foot"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Rugby",
+	"path" => "Sport, Rugby",
+	"pathN" => "SPORT#RUGBY",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Tennis",
+	"path" => "Sport, Tennis",
+	"pathN" => "SPORT#TENNIS",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Petanque",
+	"path" => "Sport, Petanque",
+	"pathN" => "SPORT#PETANQUE",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+
+$records[] = array(
 	"title"=> "Concert",
 	"path" => "Culture, Concert",
 	"pathN" => "CULTURE#CONCERT",
@@ -222,22 +345,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
-	"title"=> "Sport",
-	"path" => "Loisir, Sport",
-	"pathN" => "LOISIR#SPORT",
-	"ancestors" => array("Loisir"),
-	"parent" => "Loisir",
-	"ancestorsId" => array(new MongoId("50596c9cfa9a953c14000000")),
-	"parentId" => new MongoId("50596c9cfa9a953c14000000"),
-	"level" => 2,
-	"thumb" => "",
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
-);
-
-$record[] = array(
+$records[] = array(
 	"title"=> "Stations",
 	"path" => "Géolocalisation, Stations",
 	"pathN" => "GEOLOCALISATION#STATIONS",
@@ -252,7 +360,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Crèche",
 	"path" => "Éducation, Crèche",
 	"pathN" => "EDUCATION#CRECHE",
@@ -267,7 +375,7 @@ $record[] = array(
 	"status" => 1
 );
 
-$record[] = array(
+$records[] = array(
 	"title"=> "Maison de Quartier",
 	"path" => "Éducation, Maison de Quartier",
 	"pathN" => "EDUCATION#MAISONDEQUARTIER",
@@ -288,7 +396,7 @@ foreach($records as $record){
 	if(empty($res)){
 		$row++;
 		$yakcat->save($record);
-		echo $record['_id'];                    
+		echo $record['_id']."<br>";                    
 	}
 }
 echo "<br>".$row." records added.";

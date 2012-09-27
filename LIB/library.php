@@ -271,7 +271,6 @@ function suppr_accents($str)
   return str_replace($avant, $apres, $str);
 }
 
-
 /***/
 function getZipCodeFromParisArr($str){
 	switch($str){

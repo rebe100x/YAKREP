@@ -142,15 +142,20 @@ require_once("../LIB/conf.php");
  			$this->location["lng"] = $loc["location"][1];
  			return true;
  		}
- 		print "Gmap error for address : " . $loc['address'];
  		return false;
  	}
 
+ 	function dropAllPlaces() {
+ 		$conf = new conf();
+		$m = new Mongo(); 
+		$db = $m->selectDB($conf->db());
+ 		$db->place->drop();
+ 	}
  	/* Save object in db
  	** Return value : 	_id : save done - 1 : Gmap error - 2 : updated duplicate 
 	** 					- 3 : Duplicate without insertion
 	**/
-	function saveToMongoDB($locationQuery, $debug) {
+	function saveToMongoDB($locationQuery, $debug, $getLocation=true) {
 		$conf = new conf();
 		$m = new Mongo(); 
 		$db = $m->selectDB($conf->db());
@@ -180,13 +185,21 @@ require_once("../LIB/conf.php");
 		// Gestion des doublons
 		$ret = $this->getDoublon();
 		if ($ret == 0) {
-			if ($this->getLocation($locationQuery, $debug)) {
+			// Todo update every batch to get location before saving to db
+			if ($getLocation == true) {
+				if ($this->getLocation($locationQuery, $debug)) {
+					$place->save($record);
+					$place->ensureIndex(array("location"=>"2d"));
+					return  $record['_id'];
+				}
+				else {
+					return 1;
+				}
+			}
+			else {
 				$place->save($record);
 				$place->ensureIndex(array("location"=>"2d"));
 				return  $record['_id'];
-			}
-			else {
-				return 1;
 			}
 		}
 		else {
@@ -194,9 +207,9 @@ require_once("../LIB/conf.php");
 		}
  	}
  	
- 	function setTitle($title)
+ 	function setTitle($title, $charset='utf-8')
  	{
- 		$this->title = ucwords(strtolower($title));
+ 		$this->title = mb_convert_case($title, MB_CASE_TITLE, $charset);
  	}
 
  	//type = tel or mobile
@@ -344,6 +357,31 @@ require_once("../LIB/conf.php");
  	function setCatStations() {
  		$this->humanCat[] = "Stations";
  		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	} 
+
+ 	function setCatMusique() {
+ 		$this->humanCat[] = "Musique";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+
+ 	function setCatReligion() {
+ 		$this->humanCat[] = "Religion";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+
+ 	function setCatEspaceVert() {
+ 		$this->humanCat[] = "Espace Vert";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+
+ 	 function setCatArchive() {
+ 		$this->humanCat[] = "Archive";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+
+ 	 function setCatExposition() {
+ 		$this->humanCat[] = "Exposition";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
  	}
 
  	function setTagChildren() {
@@ -396,12 +434,22 @@ require_once("../LIB/conf.php");
  		$str .= "\t<h4>" . $this->title . "</h4>\n";
  		$str .= "\t<p>YakCats: ";
 
- 		foreach ($this->humanCat as $key => $value) {
- 			$str .= $value . " ";
- 		}
+		if (!empty($this->humanCat)) {
+	 		foreach ($this->humanCat as $key => $value) {
+	 			$str .= $value . " ";
+	 		}
 
- 		$str .= "</p>\n";
+	 		$str .= "</p>\n";
+		}
+ 		if (!empty($this->yakTag)) {
+	 		$str .= "\t<p>YakTags: ";
 
+	 		foreach ($this->yakTag as $key => $value) {
+	 			$str .= $value . " ";
+	 		}
+
+	 		$str .= "</p>\n";
+	 	}
  		$str .= "</div>";
  		
  		return $str;

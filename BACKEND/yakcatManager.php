@@ -13,8 +13,10 @@ $db = $m->selectDB($conf->db());
 
 $yakcat = $db->yakcat;
 
-/*
-$record = array(
+$records = array();
+
+
+$record[]= array(
 	"title"=> "Théâtre",
 	"path" => "Culture, Théâtre",
 	"ancestors" => array("Culture"),
@@ -27,10 +29,10 @@ $record = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
-);*/
+);
 
-/*
-$record = array(
+
+$record[] = array(
 	"title"=> "Cinéma",
 	"path" => "Culture, Cinéma",
 	"ancestors" => array("Culture"),
@@ -44,9 +46,8 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
-*/
-/*
-$record = array(
+
+$record[] = array(
 	"title"=> "Exposition",
 	"path" => "Culture, Exposition",
 	"ancestors" => array("Culture"),
@@ -59,10 +60,9 @@ $record = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
-);*/
+);
 
-/*
-$record = array(
+$record[] = array(
 	"title"=> "Yakdico",
 	"path" => "Géolocalisation, Yakdico",
 	"pathN" => "GEOLOCALISATION#YAKDICO",
@@ -76,9 +76,8 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
-*/
-/*
-$record = array(
+
+$record[] = array(
 	"_id"=>"504d89f4fa9a958808000001",
 	"title"=> "Géolocalisation",
 	"path" => "Géolocalisation",
@@ -89,10 +88,8 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
-*/
 
-/*
-$record = array(
+$record[] = array(
 	"title"=> "Ecole",
 	"path" => "Education, Ecole",
 	"pathN" => "EDUCATION#ECOLE",
@@ -106,10 +103,10 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
-*/
 
 
-$record = array(
+
+$record[] = array(
 	"title"=> "Primaire",
 	"path" => "Education, Ecole, Primaire",
 	"pathN" => "EDUCATION#ECOLE#PRIMAIRE",
@@ -127,8 +124,8 @@ $record = array(
 
 
 
-/*
-$record = array(
+
+$record[] = array(
 	"title"=> "Médiathèque",
 	"path" => "CULTURE, Médiathèque",
 	"pathN" => "CULTURE, MEDIATHEQUE",
@@ -143,9 +140,8 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
-*/
-/*
-$record = array(
+
+$record[] = array(
 	"title"=> "Planétarium",
 	"path" => "CULTURE, Planétarium",
 	"pathN" => "CULTURE, PLANETARIUM",
@@ -158,9 +154,8 @@ $record = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
-);*/
-/*
-$record = array(
+);
+$record[] = array(
 	"title"=> "Aquarium",
 	"path" => "CULTURE, Aquarium",
 	"pathN" => "CULTURE, AQUARIUM",
@@ -174,9 +169,8 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
-*/
-/*
-$record = array(
+
+$record[] = array(
 	"title"=> "Loisir",
 	"path" => "LOISIR",
 	"pathN" => "LOISIR",
@@ -186,10 +180,8 @@ $record = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
-*/
 
-/*
-$record = array(
+$record[] = array(
 	"title"=> "Espace vert",
 	"path" => "Loisir, Espace vert",
 	"pathN" => "LOISIR, EXPACE VERT",
@@ -202,10 +194,18 @@ $record = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
-);*/
+);
 
-$yakcat->save($record);
-var_dump($record);
+$row = 0;	
+foreach($records as $record){
+	$res = $yakcat->findOne(array('title'=>$record['title']));
+	if(empty($res)){
+		$row++;
+		$yakcat->save($record);
+		echo $record['_id'];                    
+	}
+}
+echo "<br>".$row." records added.";
                     
                                      
 

@@ -148,6 +148,32 @@ $records[] = array(
 	"status" => 1
 );
 
+$records[] = array(
+	"name"=>"L'été est fini",
+	"bio" =>"",
+	"mail" =>"toto@gmail.com",
+	"web" =>"http://toto.com",
+	"address" => array(
+				'street'=>'',
+				'zipcode'=>'75000',
+				'city'=>'Paris',
+				'country'=>'France',
+			),
+	"tag" => array(),
+	"thumb" => "",
+	"type" => 1,
+	"login"=>"l'été",	
+	"password"=> "inst",
+	"usersubs" => array(),
+	"placesubs" => array(),
+	"tagsubs" => array(),
+	"home" => array('lat'=>48.851875,'lng'=>2.356374),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"lastLoginDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
 $row = 0;	
 foreach($records as $record){
 	$res = $user->findOne(array('mail'=>$record['mail']));

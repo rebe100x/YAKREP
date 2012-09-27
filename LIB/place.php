@@ -246,6 +246,11 @@ require_once("../LIB/conf.php");
  		$this->yakCat[] = new MongoId("5061a0d3fa9a95f009000000");
  	}
  	
+ 	function setCatCreche() {
+ 		$this->humanCat[] = "Creche";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
  	function setCatTheatre() {
  		$this->humanCat[] = "Theatre";
  		$this->yakCat[] = new MongoId("504df6b1fa9a957c0b000004");
@@ -281,8 +286,64 @@ require_once("../LIB/conf.php");
  		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
  	}
  	
- 	function setZoneParis() {
- 		$this->zone = 1;
+ 	function setCatPatinoire() {
+ 		$this->humanCat[] = "Patinoire";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
+ 	function setCatMaisonDeQuartier() {
+ 		$this->humanCat[] = "Maison de quartier";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+
+	function setCatConcert() {
+ 		$this->humanCat[] = "Concert";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
+ 	function setCatSport() {
+ 		$this->humanCat[] = "Sport";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
+ 	function setCatVolley() {
+ 		$this->humanCat[] = "Volley";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
+ 	function setCatPiscine() {
+ 		$this->humanCat[] = "Piscine";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+
+	function setCatGymnase() {
+ 		$this->humanCat[] = "Gymnase";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
+ 	function setCatFootball() {
+ 		$this->humanCat[] = "Football";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
+ 	function setCatRugby() {
+ 		$this->humanCat[] = "Rugby";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
+ 	function setCatTennis() {
+ 		$this->humanCat[] = "Tennis";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
+ 	function setCatPetanque() {
+ 		$this->humanCat[] = "Petanque";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 	}
+ 	
+ 	function setCatStations() {
+ 		$this->humanCat[] = "Stations";
+ 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
  	}
 
  	function setTagChildren() {
@@ -311,6 +372,10 @@ require_once("../LIB/conf.php");
 
  	function setTagPets() {
  		$this->yakTag[] = "Pets";
+ 	}
+ 	
+ 	function setZoneParis() {
+ 		$this->zone = 1;
  	}
 
  	function setZoneMontpellier() {

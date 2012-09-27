@@ -63,11 +63,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$place->setZoneParis();
 		
 			$locationQuery = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
-			/*echo 'Call to GMap: ' . $query;
-			echo '<br/>';
-			$place->getLocation($query, 0);*/
 		
-			//$place->setCatStation();
+			$place->setCatStations();
 		
 			$debug = 0;
 			switch ($place->saveToMongoDB($locationQuery, $debug)) 
@@ -90,7 +87,6 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			}
 			
 			$info = new Info();
-			//$info->placeid = $placeid;
 			$info->setTitle($place->title);
 			$info->content = $data[4];
 			$info->origin = $origin;

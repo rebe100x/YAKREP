@@ -81,7 +81,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			}
 			else if (stristr($data[9], "#CULTURE#EXPOSITION"))
 			{
-				$currentObject->setCatExposition();
+				$currentObject->setCatExpo();
 			}
 			else if (stristr($data[9], "#CULTURE#MUSEE"))
 			{

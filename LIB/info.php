@@ -175,6 +175,8 @@ require_once("library.php");
 		$m = new Mongo(); 
 		$db = $m->selectDB($conf->db());
 		$info = $db->info;
+		
+		$this->setPlaceid();
 
 		$record = array(
 			"title"			=>	$this->title,
@@ -217,6 +219,20 @@ require_once("library.php");
 		else {
 			return $ret;
 		}
+ 	}
+ 	
+ 	function setPlaceid()
+ 	{
+ 		$conf = new conf();
+		$m = new Mongo(); 
+		$db = $m->selectDB($conf->db());
+ 		$place = $db->place;
+
+ 		$rangeQuery = array('title' => $this->title);
+ 		
+		$result = $place->findOne($rangeQuery);
+		if ($result != NULL) 
+			$this->placeid = $result['_id'];
  	}
  	
  	function setTitle($title)

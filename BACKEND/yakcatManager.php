@@ -237,6 +237,51 @@ $record[] = array(
 	"status" => 1
 );
 
+$record[] = array(
+	"title"=> "Stations",
+	"path" => "Géolocalisation, Stations",
+	"pathN" => "GEOLOCALISATION#STATIONS",
+	"ancestors" => array("Géolocalisation"),
+	"parent" => "Géolocalisation",
+	"ancestorsId" => array(new MongoId("504d89f4fa9a958808000001")),
+	"parentId" => new MongoId("504d89f4fa9a958808000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$record[] = array(
+	"title"=> "Crèche",
+	"path" => "Éducation, Crèche",
+	"pathN" => "EDUCATION#CRECHE",
+	"ancestors" => array("Éducation"),
+	"parent" => "Éducation",
+	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211")),
+	"parentId" => new MongoId("504dbb06fa9a95680b000211"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$record[] = array(
+	"title"=> "Maison de Quartier",
+	"path" => "Éducation, Maison de Quartier",
+	"pathN" => "EDUCATION#MAISONDEQUARTIER",
+	"ancestors" => array("Éducation"),
+	"parent" => "Éducation",
+	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211")),
+	"parentId" => new MongoId("504dbb06fa9a95680b000211"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
 $row = 0;	
 foreach($records as $record){
 	$res = $yakcat->findOne(array('title'=>$record['title']));

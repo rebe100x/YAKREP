@@ -196,6 +196,47 @@ $record[] = array(
 	"status" => 1
 );
 
+$record[] = array(
+	"title"=> "Sport",
+	"path" => "SPORT",
+	"pathN" => "SPORT",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$record[] = array(
+	"title"=> "Concert",
+	"path" => "Culture, Concert",
+	"pathN" => "CULTURE#CONCERT",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$record[] = array(
+	"title"=> "Sport",
+	"path" => "Loisir, Sport",
+	"pathN" => "LOISIR#SPORT",
+	"ancestors" => array("Loisir"),
+	"parent" => "Loisir",
+	"ancestorsId" => array(new MongoId("50596c9cfa9a953c14000000")),
+	"parentId" => new MongoId("50596c9cfa9a953c14000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
 $row = 0;	
 foreach($records as $record){
 	$res = $yakcat->findOne(array('title'=>$record['title']));

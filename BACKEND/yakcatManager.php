@@ -156,6 +156,50 @@ $records[] = array(
 	"status" => 1
 );
 
+$records[] = array(
+	"title"=> "Musique",
+	"path" => "CULTURE, Musique",
+	"pathN" => "CULTURE, MUSIQUE",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Exposition",
+	"path" => "CULTURE, Exposition",
+	"pathN" => "CULTURE, EXPOSITION",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Spectacle",
+	"path" => "CULTURE, Spectacle",
+	"pathN" => "CULTURE, SPECTACLE",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 
 $records[] = array(
 	"title"=> "Aquarium",
@@ -192,6 +236,17 @@ $records[] = array(
 	"ancestorsId" => array(new MongoId("50596c9cfa9a953c14000000")),
 	"parentId" => new MongoId("50596c9cfa9a953c14000000"),
 	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Religion",
+	"path" => "RELIGION",
+	"pathN" => "RELIGION",
+	"level" => 1,
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
@@ -366,6 +421,21 @@ $records[] = array(
 	"title"=> "Crèche",
 	"path" => "Éducation, Crèche",
 	"pathN" => "EDUCATION#CRECHE",
+	"ancestors" => array("Éducation"),
+	"parent" => "Éducation",
+	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211")),
+	"parentId" => new MongoId("504dbb06fa9a95680b000211"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"title"=> "Archive",
+	"path" => "Éducation, Archive",
+	"pathN" => "EDUCATION#ARCHIVE",
 	"ancestors" => array("Éducation"),
 	"parent" => "Éducation",
 	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211")),

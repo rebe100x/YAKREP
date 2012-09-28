@@ -91,6 +91,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				}
 				else if (preg_match("/jardin/i", $softTitle)) {
 					$currentPlace->setCatEspaceVert();
+					$currentPlace->setCatExposition();
+					$currentPlace->yakTag[] = "Plein air";
 				}
 				else if (preg_match("/eglise/i", $softTitle) || preg_match("/abbaye/i", $softTitle)) {
 					$currentPlace->setCatReligion();

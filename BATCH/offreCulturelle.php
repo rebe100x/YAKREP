@@ -114,7 +114,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				$query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
 				$debug = 1;
 
-				$currentPlace->dropAllPlaces();
+				// Only for debug
+				// $currentPlace->dropAllPlaces();
 
 				switch ($currentPlace->saveToMongoDB($query, $debug, false)) {
 					case '1':

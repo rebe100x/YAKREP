@@ -242,9 +242,9 @@ require_once("library.php");
 			$this->placeid = $result['_id'];
  	}
  	
- 	function setTitle($title)
+ 	function setTitle($title, $charset='utf-8')
  	{
- 		$this->title = ucwords(strtolower($title));
+ 		$this->title = mb_convert_case($title, MB_CASE_TITLE, $charset);
  	}
 
  	//type = tel or mobile

@@ -11,7 +11,7 @@ include_once "../LIB/place.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/VilleMTP_MTP_EtabliPublic_2011.csv";
 $origin = "http://opendata.montpelliernumerique.fr/Etablissements-publics";
-$license = "licence ouverte";
+$licence = "licence ouverte";
 
 $row = 0;
 $insert = 0;
@@ -39,7 +39,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 
 			$currentObject->setTitle($data[5]);
 			$currentObject->origin = $origin;
-			$currentObject->license = $license;
+			$currentObject->licence = $licence;
 			$currentObject->address["street"] = $data[10];
 			$currentObject->address["zipcode"] = $data[11];
 			$currentObject->address["city"] = $data[12];

@@ -21,7 +21,7 @@ $doublon = 0;
 $place;
 $info;
 $origin = 'http://opendata.montpelliernumerique.fr/Effectifs-scolaires';
-$license = 'http://www.etalab.gouv.fr/pages/licence-ouverte-open-licence-5899923.html';
+$licence = 'http://www.etalab.gouv.fr/pages/licence-ouverte-open-licence-5899923.html';
 $access = 1;
 $user = 0;
 
@@ -44,7 +44,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->content = $data[22] . ' classes. Capacité max: ' . $data[21] . ' élèves. Remplissage des classes: ' . $data[24] . '.Ouvertures de classes: ' . $data[23]; 
 			$info->origin = $origin;
 			$info->access = $access;
-			$info->license = $license;
+			$info->licence = $licence;
 			$info->pubDate = '';
 			$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
 			$info->heat = 1;

@@ -22,8 +22,8 @@ require_once("../LIB/conf.php");
  	// 1 - public / 2 - privé for the api ( all open data is public )
  	public $access;
 
- 	// copy the license of the file you used
- 	public $license;
+ 	// copy the licence of the file you used
+ 	public $licence;
 
  	// [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
  	public $yakTag;
@@ -62,7 +62,7 @@ require_once("../LIB/conf.php");
  		$this->thumb = '';
  		$this->origin = '';
  		$this->access = 1;
- 		$this->license = '';
+ 		$this->licence = '';
  		$this->outGoingLink = '';
  		$this->yakTag = array();
 		$this->yakCat = array();
@@ -169,7 +169,7 @@ require_once("../LIB/conf.php");
 			"thumb" 		=>	$this->thumb,
 			"origin"		=>	$this->origin,	
 			"access"		=>	$this->access,
-			"license"		=>	$this->license,
+			"licence"		=>	$this->licence,
 			"outGoingLink" 	=>	$this->outGoingLink,
 			"yakCat" 		=>	$this->yakCat,
 			"yakTag" 		=>	$this->yakTag,

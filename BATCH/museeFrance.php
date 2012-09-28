@@ -11,7 +11,7 @@ include_once "../LIB/place.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/museeFrance.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Liste-des-Mus%C3%A9es-de-France-30382165";
-$license = "licence ouverte";
+$licence = "licence ouverte";
 
 $row = 0;
 $insert = 0;
@@ -38,7 +38,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$currentPlace->setTitle($data[4]);
 
 			$currentPlace->origin = $origin;
-			$currentPlace->license = $license;
+			$currentPlace->licence = $licence;
 			$currentPlace->address["street"] = $data[5];
 			$currentPlace->address["zipcode"] = $data[6];
 			$currentPlace->address["city"] = $data[7];

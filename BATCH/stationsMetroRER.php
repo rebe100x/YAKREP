@@ -22,7 +22,7 @@ $count = 0;
 $place;
 $info;
 $origin = 'http://www.data.gouv.fr/donnees/view/Trafic-annuel-entrant-par-station-564116';
-$license = 'http://www.data.gouv.fr/Licence-Ouverte-Open-Licence';
+$licence = 'http://www.data.gouv.fr/Licence-Ouverte-Open-Licence';
 $access = 1;
 $user = 0;
 
@@ -53,7 +53,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 		
 			$place->origin = $origin;
 			$place->access = $access;
-			$place->license = $license;
+			$place->licence = $licence;
 			$place->address['zipcode'] = '750'.$data[11];
 			$place->address['city'] = $data[10];
 			$place->address['country'] = 'France';
@@ -91,7 +91,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->content = $data[4];
 			$info->origin = $origin;
 			$info->access = $access;
-			$info->license = $license;
+			$info->licence = $licence;
 			$info->pubDate = '';
 			$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
 			//$info->heat = 1;

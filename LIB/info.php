@@ -20,7 +20,7 @@ require_once("library.php");
  	public $access;
 
  	// copy the licence of the file you used
- 	public $license;
+ 	public $licence;
  	
  	public $outGoingLink;
  	
@@ -80,7 +80,7 @@ require_once("library.php");
  		$this->thumb = '';
  		$this->origin = '';
  		$this->access = 1;
- 		$this->license = '';
+ 		$this->licence = '';
  		$this->outGoingLink = '';
  		$this->heat = 80;
  		$this->print = 0;
@@ -184,7 +184,7 @@ require_once("library.php");
 			"thumb" 		=>	$this->thumb,
 			"origin"		=>	$this->origin,	
 			"access"		=>	$this->access,
-			"license"		=>	$this->license,
+			"licence"		=>	$this->licence,
 			"outGoingLink"	=>	$this->outGoingLink,
 			"heat"			=>	$this->heat,
 			"print"			=>	$this->print,

@@ -386,7 +386,7 @@ require_once("../LIB/conf.php");
 
  	function setCatEspaceVert() {
  		$this->humanCat[] = "Espace Vert";
- 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
+ 		$this->yakCat[] = new MongoId("50596cdafa9a95401400004f");
  	}
 
  	 function setCatArchive() {

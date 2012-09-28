@@ -4,36 +4,36 @@ require_once("library.php");
 require_once("place.php");
 
  class Info
- {
-	// name of the info
-	public $title;
-	
-	// some text to describe the info
-	public $content;
-	
-	// a local link to a picture of the info
-	public $thumb;
+ 
+ 	// name of the info
+ 	public $title;
+ 	
+ 	// some text to describe the info
+ 	public $content;
+ 	
+ 	// a local link to a picture of the info
+ 	public $thumb;
 
-	// where did we get this info
-	public $origin;
+ 	// where did we get this info
+ 	public $origin;
 
-	// 1 - public / 2 - privé for the api ( all open data is public )
-	public $access;
+ 	// 1 - public / 2 - privé for the api ( all open data is public )
+ 	public $access;
 
-	// copy the licence of the file you used
-	public $license;
-	
-	public $outGoingLink;
-	
-	// the importance of the info 0->100
-	public $heat; 
-	
-	// flags if need to be printed on the map / fils info
-	public $print;
-	
-	// 1 actu, 2 agenda, 3 promo, 4 conversation
-	public $yakType;	
-	
+ 	// copy the licence of the file you used
+ 	public $licence;
+ 	
+ 	public $outGoingLink;
+ 	
+ 	// the importance of the info 0->100
+ 	public $heat; 
+ 	
+ 	// flags if need to be printed on the map / fils info
+ 	public $print;
+ 	
+ 	// 1 actu, 2 agenda, 3 promo, 4 conversation
+ 	public $yakType;	
+ 	
 	//Mongo ID idyakCat
 	public $yakCat;
 	
@@ -73,7 +73,6 @@ require_once("place.php");
 	public $address;
 	
 	public $placeid;
-	
 
 	function __construct() {
 		$this->title = '';
@@ -162,8 +161,8 @@ require_once("place.php");
 		return false;
 	}
 	
-	function saveToMongoDB($locationQuery, $debug) {
-		$conf = new conf();
+ 	function saveToMongoDB($locationQuery, $debug, $getLocation=true) {
+ 		$conf = new conf();
 		$m = new Mongo(); 
 		$db = $m->selectDB($conf->db());
 		$info = $db->info;
@@ -190,7 +189,7 @@ require_once("place.php");
 			"thumb" 		=>	$this->thumb,
 			"origin"		=>	$this->origin,	
 			"access"		=>	$this->access,
-			"license"		=>	$this->license,
+			"licence"		=>	$this->licence,
 			"outGoingLink"	=>	$this->outGoingLink,
 			"heat"			=>	$this->heat,
 			"print"			=>	$this->print,
@@ -238,6 +237,7 @@ require_once("place.php");
 				$this->location = $result['location'];
 
 			$this->placeid = $result['_id'];
+
 			print "Place already exists in db <br>";
 		}
 		else {
@@ -316,14 +316,14 @@ require_once("place.php");
 		$db->place->drop();
 		$db->info->drop();
 	}
+ 	
+ 	function setTitle($title, $charset='utf-8')
+ 	{
+ 		$this->title = mb_convert_case($title, MB_CASE_TITLE, $charset);
+ 	}
 
-	function setTitle($title)
-	{
-		$this->title = ucwords(strtolower($title));
-	}
-
-	//type = tel or mobile
-	function setTel($tel, $type = "tel") {
+ 	//type = tel or mobile
+ 	function setTel($tel, $type = "tel") 
 		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
 	}
 
@@ -422,39 +422,65 @@ require_once("place.php");
 	}
 
 	function setTagElderly() {
-		$this->yakTag[] = "Elderly person";
-	}
+ 		$this->yakTag[] = "Elderly person";
+ 	}
 
-	function setTagIndoor() {
-		$this->yakTag[] = "Indoor";
-	}
+ 	function setTagIndoor() {
+ 		$this->yakTag[] = "Indoor";
+ 	}
 
-	function setTagGay() {
-		$this->yakTag[] = "Gay friendly";
-	}
+ 	function setTagGay() {
+ 		$this->yakTag[] = "Gay friendly";
+ 	}
 
-	function setTagFree() {
-		$this->yakTag[] = "Free";
-	}
+ 	function setTagFree() {
+ 		$this->yakTag[] = "Free";
+ 	}
 
-	function setTagPets() {
-		$this->yakTag[] = "Pets";
-	}
-	
-	function setZoneParis() {
-		$this->zone = 1;
-	}
+ 	function setTagPets() {
+ 		$this->yakTag[] = "Pets";
+ 	}
+ 	
+ 	function setZoneParis() {
+ 		$this->zone = 1;
+ 	}
 
-	function setZoneMontpellier() {
-		$this->zone = 2;
-	}
+ 	function setZoneMontpellier() {
+ 		$this->zone = 2;
+ 	}
 
-	function setZoneEghezee() {
-		$this->zone = 3;
-	}
+ 	function setZoneEghezee() {
+ 		$this->zone = 3;
+ 	}
 
-	function setZoneOther() {
-		$this->zone = 4;
-	}
-	
+ 	function setZoneOther() {
+ 		$this->zone = 4;
+ 	}
+ 	
+ 	function prettyPrint() {
+
+ 		$str = "<div>\n";
+ 		$str .= "\t<h4>" . $this->title . "</h4>\n";
+ 		$str .= "\t<p>YakCats: ";
+
+		if (!empty($this->humanCat)) {
+	 		foreach ($this->humanCat as $key => $value) {
+	 			$str .= $value . " ";
+	 		}
+
+	 		$str .= "</p>\n";
+		}
+ 		if (!empty($this->yakTag)) {
+	 		$str .= "\t<p>YakTags: ";
+
+	 		foreach ($this->yakTag as $key => $value) {
+	 			$str .= $value . " ";
+	 		}
+
+	 		$str .= "</p>\n";
+	 	}
+ 		$str .= "</div>";
+ 		
+ 		return $str;
+ 	
  }

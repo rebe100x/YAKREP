@@ -1,7 +1,14 @@
-<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-"http://www.w3.org/TR/html4/loose.dtd"> 
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
+<head>
+	<title>Yakwala Batch</title>
+	<meta http-equiv="content-type" 
+		content="text/html;charset=utf-8" />
+</head>
+
+<body>
 <?php
 /* batch for Yakwala to parse "ecoles de Montpellier"
  * read csv and create "Place" and "Info" objects
@@ -21,12 +28,14 @@ $doublon = 0;
 $place;
 $info;
 $origin = 'http://opendata.montpelliernumerique.fr/Effectifs-scolaires';
-$license = 'http://www.etalab.gouv.fr/pages/licence-ouverte-open-licence-5899923.html';
+$licence = 'http://www.etalab.gouv.fr/pages/licence-ouverte-open-licence-5899923.html';
 $access = 1;
 $user = 0;
 
 if (($handle = fopen($filenameInput, "r")) !== FALSE) 
 {
+	print_r("<h3>Input : " . $filenameInput . "</h3>\n");
+	
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
     {     
 		if($row > 1)
@@ -44,7 +53,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->content = $data[22] . ' classes. Capacité max: ' . $data[21] . ' élèves. Remplissage des classes: ' . $data[24] . '.Ouvertures de classes: ' . $data[23]; 
 			$info->origin = $origin;
 			$info->access = $access;
-			$info->license = $license;
+			$info->licence = $licence;
 			$info->pubDate = '';
 			$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
 			$info->heat = 1;
@@ -63,7 +72,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$locationQuery = $data[3] . ' ' . $info->address['street'] . ' ' . $info->address['zipcode'] . ' ' . $info->address['city'] . ', ' . $info->address['country'];
 		
 			$debug = 0;
-			switch ($info->saveToMongoDB($locationQuery, $debug)) 
+			switch ($info->saveToMongoDB($locationQuery, $debug, false)) 
 			{
 				case '1':
 					$locError++;
@@ -77,26 +86,21 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 					$doublon++;
 					break;
 				default:
-					print "insert (1 call to gmap)<br>";
 					$insert++;
+					print_r($info->prettyPrint() . "\n<hr/>\n");
 					break;
 			}
 		}
 		$row++;
 	}
-	fclose($handle);
-	
-	print "<br>________________________________________________<br>
-    		ecolesMontpellier : done <br>";
-    print "Rows : " . ($row-1) . "<br>";
-    print "Call to gmap : " . ($insert+$locError) . "<br>";
-    print "Location error (call gmap) : " . $locError . "<br>";
-    print "Insertions : " . $insert . "<br>";
-    print "Updates : " . $update . "<br>";
-    print "Doublons : " . $doublon . "<br>";
+	print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
+    fclose($handle);
+    print_r("offreCulturelle done.\n");
 }
 
-
+?>
+</body>
+</html>
 
 
 

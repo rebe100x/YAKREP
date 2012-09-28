@@ -33,7 +33,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				$value = utf8_encode($value);
 			}
 			
-			$currentPlace = new Place;
+			$currentPlace = new Place();
 
 			$currentPlace->setTitle($data[4]);
 
@@ -81,8 +81,9 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				
 			//echo $locationQuery;
 			$debug = 0;
-			switch ($currentPlace->saveToMongoDB($locationQuery, $debug)) {
+			switch ($currentPlace->saveToMongoDB($locationQuery, $debug, true)) {
 					case '1':
+						$insert++;
 						$locError++;
 						break;
 					case '2':
@@ -111,7 +112,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
     print "<br>________________________________________________<br>
     		museeFrance : done <br>";
     print "Rows : " . ($row-1) . "<br>";
-    print "Call to gmap : " . ($insert+$locError) . "<br>";
+    print "Call to gmap : " . $insert . "<br>";
     print "Location error (call gmap) : " . $locError . "<br>";
     print "Insertions : " . $insert . "<br>";
     print "Updates : " . $update . "<br>";

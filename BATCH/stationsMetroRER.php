@@ -36,7 +36,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 				$value = utf8_encode($value);
 			}
 			$place = new Place();
-
+			
 			$place->setTitle('Station '.$data[3]);
 		
 			$place->content = 'Lignes de correspondances: ';
@@ -67,26 +67,27 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$place->setCatStations();
 		
 			$debug = 0;
-			switch ($place->saveToMongoDB($locationQuery, $debug)) 
+			switch ($place->saveToMongoDB($locationQuery, $debug, true)) 
 			{
 				case '1':
 					$locError++;
 					break;
 				case '2':
-					print "updated <br>";
+					//print "updated <br>";
 					$update++;
 					break;
 				case '3':
-					print "doublon <br>";
+					//print "doublons <br>";
 					$doublon++;
 					break;
 				default:
-					print "insert (1 call to gmap)<br>";
+					//print "insert (1 call to gmap)<br>";
 					$insert++;
 					break;
 			}
 			
 			$info = new Info();
+
 			$info->setTitle($place->title);
 			$info->content = $data[4];
 			$info->origin = $origin;
@@ -120,6 +121,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 					$insert++;
 					break;
 			}
+			
 		}
 		$row++;
     }

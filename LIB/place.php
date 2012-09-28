@@ -109,6 +109,7 @@ require_once("../LIB/conf.php");
 		$different = 0;
 			
 		if ($doublon != NULL) {
+			print "$this->title : already exists<br>";
 			//print_r($doublon['contact']);
 			foreach ($doublon['contact'] as $key => &$value) {
 				if (empty($value) && !empty($this->contact[$key])) {
@@ -119,6 +120,7 @@ require_once("../LIB/conf.php");
 			}
 			//Updated duplicate
     		if ($different > 0) {
+    			print "$this->title : Updated<br>";
     			//var_dump($doublon);
 	    		$update = array('contact' => $doublon['contact'], 'lastModifDate' => new MongoDate(gmmktime()));
 	    		$place->update($rangeQuery, $update);
@@ -138,11 +140,12 @@ require_once("../LIB/conf.php");
 
  		if ($loc['status'] == "OK")
  		{
+ 			print "Call to Gmap ok<br>";
  			$this->location["lat"] = $loc["location"][0];
  			$this->location["lng"] = $loc["location"][1];
  			return true;
  		}
- 		//print "Gmap error for address : " . $loc['address'] . "<br>";
+ 		print "Gmap error for " . $query . "<br>";
  		return false;
  	}
 
@@ -189,17 +192,23 @@ require_once("../LIB/conf.php");
 			// Todo update every batch to get location before saving to db
 			if ($getLocation == true) {
 				if ($this->getLocation($locationQuery, $debug)) {
+					$this->status = 1;
 					$place->save($record);
 					$place->ensureIndex(array("location"=>"2d"));
+					print $this->title . " : location ok - saved in db<br>";
 					return  $record['_id'];
 				}
 				else {
+					$this->status = 10;
+					$place->save($record);
+					print $this->title . " : gmap  error - saved in db<br>";
 					return 1;
 				}
 			}
 			else {
 				$place->save($record);
 				$place->ensureIndex(array("location"=>"2d"));
+				print $this->title . " : saved in db<br>";
 				return  $record['_id'];
 			}
 		}
@@ -220,8 +229,12 @@ require_once("../LIB/conf.php");
 
  	function setWeb ($web) {
  		$pattern = "@^(http(s?)\:\/\/)?(www\.)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*(\/)?([a-z0-9][_a-z0-9\-\/\.\&\?\+\=\,]*)*$@i";
-		if (preg_match($pattern, $web))
-			$this->contact['web'] = $web;
+		
+		$webArray = preg_split("/[\s]+/", $web);
+		$result = preg_grep($pattern, $webArray);
+	
+		if (!empty($result))
+			$this->contact['web'] = $result[0];
  	}
 
 	function setMail ($mail) {

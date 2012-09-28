@@ -31,7 +31,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
 			$address = $data[2]. " " . $data[4];
 			
-			$currentObject = new Place;
+			$currentObject = new Place();
 
 			$currentObject->title = $data[1];
 			$currentObject->origin = $origin;

@@ -24,6 +24,8 @@ require_once("../LIB/conf.php");
 
  	// copy the licence of the file you used
  	public $licence;
+ 	
+ 	public $outGoingLink;
 
  	// [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
  	public $yakTag;
@@ -160,7 +162,6 @@ require_once("../LIB/conf.php");
 		$conf = new conf();
 		$m = new Mongo(); 
 		$db = $m->selectDB($conf->db());
-
  		$place = $db->place;
 
 		$record = array(

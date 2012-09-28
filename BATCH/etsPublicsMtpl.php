@@ -1,8 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Yakwala Batch</title>
 	<meta http-equiv="content-type" 
 		content="text/html;charset=utf-8" />
+</head>
 
+<body>
 <?php
 /* batch to parse "Etablissements publics de Montpellier"
  * */
@@ -25,6 +31,8 @@ $i=0;
 $j=0;
 if (($handle = fopen($filenameInput, "r")) !== FALSE) 
 {
+	print_r("<h3>Input : " . $filenameInput . "</h3>\n");
+	
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
     {
         $num = count($data);
@@ -35,103 +43,103 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 				$value = utf8_encode($value);
 			}
 			
-			$currentObject = new Place;
+			$place = new Place;
 
-			$currentObject->setTitle($data[5]);
-			$currentObject->origin = $origin;
-			$currentObject->licence = $licence;
-			$currentObject->address["street"] = $data[10];
-			$currentObject->address["zipcode"] = $data[11];
-			$currentObject->address["city"] = $data[12];
-			$currentObject->address["country"] = "France";
-			$currentObject->setTel($data[16], "tel");
-			$currentObject->setMail($data[18]);
-			$currentObject->setZoneMontpellier();
-			$currentObject->location["lat"] = $data[6];
-			$currentObject->location["lng"] = $data[7];
+			$place->setTitle($data[5]);
+			$place->origin = $origin;
+			$place->licence = $licence;
+			$place->address["street"] = $data[10];
+			$place->address["zipcode"] = $data[11];
+			$place->address["city"] = $data[12];
+			$place->address["country"] = "France";
+			$place->setTel($data[16], "tel");
+			$place->setMail($data[18]);
+			$place->setZoneMontpellier();
+			$place->location["lat"] = $data[6];
+			$place->location["lng"] = $data[7];
 
 			// YakCat
 
 			if (stristr($data[9], "#LOISIR#SPORT#PATINOIRE")) 
 			{
-				$currentObject->setCatPatinoire();
+				$place->setCatPatinoire();
 			}
 			elseif (stristr($data[9], "#LOISIR#CULTURE#PLANETARIUM")) 
 			{
-				$currentObject->setCatPlanetarium();
-				$currentObject->yakTag["enfants"] = 1;
+				$place->setCatPlanetarium();
+				$place->setTagChildren();
 			}
 			elseif (stristr($data[9], "#EDUCATION#CRECHE")) 
 			{
-				$currentObject->setCatCreche();
-				$currentObject->yakTag["enfants"] = 1;
+				$place->setCatCreche();
+				$place->setTagChildren();
 			}
 			elseif (stristr($data[9], "#EDUCATION#ECOLE#PRIMAIRE")) 
 			{
-				$currentObject->setCatPrimaire();
-				$currentObject->yakTag["enfants"] = 1;
+				$place->setCatPrimaire();
+				$place->setTagChildren();
 			}
 			else if (stristr($data[9], "#EDUCATION#MAISONDEQUARTIER")) 
 			{
-				$currentObject->setCatMaisonDeQuartier();
+				$place->setCatMaisonDeQuartier();
 			}
 			else if (stristr($data[9], "#CULTURE#THEATRE")) 
 			{
-				$currentObject->setCatTheatre();
+				$place->setCatTheatre();
 			}
 			else if (stristr($data[9], "#CULTURE#EXPOSITION"))
 			{
-				$currentObject->setCatExpo();
+				$place->setCatExpo();
 			}
 			else if (stristr($data[9], "#CULTURE#MUSEE"))
 			{
-				$currentObject->setCatMusee();
+				$place->setCatMusee();
 			}
 			else if (stristr($data[9], "#CULTURE#CONCERT"))
 			{
-				$currentObject->setCatConcert();
+				$place->setCatConcert();
 			}
 			else if (stristr($data[9], "#CULTURE#MEDIATHEQUE"))
 			{
-				$currentObject->setCatMediatheque();
+				$place->setCatMediatheque();
 			}
 			else if (stristr($data[9], "#SPORT#VOLLEY"))
 			{
-				$currentObject->setCatVolley();
+				$place->setCatVolley();
 			}
 			else if (stristr($data[9], "#SPORT#PISCINE"))
 			{
-				$currentObject->setCatPiscine();
+				$place->setCatPiscine();
 			}
 			else if (stristr($data[9], "#SPORT#GYMNASE"))
 			{
-				$currentObject->setCatGymnase();
+				$place->setCatGymnase();
 			}
 			else if (stristr($data[9], "#SPORT#FOOTBALL"))
 			{
-				$currentObject->setCatFootball();
+				$place->setCatFootball();
 			}
 			else if (stristr($data[9], "#SPORT#RUBGBY"))
 			{
-				$currentObject->setCatRugby();
+				$place->setCatRugby();
 			}
 			else if (stristr($data[9], "#SPORT#TENNIS"))
 			{
-				$currentObject->setCatTennis();
+				$place->setCatTennis();
 			}
 			else if (stristr($data[9], "#SPORT"))
 			{
-				$currentObject->setCatSport();
+				$place->setCatSport();
 			}
 			else if (stristr($data[9], "#SPORT#PETANQUE"))
 			{
-				$currentObject->setCatPetanque();
+				$place->setCatPetanque();
 			}
 			
-			$locationQuery = $currentObject->title . ' ' . $currentObject->address['street'] . ' ' . $currentObject->address['zipcode'] . ' ' . $currentObject->address['city'] . ', ' . $currentObject->address['country'];
+			$locationQuery = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
 		
 			$debug = 0;
-			switch ($currentObject->saveToMongoDB($locationQuery, $debug)) 
+			switch ($place->saveToMongoDB($locationQuery, $debug, false)) 
 			{
 				case '1':
 					$locError++;
@@ -145,26 +153,19 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 					$doublon++;
 					break;
 				default:
-					print "insert (1 call to gmap)<br>";
 					$insert++;
+					print_r($place->prettyPrint() . "\n<hr/>\n");
 					break;
 			}
 			$i++;
 		}
 		$row++;
     }
-
-	print "Data parsed: " . $i . "<br>";
-   
+	print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
     fclose($handle);
-    
-    print "<br>________________________________________________<br>
-    		etsPublicsMtpl : done <br>";
-    print "Rows : " . ($row-1) . "<br>";
-    print "Call to gmap : " . ($insert+$locError) . "<br>";
-    print "Location error (call gmap) : " . $locError . "<br>";
-    print "Insertions : " . $insert . "<br>";
-    print "Updates : " . $update . "<br>";
-    print "Doublons : " . $doublon . "<br>";
+    print_r("offreCulturelle done.\n");
 }
 
+?>
+</body>
+</html>

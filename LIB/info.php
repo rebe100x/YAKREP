@@ -170,7 +170,7 @@ require_once("library.php");
  		return false;
  	}
  	
- 	function saveToMongoDB($locationQuery, $debug) {
+ 	function saveToMongoDB($locationQuery, $debug, $getLocation=true) {
  		$conf = new conf();
 		$m = new Mongo(); 
 		$db = $m->selectDB($conf->db());
@@ -207,13 +207,20 @@ require_once("library.php");
 		// Gestion des doublons
 		$ret = $this->getDoublon();
 		if ($ret == 0) {
-			if ($this->getLocation($locationQuery, $debug)) {
+			if ($getLocation == true) {
+				if ($this->getLocation($locationQuery, $debug)) {
+					$info->save($record);
+					$info->ensureIndex(array("location"=>"2d"));
+					return  $record['_id'];
+				}
+				else {
+					return 1;
+				}
+			}
+			else {
 				$info->save($record);
 				$info->ensureIndex(array("location"=>"2d"));
 				return  $record['_id'];
-			}
-			else {
-				return 1;
 			}
 		}
 		else {
@@ -369,6 +376,33 @@ require_once("library.php");
 
  	function setZoneOther() {
  		$this->zone = 4;
+ 	}
+ 	
+ 	function prettyPrint() {
+
+ 		$str = "<div>\n";
+ 		$str .= "\t<h4>" . $this->title . "</h4>\n";
+ 		$str .= "\t<p>YakCats: ";
+
+		if (!empty($this->humanCat)) {
+	 		foreach ($this->humanCat as $key => $value) {
+	 			$str .= $value . " ";
+	 		}
+
+	 		$str .= "</p>\n";
+		}
+ 		if (!empty($this->yakTag)) {
+	 		$str .= "\t<p>YakTags: ";
+
+	 		foreach ($this->yakTag as $key => $value) {
+	 			$str .= $value . " ";
+	 		}
+
+	 		$str .= "</p>\n";
+	 	}
+ 		$str .= "</div>";
+ 		
+ 		return $str;
  	}
  	
  }

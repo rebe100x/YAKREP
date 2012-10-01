@@ -448,11 +448,12 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("506479f54a53042191040000"),
 	"title"=> "Maison de Quartier",
-	"path" => "Éducation, Maison de Quartier",
-	"pathN" => "EDUCATION#MAISONDEQUARTIER",
-	"ancestors" => array("Éducation"),
-	"parent" => "Éducation",
+	"path" => "Education, Maison de Quartier",
+	"pathN" => "#EDUCATION#MAISONDEQUARTIER",
+	"ancestors" => array("Education"),
+	"parent" => "Education",
 	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211")),
 	"parentId" => new MongoId("504dbb06fa9a95680b000211"),
 	"level" => 2,

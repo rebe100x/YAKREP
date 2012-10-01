@@ -3,7 +3,7 @@
 require_once("library.php");
 require_once("place.php");
 
- class Info
+ class Info{
  
  	// name of the info
  	public $title;

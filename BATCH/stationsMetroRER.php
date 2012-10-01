@@ -19,7 +19,7 @@ require_once('../LIB/place.php');
 require_once('../LIB/info.php');
 
 ini_set('display_errors',1);
-$filenameInput = "./input/stationsMetroRER.csv";
+$filenameInput = "./input/stationsMetroRER_small.csv";
 $row = 0;
 $insert = 0;
 $update = 0;

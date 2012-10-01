@@ -51,6 +51,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 				str = 'Fermeture de classes';
 			*/
 			$info->content = $data[22] . ' classes. Capacité max: ' . $data[21] . ' élèves. Remplissage des classes: ' . $data[24] . '.Ouvertures de classes: ' . $data[23]; 
+			$info->freeTag = $fields[25];
 			$info->origin = $origin;
 			$info->access = $access;
 			$info->licence = $licence;

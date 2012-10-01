@@ -57,74 +57,92 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$place->setZoneMontpellier();
 			$place->location["lat"] = $data[6];
 			$place->location["lng"] = $data[7];
+			
+			$place->setCatYakdico();
 
 			// YakCat
 
 			if (stristr($data[9], "#LOISIR#SPORT#PATINOIRE")) 
 			{
+				$place->setCatSport();
 				$place->setCatPatinoire();
 			}
 			elseif (stristr($data[9], "#LOISIR#CULTURE#PLANETARIUM")) 
 			{
+				$place->setCatCulture();
 				$place->setCatPlanetarium();
 				$place->setTagChildren();
 			}
 			elseif (stristr($data[9], "#EDUCATION#CRECHE")) 
 			{
+				$place->setCatEducation();
 				$place->setCatCreche();
 				$place->setTagChildren();
 			}
 			elseif (stristr($data[9], "#EDUCATION#ECOLE#PRIMAIRE")) 
 			{
+				$place->setCatEducation();
 				$place->setCatPrimaire();
 				$place->setTagChildren();
 			}
 			else if (stristr($data[9], "#EDUCATION#MAISONDEQUARTIER")) 
 			{
+				$place->setCatEducation();
 				$place->setCatMaisonDeQuartier();
 			}
 			else if (stristr($data[9], "#CULTURE#THEATRE")) 
 			{
+				$place->setCatCulture();
 				$place->setCatTheatre();
 			}
 			else if (stristr($data[9], "#CULTURE#EXPOSITION"))
 			{
+				$place->setCatCulture();
 				$place->setCatExpo();
 			}
 			else if (stristr($data[9], "#CULTURE#MUSEE"))
 			{
+				$place->setCatCulture();
 				$place->setCatMusee();
 			}
 			else if (stristr($data[9], "#CULTURE#CONCERT"))
 			{
+				$place->setCatCulture();
 				$place->setCatConcert();
 			}
 			else if (stristr($data[9], "#CULTURE#MEDIATHEQUE"))
 			{
+				$place->setCatCulture();
 				$place->setCatMediatheque();
 			}
 			else if (stristr($data[9], "#SPORT#VOLLEY"))
 			{
+				$place->setCatSport();
 				$place->setCatVolley();
 			}
 			else if (stristr($data[9], "#SPORT#PISCINE"))
-			{
+			{	
+				$place->setCatSport();
 				$place->setCatPiscine();
 			}
 			else if (stristr($data[9], "#SPORT#GYMNASE"))
 			{
+				$place->setCatSport();
 				$place->setCatGymnase();
 			}
 			else if (stristr($data[9], "#SPORT#FOOTBALL"))
 			{
+				$place->setCatSport();
 				$place->setCatFootball();
 			}
 			else if (stristr($data[9], "#SPORT#RUBGBY"))
 			{
+				$place->setCatSport();
 				$place->setCatRugby();
 			}
 			else if (stristr($data[9], "#SPORT#TENNIS"))
 			{
+				$place->setCatSport();
 				$place->setCatTennis();
 			}
 			else if (stristr($data[9], "#SPORT"))
@@ -133,6 +151,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			}
 			else if (stristr($data[9], "#SPORT#PETANQUE"))
 			{
+				$place->setCatSport();
 				$place->setCatPetanque();
 			}
 			

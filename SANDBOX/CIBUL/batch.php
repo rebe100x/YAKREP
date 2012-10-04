@@ -1,5 +1,7 @@
 <?php 
 
+require_once("../../LIB/place.php");
+
 /*
  * Variables
  */
@@ -11,6 +13,9 @@ $localSitemap = "./sitemap.xml";
 
 $cibulApiKey = "22640375947e8efe580bbe056e4c7b60";
 $cibulApiUrl = 'https://api.cibul.net/v1/events/';
+
+$origin = "Cibul.net";
+$licence = "CIBUL";
 
 /*
  * sitemap.xml
@@ -67,11 +72,22 @@ foreach ($urlset->url as $url) {
 		}
 		else {
 			foreach ($result->data->locations as $location) {
-				//$currentPlace = new Place();
-				/*
-				$currentPlace->setTitle($data[38]);
+				$currentPlace = new Place();
+				
+				$currentPlace->title = $location->placename;
 				$currentPlace->origin = $origin;
-				$currentPlace->licence = $licence;*/
+				$currentPlace->licence = $licence;
+				$currentPlace->setZoneParis();
+
+				$currentPlace->setLocation($location->latitude, $location->longitude);
+				/*
+				$currentPlace->address["street"] = ;
+				$currentPlace->address["zipcode"] = ;
+				$currentPlace->address["city"] = ;
+				$currentPlace->address["country"] = ;
+				*/
+
+				var_dump($currentPlace);
 			}
 		}
 

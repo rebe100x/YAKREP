@@ -1,7 +1,8 @@
 <?php
+$root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
 require_once("library.php");
-require_once("../LIB/conf.php");
+require_once("$root/LIB/conf.php");
 
 
 
@@ -307,6 +308,13 @@ require_once("../LIB/conf.php");
  		
  		if(!empty($res))
 			$this->filesourceId = $res['_id'];                    
+ 	}
+
+ 	/* Set place location manually */
+ 	function setLocation($latitude, $longitude) 
+ 	{
+ 		$this->location["lat"] = $latitude;
+ 		$this->location["lng"] = $longitude;
  	}
 
  	/* Add Tags in yakTag array

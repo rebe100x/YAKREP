@@ -22,11 +22,15 @@ ini_set('display_errors',1);
 $filenameInput = "./input/VilleMTP_MTP_EffectifSco_2012.csv";
 $row = 0;
 $insert = 0;
+$update = 0;
 $doublon = 0;
+$locError = 0;
+$i = 0;
 $place;
 $info;
 $origin = 'http://opendata.montpelliernumerique.fr/Effectifs-scolaires';
-$licence = 'http://www.etalab.gouv.fr/pages/licence-ouverte-open-licence-5899923.html';
+$fileTitle = "Effectifs scolaires";
+$licence = 'licence ouverte';
 $access = 1;
 $user = 0;
 
@@ -51,6 +55,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->content = $data[22] . ' classes. Capacité max: ' . $data[21] . ' élèves. Remplissage des classes: ' . $data[24] . '.Ouvertures de classes: ' . $data[23]; 
 			$info->freeTag = $data[25];
 			$info->origin = $origin;
+			$info->filesourceTitle = $fileTitle;
 			$info->access = $access;
 			$info->licence = $licence;
 			$info->pubDate = '';
@@ -71,9 +76,17 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$locationQuery = $data[3] . ' ' . $info->address['street'] . ' ' . $info->address['zipcode'] . ' ' . $info->address['city'] . ', ' . $info->address['country'];
 		
 			$debug = 0;
+			$debug = 0;
 			switch ($info->saveToMongoDB($locationQuery, $debug, false)) 
 			{
 				case '1':
+					$locError++;
+					break;
+				case '2':
+					print "updated <br>";
+					$update++;
+					break;
+				case '3':
 					print "doublon <br>";
 					$doublon++;
 					break;
@@ -82,14 +95,13 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 					print_r($info->prettyPrint() . "\n<hr/>\n");
 					break;
 			}
-			var_dump($info);
-			break;
+			$i++;
 		}
 		$row++;
 	}
-	print "<br/> doublon : $doublon - insert : $insert<br>";
+	print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
     fclose($handle);
-    print_r("offreCulturelle done.\n");
+    print_r("ecolesMontpellier done.\n");
 }
 
 ?>

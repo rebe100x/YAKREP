@@ -20,6 +20,10 @@ require_once("place.php");
  	// where did we get this info
  	public $origin;
 
+	public $filesourceId;
+	
+	public $filesourceTitle;
+
  	// 1 - public / 2 - privé for the api ( all open data is public )
  	public $access;
 
@@ -84,6 +88,8 @@ require_once("place.php");
 		$this->content = '';
 		$this->thumb = '';
 		$this->origin = '';
+		$this->filesourceId = '';
+		$this->filesourceTitle = '';
 		$this->access = 1;
 		$this->license = '';
 		$this->outGoingLink = '';
@@ -185,6 +191,7 @@ require_once("place.php");
 		$infoColl = $db->info;
 		
 		$this->setPlaceid($locationQuery, $debug);
+		$this->setFilesourceId();
 
 		// Gestion des doublons
 		$ret = $this->getDoublon();
@@ -205,6 +212,7 @@ require_once("place.php");
 			"content" 		=>	$this->content,
 			"thumb" 		=>	$this->thumb,
 			"origin"		=>	$this->origin,	
+			"filesourceId"	=>	$this->filesourceId,
 			"access"		=>	$this->access,
 			"licence"		=>	$this->licence,
 			"outGoingLink"	=>	$this->outGoingLink,
@@ -289,6 +297,7 @@ require_once("place.php");
 		$newPlace->content = $this->content;
 		$newPlace->thumb = $this->thumb;
 		$newPlace->origin = $this->origin;	
+		$newPlace->filesourceId = $this->filesourceId;
 		$newPlace->access = $this->access;
 		$newPlace->license = $this->license;
 		$newPlace->outGoingLink = $this->outGoingLink;
@@ -312,6 +321,9 @@ require_once("place.php");
 			$newPlace->status = 10;
 			print "Gmap error.<br>";
 		}
+		
+		$newPlace->setFilesourceId();
+		
 		//save in db
 		$record = array(
 			"title"			=>	$newPlace->title,
@@ -398,6 +410,20 @@ require_once("place.php");
  				}
  			}
  		}
+ 	}
+ 	
+ 	
+ 	/* Search for the filesourceId in the DB and assign it to the specific field */
+ 	function setFilesourceId()
+ 	{
+ 		$m = new Mongo(); 
+		$db = $m->selectDB($this->conf->db());
+ 		$filesource = $db->filesource;
+ 		
+ 		$res = $filesource->findOne(array('title'=>$this->filesourceTitle));
+ 		
+ 		if(!empty($res))
+			$this->filesourceId = $res['_id'];                    
  	}
 	
 	/* Add tags to info

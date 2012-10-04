@@ -29,7 +29,8 @@ $count = 0;
 $place;
 $info;
 $origin = 'http://www.data.gouv.fr/donnees/view/Trafic-annuel-entrant-par-station-564116';
-$licence = 'http://www.data.gouv.fr/Licence-Ouverte-Open-Licence';
+$fileTitle = "Trafic annuel entrant par station";
+$licence = "licence ouverte";
 $access = 1;
 $user = 0;
 
@@ -102,6 +103,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->title = $place->title;
 			$info->content = $data[4];
 			$info->origin = $origin;
+			$info->filesourceTitle = $fileTitle;
 			$info->access = $access;
 			$info->licence = $licence;
 			$info->pubDate = '';
@@ -139,7 +141,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
     }
     print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
     fclose($handle);
-    print_r("offreCulturelle done.\n");
+    print_r("stationsMetroRER done.\n");
 }
 
 ?>

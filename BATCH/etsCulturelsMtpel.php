@@ -11,6 +11,7 @@ include_once "../LIB/place.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/ets_culturels_mtpel.csv";
 $origin = "http://data.montpellier-agglo.com/?q=node/200";
+$fileTitle = "Horaires des établissements culturels";
 $license = "licence ouverte";
 
 $row = 0;
@@ -40,6 +41,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			
 			$currentPlace->title = $data[1];
 			$currentPlace->origin = $origin;
+			$currentPlace->filesourceTitle = $fileTitle; 
 			$currentPlace->license = $license;
 			$currentPlace->address["street"] = $address;
 			$currentPlace->address["zipcode"] = $data[5];

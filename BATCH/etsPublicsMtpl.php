@@ -17,6 +17,7 @@ include_once "../LIB/place.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/VilleMTP_MTP_EtabliPublic_2011.csv";
 $origin = "http://opendata.montpelliernumerique.fr/Etablissements-publics";
+$fileTitle = "Etablissements publics";
 $licence = "licence ouverte";
 
 $row = 0;
@@ -45,8 +46,9 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			
 			$place = new Place;
 
-			$place->setTitle($data[5]);
+			$place->title = $data[5];
 			$place->origin = $origin;
+			$place->filesourceTitle = $fileTitle;
 			$place->licence = $licence;
 			$place->address["street"] = $data[10];
 			$place->address["zipcode"] = $data[11];
@@ -57,12 +59,14 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$place->setZoneMontpellier();
 			$place->location["lat"] = $data[6];
 			$place->location["lng"] = $data[7];
-			
-			$place->setCatYakdico();
+		
+			$cat = array("GEOLOCALISATION#YAKDICO");
+			$place->setYakCat($cat);
 
 			// YakCat
+			$place->setYakCat(array($data[9]));
 
-			if (stristr($data[9], "#LOISIR#SPORT#PATINOIRE")) 
+			/*if (stristr($data[9], "#LOISIR#SPORT#PATINOIRE")) 
 			{
 				$place->setCatSport();
 				$place->setCatPatinoire();
@@ -153,7 +157,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			{
 				$place->setCatSport();
 				$place->setCatPetanque();
-			}
+			}*/
 			
 			$locationQuery = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
 		
@@ -182,7 +186,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
     }
 	print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
     fclose($handle);
-    print_r("offreCulturelle done.\n");
+    print_r("etsPublicsMtpl done.\n");
 }
 
 ?>

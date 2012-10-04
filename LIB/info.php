@@ -140,7 +140,7 @@ require_once("place.php");
 		
 		$m = new Mongo(); 
 		$db = $m->selectDB($this->conf->db());
-		$place = $db->place;
+		$info = $db->info;
 
 		//var_dump($this);
 		if (!empty($this->location['lat']) && !empty($this->location['lng'])){
@@ -150,7 +150,7 @@ require_once("place.php");
 		else
 			$rangeQuery = array('title' => $this->title, 'address' => $this->address );
 
-		$doublon = $place->findOne($rangeQuery);
+		$doublon = $info->findOne($rangeQuery);
 			
 		if ($doublon != NULL) {
 			print "Info already exists.<br>";

@@ -92,7 +92,7 @@ require_once("place.php");
 		$this->filesourceId = '';
 		$this->filesourceTitle = '';
 		$this->access = 1;
-		$this->license = '';
+		$this->licence = '';
 		$this->outGoingLink = '';
 		$this->heat = 80;
 		$this->print = 0;
@@ -299,7 +299,7 @@ require_once("place.php");
 		$newPlace->origin = $this->origin;	
 		$newPlace->filesourceId = $this->filesourceId;
 		$newPlace->access = $this->access;
-		$newPlace->license = $this->license;
+		$newPlace->licence = $this->licence;
 		$newPlace->outGoingLink = $this->outGoingLink;
 		$newPlace->yakCat = $this->yakCat;
 		$newPlace->yakTag = $this->yakTag;
@@ -332,7 +332,7 @@ require_once("place.php");
 			"origin"		=>	$newPlace->origin,
 			"filesourceId"	=> 	$newPlace->filesourceId,	
 			"access"		=>	$newPlace->access,
-			"license"		=>	$newPlace->license,
+			"licence"		=>	$newPlace->licence,
 			"outGoingLink" 	=>	$newPlace->outGoingLink,
 			"yakCat" 		=>	$newPlace->yakCat,
 			"yakTag" 		=>	$newPlace->yakTag,

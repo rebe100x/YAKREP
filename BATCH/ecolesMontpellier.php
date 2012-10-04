@@ -47,7 +47,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			}
 		
 			$info = new Info();
-			$info->title = "info rentrée 2012";
+			$info->title = $data[3];
 			/* A CONFIRMER
 			if ($data[23] < 0)				
 				str = 'Fermeture de classes';

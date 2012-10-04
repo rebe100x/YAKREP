@@ -20,6 +20,7 @@ require_once("place.php");
  	// where did we get this info
  	public $origin;
 
+	// mongoId (can be null if data is not coming from a file parsed)
 	public $filesourceId;
 	
 	public $filesourceTitle;
@@ -250,7 +251,6 @@ require_once("place.php");
 	*/
 	function setPlaceid($locationQuery, $debug)
 	{
-		
 		$m = new Mongo(); 
 		$db = $m->selectDB($this->conf->db());
 		$place = $db->place;

@@ -22,6 +22,7 @@ require_once("../LIB/conf.php");
  	// where did we get this info
  	public $origin;
 
+	// mongoId (can be null if data is not coming from a file parsed)
 	public $filesourceId;
 	
 	public $filesourceTitle;
@@ -64,9 +65,6 @@ require_once("../LIB/conf.php");
 
  	// used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee , 4 Other
  	public $zone;
-
- 	// mongoId (can be null if data is not coming from a file parsed)
- 	public $filesourceId;
 
  	function __construct() {
  		$this->conf = new Conf();

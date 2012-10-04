@@ -75,7 +75,7 @@ require_once("place.php");
 	// debug field : the location string found by the semantic factory ( the string sent to gmap, used only for the rss parsing )
 	public $address;
 	
-	// Id of 
+	// Id of place
 	public $placeid;
 
 	function __construct() {

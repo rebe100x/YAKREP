@@ -54,7 +54,7 @@ $records[] = array(
 
 $row = 0;	
 foreach($records as $record){
-	$res = $filesource->findOne(array('mail'=>$record['title']));
+	$res = $filesource->findOne(array('title'=>$record['title']));
 	if(empty($res)){
 		$row++;
 		$filesource->save($record);

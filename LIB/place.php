@@ -189,7 +189,7 @@ require_once("../LIB/conf.php");
 		$db = $m->selectDB($this->conf->db());
  		$place = $db->place;
  		
- 		$this->setFilesourceId();
+		$this->setFilesourceId();
 
 		$record = array(
 			"title"			=>	$this->title,

@@ -191,8 +191,8 @@ require_once("place.php");
 		$db = $m->selectDB($this->conf->db());
 		$infoColl = $db->info;
 		
-		$this->setPlaceid($locationQuery, $debug);
 		$this->setFilesourceId();
+		$this->setPlaceid($locationQuery, $debug);
 
 		// Gestion des doublons
 		$ret = $this->getDoublon();
@@ -329,7 +329,8 @@ require_once("place.php");
 			"title"			=>	$newPlace->title,
 			"content" 		=>	$newPlace->content,
 			"thumb" 		=>	$newPlace->thumb,
-			"origin"		=>	$newPlace->origin,	
+			"origin"		=>	$newPlace->origin,
+			"filesourceId"	=> 	$newPlace->filesourceId,	
 			"access"		=>	$newPlace->access,
 			"license"		=>	$newPlace->license,
 			"outGoingLink" 	=>	$newPlace->outGoingLink,

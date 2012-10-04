@@ -23,12 +23,14 @@ $filenameInput = "./input/VilleMTP_MTP_EffectifSco_2012.csv";
 $row = 0;
 $insert = 0;
 $update = 0;
-$locError = 0;
 $doublon = 0;
+$locError = 0;
+$i = 0;
 $place;
 $info;
 $origin = 'http://opendata.montpelliernumerique.fr/Effectifs-scolaires';
-$licence = 'http://www.etalab.gouv.fr/pages/licence-ouverte-open-licence-5899923.html';
+$fileTitle = "Effectifs scolaires";
+$licence = 'licence ouverte';
 $access = 1;
 $user = 0;
 
@@ -45,21 +47,23 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			}
 		
 			$info = new Info();
-			$info->setTitle('info rentrée 2012');
+			$info->title = $data[3];
 			/* A CONFIRMER
 			if ($data[23] < 0)				
 				str = 'Fermeture de classes';
 			*/
 			$info->content = $data[22] . ' classes. Capacité max: ' . $data[21] . ' élèves. Remplissage des classes: ' . $data[24] . '.Ouvertures de classes: ' . $data[23]; 
+			$info->freeTag = $data[25];
 			$info->origin = $origin;
+			$info->filesourceTitle = $fileTitle;
 			$info->access = $access;
 			$info->licence = $licence;
 			$info->pubDate = '';
 			$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
 			$info->heat = 1;
 			$info->setTagChildren();
-			//$info->yakTag["enfants"] = 1;
-			$info->setCatEcole();
+			$cat = array("EDUCATION", "GEOLOCALISATION", "GEOLOCALISATION#YAKDICO", "EDUCATION#ECOLE");
+			$info->setYakCat($cat);
 			$info->status = 1;
 			$info->print = 1;
 			$info->yakType = 3; // A CONFIRMER
@@ -71,6 +75,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->address['country'] = 'France';
 			$locationQuery = $data[3] . ' ' . $info->address['street'] . ' ' . $info->address['zipcode'] . ' ' . $info->address['city'] . ', ' . $info->address['country'];
 		
+			$debug = 0;
 			$debug = 0;
 			switch ($info->saveToMongoDB($locationQuery, $debug, false)) 
 			{
@@ -90,12 +95,13 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 					print_r($info->prettyPrint() . "\n<hr/>\n");
 					break;
 			}
+			$i++;
 		}
 		$row++;
 	}
 	print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
     fclose($handle);
-    print_r("offreCulturelle done.\n");
+    print_r("ecolesMontpellier done.\n");
 }
 
 ?>

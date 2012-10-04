@@ -4,14 +4,13 @@
 		content="text/html;charset=utf-8" />
 
 <?php
-/* batch to parse "Etablissements culturels de Montpellier"
+/* batch to parse "Cinéma de France"
  * */
 
 include_once "../LIB/place.php";
 ini_set('display_errors',1);
-$filenameInput = "./input/museeFrance_small.csv";
-$origin = "http://www.data.gouv.fr/donnees/view/Liste-des-Mus%C3%A9es-de-France-30382165";
-$fileTitle = "Liste des musées de France";
+$filenameInput = "./input/cinemaFrance.csv";
+$origin = "http://www.data.gouv.fr/donnees/view/Liste-des-%C3%A9tablissements-cin%C3%A9matographiques-en-2010-avec-leur-adresse-30382098";
 $licence = "licence ouverte";
 $debug = 0;
 			
@@ -21,13 +20,11 @@ $update = 0;
 $locError = 0;
 $doublon = 0;
 
-$etsCulturels = array('');
-$fieldsProcessed = array('');
 $i=0;
 $j=0;
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
-    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
         $num = count($data);
         
 		if($row > 0){
@@ -37,42 +34,26 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			
 			$currentPlace = new Place();
 
-			$currentPlace->title = $data[4];
+			var_dump($data);
+			
+			$currentPlace->title = $data[3];
 
 			$currentPlace->origin = $origin;
-			$currentPlace->filesourceTitle = $fileTitle;
 			$currentPlace->licence = $licence;
-			$currentPlace->address["street"] = $data[5];
-			$currentPlace->address["zipcode"] = $data[6];
-			$currentPlace->address["city"] = $data[7];
+			$currentPlace->address["street"] = $data[4]. " " . $data[5];
+			$currentPlace->address["zipcode"] = $data[7];
+			$currentPlace->address["city"] = $data[6];
 			$currentPlace->address["country"] = "France";
-			$currentPlace->setWeb($data[8]);
-			
-			//Gestion des horaires et fermetures des musées
-			if ($data[2] != "NON" && empty($data[9]) && empty($data[10]))
-			{
-				if ($data[2] == "OUI")
-					$currentPlace->contact["closing"] = "Fermé";
-				else
-					$currentPlace->contact["closing"] = $data[2];
-			}
-			else
-			{
-				$currentPlace->contact["closing"] = $data[9];
-				$currentPlace->contact["opening"] = $data[10];
-				if (!empty($data[11]))
-					$currentPlace->contact["special opening"] = "Nocturnes : ". $data[11];
-			}
 
 			$currentPlace->setTagIndoor();
 
 			// YakCat
-			$cat = array("CULTURE", "GEOLOCALISATION", "GEOLOCALISATION#YAKDICO", "CULTURE#MUSEE");
+			$cat = array("CULTURE", "GEOLOCALISATION", "GEOLOCALISATION#YAKDICO", "CULTURE#CINEMA");
 			$currentPlace->setYakCat($cat);
 			
-			if ($data[1] == "PARIS")
+			if (substr($data[7], 0, 2 == "75"))
 				$currentPlace->setZoneParis();
-			elseif ($data[1] == "HERAULT")
+			elseif (substr($data[7], 0, 2 == "34"))
 				$currentPlace->setZoneMontpellier();
 			else
 				$currentPlace->setZoneOther();
@@ -88,21 +69,19 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 						$locError++;
 						break;
 					case '2':
-						print "updated <br>";
+						//print "updated <br>";
 						$update++;
 						break;
 					case '3':
-						print "doublon <br>";
+						//print "doublon <br>";
 						$doublon++;
 						break;
 					default :
-						print "insert (1 call to gmap)<br>";
+						//print "insert (1 call to gmap)<br>";
 						$insert++;
 						break;
 				}
-				//var_dump($currentPlace);
-			}
-
+		}
 		$row++;
 		$i++;
 
@@ -111,7 +90,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
     fclose($handle);
 
     print "<br>________________________________________________<br>
-    		museeFrance : done <br>";
+    		Cinémas de France: done <br>";
     print "Rows : " . ($row-1) . "<br>";
     print "Call to gmap : " . $insert . "<br>";
     print "Location error (call gmap) : " . $locError . "<br>";

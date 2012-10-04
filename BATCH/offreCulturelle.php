@@ -19,7 +19,7 @@ require_once("../LIB/place.php");
 require_once("../LIB/library.php");
 
 ini_set('display_errors',1);
-$filenameInput = "./input/offreCulturelle.csv";
+$filenameInput = "./input/offreCulturelle_small.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Agenda---Offres-culture-2011-30382214";
 $licence = "Licence ouverte";
 
@@ -49,7 +49,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 					continue;
 				}
 
-				$currentPlace->setTitle($data[38]);
+				$currentPlace->title = $data[38];
 
 				$currentPlace->origin = $origin;
 				$currentPlace->licence = $licence;
@@ -78,39 +78,47 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				// Useful for regex matches
 				$softTitle = suppr_accents($currentPlace->title);
 
+				$cat = array("CULTURE", "GEOLOCALISATION", "GEOLOCALISATION#YAKDICO");
+			
 				// Finding yakcats
 				if ($data[2] == "Musées" || preg_match("/musee/i", $softTitle) || preg_match("/musee/i", suppr_accents($data[20])) ) {
-					$currentPlace->setCatMusee();
+					$cat[] = "CULTURE#MUSEE";
+					$currentPlace->setYakCat($cat);
 				}
 				else if (preg_match("/aquarium/i", $softTitle)) {
-					$currentPlace->setCatAquarium();
+					$cat[] = "CULTURE#AQUARIUM";
+					$currentPlace->setYakCat($cat);
 				}
 				else if (preg_match("/opera/i", $softTitle)) {
-					$currentPlace->setCatMusique();
+					$cat[] = "CULTURE#MUSIQUE";
+					$currentPlace->setYakCat($cat);
 					$currentPlace->yakTag[] = "Classique";
 				}
 				else if (preg_match("/jardin/i", $softTitle)) {
-					$currentPlace->setCatEspaceVert();
-					$currentPlace->setCatExposition();
+					$cat[] = "LOISIR";
+					$cat[] = "LOISIR#ESPACEVERT";
+					$cat[] = "CULTURE#EXPOSITION";
+					$currentPlace->setYakCat($cat);
 					$currentPlace->yakTag[] = "Plein air";
 				}
 				else if (preg_match("/eglise/i", $softTitle) || preg_match("/abbaye/i", $softTitle)) {
-					$currentPlace->setCatReligion();
+					$cat[] = "RELIGION";
+					$currentPlace->setYakCat($cat);
 				}
 				else if ($data[2] == "Organisme de Spectacle") {
-					$currentPlace->setCatTheatre();
+					$cat[] = "CULTURE#THEATRE";
+					$currentPlace->setYakCat($cat);
 				}
 				else if ($data[2] == "Organisme d'Arts plastiques") {
-					$currentPlace->setCatExposition();
+					$cat[] = "CULTURE#EXPOSITION";
+					$currentPlace->setYakCat($cat);
 				}
 				else if (preg_match("/archives/i", $data[20])) {
-					$currentPlace->setCatArchive();
-				}
-				else if ($data[2] == "Monument ou site") {
-					$currentPlace->setCatGeoloc();
+					$cat[] = "EDUCATION#ARCHIVE";
+					$currentPlace->setYakCat($cat);
 				}
 				else {
-					$currentPlace->setCatCulture();
+					$currentPlace->setYakCat($cat);
 				}
 				
 				$query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];

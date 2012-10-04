@@ -38,6 +38,10 @@ class conf
 		}
 	
 	}
+
+	public function getDeploy() {
+		return $this->deploy;
+	}
 	
     public function db() {
         return  $this->db;

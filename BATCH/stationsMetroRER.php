@@ -19,7 +19,7 @@ require_once('../LIB/place.php');
 require_once('../LIB/info.php');
 
 ini_set('display_errors',1);
-$filenameInput = "./input/stationsMetroRER.csv";
+$filenameInput = "./input/stationsMetroRER_small.csv";
 $row = 0;
 $insert = 0;
 $update = 0;
@@ -29,7 +29,8 @@ $count = 0;
 $place;
 $info;
 $origin = 'http://www.data.gouv.fr/donnees/view/Trafic-annuel-entrant-par-station-564116';
-$licence = 'http://www.data.gouv.fr/Licence-Ouverte-Open-Licence';
+$fileTitle = "Trafic annuel entrant par station";
+$licence = "licence ouverte";
 $access = 1;
 $user = 0;
 
@@ -46,7 +47,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			}
 			$place = new Place();
 			
-			$place->setTitle('Station '.$data[3]);
+			$place->title = 'Station '.$data[3];
 		
 			$place->content = 'Lignes de correspondances: ';
 			if ($data[5] != '0')
@@ -72,8 +73,9 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$place->setZoneParis();
 		
 			$locationQuery = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
-		
-			$place->setCatStations();
+			
+			$cat = array("GEOLOCALISATION#STATION", "GEOLOCALISATION");
+			$place->setYakCat($cat);
 		
 			$debug = 0;
 
@@ -98,15 +100,17 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			
 			$info = new Info();
 
-			$info->setTitle($place->title);
+			$info->title = $place->title;
 			$info->content = $data[4];
 			$info->origin = $origin;
+			$info->filesourceTitle = $fileTitle;
 			$info->access = $access;
 			$info->licence = $licence;
 			$info->pubDate = '';
 			$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
 			//$info->heat = 1;
-			$info->setCatYakdico();
+			$cat = array("GEOLOCALISATION#YAKDICO", "GEOLOCALISATION");
+			$place->setYakCat($cat);
 			$info->status = 1;
 			$info->print = 1;
 			$info->yakType = 3;
@@ -137,7 +141,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
     }
     print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
     fclose($handle);
-    print_r("offreCulturelle done.\n");
+    print_r("stationsMetroRER done.\n");
 }
 
 ?>

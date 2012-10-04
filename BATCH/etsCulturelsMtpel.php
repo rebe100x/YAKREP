@@ -11,10 +11,16 @@ include_once "../LIB/place.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/ets_culturels_mtpel.csv";
 $origin = "http://data.montpellier-agglo.com/?q=node/200";
+$fileTitle = "Horaires des établissements culturels";
 $license = "licence ouverte";
 
 $row = 0;
-$callGmap = 0;
+$insert = 0;
+$update = 0;
+$locError = 0;
+$doublon = 0;
+$debug = 1;
+
 $etsCulturels = array('');
 $fieldsProcessed = array('');
 $i=0;
@@ -25,86 +31,97 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
         $num = count($data);
         
 		if($row > 1){
-			foreach ($data as $key => $value) {
-				$data[$key] = utf8_encode($value);
+			foreach ($data as &$value) {
+				$value = utf8_encode($value);
 			}
+			
+			$currentPlace = new Place();
 
 			$address = $data[2]. " " . $data[4];
 			
-			$currentObject = new Place();
+			$currentPlace->title = $data[1];
+			$currentPlace->origin = $origin;
+			$currentPlace->filesourceTitle = $fileTitle; 
+			$currentPlace->license = $license;
+			$currentPlace->address["street"] = $address;
+			$currentPlace->address["zipcode"] = $data[5];
+			$currentPlace->address["city"] = $data[6];
+			$currentPlace->address["country"] = "France";
+			$currentPlace->setTel($data[8], "tel");
+			$currentPlace->contact["mail"] = $data[9];
+			$currentPlace->setZoneMontpellier();
 
-			$currentObject->title = $data[1];
-			$currentObject->origin = $origin;
-			$currentObject->license = $license;
-			$currentObject->address["street"] = $address;
-			$currentObject->address["zipcode"] = $data[5];
-			$currentObject->address["city"] = $data[6];
-			$currentObject->address["country"] = "France";
-			$currentObject->setTel($data[8], "tel");
-			$currentObject->contact["mail"] = $data[9];
-			$currentObject->setZoneMontpellier();
-
-			$currentObject->contact["opening"] = "L: " . $data[12] .
+			$currentPlace->contact["opening"] = "L: " . $data[12] .
 													", M: " . $data[13] .
 													", M: " . $data[14] .
 													", J: " . $data[15] .
 													", V: " . $data[16] .
 													", S: " . $data[17] .
 													", D: " . $data[18];
-			$currentObject->yakTag["couvert, intérieur"] = 1;
+			$currentPlace->setTagIndoor();
 
 			
 			// Get location with gmap
 			$query = $data[1] . ", " . $data[5] . " " . $data[6];
-			$debug = 0;
-			if (!$currentObject->getLocation($query, $debug))
-			{
-				$query = $address . ", " . $data[5] . " " . $data[6];
-				$currentObject->getLocation($query, $debug);
-			}
-			$callGmap++;
-
+			
 			// YakCat
-			$currentObject->setCatCulture();
-			$currentObject->setCatYakdico();
-			$currentObject->setCatGeoloc();
+			$cat = array("CULTURE", "GEOLOCALISATION#YAKDICO");
+			$currentPlace->setYakCat($cat);
 
 			if (stristr($data[1], "Médiathèque")) {
 				//echo "media : $data[1] <br/>";
-				$currentObject->setCatMediatheque();
+				$currentPlace->setYakCat(array("CULTURE#MEDIATHEQUE"));
 			}
 			elseif (stristr($data[1], "Planétarium")) {
 				//echo "Planétarium : $data[1] <br/>";
-				$currentObject->setCatPlanetarium();
-				$currentObject->yakTag["enfants"] = 1;
+				$currentPlace->setYakCat(array('CULTURE#PLANETARIUM'));
+				$currentPlace->yakTagChildren();
 			}
 			elseif (stristr($data[1], "Aquarium")) {
 				//echo "Aquarium : $data[1] <br/>";
-				$currentObject->setCatAquarium();
-				$currentObject->yakTag["enfants"] = 1;
+				$currentPlace->setYakCat(array('CULTURE#AQUARIUM'));
+				$currentPlace->yakTagChildren();
 			}
 			else {
 				//echo "autres (musée) : $data[1] <br/>";
-				$currentObject->setCatMusee();
+				$currentPlace->setYakCat(array('CULTURE#MUSEE'));
 			}
 
-			/*print "<pre>";
-	    	print_r($currentObject);
-	    	print "</pre>";
-*/
-			print '<hr><b>'.$currentObject->title.'</b><br>';
-			print $currentObject->saveToMongoDB() . "<br>";
-			$i++;
-
-		}
-
+	    	$locationQuery = $query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
+			
+			print '<hr><b>'.$currentPlace->title.'</b><br>';
+			switch ($currentPlace->saveToMongoDB($locationQuery, $debug, true, true)) {
+					case '1':
+						$insert++;
+						$locError++;
+						break;
+					case '2':
+						print "updated <br>";
+						$update++;
+						break;
+					case '3':
+						print "doublon <br>";
+						$doublon++;
+						break;
+					default :
+						print "insert (1 call to gmap)<br>";
+						$insert++;
+						break;
+				}
+				//var_dump($currentPlace);
+			}
+		$i++;
 		$row++;
-
     }
+	print "<br>________________________________________________<br>
+    		museeFrance : done <br>";
+    print "Rows : " . ($row-1) . "<br>";
+    print "Call to gmap : " . $insert . "<br>";
+    print "Location error (call gmap) : " . $locError . "<br>";
+    print "Insertions : " . $insert . "<br>";
+    print "Updates : " . $update . "<br>";
+    print "Doublons : " . $doublon . "<br>";
 
-	print "Data parser : " . $i . "<br>";
-    print "Call to gmap : " . $callGmap . "<br>";
-   
     fclose($handle);
 }
 

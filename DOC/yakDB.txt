@@ -3,6 +3,7 @@ INFO
 	content
 	thumb : le thumbnail
 	origin : source of the info ( leparisien.fr, username,  )
+	filesourceId = mongoId (can be null if data is not coming from a file parsed)
 	access : 1 public - 2 privé ( API )
 	licence : type de licence
 	outGoingLink : lien vers l'info sur le web
@@ -30,6 +31,7 @@ array({
 	content :"Encore quelques mois et les riverains et usagers du T3 pourront récolter les fruits de leur patience : le tramway parisien circulera alors du pont du Garigliano (XVe) à la porte de la Chapelle...",
 	thumb : ""
 	origin:"leparisien.fr",	
+	filesourceId = mongoId ()
 	access: 1 
 	licence: ""
 	outGoingLink : "http://www.leparisien.fr/paris-75/paris-75005/le-tramway-se-raccroche-a-son-dernier-troncon-09-07-2012-2083234.php"
@@ -81,6 +83,7 @@ PLACE
 	content : some text to describe the place
 	thumb : a local link to a picture of the place
 	origin : where did we get this info
+	filesourceId = mongoId (can be null if data is not coming from a file parsed)
 	access : 1 - public / 2 - privé for the api ( all open data is public )
 	licence : copy the licence of the file you used
 	yakCat [{Mongo ID idyakCat}]
@@ -115,7 +118,8 @@ array({
 	title=>"Place Maurice de Fontenay",
 	content =>"",
 	thumb => ""
-	origin=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",	
+	origin=>"http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47&portlet_id=121",
+	filesourceid = mongoId (can be null if data is not coming from a file parsed)
 	access=> 1
 	licence=> "ODBL Paris"
 	outGoingLink => ""
@@ -210,3 +214,18 @@ home : array(lat,lng)
 creationDate => new MongoDate
 lastModifDate => new MongoDate
 lastLoginDate => new MongoDate
+
+
+
+--------------------------------
+FILESOURCE
+--------------------------------
+_id
+title : le nom du fichier ( human readable, trouvé sur le site) Effectifs scolaires
+origin : le lien vers le fichier ( http://opendata.montpelliernumerique.fr/Effectifs-scolaires )
+licence : type de licence du fichier :  pas forcément la meme que dans info ou place car si on recroise l'info, cela change ...
+content : description du fichier : copier celle du site
+creationDate : la date d'entrée en base
+lastModifDate : la date de modif
+tags : mots clés ( ceux trouvés sur le site ) array("éducation" ; "effectif scolaire" ; "école" : "école primaire" ; "école maternelle" ; "enfant" ; "montpellier")
+

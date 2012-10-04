@@ -22,8 +22,6 @@ ini_set('display_errors',1);
 $filenameInput = "./input/VilleMTP_MTP_EffectifSco_2012.csv";
 $row = 0;
 $insert = 0;
-$update = 0;
-$locError = 0;
 $doublon = 0;
 $place;
 $info;
@@ -45,13 +43,13 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			}
 		
 			$info = new Info();
-			$info->setTitle('info rentrée 2012');
+			$info->title = "info rentrée 2012";
 			/* A CONFIRMER
 			if ($data[23] < 0)				
 				str = 'Fermeture de classes';
 			*/
 			$info->content = $data[22] . ' classes. Capacité max: ' . $data[21] . ' élèves. Remplissage des classes: ' . $data[24] . '.Ouvertures de classes: ' . $data[23]; 
-			$info->freeTag = $fields[25];
+			$info->freeTag = $data[25];
 			$info->origin = $origin;
 			$info->access = $access;
 			$info->licence = $licence;
@@ -59,8 +57,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
 			$info->heat = 1;
 			$info->setTagChildren();
-			//$info->yakTag["enfants"] = 1;
-			$info->setCatEcole();
+			$cat = array("EDUCATION", "GEOLOCALISATION", "GEOLOCALISATION#YAKDICO", "EDUCATION#ECOLE");
+			$info->setYakCat($cat);
 			$info->status = 1;
 			$info->print = 1;
 			$info->yakType = 3; // A CONFIRMER
@@ -76,13 +74,6 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			switch ($info->saveToMongoDB($locationQuery, $debug, false)) 
 			{
 				case '1':
-					$locError++;
-					break;
-				case '2':
-					print "updated <br>";
-					$update++;
-					break;
-				case '3':
 					print "doublon <br>";
 					$doublon++;
 					break;
@@ -91,10 +82,12 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 					print_r($info->prettyPrint() . "\n<hr/>\n");
 					break;
 			}
+			var_dump($info);
+			break;
 		}
 		$row++;
 	}
-	print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
+	print "<br/> doublon : $doublon - insert : $insert<br>";
     fclose($handle);
     print_r("offreCulturelle done.\n");
 }

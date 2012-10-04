@@ -5,6 +5,9 @@ require_once("place.php");
 
  class Info{
  
+ 	// Configuration
+ 	private $conf;
+
  	// name of the info
  	public $title;
  	
@@ -72,9 +75,11 @@ require_once("place.php");
 	// debug field : the location string found by the semantic factory ( the string sent to gmap, used only for the rss parsing )
 	public $address;
 	
+	// Id of 
 	public $placeid;
 
 	function __construct() {
+		$this->conf = new Conf();
 		$this->title = '';
 		$this->content = '';
 		$this->thumb = '';
@@ -120,11 +125,14 @@ require_once("place.php");
 		$this->placeid = '';
 	}
 
+	/* Find duplicates in db
+ 	** Return values : 0 if no duplicate in db else 1
+ 	*/
 	function getDoublon()
 	{
-		$conf = new conf();
+		
 		$m = new Mongo(); 
-		$db = $m->selectDB($conf->db());
+		$db = $m->selectDB($this->conf->db());
 		$place = $db->place;
 
 		//var_dump($this);
@@ -147,6 +155,10 @@ require_once("place.php");
 		}
 	}
 
+	/* Find location for a place
+ 	** Input parameter : a query for gmap, status for debug (0 or 1)
+ 	** Return an array(X,Y). If no location, return false
+ 	*/
 	function getLocation($query, $debug) {
 		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
 		//print_r($loc);
@@ -161,11 +173,16 @@ require_once("place.php");
 		return false;
 	}
 	
+	/* Save Info in db
+	** Input parameter : location query for gmap, debug 0 or 1,
+	** 					 get location (true or false)
+	** Return values : _id : info recorded - 1 : already exists
+	*/
  	function saveToMongoDB($locationQuery, $debug, $getLocation=true) {
- 		$conf = new conf();
+ 		
 		$m = new Mongo(); 
-		$db = $m->selectDB($conf->db());
-		$info = $db->info;
+		$db = $m->selectDB($this->conf->db());
+		$infoColl = $db->info;
 		
 		$this->setPlaceid($locationQuery, $debug);
 
@@ -174,7 +191,7 @@ require_once("place.php");
 
 		if ($ret == 0) {
 			if ($this->status != 10) {
-				$dataNear = $info->count(array("location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035)));
+				$dataNear = $infoColl->count(array("location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035)));
 				print $dataNear . " infos near ". $this->title . "<br>";
 				if($dataNear > 0 ){
 					$delta = ceil($dataNear/12);
@@ -208,8 +225,8 @@ require_once("place.php");
 			"zone"			=> 	$this->zone,
 			"placeid"		=>	$this->placeid,
 			);	
-			$info->save($record);
-			$info->ensureIndex(array("location"=>"2d"));
+			$infoColl->save($record);
+			$infoColl->ensureIndex(array("location"=>"2d"));
 			print "$this->title : info saved in db.<br>";
 			return  $record['_id'];
 		}
@@ -219,11 +236,15 @@ require_once("place.php");
 		}
 	}
 	
+	/* Find _id of a place to complete placeid field
+	** if the place doesn't exist, create the place
+	** Input parameter : location query for gmap, debug 0 or 1 
+	*/
 	function setPlaceid($locationQuery, $debug)
 	{
-		$conf = new conf();
+		
 		$m = new Mongo(); 
-		$db = $m->selectDB($conf->db());
+		$db = $m->selectDB($this->conf->db());
 		$place = $db->place;
 
 		if (!empty($this->address))
@@ -236,6 +257,12 @@ require_once("place.php");
 			if (!empty($result['location']))
 				$this->location = $result['location'];
 
+			// if info contact is not different from the place contact, clear info contact
+			if ($result['contact'] == $this->contact) {
+				foreach ($this->contact as &$value) {
+					$value = "";
+				}
+			}
 			$this->placeid = $result['_id'];
 
 			print "Place already exists in db <br>";
@@ -246,11 +273,14 @@ require_once("place.php");
 		}
 	}
 
+	/* Create a new place if doesn't exist
+	** Input parameter : location query for call to gmap, debug parameter (0 or 1)
+	** Return values : _id
+	*/
 	function createPlace($locationQuery, $debug)
 	{
-		$conf = new conf();
 		$m = new Mongo(); 
-		$db = $m->selectDB($conf->db());
+		$db = $m->selectDB($this->conf->db());
 		$place = $db->place;
 
 		$newPlace = new Place();
@@ -309,110 +339,69 @@ require_once("place.php");
 		return  $record['_id'];
 	}
 	
-	function dropAllPlaces() {
-		$conf = new conf();
-		$m = new Mongo(); 
-		$db = $m->selectDB($conf->db());
-		$db->place->drop();
-		$db->info->drop();
-	}
- 	
- 	function setTitle($title, $charset='utf-8')
- 	{
- 		$this->title = mb_convert_case($title, MB_CASE_TITLE, $charset);
+	/* Drop all places in db (if dev environment)
+ 	** else do nothing
+ 	*/
+ 	function dropAllPlaces() {
+ 		if ($this->conf->getDeploy() == "dev") {
+	 		$m = new Mongo(); 
+			$db = $m->selectDB($this->conf->db());
+	 		$db->place->drop();
+ 		}
+ 	}
+ 
+ 	/* Add telephone number in contact field
+ 	** Input parameter : a tel number, key word 'tel' or 'mobile'
+ 	*/
+ 	function setTel($tel, $type = "tel") {
+		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
  	}
 
- 	//type = tel or mobile
- 	function setTel($tel, $type = "tel") 
-		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
-	}
-
-	function setWeb ($web) {
-		$pattern = "@^(http(s?)\:\/\/)?(www\.)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*(\/)?([a-z0-9][_a-z0-9\-\/\.\&\?\+\=\,]*)*$@i";
+ 	/* Add web site in contact field
+ 	** input parameter : a web site
+	*/
+ 	function setWeb ($web) {
+ 		$pattern = "@^(http(s?)\:\/\/)?(www\.)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*(\/)?([a-z0-9][_a-z0-9\-\/\.\&\?\+\=\,]*)*$@i";
 		
 		$webArray = preg_split("/[\s]+/", $web);
 		$result = preg_grep($pattern, $webArray);
-	
-		if (!empty($result))
+		if (!empty($result)) {
+			$result = array_values($result);
 			$this->contact['web'] = $result[0];
-	}
+		}		
+ 	}
 
+ 	/* Add email in contact field
+ 	** Input parameter : an email address
+	*/
 	function setMail ($mail) {
 		$mail = strtolower($mail);
 		if (filter_var($mail, FILTER_VALIDATE_EMAIL))
-			$this->contact['mail'] = $mail;
-	}
+ 			$this->contact['mail'] = $mail;
+ 	}
 
-	function setCatYakdico() {
-		$this->humanCat[] = "YakDico";
-		$this->yakCat[] = new MongoId("5056b7aafa9a95180b000000");
-	}
+	/* Add yakCat to the place
+ 	** Input parameter : an array with yakCat to add (no accent, upper case)
+ 	** example : Array('CULTURE#CINEMA','#SPORT#PETANQUE');
+ 	*/
+ 	function setYakCat ($catPathArray) {
+ 		$m = new Mongo(); 
+		$db = $m->selectDB($this->conf->db());
+ 		$yakCat = $db->yakcat;
 
-	function setCatActu() {
-		$this->humanCat[] = "Actu";
-		$this->yakCat[] = new MongoId("504d89c5fa9a957004000000");
-	}
+ 		$yakCatArray = iterator_to_array($yakCat->find());
+ 		foreach ($catPathArray as $catPath) {
+ 			foreach ($yakCatArray as $cat) {
+ 				if ($cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath)))) {
+ 					$this->yakCat[] = $cat['_id'];
+ 					$this->humanCat[] = $cat['title'];
+ 				}
+ 			}
+ 		}
+ 	}
 	
-	function setCatCulture() {
-		$this->humanCat[] = "Culture";
-		$this->yakCat[] = new MongoId("504d89cffa9a957004000001");
-	}
-
-	function setCatGeoloc() {
-		$this->humanCat[] = "Geoloc";
-		$this->yakCat[] = new MongoId("504d89f4fa9a958808000001");
-	}
-
-	function setCatEducation() {
-		$this->humanCat[] = "Education";
-		$this->yakCat[] = new MongoId("504dbb06fa9a95680b000211");
-	}
-	
-	function setCatEcole() {
-		$this->humanCat[] = "Ecole";
-		$this->yakCat[] = new MongoId("5056b89bfa9a95180b000001");
-	}
-	
-	function setCatPrimaire() {
-		$this->humanCat[] = "Primaire";
-		$this->yakCat[] = new MongoId("5061a0d3fa9a95f009000000");
-	}
-	
-	function setCatTheatre() {
-		$this->humanCat[] = "Theatre";
-		$this->yakCat[] = new MongoId("504df6b1fa9a957c0b000004");
-	}
-	
-	function setCatMusee() {
-		$this->humanCat[] = "Musee";
-		$this->yakCat[] = new MongoId("50535d5bfa9a95ac0d0000b6");
-	}
-	
-	function setCatExpo() {
-		$this->humanCat[] = "Expo";
-		$this->yakCat[] = new MongoId("504df70ffa9a957c0b000006");
-	}
-	
-	function setCatPlanetarium() {
-		$this->humanCat[] = "Planetarium";
-		$this->yakCat[] = new MongoId("5056bf3ffa9a95180b000005");
-	}
-	
-	function setCatMediatheque() {
-		$this->humanCat[] = "Mediatheque";
-		$this->yakCat[] = new MongoId("5056bf35fa9a95180b000004");
-	}
-
-	function setCatAquarium() {
-		$this->humanCat[] = "Aquarium";
-		$this->yakCat[] = new MongoId("5056bf28fa9a95180b000003");
-	}
-
-	function setCatCinema() {
-		$this->humanCat[] = "Cinema";
-		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
-	}
-	
+	/* Add tags to info
+	*/
 	function setTagChildren() {
 		$this->yakTag[] = "Children";
 	}
@@ -441,6 +430,8 @@ require_once("place.php");
  		$this->yakTag[] = "Pets";
  	}
  	
+ 	/* Add zone to info
+ 	*/
  	function setZoneParis() {
  		$this->zone = 1;
  	}
@@ -457,6 +448,7 @@ require_once("place.php");
  		$this->zone = 4;
  	}
  	
+
  	function prettyPrint() {
 
  		$str = "<div>\n";
@@ -484,3 +476,5 @@ require_once("place.php");
  		return $str;
  	
  }
+
+}

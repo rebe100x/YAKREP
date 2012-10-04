@@ -12,7 +12,8 @@ ini_set('display_errors',1);
 $filenameInput = "./input/museeFrance_small.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Liste-des-Mus%C3%A9es-de-France-30382165";
 $licence = "licence ouverte";
-
+$debug = 0;
+			
 $row = 0;
 $insert = 0;
 $update = 0;
@@ -35,7 +36,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			
 			$currentPlace = new Place();
 
-			$currentPlace->setTitle($data[4]);
+			$currentPlace->title = $data[4];
 
 			$currentPlace->origin = $origin;
 			$currentPlace->licence = $licence;
@@ -64,9 +65,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$currentPlace->setTagIndoor();
 
 			// YakCat
-			$currentPlace->setCatYakdico();
-			$currentPlace->setCatGeoloc();
-			$currentPlace->setCatMusee();
+			$cat = array("CULTURE", "GEOLOCALISATION", "GEOLOCALISATION#YAKDICO", "CULTURE#MUSEE");
+			$currentPlace->setYakCat($cat);
 			
 			if ($data[1] == "PARIS")
 				$currentPlace->setZoneParis();
@@ -80,7 +80,6 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$locationQuery = $query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
 				
 			//echo $locationQuery;
-			$debug = 1;
 			switch ($currentPlace->saveToMongoDB($locationQuery, $debug, true)) {
 					case '1':
 						$insert++;

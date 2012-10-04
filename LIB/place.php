@@ -7,6 +7,9 @@ require_once("../LIB/conf.php");
 
  class Place
  {
+ 	//Conf
+ 	private $conf;
+
  	// name of the place ( can be a building, an area, a street ... )
  	public $title;
  	
@@ -59,6 +62,7 @@ require_once("../LIB/conf.php");
  	public $zone;
 
  	function __construct() {
+ 		$this->conf = new Conf();
  		$this->title = '';
  		$this->content = '';
  		$this->thumb = '';
@@ -98,11 +102,14 @@ require_once("../LIB/conf.php");
 		$this->zone = 1;
  	}
 
+ 	/* Find duplicates in db
+ 	** if duplicate exists, update contact fields if different
+ 	** Return values : 0 no duplicate - 2 updated - 3 duplicate, do nothing
+ 	*/
  	function getDoublon()
  	{
- 		$conf = new conf();
-		$m = new Mongo(); 
-		$db = $m->selectDB($conf->db());
+ 		$m = new Mongo(); 
+		$db = $m->selectDB($this->conf->db());
  		$place = $db->place;
 
  		$rangeQuery = array('title' => $this->title, 'address' => $this->address);
@@ -136,6 +143,10 @@ require_once("../LIB/conf.php");
 		}
  	}
 
+ 	/* Find location for a place
+ 	** Input parameter : a query for gmap, status for debug (0 or 1)
+ 	** Return an array(X,Y). If no location, return false
+ 	*/
  	function getLocation($query, $debug) {
  		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
  		//print_r($loc);
@@ -151,20 +162,24 @@ require_once("../LIB/conf.php");
  		return false;
  	}
 
+ 	/* Drop all places in db (if dev environment)
+ 	** else do nothing
+ 	*/
  	function dropAllPlaces() {
- 		$conf = new conf();
-		$m = new Mongo(); 
-		$db = $m->selectDB($conf->db());
- 		$db->place->drop();
+ 		if ($this->conf->getDeploy() == "dev") {
+	 		$m = new Mongo(); 
+			$db = $m->selectDB($this->conf->db());
+	 		$db->place->drop();
+ 		}
  	}
+
  	/* Save object in db
  	** Return value : 	_id : save done - 1 : Gmap error - 2 : updated duplicate 
 	** 					- 3 : Duplicate without insertion
 	**/
 	function saveToMongoDB($locationQuery, $debug, $getLocation=true) {
-		$conf = new conf();
 		$m = new Mongo(); 
-		$db = $m->selectDB($conf->db());
+		$db = $m->selectDB($this->conf->db());
  		$place = $db->place;
 
 		$record = array(
@@ -197,6 +212,7 @@ require_once("../LIB/conf.php");
 					$place->save($record);
 					$place->ensureIndex(array("location"=>"2d"));
 					print $this->title . " : location ok - saved in db<br>";
+
 					return  $record['_id'];
 				}
 				else {
@@ -216,189 +232,62 @@ require_once("../LIB/conf.php");
 		else {
 			return $ret;
 		}
+		
  	}
  	
- 	function setTitle($title, $charset='utf-8')
- 	{
- 		$this->title = mb_convert_case($title, MB_CASE_TITLE, $charset);
- 	}
-
- 	//type = tel or mobile
+ 	/* Add telephone number in contact field
+ 	** Input parameter : a tel number, key word 'tel' or 'mobile'
+ 	*/
  	function setTel($tel, $type = "tel") {
 		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
  	}
 
+ 	/* Add web site in contact field
+ 	** input parameter : a web site
+	*/
  	function setWeb ($web) {
  		$pattern = "@^(http(s?)\:\/\/)?(www\.)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*(\/)?([a-z0-9][_a-z0-9\-\/\.\&\?\+\=\,]*)*$@i";
 		
 		$webArray = preg_split("/[\s]+/", $web);
 		$result = preg_grep($pattern, $webArray);
-	
-		if (!empty($result))
+		if (!empty($result)) {
+			$result = array_values($result);
 			$this->contact['web'] = $result[0];
+		}
+			
  	}
 
+ 	/* Add email in contact field
+ 	** Input parameter : an email address
+	*/
 	function setMail ($mail) {
 		$mail = strtolower($mail);
 		if (filter_var($mail, FILTER_VALIDATE_EMAIL))
  			$this->contact['mail'] = $mail;
  	}
 
- 	function setCatYakdico() {
- 		$this->humanCat[] = "YakDico";
- 		$this->yakCat[] = new MongoId("5056b7aafa9a95180b000000");
+ 	/* Add yakCat to the place
+ 	** Input parameter : an array with yakCat to add (no accent, upper case)
+ 	** example : Array('CULTURE#CINEMA','#SPORT#PETANQUE');
+ 	*/
+ 	function setYakCat ($catPathArray) {
+ 		$m = new Mongo(); 
+		$db = $m->selectDB($this->conf->db());
+ 		$yakCat = $db->yakcat;
+
+ 		$yakCatArray = iterator_to_array($yakCat->find());
+ 		foreach ($catPathArray as $catPath) {
+ 			foreach ($yakCatArray as $cat) {
+ 				if ($cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath)))) {
+ 					$this->yakCat[] = $cat['_id'];
+ 					$this->humanCat[] = $cat['title'];
+ 				}
+ 			}
+ 		}
  	}
 
- 	function setCatActu() {
- 		$this->humanCat[] = "Actu";
- 		$this->yakCat[] = new MongoId("504d89c5fa9a957004000000");
- 	}
- 	
-	function setCatCulture() {
- 		$this->humanCat[] = "Culture";
- 		$this->yakCat[] = new MongoId("504d89cffa9a957004000001");
- 	}
-
- 	function setCatGeoloc() {
- 		$this->humanCat[] = "Geoloc";
- 		$this->yakCat[] = new MongoId("504d89f4fa9a958808000001");
- 	}
-
- 	function setCatEducation() {
- 		$this->humanCat[] = "Education";
- 		$this->yakCat[] = new MongoId("504dbb06fa9a95680b000211");
- 	}
- 	
- 	function setCatPrimaire() {
- 		$this->humanCat[] = "Primaire";
- 		$this->yakCat[] = new MongoId("5061a0d3fa9a95f009000000");
- 	}
- 	
- 	function setCatCreche() {
- 		$this->humanCat[] = "Creche";
- 		$this->yakCat[] = new MongoId("506479f54a53042191030000");
- 	}
- 	
- 	function setCatTheatre() {
- 		$this->humanCat[] = "Theatre";
- 		$this->yakCat[] = new MongoId("504df6b1fa9a957c0b000004");
- 	}
- 	
- 	function setCatMusee() {
- 		$this->humanCat[] = "Musee";
- 		$this->yakCat[] = new MongoId("50535d5bfa9a95ac0d0000b6");
- 	}
- 	
- 	function setCatExpo() {
- 		$this->humanCat[] = "Expo";
- 		$this->yakCat[] = new MongoId("504df70ffa9a957c0b000006");
- 	}
- 	
-	function setCatPlanetarium() {
- 		$this->humanCat[] = "Planetarium";
- 		$this->yakCat[] = new MongoId("5056bf3ffa9a95180b000005");
- 	}
- 	
- 	function setCatMediatheque() {
- 		$this->humanCat[] = "Mediatheque";
- 		$this->yakCat[] = new MongoId("5056bf35fa9a95180b000004");
- 	}
-
- 	function setCatAquarium() {
- 		$this->humanCat[] = "Aquarium";
- 		$this->yakCat[] = new MongoId("5056bf28fa9a95180b000003");
- 	}
-
- 	function setCatCinema() {
- 		$this->humanCat[] = "Cinema";
- 		$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
- 	}
- 	
- 	function setCatPatinoire() {
- 		$this->humanCat[] = "Patinoire";
- 		$this->yakCat[] = new MongoId("50647e2d4a53041f91000000");
- 	}
- 	
- 	function setCatMaisonDeQuartier() {
- 		$this->humanCat[] = "Maison de quartier";
- 		$this->yakCat[] = new MongoId("506479f54a53042191040000");
- 	}
-
-	function setCatConcert() {
- 		$this->humanCat[] = "Concert";
- 		$this->yakCat[] = new MongoId("506479f54a53042191010000");
- 	}
- 	
- 	function setCatSport() {
- 		$this->humanCat[] = "Sport";
- 		$this->yakCat[] = new MongoId("506479f54a53042191000000");
- 	}
- 	
- 	function setCatVolley() {
- 		$this->humanCat[] = "Volley";
- 		$this->yakCat[] = new MongoId("50647e2d4a53041f91010000");
- 	}
- 	
- 	function setCatPiscine() {
- 		$this->humanCat[] = "Piscine";
- 		$this->yakCat[] = new MongoId("50647e2d4a53041f91020000");
- 	}
-
-	function setCatGymnase() {
- 		$this->humanCat[] = "Gymnase";
- 		$this->yakCat[] = new MongoId("50647e2d4a53041f91030000");
- 	}
- 	
- 	function setCatFootball() {
- 		$this->humanCat[] = "Football";
- 		$this->yakCat[] = new MongoId("50647e2d4a53041f91040000");
- 	}
- 	
- 	function setCatRugby() {
- 		$this->humanCat[] = "Rugby";
- 		$this->yakCat[] = new MongoId("50647e2d4a53041f91050000");
- 	}
- 	
- 	function setCatTennis() {
- 		$this->humanCat[] = "Tennis";
- 		$this->yakCat[] = new MongoId("50647e2d4a53041f91060000");
- 	}
- 	
- 	function setCatPetanque() {
- 		$this->humanCat[] = "Petanque";
- 		$this->yakCat[] = new MongoId("50647e2d4a53041f91070000");
- 	}
- 	
- 	function setCatStations() {
- 		$this->humanCat[] = "Stations";
- 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
- 	} 
-
- 	function setCatMusique() {
- 		$this->humanCat[] = "Musique";
- 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
- 	}
-
- 	function setCatReligion() {
- 		$this->humanCat[] = "Religion";
- 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
- 	}
-
- 	function setCatEspaceVert() {
- 		$this->humanCat[] = "Espace Vert";
- 		$this->yakCat[] = new MongoId("50596cdafa9a95401400004f");
- 	}
-
- 	 function setCatArchive() {
- 		$this->humanCat[] = "Archive";
- 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
- 	}
-
- 	 function setCatExposition() {
- 		$this->humanCat[] = "Exposition";
- 		//$this->yakCat[] = new MongoId("504df728fa9a957c0b000007");
- 	}
-
+ 	/* Add Tags in yakTag array
+ 	*/
  	function setTagChildren() {
  		$this->yakTag[] = "Children";
  	}

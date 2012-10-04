@@ -46,7 +46,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			}
 			$place = new Place();
 			
-			$place->setTitle('Station '.$data[3]);
+			$place->title = 'Station '.$data[3];
 		
 			$place->content = 'Lignes de correspondances: ';
 			if ($data[5] != '0')
@@ -72,8 +72,9 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$place->setZoneParis();
 		
 			$locationQuery = $place->title . ' ' . $place->address['street'] . ' ' . $place->address['zipcode'] . ' ' . $place->address['city'] . ', ' . $place->address['country'];
-		
-			$place->setCatStations();
+			
+			$cat = array("GEOLOCALISATION#STATION", "GEOLOCALISATION");
+			$place->setYakCat($cat);
 		
 			$debug = 0;
 
@@ -98,7 +99,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			
 			$info = new Info();
 
-			$info->setTitle($place->title);
+			$info->title = $place->title;
 			$info->content = $data[4];
 			$info->origin = $origin;
 			$info->access = $access;
@@ -106,7 +107,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->pubDate = '';
 			$info->dateEndPrint = mktime(0, 0, 0, 9, 1, 2013);
 			//$info->heat = 1;
-			$info->setCatYakdico();
+			$cat = array("GEOLOCALISATION#YAKDICO", "GEOLOCALISATION");
+			$place->setYakCat($cat);
 			$info->status = 1;
 			$info->print = 1;
 			$info->yakType = 3;

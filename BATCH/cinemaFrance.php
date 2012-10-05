@@ -60,7 +60,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			
 			print "<b>$currentPlace->title</b> : ";
 
-			$locationQuery = $query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
+			$locationQuery = $query = $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
 				
 			//echo $locationQuery;
 			switch ($currentPlace->saveToMongoDB($locationQuery, $debug, true)) {
@@ -81,7 +81,10 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 						$insert++;
 						break;
 				}
+
+		var_dump($currentPlace);
 		}
+		
 		$row++;
 		$i++;
 

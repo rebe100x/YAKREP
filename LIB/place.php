@@ -1,9 +1,9 @@
 <?php
-$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+//$root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
 require_once("library.php");
-require_once("$root/LIB/conf.php");
-
+//require_once("$root/LIB/conf.php");
+require_once("conf.php");
 
 
  class Place

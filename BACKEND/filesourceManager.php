@@ -47,6 +47,40 @@ $records[] = array(
 	"tag" => array("trafic" , "metro" , "rer" , "transport" , "Paris", "Ile-de-France", "RATP"),
 
 	);	
+	
+$records[] = array(
+	"title"=>"Etablissements cinématographiques",
+	"content" =>"Liste des établissements cinématographiques en 2010 avec leur adresse. Données : région / ville /numéro d'autorisation / enseigne / adresse / adresse complémentaire / commune / code postal",
+	"origin" => "http://www.data.gouv.fr/donnees/view/Liste-des-établissements-cinématographiques-en-2010-avec-leur-adresse-30382098",
+	"licence" => "Licence ouverte",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"tag" => array("cinéma" , "ciné" , "cinoche"),
+
+	);	
+	
+$records[] = array(
+	"title"=>"Musées de France",
+	"content" =>"Liste des Musées de France.Libellés des colonnes : Régions ; Départements ; Fermé (oui si le musée est fermé) ; Annexe (si annexe au musée) ; Nom du musée ; Coordonnées postale (Adresse, Ville, CP) ; Siteweb ; périodes d'ouverture et de fermeture annuelle ; Jours nocturnes",
+	"origin" => "http://www.data.gouv.fr/donnees/view/Liste-des-Musées-de-France-30382165",
+	"licence" => "Licence ouverte",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"tag" => array("musée" , "musées" , "france"),
+
+	);	
+	
+$records[] = array(
+	"title"=>"Offres culturelles",
+	"content" =>"Liste des évènements culturels et des organismes producteurs d'événements en France et des grandes manifestations en France et à l'étranger. Liste des champs : Identifiant de l’organisme ; Nom de l’organisme ; Autre nom ; Type d’organisme ; Sous-type de l’organisme ; Adresse ; Nom du lieu ; Adresse ; Accès handicapés ; Classé au titre des Monuments historiques ; Date de classement du site ; Inscrit à l’inventaire supplémentaire des Monuments historiques ; Date d’inscription ; Elément classé ou inscrit ; Etendu de la protection ; Situé dans un espace protégé ; Intitulé de l’offre culturelle ; Nature de l’offre ; Liste des thèmes associés à l’offre ; Dates, horaires, conditions d’accès et lieu d’accueil de cette offre ;Liste des dates et tarifs de l’offre ;, date début ; date fin.",
+	"origin" => "http://www.data.gouv.fr/donnees/view/Agenda---Offres-culture-2011-30382214",
+	"licence" => "Licence ouverte",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"tag" => array("offre" , "culture" , "france"),
+
+	);	
+
 
 
 

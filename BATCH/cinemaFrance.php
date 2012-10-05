@@ -11,6 +11,7 @@ include_once "../LIB/place.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/cinemaFrance.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Liste-des-%C3%A9tablissements-cin%C3%A9matographiques-en-2010-avec-leur-adresse-30382098";
+$fileTitle = "Etablissements cinématographiques";
 $licence = "licence ouverte";
 $debug = 0;
 			
@@ -39,6 +40,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$currentPlace->title = $data[3];
 
 			$currentPlace->origin = $origin;
+			$currentPlace->filesourceTitle = $fileTitle;
 			$currentPlace->licence = $licence;
 			$currentPlace->address["street"] = $data[4]. " " . $data[5];
 			$currentPlace->address["zipcode"] = $data[7];

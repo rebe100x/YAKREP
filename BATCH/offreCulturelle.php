@@ -21,6 +21,7 @@ require_once("../LIB/library.php");
 ini_set('display_errors',1);
 $filenameInput = "./input/offreCulturelle_small.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Agenda---Offres-culture-2011-30382214";
+$fileTitle = "Offres culturelles";
 $licence = "Licence ouverte";
 
 $row = 0;
@@ -52,6 +53,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				$currentPlace->title = $data[38];
 
 				$currentPlace->origin = $origin;
+				$currentPlace->filesourceTitle = $fileTitle;
 				$currentPlace->licence = $licence;
 
 				// If no street address, skip this element

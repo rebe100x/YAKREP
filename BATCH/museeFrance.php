@@ -11,7 +11,7 @@ include_once "../LIB/place.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/museeFrance_small.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Liste-des-Mus%C3%A9es-de-France-30382165";
-$fileTitle = "Liste des musées de France";
+$fileTitle = "Musées de France";
 $licence = "licence ouverte";
 $debug = 0;
 			

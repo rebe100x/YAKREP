@@ -1,5 +1,6 @@
 <?php 
 
+require_once("../../LIB/conf.php");
 require_once("../../LIB/place.php");
 
 /*
@@ -53,7 +54,7 @@ $currentPlace;
 foreach ($urlset->url as $url) {
 	if ($url->uid) {
 
-		echo "Call to cibul Api for Uid", $url->uid, "<br />";
+		echo "Call to cibul Api for Uid: ", $url->uid, "<br />";
 
 		$chuid = curl_init();
 

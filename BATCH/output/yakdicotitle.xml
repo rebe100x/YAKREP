@@ -1,19 +1,14 @@
 <Ontology xmlns="exa:com.exalead.mot.components.ontology">
 	<Pkg path="yakdicotitle" >
-		<Entry display="Vel d'Hiv"><Form level="normalized"/></Entry>
-		<Entry display="Ateliers d'Art de France"><Form level="normalized"/></Entry>
-		<Entry display="parc des Expositions"><Form level="normalized"/></Entry>
-		<Entry display="bois de Vincennes"><Form level="normalized"/></Entry>
-		<Entry display="bois de Boulogne"><Form level="normalized"/></Entry>
-		<Entry display="bassin de la Villette"><Form level="normalized"/></Entry>
-		<Entry display="jardin d'Acclimatation"><Form level="normalized"/></Entry>
-		<Entry display="jardin des Plantes"><Form level="normalized"/></Entry>
-		<Entry display="tunnel des Halles"><Form level="normalized"/></Entry>
-		<Entry display="la Petite Ceinture"><Form level="normalized"/></Entry>
-		<Entry display="Hotel de Ville"><Form level="normalized"/></Entry>
-		<Entry display="H&#xf4;tel de Ville"><Form level="normalized"/></Entry>
-		<Entry display="porte de la Chapelle"><Form level="normalized"/></Entry>
-		<Entry display="porte Clignancourt"><Form level="normalized"/></Entry>
-		<Entry display="porte de Montmartre"><Form level="normalized"/></Entry>
+		<Entry display="Aire de jeux de la rue H&#xe9;l&#xe8;ne"><Form level="normalized"/></Entry>
+		<Entry display="Arboretum de l'Ecole Du Breuil"><Form level="normalized"/></Entry>
+		<Entry display="Bois de Boulogne"><Form level="normalized"/></Entry>
+		<Entry display="Clos Montmartre"><Form level="normalized"/></Entry>
+		<Entry display="Esplanade des Invalides"><Form level="normalized"/></Entry>
+		<Entry display="Esplanade Gaston Monnerville"><Form level="normalized"/></Entry>
+		<Entry display="Esplanade Habib Bourguiba"><Form level="normalized"/></Entry>
+		<Entry display="Ile de Bercy"><Form level="normalized"/></Entry>
+		<Entry display="Jardin Andr&#xe9; Ulmann"><Form level="normalized"/></Entry>
+		<Entry display="Jardin Anne Frank"><Form level="normalized"/></Entry>
 	</Pkg>
 </Ontology>

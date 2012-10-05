@@ -22,7 +22,7 @@ INFO
 	user : who created the info ( 0 for a batch )
 	zone : used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee, 4 Other
 	contact : object : only if different from the place contact ( ex: for an expo the museaum and the expo do not have the same contact )
-	address :debug field : the location string found by the semantic factory ( the string sent to gmap, used only for the rss parsing )
+	address : the address human readable for printing ( formated address )
 	placeId : {ID PLACE} : id of the place matched with in db
 	
 	->EXEMPLE: 
@@ -63,12 +63,7 @@ array({
 				'opening':'Tlj de 9h à 20h'
 				},
 	}
-	address :{ 
-				'street':'',
-				'zipcode':'',
-				'city':'Paris',
-				'country':'France',
-			},
+	address :21 Rue Michel le Comte, 75003 Paris, France,
 	placeId : { MongoId Object (
 				[$id] => 504d994bfa9a95680b0001be
 				)}		
@@ -79,7 +74,7 @@ array({
 	
 	
 PLACE
-	title : name of the place ( can be a building, an area, a street ... )
+	title : name of the place ( can be a building, an area, a street ... ) = 21 Rue Michel le Comte, 75003 Paris, France
 	content : some text to describe the place
 	thumb : a local link to a picture of the place
 	origin : where did we get this info
@@ -96,10 +91,14 @@ PLACE
 	user : who created the info ( 0 for a batch )
 	zone : used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee , 4 Other
 	address :{ 
-				'street':'',
-				'zipcode':'',
-				'city':'Paris',
-				'country':'France',
+		[street_number] => 21
+		[street] => Rue Michel le Comte
+		[arr] => 
+		[city] => Paris
+		[state] => Paris
+		[area] => Île-de-France
+		[country] => France
+		[zip] => 75003
 			},
 	contact : {
 				'tel':'012222222',
@@ -137,10 +136,14 @@ array({
 	lastModifDate => new MongoDate(gmmktime()),
 	location => array('lat'=>48.132165,'lng'=>2.388643),
 	address => array{ 
-				'street':'Place Maurice de Fontenay',
-				'zipcode':'75012',
-				'city':'Paris',
-				'country':'France',
+						[street_number] => 21
+						[street] => Rue Michel le Comte
+						[arr] => 
+						[city] => Paris
+						[state] => Paris
+						[area] => Île-de-France
+						[country] => France
+						[zip] => 75003
 			}
 	status : 1,
 	user : 0, // this is a batch
@@ -195,11 +198,17 @@ USER
 name : 
 bio : 
 mail : email
+formated_address : 21 Rue Michel le Comte, Paris, France
 address => array(
-				'street'=>'',
-				'zipcode'=>'75000',
-				'city'=>'Paris',
-				'country'=>'France',
+				[street_number] => 21
+				[street] => Rue Michel le Comte
+				[arr] => 
+				[city] => Paris
+				[state] => Paris
+				[area] => Île-de-France
+				[country] => France
+				[zip] => 75003
+
 			),
 web : url website
 tag : array("tag","tag")
@@ -210,7 +219,8 @@ password :
 usersubsc : array({iduser})
 tagsubsc : array({"tag","tag","tag"})
 placesubsc : array({idplace})
-home : array(lat,lng)
+favplace : [PLACE]
+location : array(lat,lng)
 creationDate => new MongoDate
 lastModifDate => new MongoDate
 lastLoginDate => new MongoDate

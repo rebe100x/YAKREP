@@ -4,6 +4,7 @@
 <li><a href="yakplaceManager.php">Manage Yakwala Places</a></li>
 <li><a href="yakuserManager.php">Manage Yakwala Users</a></li>
 <li><a href="filesourceManager.php">Manage filesource</a></li>
+<li><a href="infoManager.php">Manage infos</a></li>
 <li><a href="../TOOLS/moadmin.php">Mongo DB</a></li>
 </ul>
 

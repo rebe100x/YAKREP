@@ -130,7 +130,7 @@ if(!empty($_GET['q'])){
 	
 	$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
 	$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
-	
+	$defaultPlaceName = "Paris";
 	$geolocYakCatId = "504d89f4fa9a958808000001"; // GEOLOC : @TODO softcode this
 	
 	echo '<br> Default location of the feed : Paris';
@@ -350,12 +350,14 @@ if(!empty($_GET['q'])){
 						$print = 1;
 						$geolocGMAP = $resGMap['location'];
 						$addressGMAP = $resGMap['address'];
+						$formatted_addressGMAP = $resGMap['formatted_address'];
 					}else{
 						echo "<br> GMAP did not succeed to find a location, we store the INFO in db with status 10.";
 						$status = 10;
 						$geolocGMAP = array(0,0);
 						$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
 						$print = 0;
+						$formatted_addressGMAP = "";
 					} 
 					// we store the result in PLACE for next time
 					
@@ -394,7 +396,7 @@ if(!empty($_GET['q'])){
 						}else
 						   echo "<br> The location exists in db => doing nothing.";
 					}
-					$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1]);
+					$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1],'address'=>$formatted_addressGMAP);
 				 
 				 }         
 			}
@@ -417,7 +419,7 @@ if(!empty($_GET['q'])){
 			$print = 0;
 			$geoloc = array($defaultGeoloc);
 			$status = 1;
-			$placeArray[] = array('_id'=>$defaultPlaceId,'lat'=>$defaultGeoloc[0],'lng'=>$defaultGeoloc[1]);	
+			$placeArray[] = array('_id'=>$defaultPlaceId,'lat'=>$defaultGeoloc[0],'lng'=>$defaultGeoloc[1],'address'=>$defaultPlaceName);	
 		}
 		
 	
@@ -463,7 +465,8 @@ if(!empty($_GET['q'])){
 			$info['user'] = 0;
 			$info['zone'] = 1;
 			$info['location'] = array("lat"=>$geolocItem['lat'],"lng"=>$geolocItem['lng']);
-			$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
+			//$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
+			$info['address'] = $geolocItem['address'];
 			$info['placeId'] = new MongoId($geolocItem['_id']);
 			
 			// check if data is not in DB

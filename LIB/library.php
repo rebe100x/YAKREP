@@ -71,8 +71,8 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 		}
 		
 		$location = $json->results[0]->geometry->location;
-		
-		$res = array("address"=>$address,"location"=>array($location->lat,$location->lng),"status"=>$json->status);
+		$formatted_address = $json->results[0]->formatted_address;
+		$res = array("formatted_address"=>$formatted_address,"address"=>$address,"location"=>array($location->lat,$location->lng),"status"=>$json->status);
 	    if($output == 'JSON')    
 	        $res = json_encode($res);
 	    if($output == 'PHP')    

@@ -334,7 +334,11 @@ require_once("conf.php");
  	function setTagIndoor() {
  		$this->yakTag[] = "Indoor";
  	}
-
+	
+	function setTagOutdoor() {
+ 		$this->yakTag[] = "Outdoor";
+ 	}
+	
  	function setTagGay() {
  		$this->yakTag[] = "Gay friendly";
  	}

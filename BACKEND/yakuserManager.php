@@ -21,12 +21,7 @@ $records[] = array(
 	"bio" =>"",
 	"mail" =>"tintin@gmail.com",
 	"web" =>"http://tintin.com",
-	"address" => array(
-				'street'=>'',
-				'zipcode'=>'75000',
-				'city'=>'Paris',
-				'country'=>'France',
-			),
+	"address" => array(),
 	"tag" => array("Hergé","Bande dessinée", "BD"),
 	"thumb" => "",
 	"type" => 2,
@@ -34,8 +29,9 @@ $records[] = array(
 	"password"=> "tintin",
 	"usersubs" => array(),
 	"placesubs" => array(),
+	"favplace" => array(),
 	"tagsubs" => array("faits divers"),
-	"home" => array('lat'=>48.851875,'lng'=>2.356374),
+	"location" => array('lat'=>48.851875,'lng'=>2.356374),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"lastLoginDate" => new MongoDate(gmmktime()),
@@ -49,12 +45,7 @@ $records[] = array(
 	"bio" =>"ma bio",
 	"mail" =>"renaud@gmail.com",
 	"web" =>"http://bessieres.biz",
-	"address" => array(
-				'street'=>'',
-				'zipcode'=>'75000',
-				'city'=>'Paris',
-				'country'=>'France',
-			),
+	"address" => array(),
 	"tag" => array(),
 	"thumb" => "",
 	"type" => 1,
@@ -63,7 +54,8 @@ $records[] = array(
 	"usersubs" => array(),
 	"placesubs" => array(),
 	"tagsubs" => array(),
-	"home" => array('lat'=>48.851875,'lng'=>2.356374),
+	"favplace" => array(),
+	"location" => array('lat'=>48.851875,'lng'=>2.356374),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"lastLoginDate" => new MongoDate(gmmktime()),
@@ -75,12 +67,7 @@ $records[] = array(
 	"bio" =>"",
 	"mail" =>"asso@gmail.com",
 	"web" =>"http://asso.com",
-	"address" => array(
-				'street'=>'',
-				'zipcode'=>'75000',
-				'city'=>'Paris',
-				'country'=>'France',
-			),
+	"address" => array(),
 	"tag" => array(),
 	"thumb" => "",
 	"type" => 3,
@@ -89,7 +76,8 @@ $records[] = array(
 	"usersubs" => array(),
 	"placesubs" => array(),
 	"tagsubs" => array(),
-	"home" => array('lat'=>48.851875,'lng'=>2.356374),
+	"favplace" => array(),
+	"location" => array('lat'=>48.851875,'lng'=>2.356374),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"lastLoginDate" => new MongoDate(gmmktime()),
@@ -101,12 +89,7 @@ $records[] = array(
 	"bio" =>"",
 	"mail" =>"etp@gmail.com",
 	"web" =>"http://etp.com",
-	"address" => array(
-				'street'=>'',
-				'zipcode'=>'75000',
-				'city'=>'Paris',
-				'country'=>'France',
-			),
+	"address" => array(),
 	"tag" => array(),
 	"thumb" => "",
 	"type" => 4,
@@ -115,7 +98,8 @@ $records[] = array(
 	"usersubs" => array(),
 	"placesubs" => array(),
 	"tagsubs" => array(),
-	"home" => array('lat'=>48.851875,'lng'=>2.356374),
+	"favplace" => array(),
+	"location" => array('lat'=>48.851875,'lng'=>2.356374),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"lastLoginDate" => new MongoDate(gmmktime()),
@@ -127,12 +111,7 @@ $records[] = array(
 	"bio" =>"",
 	"mail" =>"inst@gmail.com",
 	"web" =>"http://inst.com",
-	"address" => array(
-				'street'=>'',
-				'zipcode'=>'75000',
-				'city'=>'Paris',
-				'country'=>'France',
-			),
+	"address" => array(),
 	"tag" => array(),
 	"thumb" => "",
 	"type" => 5,
@@ -141,7 +120,8 @@ $records[] = array(
 	"usersubs" => array(),
 	"placesubs" => array(),
 	"tagsubs" => array(),
-	"home" => array('lat'=>48.851875,'lng'=>2.356374),
+	"favplace" => array(),
+	"location" => array('lat'=>48.851875,'lng'=>2.356374),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"lastLoginDate" => new MongoDate(gmmktime()),
@@ -153,12 +133,7 @@ $records[] = array(
 	"bio" =>"",
 	"mail" =>"toto@gmail.com",
 	"web" =>"http://toto.com",
-	"address" => array(
-				'street'=>'',
-				'zipcode'=>'75000',
-				'city'=>'Paris',
-				'country'=>'France',
-			),
+	"address" => array(),
 	"tag" => array(),
 	"thumb" => "",
 	"type" => 1,
@@ -167,20 +142,66 @@ $records[] = array(
 	"usersubs" => array(),
 	"placesubs" => array(),
 	"tagsubs" => array(),
-	"home" => array('lat'=>48.851875,'lng'=>2.356374),
+	"favplace" => array(),
+	"location" => array('lat'=>48.851875,'lng'=>2.356374),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"lastLoginDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
 
+
+
+$records[] = array(
+	"name"=>"Julien",
+	"bio" =>"",
+	"mail" =>"jlebot.info@gmail.com",
+	"web" =>"",
+	"address" => array(),
+	"tag" => array(),
+	"thumb" => "",
+	"type" => 1,
+	"login"=>"julien",	
+	"password"=> "julien",
+	"usersubs" => array(),
+	"placesubs" => array(),
+	"tagsubs" => array(),
+	"favplace" => array(),
+	"location" => array('lat'=>48.851875,'lng'=>2.356374),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"lastLoginDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"name"=>"Damien",
+	"bio" =>"",
+	"mail" =>"",
+	"web" =>"",
+	"address" => array(),
+	"tag" => array(),
+	"thumb" => "",
+	"type" => 1,
+	"login"=>"damien",	
+	"password"=> "damien",
+	"usersubs" => array(),
+	"placesubs" => array(),
+	"tagsubs" => array(),
+	"favplace" => array(),
+	"location" => array('lat'=>48.851875,'lng'=>2.356374),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"lastLoginDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 $row = 0;	
 foreach($records as $record){
 	$res = $user->findOne(array('mail'=>$record['mail']));
 	if(empty($res)){
 		$row++;
 		$user->save($record);
-		$user->ensureIndex(array("home"=>"2d"));
+		$user->ensureIndex(array("location"=>"2d"));
 		echo $record['_id'].'<br>';                    
 	}
 }

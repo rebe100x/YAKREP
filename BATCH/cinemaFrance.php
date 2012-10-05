@@ -82,7 +82,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 						break;
 				}
 
-		var_dump($currentPlace);
+		//var_dump($currentPlace);
 		}
 		
 		$row++;

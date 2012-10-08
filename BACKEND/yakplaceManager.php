@@ -26,10 +26,14 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>48.851875,'lng'=>2.356374),
 	"address" => array(
+				'street_number'=>''
 				'street'=>'',
-				'zipcode'=>'75000',
+				'arr'=>'',
 				'city'=>'Paris',
+				'state'=>'',
+				'area'=>'Ile-de-France',
 				'country'=>'France',
+				'zip'=>'75000',
 			),
 	"status" => 1,
 	"user" => 0, 

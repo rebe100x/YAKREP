@@ -5,39 +5,41 @@
 
 <?php
 /* batch to parse "PARCS, SQUARES et JARDINS DE PARIS"
+
+* original file provides LAT and LNG => we keep them since gmpa does not localise well those places
+
  * */
 
 include_once "../LIB/place.php";
 ini_set('display_errors',1);
-$origin = "http:/yakwala.fr";
+$origin = "operator";
 $licence = "yakwala";
 $debug = 1;
+$fileTitle = "Parcs et jardins de Paris";
 			
 $row = 0;
-$insert = 0;
-$update = 0;
-$locError = 0;
-$doublon = 0;
+$updateFlag = empty($_GET['updateFlag'])?0:1;
 
-$i=0;
-$j=0;
+$results = array('row'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0);
 
 require_once('./input/jardins.php');
-var_dump(sizeof($jardins));
+
 
 foreach($jardins as $jardinJSON){
-	if($row == 11)
-		exit;
+		
 	$jardin = json_decode($jardinJSON[0],1);
-	var_dump($jardin);
 	$currentPlace = new Place();
 	$currentPlace->title = $jardin['name'];
 	echo $jardin['name']."<br>";
 
+	$currentPlace->filesourceTitle = $fileTitle;
 	$currentPlace->location = array('lat'=>$jardin['lat'],'lng'=>$jardin['lng']);
 	$currentPlace->licence = $licence;
+	$currentPlace->origin = $origin;
 	$currentPlace->address["street"] = $jardin['address'];
-	$currentPlace->address["zipcode"] = $jardin['zipcode'];
+	$currentPlace->address["state"] = "Paris";
+	$currentPlace->address["area"] = "Ile-de-France";
+	$currentPlace->address["zip"] = $jardin['zipcode'];
 	$currentPlace->address["city"] = "Paris";
 	$currentPlace->address["country"] = "France";
 
@@ -47,35 +49,20 @@ foreach($jardins as $jardinJSON){
 	$currentPlace->setZoneParis();
 		
 	
-	switch ($currentPlace->saveToMongoDB($locationQuery, $debug, false)) {
-				case '1':
-					$insert++;
-					$locError++;
-					break;
-				case '2':
-					//print "updated <br>";
-					$update++;
-					break;
-				case '3':
-					//print "doublon <br>";
-					$doublon++;
-					break;
-				default :
-					//print "insert (1 call to gmap)<br>";
-					$insert++;
-					break;
+	$res = $currentPlace->saveToMongoDB('', $debug,$updateFlag);
+			
+	foreach ($res as $k=>$v) {
+		if(isset($v))
+			$results[$k]+=$v;
+	
 	}
+	
+	
+	$results['row'] ++;	
 	$row++;
 }
 
-print "<br>________________________________________________<br>
-		JARDINS DE PARIS: done <br>";
-print "Rows : " . ($row-1) . "<br>";
-print "Call to gmap : " . $insert . "<br>";
-print "Location error (call gmap) : " . $locError . "<br>";
-print "Insertions : " . $insert . "<br>";
-print "Updates : " . $update . "<br>";
-print "Doublons : " . $doublon . "<br>";
+prettyLog($results);
 
 
 

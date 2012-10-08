@@ -1,198 +1,37 @@
-REGIONS;DEPARTEMENTS;FERME;ANNEXE;NOM DU MUSEE;ADRESSE;CP;VILLE;SITWEB;FERMETURE ANNUELLE;PERIODE OUVERTURE;JOURS NOCTURNES
-FRANCHE-COMTE;JURA;OUI;;Musée Municipal de Poligny;"Hôtel de Ville
-49, Grande Rue";39800;POLIGNY;;;;
-FRANCHE-COMTE;JURA;NON;;Musée de l'Abbaye/Donations Guy Bardone - René Genis;3, Place de l'Abbaye;39200;SAINT-CLAUDE;Site des musées de la région;1er janvier, 1er mai, 1er novembre, 25 décembre;Ouvert du 1er septembre au 1er mai du mercredi au dimanche de 10h à 12h et de 14h à 18h et du 1er juin au 31 aôut du mercredi au lundi de 10h à 12h et de 14h à 18h;
-FRANCHE-COMTE;JURA;NON;;Musée des Salines;Place des Anciennes Salines;39110;SALINS-LES-BAINS;www.musees-des-techniques.org ou www.salinesdessalins.com - site créer en 2011;1er janvier, 25 décembre;Ouvert de novembre à fin février de 10h30 à 15h uniquement vacances et week-end, de mars à avril de 10h30 à 15h week-end et jours fériés vacances scolaires de 10h30, 14h30 à 16h, mai à juin de 10h à 11h30 et visites guidée à 14h30, 15h30, 16h30, juillet-a;
-FRANCHE-COMTE;JURA;OUI;;Musée Max Claudet;Place des Salines;39110;SALINS-LES-BAINS;http://www.juramusees.fr/1/musee/musees/beaux_arts/musee_max_claudet_salins_les_bains.html;;;
-FRANCHE-COMTE;JURA;OUI;;Musée de l'Artisanat Jurassien;Abbaye de Baume-Les-Messieurs;39210;VOITEUR;;;Ouvert en juillet-août et les week-end de septembre à octobre;
-FRANCHE-COMTE;TERRITOIRE DE BELFORT;NON;;Musée Frédéric Japy;16, Rue Frédéric Japy;90500;BEAUCOURT;www.musees-des-techniques.org;1er mai, 1er novembre et du 23 décembre au 28 février;Ouvert du 1er mars au 22 décembre du mercredi au dimanche de 14h à 17h, en juillet-août du mercredi au dimanche de 10h à 12h et de 14h à 17h;
-FRANCHE-COMTE;TERRITOIRE DE BELFORT;NON;;Donation Maurice Jardot;"Musée(s) de Belfort
-B.P. 20223";90004;BELFORT Cedex;www.musees-franchecomte.com;Le 1er novembre, le 25 décembre et le 1er janvier;Ouvert du 1er avril au 30 juin et en septembre de 10h à 12h et de 14h à 18h, du 1er octobre au 31 mars de 10h à 12h et de  14h à 17h, en juillet-août de 10h  à 18h;
-FRANCHE-COMTE;TERRITOIRE DE BELFORT;NON;;Musée d'Art et d'Histoire;"Château de Belfort
-B.P. 733";90020;BELFORT cedex;www.musees-franchecomte.com;le 1er novembre, 25 décembre, 1er janvier;Ouvert du 1er avril au 30 juin et en septembre de 10h à 12h et de 14h à 18h, du 1er octobre au 31 mars de 10h à 12h et de  14h à 17h, en juillet-août de 10h  à 18h;
-FRANCHE-COMTE;TERRITOIRE DE BELFORT;NON;;Forge-Musée;2, Rue de la Madeleine;90170;ETUEFFONT;http://forgemusee.etueffont.free.fr ou www.musees-des-techniques.org;;Ouvert du 1er avril au 31 octobre du mercredi au lundi de 14h à 18h et de 9h à 12h, ouvert sur réservation pour les groupes;
-GUADELOUPE;GUADELOUPE;OUI;;Ecomusée de Marie-Galante;Habitation Murat;97112;GRAND-BOURG de MARIE-GALANTE;;;Ouvert du lundi au vendredi de 9h à 17h30 et samedi dimanche de 9h à 13h30 depuis le 8 mars 2008;
-GUADELOUPE;GUADELOUPE;NON;;Musée Précolombien Edgar Clerc;440 Route de la Rosette;97160;LE MOULE;www.cg971.fr/musees/clerc/index_edgar.htm;Jours fériés;Ouvert lundi, mardi, jeudi de 9h à 17h, mercredi, vendredi de 9h à 13h;
-GUADELOUPE;GUADELOUPE;OUI;;Musée l'Herminier;"Office du Tourisme
-1 Centre Commercial Marina";97110;POINTE-A-PITRE;;;;
-GUADELOUPE;GUADELOUPE;NON;;Musée Municipal Saint-John Perse;9, rue de Nozière;97110;POINTE-A-PITRE;www.sjperse.org/museesjp.htm;Jours fériés;Ouvert du lundi au vendredi de 9h à 17h, le  samedi de 9h à 12h;
-GUADELOUPE;GUADELOUPE;NON;;Musée Schoelcher;24, Rue Peynier;97110;POINTE-A-PITRE -GUADELOUPE;www.cg971.fr/musees/schoelcher/index_schoecher.htm;Jours fériés;Ouvert du lundi au vendredi de 9h à 17h;
-GUYANE;GUYANE;NON;;Musée des Arts et Traditions Populaires de la Guyane;78, Rue Mme Payé;97300;CAYENNE;www.mcg973.org;;Ouvert lundi et mardi de 8h à 13h et de 15h à 17h45, mercredi de 8h à 13h, jeudi et vendredi de 8h à 13h et de 15h à 17h45, samedi de 8h à 11h45;
-GUYANE;GUYANE;NON;;Musée Départemental Alexandre Franconie;1, Avenue du Général-de-Gaulle;97300;CAYENNE - GUYANE;;;Ouvert le lundi, mercredi, jeudi et vendredi de 8h00 à 13h15 et Lundi et Jeudi de 15h00 à 17h45;
-GUYANE;GUYANE;NON;;Ecomusée Municipal d'Approuage-Kaw;"Rue Gaston Monnerville
-Le Bourg";97390;REGINA;;;Ouvert mercredi, vendredi, samedi et dimanche de 9h30 à 17h30. Accueil à la carte et sur rendez-vous pour les groupes. Ouvert lors des vacances scolaires de 9h30 à 17h30 sauf le mardi;
-ILE-DE-FRANCE;ESSONNE;NON;;Musée Français de la Photographie;78, Rue de Paris;91570;BIEVRES;www.photographie.essonne.fr;Jours fériés;Ouvert du mercredi au lundi de 9h30 à 12h30 et de 13h30 à 17h30;
-ILE-DE-FRANCE;ESSONNE;NON;;Musée Dunoyer de Segonzac;5, Place des Droits de l'Homme;91800;BOUSSY-SAINT-ANTOINE;;;;
-ILE-DE-FRANCE;ESSONNE;NON;;Musée Municipal Robert Dubois-Corneau;16, Rue du Réveillon;91800;BRUNOY;www.brunoy.fr;Août  et jours fériés et du 25 décembre 2010 au 4 janvier 2011;Ouvert du mercredi au dimanche de 14h à 18h du 1er mai au 31 octobre et de 14h à 17h du 1er novembre au 30 avril. Pour les scolaire ouvert du mercredi au vendredi de 9h à 12h et de 14h à 17h;
-ILE-DE-FRANCE;ESSONNE;NON;;Musée du Château;Place du Général de Gaulle;91410;DOURDAN;Site de la ville - www.mairie-dourdan.fr;Janvier, 25 décembre - Réouverture le 15 janvier à partir de 2010;Ouvert du mercredi au dimanche ainsi que les jours fériés de 10 h à 12 h et de 14 h à 18 h, 17h le vendredi;
-ILE-DE-FRANCE;ESSONNE;NON;;Musée Intercommunal d'Etampes;"Mairie d'Etampes
-B.P. 109";91152;ETAMPES Cedex;site de la ville;Jours fériés;Ouvert du mercredi au dimanche de 14h à 17h;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée Belmondo et de la Sculpture Figurative du XXè siècle;"Château Buchillot
-14, Rue de l'Abreuvoir";92100;BOULOGNE-BILLANCOURT;http://www.boulognebillancourt.com;1er janvier, 1er mai, 25 décembre;Ouvert du mardi au vendredi de 14h à 18h et du samedi au dimanche de 11h à 18h;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée Départemental Albert-Kahn;14, Rue du Port;92100;BOULOGNE-BILLANCOURT;www.albert-kahn.fr;25 décembre 2010 au 3 janvier 2011;Ouvert du mardi au dimanche de 11h à 18h d'octobre à avril et de 11h à 19 h de mai à septembre;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée des Années Trente;"Espace Landowski
-28, avenue André Morizet";92100;BOULOGNE-BILLANCOURT;Site de l'association des amis -  www.annees30.com/;Du 1er au 18 août inclus et jours fériés;Ouvert du mardi au dimanche de 11h à 18h;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée-Jardin Paul Landowski;14, Rue Max Blondat;92100;BOULOGNE-BILLANCOURT;;;;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Fondation Arp;21, Rue des Châtaigniers;92140;CLAMART;www.fondationarp.org;Août, semaine entre Noël et Nouvel An;Ouverture les vendredi, samedi, dimanche de 14 à 18h et sur rendez-vous;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée Municipal d'Art et d'Histoire;2, Rue Gabriel Péri;92700;COLOMBES;Site de la ville - www.mairie-colombes.fr;Aoüt et 1 semaine durant les vacances de Noël;Ouvert du mercredi au samedi de 14h à 18h;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée Roybet Fould;"Parc de Bécon
-178, Boulevard Saint Denis";92400;COURBEVOIE;;Fermé le 1er janvier, 1er mai, Pâques, Toussaint, Noël;Ouvert du mercredi au lundi de 10h30 à 18h;
-ILE-DE-FRANCE;HAUTS DE SEINE;OUI;;Musée des Travaux Publics;Mairie de Courbevoie;92400;COURBEVOIE;Site de la ville;;;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée Français de la Carte à Jouer;16, Rue Auguste Gervais;92130;ISSY-LES-MOULINEAUX;www.issy.com/musee;Jours fériés;Ouvert le mercredi, samedi et dimanche de  11h à 18h, jeudi de 14h à 20h, vendredi de 14h à 18h, juillet-août du mercredi au dimanche de 13h à 18h. Groupes sur rendez-vous du mardi au vendredi;Le jeudi jusqu'à 20h lors de la biennale
-ILE-DE-FRANCE;HAUTS DE SEINE;TRAVAUX;;Musée d'Art et d'Histoire;11, Rue des Pierres;92190;MEUDON;www.ville-meudon.fr/meudon/culture-et-patrimoine/copy5_of_structures-culturelles;Août;Ouvert du mercredi au dimanche de 14h à 18h. Pour les groupes et centre de documentation ouvert du lundi au dimanche de 9h à 12h et de 14h à 18h;
-ILE-DE-FRANCE;HAUTS DE SEINE;OUI;;Musée des Automates;"Hôtel Arturo Lopez
-12, Rue du Centre";92200;NEUILLY-SUR-SEINE;;25 décembre, 1er janvier;Musée en travaux ouvert 6 jours en 2010;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée des Châteaux de la Malmaison et Bois-Préau;Avenue du Château de Malmaison;92500;RUEIL-MALMAISON;www.chateau-malmaison.fr;25 décembre, 1er janvier;Ouvert du mercredi au lundi du 1er octobre au 31 mars de 10h à 12h30 et de 13h30 à 17h15, week-end 17h45, du 1er avril au 30 septembre de 10h à 12h30 et de 13h30 à 17h45, week-end 18h15. Ouverture du parc du 1er octobre au 31 mars de 10h à 18h et du 1er a;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée d'Histoire Locale - Mémoire de la Ville;13, Boulevard Foch;92501;RUEIL-MALMAISON Cedex;Site de la mairie : /www.mairie-rueilmalmaison.fr;Août et jours fériés;Ouvert du lundi au samedi de 14h30 à 18h;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée Municipal de Saint-Cloud;"""Jardin des Avelines""
-60, Rue Gounod";92210;SAINT-CLOUD;www.ville-saint-cloud.fr/temps_libre/musee.htm;Août;Ouvert du mercredi au vendredi de 12h à 18h et la samedi et dimanche de 14h à 18h;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Musée de l'Île de France;;92330;SCEAUX;www.chateau-sceaux.fr ou/www.domaine-de-sceaux.fr (site du conseil général) ou www.sceaux.fr;Certains jours fériés;Ouvert du mercredi au lundi d'avril à octobre de 10h à 13h et 14h à 18h (18h30 le dimanche) de novembre à mars de 10h à 13h et de 14h à 17h. Ouverture en continu le week-end toute l'année;
-ILE-DE-FRANCE;HAUTS DE SEINE;NON;;Sèvres - Cité de la Céramique;2, Place de la Manufacture;92310;SEVRES;www.sevresciteceramique.fr;1er janvier, 1er mai, 25 décembre;Les espaces d'exposition sont ouverts tous les jours de 10h à 17h;
-ILE-DE-FRANCE;HAUTS DE SEINE;OUI;;Musée René Sordes;"Avenue Charles de Gaulle
-Passerelle des Arts";92150;SURESNES;www.ville-suresnes.fr/indexfin.html;;;
-ILE-DE-FRANCE;PARIS;OUI;;Musée Hébert;"Hôtel de Montmorency-Bours
-85, Rue du Cherche Midi";75006;PARIS;;;;
-ILE-DE-FRANCE;PARIS;NON;;Grande Galerie de l'Evolution (Muséum National d'Histoire Naturelle);"Jardin des Plantes
-36, rue Geoffroy Saint-Hilaire";75005;PARIS;www.mnhn.fr;1er mai;Ouvert du mercredi au lundi de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musées Arts Décoratifs  Mode et du Textile;107, Rue de Rivoli;75001;PARIS;www.lesartsdecoratifs.fr;;Ouvert du mardi au vendredi de 11h à 18h, samedi et dimanche de 10h à 18h, nocturnele jeudi jusqu'à 21h;Jeudi jusqu'à 21h
-ILE-DE-FRANCE;PARIS;OUI;;Galerie de Botanique (Muséum National National d'Histoire Naturelle);;75005;PARIS;;;;
-ILE-DE-FRANCE;PARIS;NON;;Etablissement Public du Musée d'Orsay;62, Rue de Lille;75007;PARIS;www.musee-orsay.fr;Jours fériés;Ouvert le mardi, mercredi, vendredi au dimanche de 9h30 à 18h, le jeudi de 9h30 à 21h45;Jeudi jusqu'à 21h45
-ILE-DE-FRANCE;PARIS;NON;;Musée National Auguste Rodin;"Hôtel Biron
-77, rue de Varenne";75007;PARIS;www.musee-rodin.fr;1er janvier, 1er mai, 25 décembre;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée National de la Légion d'Honneur et des Ordres de Chevalerie;2, Rue de la Légion d'Honneur;75007;PARIS;www.musee-legiondhonneur.fr;1er janvier, 1er mai, 15 août, 1er novembre et 25 décembre;Ouvert du mercredi au dimanche de 13h à 18h. Accessible le mardi pour les groupes sur réservation;
-ILE-DE-FRANCE;PARIS;NON;;Musée Zadkine;100 bis, rue d'Assas;75006;PARIS;www.zadkine.paris.fr;Jours fériés;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée National Eugène Delacroix;6, Rue Furstenberg;75006;PARIS;www.musee-delacroix.fr;14 juillet;Ouvert du mercredi au lundi de 9h30 à 17h;
-ILE-DE-FRANCE;PARIS;NON;;Institut du Monde Arabe;"1, Rue des Fossés Saint-Bernard
-Place Mohammed V";;PARIS;www.imarabe.org;1er mai et jours fériés;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée de l'Assistance Publique - Hôpitaux de Paris;"Hôtel de Miramion
-47, Quai de la Tournelle";75005;PARIS;www.aphp.fr;Août et jours fériés;Ouvert du mardi au dimanche de 10h à 18h du 1er janvier au 21 juillet 2010 et depuis le 4 novembre 2010 ouvert 1 jour/semaine (mardi ou jeudi) de 9h à 18 h;
-ILE-DE-FRANCE;PARIS;OUI;;Galerie d’entomologie (Muséum national d'histoire naturelle);57, Rue Cuvier;75005;PARIS;www.mnhn.fr;;;
-ILE-DE-FRANCE;PARIS;NON;;Galerie d'Anatomie Comparée et de Paléontologie (Muséum d'Histoire Naturelle);"Jardin des Plantes
-2, rue Buffon";75005;PARIS;www.mnhn.fr;1er mai;Ouvert du mercredi au lundi de 10h à 17h;
-ILE-DE-FRANCE;PARIS;NON;;Musée Cernuschi, Musée des Arts de l'Asie de la ville de Paris;7, Avenue Velasquez;75008;PARIS;www.cernuschi.paris.fr;;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;TRAVAUX;;Galerie de Minéralogie et de Géologie (Muséum d'Histoire Naturelle);"Jardin des Plantes
-36, Rue Geoffroy Saint-Hilaire";75005;PARIS;www.mnhn.fr;1er mai;Ouvert du mercredi au lundi de 10h à 17h;
-ILE-DE-FRANCE;PARIS;NON;;Musée de l'Armée;"Hôtel National des Invalides
-129, rue de Grenelle";75007;PARIS;www.invalides.org;1er janvier, 1er mai, 1er novembre, 25 décembre;Ouvert d'avril à septembre de 10h à 18h (18h30 le dimanche), d'octobre à mars de 10h à 17h (17h30 le dimanche). Du 15 juin au 15 septembre l'église du dôme reste ouverte jusqu'à 19h;Mardi jusqu'à 21h
-ILE-DE-FRANCE;PARIS;NON;;Petit Palais, Musée des Beaux-Arts de la ville de Paris;Avenue Winston-Churchill;75008;PARIS;www.petitpalais.paris.fr;;Ouvert tous les jours de 10h à 18h;Mardi jusqu'à 20h
-ILE-DE-FRANCE;PARIS;TRAVAUX;;Musée de l'Homme (Muséum National d'Histoire Naturelle);Place du Trocadéro;75116;PARIS;www.mnhn.fr;;Ouvert du mercredi au lundi de 10h à 17h, le week-end de 10h à 18h;
-ILE-DE-FRANCE;PARIS;Transfert à Marseille - Siège encore à Paris;;M.U.C.E.M. - Musée des ATP;6, Avenue du Mahatma Gandhi;75116;PARIS;www.musee-europemediterranee.org;;Ouvert en fonction des expositions temporaires;
-ILE-DE-FRANCE;PARIS;NON;;Etablissement Public du Musée des Arts Asiatiques Guimet;6, Place d'Iéna;75116;PARIS;www.museeguimet.fr;1er janvier, 1er mai, 25 décembre;Ouvert du mercredi au lundi de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée de Montmartre;12, Rue Cortot;75018;PARIS;www.museedemontmartre.com;1er janvier, 1er mai et 25 décembre;Ouvert du mardi au dimanche de 11h à 18h toute l'année;
-ILE-DE-FRANCE;PARIS;OUI;;Musée d'Ennery;59, Avenue Foch;75116;PARIS;;;;
-ILE-DE-FRANCE;PARIS;NON;;Musée Nationale Gustave Moreau;14, Rue de la Rochefoucauld;75009;PARIS;www.musee-moreau.fr;1er janvier, 1er mai, 25 décembre;Ouvert du mercredi au lundi de 10h à 12h45 et de 14h à 17h15;
-ILE-DE-FRANCE;PARIS;NON;;Maison de Victor Hugo;6, Place des Vosges;75004;PARIS;www.musee-hugo.paris.fr;;Ouvert de 10h à 18h du mardi au dimanche;
-ILE-DE-FRANCE;PARIS;NON;;Musée des Monuments Français;"Palais de Chaillot
-1, Place du Trocadéro et du 11 Novembre";75116;PARIS;www.citechaillot.fr;1er janvier, 1er mai, 25 décembre;Ouvert lundi, mercredi, vendredi au dimanche de 11h à 19h, le jeudi de 11h à 21h;Jeudi jusqu'à 21h
-ILE-DE-FRANCE;PARIS;NON;;Musée d'Art Moderne de la ville de Paris;11, Avenue du Pdt Wilson;75116;PARIS;www.mam.paris.fr;;Ouvert du mardi au dimanche de 10 à 18 h. Nocturne le mercredi jusqu'a 22h pour les expositions temporaires;Mercredi jusqu'à 22h pour les expositions temporaires
-ILE-DE-FRANCE;PARIS;NON;;Mémorial du Maréchal Leclerc de Hauteclocque et de la Libération de Paris - Musée Jean Moulin;23, Allée de la 2ème DB;75015;PARIS;www.ml-leclerc-moulin.paris.fr;;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée de la Franc-Maçonnerie;16, Rue Cadet;75009;PARIS;www.museefm.org;Jours fériés;Ouvert du mardi au samedi de 14h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée de la Vie Romantique;16, Rue Chaptal;75009;PARIS;http://www.paris.fr/portail/Culture/Portal.lut?page_id=5851;;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Cité Nationale de l'Histoire et des Cultures de l'Immigration;"Palais de la Porte Dorée
-293, avenue Daumesnil";75012;PARIS;www.histoire-immigration.fr;25 décembre ,  1er janvier, 24 mars, 1er mai, 12 mai et 14 juillet 2008;Ouvert du mardi au vendredi de 10h à 17h30 et le samedi et dimanche de 10h à 19h;
-ILE-DE-FRANCE;PARIS;NON;;Musée Bourdelle;16, Rue Antoine Bourdelle;75015;PARIS;www.bourdelle.paris.fr;;Du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;OUI;;Musée Lénine;4 rue Marie-Rose;75014;PARIS;;;Entrée sur rdv uniquement;
-ILE-DE-FRANCE;PARIS;NON;;Aquarium Tropical;293, avenue Daumesnil;75012;PARIS;www.aquarium-portedoree.fr;;Ouvert tous les jours du mardi au vendredi de 10h à 17h15, le week-end de 10h à 19h, y compris certains jours fériés;
-ILE-DE-FRANCE;PARIS;NON;;Musée de la Musique;221, Avenue Jean-Jaurès;75019;PARIS;www.cite-musique.fr;;Ouvert du mardi au samedi de 12h à 18h, dimanche de 10h à 18h. Nocturne expositions temporaires le vendredi;Vendredi jusqu'à 22h dans des expositions
-ILE-DE-FRANCE;PARIS;NON;;Musée d'Art et d'Histoire du Judaïsme;"Hôtel de Saint-Aignan
-71, Rue du Temple";75003;PARIS;www.mahj.org;1er janvier, 1er mai, Roch Hachana, Yom Kippour;Ouvert du lundi au vendredi de 11h à 18h et le dimanche de 10h à 18h. Nocturne jusqu'à 21h lors des expositions temporaires;Jusqu'à 21h pendant les expositions temporaires
-ILE-DE-FRANCE;PARIS;NON;;Musée Carnavalet-Histoire de Paris;23, Rue de Sévigné;75003;PARIS;www.paris.fr/musees/musee_carnavalet;Jours fériés;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée Cognacq-Jay, Musée du XVIIIe siècle de la ville de Paris;8, Rue Elzévir;75003;PARIS;www.cognacq-jay.paris.fr;Certains jours fériés;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;TRAVAUX;;Musée National Picasso;"Hôtel Salé
-5, Rue de Thorigny";75003;PARIS;www.musee-picasso.fr;1er janvier et 25 décembre;Ouvert de 9h30 à 18h d'avril à septembre et de 9h30 à 17h30 d'octobre à mars;
-ILE-DE-FRANCE;PARIS;NON;;Musée de la Chasse et de la Nature;60, rue des Archives;75003;PARIS;www.chassenature.org/;Jours fériés;Ouvert du mardi au dimanche de 11h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée du Louvre;34, Quai du Louvre;75001;PARIS;www.louvre.fr;le 1er janvier, le 1er mai, le 8 mai et le 25 décembre 2007;Ouvert lundi, jeudi, samedi et dimanche de  9h à 18h, mercredi et vendredi de 9h à 22h. Le hall Napoléon est ouvert de 9h à 22h;Mercredi et vendredi jusqu'à 22h
-ILE-DE-FRANCE;PARIS;NON;;Musée National de L'Orangerie des Tuileries;Jardin des Tuileries;75001;PARIS;www.musee-orangerie.fr;1er mai et 25 décembre;Ouvert du mercredi au lundi de 9h à 18h;Vendredi jusqu'à 21h pour les individuels
-ILE-DE-FRANCE;PARIS;OUI;;Musée Bouchard;25, Rue de l'Yvette;75016;PARIS;www.musee-bouchard.com;;;
-ILE-DE-FRANCE;PARIS;NON;;Musée National du Moyen Age-Thermes de Cluny;6, Place Paul Painlevé;75005;PARIS;www.musee-moyenage.fr;1er janvier, 1er mai et 25 décembre;Ouvert du mercredi au lundi de 9h15 à 17h45;
-ILE-DE-FRANCE;PARIS;NON;;Maison de Balzac;47, rue Raynouard;75016;PARIS;www.balzac.paris.fr;Jours fériés;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée Nissim de Camondo (Les Arts Décoratifs);63, Rue de Monceau;75008;PARIS;www.lesartsdecoratifs.fr/;1er janvier, 1er mai, 15 août et 25 décembre;Ouvert du mercredi au dimanche de 10h à 17h30;
-ILE-DE-FRANCE;PARIS;NON;;Musée Jean-Jacques Henner;43, Avenue de Villiers;75017;PARIS;www.musee-henner.fr ou www.henner-intime.fr;1er janvier, 1er mai, dimanche et lundi de Pentecôte, 14 juillet, 15 août, Noël;Ouvert de 11h-18h du mercredi au lundi. Nocturne jusqu’à 21h le premier jeudi du mois;Premier jeudi du mois jusqu'à 21h
-ILE-DE-FRANCE;PARIS;NON;;Musée National du Sport;93, avenue de France;75013;PARIS;www.museedusport.fr;1er janvier, 15 août, 25 décembre;Ouvert du mardi au vendredi de 10h à 18h et le samedi et premier dimanche du mois et jours fériés de 14h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée National de la Marine;17, Place du Trocadéro;75116;PARIS;www.musee-marine.fr;1er janvier, 1er mai, 25 décembre;Ouvert du mercredi au lundi de 10h à 18h;
-ILE-DE-FRANCE;PARIS;TRAVAUX;;Musée Galliéra - Musée de la Mode de la ville de Paris;10, Avenue Pierre 1er de Serbie;75116;PARIS;www.galliera.paris.fr;Musée fermé en dehors des expositions temporaires. Certains jours fériés;Ouvert du mardi au dimanche de 10h à 18h;
-ILE-DE-FRANCE;PARIS;NON;;Musée National des Techniques (Conservatoire National des Arts et Métiers);292, rue Saint-Martin;75141;PARIS cedex 03;www.arts-et-metiers.net;1er mai, 25 décembre;Ouvert du mardi au dimanche de 10 h à 18h, jeudi jusqu'à 21h30;Jeudi jusqu'à 21 h 30
-ILE-DE-FRANCE;PARIS;NON;;Musée National d'Art Moderne (Centre National d'Art et de Culture Georges Pompidou);Place Georges Pompidou;75191;PARIS Cedex 04;www.centrepompidou.fr;1er mai;Ouvert du mercredi au lundi de 11h à 21h (musée et expositions);Jeudi jusqu'à 23h selon les expositions
-ILE-DE-FRANCE;PARIS;NON;;Musée du Service de Santé des Armées du Val-de-Grâce;1, Place Alphonse Laveran;75230;PARIS Cedex 05;www.valdegrace.org;;Ouvert de mardi au jeudi et samedi, dimanche de 12 h à 18 h;
-ILE-DE-FRANCE;PARIS;TRAVAUX;;Musée des Monnaies et des Médailles;11, Quai de Conti;75270;PARIS Cedex 06;www.monnaiedeparis.fr;;Ouvert du mardi au vendredi de 11h à 17h30 et le samedi et dimanche de 12h à 17h30;
-ILE-DE-FRANCE;PARIS;NON;;Musée du Quai Branly;222, rue de l'Université;75343;PARIS cedex 07;www.quaibranly.fr;1er mai;Mardi, mercredi, dimanche de 11h à 19h - jeudi, vendredi, samedi de 11h à 21h. Groupes tous les matin de 9h30 à 11h sauf le dimanche. Ouverture exceptionnelle les lundis de 11h à 19h pendant les vacances de Pâques;Jeudi, vendredi, samedi jusqu'à 21h
-ILE-DE-FRANCE;PARIS;NON;;Musée de la Poste;34, Boulevard de Vaugirard;75731;PARIS Cedex 15;www.museedelaposte.fr ou www.laposte.fr/musee;Jours fériés;Ouvert du lundi au samedi de 10h à 18h;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée Départemental de l'Ecole de Barbizon - Auberge Ganne;92, Grande Rue;77630;BARBIZON;"www.seine-et-marne.fr (rubrique ""loisirs/musées départementaux)"; 1er janvier, 1er mai et 25 décembre - 22 décembre au 1er janvier 2010;Ouvert de 10h à 12h30 et de 14h à 17h30 en  juillet-août de 10h à 12h30 et de 14h à 18h;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée Municipal de Chelles Alfred Bonno;Place de la République;77500;CHELLES;;Vacances scolaires de fin d'année et août;Ouvert le mercredi de 10h à 12h et de 14h à 18h, le dimanche de 14h à 17h, lundi, mardi, jeudi et vendredi sur réservation pour les groupes;
-ILE-DE-FRANCE;SEINE ET MARNE;OUI;;Musée des Transports Urbains, Interurbains et Ruraux;1, Rue Gabriel de Mortillet;77500;CHELLES;www.amtuir.org;;;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée Municipal des Capucins;"Hôtel de Ville
-B.P. 171";77527;COULOMMIERS cedex;www.tourisme77.fr ou www.coulommiers.fr;;Ouvert de mai à septembre le mercredi, vendredi, samedi, dimanche de 14h à 18h, d'octobre à avril le mercredi, samedi et dimanche de 14h à 17h30;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Maison Natale de Louis Braille;13, Rue Louis-Braille;77700;COUPVRAY;www.braillenet.org/louis_braille/maisnat.htm;;Ouvert en visites guidées d'avril à septembre du mardi au dimanche (10h, 11h, 14h, 15h, 16h et 17h) et d'octobre à mars du mardi au dimanche (14h, 15h et 16h) groupe sur réservation uniquement le vendredi (octobre à mars). Ouvert de 10h à 12h pour les éco;
-ILE-DE-FRANCE;SEINE ET MARNE;OUI;;Musée Municipal;;77580;CRECY-LA-CHAPELLE;;;;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée d'Art et d'Histoire Militaire;88, Rue St-Honoré;77300;FONTAINEBLEAU;;;Ouvert du mardi au samedi de 14h à 17h30 et le matin de 10h à 12h sur rendez-vous;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée du Château de Fontainebleau;Château de Fontainebleau;77300;FONTAINEBLEAU;www.châteaudefontainebleau.fr;1er janvier, 1er mai, 25 décembre;Ouvert de 9h30 à 17h d'octobre à mars et de 9h30 à 18h d'avril à septembre;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée Gatien Bonnet;8, Cour Pierre Herbin;77405;LAGNY-SUR-MARNE;Site de la ville;Jours fériés;Ouvert du mercredi au dimanche de 14h à 18h;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée Henri Chapu;937, Rue Chapu;77350;LE MEE-SUR-SEINE;Site de la ville;Août;Ouvert les samedis et dimanches de 15h à 18h l'été et de 14h à 17h l'hiver;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée Bossuet;5, Place Charles de Gaulle;77100;MEAUX;site de la ville - www.ville-meaux.fr;1er Janvier, 1er Mai, 14 Juillet et 25 Décembre;Ouvert du 1er avril au 30 septembre de 10h à 12h et de 14h à18h, du 1er octobre au 31 mars de 10h à 12h et de 14h à 17h;
-ILE-DE-FRANCE;SEINE ET MARNE;PREFIGURATION;;Musée de la Grande Guerre;"Hôtel de Ville
-BP 227";77107;MEAUX Cedex;http://www.paysdemeaux.com/index.php?Message=CAPM_GP_musee;;;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée de la Gendarmerie;"Ecole des Officiers de la Gendarmerie Nationale
-8, rue Emile Leclerc";77017;MELUN;www.servicehistorique.sga.defense.gouv.fr;Jours fériés;Ouvert du lundi au vendredi de 8h à 12h et de 14h à 18h;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée de Melun;5, Rue du Franc Mûrier;77008;MELUN Cedex;Site de la ville : www.ville-melun.fr;20 décembre au 4 janvier 2008 - jours fériés;Ouvert du mercredi au dimanche de 14h à 18h;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée Municipal;Place de Samois;77250;MORET-SUR-LOING;;;Ouvert du vendredi au lundi de 14h à 18h30 de novembre à mars et de 14h à 19h d'avril à septembre;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée Départemental de Préhistoire d'Île de France;48, Avenue Etienne Dailly;77140;NEMOURS;"www.weine-et-marne.fr (rubrique ""loisirs/musées départementaux)";1er janvier, 1er mai, 25 décembre;Ouvert de jeudi à mardi 10h à 12h30 et de 14h à 17h30 de septembre à juin et de 10h à 12h30 et de 14h à 18h en juillet et août;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Château-musée de Nemours;Rue Gautier 1er;77140;NEMOURS;Site de la ville - www.ville-nemours.fr;1er mai, 25 décembre, 1er janvier;Ouvert du mercredi au samedi de 10h à 12h30 et de 14h à 18h, dimanche de 14h à 18h. Mardi réservé aux groupes et aux scolaires;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée de Provins et du Provinois;7, rue du Palais;77160;PROVINS;Site de la ville : www.mairie-provins.fr;30 août et du 21 décembre au 1er janvier inclus;Ouvert en 2009 du 4 avril au 12 juin tous les jours de 12h à 17h30, du 13 juin au 13 septembre tous les jours de 11h à 18h30, du 14 septembre au 4 novembre tous les jours de 12h à 17h30, du 3 janvier au 3 avril et du 7 novembre au 20 décembre les week-end;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée des Pays de Seine-et-Marne;17, Avenue de la Ferté-Sous-Jouarre;77750;SAINT-CYR-SUR-MORIN;"Site du conseil général - www.seine-et-marne.fr - rubrique ""loisirs""";24 décembre au 1er janvier et 1er mai;Ouvert du dimanche au vendredi de septembre à juin de 10h à 12h30 et de 14h à 17h30 - En juillet et août de 10h à 12h30 et de 14h à 18h30;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Ecomusée;"Ferme de CouleOUIn
-Place Georges Henri Rivière";77176;SAVIGNY-LE-TEMPLE;Site de la ville www.savigny-le-temple.fr;25 décembre, 1er janvier, 1er novembre et 1er mai;Ouvert du mercredi au vendredi de 14h à 17h, le samedi et dimanche de 15h à 18h. Sur réservation de 10h à 12h;
-ILE-DE-FRANCE;SEINE ET MARNE;NON;;Musée départemental Stéphane Mallarmé;"Pont de Valvins
-4, Promenade Stéphane Mallarmé";77870;VULAINES-SUR-SEINE;"www.weine-et-marne.fr (rubrique ""loisirs/musées départementaux)";24 décembre au 31 décembre, 1er mai;Ouvert du mercredi au lundi de septembre à juin de 10h à 12h30 et de 14h à 17h30, juillet- août de 10h à 12h30 et de 14h à 18h;
-ILE-DE-FRANCE;SEINE SAINT-DENIS;NON;;Musée de l'Air et de l'Espace;"Aéroport de Paris - Le Bourget
-BP 173";93352;LE BOURGET Cedex;www.museeairespace.fr;25 décembre, 1er janvier;Ouvert du mardi au dimanche d'octobre à mars de 10h à 17h et d'avril à septembre de 10h à 18h;
-ILE-DE-FRANCE;SEINE SAINT-DENIS;NON;;Musée Municipal;Avenue du Consul Général Nordling;93190;LIVRY-GARGAN;www.mairie-livrygargan.fr/rubrique culture loisirs;25 décembre et 1er mai et août;Ouvert du mercredi au dimanche de 14h à 17h ou de 14h à 18h selon les saisons;
-ILE-DE-FRANCE;SEINE SAINT-DENIS;NON;;Musée de l'Histoire Vivante;31, Boulevard Théophile Sueur;93100;MONTREUIL-SOUS-BOIS;www.museehistoirevivante.com;;Ouvert du mercredi au vendredi de 14h à 17, le week-end de 14h à 18h;
-ILE-DE-FRANCE;SEINE SAINT-DENIS;NON;;Musée d'Art et d'Histoire;22 bis, rue Gabriel Péri;93200;SAINT-DENIS;www.musee-saint-denis.fr;Jours fériés;Ouvert lundi, mercredi, vendredi de 10h à 17h30, le jeudi de 10h à 20h, le week-end de 14h à 18h30;jeudi jusqu'à 20h
-ILE-DE-FRANCE;SEINE SAINT-DENIS;NON;;Musée Municipal;12, Rue Albert Dhalenne;93400;SAINT-OUEN;;;;
-ILE-DE-FRANCE;VAL D'OISE;NON;;Musée du Vieil Argenteuil;5, rue Pierre-Guienne;95100;ARGENTEUIL;Site de la ville - www.argenteuil.fr/article.php3?id_article=529;Août;Ouvert mercredi et premier dimanche du mois de 14h à 17h30 (hors expos), mercredi et dimanche de 14h à 17h30 pendant la période d'exposition, tous les jours sur réservation pour les groupes;
-ILE-DE-FRANCE;VAL D'OISE;NON;;Musée de la Renaissance - Château d'Ecouen;Château;95440;ECOUEN;www.musee-renaissance.fr ou www.musee-château-ecouen.fr;Les 1er janvier, 1er mai et 25 décembre;Ouvert du 1er octobre au 15 avril de 9h30 à 12h45 et de 14h00 à 17h15 et du 16 avril au 30 septembre de 9h30 à 12h45 et de 14h00 à 17h45;
-ILE-DE-FRANCE;VAL D'OISE;NON;;Musée Archéologique du Val d'Oise;Place du Château;95450;GUIRY-EN-VEXIN;www.valdoise.fr/content/content15651.html;25 décembre et 1er janvier;Ouvert de 9h à12h et de 13h30 à 17h30, week-end et jours fériés de 13h30 à 18h30 du 15 octobre au 14 mars et de 10h à 12h et de 14h à 19h du 15 mars au 14 octobre;
-ILE-DE-FRANCE;VAL D'OISE;OUI;;Musée d'Art et d'Histoire Louis Senlecq;46, Grande Rue;95290;L'ISLE-ADAM;http://musee.ville-isle-adam.fr/index.html;;Ouvert du mercredi au lundi de 14h à 18h;
-ILE-DE-FRANCE;VAL D'OISE;NON;;ARCHEA - Musée Intercommunal d'Histoire et d'Archéologie;56, Rue de Paris;95380;LOUVRES;http://www.archea-paysdefrance.fr;Entre le 25 décembre et le 1er janvier, et le 1er mai;Ouvert du mercredi au vendredi de 13h30 à 18h et le samedi et dimanche et jours fériés de 11h à 18h;
-ILE-DE-FRANCE;VAL D'OISE;NON;;Musée jean-Jacques Rousseau;5, Rue Jean-Jacques Rousseau;95160;MONTMORENCY;/www.ville-montmorency.fr;1er mai et fêtes de fin d’année;Ouvert du mardi au dimanche de 14h à 18h et pour les groupes du mardi au samedi de 9h30 à 13h;
-ILE-DE-FRANCE;VAL D'OISE;NON;;Musée Tavet Delacour;4, Rue Lemercier;95300;PONTOISE;Site de la ville - www.ville-Pontoise.fr;Jours fériés;Ouvert du mercredi au dimanche de 10h à 12h30 et de 13h30 à 18h;
-ILE-DE-FRANCE;VAL D'OISE;NON;;Musée Camille Pissarro;17, Rue du Château;95300;PONTOISE;www.ville-pontoise.fr;Jourqs fériés;Ouvert du mercredi au dimanche de 14h à 18h;
-ILE-DE-FRANCE;VAL DE MARNE;OUI;;Musée Adrien Mentienne;1, Grande Rue Charles de Gaulle;94360;BRY-SUR-MARNE;http://www.bry94.fr/bry/71.htm;;Ouvert du lundi au vendredi de  9h à 12h et de 14h à 18h, samedi de 9h à 12h;
-ILE-DE-FRANCE;VAL DE MARNE;NON;;Musée de la Résistance Nationale;"Parc Vercors
+"REGIONS";"DEPARTEMENTS";"FERME";"ANNEXE";"NOM DU MUSEE";"ADRESSE";"CP";"VILLE";"SITWEB";"FERMETURE ANNUELLE";"PERIODE OUVERTURE";"JOURS NOCTURNES"
+"FRANCHE-COMTE";"JURA";"OUI";;"Musée Municipal de Poligny";"Hôtel de Ville
+49, Grande Rue";39800;"POLIGNY";;;;
+"FRANCHE-COMTE";"JURA";"NON";;"Musée de l'Abbaye/Donations Guy Bardone - René Genis";"3, Place de l'Abbaye";39200;"SAINT-CLAUDE";"Site des musées de la région";"1er janvier, 1er mai, 1er novembre, 25 décembre";"Ouvert du 1er septembre au 1er mai du mercredi au dimanche de 10h à 12h et de 14h à 18h et du 1er juin au 31 aôut du mercredi au lundi de 10h à 12h et de 14h à 18h";
+"FRANCHE-COMTE";"JURA";"NON";;"Musée des Salines";"Place des Anciennes Salines";39110;"SALINS-LES-BAINS";"www.musees-des-techniques.org ou www.salinesdessalins.com - site créer en 2011";"1er janvier, 25 décembre";"Ouvert de novembre à fin février de 10h30 à 15h uniquement vacances et week-end, de mars à avril de 10h30 à 15h week-end et jours fériés vacances scolaires de 10h30, 14h30 à 16h, mai à juin de 10h à 11h30 et visites guidée à 14h30, 15h30, 16h30, juillet-a";
+"ILE-DE-FRANCE";"HAUTS DE SEINE";"NON";;"Fondation Arp";"21, Rue des Châtaigniers";92140;"CLAMART";"www.fondationarp.org";"Août, semaine entre Noël et Nouvel An";"Ouverture les vendredi, samedi, dimanche de 14 à 18h et sur rendez-vous";
+"ILE-DE-FRANCE";"HAUTS DE SEINE";"NON";;"Musée Municipal d'Art et d'Histoire";"2, Rue Gabriel Péri";92700;"COLOMBES";"Site de la ville - www.mairie-colombes.fr";"Aoüt et 1 semaine durant les vacances de Noël";"Ouvert du mercredi au samedi de 14h à 18h";
+"ILE-DE-FRANCE";"HAUTS DE SEINE";"NON";;"Musée Roybet Fould";"Parc de Bécon
+178, Boulevard Saint Denis";92400;"COURBEVOIE";;"Fermé le 1er janvier, 1er mai, Pâques, Toussaint, Noël";"Ouvert du mercredi au lundi de 10h30 à 18h";
+"ILE-DE-FRANCE";"HAUTS DE SEINE";"OUI";;"Musée des Travaux Publics";"Mairie de Courbevoie";92400;"COURBEVOIE";"Site de la ville";;;
+"ILE-DE-FRANCE";"HAUTS DE SEINE";"NON";;"Musée Français de la Carte à Jouer";"16, Rue Auguste Gervais";92130;"ISSY-LES-MOULINEAUX";"www.issy.com/musee";"Jours fériés";"Ouvert le mercredi, samedi et dimanche de  11h à 18h, jeudi de 14h à 20h, vendredi de 14h à 18h, juillet-août du mercredi au dimanche de 13h à 18h. Groupes sur rendez-vous du mardi au vendredi";"Le jeudi jusqu'à 20h lors de la biennale"
+"ILE-DE-FRANCE";"HAUTS DE SEINE";"TRAVAUX";;"Musée d'Art et d'Histoire";"11, Rue des Pierres";92190;"MEUDON";"www.ville-meudon.fr/meudon/culture-et-patrimoine/copy5_of_structures-culturelles";"Août";"Ouvert du mercredi au dimanche de 14h à 18h. Pour les groupes et centre de documentation ouvert du lundi au dimanche de 9h à 12h et de 14h à 18h";
+"ILE-DE-FRANCE";"HAUTS DE SEINE";"OUI";;"Musée des Automates";"Hôtel Arturo Lopez
+12, Rue du Centre";92200;"NEUILLY-SUR-SEINE";;"25 décembre, 1er janvier";"Musée en travaux ouvert 6 jours en 2010";
+"ILE-DE-FRANCE";"HAUTS DE SEINE";"NON";;"Musée des Châteaux de la Malmaison et Bois-Préau";"Avenue du Château de Malmaison";92500;"RUEIL-MALMAISON";"www.chateau-malmaison.fr";"25 décembre, 1er janvier";"Ouvert du mercredi au lundi du 1er octobre au 31 mars de 10h à 12h30 et de 13h30 à 17h15, week-end 17h45, du 1er avril au 30 septembre de 10h à 12h30 et de 13h30 à 17h45, week-end 18h15. Ouverture du parc du 1er octobre au 31 mars de 10h à 18h et du 1er a";
+"ILE-DE-FRANCE";"HAUTS DE SEINE";"NON";;"Musée d'Histoire Locale - Mémoire de la Ville";"13, Boulevard Foch";92501;"RUEIL-MALMAISON Cedex";"Site de la mairie : /www.mairie-rueilmalmaison.fr";"Août et jours fériés";"Ouvert du lundi au samedi de 14h30 à 18h";
+"bourget";"HAUTS DE SEINE";"NON";;"Musée Municipal de Saint-Cloud";"""Jardin des Avelines""
+60, Rue Gounod";92210;"SAINT-CLOUD";"www.ville-saint-cloud.fr/temps_libre/musee.htm";"Août";"Ouvert du mercredi au vendredi de 12h à 18h et la samedi et dimanche de 14h à 18h";
+"ILE-DE-FRANCE";"SEINE SAINT-DENIS";"NON";;"Musée de l'Air et de l'Espace";"Aéroport de Paris - Le Bourget
+BP 173";93352;"LE BOURGET Cedex";"www.museeairespace.fr";"25 décembre, 1er janvier";"Ouvert du mardi au dimanche d'octobre à mars de 10h à 17h et d'avril à septembre de 10h à 18h";
+"ILE-DE-FRANCE";"SEINE SAINT-DENIS";"NON";;"Musée Municipal";"Avenue du Consul Général Nordling";93190;"LIVRY-GARGAN";"www.mairie-livrygargan.fr/rubrique culture loisirs";"25 décembre et 1er mai et août";"Ouvert du mercredi au dimanche de 14h à 17h ou de 14h à 18h selon les saisons";
+"ILE-DE-FRANCE";"SEINE SAINT-DENIS";"NON";;"Musée de l'Histoire Vivante";"31, Boulevard Théophile Sueur";93100;"MONTREUIL-SOUS-BOIS";"www.museehistoirevivante.com";;"Ouvert du mercredi au vendredi de 14h à 17, le week-end de 14h à 18h";
+"ILE-DE-FRANCE";"SEINE SAINT-DENIS";"NON";;"Musée d'Art et d'Histoire";"22 bis, rue Gabriel Péri";93200;"SAINT-DENIS";"www.musee-saint-denis.fr";"Jours fériés";"Ouvert lundi, mercredi, vendredi de 10h à 17h30, le jeudi de 10h à 20h, le week-end de 14h à 18h30";"jeudi jusqu'à 20h"
+"ILE-DE-FRANCE";"SEINE SAINT-DENIS";"NON";;"Musée Municipal";"12, Rue Albert Dhalenne";93400;"SAINT-OUEN";;;;
+"ILE-DE-FRANCE";"VAL D'OISE";"NON";;"Musée Camille Pissarro";"17, Rue du Château";95300;"PONTOISE";"www.ville-pontoise.fr";"Jourqs fériés";"Ouvert du mercredi au dimanche de 14h à 18h";
+"ILE-DE-FRANCE";"VAL DE MARNE";"OUI";;"Musée Adrien Mentienne";"1, Grande Rue Charles de Gaulle";94360;"BRY-SUR-MARNE";"http://www.bry94.fr/bry/71.htm";;"Ouvert du lundi au vendredi de  9h à 12h et de 14h à 18h, samedi de 9h à 12h";
+"ILE-DE-FRANCE";"VAL DE MARNE";"NON";;"Musée de la Résistance Nationale";"Parc Vercors
 88, Avenue Marx Dormoy - B.P. 135
-B.P. 135";94501;CHAMPIGNY-SUR-MARNE Cedex;www.musee-resistance.com;Septembre, 1er janvier, lundi de Pâques, 1er mai, lundi de Pentecôtes, Ascension, 14 juillet, Assomption, 15 août, 1er novembre, 25 décembre;Ouvert du mardi au vendredi de 9h à 12h30 et de 14h à 17h30. Samedi et Dimanche de 14h à 18h, le 8 mai;
-ILE-DE-FRANCE;VAL DE MARNE;NON;;Ecomusée du Val de Bièvre;"Ferme de Cottinville
-41, rue Maurice Ténine";94260;FRESNES;www.agglo-valdebievre.fr;;Ouvert mercredi, samedi de 10h à 12h et de 14h à 18h, mardi, jeudi, vendredi et dimanche de 14h à 18h;
-ILE-DE-FRANCE;VAL DE MARNE;NON;;Musée de Saint-Maur - Villa Médicis;5, Rue Saint-Hilaire;94210;LA VARENNE-SAINT-HILAIRE;www.saint-maur.com/musee/musee.htm;Fermé du 31 juillet au 16 août 2010;Ouvert du mardi au samedi de 10h à 12h et de 14h à 18h, le dimanche de 11h à 13h et de 14h à 19h;
-ILE-DE-FRANCE;VAL DE MARNE;NON;;Musée Fragonard;"Ecole Nationale Vétérinaire d'Alfort
-7, Avenue du Gal de Gaulle";94704;MAISONS-ALFORT Cedex;www.musee.vet-alfort.fr;;Ouvert le mercredi et le jeudi de 14h à 18h, le week-end de 13h à 18h;
-ILE-DE-FRANCE;VAL DE MARNE;NON;;Musée de Nogent-Sur-Marne;36, Boulevard Gallieni;94130;NOGENT-SUR-MARNE;www.musee-nogentsurmarne.fr;Jours fériés;Ouvert du mardi au jeudi, dimanche, de 14h à 18 h, et le samedi de 10h à 12h et de 14h à 18h. Tous les jours pour les groupes sauf jours fériés;
-ILE-DE-FRANCE;VAL DE MARNE;NON;;Musée Emile Jean;31, rue Louis-Lenoir;94350;VILLIERS-SUR-MARNE;www.mairie-villiers94.com/francais/vie_quoti/vie_quot_culture7.php;;Ouvert chaque samedi de 14 h 30 à 17 h 30. Visites de groupes et scolaires, sur réservation, du lundi au vendredi;
-ILE-DE-FRANCE;VAL DE MARNE;NON;;Musée d'Art Contemporain du Val-de-Marne;"Place de la Libération
-B.P. 147";94404;VITRY SUR SEINE Cedex;www.macval.fr;Les 1er janvier, 1er mai et 25 décembre;Ouvert le mardi, mercredi, vendredi, samedi, dimanche de 12h à 19h et le jeudi de 12h à 21h;Le jeudi jusqu’à 21h
-ILE-DE-FRANCE;YVELINES;NON;;Musée de la Batellerie;"Château du Prieuré
-3, Place Gévelot";78700;CONFLANS-SAINTE-HONORINE;www.mairie-conflans-sainte-honorine.fr;;Ouvert du lundi au vendredi de 9h à 12h et de 13h30 à 18h, mardi de 13h30 à 18h, samedi dimanche et jours fériés de 14h à 17h en hiver et de 15h à 18h en été;
-ILE-DE-FRANCE;YVELINES;NON;;Musée de la Toile de Jouy;"Château de l'Eglantine
-54, rue Charles de Gaulle";78350;JOUY-EN-JOSAS;www.museedelatoiledejouy.fr;25 décembre, 1er janvier;Ouvert du mardi au dimanche de 11h à 18h;
-ILE-DE-FRANCE;YVELINES;NON;;Musée-Promenade de Marly-Le Roi /Louveciennes;La Grille Royale Parc de Marly;78430;LOUVECIENNES;www.musee-promenade.fr;;Ouvert du mercredi au dimanche de 14h à 17h30 d'octobre à mars et de 14h à 18h30 d'avril à septembre. Pour les scolaires du lundi au vendredi de 9h à12h30 et de 13h30 à 17h. Pour les groupes adultes du mardi au vendredi de 9h à 12h et mardi au dimanche de;
-ILE-DE-FRANCE;YVELINES;NON;;Musée de Port Royal des Champs;Route des Granges;78114;MAGNY-LES-HAMEAUX;www.musee-portroyal.fr ou www.port-royal-des-champs.eu;;Ouvert du 1er novembre au 31 mars le lundi du mercredi au vendredi de 10h à 12h et de 14h à 17h30, samedi et dimanche de 14h à 18h et du 1er avril au 31 octobre de 10h30 à 12h30 et de 14h à 18h samedi et dimanche de 10h30 à 18h30;
-ILE-DE-FRANCE;YVELINES;NON;;Musée de l'Hôtel-Dieu;1, Rue Thiers;78200;MANTES-LA-JOLIE;http://musee.ville-mantes-la-jolie.com;25 décembre, 1er janvier;Ouvert lundi, mercredi  à vendredi de 13h à 18h et de 9h à 12 pour les groupes, samedi de 10h à 18h, dimanche et jours fériés de 13h à 19h et du 1er novembre au 31 mars le lundi, mercredi au vendredi de 13h à 18h, samedi de 10h à 18h et dimanches et jours;
-ILE-DE-FRANCE;YVELINES;NON;;Musée Victor Aubert;24, rue Quincampoix;78580;MAULE;http://museeaubertmaule.free.fr;;Ouvert chaque mercredi et dimanche du mois de 15h à 18h;
-ILE-DE-FRANCE;YVELINES;NON;;Musée Zola-Dreyfus;26, Rue Pasteur;78670;MEDAN;www.maisonzola-museedreyfus.com;15 janvier au 28 février;Visites guidées samedi et jours fériés à 15h et 16h30, dimanche à 14h30, 15h30, 16h30 et 17h. Ouverture pour les groupes tous les jours sauf dimanche sur rdv. Pour les individuels, samedi, dimanche et jours fériés de 14h à 18h30;
-ILE-DE-FRANCE;YVELINES;NON;;Musée-Maison Maurice Ravel;5, Rue Maurice Ravel;78490;MONTFORT-L'AMAURY;www.ville-montfort-l-amaury.fr;;Ouvert depuis 2010, uniquement les week-end de 10h à 11h, 14h30 à 16h30. Pour les groupes sur rendez-vous mercredi au vendredi;
-ILE-DE-FRANCE;YVELINES;NON;;Musée du Jouet Pierre Pinel;1, Enclos de l'Abbaye;78300;POISSY;site de la ville;Jours fériés;Ouvert du mardi au dimanche de 9h30 à 12h et de 14h à 17h30;
-ILE-DE-FRANCE;YVELINES;OUI;;Musée d'Art et d'Histoire;12, Rue Saint-Louis;78300;POISSY;Site de la ville;;;
-ILE-DE-FRANCE;YVELINES;NON;;Musée Rambolitrain;4, Place Jeanne d'Arc;78120;RAMBOUILLET;www.rambolitrain.com;25 décembre et 1er janvier;Ouvert du mercredi au dimanche et jours fériés de 10h à 12h et de 14h à 17h30;
-ILE-DE-FRANCE;YVELINES;OUI;;Musée Municipal;"Jardin des Arts
-Place André Malraux";78100;SAINT-GERMAIN-EN-LAYE;;;;
-ILE-DE-FRANCE;YVELINES;NON;;Musée Départemental Maurice Denis;"2 bis, Rue Maurice Denis
-B.P. 60222";78102;SAINT-GERMAIN-EN-LAYE Cedex;www.musee-mauricedenis.fr;1er janvier, 1er mai et 25 décembre et lundi fériés;Ouvert du mardi au vendredi de 10h à 17h30 et samedi et dimanche de 10h à 18h30;Tous les 1er jeudi du mois jusqu'à 21h
-ILE-DE-FRANCE;YVELINES;NON;;Musée d'Archéologie Nationale (des origines à l'an mille) - Château de st-Germain-en-Laye;"Château
-Place Charles de Gaulle";78105;SAINT-GERMAIN-EN-LAYE Cedex;www.musee-antiquitesnationales.fr -www.musee-archeologienationale.fr;;Ouvert de 10h à 17h15, du 1er mai au 30 septembre le week-end et jours fériés de 10h à 18h15;
-ILE-DE-FRANCE;YVELINES;NON;;Musée de la Ville;B.P. 46;78185;SAINT-QUENTIN-YVELINES Cedex;www.museedelaville.agglo-sqy.fr;Fermé du 13 juillet au 19 août;Ouvert du mercredi au vendredi de 14h à 18 le samedi et le premier dimanche du mois de 14h à 18h, mercredi, jeudi et vendredi toute la journée pour les scolaires et centres de loisirs et autres groupes;
-ILE-DE-FRANCE;YVELINES;NON;;Collections de la Fondation de Coubertin;Domaine de Coubertin;78470;ST-REMY-LES-CHEVREUSE;www.coubertin.fr;;Musée et parc ouverts pour tous pendant la période d'exposition et le JEP et le reste de l'année sur RDV pour les groupes (visites scolaires et visites-conférences). Exposition 2010 ouverte du vendredi au dimanche de 13h à 18h30;
-ILE-DE-FRANCE;YVELINES;NON;;Musée Lambinet;54, Boulevard de la Reine;78000;VERSAILLES;www.musee-lambinet.com;1er janvier, dimanche et lundi de Pâques, 1er mai, ascension, lundi de Pentecôte, 8 mai, 14 juillet, 1er et 11 novembre, 25 décembre;Ouvert du lundi au jeudi et du samedi au dimanche de 14h à 18h;
-ILE-DE-FRANCE;YVELINES;NON;;Etablissement Public du Musée et du Domaine National de Versailles;R.P. 834;78008;VERSAILLES Cedex;www.chateauversailles.fr;Certains jours fériés;Ouvert du 1er novembre au 31 mars du mardi au dimanche de 9h à 17h30 et du 1er avril au 31 octobre de 9h à18h30;Samedi de 18h30 à 22h
-LANGUEDOC-ROUSSILLON;AUDE;NON;;Musée des Beaux-Arts;1, Rue de Verdun;11000;CARCASSONNE;Site de la ville;Jours fériés;Ouvert du 15 septembre au 15 juin du mardi au samedi de 10 h à 12 h et de 14 h à 18 h et le premier dimanche du mois de 14h30 à 17h30, du 15 juin au 15 septembre tous les jours de 10h à 18h;
-LANGUEDOC-ROUSSILLON;AUDE;NON;;Musée Archéologique du Lauragais;"Rampe du Presidial
-B.P. 1100";11491;CASTELNAUDARY Cedex;http://www.ville-castelnaudary.fr;;Ouvert du mardi au dimanche de 14h30 à 18h30 de juin à septembre;
+B.P. 135";94501;"CHAMPIGNY-SUR-MARNE Cedex";"www.musee-resistance.com";"Septembre, 1er janvier, lundi de Pâques, 1er mai, lundi de Pentecôtes, Ascension, 14 juillet, Assomption, 15 août, 1er novembre, 25 décembre";"Ouvert du mardi au vendredi de 9h à 12h30 et de 14h à 17h30. Samedi et Dimanche de 14h à 18h, le 8 mai";
+"ILE-DE-FRANCE";"YVELINES";"OUI";;"Musée Municipal";"Jardin des Arts
+Place André Malraux";78100;"SAINT-GERMAIN-EN-LAYE";;;;
+"ILE-DE-FRANCE";"YVELINES";"NON";;"Musée Départemental Maurice Denis";"2 bis, Rue Maurice Denis
+B.P. 60222";78102;"SAINT-GERMAIN-EN-LAYE Cedex";"www.musee-mauricedenis.fr";"1er janvier, 1er mai et 25 décembre et lundi fériés";"Ouvert du mardi au vendredi de 10h à 17h30 et samedi et dimanche de 10h à 18h30";"Tous les 1er jeudi du mois jusqu'à 21h"
+"ILE-DE-FRANCE";"YVELINES";"NON";;"Musée d'Archéologie Nationale (des origines à l'an mille) - Château de st-Germain-en-Laye";"Château
+Place Charles de Gaulle";78105;"SAINT-GERMAIN-EN-LAYE Cedex";"www.musee-antiquitesnationales.fr -www.musee-archeologienationale.fr";;"Ouvert de 10h à 17h15, du 1er mai au 30 septembre le week-end et jours fériés de 10h à 18h15";
+"ILE-DE-FRANCE";"YVELINES";"NON";;"Musée de la Ville";"B.P. 46";78185;"SAINT-QUENTIN-YVELINES Cedex";"www.museedelaville.agglo-sqy.fr";"Fermé du 13 juillet au 19 août";"Ouvert du mercredi au vendredi de 14h à 18 le samedi et le premier dimanche du mois de 14h à 18h, mercredi, jeudi et vendredi toute la journée pour les scolaires et centres de loisirs et autres groupes";
+"ILE-DE-FRANCE";"YVELINES";"NON";;"Collections de la Fondation de Coubertin";"Domaine de Coubertin";78470;"ST-REMY-LES-CHEVREUSE";"www.coubertin.fr";;"Musée et parc ouverts pour tous pendant la période d'exposition et le JEP et le reste de l'année sur RDV pour les groupes (visites scolaires et visites-conférences). Exposition 2010 ouverte du vendredi au dimanche de 13h à 18h30";

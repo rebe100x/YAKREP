@@ -70,8 +70,22 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 				
 		}
 		
+		if($debug==1){
+			echo '---ADDRESS---<br>';
+			var_dump($address);
+		}	
 		$location = $json->results[0]->geometry->location;
+		
+		if($debug==1){
+			echo '---LOCATION---<br>';
+			var_dump($location);
+		}	
 		$formatted_address = $json->results[0]->formatted_address;
+		
+		if($debug==1){
+			echo '---FORMATTED ADDRESS---<br>';
+			var_dump($formatted_address);
+		}	
 		$res = array("formatted_address"=>$formatted_address,"address"=>$address,"location"=>array($location->lat,$location->lng),"status"=>$json->status);
 	    if($output == 'JSON')    
 	        $res = json_encode($res);
@@ -397,5 +411,16 @@ function indexForOntology($str)
 	
 	return $str;
 }
-		
+
+
+function prettyLog($results){
+	print "<br>________________________________________________<br>";
+    print "Rows : " . $results['row'] . "<br>";
+    print "Call to gmap : " . $results['callGMAP'] . "<br>";
+    print "Location error (call gmap) : " . $results['locErr'] . "<br>";
+    print "Insertions : " . $results['insert'] . "<br>";
+    print "Updates : " . $results['update'] . "<br>";
+    print "<i>to force update, use ?updateFlag=1</i>";
+
+}	
 ?>

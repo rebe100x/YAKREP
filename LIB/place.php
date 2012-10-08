@@ -8,6 +8,12 @@ require_once("conf.php");
 
  class Place
  {
+	//collection
+	private $placeColl;
+	//yakcat collection
+	private $yakCatColl;
+	//filesource collection
+	private $filesourceColl;
  	//Conf
  	private $conf;
 
@@ -54,7 +60,11 @@ require_once("conf.php");
  	// flag for the workflow : 1 is validated
  	public $location;
 
+	// array of address elements
  	public $address;
+	
+	// human readable address
+	public $formatted_address;
 
  	public $contact;
 
@@ -68,7 +78,16 @@ require_once("conf.php");
  	public $zone;
 
  	function __construct() {
- 		$this->conf = new Conf();
+		
+		$this->conf = new Conf();
+		
+		$m = new Mongo(); 
+		$db = $m->selectDB($this->conf->db());
+
+		$this->placeColl = $db->place;	
+		$this->yakCatColl = $db->yakcat;
+		$this->filesourceColl = $db->filesource;
+ 		
  		$this->title = '';
  		$this->content = '';
  		$this->thumb = '';
@@ -89,11 +108,17 @@ require_once("conf.php");
 			"lng" => "",
 		);
 		$this->address = array (
+			"street_number" => "",
 			"street" => "",
-			"zipcode" => "",
+			"arr" => "",
 			"city" => "",
+			"state" => "",
+			"area" => "",
 			"country" => "",
+			"zip" => "",
 		);
+		$this->formatted_address = "";
+		
 		$this->contact = array (
 			"tel" => "",
 			"mobile" => "",
@@ -110,86 +135,32 @@ require_once("conf.php");
 		$this->zone = 1;
  	}
 
- 	/* Find duplicates in db
- 	** if duplicate exists, update contact fields if different
- 	** Return values : 0 no duplicate - 2 updated - 3 duplicate, do nothing
- 	*/
- 	function getDoublon()
- 	{
- 		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
- 		$place = $db->place;
+ 
 
- 		$rangeQuery = array('title' => $this->title, 'address' => $this->address);
- 		
-		$doublon = $place->findOne($rangeQuery);
-		$different = 0;
-			
-		if ($doublon != NULL) {
-			print "$this->title : already exists<br>";
-			//print_r($doublon['contact']);
-			foreach ($doublon['contact'] as $key => &$value) {
-				if (empty($value) && !empty($this->contact[$key])) {
-					$value = $this->contact[$key];
-					//print "$key : " . $this->contact[$key] . "<br/>";
-					$different++;
-				}
-			}
-			//Updated duplicate
-    		if ($different > 0) {
-    			print "$this->title : Updated<br>";
-    			//var_dump($doublon);
-	    		$update = array('contact' => $doublon['contact'], 'lastModifDate' => new MongoDate(gmmktime()));
-	    		$place->update($rangeQuery, $update);
-	    		//var_dump($doublon);
-	    		return 2;
-	    	}
-    		return 3;
-		}
-		else {
-			return 0;
-		}
- 	}
-
- 	/* Find location for a place
- 	** Input parameter : a query for gmap, status for debug (0 or 1)
- 	** Return an array(X,Y). If no location, return false
- 	*/
- 	function getLocation($query, $debug) {
- 		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($query))),'PHP', $debug);
- 		//print_r($loc);
-
- 		if ($loc['status'] == "OK")
- 		{
- 			print "Call to Gmap ok<br>";
- 			$this->location["lat"] = $loc["location"][0];
- 			$this->location["lng"] = $loc["location"][1];
- 			return true;
- 		}
- 		print "Gmap error for " . $query . "<br>";
- 		return false;
- 	}
 
  	/* Drop all places in db (if dev environment)
  	** else do nothing
  	*/
  	function dropAllPlaces() {
- 		if ($this->conf->getDeploy() == "dev") {
-	 		$m = new Mongo(); 
-			$db = $m->selectDB($this->conf->db());
-	 		$db->place->drop();
+ 		if ($this->conf->getDeploy() == "dev" || $this->conf->getDeploy() == "preprod") {
+	 		
+	 		$this->placeColl->drop();
  		}
  	}
 
- 	/* Save object in db
- 	** Return value : 	_id : save done - 1 : Gmap error - 2 : updated duplicate 
-	** 					- 3 : Duplicate without insertion
+ 	/* INPUT : 
+	* locationQuery : the query to gmap. If null, we assume we already have the address and location in the file
+	* debug = 1 to print debug
+	* flagUpdate to update duplicated records in db with the input one
+	* 
+	** Return value : 	$res = array('insert','locErr','update','callGMAP')
 	**/
-	function saveToMongoDB($locationQuery, $debug, $getLocation=true) {
-		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
- 		$place = $db->place;
+	
+	function saveToMongoDB($locationQuery = "", $debug, $flagUpdate = false) {
+		
  		
+		$res = array('insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0);
+		
 		$this->setFilesourceId();
 
 		$record = array(
@@ -207,6 +178,7 @@ require_once("conf.php");
 			"lastModifDate" =>	new MongoDate(gmmktime()),
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,
+			"formatted_address" 		=>	$this->formatted_address,
 			"contact"		=>	$this->contact,
 			"status" 		=>	$this->status,
 			"user"			=> 	$this->user, 
@@ -214,46 +186,63 @@ require_once("conf.php");
 		);
 
 		// Gestion des doublons
-		$ret = $this->getDoublon();
-		if ($ret == 0) {
-			// Todo update every batch to get location before saving to db
-			if ($getLocation == true) {
-				if ($this->getLocation($locationQuery, $debug)) {
+		$rangeQuery = array('title' => $this->title, 'zone' => $this->zone);
+		$doublon = $this->placeColl->findOne($rangeQuery);
+		
+		// if no duplicated
+		if (!$doublon) {
+			// if we asked for a geoloc
+			if ( strlen($locationQuery)>0) {
+				$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
+				$res['callGMAP'] = 1;
+				if ($loc['status'] ==  'OK') {
+					// transfert GMAP result to DB :
+					$record['location'] = $loc['location'];
+					$record['address'] = $loc['address'];
+					$record['formatted_address'] = $loc['formatted_address'];
 					$this->status = 1;
-					$place->save($record);
-					$place->ensureIndex(array("location"=>"2d"));
-					print $this->title . " : location ok - saved in db<br>";
-
-					return  $record['_id'];
 				}
 				else {
 					$this->status = 10;
-					$place->save($record);
-					print $this->title . " : gmap  error - saved in db<br>";
-					return 1;
+					$res['locErr'] = 1;
+					echo '<br>Err: GMAP did not return result '.$locationQuery;
 				}
+			} else {
+				$this->status = 1;
 			}
-			else {
-				$place->save($record);
-				$place->ensureIndex(array("location"=>"2d"));
-				print $this->title . " : saved in db<br>";
-				return  $record['_id'];
+			
+			$this->placeColl->save($record);
+			$this->placeColl->ensureIndex(array("location"=>"2d"));
+			$this->placeColl->ensureIndex(array("title"=>1,"status"=>1,"zone"=>1));
+			if($record['_id']){
+				echo $record['_id'];
+				$res['insert'] = 1;
 			}
-		}
-		else {
-			return $ret;
+		}else{ // if already in db
+			if($flagUpdate == 1){ // if we are asked to update
+				if (strlen($locationQuery) > 0) { // if we are asked to get the location
+					$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
+					$res['callGMAP'] = 1;
+					$record['location'] = $loc['location'];
+					$record['address'] = $loc['address'];
+					$record['formatted_address'] = $loc['formatted_address'];
+				}
+				$this->placeColl->update(array("_id"=>$doublon['_id']),$record);
+				$res['update'] = 1;
+			}
 		}
 		
+		return  $res;
  	}
  	
- 	/* Add telephone number in contact field
+ 	/* Set telephone number in contact field
  	** Input parameter : a tel number, key word 'tel' or 'mobile'
  	*/
  	function setTel($tel, $type = "tel") {
 		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
  	}
 
- 	/* Add web site in contact field
+ 	/* Set web site in contact field
  	** input parameter : a web site
 	*/
  	function setWeb ($web) {
@@ -268,7 +257,7 @@ require_once("conf.php");
 			
  	}
 
- 	/* Add email in contact field
+ 	/* Set email in contact field
  	** Input parameter : an email address
 	*/
 	function setMail ($mail) {
@@ -282,11 +271,9 @@ require_once("conf.php");
  	** example : Array('CULTURE#CINEMA','#SPORT#PETANQUE');
  	*/
  	function setYakCat ($catPathArray) {
- 		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
- 		$yakCat = $db->yakcat;
-
- 		$yakCatArray = iterator_to_array($yakCat->find());
+ 		
+		
+ 		$yakCatArray = iterator_to_array($this->yakCatColl->find());
  		foreach ($catPathArray as $catPath) {
  			foreach ($yakCatArray as $cat) {
  				if ($cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath)))) {
@@ -300,14 +287,15 @@ require_once("conf.php");
  	/* Search for the filesourceId in the DB and assign it to the specific field */
  	function setFilesourceId()
  	{
- 		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
- 		$filesource = $db->filesource;
- 		
- 		$res = $filesource->findOne(array('title'=>$this->filesourceTitle));
+ 		$res = $this->filesourceColl->findOne(array('title'=>$this->filesourceTitle));
  		
  		if(!empty($res))
-			$this->filesourceId = $res['_id'];                    
+			$this->filesourceId = $res['_id'];  
+		else{
+			echo "No file resource with the name <b>".$this->filesourceTitle."</b>. Please check in db and create the record";
+			exit;
+		}
+		
  	}
 
  	/* Set place location manually */

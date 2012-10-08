@@ -16,6 +16,17 @@ $filesource = $db->filesource;
 $records = array();
 
 $records[] = array(
+	"title"=>"Parcs et jardins de Paris",
+	"content" =>"",
+	"origin" => "operator",
+	"licence" => "Yakwala",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"tag" => array("parcs","espaces verts","jardins de Paris"),
+	"zone" => array(1),
+	);
+	
+$records[] = array(
 	"title"=>"Effectifs scolaires",
 	"content" =>"Cette donnée renseigne les effectifs scolaires pour les écoles maternelles et primaires de la commune de Montpellier. En plus des informations classiques comme le nom et l’adresse, pour chaque établissement le fichier renseigne le nombre d’enfants maximum, le nombre de classes et enfin le nombre de classes supplémentaires planifiées.",
 	"origin" => "http://opendata.montpelliernumerique.fr/Effectifs-scolaires",
@@ -23,6 +34,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"tag" => array("éducation" , "effectif scolaire" , "école" , "école primaire" , "école maternelle" , "enfant" , "montpellier"),
+	"zone" => array(2),
 
 	);
 	
@@ -34,7 +46,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"tag" => array("établissement" , "public" , "montpellier"),
-
+	"zone" => array(2),
 	);	
 	
 $records[] = array(
@@ -45,7 +57,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"tag" => array("trafic" , "metro" , "rer" , "transport" , "Paris", "Ile-de-France", "RATP"),
-
+	"zone" => array(1),
 	);	
 	
 $records[] = array(
@@ -56,7 +68,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"tag" => array("cinéma" , "ciné" , "cinoche"),
-
+	"zone" => array(1,2,3,4),
 	);	
 	
 $records[] = array(
@@ -67,7 +79,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"tag" => array("musée" , "musées" , "france"),
-
+	"zone" => array(1,2,3,4),
 	);	
 	
 $records[] = array(
@@ -78,7 +90,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"tag" => array("offre" , "culture" , "france"),
-
+	"zone" => array(1,2,3,4),
 	);	
 
 

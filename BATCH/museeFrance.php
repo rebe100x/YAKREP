@@ -16,15 +16,10 @@ $licence = "licence ouverte";
 $debug = 0;
 			
 $row = 0;
-$insert = 0;
-$update = 0;
-$locError = 0;
-$doublon = 0;
+$updateFlag = empty($_GET['updateFlag'])?0:1;
+$results = array('row'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0);
 
-$etsCulturels = array('');
-$fieldsProcessed = array('');
-$i=0;
-$j=0;
+
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
@@ -42,10 +37,6 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$currentPlace->origin = $origin;
 			$currentPlace->filesourceTitle = $fileTitle;
 			$currentPlace->licence = $licence;
-			$currentPlace->address["street"] = $data[5];
-			$currentPlace->address["zipcode"] = $data[6];
-			$currentPlace->address["city"] = $data[7];
-			$currentPlace->address["country"] = "France";
 			$currentPlace->setWeb($data[8]);
 			
 			//Gestion des horaires et fermetures des musées
@@ -77,47 +68,31 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			else
 				$currentPlace->setZoneOther();
 			
-			print "<b>$currentPlace->title</b> : ";
+			print "<b>$currentPlace->title</b><br> ";
 
-			$locationQuery = $query = $currentPlace->title .' ' . $currentPlace->address["street"] . ' ' . $currentPlace->address["zipcode"] . ' ' . $currentPlace->address["city"] . ', ' . $currentPlace->address["country"];
+			preg_replace("/B.P./i", "", $data[5]);	
+			
+			$locationQuery =  $data[5] . ', ' . $data[6] . ', ' . $data[7] . ', France';
 				
 			//echo $locationQuery;
-			switch ($currentPlace->saveToMongoDB($locationQuery, $debug, true)) {
-					case '1':
-						$insert++;
-						$locError++;
-						break;
-					case '2':
-						print "updated <br>";
-						$update++;
-						break;
-					case '3':
-						print "doublon <br>";
-						$doublon++;
-						break;
-					default :
-						print "insert (1 call to gmap)<br>";
-						$insert++;
-						break;
-				}
-				//var_dump($currentPlace);
+			$res = $currentPlace->saveToMongoDB($locationQuery, $debug,$updateFlag);
+			
+			foreach ($res as $k=>$v) {
+				if(isset($v))
+					$results[$k]+=$v;
 			}
+			
+			$results['row'] ++;	
+		}
 
 		$row++;
-		$i++;
+		
 
     }
 
     fclose($handle);
 
-    print "<br>________________________________________________<br>
-    		museeFrance : done <br>";
-    print "Rows : " . ($row-1) . "<br>";
-    print "Call to gmap : " . $insert . "<br>";
-    print "Location error (call gmap) : " . $locError . "<br>";
-    print "Insertions : " . $insert . "<br>";
-    print "Updates : " . $update . "<br>";
-    print "Doublons : " . $doublon . "<br>";
+    prettyLog($results);
     
 }
 

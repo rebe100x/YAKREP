@@ -90,6 +90,7 @@ PLACE
 	status : flag for the workflow : 1 is validated
 	user : who created the info ( 0 for a batch )
 	zone : used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee , 4 Other
+	formatted_address : human readable address
 	address :{ 
 		[street_number] => 21
 		[street] => Rue Michel le Comte
@@ -135,6 +136,7 @@ array({
 	creationDate => new MongoDate(gmmktime()),
 	lastModifDate => new MongoDate(gmmktime()),
 	location => array('lat'=>48.132165,'lng'=>2.388643),
+	formatted_address => "21 Rue Michel le Comte, 75003 Paris"
 	address => array{ 
 						[street_number] => 21
 						[street] => Rue Michel le Comte

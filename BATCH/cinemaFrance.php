@@ -7,7 +7,7 @@
 /* batch to parse "Cinéma de France"
  * */
 
-include_once "../LIB/place.php";
+include_once "../LIB/conf.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/cinemaFrance_small.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Liste-des-%C3%A9tablissements-cin%C3%A9matographiques-en-2010-avec-leur-adresse-30382098";
@@ -18,22 +18,21 @@ $debug = 0;
 $row = 0;
 $updateFlag = empty($_GET['updateFlag'])?0:1;
 
-$results = array('row'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0);
+
+$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
 
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-        $num = count($data);
-        
-		if($row  > 0){
+       
+	   if($row  > 0){
+		
 			foreach ($data as $key => &$value) {
 				$value = utf8_encode($value);
 			}
 			
 			$currentPlace = new Place();
 
-			//var_dump($data);
-			
 			$currentPlace->title = $data[3];
 
 			$currentPlace->origin = $origin;
@@ -46,13 +45,17 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$cat = array("CULTURE", "GEOLOCALISATION", "GEOLOCALISATION#YAKDICO", "CULTURE#CINEMA");
 			$currentPlace->setYakCat($cat);
 			
-			if (substr($data[7], 0, 2 == "75"))
-				$currentPlace->setZoneParis();
-			elseif (substr($data[7], 0, 2 == "34"))
-				$currentPlace->setZoneMontpellier();
-			else
-				$currentPlace->setZoneOther();
+			if (substr(trim($data[7]), 0, 2) == "75")
+				$zoneName = "PARIS";
+			elseif (substr(trim($data[7]), 0, 2) == "34")
+				$zoneName = "MONTPELLIER";
+			else{
+				$results['rejected'] ++;	
+				$results['row'] ++;	
+				continue;
+			}
 			
+			$currentPlace->setZone($zoneName);
 			print "<b>$currentPlace->title</b><br>";
 
 			$locationQuery = $query = $data[4]. " " . $data[5] . ' ' . $data[7] . ' ' . $data[6] . ', France';
@@ -64,9 +67,10 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 				if(isset($v))
 					$results[$k]+=$v;
 			}
+			$results['parse'] ++;	
 			
-			$results['row'] ++;	
 		}
+		$results['row'] ++;	
 		$row++;
     }
 

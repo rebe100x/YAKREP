@@ -53,7 +53,7 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 		$res = $json->results[0];
 		$address = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
 		foreach($res->address_components as $itemAddress){
-			if(in_array("route",$itemAddress->types))
+			if(in_array("route",$itemAddress->types) || in_array("transit_station",$itemAddress->types)) 
 				$address['street'] = $itemAddress->long_name;
 			if(in_array("sublocality",$itemAddress->types))
 				$address['arr'] = $itemAddress->long_name;
@@ -94,6 +94,7 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
     }else
         $res = 0;
      
+	 
     return $res;
     
 }
@@ -412,10 +413,34 @@ function indexForOntology($str)
 	return $str;
 }
 
+/* generate a random position arround a point
+
+*/
+function randomPositionArround($loc){
+	$lat1 = $loc['lat'];
+	$lon1 = $loc['lng'];
+	$brng = deg2rad(rand(0,360));
+	$d = rand(1100,10000)/100000;
+	$R= 6371;
+	$lat1R = deg2rad($lat1);
+	$lon1R = deg2rad($lon1);
+	$lat2R = asin( sin($lat1R)*cos($d/$R) + cos($lat1R)*sin($d/$R)*cos($brng) );
+
+	$lon2R = $lon1R + atan2(sin($brng)*sin($d/$R)*cos($lat1R), cos($d/$R)-sin($lat1R)*sin($lat2R));
+
+	$lon2 = rad2deg($lon2R);
+	$lat2 = rad2deg($lat2R);
+
+	return array('lat'=>$lat2,'lng'=>$lon2);
+}
+
 
 function prettyLog($results){
 	print "<br>________________________________________________<br>";
     print "Rows : " . $results['row'] . "<br>";
+	print "Rejected : " . $results['rejected'] . "<br>";
+	print "Parsed : " . $results['parse'] . "<br>";
+	print "Duplicated : " . $results['duplicate'] . "<br>";
     print "Call to gmap : " . $results['callGMAP'] . "<br>";
     print "Location error (call gmap) : " . $results['locErr'] . "<br>";
     print "Insertions : " . $results['insert'] . "<br>";
@@ -423,4 +448,5 @@ function prettyLog($results){
     print "<i>to force update, use ?updateFlag=1</i>";
 
 }	
+
 ?>

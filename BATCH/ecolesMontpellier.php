@@ -15,8 +15,8 @@
  * call to GMap to enrich location
  * 
  * */
-require_once('../LIB/place.php');
-require_once('../LIB/info.php');
+require_once('../LIB/conf.php');
+
 
 ini_set('display_errors',1);
 $filenameInput = "./input/VilleMTP_MTP_EffectifSco_2012.csv";
@@ -33,6 +33,9 @@ $fileTitle = "Effectifs scolaires";
 $licence = 'licence ouverte';
 $access = 1;
 $user = 0;
+$results = array('row'=>0,'rejected'=>0,'parse'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,"record"=>array());
+$debug = 1;
+$updateFlag = empty($_GET['updateFlag'])?0:1;
 
 if (($handle = fopen($filenameInput, "r")) !== FALSE) 
 {
@@ -40,7 +43,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 	
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
     {     
-		if($row > 1)
+		if($row > 0)
 		{
 			foreach ($data as $key => &$value) {
 				$value = utf8_encode($value);
@@ -67,41 +70,38 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 			$info->status = 1;
 			$info->print = 1;
 			$info->yakType = 3; // A CONFIRMER
-			$info->setTel($data[5], "tel");
-			$info->setZoneMontpellier();
-			$info->address['street'] = $data[7].' '.$data[11];
-			$info->address['zipcode'] = $data[13];
-			$info->address['city'] = 'Montpellier';
-			$info->address['country'] = 'France';
-			$locationQuery = $data[3] . ' ' . $info->address['street'] . ' ' . $info->address['zipcode'] . ' ' . $info->address['city'] . ', ' . $info->address['country'];
-		
-			$debug = 0;
-			$debug = 0;
-			switch ($info->saveToMongoDB($locationQuery, $debug, false)) 
-			{
-				case '1':
-					$locError++;
-					break;
-				case '2':
-					print "updated <br>";
-					$update++;
-					break;
-				case '3':
-					print "doublon <br>";
-					$doublon++;
-					break;
-				default:
-					$insert++;
-					print_r($info->prettyPrint() . "\n<hr/>\n");
-					break;
+			$info->setTel($data[5]);
+			$info->setZone("MONTPELLIER");
+			$info->placeName = $data[3];
+			
+			
+			$locationQuery = $data[7].' '.$data[11] . ', ' . $data[13] . ', France';
+			
+			//echo $locationQuery;
+			$res = $info->saveToMongoDB($locationQuery, $debug,$updateFlag);
+			
+			
+			if(!empty($res['error'])){
+				echo $res['error'];
+				echo '<br><b>BATCH FAILLED</b><br>';
+				exit;
 			}
-			$i++;
+			
+			foreach ($res as $k=>$v) {
+				if(isset($v))
+					$results[$k]+=$v;
+			}
+			
+			
+			
+			$results['parse'] ++;	
+			
 		}
 		$row++;
+		$results['row'] ++;	
 	}
-	print "<br/> doublon : $doublon - insert : $insert - update : $update - error loc : $locError <br>";
-    fclose($handle);
-    print_r("ecolesMontpellier done.\n");
+	fclose($handle);
+    prettyLog($results);
 }
 
 ?>

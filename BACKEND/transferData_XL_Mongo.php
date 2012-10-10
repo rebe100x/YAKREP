@@ -476,7 +476,14 @@ if(!empty($_GET['q'])){
 				echo "<br> The info does not exist in DB, we insert it.";
 				// we check if there is another info printed at this point :
 				$dataCount = 0;
-				$dataCount = $infoColl->count(array("location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035)));
+				// here we take only 30 days of max history
+				$dataCount = $infoColl->count(array(
+													"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),
+													"pubDate"=>array('$gte'=>new MongoDate(gmmktime()-86400*30)),
+													"print"=>1,
+													"status"=>1	
+													)
+											); 
 				//$dataDebug = $infoColl->find(array("location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035)));
 				//var_dump(iterator_to_array($dataDebug));
 				

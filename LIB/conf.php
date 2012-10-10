@@ -4,6 +4,12 @@ ini_set ('max_execution_time', 0);
 set_time_limit(0);
 ini_set('display_errors',1);
 
+require_once("library.php");
+include_once "place.php";
+include_once "info.php";
+include_once "address.php";
+include_once "contact.php";
+include_once "location.php";
 
 class conf
 {

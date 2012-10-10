@@ -10,17 +10,17 @@
 
  * */
 
-include_once "../LIB/place.php";
+include_once "../LIB/conf.php";
 ini_set('display_errors',1);
 $origin = "operator";
 $licence = "yakwala";
 $debug = 1;
 $fileTitle = "Parcs et jardins de Paris";
-			
+$debug = 1;	
 $row = 0;
 $updateFlag = empty($_GET['updateFlag'])?0:1;
 
-$results = array('row'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0);
+$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
 
 require_once('./input/jardins.php');
 
@@ -33,20 +33,22 @@ foreach($jardins as $jardinJSON){
 	echo $jardin['name']."<br>";
 
 	$currentPlace->filesourceTitle = $fileTitle;
-	$currentPlace->location = array('lat'=>$jardin['lat'],'lng'=>$jardin['lng']);
+	$currentPlace->location->lat = $jardin['lat'];
+	$currentPlace->location->lng = $jardin['lng'];
 	$currentPlace->licence = $licence;
 	$currentPlace->origin = $origin;
-	$currentPlace->address["street"] = $jardin['address'];
-	$currentPlace->address["state"] = "Paris";
-	$currentPlace->address["area"] = "Ile-de-France";
-	$currentPlace->address["zip"] = $jardin['zipcode'];
-	$currentPlace->address["city"] = "Paris";
-	$currentPlace->address["country"] = "France";
+	$currentPlace->address->street = $jardin['address'];
+	$currentPlace->address->state = "Paris";
+	$currentPlace->address->area = "Ile-de-France";
+	$currentPlace->address->zip = $jardin['zipcode'];
+	$currentPlace->address->city = "Paris";
+	$currentPlace->address->country = "France";
 
+	$currentPlace->contact->opening = "http://parcsetjardins.equipement.paris.fr/tousleshoraires";
 	$currentPlace->setTagOutdoor();
 	$cat = array("#GEOLOCALISATION", "GEOLOCALISATION#YAKDICO","LOISIR", "LOISIR#ESPACEVERT");
 	$currentPlace->setYakCat($cat);
-	$currentPlace->setZoneParis();
+	$currentPlace->setZone("PARIS");
 		
 	
 	$res = $currentPlace->saveToMongoDB('', $debug,$updateFlag);
@@ -57,12 +59,13 @@ foreach($jardins as $jardinJSON){
 	
 	}
 	
-	
+	$results['parse'] ++;	
 	$results['row'] ++;	
 	$row++;
 }
 
 prettyLog($results);
+
 
 
 

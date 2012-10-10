@@ -1,45 +1,34 @@
 <?php
-//$root = realpath($_SERVER["DOCUMENT_ROOT"]);
-
-require_once("library.php");
-//require_once("$root/LIB/conf.php");
 require_once("conf.php");
 
 
  class Place
  {
 	//collection
-	private $placeColl;
+	public $placeColl;
 	//yakcat collection
-	private $yakCatColl;
+	public $yakCatColl;
 	//filesource collection
-	private $filesourceColl;
+	public $filesourceColl;
  	//Conf
- 	private $conf;
-
+ 	public $conf;
  	// name of the place ( can be a building, an area, a street ... )
  	public $title;
- 	
  	// some text to describe the place
  	public $content;
- 	
  	// a local link to a picture of the place
  	public $thumb;
-
  	// where did we get this info
  	public $origin;
-
-	// mongoId (can be null if data is not coming from a file parsed)
+	// mongoId (can be null if data is not coming from a file parsed) but never null in a batch
 	public $filesourceId;
-	
+	// name of the file source
 	public $filesourceTitle;
-
  	// 1 - public / 2 - privé for the api ( all open data is public )
  	public $access;
-
  	// copy the licence of the file you used
  	public $licence;
- 	
+	
  	public $outGoingLink;
 
  	// [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
@@ -57,7 +46,7 @@ require_once("conf.php");
 
  	public $lastModifDate;
 
- 	// flag for the workflow : 1 is validated
+ 	// location object
  	public $location;
 
 	// array of address elements
@@ -66,6 +55,7 @@ require_once("conf.php");
 	// human readable address
 	public $formatted_address;
 
+	// contact object
  	public $contact;
 
  	// flag for the workflow : 1 is validated
@@ -103,36 +93,13 @@ require_once("conf.php");
  		$this->freeTag = '';
  		$this->creationDate = time();
  		$this->lastModifDate = time();
- 		$this->location = array (
-			"lat" => "",
-			"lng" => "",
-		);
-		$this->address = array (
-			"street_number" => "",
-			"street" => "",
-			"arr" => "",
-			"city" => "",
-			"state" => "",
-			"area" => "",
-			"country" => "",
-			"zip" => "",
-		);
+ 		$this->location = new Location();
+		$this->address = new Address();
 		$this->formatted_address = "";
-		
-		$this->contact = array (
-			"tel" => "",
-			"mobile" => "",
-			"mail" => "",
-			"transportation" => "",
-			"web" => "",
-			"opening" => "",
-			"closing" => "",
-			"special opening" => "",
-		);
-
-		$this->status = 1;
+		$this->contact = new Contact();
+		$this->status = 0;
 		$this->user = 0;
-		$this->zone = 1;
+		$this->zone = 0;
  	}
 
  
@@ -158,88 +125,132 @@ require_once("conf.php");
 	
 	function saveToMongoDB($locationQuery = "", $debug, $flagUpdate = false) {
 		
- 		
-		$res = array('insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0);
 		
-		$this->setFilesourceId();
-
-		$record = array(
-			"title"			=>	$this->title,
-			"content" 		=>	$this->content,
-			"thumb" 		=>	$this->thumb,
-			"origin"		=>	$this->origin,
-			"filesourceId"	=>	$this->filesourceId,	
-			"access"		=>	$this->access,
-			"licence"		=>	$this->licence,
-			"outGoingLink" 	=>	$this->outGoingLink,
-			"yakCat" 		=>	$this->yakCat,
-			"yakTag" 		=>	$this->yakTag,
-			"creationDate" 	=>	new MongoDate(gmmktime()),
-			"lastModifDate" =>	new MongoDate(gmmktime()),
-			"location" 		=>	$this->location,
-			"address" 		=>	$this->address,
-			"formatted_address" 		=>	$this->formatted_address,
-			"contact"		=>	$this->contact,
-			"status" 		=>	$this->status,
-			"user"			=> 	$this->user, 
-			"zone"			=> 	$this->zone,
-		);
-
-		// Gestion des doublons
-		$rangeQuery = array('title' => $this->title, 'zone' => $this->zone);
-		$doublon = $this->placeColl->findOne($rangeQuery);
 		
-		// if no duplicated
-		if (!$doublon) {
-			// if we asked for a geoloc
-			if ( strlen($locationQuery)>0) {
-				$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
-				$res['callGMAP'] = 1;
-				if ($loc['status'] ==  'OK') {
-					// transfert GMAP result to DB :
-					$record['location'] = $loc['location'];
-					$record['address'] = $loc['address'];
-					$record['formatted_address'] = $loc['formatted_address'];
+			$res = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
+			
+			$this->setFilesourceId();
+
+			
+
+			// detect duplicated records
+			$rangeQuery = array('title' => $this->title,'zone' => $this->zone);
+			$doublon = $this->placeColl->findOne($rangeQuery);
+			
+			// if no duplicated
+			if (!$doublon) {
+				// if we asked for a geoloc
+				if ( strlen($locationQuery)>0) {
+					//$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
+					$loc = array("formatted_address"=>"this is a test","address"=>array('street'=>'street test'),"location"=>array(48.8,2.2),"status"=>'OK');
+					$res['callGMAP'] = 1;
+					if ($loc['status'] ==  'OK') {
+						// transfert GMAP result to DB :
+						
+						$this->location->lat = $loc['location'][0];
+						$this->location->lng = $loc['location'][1];
+						$this->address = (object)($loc['address']);
+						$this->formatted_address = $loc['formatted_address'];
+						$this->status = 1;
+					}
+					else {
+						$this->status = 10;
+						$res['locErr'] = 1;
+						echo '<br>Err: GMAP did not return result '.$locationQuery;
+					}
+				} else {
 					$this->status = 1;
 				}
-				else {
-					$this->status = 10;
-					$res['locErr'] = 1;
-					echo '<br>Err: GMAP did not return result '.$locationQuery;
-				}
-			} else {
-				$this->status = 1;
-			}
+				
+				
+				$record = array(
+				"title"			=>	$this->title,
+				"content" 		=>	$this->content,
+				"thumb" 		=>	$this->thumb,
+				"origin"		=>	$this->origin,
+				"filesourceId"	=>	$this->filesourceId,	
+				"access"		=>	$this->access,
+				"licence"		=>	$this->licence,
+				"outGoingLink" 	=>	$this->outGoingLink,
+				"yakCat" 		=>	$this->yakCat,
+				"yakTag" 		=>	$this->yakTag,
+				"creationDate" 	=>	new MongoDate(gmmktime()),
+				"lastModifDate" =>	new MongoDate(gmmktime()),
+				"location" 		=>	$this->location,
+				"address" 		=>	$this->address,
+				"formatted_address" 		=>	$this->formatted_address,
+				"contact"		=>	$this->contact,
+				"status" 		=>	$this->status,
+				"user"			=> 	$this->user, 
+				"zone"			=> 	$this->zone,
+			);
 			
-			$this->placeColl->save($record);
-			$this->placeColl->ensureIndex(array("location"=>"2d"));
-			$this->placeColl->ensureIndex(array("title"=>1,"status"=>1,"zone"=>1));
-			if($record['_id']){
-				echo $record['_id'];
-				$res['insert'] = 1;
-			}
-		}else{ // if already in db
-			if($flagUpdate == 1){ // if we are asked to update
-				if (strlen($locationQuery) > 0) { // if we are asked to get the location
-					$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
-					$res['callGMAP'] = 1;
-					$record['location'] = $loc['location'];
-					$record['address'] = $loc['address'];
-					$record['formatted_address'] = $loc['formatted_address'];
+				$resSave = $this->savePlace($record);
+				$res['record'] = $record; // TODO : cast to array ???
+				$res['error'] = $resSave['error'];
+				$this->placeColl->ensureIndex(array("location"=>"2d"));
+				$this->placeColl->ensureIndex(array("title"=>1,"status"=>1,"zone"=>1));
+				if(empty($res['error'])){
+					$res['insert'] = 1;
 				}
-				$this->placeColl->update(array("_id"=>$doublon['_id']),$record);
-				$res['update'] = 1;
+			}else{ // if already in db
+				$res['duplicate'] = 1;
+				$res['record'] = $doublon;
+				if($flagUpdate == 1){ // if we are asked to update
+					if (strlen($locationQuery) > 0) { // if we are asked to get the location
+						$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
+						$res['callGMAP'] = 1;
+						$record['location'] = $loc['location'];
+						$record['address'] = $loc['address'];
+						$record['formatted_address'] = $loc['formatted_address'];
+					}
+					$this->placeColl->update(array("_id"=>$doublon['_id']),$record);
+					$res['update'] = 1;
+				}
 			}
-		}
-		
+		//var_dump($res);
 		return  $res;
  	}
  	
+	
+	/* Save the place after a check on param not nullable
+	* Input : record
+	* Output : the error text if there is one
+	*/
+	private function savePlace($record){
+		
+		$res = array('error'=>'','id'=>'');
+		// protect not nullable fields
+ 		if(strlen(trim($this->title)) > 0 
+		&& strlen(trim($this->licence)) > 0 
+		&& strlen(trim($this->origin)) > 0
+		&& strlen(trim($this->filesourceTitle)) > 0
+		&& (!empty($this->zone))
+		&& sizeof($this->yakCat) > 0
+		&& (!empty($this->status))
+		&& (!empty($this->access))		
+		){
+			$this->placeColl->save($record);
+			$res['id'] = $record['_id'];
+		}else{
+			$res['error'] = "<br><b>Error:</b> A non nullable field is empty :<br>".
+			"<b>title:</b> ".$this->title."<br>" .
+			"<b>licence:</b> ".$this->licence."<br>" .
+			"<b>origin:</b> ".$this->origin."<br>" .
+			"<b>filesourceTitle:</b> ".$this->filesourceTitle."<br>" .
+			"<b>zone:</b> ".$this->zone."<br>" . 
+			"<b>yakCat:</b> ".serialize($this->yakCat)."<br>".
+			"<b>Status:</b> ".$this->status."<br>".
+			"<b>Access:</b> ".$this->access."<br>";
+		}
+		
+		return $res;
+	}
  	/* Set telephone number in contact field
  	** Input parameter : a tel number, key word 'tel' or 'mobile'
  	*/
  	function setTel($tel, $type = "tel") {
-		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
+		$this->contact->tel = mb_ereg_replace("[ /)(.-]","",$tel);
  	}
 
  	/* Set web site in contact field
@@ -252,7 +263,7 @@ require_once("conf.php");
 		$result = preg_grep($pattern, $webArray);
 		if (!empty($result)) {
 			$result = array_values($result);
-			$this->contact['web'] = $result[0];
+			$this->contact->web = $result[0];
 		}
 			
  	}
@@ -263,20 +274,21 @@ require_once("conf.php");
 	function setMail ($mail) {
 		$mail = strtolower($mail);
 		if (filter_var($mail, FILTER_VALIDATE_EMAIL))
- 			$this->contact['mail'] = $mail;
+ 			$this->contact->mail = $mail;
  	}
 
  	/* Add yakCat to the place
  	** Input parameter : an array with yakCat to add (no accent, upper case)
  	** example : Array('CULTURE#CINEMA','#SPORT#PETANQUE');
  	*/
- 	function setYakCat ($catPathArray) {
+ 	public function setYakCat ($catPathArray) {
  		
-		
+		var_dump($this);
  		$yakCatArray = iterator_to_array($this->yakCatColl->find());
  		foreach ($catPathArray as $catPath) {
  			foreach ($yakCatArray as $cat) {
- 				if ($cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath)))) {
+ 				if ( $cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) 
+					|| "#".$cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) ) {
  					$this->yakCat[] = $cat['_id'];
  					$this->humanCat[] = $cat['title'];
  				}
@@ -301,8 +313,8 @@ require_once("conf.php");
  	/* Set place location manually */
  	function setLocation($latitude, $longitude) 
  	{
- 		$this->location["lat"] = $latitude;
- 		$this->location["lng"] = $longitude;
+ 		$this->location->lat = $latitude;
+ 		$this->location->lng = $longitude;
  	}
 
  	/* Add Tags in yakTag array
@@ -338,22 +350,39 @@ require_once("conf.php");
  	function setTagPets() {
  		$this->yakTag[] = "Pets";
  	}
- 	
- 	function setZoneParis() {
- 		$this->zone = 1;
+ 	function setTagCarPark() {
+ 		$this->yakTag[] = "Car park";
  	}
-
- 	function setZoneMontpellier() {
- 		$this->zone = 2;
- 	}
-
- 	function setZoneEghezee() {
- 		$this->zone = 3;
- 	}
-
- 	function setZoneOther() {
- 		$this->zone = 4;
- 	}
+	
+	/*SET THE ZONE
+	* input : zone name
+	* return : nothing
+	*/
+	function setZone($zoneName){
+		$err = 1;
+		switch($zoneName){
+			case 'PARIS':
+				$zone = 1;
+			break;
+			case 'MONTPELLIER':
+				$zone = 2;
+			break;
+			case 'EGHEZEE':
+				$zone = 3;
+			break;
+			case 'OTHER':
+				$zone = 4;
+			break;
+			default:
+				$zone = 0;
+				$err = "ZONE NOT KNOWN";
+		
+		}
+		
+		$this->zone = $zone;
+		return $err;
+	}
+	
 
  	function prettyPrint() {
 

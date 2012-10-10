@@ -1,13 +1,21 @@
 <?php
 
-require_once("library.php");
-require_once("place.php");
+require_once("conf.php");
 
- class Info{
+ class Info extends Place{
  
  	// Configuration
- 	private $conf;
+ 	public $conf;
 
+	//collection
+	public $placeColl;
+	//yakcat collection
+	public $yakCatColl;
+	//info collection
+	public $infoColl;
+	//filesource collection
+	public $filesourceColl;
+	
  	// name of the info
  	public $title;
  	
@@ -77,14 +85,25 @@ require_once("place.php");
 	// object : only if different from the place contact ( ex: for an expo the museaum and the expo do not have the same contact )
 	public $contact;
 	
-	// debug field : the location string found by the semantic factory ( the string sent to gmap, used only for the rss parsing )
+	// the address human readable for printing ( formated address )
 	public $address;
 	
+	// Name of place
+	public $placeName;
 	// Id of place
 	public $placeid;
 
 	function __construct() {
 		$this->conf = new Conf();
+		$m = new Mongo(); 
+		$db = $m->selectDB($this->conf->db());
+		$this->infoColl = $db->info;
+		$this->placeColl = $db->place;	
+		$this->yakCatColl = $db->yakcat;
+		$this->filesourceColl = $db->filesource;
+ 		
+
+		
 		$this->title = '';
 		$this->content = '';
 		$this->thumb = '';
@@ -106,30 +125,14 @@ require_once("place.php");
 		$this->creationDate = time();
 		$this->lastModifDate = time();
 		$this->dateEndPrint = '';
-		$this->address = array (
-			"street" => "",
-			"zipcode" => "",
-			"city" => "",
-			"country" => "",
-		);
-		$this->location = array (
-			"lat" => "",
-			"lng" => "",
-		);
-		$this->contact = array (
-			"tel" => "",
-			"mobile" => "",
-			"mail" => "",
-			"transportation" => "",
-			"web" => "",
-			"opening" => "",
-			"closing" => "",
-			"special opening" => "",
-		);
+		$this->address = new Address();
+		$this->location = new Location();
+		$this->contact = new Contact();
 		$this->status = 0;
 		$this->user = 0;
-		$this->zone = 1;
+		$this->zone = 0;
 		$this->placeid = '';
+		$this->placeName = '';
 	}
 
 	/* Find duplicates in db
@@ -137,29 +140,24 @@ require_once("place.php");
  	*/
 	function getDoublon()
 	{
-		
-		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
-		$info = $db->info;
-
 		//var_dump($this);
-		if (!empty($this->location['lat']) && !empty($this->location['lng'])){
+		if( !empty($this->location->lat) && !empty($this->location->lng) ){
 			//print_r($this->location);
 			$rangeQuery = array('title' => $this->title, "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
 		}
-		else
-			$rangeQuery = array('title' => $this->title, 'address' => $this->address );
-
-		$doublon = $info->findOne($rangeQuery);
+		
+		$doublon = $this->infoColl->findOne($rangeQuery);
 			
 		if ($doublon != NULL) {
 			print "Info already exists.<br>";
-			return 1;
+			$res = 1;
 		}
 		else {
-			"Info doesn't exist. <br>";
-			return 0;
+			print "Info doesn't exist. <br>";
+			$res = 0;
 		}
+		
+		return $res;
 	}
 
 	/* Find location for a place
@@ -172,8 +170,8 @@ require_once("place.php");
 
 		if ($loc['status'] == "OK")
 		{
-			$this->location["lat"] = $loc["location"][0];
-			$this->location["lng"] = $loc["location"][1];
+			$this->location->lat = $loc["location"][0];
+			$this->location->lng = $loc["location"][1];
 			return true;
 		}
 		print "Gmap error for address : " . $query . "<br>";
@@ -185,29 +183,68 @@ require_once("place.php");
 	** 					 get location (true or false)
 	** Return values : _id : info recorded - 1 : already exists
 	*/
- 	function saveToMongoDB($locationQuery, $debug, $getLocation=true) {
+ 	function saveToMongoDB($locationQuery = "", $debug, $flagUpdate = false) {
  		
-		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
-		$infoColl = $db->info;
+		// must be set : ZONE and PLACENAME or ADDRESS
+		// and ORIGIN and FILETITLE and LICENCE
+		$res = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
 		
 		$this->setFilesourceId();
-		$this->setPlaceid($locationQuery, $debug);
+		
+		//$this->setPlaceid($locationQuery, $debug);
 
-		// Gestion des doublons
-		$ret = $this->getDoublon();
-
-		if ($ret == 0) {
-			if ($this->status != 10) {
-				$dataNear = $infoColl->count(array("location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035)));
-				print $dataNear . " infos near ". $this->title . "<br>";
-				if($dataNear > 0 ){
-					$delta = ceil($dataNear/12);
-					$this->location = array("lat"=>(0.000015*sin(3.1415*$dataNear/6)+$this->location['lat']),"lng"=>(0.00002*cos(3.1415*$dataNear/6)+$this->location['lng']));
-					print "Slightly move data to avoid superposition<br/>";
-				}
+		// if we have a place geolocalized
+		if($this->placeName || $this->address){
+			$resPlace = $this->linkToPlace($locationQuery, $debug);
+			var_dump($resPlace);
+			// no duplicated
+			if($this->getDoublon() == 0){
+				$this->moveData();
+				$this->saveInfo();
+				echo '<br>save for the map<br>';
+				$res['insert'] ++;
+			}else{
+				$res['duplicate'] ++;	
+				echo '<br>duplicate<br>';
 			}
-
+			
+			
+			
+		}else{ // info is not geolocalised by semantic tool, we put it in the feed with the zone area information
+				$this->print = 0;
+				$this->status = 1;
+				// @TODO in soft code
+				switch($this->zone){
+				case '1':
+					$lat = 48.851875;
+					$lng = 2.356374;
+				break;
+				case '2':
+					$lat = 43.610787;
+					$lng = 3.876715;
+				break;
+				case '3':
+					$lat = 50.583346;
+					$lng = 4.900031;
+				break;
+				default:
+					$lat = 48.851875;
+					$lng = 2.356374;
+				}
+				
+				$this->location->lat = $lat;
+				$this->location->lng = $lng;
+				
+				$this->saveInfo();
+				echo '<br>info save for the feed<br>';
+		}
+		
+		return $res;
+	}
+	
+	
+	private function saveInfo(){
+			
 			$record = array(
 			"title"			=>	$this->title,
 			"content" 		=>	$this->content,
@@ -234,248 +271,98 @@ require_once("place.php");
 			"zone"			=> 	$this->zone,
 			"placeid"		=>	$this->placeid,
 			);	
-			$infoColl->save($record);
-			$infoColl->ensureIndex(array("location"=>"2d"));
+			$this->infoColl->save($record);
+			$this->infoColl->ensureIndex(array("location"=>"2d"));
 			print "$this->title : info saved in db.<br>";
 			return  $record['_id'];
-		}
-		else {
-			print "$this->title : doublon. No insertion.<br>";
-			return $ret;
-		}
-	}
 	
-	/* Find _id of a place to complete placeid field
-	** if the place doesn't exist, create the place
+	
+	}
+	/* Link the info to a place
+	** if the place doesn't exist in db, we create the place
+	** if it is in db, we get the data to put it in the info
+	
+	** set the info.placeId and the info.location and the info.status and info.print and the info.zone
+	
 	** Input parameter : location query for gmap, debug 0 or 1 
+	** Output : the result of the place creation ( null if no creation ) 
 	*/
-	function setPlaceid($locationQuery, $debug)
+	function linkToPlace($locationQuery, $debug)
 	{
-		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
-		$place = $db->place;
-
-		if (!empty($this->address))
-			$rangeQuery = array('title' => $this->title, 'status' => 1, 'address' => $this->address);
-		else
-			$rangeQuery = array('title' => $this->title, 'status' => 1);
-			
-		$result = $place->findOne($rangeQuery);
+		$resPlace = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
+		// we try first on the name of the place
+		if (!empty($this->placeName))
+			$theString2Search = $this->placeName;
+		elseif (!empty($this->address)) // but if no place name, we try the address
+			$theString2Search = $this->address;
+		echo $theString2Search;	
+		$rangeQuery = array('title' => $theString2Search, 'status' => 1, 'zone'=> $this->zone);
+			var_dump($rangeQuery);
+		$result = $this->placeColl->findOne($rangeQuery);
 		if ($result != NULL) {
-			if (!empty($result['location']))
+			if (!empty($result['location'])) // we set the location without calling gmap
 				$this->location = $result['location'];
-
-			// if info contact is not different from the place contact, clear info contact
-			if ($result['contact'] == $this->contact) {
-				foreach ($this->contact as &$value) {
-					$value = "";
-				}
-			}
-			$this->placeid = $result['_id'];
-
-			print "Place already exists in db <br>";
+				$this->placeid = $result['_id'];
+				print "Place found in db in db <br>";
+				$this->status = 1; // here it must be 1 because of the query
+				$this->print = 1; 
+				
 		}
 		else {
 			print "$this->title : Place doesn't exist in db (creation).<br>";
-			$this->placeid = $this->createPlace($locationQuery, $debug);
+			$newPlace = new Place();
+			
+			$newPlace->title = $this->placeName;			
+			$newPlace->origin = $this->origin;
+			$newPlace->filesourceTitle = $this->filesourceTitle;
+			$newPlace->licence = $this->licence;
+			$cat = array("GEOLOCALISATION", "GEOLOCALISATION#YAKDICO");
+			$newPlace->setYakCat($cat);
+			$newPlace->zone = $this->zone;
+			
+			$resPlace = $newPlace->saveToMongoDB($locationQuery, $debug);
+			if(!empty($resPlace['error'])){
+				echo $resPlace['error'];
+				echo '<br><b>BATCH FAILLED</b><br>Place creation failed';
+				exit;
+			}
+			
+			$theNewPlace = $resPlace['record'];
+			$this->placeid = $theNewPlace['_id'];
+			$this->location = $theNewPlace['location'];	
+			$this->status = $theNewPlace['status']; // if gmap did not work we have a status 10
+			if($this->status != 1)
+				$this->print = 0; 	
+			else
+				$this->print = 1; 	
+			
+			
 		}
+		return $resPlace;
 	}
 
-	/* Create a new place if doesn't exist
-	** Input parameter : location query for call to gmap, debug parameter (0 or 1)
-	** Return values : _id
+	
+	/* move slightly an info to avoid superposition
+	* 
+	*
 	*/
-	function createPlace($locationQuery, $debug)
-	{
-		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
-		$place = $db->place;
+	private function moveData(){
+		
+		$dataCount = 0;
+		// here we take only 30 days of max history
+		$dataCount = $this->infoColl->count(array(
+											"location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035),
+											"pubDate"=>array('$gte'=>new MongoDate(gmmktime()-86400*30)) 
+											)
+									);
 
-		$newPlace = new Place();
-		
-		$newPlace->title = $this->title;
-		$newPlace->content = $this->content;
-		$newPlace->thumb = $this->thumb;
-		$newPlace->origin = $this->origin;	
-		$newPlace->filesourceId = $this->filesourceId;
-		$newPlace->access = $this->access;
-		$newPlace->licence = $this->licence;
-		$newPlace->outGoingLink = $this->outGoingLink;
-		$newPlace->yakCat = $this->yakCat;
-		$newPlace->yakTag = $this->yakTag;
-		$newPlace->creationDate = new MongoDate(gmmktime());
-		$newPlace->lastModifDate = new MongoDate(gmmktime());
-		$newPlace->location = $this->location;
-		$newPlace->address = $this->address;
-		$newPlace->contact = $this->contact;
-		$newPlace->status = $this->status;
-		$newPlace->user = $this->user; 
-		$newPlace->zone = $this->zone;
-		
-		if ($newPlace->getLocation($locationQuery, $debug)) {
-			$newPlace->status = 1;
-			print "Location ok.<br>";
-			$this->location = $newPlace->location;
+		// if more than one info on the same location
+		if($dataCount > 0){
+			$this->location = randomPositionArround(array('lat'=>$this->location->lat,'lng'=>$this->location->lng));
 		}
-		else {
-			$newPlace->status = 10;
-			print "Gmap error.<br>";
-		}
-		
-		$newPlace->setFilesourceId();
-		
-		//save in db
-		$record = array(
-			"title"			=>	$newPlace->title,
-			"content" 		=>	$newPlace->content,
-			"thumb" 		=>	$newPlace->thumb,
-			"origin"		=>	$newPlace->origin,
-			"filesourceId"	=> 	$newPlace->filesourceId,	
-			"access"		=>	$newPlace->access,
-			"licence"		=>	$newPlace->licence,
-			"outGoingLink" 	=>	$newPlace->outGoingLink,
-			"yakCat" 		=>	$newPlace->yakCat,
-			"yakTag" 		=>	$newPlace->yakTag,
-			"creationDate" 	=>	new MongoDate(gmmktime()),
-			"lastModifDate" =>	new MongoDate(gmmktime()),
-			"location" 		=>	$newPlace->location,
-			"address" 		=>	$newPlace->address,
-			"contact"		=>	$newPlace->contact,
-			"status" 		=>	$newPlace->status,
-			"user"			=> 	$newPlace->user, 
-			"zone"			=> 	$newPlace->zone,
-		);
-		$place->save($record);
-		$place->ensureIndex(array("location"=>"2d"));
-		print "Place created and saved in db.<br>";
-		$this->status = $newPlace->status;
-		return  $record['_id'];
+
 	}
 	
-	/* Drop all places in db (if dev environment)
- 	** else do nothing
- 	*/
- 	function dropAllPlaces() {
- 		if ($this->conf->getDeploy() == "dev") {
-	 		$m = new Mongo(); 
-			$db = $m->selectDB($this->conf->db());
-	 		$db->place->drop();
- 		}
- 	}
- 
- 	/* Add telephone number in contact field
- 	** Input parameter : a tel number, key word 'tel' or 'mobile'
- 	*/
- 	function setTel($tel, $type = "tel") {
-		$this->contact["$type"] = mb_ereg_replace("[ /)(.-]","",$tel);
- 	}
-
- 	/* Add web site in contact field
- 	** input parameter : a web site
-	*/
- 	function setWeb ($web) {
- 		$pattern = "@^(http(s?)\:\/\/)?(www\.)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*(\/)?([a-z0-9][_a-z0-9\-\/\.\&\?\+\=\,]*)*$@i";
-		
-		$webArray = preg_split("/[\s]+/", $web);
-		$result = preg_grep($pattern, $webArray);
-		if (!empty($result)) {
-			$result = array_values($result);
-			$this->contact['web'] = $result[0];
-		}		
- 	}
-
- 	/* Add email in contact field
- 	** Input parameter : an email address
-	*/
-	function setMail ($mail) {
-		$mail = strtolower($mail);
-		if (filter_var($mail, FILTER_VALIDATE_EMAIL))
- 			$this->contact['mail'] = $mail;
- 	}
-
-	/* Add yakCat to the place
- 	** Input parameter : an array with yakCat to add (no accent, upper case)
- 	** example : Array('CULTURE#CINEMA','#SPORT#PETANQUE');
- 	*/
- 	function setYakCat ($catPathArray) {
- 		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
- 		$yakCat = $db->yakcat;
-
- 		$yakCatArray = iterator_to_array($yakCat->find());
- 		foreach ($catPathArray as $catPath) {
- 			foreach ($yakCatArray as $cat) {
- 				if ($cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath)))) {
- 					$this->yakCat[] = $cat['_id'];
- 					$this->humanCat[] = $cat['title'];
- 				}
- 			}
- 		}
- 	}
- 	
- 	
- 	/* Search for the filesourceId in the DB and assign it to the specific field */
- 	function setFilesourceId()
- 	{
- 		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
- 		$filesource = $db->filesource;
- 		
- 		$res = $filesource->findOne(array('title'=>$this->filesourceTitle));
- 		
- 		if(!empty($res))
-			$this->filesourceId = $res['_id'];                    
- 	}
-	
-	/* Add tags to info
-	*/
-	function setTagChildren() {
-		$this->yakTag[] = "Children";
-	}
-
-	function setTagDisabled() {
-		$this->yakTag[] = "Disabled";
-	}
-
-	function setTagElderly() {
- 		$this->yakTag[] = "Elderly person";
- 	}
-
- 	function setTagIndoor() {
- 		$this->yakTag[] = "Indoor";
- 	}
-
- 	function setTagGay() {
- 		$this->yakTag[] = "Gay friendly";
- 	}
-
- 	function setTagFree() {
- 		$this->yakTag[] = "Free";
- 	}
-
- 	function setTagPets() {
- 		$this->yakTag[] = "Pets";
- 	}
- 	
- 	/* Add zone to info
- 	*/
- 	function setZoneParis() {
- 		$this->zone = 1;
- 	}
-
- 	function setZoneMontpellier() {
- 		$this->zone = 2;
- 	}
-
- 	function setZoneEghezee() {
- 		$this->zone = 3;
- 	}
-
- 	function setZoneOther() {
- 		$this->zone = 4;
- 	}
- 	
-
  	function prettyPrint() {
 
  		$str = "<div>\n";

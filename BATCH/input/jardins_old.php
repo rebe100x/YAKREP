@@ -1,16 +1,17 @@
- <?php 
- $jardins[] = array("{ \"name\" : \"Aire de jeux de la rue Hélène\",
+ <?php
+ 
+ $jardins[] = array("{ \"name\" : \"Aire de jeux de la rue Hꭨne\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.886387,
             \"lng\" : 2.325024,
             \"id\" : 2626,
-            \"address\" : \"12 rue Helène\",
+            \"address\" : \"12 rue Hel\u00e8ne\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/aire-de-jeux-de-la-rue-helene-2626\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/aire-de-jeux-de-la-rue-helene-2626\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Allée des Cygnes\",
+        $jardins[] = array("{ \"name\" : \"Allꥠdes Cygnes\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.855061,
@@ -18,7 +19,7 @@
             \"id\" : 2875,
             \"address\" : \"pont de Grenelle<br>  pont Bir-Hakeim\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/allee-des-cygnes-2875\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/allee-des-cygnes-2875\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Arboretum de l'Ecole Du Breuil\",
@@ -29,7 +30,7 @@
             \"id\" : 1796,
             \"address\" : \"50 route de la Pyramide\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/arboretum-de-l-ecole-du-breuil-1796\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/arboretum-de-l-ecole-du-breuil-1796\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Bois de Boulogne\",
@@ -40,7 +41,7 @@
             \"id\" : 2779,
             \"address\" : \"Bois de Boulogne\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/bois-de-boulogne-2779\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/bois-de-boulogne-2779\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Clos Montmartre\",
@@ -51,7 +52,7 @@
             \"id\" : 2697,
             \"address\" : \"14 rue des Saules\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/clos-montmartre-2697\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/clos-montmartre-2697\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Esplanade des Invalides\",
@@ -62,7 +63,7 @@
             \"id\" : 1787,
             \"address\" : \"1 rue Fabert\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/esplanade-des-invalides-1787\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/esplanade-des-invalides-1787\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Esplanade Gaston Monnerville\",
@@ -71,9 +72,9 @@
             \"lat\" : 48.84354,
             \"lng\" : 2.336427,
             \"id\" : 2457,
-            \"address\" : \"7 place André Honnorat\",
+            \"address\" : \"7 place Andr顈onnorat\",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/esplanade-gaston-monnerville-2457\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/esplanade-gaston-monnerville-2457\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Esplanade Habib Bourguiba\",
@@ -82,9 +83,9 @@
             \"lat\" : 48.854336,
             \"lng\" : 2.313403,
             \"id\" : 2738,
-            \"address\" : \"Accès : quai d'Orsay, port du Gros-Caillou\",
+            \"address\" : \"Acc\u00e8s : quai d'Orsay, port du Gros-Caillou\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/esplanade-habib-bourguiba-2738\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/esplanade-habib-bourguiba-2738\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Ile de Bercy\",
@@ -95,10 +96,10 @@
             \"id\" : 15389,
             \"address\" : \"Ile de Bercy\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/ile-de-bercy-15389\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/ile-de-bercy-15389\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin André Ulmann\",
+        $jardins[] = array("{ \"name\" : \"Jardin Andr顕lmann\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8905885,
@@ -106,7 +107,7 @@
             \"id\" : 2792,
             \"address\" : \"29 boulevard de Reims\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-andre-ulmann-2792\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-andre-ulmann-2792\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Anne Frank\",
@@ -117,7 +118,7 @@
             \"id\" : 2737,
             \"address\" : \"14 impasse Berthaud\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-anne-frank-2737\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-anne-frank-2737\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Atlantique\",
@@ -126,9 +127,9 @@
             \"lat\" : 48.839695,
             \"lng\" : 2.318952,
             \"id\" : 1775,
-            \"address\" : \"1 place des 5 Martyrs du Lycée Buffon\",
+            \"address\" : \"1 place des 5 Martyrs du LycꥠBuffon\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-atlantique-1775\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-atlantique-1775\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Bargue-Platon\",
@@ -137,9 +138,9 @@
             \"lat\" : 48.837475,
             \"lng\" : 2.310887,
             \"id\" : 2495,
-            \"address\" : \"126 rue Falguière\",
+            \"address\" : \"126 rue Falgui\u00e8re\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-bargue-platon-2495\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-bargue-platon-2495\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Baudricourt\",
@@ -150,7 +151,7 @@
             \"id\" : 2853,
             \"address\" : \"14 rue de la Pointe d'Ivry\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-baudricourt-2853\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-baudricourt-2853\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Biopark\",
@@ -161,7 +162,7 @@
             \"id\" : 2855,
             \"address\" : \"11rue Watt\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-biopark-2855\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-biopark-2855\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Brassai\",
@@ -170,9 +171,9 @@
             \"lat\" : 48.828724,
             \"lng\" : 2.349685,
             \"id\" : 2571,
-            \"address\" : \"2 rue Eugène Atget\",
+            \"address\" : \"2 rue Eug\u00e8ne Atget\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-brassai-2571\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-brassai-2571\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Casque d'Or\",
@@ -183,10 +184,10 @@
             \"id\" : 2713,
             \"address\" : \"14 rue Michel de Bourges\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-casque-d-or-2713\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-casque-d-or-2713\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin Catherine Labouré\",
+        $jardins[] = array("{ \"name\" : \"Jardin Catherine LabourꜢ,
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.851704,
@@ -194,7 +195,7 @@
             \"id\" : 2465,
             \"address\" : \"29 rue Babylone\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-catherine-laboure-2465\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-catherine-laboure-2465\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Claire Motte\",
@@ -205,7 +206,7 @@
             \"id\" : 2820,
             \"address\" : \"rue Marguerite Long, rue Albert Roussel\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-claire-motte-2820\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-claire-motte-2820\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Compans\",
@@ -216,7 +217,7 @@
             \"id\" : 2673,
             \"address\" : \"39 rue Compans\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-compans-2673\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-compans-2673\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Cyprian Norwid\",
@@ -227,7 +228,7 @@
             \"id\" : 2859,
             \"address\" : \"46 rue des Grands Moulins\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-cyprian-norwid-2859\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-cyprian-norwid-2859\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'acclimatation\",
@@ -238,7 +239,7 @@
             \"id\" : 1781,
             \"address\" : \"45 avenue du Mahatma Gandhi\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-acclimatation-1781\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-acclimatation-1781\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'Agronomie Tropicale\",
@@ -249,7 +250,7 @@
             \"id\" : 1813,
             \"address\" : \"45 bis, avenue de la Belle-Gabrielle\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-agronomie-tropicale-1813\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-agronomie-tropicale-1813\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'Alleray\",
@@ -260,7 +261,7 @@
             \"id\" : 2502,
             \"address\" : \"62 rue d'Alleray\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-alleray-2502\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-alleray-2502\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'Alleray-Procession\",
@@ -271,7 +272,7 @@
             \"id\" : 2499,
             \"address\" : \"79 rue d'Alleray\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-alleray-procession-2499\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-alleray-procession-2499\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'enfants de la rue du Simplon\",
@@ -282,7 +283,7 @@
             \"id\" : 2782,
             \"address\" : \"36 rue de Simplon\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-enfants-de-la-rue-du-simplon-2782\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-enfants-de-la-rue-du-simplon-2782\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'immeuble Choisy Caillaux\",
@@ -293,7 +294,7 @@
             \"id\" : 2850,
             \"address\" : \"1 rue Caillaux\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-immeuble-choisy-caillaux-2850\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-immeuble-choisy-caillaux-2850\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'immeubles du boulevard Carnot\",
@@ -304,10 +305,10 @@
             \"id\" : 2847,
             \"address\" : \"boulevard Carnot\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-du-boulevard-carnot-2847\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-du-boulevard-carnot-2847\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin d'immeubles du boulevard de l'Hôpital\",
+        $jardins[] = array("{ \"name\" : \"Jardin d'immeubles du boulevard de l'H\u00f4pital\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.8347907,
@@ -315,10 +316,10 @@
             \"id\" : 2854,
             \"address\" : \"18 rue Watteau\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-du-boulevard-de-l-hopital-2854\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-du-boulevard-de-l-hopital-2854\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin d'immeubles Rosny Ainé\",
+        $jardins[] = array("{ \"name\" : \"Jardin d'immeubles Rosny AinꜢ,
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.8180694,
@@ -326,7 +327,7 @@
             \"id\" : 2851,
             \"address\" : \"1 rue Paul Bourget\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-rosny-aine-2851\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-rosny-aine-2851\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Damia\",
@@ -337,10 +338,10 @@
             \"id\" : 2734,
             \"address\" : \"24 rue Robert et Sonia Delaunay\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-damia-2734\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-damia-2734\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de l'Hôpital de Vaugirard\",
+        $jardins[] = array("{ \"name\" : \"Jardin de l'H𰩴al de Vaugirard\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.835354,
@@ -348,7 +349,7 @@
             \"id\" : 2876,
             \"address\" : \"rue de Vaugirard<br>  rue Vaugelas\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-u2019hopital-de-vaugirard-2876\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-u2019hopital-de-vaugirard-2876\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de l'Abondance\",
@@ -359,7 +360,7 @@
             \"id\" : 2476,
             \"address\" : \"2 avenue de Tourville\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-abondance-2476\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-abondance-2476\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de l'Evangile\",
@@ -370,10 +371,10 @@
             \"id\" : 2809,
             \"address\" : \"8 rue de la Madone\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-evangile-2809\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-evangile-2809\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de l'hôpital Saint-Louis\",
+        $jardins[] = array("{ \"name\" : \"Jardin de l'h\u00f4pital Saint-Louis\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.873494,
@@ -381,21 +382,21 @@
             \"id\" : 8893,
             \"address\" : \"1 avenue Claude Vellefaux\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-hopital-saint-louis-8893\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-hopital-saint-louis-8893\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de l'Hôtel de Sens\",
+        $jardins[] = array("{ \"name\" : \"Jardin de l'H\u00f4tel de Sens\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.85376,
             \"lng\" : 2.358157,
             \"id\" : 2449,
-            \"address\" : \"7 rue des Nonnains d'Hyères\",
+            \"address\" : \"7 rue des Nonnains d'Hy\u00e8res\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-de-sens-2449\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-de-sens-2449\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de l'Hôtel Donon\",
+        $jardins[] = array("{ \"name\" : \"Jardin de l'H\u00f4tel Donon\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8581959,
@@ -403,21 +404,21 @@
             \"id\" : 2489,
             \"address\" : \"9 rue Payenne\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-donon-2489\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-donon-2489\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de l'Hôtel Lamoignon\",
+        $jardins[] = array("{ \"name\" : \"Jardin de l'H\u00f4tel Lamoignon\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.8572541,
             \"lng\" : 2.3618159,
             \"id\" : 1210,
-            \"address\" : \"24 rue pavée\",
+            \"address\" : \"24 rue pavꦜ",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-lamoignon-1210\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-lamoignon-1210\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de l'Hôtel Salé - Léonor Fini\",
+        $jardins[] = array("{ \"name\" : \"Jardin de l'H\u00f4tel Sal頭 L갮or Fini\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.860336,
@@ -425,10 +426,10 @@
             \"id\" : 2826,
             \"address\" : \"101ter, rue des Coutures Saint-Gervais\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-sale-leonor-fini-2826\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-sale-leonor-fini-2826\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de l'Hôtel Salomon de Rotschild\",
+        $jardins[] = array("{ \"name\" : \"Jardin de l'H\u00f4tel Salomon de Rotschild\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.874775,
@@ -436,7 +437,7 @@
             \"id\" : 2483,
             \"address\" : \"12 avenue de Friedland\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-salomon-de-rotschild-2483\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-hotel-salomon-de-rotschild-2483\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de l'Intendant\",
@@ -447,7 +448,7 @@
             \"id\" : 2475,
             \"address\" : \"53 boulevard de la Tour-Maubourg\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-intendant-2475\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-intendant-2475\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de l'Observatoire de Paris\",
@@ -458,7 +459,7 @@
             \"id\" : 2520,
             \"address\" : \"61 avenue de l'Observatoire\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-observatoire-de-paris-2520\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-observatoire-de-paris-2520\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la Cour de la Ferme Saint-Lazare\",
@@ -467,9 +468,9 @@
             \"lat\" : 48.8758847,
             \"lng\" : 2.3543761,
             \"id\" : 8891,
-            \"address\" : \"Rue Léon Schwartzenberg\",
+            \"address\" : \"Rue L갮 Schwartzenberg\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-cour-de-la-ferme-saint-lazare-8891\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-cour-de-la-ferme-saint-lazare-8891\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la Dalle d'Ivry\",
@@ -480,7 +481,7 @@
             \"id\" : 2518,
             \"address\" : \"9 rue de la pointe d'Ivry\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-dalle-d-ivry-2518\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-dalle-d-ivry-2518\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la Folie Titon\",
@@ -491,10 +492,10 @@
             \"id\" : 2842,
             \"address\" : \"rue de Chanzy\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-folie-titon-2842\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-folie-titon-2842\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de la Fondation Napoléon\",
+        $jardins[] = array("{ \"name\" : \"Jardin de la Fondation Napol갮\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.848969,
@@ -502,7 +503,7 @@
             \"id\" : 2849,
             \"address\" : \"2 rue de Picpus\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-fondation-napoleon-2849\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-fondation-napoleon-2849\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la gare de Reuilly\",
@@ -513,7 +514,7 @@
             \"id\" : 2602,
             \"address\" : \"6 rue Paul Dukas\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-gare-de-reuilly-2602\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-gare-de-reuilly-2602\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la Gare-de-Charonne\",
@@ -524,7 +525,7 @@
             \"id\" : 2693,
             \"address\" : \"60 rue du Volga\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-gare-de-charonne-2693\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-gare-de-charonne-2693\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la Justice\",
@@ -535,18 +536,18 @@
             \"id\" : 2719,
             \"address\" : \"60 rue de la Justice\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-justice-2719\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-justice-2719\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de la Mairie du VIIIème\",
+        $jardins[] = array("{ \"name\" : \"Jardin de la Mairie du VIII\u00e8me\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.8778539,
             \"lng\" : 2.3181764999999,
             \"id\" : 2460,
-            \"address\" : \"13 rue du Général Foy\",
+            \"address\" : \"13 rue du Gꯩral Foy\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-mairie-du-viiieme-2460\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-mairie-du-viiieme-2460\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la maison des orphelins apprentis d'Auteuil\",
@@ -557,18 +558,18 @@
             \"id\" : 2618,
             \"address\" : \"1 avenue Leopold II\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-maison-des-orphelins-apprentis-d-auteuil-2618\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-maison-des-orphelins-apprentis-d-auteuil-2618\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de la place du Bataillon-Fran\u00e7ais-de-l'ONU-en-Corée\",
+        $jardins[] = array("{ \"name\" : \"Jardin de la place du Bataillon-Fran\u00e7ais-de-l'ONU-en-Corꦜ",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.85471,
             \"lng\" : 2.354987,
             \"id\" : 1205,
-            \"address\" : \"50 rue de l'Hôtel de Ville\",
+            \"address\" : \"50 rue de l'H\u00f4tel de Ville\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-du-bataillon-francais-de-l-onu-en-coree-1205\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-du-bataillon-francais-de-l-onu-en-coree-1205\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la Place Jean-Paul II\",
@@ -579,10 +580,10 @@
             \"id\" : 1206,
             \"address\" : \"1 place du Parvis Notre-Dame\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-jean-paul-ii-1206\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-jean-paul-ii-1206\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de la place Jules Hénaffe\",
+        $jardins[] = array("{ \"name\" : \"Jardin de la place Jules Hꯡffe\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.823883,
@@ -590,7 +591,7 @@
             \"id\" : 2586,
             \"address\" : \"1 place Jules Henaffe\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-jules-henaffe-2586\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-jules-henaffe-2586\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la place Louis Armstrong\",
@@ -601,7 +602,7 @@
             \"id\" : 2857,
             \"address\" : \"2 place Louis Armstrong\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-louis-armstrong-2857\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-louis-armstrong-2857\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la place Raymond Losserand\",
@@ -612,7 +613,7 @@
             \"id\" : 2570,
             \"address\" : \"145 rue Raymond Losserand\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-raymond-losserand-2570\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-raymond-losserand-2570\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la place Rodin\",
@@ -623,7 +624,7 @@
             \"id\" : 2617,
             \"address\" : \"1 avenue Adrien Hebrard\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-rodin-2617\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-rodin-2617\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la Place Souham\",
@@ -634,7 +635,7 @@
             \"id\" : 3722,
             \"address\" : \"5 Place Souham\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-souham-3722\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-place-souham-3722\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la Poterne des Peupliers\",
@@ -645,10 +646,10 @@
             \"id\" : 2541,
             \"address\" : \"34 boulevard Kellermann\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-poterne-des-peupliers-2541\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-poterne-des-peupliers-2541\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de la rue de Bièvre\",
+        $jardins[] = array("{ \"name\" : \"Jardin de la rue de Bi\u00e8vre\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.850529,
@@ -656,7 +657,7 @@
             \"id\" : 2439,
             \"address\" : \"20 rue de Bievre\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-de-bievre-2439\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-de-bievre-2439\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la rue de Ch\u00e2tillon\",
@@ -667,18 +668,18 @@
             \"id\" : 2735,
             \"address\" : \"18 rue de Ch\u00e2tillon\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-de-chatillon-2735\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-de-chatillon-2735\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de la rue du Colonel Manhès\",
+        $jardins[] = array("{ \"name\" : \"Jardin de la rue du Colonel Manh\u00e8s\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.8955215,
             \"lng\" : 2.3210086,
             \"id\" : 2819,
-            \"address\" : \"12 Rue du Colonel Manhès\",
+            \"address\" : \"12 Rue du Colonel Manh\u00e8s\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-du-colonel-manhes-2819\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-du-colonel-manhes-2819\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la rue Ginette Neveu\",
@@ -689,18 +690,18 @@
             \"id\" : 2654,
             \"address\" : \"21 rue Ginette Neveu\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-ginette-neveu-2654\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-ginette-neveu-2654\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de la rue No\u00ebl-Ballay\",
+        $jardins[] = array("{ \"name\" : \"Jardin de la rue No쬭Ballay\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.847874,
             \"lng\" : 2.412015,
             \"id\" : 3313,
-            \"address\" : \"Rue No\u00ebl-Ballay\",
+            \"address\" : \"Rue No쬭Ballay\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-noel-ballay-3313\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-noel-ballay-3313\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la rue Visconti\",
@@ -711,7 +712,7 @@
             \"id\" : 2835,
             \"address\" : \"8, 10, 12 rue Visconti\",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-visconti-2835\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-rue-visconti-2835\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de la ZAC Didot\",
@@ -722,10 +723,10 @@
             \"id\" : 2868,
             \"address\" : \"rue Raymond-Losserand\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-zac-didot-2868\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-zac-didot-2868\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin de la ZAC Réunion (ex-mail Michel de Bourges)\",
+        $jardins[] = array("{ \"name\" : \"Jardin de la ZAC R궮ion (ex-mail Michel de Bourges)\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.854366,
@@ -733,7 +734,7 @@
             \"id\" : 2744,
             \"address\" : \"rue Michel de Bourges\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-la-zac-reunion-ex-mail-michel-de-bourges-2744\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-la-zac-reunion-ex-mail-michel-de-bourges-2744\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de l'Eglise Sainte-Jeanne-de-Chantal\",
@@ -744,7 +745,7 @@
             \"id\" : 2771,
             \"address\" : \"place de la Porte de Saint-Cloud\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-eglise-sainte-jeanne-de-chantal-2771\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-eglise-sainte-jeanne-de-chantal-2771\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de l'Ilot C3\",
@@ -755,7 +756,7 @@
             \"id\" : 2816,
             \"address\" : \"boulevard de Reims\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-l-ilot-c3-2816\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-l-ilot-c3-2816\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de Pali-Kao\",
@@ -766,7 +767,7 @@
             \"id\" : 2689,
             \"address\" : \"38 rue de Pali Kao\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-pali-kao-2689\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-pali-kao-2689\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin de Reuilly\",
@@ -777,7 +778,7 @@
             \"id\" : 2573,
             \"address\" : \"15 rue Albinoni\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-de-reuilly-2573\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-de-reuilly-2573\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Debergue - Rendez-vous\",
@@ -788,7 +789,7 @@
             \"id\" : 2848,
             \"address\" : \"30, rue du Rendez-Vous\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-debergue-rendez-vous-2848\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-debergue-rendez-vous-2848\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des Abbesses\",
@@ -799,7 +800,7 @@
             \"id\" : 9925,
             \"address\" : \"Passage des Abbesses\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-abbesses-9925\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-abbesses-9925\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des abords du Petit-Palais\",
@@ -810,7 +811,7 @@
             \"id\" : 3311,
             \"address\" : \"avenue Winston-Churchill, Cour-la-Reine, avenue Charles-Girault\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-abords-du-petit-palais-3311\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-abords-du-petit-palais-3311\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des Archives Nationales\",
@@ -821,10 +822,10 @@
             \"id\" : 6589,
             \"address\" : \"87, rue Vieille-du-Temple\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-archives-nationales-6589\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-archives-nationales-6589\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin des Arènes de Montmartre\",
+        $jardins[] = array("{ \"name\" : \"Jardin des Ar\u00e8nes de Montmartre\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.885414,
@@ -832,10 +833,10 @@
             \"id\" : 2699,
             \"address\" : \"25  rue chappe\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-arenes-de-montmartre-2699\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-arenes-de-montmartre-2699\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin des Cévennes\",
+        $jardins[] = array("{ \"name\" : \"Jardin des C귥nnes\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.843189,
@@ -843,7 +844,7 @@
             \"id\" : 2546,
             \"address\" : \"3 rue Cauchy\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-cevennes-2546\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-cevennes-2546\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des Colonnes\",
@@ -852,9 +853,9 @@
             \"lat\" : 48.836159,
             \"lng\" : 2.318954,
             \"id\" : 2545,
-            \"address\" : \"5 place de l'Abbé Jean Lebeuf\",
+            \"address\" : \"5 place de l'Abb顊ean Lebeuf\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-colonnes-2545\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-colonnes-2545\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des Couronnes\",
@@ -865,7 +866,7 @@
             \"id\" : 2748,
             \"address\" : \"rue des Couronnes\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-couronnes-2748\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-couronnes-2748\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des Deux Moulins\",
@@ -876,7 +877,7 @@
             \"id\" : 2535,
             \"address\" : \"78 avenue Edison\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-deux-moulins-2535\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-deux-moulins-2535\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des grands explorateurs Marco Polo et Cavelier-de-la-Salle\",
@@ -887,7 +888,7 @@
             \"id\" : 2834,
             \"address\" : \"avenue de l'Observatoire\",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-grands-explorateurs-marco-polo-et-cavelier-de-la-salle-2834\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-grands-explorateurs-marco-polo-et-cavelier-de-la-salle-2834\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des Halles\",
@@ -898,18 +899,18 @@
             \"id\" : 1765,
             \"address\" : \"1 rue Pierre-Lescot\",
             \"zipcode\" : \"75001\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-halles-1765\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-halles-1765\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin des Mères et Grands-Mères de la Place de Mai (ex-jardin des 3 Marches)\",
+        $jardins[] = array("{ \"name\" : \"Jardin des M鳥s et Grands-M鳥s de la Place de Mai (ex-jardin des 3 Marches)\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.845875,
             \"lng\" : 2.276705,
             \"id\" : 2873,
-            \"address\" : \"angle rue Balard<br>  quai André-Citro\u00ebn<br>  rond-point du pont Mirabeau\",
+            \"address\" : \"angle rue Balard<br>  quai Andr鮃itro쮼br>  rond-point du pont Mirabeau\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-meres-et-grands-meres-de-la-place-de-mai-ex-jardin-des-3-marches-2873\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-meres-et-grands-meres-de-la-place-de-mai-ex-jardin-des-3-marches-2873\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des Orteaux\",
@@ -920,7 +921,7 @@
             \"id\" : 2708,
             \"address\" : \"51 rue de la Croix Saint-Simon\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-orteaux-2708\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-orteaux-2708\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des plantes\",
@@ -931,7 +932,7 @@
             \"id\" : 1799,
             \"address\" : \"2 rue Buffon\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-plantes-1799\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-plantes-1799\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des serres d'Auteuil\",
@@ -942,7 +943,7 @@
             \"id\" : 1780,
             \"address\" : \"1 avenue Gordon-Bennett\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-serres-d-auteuil-1780\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-serres-d-auteuil-1780\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin des Tuileries\",
@@ -953,7 +954,7 @@
             \"id\" : 1795,
             \"address\" : \"113 rue de Rivoli\",
             \"zipcode\" : \"75001\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-des-tuileries-1795\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-des-tuileries-1795\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du boulevard de Picpus\",
@@ -964,18 +965,18 @@
             \"id\" : 2584,
             \"address\" : \"55 boulevard de Picpus\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-boulevard-de-picpus-2584\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-boulevard-de-picpus-2584\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin du Carré de Baudouin\",
+        $jardins[] = array("{ \"name\" : \"Jardin du Carr顤e Baudouin\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.86974,
             \"lng\" : 2.393739,
             \"id\" : 3983,
-            \"address\" : \"119-121 rue de Ménilmontant\",
+            \"address\" : \"119-121 rue de Mꯩlmontant\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-carre-de-baudouin-3983\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-carre-de-baudouin-3983\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Champ de Mars\",
@@ -984,9 +985,9 @@
             \"lat\" : 48.856323,
             \"lng\" : 2.299865,
             \"id\" : 1807,
-            \"address\" : \"2 allée Adrienne Lecouvreur\",
+            \"address\" : \"2 allꥠAdrienne Lecouvreur\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-champ-de-mars-1807\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-champ-de-mars-1807\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Clo\u00eetre\",
@@ -997,7 +998,7 @@
             \"id\" : 2547,
             \"address\" : \"30 rue Guilleminot\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-cloitre-2547\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-cloitre-2547\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Grand Pavois\",
@@ -1008,7 +1009,7 @@
             \"id\" : 2537,
             \"address\" : \"187 rue de Lourmel\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-grand-pavois-2537\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-grand-pavois-2537\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Luxembourg\",
@@ -1019,10 +1020,10 @@
             \"id\" : 1793,
             \"address\" : \"2 rue Auguste Comte\",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-luxembourg-1793\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-luxembourg-1793\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin du Monument aux Mères Fran\u00e7aises\",
+        $jardins[] = array("{ \"name\" : \"Jardin du Monument aux M\u00e8res Fran\u00e7aises\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.820534,
@@ -1030,7 +1031,7 @@
             \"id\" : 2564,
             \"address\" : \"21 boulevard Kellermann\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-monument-aux-meres-francaises-2564\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-monument-aux-meres-francaises-2564\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Moulin de la Pointe\",
@@ -1041,7 +1042,7 @@
             \"id\" : 2507,
             \"address\" : \"22 boulevard kellermann\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-moulin-de-la-pointe-2507\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-moulin-de-la-pointe-2507\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Moulin de la Vierge\",
@@ -1052,7 +1053,7 @@
             \"id\" : 2557,
             \"address\" : \"125 rue Vercingetorix\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-moulin-de-la-vierge-2557\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-moulin-de-la-vierge-2557\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Moulin des Trois-Cornets\",
@@ -1063,18 +1064,18 @@
             \"id\" : 2864,
             \"address\" : \"3ter rue Raymond-Losserand\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-moulin-des-trois-cornets-2864\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-moulin-des-trois-cornets-2864\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin du Musée Carnavalet\",
+        $jardins[] = array("{ \"name\" : \"Jardin du MusꥠCarnavalet\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.857441,
             \"lng\" : 2.362286,
             \"id\" : 2827,
-            \"address\" : \"Entre la rue des Francs-Bourgeois<br>  et le 23 rue de Sévigné\",
+            \"address\" : \"Entre la rue des Francs-Bourgeois<br>  et le 23 rue de S귩gnꜢ,
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-musee-carnavalet-2827\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-musee-carnavalet-2827\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Palais Royal\",
@@ -1085,7 +1086,7 @@
             \"id\" : 1797,
             \"address\" : \"2 place Colette\",
             \"zipcode\" : \"75001\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-palais-royal-1797\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-palais-royal-1797\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Port de l'Arsenal\",
@@ -1096,7 +1097,7 @@
             \"id\" : 1783,
             \"address\" : \"53 boulevard de la Bastille\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-port-de-l-arsenal-1783\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-port-de-l-arsenal-1783\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Port de la Tournelle\",
@@ -1107,7 +1108,7 @@
             \"id\" : 2440,
             \"address\" : \"4 quai de la tournelle\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-port-de-la-tournelle-2440\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-port-de-la-tournelle-2440\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Ranelagh\",
@@ -1118,7 +1119,7 @@
             \"id\" : 1778,
             \"address\" : \"1 avenue Prudhon\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-ranelagh-1778\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-ranelagh-1778\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin du Regard-de-la-Lanterne\",
@@ -1129,7 +1130,7 @@
             \"id\" : 2677,
             \"address\" : \"3 rue Augustin Thierry\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-du-regard-de-la-lanterne-2677\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-du-regard-de-la-lanterne-2677\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'immeuble de la Porte de Vincennes (partie Sud)\",
@@ -1140,7 +1141,7 @@
             \"id\" : 2743,
             \"address\" : \"Rue Cristino Garcia\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-immeuble-de-la-porte-de-vincennes-partie-sud-2743\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-immeuble-de-la-porte-de-vincennes-partie-sud-2743\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'immeubles de la Porte de Vincennes (partie Nord)\",
@@ -1151,7 +1152,7 @@
             \"id\" : 2741,
             \"address\" : \"Rue Cristino Garcia\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-de-la-porte-de-vincennes-partie-nord-2741\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-de-la-porte-de-vincennes-partie-nord-2741\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'immeubles de la rue de la Marseillaise\",
@@ -1162,7 +1163,7 @@
             \"id\" : 2647,
             \"address\" : \"21 avenue de la Porte Chaumont\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-de-la-rue-de-la-marseillaise-2647\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-de-la-rue-de-la-marseillaise-2647\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin d'immeubles du square Brancion\",
@@ -1171,12 +1172,12 @@
             \"lat\" : 48.827759,
             \"lng\" : 2.300048,
             \"id\" : 2869,
-            \"address\" : \"avenue et square Albert Bartholomé<br>  square Brancion\",
+            \"address\" : \"avenue et square Albert Bartholom齢r>  square Brancion\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-du-square-brancion-2869\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-d-immeubles-du-square-brancion-2869\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin Emile Gallé\",
+        $jardins[] = array("{ \"name\" : \"Jardin Emile GallꜢ,
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.854252,
@@ -1184,10 +1185,10 @@
             \"id\" : 2730,
             \"address\" : \"32 rue Neuve des Boulets\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-emile-galle-2730\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-emile-galle-2730\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin Emmi-Pickler (ex-jardin Olivier-Métra)\",
+        $jardins[] = array("{ \"name\" : \"Jardin Emmi-Pickler (ex-jardin Olivier-M굲a)\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.871449,
@@ -1195,10 +1196,10 @@
             \"id\" : 2716,
             \"address\" : \"4 rue des Rigoles\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-emmi-pickler-ex-jardin-olivier-metra-2716\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-emmi-pickler-ex-jardin-olivier-metra-2716\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin et aire de jeux de la ZAC Alésia Montsouris\",
+        $jardins[] = array("{ \"name\" : \"Jardin et aire de jeux de la ZAC Al괩a Montsouris\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.82428,
@@ -1206,7 +1207,7 @@
             \"id\" : 2867,
             \"address\" : \"avenue Reille\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-et-aire-de-jeux-de-la-zac-alesia-montsouris-2867\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-et-aire-de-jeux-de-la-zac-alesia-montsouris-2867\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Flandre-Tanger-Maroc\",
@@ -1217,7 +1218,7 @@
             \"id\" : 2649,
             \"address\" : \"passage Marcel-Landowski\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-flandre-tanger-maroc-2649\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-flandre-tanger-maroc-2649\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Francs-Bourgeois-Rosiers\",
@@ -1228,10 +1229,10 @@
             \"id\" : 2828,
             \"address\" : \"35-37 rue des Francs-Bourgeois\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-francs-bourgeois-rosiers-2828\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-francs-bourgeois-rosiers-2828\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin Frédéric Dard (anc. square Cité Norvins)\",
+        $jardins[] = array("{ \"name\" : \"Jardin Frꥩric Dard (anc. square Cit顎orvins)\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.887489,
@@ -1239,7 +1240,7 @@
             \"id\" : 5051,
             \"address\" : \"rue Norvins\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-frederic-dard-anc-square-cite-norvins-5051\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-frederic-dard-anc-square-cite-norvins-5051\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Georges Duhamel\",
@@ -1250,7 +1251,7 @@
             \"id\" : 2559,
             \"address\" : \"5 rue Choderlos de Laclos\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-georges-duhamel-2559\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-georges-duhamel-2559\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Henri et Achille Duch\u00eane\",
@@ -1259,9 +1260,9 @@
             \"lat\" : 48.83271,
             \"lng\" : 2.31146,
             \"id\" : 2556,
-            \"address\" : \"144 rue Vercingétorix\",
+            \"address\" : \"144 rue Vercing굯rix\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-henri-et-achille-duchene-2556\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-henri-et-achille-duchene-2556\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Henri Sauvage (ex-square Amiraux-Boinod)\",
@@ -1272,7 +1273,7 @@
             \"id\" : 2702,
             \"address\" : \"5 rue des amiraux\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-henri-sauvage-ex-square-amiraux-boinod-2702\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-henri-sauvage-ex-square-amiraux-boinod-2702\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Ilan Halimi\",
@@ -1283,7 +1284,7 @@
             \"id\" : 2595,
             \"address\" : \"54 rue de Fecamp\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-ilan-halimi-2595\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-ilan-halimi-2595\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin James Joyce\",
@@ -1294,7 +1295,7 @@
             \"id\" : 2560,
             \"address\" : \"7 rue Georges Balanchine\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-james-joyce-2560\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-james-joyce-2560\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Jean-Claude Nicolas Forestier\",
@@ -1305,7 +1306,7 @@
             \"id\" : 2554,
             \"address\" : \"12 rue Thomire\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-jean-claude-nicolas-forestier-2554\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-jean-claude-nicolas-forestier-2554\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Juan Miro\",
@@ -1316,7 +1317,7 @@
             \"id\" : 2563,
             \"address\" : \"40 rue Gandon\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-juan-miro-2563\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-juan-miro-2563\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Lily Laskine\",
@@ -1327,10 +1328,10 @@
             \"id\" : 2639,
             \"address\" : \"35 rue Jacques Ibert\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-lily-laskine-2639\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-lily-laskine-2639\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin Madeleine de Scudéry\",
+        $jardins[] = array("{ \"name\" : \"Jardin Madeleine de Scud곹\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.8631237,
@@ -1338,7 +1339,7 @@
             \"id\" : 1209,
             \"address\" : \"1 rue des Oiseaux\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-madeleine-de-scudery-1209\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-madeleine-de-scudery-1209\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Marguerite Long\",
@@ -1349,7 +1350,7 @@
             \"id\" : 2807,
             \"address\" : \"2 avenue de Salonique\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-marguerite-long-2807\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-marguerite-long-2807\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Maronites-Pressoir\",
@@ -1360,10 +1361,10 @@
             \"id\" : 2696,
             \"address\" : \"1 rue du Pressoir\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-maronites-pressoir-2696\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-maronites-pressoir-2696\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin médiéval du musée de Cluny\",
+        $jardins[] = array("{ \"name\" : \"Jardin mꥩ귡l du musꥠde Cluny\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.851013,
@@ -1371,7 +1372,7 @@
             \"id\" : 2443,
             \"address\" : \"24 rue du Sommerard\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-medieval-du-musee-de-cluny-2443\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-medieval-du-musee-de-cluny-2443\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Michelet\",
@@ -1382,7 +1383,7 @@
             \"id\" : 2550,
             \"address\" : \"233 ter rue de Tolbiac\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-michelet-2550\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-michelet-2550\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Naturel\",
@@ -1391,9 +1392,9 @@
             \"lat\" : 48.858311,
             \"lng\" : 2.398707,
             \"id\" : 2703,
-            \"address\" : \"112 rue de la Réunion\",
+            \"address\" : \"112 rue de la R궮ion\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-naturel-2703\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-naturel-2703\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Nicole de Hauteclocque\",
@@ -1404,7 +1405,7 @@
             \"id\" : 2558,
             \"address\" : \"23 rue Desaix\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-nicole-de-hauteclocque-2558\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-nicole-de-hauteclocque-2558\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Notre-Dame-de-Fatima\",
@@ -1415,7 +1416,7 @@
             \"id\" : 2680,
             \"address\" : \"44 boulevard Serurier\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-notre-dame-de-fatima-2680\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-notre-dame-de-fatima-2680\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Oudine - Dessous des Berges\",
@@ -1426,10 +1427,10 @@
             \"id\" : 2561,
             \"address\" : \"34 rue du Dessous des Berges\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-oudine-dessous-des-berges-2561\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-oudine-dessous-des-berges-2561\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin partagé d'insertion Georges-et-Ma\u00ef-Politzer\",
+        $jardins[] = array("{ \"name\" : \"Jardin partag顤'insertion Georges-et-Ma\u00ef-Politzer\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.841721,
@@ -1437,7 +1438,7 @@
             \"id\" : 5052,
             \"address\" : \"24-26 rue Georges et Ma\u00ef Politzer\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-partage-d-insertion-georges-et-mai-politzer-5052\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-partage-d-insertion-georges-et-mai-politzer-5052\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Paul Nizan\",
@@ -1448,10 +1449,10 @@
             \"id\" : 2856,
             \"address\" : \"9 rue de l'Industrie\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-paul-nizan-2856\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-paul-nizan-2856\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin Pierre Joseph Redouté\",
+        $jardins[] = array("{ \"name\" : \"Jardin Pierre Joseph RedoutꜢ,
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.854431,
@@ -1459,7 +1460,7 @@
             \"id\" : 2728,
             \"address\" : \"132 bis rue de Charonne\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-pierre-joseph-redoute-2728\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-pierre-joseph-redoute-2728\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Pierre-Adrien Dalpayrat\",
@@ -1468,9 +1469,9 @@
             \"lat\" : 48.837147,
             \"lng\" : 2.313064,
             \"id\" : 2494,
-            \"address\" : \"2 rue André Gide\",
+            \"address\" : \"2 rue Andr顇ide\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-pierre-adrien-dalpayrat-2494\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-pierre-adrien-dalpayrat-2494\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Pierre-Seghers\",
@@ -1479,20 +1480,20 @@
             \"lat\" : 48.869102,
             \"lng\" : 2.391428,
             \"id\" : 2824,
-            \"address\" : \"rue de Ménilmontant\",
+            \"address\" : \"rue de Mꯩlmontant\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-pierre-seghers-2824\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-pierre-seghers-2824\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin Pixérécourt\",
+        $jardins[] = array("{ \"name\" : \"Jardin Pix곩court\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.872982,
             \"lng\" : 2.396783,
             \"id\" : 2718,
-            \"address\" : \"46 rue Pixérécourt\",
+            \"address\" : \"46 rue Pix곩court\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-pixerecourt-2718\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-pixerecourt-2718\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Rachmaninov\",
@@ -1503,10 +1504,10 @@
             \"id\" : 2681,
             \"address\" : \"16 rue Tristan Tzara\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-rachmaninov-2681\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-rachmaninov-2681\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin Rébeval\",
+        $jardins[] = array("{ \"name\" : \"Jardin R꣥val\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.873184,
@@ -1514,18 +1515,18 @@
             \"id\" : 2667,
             \"address\" : \"5 rue Hector Guimard\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-rebeval-2667\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-rebeval-2667\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin René Binet\",
+        $jardins[] = array("{ \"name\" : \"Jardin Ren顂inet\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.899212,
             \"lng\" : 2.3390736,
             \"id\" : 2685,
-            \"address\" : \"54 rue René Binet\",
+            \"address\" : \"54 rue Ren顂inet\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-rene-binet-2685\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-rene-binet-2685\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Riquet\",
@@ -1536,7 +1537,7 @@
             \"id\" : 2657,
             \"address\" : \"2 rue du docteur Lamaze\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-riquet-2657\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-riquet-2657\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Roger Priou Valjean\",
@@ -1547,7 +1548,7 @@
             \"id\" : 1211,
             \"address\" : \"10 rue du Figuier\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-roger-priou-valjean-1211\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-roger-priou-valjean-1211\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Serge Gainsbourg\",
@@ -1558,7 +1559,7 @@
             \"id\" : 6337,
             \"address\" : \"Porte de Lilas\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-serge-gainsbourg-6337\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-serge-gainsbourg-6337\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Tino Rossi\",
@@ -1569,10 +1570,10 @@
             \"id\" : 1786,
             \"address\" : \"2 quai Saint-Bernard\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-tino-rossi-1786\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-tino-rossi-1786\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardin Vercingétorix-Brune\",
+        $jardins[] = array("{ \"name\" : \"Jardin Vercing굯rix-Brune\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.827778,
@@ -1580,7 +1581,7 @@
             \"id\" : 2739,
             \"address\" : \"boulevard Brune\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-vercingetorix-brune-2739\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-vercingetorix-brune-2739\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardin Villemin\",
@@ -1589,9 +1590,9 @@
             \"lat\" : 48.874512,
             \"lng\" : 2.361447,
             \"id\" : 1798,
-            \"address\" : \"14 rue des Récollets\",
+            \"address\" : \"14 rue des R꤯llets\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardin-villemin-1798\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardin-villemin-1798\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardinet de la rue de l'Amiral Mouchez\",
@@ -1602,10 +1603,10 @@
             \"id\" : 2582,
             \"address\" : \"74 rue de l'Amiral Mouchez\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardinet-de-la-rue-de-l-amiral-mouchez-2582\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardinet-de-la-rue-de-l-amiral-mouchez-2582\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardinets décoratifs de la place de la Porte Maillot\",
+        $jardins[] = array("{ \"name\" : \"Jardinets d꤯ratifs de la place de la Porte Maillot\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.877617,
@@ -1613,10 +1614,10 @@
             \"id\" : 2607,
             \"address\" : \"2 place de la porte maillot\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardinets-decoratifs-de-la-place-de-la-porte-maillot-2607\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardinets-decoratifs-de-la-place-de-la-porte-maillot-2607\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardins Abbé Pierre - Grands Moulins\",
+        $jardins[] = array("{ \"name\" : \"Jardins Abb顐ierre - Grands Moulins\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32roll.png\",
             \"lat\" : 48.8301077,
@@ -1624,7 +1625,7 @@
             \"id\" : 5044,
             \"address\" : \"15 rue Thomas Mann\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardins-abbe-pierre-grands-moulins-5044\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardins-abbe-pierre-grands-moulins-5044\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardins d'Eole\",
@@ -1633,9 +1634,9 @@
             \"lat\" : 48.8855567,
             \"lng\" : 2.3658221000001,
             \"id\" : 2761,
-            \"address\" : \"20 rue du département\",
+            \"address\" : \"20 rue du d걡rtement\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardins-d-eole-2761\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardins-d-eole-2761\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardins de l'avenue Foch\",
@@ -1646,7 +1647,7 @@
             \"id\" : 1814,
             \"address\" : \"Avenue Foch\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardins-de-l-avenue-foch-1814\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardins-de-l-avenue-foch-1814\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Jardins de la Porte de Saint-Cloud et square Coquoin\",
@@ -1657,32 +1658,32 @@
             \"id\" : 2623,
             \"address\" : \"2  avenue edouard vaillant\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardins-de-la-porte-de-saint-cloud-et-square-coquoin-2623\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardins-de-la-porte-de-saint-cloud-et-square-coquoin-2623\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardins des Champs-Elysées\",
+        $jardins[] = array("{ \"name\" : \"Jardins des Champs-Elys꦳\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32roll.png\",
             \"lat\" : 48.868362,
             \"lng\" : 2.316253,
             \"id\" : 2471,
-            \"address\" : \"10 avenue des Champs Elysées\",
+            \"address\" : \"10 avenue des Champs Elys꦳\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardins-des-champs-elysees-2471\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardins-des-champs-elysees-2471\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Jardins du Trocadéro\",
+        $jardins[] = array("{ \"name\" : \"Jardins du Trocad곯\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.861755,
             \"lng\" : 2.291603,
             \"id\" : 1789,
-            \"address\" : \"11place du Trocadéro\",
+            \"address\" : \"11place du Trocad곯\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/jardins-du-trocadero-1789\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/jardins-du-trocadero-1789\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Mail de Bièvre\",
+        $jardins[] = array("{ \"name\" : \"Mail de Bi\u00e8vre\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8303979,
@@ -1690,7 +1691,7 @@
             \"id\" : 2505,
             \"address\" : \"105 Boulevard Auguste Blanqui\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/mail-de-bievre-2505\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/mail-de-bievre-2505\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Mail Emile-Bollaert (ex-mail Claude-Bernard)\",
@@ -1701,10 +1702,10 @@
             \"id\" : 2664,
             \"address\" : \"172 boulevard MacDonald\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/mail-emile-bollaert-ex-mail-claude-bernard-2664\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/mail-emile-bollaert-ex-mail-claude-bernard-2664\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Parc André-Citro\u00ebn\",
+        $jardins[] = array("{ \"name\" : \"Parc Andr鮃itro쯜",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32roll.png\",
             \"lat\" : 48.842461,
@@ -1712,7 +1713,7 @@
             \"id\" : 1791,
             \"address\" : \"2 rue Cauchy\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-andre-citroen-1791\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-andre-citroen-1791\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc Clichy-Batignolles - Martin Luther King\",
@@ -1723,7 +1724,7 @@
             \"id\" : 2817,
             \"address\" : \"147 rue Cardinet\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-clichy-batignolles-martin-luther-king-2817\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-clichy-batignolles-martin-luther-king-2817\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc de Bagatelle\",
@@ -1732,9 +1733,9 @@
             \"lat\" : 48.8638825,
             \"lng\" : 2.2396066,
             \"id\" : 1808,
-            \"address\" : \"route de Sèvres \u00e0 Neuilly\",
+            \"address\" : \"route de S\u00e8vres \u00e0 Neuilly\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-de-bagatelle-1808\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-de-bagatelle-1808\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc de Belleville\",
@@ -1745,7 +1746,7 @@
             \"id\" : 1777,
             \"address\" : \"47 rue des Couronnes\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-de-belleville-1777\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-de-belleville-1777\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc de Bercy\",
@@ -1756,7 +1757,7 @@
             \"id\" : 5,
             \"address\" : \"128 quai de bercy\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-de-bercy-5\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-de-bercy-5\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc de Choisy\",
@@ -1767,7 +1768,7 @@
             \"id\" : 1803,
             \"address\" : \"128 avenue de Choisy\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-de-choisy-1803\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-de-choisy-1803\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc de la Butte-du-Chapeau-Rouge\",
@@ -1778,7 +1779,7 @@
             \"id\" : 1811,
             \"address\" : \"5 avenue Debidour\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-de-la-butte-du-chapeau-rouge-1811\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-de-la-butte-du-chapeau-rouge-1811\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc de la Villette\",
@@ -1787,9 +1788,9 @@
             \"lat\" : 48.893166,
             \"lng\" : 2.390299,
             \"id\" : 1809,
-            \"address\" : \"211 avenue Jean Jaurès\",
+            \"address\" : \"211 avenue Jean Jaur\u00e8s\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-de-la-villette-1809\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-de-la-villette-1809\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc de Passy\",
@@ -1800,7 +1801,7 @@
             \"id\" : 2625,
             \"address\" : \"82 rue de Passy\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-de-passy-2625\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-de-passy-2625\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc des Buttes Chaumont\",
@@ -1811,7 +1812,7 @@
             \"id\" : 1757,
             \"address\" : \"1 rue Botzaris\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-des-buttes-chaumont-1757\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-des-buttes-chaumont-1757\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc Floral\",
@@ -1822,7 +1823,7 @@
             \"id\" : 1,
             \"address\" : \"Avenue des Minimes\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-floral-1\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-floral-1\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc Georges-Brassens\",
@@ -1833,7 +1834,7 @@
             \"id\" : 1805,
             \"address\" : \"2 place Jacques Marette\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-georges-brassens-1805\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-georges-brassens-1805\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc Kellermann\",
@@ -1844,7 +1845,7 @@
             \"id\" : 1794,
             \"address\" : \"19 rue de la poterne des peupliers\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-kellermann-1794\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-kellermann-1794\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc Monceau\",
@@ -1855,7 +1856,7 @@
             \"id\" : 1804,
             \"address\" : \"35 boulevard Courcelles\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-monceau-1804\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-monceau-1804\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc Montsouris\",
@@ -1866,7 +1867,7 @@
             \"id\" : 1810,
             \"address\" : \"2 rue Gazan\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-montsouris-1810\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-montsouris-1810\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Parc Omnisport Suzanne Lenglen\",
@@ -1877,10 +1878,10 @@
             \"id\" : 2544,
             \"address\" : \"2 rue Louis Armand\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-omnisport-suzanne-lenglen-2544\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-omnisport-suzanne-lenglen-2544\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Parc Sainte-Périne\",
+        $jardins[] = array("{ \"name\" : \"Parc Sainte-P곩ne\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32roll.png\",
             \"lat\" : 48.84502,
@@ -1888,21 +1889,21 @@
             \"id\" : 1806,
             \"address\" : \"39 rue Mirabeau\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/parc-sainte-perine-1806\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/parc-sainte-perine-1806\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Pelouses de la place du Général Catroux\",
+        $jardins[] = array("{ \"name\" : \"Pelouses de la place du Gꯩral Catroux\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.883076,
             \"lng\" : 2.310408,
             \"id\" : 2822,
-            \"address\" : \"place du Général-Catroux\",
+            \"address\" : \"place du Gꯩral-Catroux\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/pelouses-de-la-place-du-general-catroux-2822\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/pelouses-de-la-place-du-general-catroux-2822\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Pré-Catelan et jardin Shakespeare\",
+        $jardins[] = array("{ \"name\" : \"Pr鮃atelan et jardin Shakespeare\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32roll.png\",
             \"lat\" : 48.8647278,
@@ -1910,10 +1911,10 @@
             \"id\" : 2780,
             \"address\" : \"Route de Suresnes\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/pre-catelan-et-jardin-shakespeare-2780\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/pre-catelan-et-jardin-shakespeare-2780\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Promenade Amalia Rodrigues (anc. square du bd d'Algérie )\",
+        $jardins[] = array("{ \"name\" : \"Promenade Amalia Rodrigues (anc. square du bd d'Alg곩e )\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.883797,
@@ -1921,7 +1922,7 @@
             \"id\" : 2679,
             \"address\" : \"9 rue des Marchais\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-amalia-rodrigues-anc-square-du-bd-d-algerie-2679\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-amalia-rodrigues-anc-square-du-bd-d-algerie-2679\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Promenade avenue de Breteuil\",
@@ -1932,7 +1933,7 @@
             \"id\" : 14917,
             \"address\" : \"Avenue de Breteuil\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-avenue-de-breteuil-14917\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-avenue-de-breteuil-14917\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Promenade Bernard Lafay\",
@@ -1943,10 +1944,10 @@
             \"id\" : 2818,
             \"address\" : \"rue de Saussure\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-bernard-lafay-2818\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-bernard-lafay-2818\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Promenade de l'allée du Séminaire\",
+        $jardins[] = array("{ \"name\" : \"Promenade de l'allꥠdu Sꮩnaire\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.849255,
@@ -1954,18 +1955,18 @@
             \"id\" : 2833,
             \"address\" : \"rue Bonaparte<br>  rue de Vaugirard\",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-de-l-allee-du-seminaire-2833\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-de-l-allee-du-seminaire-2833\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Promenade des quais de Grenelle et André Citro\u00ebn\",
+        $jardins[] = array("{ \"name\" : \"Promenade des quais de Grenelle et Andr顃itro쯜",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.851501,
             \"lng\" : 2.284572,
             \"id\" : 2872,
-            \"address\" : \"quai André- Citro\u00ebn<br>  quai de Grenelle\",
+            \"address\" : \"quai Andr魠Citro쮼br>  quai de Grenelle\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-des-quais-de-grenelle-et-andre-citroen-2872\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-des-quais-de-grenelle-et-andre-citroen-2872\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Promenade du Cours Albert 1er\",
@@ -1976,7 +1977,7 @@
             \"id\" : 2490,
             \"address\" : \"17 cours Albert 1er\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-du-cours-albert-1er-2490\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-du-cours-albert-1er-2490\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Promenade du Cours de la Reine\",
@@ -1987,7 +1988,7 @@
             \"id\" : 2491,
             \"address\" : \"1 place de la Reine Astrid\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-du-cours-de-la-reine-2491\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-du-cours-de-la-reine-2491\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Promenade du quai de Grenelle \u2013 square des Martyrs Juifs\",
@@ -1998,7 +1999,7 @@
             \"id\" : 2874,
             \"address\" : \"quai de Grenelle<br>  place des Martyrs Juifs du Vel-d'Hiv\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-du-quai-de-grenelle-square-des-martyrs-juifs-2874\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-du-quai-de-grenelle-square-des-martyrs-juifs-2874\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Promenade Pereire\",
@@ -2009,10 +2010,10 @@
             \"id\" : 2821,
             \"address\" : \"boulevard Pereire\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-pereire-2821\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-pereire-2821\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Promenade plantée\",
+        $jardins[] = array("{ \"name\" : \"Promenade plantꦜ",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32roll.png\",
             \"lat\" : 48.8357522,
@@ -2020,10 +2021,10 @@
             \"id\" : 1772,
             \"address\" : \"290  avenue daumesnil\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-plantee-1772\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-plantee-1772\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Promenade plantée Arthur Rimbaud\",
+        $jardins[] = array("{ \"name\" : \"Promenade plantꥠArthur Rimbaud\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.8341088,
@@ -2031,7 +2032,7 @@
             \"id\" : 2860,
             \"address\" : \"56 quai Fran\u00e7ois Mauriac\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-plantee-arthur-rimbaud-2860\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-plantee-arthur-rimbaud-2860\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Promenade Richard Lenoir\",
@@ -2042,7 +2043,7 @@
             \"id\" : 2837,
             \"address\" : \"87 boulevard Richard-Lenoir\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/promenade-richard-lenoir-2837\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/promenade-richard-lenoir-2837\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Rond-point de la Porte de Saint-Cloud\",
@@ -2053,10 +2054,10 @@
             \"id\" : 2772,
             \"address\" : \"place de la Porte de Saint-Cloud\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/rond-point-de-la-porte-de-saint-cloud-2772\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/rond-point-de-la-porte-de-saint-cloud-2772\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Adolphe Chérioux\",
+        $jardins[] = array("{ \"name\" : \"Square Adolphe Ch곩oux\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.840176,
@@ -2064,7 +2065,7 @@
             \"id\" : 2516,
             \"address\" : \"260 rue de Vaugirard\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-adolphe-cherioux-2516\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-adolphe-cherioux-2516\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Alban Satragne\",
@@ -2075,7 +2076,7 @@
             \"id\" : 2488,
             \"address\" : \"11 square Alban Satragne\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-alban-satragne-2488\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-alban-satragne-2488\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Albert  Schweitzer\",
@@ -2084,9 +2085,9 @@
             \"lat\" : 48.853615,
             \"lng\" : 2.357893,
             \"id\" : 28,
-            \"address\" : \"10 rue de l'hôtel de ville\",
+            \"address\" : \"10 rue de l'h\u00f4tel de ville\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-albert-schweitzer-28\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-albert-schweitzer-28\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Albert Besnard\",
@@ -2095,9 +2096,9 @@
             \"lat\" : 48.8849828,
             \"lng\" : 2.2966732,
             \"id\" : 2627,
-            \"address\" : \"9 place du Maréchal Juin\",
+            \"address\" : \"9 place du Marꤨal Juin\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-albert-besnard-2627\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-albert-besnard-2627\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Albert Tournaire\",
@@ -2108,7 +2109,7 @@
             \"id\" : 2846,
             \"address\" : \"4 place Mazas\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-albert-tournaire-2846\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-albert-tournaire-2846\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Alberto Giacometti\",
@@ -2119,10 +2120,10 @@
             \"id\" : 2866,
             \"address\" : \"36 rue Didot\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-alberto-giacometti-2866\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-alberto-giacometti-2866\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Alésia-Ridder\",
+        $jardins[] = array("{ \"name\" : \"Square Al괩a-Ridder\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.832401,
@@ -2130,7 +2131,7 @@
             \"id\" : 2568,
             \"address\" : \"126 rue Raymond Losserand\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-alesia-ridder-2568\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-alesia-ridder-2568\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Alex Biscarre\",
@@ -2141,7 +2142,7 @@
             \"id\" : 2464,
             \"address\" : \"31 rue Notre Dame de Lorette\",
             \"zipcode\" : \"75009\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-alex-biscarre-2464\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-alex-biscarre-2464\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Alexandre 1er de Yougoslavie\",
@@ -2152,10 +2153,10 @@
             \"id\" : 2615,
             \"address\" : \"5 place de Colombie\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-alexandre-1er-de-yougoslavie-2615\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-alexandre-1er-de-yougoslavie-2615\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Alexandre et  René-Parodi\",
+        $jardins[] = array("{ \"name\" : \"Square Alexandre et  Ren鮐arodi\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.874966,
@@ -2163,7 +2164,7 @@
             \"id\" : 2752,
             \"address\" : \"boulevard de l'Amiral-Bruix\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-alexandre-et-rene-parodi-2752\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-alexandre-et-rene-parodi-2752\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Alexandre-Luquet\",
@@ -2174,10 +2175,10 @@
             \"id\" : 2690,
             \"address\" : \"4 rue du Transvaal\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-alexandre-luquet-2690\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-alexandre-luquet-2690\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Alexis Clérel de Tocqueville\",
+        $jardins[] = array("{ \"name\" : \"Square Alexis Cl곥l de Tocqueville\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.885971,
@@ -2185,7 +2186,7 @@
             \"id\" : 2628,
             \"address\" : \"89 rue de Tocqueville\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-alexis-clerel-de-tocqueville-2628\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-alexis-clerel-de-tocqueville-2628\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Alfred Capus\",
@@ -2196,10 +2197,10 @@
             \"id\" : 2621,
             \"address\" : \"118 boulevard Suchet\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-alfred-capus-2621\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-alfred-capus-2621\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Amadou Hampaté B\u00e2\",
+        $jardins[] = array("{ \"name\" : \"Square Amadou Hampat顂\u00e2\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.877659,
@@ -2207,10 +2208,10 @@
             \"id\" : 2492,
             \"address\" : \"19 rue Boy Zelenski\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-amadou-hampate-ba-2492\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-amadou-hampate-ba-2492\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square André Lefèbvre\",
+        $jardins[] = array("{ \"name\" : \"Square Andr題ef\u00e8bvre\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.851707,
@@ -2218,7 +2219,7 @@
             \"id\" : 2442,
             \"address\" : \"2 rue de la Parcheminerie\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-andre-lefebvre-2442\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-andre-lefebvre-2442\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Anna de Noailles\",
@@ -2229,7 +2230,7 @@
             \"id\" : 2609,
             \"address\" : \"46 boulevard de l'Amiral Bruix\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-anna-de-noailles-2609\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-anna-de-noailles-2609\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Antoine Blondin\",
@@ -2240,10 +2241,10 @@
             \"id\" : 2712,
             \"address\" : \"126 rue de Bagnolet\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-antoine-blondin-2712\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-antoine-blondin-2712\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Aristide Cavaillé-Coll\",
+        $jardins[] = array("{ \"name\" : \"Square Aristide Cavaill鮃oll\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.877872,
@@ -2251,7 +2252,7 @@
             \"id\" : 2481,
             \"address\" : \"8 place Franz Liszt\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-aristide-cavaille-coll-2481\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-aristide-cavaille-coll-2481\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Auguste Renoir\",
@@ -2262,7 +2263,7 @@
             \"id\" : 2591,
             \"address\" : \"205 rue Raymond Losserand\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-auguste-renoir-2591\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-auguste-renoir-2591\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square aux Artistes\",
@@ -2273,7 +2274,7 @@
             \"id\" : 2572,
             \"address\" : \"15 avenue Georges Lafenestre\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-aux-artistes-2572\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-aux-artistes-2572\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Barye\",
@@ -2284,7 +2285,7 @@
             \"id\" : 29,
             \"address\" : \"2 boulevard henri iv\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-barye-29\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-barye-29\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Bayen\",
@@ -2295,7 +2296,7 @@
             \"id\" : 2630,
             \"address\" : \"59 rue Bayen\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-bayen-2630\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-bayen-2630\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Bela Bartok\",
@@ -2306,10 +2307,10 @@
             \"id\" : 2555,
             \"address\" : \"26 place de Brazzaville\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-bela-bartok-2555\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-bela-bartok-2555\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Belleville - Télégraphe\",
+        $jardins[] = array("{ \"name\" : \"Square Belleville - Tꭩgraphe\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8755064,
@@ -2317,7 +2318,7 @@
             \"id\" : 2724,
             \"address\" : \"246 rue de Belleville\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-belleville-telegraphe-2724\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-belleville-telegraphe-2724\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Boucicaut\",
@@ -2328,7 +2329,7 @@
             \"id\" : 2462,
             \"address\" : \"1 rue Babylone\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-boucicaut-2462\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-boucicaut-2462\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Boulay-Level\",
@@ -2339,7 +2340,7 @@
             \"id\" : 2796,
             \"address\" : \"rue Boulay\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-boulay-level-2796\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-boulay-level-2796\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Boutroux\",
@@ -2350,10 +2351,10 @@
             \"id\" : 2517,
             \"address\" : \"21 avenue Boutroux\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-boutroux-2517\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-boutroux-2517\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Bréguet-Sabin\",
+        $jardins[] = array("{ \"name\" : \"Square Brꨵet-Sabin\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8564468,
@@ -2361,7 +2362,7 @@
             \"id\" : 2838,
             \"address\" : \"28 bd Richard Lenoir\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-breguet-sabin-2838\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-breguet-sabin-2838\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Cambronne\",
@@ -2372,7 +2373,7 @@
             \"id\" : 2522,
             \"address\" : \"2 rue Alexandre Cabanel\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-cambronne-2522\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-cambronne-2522\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Carlo Sarrabezolles\",
@@ -2383,7 +2384,7 @@
             \"id\" : 2542,
             \"address\" : \"3 rue Carlo Sarrabezolles\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-carlo-sarrabezolles-2542\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-carlo-sarrabezolles-2542\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Carnot\",
@@ -2394,7 +2395,7 @@
             \"id\" : 6430,
             \"address\" : \"esplanade Saint-Louis\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-carnot-6430\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-carnot-6430\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Carpeaux\",
@@ -2405,7 +2406,7 @@
             \"id\" : 2646,
             \"address\" : \"23 rue Carpeaux\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-carpeaux-2646\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-carpeaux-2646\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Castagnary\",
@@ -2416,7 +2417,7 @@
             \"id\" : 2504,
             \"address\" : \"115 rue Castagnary\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-castagnary-2504\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-castagnary-2504\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Charles Hermite\",
@@ -2427,10 +2428,10 @@
             \"id\" : 2648,
             \"address\" : \"40 rue Charles Hermitte\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-charles-hermite-2648\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-charles-hermite-2648\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Charles Péguy\",
+        $jardins[] = array("{ \"name\" : \"Square Charles Pꨵy\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.838406,
@@ -2438,7 +2439,7 @@
             \"id\" : 2575,
             \"address\" : \"21 rue Rottembourg\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-charles-peguy-2575\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-charles-peguy-2575\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Charles-Victor Langlois\",
@@ -2449,7 +2450,7 @@
             \"id\" : 30,
             \"address\" : \"6 rue des Blancs-Manteaux\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-charles-victor-langlois-30\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-charles-victor-langlois-30\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Claude Charpentier (ex-du Mont Cenis)\",
@@ -2460,7 +2461,7 @@
             \"id\" : 2674,
             \"address\" : \"14 rue du Mont Cenis\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-claude-charpentier-ex-du-mont-cenis-2674\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-claude-charpentier-ex-du-mont-cenis-2674\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Claude Debussy\",
@@ -2469,12 +2470,12 @@
             \"lat\" : 48.869228,
             \"lng\" : 2.271832,
             \"id\" : 2613,
-            \"address\" : \"49 avenue du Maréchal Fayolle\",
+            \"address\" : \"49 avenue du Marꤨal Fayolle\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-claude-debussy-2613\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-claude-debussy-2613\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Claude-Bernard (ex-Jardin d'Aubervilliers)\",
+        $jardins[] = array("{ \"name\" : \"Square Claude-Bernard (ex-Jardin d%u2019Aubervilliers)\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.900261,
@@ -2482,7 +2483,7 @@
             \"id\" : 2682,
             \"address\" : \"18 avenue de la porte d'Aubervilliers\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-claude-bernard-ex-jardin-d-u2019aubervilliers-2682\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-claude-bernard-ex-jardin-d-u2019aubervilliers-2682\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Claude-Nicolas-Ledoux\",
@@ -2493,7 +2494,7 @@
             \"id\" : 2533,
             \"address\" : \"2 place Denfert-Rochereau\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-claude-nicolas-ledoux-2533\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-claude-nicolas-ledoux-2533\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Colbert\",
@@ -2504,7 +2505,7 @@
             \"id\" : 2729,
             \"address\" : \"159 rue de Charonne\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-colbert-2729\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-colbert-2729\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Courteline\",
@@ -2515,7 +2516,7 @@
             \"id\" : 2581,
             \"address\" : \"51 boulevard de Picpus\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-courteline-2581\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-courteline-2581\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Curial\",
@@ -2526,7 +2527,7 @@
             \"id\" : 2655,
             \"address\" : \"85 rue Curial\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-curial-2655\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-curial-2655\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square d'Ajaccio\",
@@ -2537,7 +2538,7 @@
             \"id\" : 2470,
             \"address\" : \"127 rue de Grenelle\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-d-ajaccio-2470\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-d-ajaccio-2470\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square d'Alleray - La Quintinie\",
@@ -2548,7 +2549,7 @@
             \"id\" : 2503,
             \"address\" : \"28 rue des Favorites\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-d-alleray-la-quintinie-2503\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-d-alleray-la-quintinie-2503\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square d'Alleray Labrouste-Saint-Amand\",
@@ -2559,7 +2560,7 @@
             \"id\" : 2500,
             \"address\" : \"90 rue d'Alleray\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-d-alleray-labrouste-saint-amand-2500\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-d-alleray-labrouste-saint-amand-2500\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square d'Anvers\",
@@ -2570,7 +2571,7 @@
             \"id\" : 2468,
             \"address\" : \"10 bis avenue Trudaine\",
             \"zipcode\" : \"75009\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-d-anvers-2468\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-d-anvers-2468\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square d'Estienne d'Orves\",
@@ -2581,7 +2582,7 @@
             \"id\" : 2472,
             \"address\" : \"1 place d'Estienne d'Orves\",
             \"zipcode\" : \"75009\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-d-estienne-d-orves-2472\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-d-estienne-d-orves-2472\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Dampierre-Rouvet\",
@@ -2592,7 +2593,7 @@
             \"id\" : 2650,
             \"address\" : \"4 rue Dampierre\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-dampierre-rouvet-2650\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-dampierre-rouvet-2650\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de Berlin\",
@@ -2603,7 +2604,7 @@
             \"id\" : 2474,
             \"address\" : \"1 avenue de Selves\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-berlin-2474\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-berlin-2474\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de Jessaint\",
@@ -2614,21 +2615,21 @@
             \"id\" : 2661,
             \"address\" : \"place de la chapelle\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-jessaint-2661\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-jessaint-2661\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square de l'Abbé Georges Hénocque\",
+        $jardins[] = array("{ \"name\" : \"Square de l'Abb顇eorges H꯯cque\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8240323,
             \"lng\" : 2.35343,
             \"id\" : 2527,
-            \"address\" : \"1 place de l'Abbé Georges Henocque\",
+            \"address\" : \"1 place de l'Abb顇eorges Henocque\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-l-abbe-georges-henocque-2527\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-l-abbe-georges-henocque-2527\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square de l'Abbé Lemire\",
+        $jardins[] = array("{ \"name\" : \"Square de l'Abb題emire\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.835415,
@@ -2636,10 +2637,10 @@
             \"id\" : 2551,
             \"address\" : \"78 rue Vercingetorix\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-l-abbe-lemire-2551\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-l-abbe-lemire-2551\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square de l'Abbé-Migne\",
+        $jardins[] = array("{ \"name\" : \"Square de l'Abb鮍igne\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.83395,
@@ -2647,10 +2648,10 @@
             \"id\" : 2528,
             \"address\" : \"1ter place Denfert Rochereau\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-l-abbe-migne-2528\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-l-abbe-migne-2528\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square de l'Amérique latine\",
+        $jardins[] = array("{ \"name\" : \"Square de l'Am곩que latine\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.886078,
@@ -2658,7 +2659,7 @@
             \"id\" : 2629,
             \"address\" : \"8 place de la porte de Champerret\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-l-amerique-latine-2629\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-l-amerique-latine-2629\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de l'Aspirant-Dunand\",
@@ -2669,10 +2670,10 @@
             \"id\" : 2543,
             \"address\" : \"20 rue Saillard\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-l-aspirant-dunand-2543\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-l-aspirant-dunand-2543\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square de l'avenue Caffiéri\",
+        $jardins[] = array("{ \"name\" : \"Square de l'avenue Caffi곩\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.820031,
@@ -2680,7 +2681,7 @@
             \"id\" : 2510,
             \"address\" : \"11 avenue Caffieri\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-l-avenue-caffieri-2510\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-l-avenue-caffieri-2510\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de l'Ile de France\",
@@ -2689,9 +2690,9 @@
             \"lat\" : 48.852203,
             \"lng\" : 2.351936,
             \"id\" : 32,
-            \"address\" : \"1 quai de l'archev\u00eaché\",
+            \"address\" : \"1 quai de l'archev\u00eachꜢ,
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-l-ile-de-france-32\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-l-ile-de-france-32\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de l'Oiseau Lunaire (ex-Blomet)\",
@@ -2702,18 +2703,18 @@
             \"id\" : 2519,
             \"address\" : \"43 rue Blomet\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-l-oiseau-lunaire-ex-blomet-2519\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-l-oiseau-lunaire-ex-blomet-2519\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square de la Folie-Régnault\",
+        $jardins[] = array("{ \"name\" : \"Square de la Folie-Rꨮault\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.857677,
             \"lng\" : 2.387454,
             \"id\" : 2727,
-            \"address\" : \"24 rue de la Folie-Régnault\",
+            \"address\" : \"24 rue de la Folie-Rꨮault\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-folie-regnault-2727\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-folie-regnault-2727\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la Madone\",
@@ -2724,7 +2725,7 @@
             \"id\" : 2669,
             \"address\" : \"30 rue Marc Seguin\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-madone-2669\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-madone-2669\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la Marseillaise\",
@@ -2735,10 +2736,10 @@
             \"id\" : 2758,
             \"address\" : \"Rue de la Marseillaise\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-marseillaise-2758\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-marseillaise-2758\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square de la Montgolfière\",
+        $jardins[] = array("{ \"name\" : \"Square de la Montgolfi\u00e8re\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.8267897,
@@ -2746,7 +2747,7 @@
             \"id\" : 2566,
             \"address\" : \"42 rue du Moulinet\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-montgolfiere-2566\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-montgolfiere-2566\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la Paix\",
@@ -2757,7 +2758,7 @@
             \"id\" : 2740,
             \"address\" : \"Rue du Commandant l'Herminier\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-paix-2740\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-paix-2740\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la photo hippique\",
@@ -2768,18 +2769,18 @@
             \"id\" : 8715,
             \"address\" : \"route de l'Etoile\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-photo-hippique-8715\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-photo-hippique-8715\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square de la Place André Masson\",
+        $jardins[] = array("{ \"name\" : \"Square de la Place Andr額asson\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.830759,
             \"lng\" : 2.359204,
             \"id\" : 2863,
-            \"address\" : \"1 place André Masson\",
+            \"address\" : \"1 place Andr額asson\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-andre-masson-2863\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-andre-masson-2863\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la Place d'Italie\",
@@ -2790,7 +2791,7 @@
             \"id\" : 2501,
             \"address\" : \"4 place d'Italie\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-d-italie-2501\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-d-italie-2501\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la place Dauphine\",
@@ -2801,7 +2802,7 @@
             \"id\" : 2406,
             \"address\" : \"6 rue de Harlay\",
             \"zipcode\" : \"75001\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-dauphine-2406\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-dauphine-2406\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la place de Bitche\",
@@ -2810,9 +2811,9 @@
             \"lat\" : 48.888092,
             \"lng\" : 2.379735,
             \"id\" : 2645,
-            \"address\" : \"158 rue de Crimée\",
+            \"address\" : \"158 rue de Crimꦜ",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-de-bitche-2645\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-de-bitche-2645\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la place de la Bataille de Stalingrad\",
@@ -2823,7 +2824,7 @@
             \"id\" : 2756,
             \"address\" : \"Place de la Bataille de Stalingrad\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-de-la-bataille-de-stalingrad-2756\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-de-la-bataille-de-stalingrad-2756\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la place de la Nation\",
@@ -2834,18 +2835,18 @@
             \"id\" : 2578,
             \"address\" : \"16 place de la Nation\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-de-la-nation-2578\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-de-la-nation-2578\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square de la place de la Réunion\",
+        $jardins[] = array("{ \"name\" : \"Square de la place de la R궮ion\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.855618,
             \"lng\" : 2.401347,
             \"id\" : 2705,
-            \"address\" : \"64 place de la Réunion\",
+            \"address\" : \"64 place de la R궮ion\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-de-la-reunion-2705\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-de-la-reunion-2705\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la place du Commerce\",
@@ -2856,7 +2857,7 @@
             \"id\" : 2526,
             \"address\" : \"18 place du Commerce\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-du-commerce-2526\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-du-commerce-2526\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la place Etienne Pernet\",
@@ -2867,7 +2868,7 @@
             \"id\" : 2532,
             \"address\" : \"30 place Etienne Pernet\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-etienne-pernet-2532\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-etienne-pernet-2532\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la Place Pasdeloup\",
@@ -2878,7 +2879,7 @@
             \"id\" : 2585,
             \"address\" : \"2 place Pasdeloup\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-place-pasdeloup-2585\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-place-pasdeloup-2585\"        }");
     
     
         
@@ -2890,7 +2891,7 @@
             \"id\" : 2653,
             \"address\" : \"22 rue du Chemin de Fer\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-porte-de-la-villette-2653\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-porte-de-la-villette-2653\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la Raffinerie Say\",
@@ -2901,7 +2902,7 @@
             \"id\" : 2562,
             \"address\" : \"147 boulevard Vincent Auriol\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-raffinerie-say-2562\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-raffinerie-say-2562\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la Roquette\",
@@ -2912,7 +2913,7 @@
             \"id\" : 1767,
             \"address\" : \"143, rue de la Roquette\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-roquette-1767\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-roquette-1767\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la rue Burq\",
@@ -2923,7 +2924,7 @@
             \"id\" : 2644,
             \"address\" : \"14 rue Burq\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-rue-burq-2644\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-rue-burq-2644\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la rue Henri Huchard\",
@@ -2934,7 +2935,7 @@
             \"id\" : 2656,
             \"address\" : \"36 avenue de la porte de Saint Ouen\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-rue-henri-huchard-2656\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-rue-henri-huchard-2656\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la Salamandre\",
@@ -2945,7 +2946,7 @@
             \"id\" : 2710,
             \"address\" : \"16 square Salamandre\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-salamandre-2710\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-salamandre-2710\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de la Tour Saint-Jacques\",
@@ -2956,7 +2957,7 @@
             \"id\" : 33,
             \"address\" : \"39 rue de rivoli\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-la-tour-saint-jacques-33\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-la-tour-saint-jacques-33\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de Notre-Dame-de-la-Croix\",
@@ -2967,7 +2968,7 @@
             \"id\" : 2698,
             \"address\" : \"8 rue d'Eupatoria\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-notre-dame-de-la-croix-2698\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-notre-dame-de-la-croix-2698\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square de Yorktown\",
@@ -2978,7 +2979,7 @@
             \"id\" : 2604,
             \"address\" : \"1 avenue Paul Doumer\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-de-yorktown-2604\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-de-yorktown-2604\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Denis Poulot\",
@@ -2987,9 +2988,9 @@
             \"lat\" : 48.858067,
             \"lng\" : 2.380259,
             \"id\" : 2736,
-            \"address\" : \"1 place Léon-Blum\",
+            \"address\" : \"1 place L갮-Blum\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-denis-poulot-2736\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-denis-poulot-2736\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des Amandiers\",
@@ -3000,10 +3001,10 @@
             \"id\" : 2700,
             \"address\" : \"47 rue des Cendriers\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-amandiers-2700\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-amandiers-2700\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square des arènes de Lutèce et square Capitan\",
+        $jardins[] = array("{ \"name\" : \"Square des ar\u00e8nes de Lut\u00e8ce et square Capitan\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.845058,
@@ -3011,7 +3012,7 @@
             \"id\" : 1760,
             \"address\" : \"4 rue des ar\u00eanes\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-arenes-de-lutece-et-square-capitan-1760\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-arenes-de-lutece-et-square-capitan-1760\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des Batignolles\",
@@ -3022,7 +3023,7 @@
             \"id\" : 1761,
             \"address\" : \"144 bis rue Cardinet\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-batignolles-1761\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-batignolles-1761\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des Chamaillards\",
@@ -3033,10 +3034,10 @@
             \"id\" : 2858,
             \"address\" : \"55 rue du Ch\u00e2teau des Rentiers\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-chamaillards-2858\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-chamaillards-2858\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square des Deux Nèthes\",
+        $jardins[] = array("{ \"name\" : \"Square des Deux N\u00e8thes\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8851711,
@@ -3044,29 +3045,29 @@
             \"id\" : 2765,
             \"address\" : \"24 avenue de Clichy\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-deux-nethes-2765\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-deux-nethes-2765\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square des docteurs Dejérine\",
+        $jardins[] = array("{ \"name\" : \"Square des docteurs Dej곩ne\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8599825,
             \"lng\" : 2.4066412,
             \"id\" : 2706,
-            \"address\" : \"18 rue du Docteur Déjérine\",
+            \"address\" : \"18 rue du Docteur Dꫩrine\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-docteurs-dejerine-2706\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-docteurs-dejerine-2706\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square des écrivains combattants morts pour la France\",
+        $jardins[] = array("{ \"name\" : \"Square des ꤲivains combattants morts pour la France\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.859955,
             \"lng\" : 2.26501,
             \"id\" : 2616,
-            \"address\" : \"23 avenue du Maréchal Maunoury\",
+            \"address\" : \"23 avenue du Marꤨal Maunoury\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-ecrivains-combattants-morts-pour-la-france-2616\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-ecrivains-combattants-morts-pour-la-france-2616\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des Epinettes\",
@@ -3077,10 +3078,10 @@
             \"id\" : 2631,
             \"address\" : \"9 rue Maria Deraismes\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-epinettes-2631\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-epinettes-2631\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square des Grès\",
+        $jardins[] = array("{ \"name\" : \"Square des Gr\u00e8s\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.859344,
@@ -3088,7 +3089,7 @@
             \"id\" : 2692,
             \"address\" : \"57 rue Vitruve\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-gres-2692\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-gres-2692\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des Jardiniers\",
@@ -3099,7 +3100,7 @@
             \"id\" : 2731,
             \"address\" : \"2 passage Dumas\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-jardiniers-2731\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-jardiniers-2731\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des Jonquilles\",
@@ -3108,12 +3109,12 @@
             \"lat\" : 48.830597,
             \"lng\" : 2.308177,
             \"id\" : 2594,
-            \"address\" : \"213 rue Vercingétorix\",
+            \"address\" : \"213 rue Vercing굯rix\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-jonquilles-2594\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-jonquilles-2594\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square des Missions Etrangères\",
+        $jardins[] = array("{ \"name\" : \"Square des Missions Etrang\u00e8res\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.855549,
@@ -3121,7 +3122,7 @@
             \"id\" : 2463,
             \"address\" : \"105 rue du Bac\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-missions-etrangeres-2463\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-missions-etrangeres-2463\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des M\u00fbriers\",
@@ -3132,7 +3133,7 @@
             \"id\" : 2714,
             \"address\" : \"8 rue des Pruniers\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-muriers-2714\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-muriers-2714\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des Ormeaux\",
@@ -3143,10 +3144,10 @@
             \"id\" : 2709,
             \"address\" : \"28 rue des Ormeaux\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-ormeaux-2709\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-ormeaux-2709\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square des Périchaux\",
+        $jardins[] = array("{ \"name\" : \"Square des P곩chaux\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.82983,
@@ -3154,18 +3155,18 @@
             \"id\" : 2506,
             \"address\" : \"121 boulevard Lefebvre\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-perichaux-2506\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-perichaux-2506\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square des Poètes\",
+        $jardins[] = array("{ \"name\" : \"Square des Po\u00e8tes\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.845249,
             \"lng\" : 2.255783,
             \"id\" : 2778,
-            \"address\" : \"avenue du Général Sarrail\",
+            \"address\" : \"avenue du Gꯩral Sarrail\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-poetes-2778\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-poetes-2778\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des Recollets\",
@@ -3176,7 +3177,7 @@
             \"id\" : 2484,
             \"address\" : \"86 quai de Valmy\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-recollets-2484\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-recollets-2484\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square des Saint-Simoniens\",
@@ -3185,9 +3186,9 @@
             \"lat\" : 48.870586,
             \"lng\" : 2.395487,
             \"id\" : 2694,
-            \"address\" : \"2 rue de la Duée\",
+            \"address\" : \"2 rue de la Duꦜ",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-des-saint-simoniens-2694\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-des-saint-simoniens-2694\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Bataclan\",
@@ -3198,7 +3199,7 @@
             \"id\" : 2839,
             \"address\" : \"94 bd Richard Lenoir\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-bataclan-2839\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-bataclan-2839\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Caporal Peugeot\",
@@ -3209,7 +3210,7 @@
             \"id\" : 2632,
             \"address\" : \"2 rue du Caporal Peugeot\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-caporal-peugeot-2632\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-caporal-peugeot-2632\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Cardinal Petit de Julleville\",
@@ -3220,7 +3221,7 @@
             \"id\" : 2633,
             \"address\" : \"4 rue Gustave Charpentier\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-cardinal-petit-de-julleville-2633\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-cardinal-petit-de-julleville-2633\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Cardinal Verdier\",
@@ -3231,7 +3232,7 @@
             \"id\" : 2511,
             \"address\" : \"1 rue Thureau Dangin\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-cardinal-verdier-2511\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-cardinal-verdier-2511\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Cardinal Wyszinski\",
@@ -3240,9 +3241,9 @@
             \"lat\" : 48.833015,
             \"lng\" : 2.311876,
             \"id\" : 2549,
-            \"address\" : \"54 rue Vercingétorix\",
+            \"address\" : \"54 rue Vercing굯rix\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-cardinal-wyszinski-2549\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-cardinal-wyszinski-2549\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Chanoine-Viollet\",
@@ -3253,10 +3254,10 @@
             \"id\" : 2574,
             \"address\" : \"72 rue du Moulin Vert\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-chanoine-viollet-2574\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-chanoine-viollet-2574\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square du Clos Feuquières\",
+        $jardins[] = array("{ \"name\" : \"Square du Clos Feuqui\u00e8res\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.836056,
@@ -3264,10 +3265,10 @@
             \"id\" : 2514,
             \"address\" : \"30 rue Desnouettes\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-clos-feuquieres-2514\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-clos-feuquieres-2514\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square du Docteur Antoine Béclère\",
+        $jardins[] = array("{ \"name\" : \"Square du Docteur Antoine B꤬\u00e8re\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.850346,
@@ -3275,7 +3276,7 @@
             \"id\" : 2732,
             \"address\" : \"215 rue du Faubourg Saint-Antoine\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-docteur-antoine-beclere-2732\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-docteur-antoine-beclere-2732\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du docteur Calmette\",
@@ -3286,7 +3287,7 @@
             \"id\" : 2508,
             \"address\" : \"2 rue Jean Sicard\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-docteur-calmette-2508\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-docteur-calmette-2508\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Docteur Grancher\",
@@ -3297,7 +3298,7 @@
             \"id\" : 2721,
             \"address\" : \"2 rue Orfila\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-docteur-grancher-2721\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-docteur-grancher-2721\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Docteur Navarre\",
@@ -3308,7 +3309,7 @@
             \"id\" : 2861,
             \"address\" : \"place du Docteur Navarre\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-docteur-navarre-2861\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-docteur-navarre-2861\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du docteur Variot\",
@@ -3319,10 +3320,10 @@
             \"id\" : 2723,
             \"address\" : \"160 avenue Gambetta\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-docteur-variot-2723\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-docteur-variot-2723\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square du Général Anselin\",
+        $jardins[] = array("{ \"name\" : \"Square du Gꯩral Anselin\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.869175,
@@ -3330,7 +3331,7 @@
             \"id\" : 2611,
             \"address\" : \"1 avenue de Pologne\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-general-anselin-2611\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-general-anselin-2611\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du mail Gatbois\",
@@ -3341,7 +3342,7 @@
             \"id\" : 2601,
             \"address\" : \"12 passage Gatbois\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-mail-gatbois-2601\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-mail-gatbois-2601\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du palais Galliera\",
@@ -3352,7 +3353,7 @@
             \"id\" : 2605,
             \"address\" : \"10 avenue Pierre 1er de Serbie\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-palais-galliera-2605\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-palais-galliera-2605\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du passage Moncey\",
@@ -3363,10 +3364,10 @@
             \"id\" : 2641,
             \"address\" : \"37 bis avenue de Saint Ouen\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-passage-moncey-2641\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-passage-moncey-2641\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square du Père-Plumier\",
+        $jardins[] = array("{ \"name\" : \"Square du P\u00e8re-Plumier\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.834366,
@@ -3374,7 +3375,7 @@
             \"id\" : 2553,
             \"address\" : \"112 rue Vercingetorix\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-pere-plumier-2553\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-pere-plumier-2553\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Petit Bois\",
@@ -3385,18 +3386,18 @@
             \"id\" : 2754,
             \"address\" : \"Rue Manin\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-petit-bois-2754\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-petit-bois-2754\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square du Port de l'Hôtel de Ville\",
+        $jardins[] = array("{ \"name\" : \"Square du Port de l'H\u00f4tel de Ville\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.856182,
             \"lng\" : 2.350761,
             \"id\" : 1204,
-            \"address\" : \"1 place de l'Hôtel de Ville\",
+            \"address\" : \"1 place de l'H\u00f4tel de Ville\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-port-de-l-hotel-de-ville-1204\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-port-de-l-hotel-de-ville-1204\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du quai de la Gironde\",
@@ -3407,7 +3408,7 @@
             \"id\" : 2759,
             \"address\" : \"Quai de la Gironde\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-quai-de-la-gironde-2759\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-quai-de-la-gironde-2759\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du quai de la Loire\",
@@ -3418,7 +3419,7 @@
             \"id\" : 2660,
             \"address\" : \"31 quai de Loire\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-quai-de-la-loire-2660\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-quai-de-la-loire-2660\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du quai de la Seine\",
@@ -3429,7 +3430,7 @@
             \"id\" : 2662,
             \"address\" : \"16 quai de Seine\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-quai-de-la-seine-2662\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-quai-de-la-seine-2662\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Serment de Koufra\",
@@ -3438,9 +3439,9 @@
             \"lat\" : 48.8209982,
             \"lng\" : 2.324496,
             \"id\" : 1773,
-            \"address\" : \"avenue Ernest Reyer - rue de la légion étrangère\",
+            \"address\" : \"avenue Ernest Reyer - rue de la lꨩon 굲ang\u00e8re\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-serment-de-koufra-1773\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-serment-de-koufra-1773\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Tchad\",
@@ -3449,9 +3450,9 @@
             \"lat\" : 48.84726,
             \"lng\" : 2.256771,
             \"id\" : 2622,
-            \"address\" : \"8 avenue du Général Sarrail\",
+            \"address\" : \"8 avenue du Gꯩral Sarrail\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-tchad-2622\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-tchad-2622\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Temple\",
@@ -3462,7 +3463,7 @@
             \"id\" : 2425,
             \"address\" : \"64 rue de Bretagne\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-temple-2425\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-temple-2425\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square du Vert-Galant\",
@@ -3473,7 +3474,7 @@
             \"id\" : 2825,
             \"address\" : \"Place du Pont-Neuf\",
             \"zipcode\" : \"75001\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-du-vert-galant-2825\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-du-vert-galant-2825\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Dupleix\",
@@ -3484,7 +3485,7 @@
             \"id\" : 2524,
             \"address\" : \"26 rue Dupleix\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-dupleix-2524\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-dupleix-2524\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Duranton\",
@@ -3495,7 +3496,7 @@
             \"id\" : 2534,
             \"address\" : \"1 rue Duranton\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-duranton-2534\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-duranton-2534\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Edouard-Vaillant\",
@@ -3506,7 +3507,7 @@
             \"id\" : 2691,
             \"address\" : \"50 avenue Gambetta\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-edouard-vaillant-2691\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-edouard-vaillant-2691\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Elisa Borey\",
@@ -3517,7 +3518,7 @@
             \"id\" : 2715,
             \"address\" : \"3 rue Elisa Borey\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-elisa-borey-2715\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-elisa-borey-2715\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Emile Borel\",
@@ -3528,7 +3529,7 @@
             \"id\" : 2634,
             \"address\" : \"6 rue Emile Borel\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-emile-borel-2634\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-emile-borel-2634\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Emile Chautemps\",
@@ -3539,7 +3540,7 @@
             \"id\" : 2421,
             \"address\" : \"98 Bis boulevard de Sebastopol\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-emile-chautemps-2421\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-emile-chautemps-2421\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Emile Cohl\",
@@ -3550,7 +3551,7 @@
             \"id\" : 2587,
             \"address\" : \"60 boulevard Soult\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-emile-cohl-2587\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-emile-cohl-2587\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Emmanuel Fleury\",
@@ -3561,7 +3562,7 @@
             \"id\" : 2720,
             \"address\" : \"40 rue Le Vau\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-emmanuel-fleury-2720\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-emmanuel-fleury-2720\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Ernest Chausson\",
@@ -3572,10 +3573,10 @@
             \"id\" : 2635,
             \"address\" : \"55 avenue de Clichy\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-ernest-chausson-2635\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-ernest-chausson-2635\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Eugène Thomas\",
+        $jardins[] = array("{ \"name\" : \"Square Eug\u00e8ne Thomas\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.840515,
@@ -3583,10 +3584,10 @@
             \"id\" : 2603,
             \"address\" : \"1 rue Bignon\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-eugene-thomas-2603\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-eugene-thomas-2603\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Eugène Varlin\",
+        $jardins[] = array("{ \"name\" : \"Square Eug\u00e8ne Varlin\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.875481,
@@ -3594,10 +3595,10 @@
             \"id\" : 2482,
             \"address\" : \"159 quai de Jemmapes\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-eugene-varlin-2482\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-eugene-varlin-2482\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Eugénie-Cotton\",
+        $jardins[] = array("{ \"name\" : \"Square Eugꯩe-Cotton\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.878281,
@@ -3605,10 +3606,10 @@
             \"id\" : 2675,
             \"address\" : \"60 rue Compans\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-eugenie-cotton-2675\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-eugenie-cotton-2675\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Félix Desruelles\",
+        $jardins[] = array("{ \"name\" : \"Square Fꭩx Desruelles\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.853416,
@@ -3616,10 +3617,10 @@
             \"id\" : 2456,
             \"address\" : \"168 Bis boulevard Saint-Germain\",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-felix-desruelles-2456\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-felix-desruelles-2456\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Félix Faure\",
+        $jardins[] = array("{ \"name\" : \"Square Fꭩx Faure\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.839314,
@@ -3627,7 +3628,7 @@
             \"id\" : 2536,
             \"address\" : \"167 rue de Lourmel\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-felix-faure-2536\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-felix-faure-2536\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Ferdinand Brunot\",
@@ -3638,7 +3639,7 @@
             \"id\" : 2540,
             \"address\" : \"3 rue Durouchoux\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-ferdinand-brunot-2540\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-ferdinand-brunot-2540\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Florence Blumenthal\",
@@ -3649,7 +3650,7 @@
             \"id\" : 2523,
             \"address\" : \"93 rue du Ch\u00e2teau des Rentiers\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-florence-blumenthal-2523\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-florence-blumenthal-2523\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Francis Lemarque\",
@@ -3660,10 +3661,10 @@
             \"id\" : 2844,
             \"address\" : \"38, passage Charles-Dallery\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-francis-lemarque-2844\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-francis-lemarque-2844\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Frédéric Bazille\",
+        $jardins[] = array("{ \"name\" : \"Square Frꥩric Bazille\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.83004,
@@ -3671,10 +3672,10 @@
             \"id\" : 2577,
             \"address\" : \"18 rue Jacquier\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-frederic-bazille-2577\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-frederic-bazille-2577\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Frédéric Rossif\",
+        $jardins[] = array("{ \"name\" : \"Square Frꥩric Rossif\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.843578,
@@ -3682,10 +3683,10 @@
             \"id\" : 2599,
             \"address\" : \"175 rue de Charenton\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-frederic-rossif-2599\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-frederic-rossif-2599\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Frédérick Lema\u00eetre\",
+        $jardins[] = array("{ \"name\" : \"Square Frꥩrick Lema\u00eetre\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.875481,
@@ -3693,7 +3694,7 @@
             \"id\" : 2486,
             \"address\" : \"35 quai de Jemmapes\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-frederick-lemaitre-2486\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-frederick-lemaitre-2486\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Frot Phalsbourg\",
@@ -3702,9 +3703,9 @@
             \"lat\" : 48.855797,
             \"lng\" : 2.385594,
             \"id\" : 2845,
-            \"address\" : \"Cité Phalsbourg\",
+            \"address\" : \"Cit顐halsbourg\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-frot-phalsbourg-2845\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-frot-phalsbourg-2845\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Gabriel Pierne\",
@@ -3715,7 +3716,7 @@
             \"id\" : 2453,
             \"address\" : \"5 rue de Seine\",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-gabriel-pierne-2453\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-gabriel-pierne-2453\"        }");
     
     
         
@@ -3727,7 +3728,7 @@
             \"id\" : 2509,
             \"address\" : \"1 rue Jolivet\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-gaston-baty-2509\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-gaston-baty-2509\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Georges Cain\",
@@ -3738,10 +3739,10 @@
             \"id\" : 2435,
             \"address\" : \"8 rue Payenne\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-georges-cain-2435\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-georges-cain-2435\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Georges Méliès\",
+        $jardins[] = array("{ \"name\" : \"Square Georges Mꭩ\u00e8s\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.841774,
@@ -3749,7 +3750,7 @@
             \"id\" : 2592,
             \"address\" : \"3 rue Albert Malet\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-georges-melies-2592\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-georges-melies-2592\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Georges-Lamarque\",
@@ -3760,7 +3761,7 @@
             \"id\" : 2538,
             \"address\" : \"8 place Denfert-Rochereau\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-georges-lamarque-2538\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-georges-lamarque-2538\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Gerber\",
@@ -3771,7 +3772,7 @@
             \"id\" : 2515,
             \"address\" : \"113 rue Blomet\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-gerber-2515\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-gerber-2515\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Godefroy Cavaignac\",
@@ -3782,7 +3783,7 @@
             \"id\" : 2843,
             \"address\" : \"32-34 rue Godefroy-Cavaignac\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-godefroy-cavaignac-2843\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-godefroy-cavaignac-2843\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Gustave Mesureur\",
@@ -3793,7 +3794,7 @@
             \"id\" : 2525,
             \"address\" : \"105 rue Jeanne d'Arc\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-gustave-mesureur-2525\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-gustave-mesureur-2525\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Hector Berlioz\",
@@ -3804,10 +3805,10 @@
             \"id\" : 2466,
             \"address\" : \"1 place Adolphe Max\",
             \"zipcode\" : \"75009\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-hector-berlioz-2466\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-hector-berlioz-2466\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Hélène Boucher\",
+        $jardins[] = array("{ \"name\" : \"Square Hꭜu00e8ne Boucher\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8184103,
@@ -3815,10 +3816,10 @@
             \"id\" : 2513,
             \"address\" : \"6 rue Fernad Widal\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-helene-boucher-2513\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-helene-boucher-2513\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Hélo\u00efse et Abélard\",
+        $jardins[] = array("{ \"name\" : \"Square H꭯\u00efse et Abꭡrd\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8307849,
@@ -3826,7 +3827,7 @@
             \"id\" : 2498,
             \"address\" : \"22 rue Pierre Gourdault\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-heloise-et-abelard-2498\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-heloise-et-abelard-2498\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Henri Bataille\",
@@ -3837,7 +3838,7 @@
             \"id\" : 2619,
             \"address\" : \"1 square Henry Bataille\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-henri-bataille-2619\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-henri-bataille-2619\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Henri Cadiou\",
@@ -3848,7 +3849,7 @@
             \"id\" : 2529,
             \"address\" : \"69 boulevard Arago\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-henri-cadiou-2529\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-henri-cadiou-2529\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Henri Collet\",
@@ -3859,7 +3860,7 @@
             \"id\" : 2624,
             \"address\" : \"18 rue Gros\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-henri-collet-2624\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-henri-collet-2624\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Henri Galli\",
@@ -3870,7 +3871,7 @@
             \"id\" : 34,
             \"address\" : \"9 boulevard Henri IV\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-henri-galli-34\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-henri-galli-34\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Henri Rousselle\",
@@ -3881,7 +3882,7 @@
             \"id\" : 2565,
             \"address\" : \"6 Place Paul Verlaine\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-henri-rousselle-2565\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-henri-rousselle-2565\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Henri-Karcher\",
@@ -3890,9 +3891,9 @@
             \"lat\" : 48.861477,
             \"lng\" : 2.400256,
             \"id\" : 2701,
-            \"address\" : \"165 rue des Pyrénées\",
+            \"address\" : \"165 rue des Pyrꯩes\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-henri-karcher-2701\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-henri-karcher-2701\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jacques Antoine\",
@@ -3903,7 +3904,7 @@
             \"id\" : 2530,
             \"address\" : \"3 place Denfert-Rochereau\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jacques-antoine-2530\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jacques-antoine-2530\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jacques Audiberti\",
@@ -3914,7 +3915,7 @@
             \"id\" : 2636,
             \"address\" : \"25 avenue de la porte de Villiers\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jacques-audiberti-2636\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jacques-audiberti-2636\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jacques-Bidaut\",
@@ -3925,7 +3926,7 @@
             \"id\" : 2417,
             \"address\" : \"18 rue de la Lune\",
             \"zipcode\" : \"75002\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jacques-bidaut-2417\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jacques-bidaut-2417\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jacques-Grynberg\",
@@ -3936,7 +3937,7 @@
             \"id\" : 15231,
             \"address\" : \"12 rue des Amandiers\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jacques-grynberg-15231\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jacques-grynberg-15231\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jan Doornik\",
@@ -3947,7 +3948,7 @@
             \"id\" : 2612,
             \"address\" : \"27 boulevard Flandrin\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jan-doornik-2612\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jan-doornik-2612\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jean Aicard\",
@@ -3958,7 +3959,7 @@
             \"id\" : 2580,
             \"address\" : \"5 avenue Jean-Aicard\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jean-aicard-2580\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jean-aicard-2580\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jean Allemane (ex-Mercoeur)\",
@@ -3969,7 +3970,7 @@
             \"id\" : 2726,
             \"address\" : \"9 rue de Belfort\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jean-allemane-ex-mercoeur-2726\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jean-allemane-ex-mercoeur-2726\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jean Cocteau\",
@@ -3978,9 +3979,9 @@
             \"lat\" : 48.838161,
             \"lng\" : 2.281024,
             \"id\" : 2539,
-            \"address\" : \"122 avenue Félix Faure\",
+            \"address\" : \"122 avenue Fꭩx Faure\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jean-cocteau-2539\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jean-cocteau-2539\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jean Leclaire\",
@@ -3991,7 +3992,7 @@
             \"id\" : 2637,
             \"address\" : \"25 bis rue Jean Leclaire\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jean-leclaire-2637\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jean-leclaire-2637\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jean Morin\",
@@ -4002,7 +4003,7 @@
             \"id\" : 2600,
             \"address\" : \"213 rue de Charenton\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jean-morin-2600\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jean-morin-2600\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jean Moulin\",
@@ -4013,7 +4014,7 @@
             \"id\" : 2589,
             \"address\" : \"1 avenue Ernest Reyer\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jean-moulin-2589\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jean-moulin-2589\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jean XXIII\",
@@ -4024,7 +4025,7 @@
             \"id\" : 35,
             \"address\" : \"4 place du parvis notre dame\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jean-xxiii-35\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jean-xxiii-35\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jehan Rictus\",
@@ -4035,10 +4036,10 @@
             \"id\" : 2658,
             \"address\" : \"14 place des abbesses\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jehan-rictus-2658\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jehan-rictus-2658\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Jérôme Bellat\",
+        $jardins[] = array("{ \"name\" : \"Square J곜u00f4me Bellat\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.885925,
@@ -4046,10 +4047,10 @@
             \"id\" : 2638,
             \"address\" : \"2 place Stuart Merril\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jerome-bellat-2638\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jerome-bellat-2638\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Jo\u00ebl Le Tac (ex-Constantin Pecqueur)\",
+        $jardins[] = array("{ \"name\" : \"Square Jo쬠Le Tac (ex-Constantin Pecqueur)\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8894032,
@@ -4057,7 +4058,7 @@
             \"id\" : 2652,
             \"address\" : \"3 place Constantin Pecqueur\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-joel-le-tac-ex-constantin-pecqueur-2652\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-joel-le-tac-ex-constantin-pecqueur-2652\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jules Ferry\",
@@ -4068,7 +4069,7 @@
             \"id\" : 2588,
             \"address\" : \"1 boulevard Jules-Ferry\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jules-ferry-2588\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jules-ferry-2588\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Jules Verne\",
@@ -4079,7 +4080,7 @@
             \"id\" : 2841,
             \"address\" : \"19 bis rue de l'Orillon\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-jules-verne-2841\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-jules-verne-2841\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Julia Bartet\",
@@ -4090,7 +4091,7 @@
             \"id\" : 2598,
             \"address\" : \"1 rue Julia Bartet\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-julia-bartet-2598\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-julia-bartet-2598\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Juliette Dodu\",
@@ -4101,7 +4102,7 @@
             \"id\" : 2836,
             \"address\" : \"rue Juliette-Dodu\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-juliette-dodu-2836\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-juliette-dodu-2836\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Lamartine\",
@@ -4112,7 +4113,7 @@
             \"id\" : 2614,
             \"address\" : \"3 square Lamartine\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-lamartine-2614\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-lamartine-2614\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Laurent Prache\",
@@ -4121,12 +4122,12 @@
             \"lat\" : 48.854416,
             \"lng\" : 2.333592,
             \"id\" : 2455,
-            \"address\" : \"1 place Saint-Germain des Prés\",
+            \"address\" : \"1 place Saint-Germain des Pr괜",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-laurent-prache-2455\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-laurent-prache-2455\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Léo Ferré\",
+        $jardins[] = array("{ \"name\" : \"Square LꯠFerrꜢ,
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.849628,
@@ -4134,10 +4135,10 @@
             \"id\" : 3723,
             \"address\" : \"Rue de C\u00eeteaux\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-leo-ferre-3723\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-leo-ferre-3723\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Léon\",
+        $jardins[] = array("{ \"name\" : \"Square L갮\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.885792,
@@ -4145,10 +4146,10 @@
             \"id\" : 2663,
             \"address\" : \"20 rue des Gardes\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-leon-2663\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-leon-2663\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Léon Frapié\",
+        $jardins[] = array("{ \"name\" : \"Square L갮 FrapiꜢ,
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.872066,
@@ -4156,21 +4157,21 @@
             \"id\" : 2722,
             \"address\" : \"5 rue Noisy-Le-Sec\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-leon-frapie-2722\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-leon-frapie-2722\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Léon Gaumont\",
+        $jardins[] = array("{ \"name\" : \"Square L갮 Gaumont\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.851917,
             \"lng\" : 2.415727,
             \"id\" : 2751,
-            \"address\" : \"Avenue Léon Gaumont\",
+            \"address\" : \"Avenue L갮 Gaumont\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-leon-gaumont-2751\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-leon-gaumont-2751\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Léon Serpollet\",
+        $jardins[] = array("{ \"name\" : \"Square L갮 Serpollet\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8928234,
@@ -4178,10 +4179,10 @@
             \"id\" : 2665,
             \"address\" : \"25 rue des Cloys\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-leon-serpollet-2665\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-leon-serpollet-2665\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Léopold Achille\",
+        $jardins[] = array("{ \"name\" : \"Square L갰old Achille\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.858597,
@@ -4189,18 +4190,18 @@
             \"id\" : 2431,
             \"address\" : \"5 rue du Parc Royal\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-leopold-achille-2431\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-leopold-achille-2431\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Louis Lumière\",
+        $jardins[] = array("{ \"name\" : \"Square Louis Lumi\u00e8re\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.859894,
             \"lng\" : 2.411355,
             \"id\" : 2707,
-            \"address\" : \"42 rue Louis Lumière\",
+            \"address\" : \"42 rue Louis Lumi\u00e8re\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-louis-lumiere-2707\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-louis-lumiere-2707\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Louis Majorelle\",
@@ -4211,7 +4212,7 @@
             \"id\" : 2733,
             \"address\" : \"24-30 rue de la Forge Royale\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-louis-majorelle-2733\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-louis-majorelle-2733\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Louis XIII\",
@@ -4222,7 +4223,7 @@
             \"id\" : 36,
             \"address\" : \"30 place des vosges\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-louis-xiii-36\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-louis-xiii-36\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Louis XVI\",
@@ -4233,7 +4234,7 @@
             \"id\" : 2479,
             \"address\" : \"29 rue Pasquier\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-louis-xvi-2479\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-louis-xvi-2479\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Louise de Marillac\",
@@ -4244,7 +4245,7 @@
             \"id\" : 2668,
             \"address\" : \"place de la Chapelle\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-louise-de-marillac-2668\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-louise-de-marillac-2668\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Louise Michel\",
@@ -4255,7 +4256,7 @@
             \"id\" : 1762,
             \"address\" : \"6 place Saint Pierre\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-louise-michel-1762\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-louise-michel-1762\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Louvois\",
@@ -4266,7 +4267,7 @@
             \"id\" : 2416,
             \"address\" : \"69 bis rue de Richelieu\",
             \"zipcode\" : \"75002\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-louvois-2416\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-louvois-2416\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Lucien Fontanarosa\",
@@ -4277,7 +4278,7 @@
             \"id\" : 2640,
             \"address\" : \"29 rue Cino Del Duca\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-lucien-fontanarosa-2640\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-lucien-fontanarosa-2640\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Marc Seguin\",
@@ -4288,7 +4289,7 @@
             \"id\" : 2764,
             \"address\" : \"27 rue Marc Seguin\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-marc-seguin-2764\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-marc-seguin-2764\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Marcel Bleustein Blanchet\",
@@ -4299,7 +4300,7 @@
             \"id\" : 2695,
             \"address\" : \"1 rue de la Bonne\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-marcel-bleustein-blanchet-2695\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-marcel-bleustein-blanchet-2695\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Marcel Pagnol\",
@@ -4310,7 +4311,7 @@
             \"id\" : 2477,
             \"address\" : \"12 rue de Laborde\",
             \"zipcode\" : \"75008\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-marcel-pagnol-2477\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-marcel-pagnol-2477\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Marcel Sembat\",
@@ -4321,10 +4322,10 @@
             \"id\" : 2672,
             \"address\" : \"2 rue Marcel Sembat\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-marcel-sembat-2672\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-marcel-sembat-2672\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Marcel-Mouloudji (ex-square Loire-Jean-Jaurès)\",
+        $jardins[] = array("{ \"name\" : \"Square Marcel-Mouloudji (ex-square Loire-Jean-Jaur\u00e8s)\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.88559,
@@ -4332,10 +4333,10 @@
             \"id\" : 2659,
             \"address\" : \"8 rue Pierre Reverdy\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-marcel-mouloudji-ex-square-loire-jean-jaures-2659\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-marcel-mouloudji-ex-square-loire-jean-jaures-2659\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Maria Vérone\",
+        $jardins[] = array("{ \"name\" : \"Square Maria V곯ne\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8967179,
@@ -4343,7 +4344,7 @@
             \"id\" : 2763,
             \"address\" : \"2 rue de la Moskova\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-maria-verone-2763\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-maria-verone-2763\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Marie Curie\",
@@ -4352,9 +4353,9 @@
             \"lat\" : 48.8409403,
             \"lng\" : 2.3625821000001,
             \"id\" : 2496,
-            \"address\" : \"29 boulevard de l'Hôpital\",
+            \"address\" : \"29 boulevard de l'H\u00f4pital\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-marie-curie-2496\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-marie-curie-2496\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Marie Trintignant\",
@@ -4365,7 +4366,7 @@
             \"id\" : 31,
             \"address\" : \"17 rue de l'ave-maria\",
             \"zipcode\" : \"75004\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-marie-trintignant-31\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-marie-trintignant-31\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Marius Constant\",
@@ -4374,9 +4375,9 @@
             \"lat\" : 48.843666,
             \"lng\" : 2.350147,
             \"id\" : 2447,
-            \"address\" : \"15 rue Saint Médard\",
+            \"address\" : \"15 rue Saint Mꥡrd\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-marius-constant-2447\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-marius-constant-2447\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Maurice Gardette\",
@@ -4385,9 +4386,9 @@
             \"lat\" : 48.861496,
             \"lng\" : 2.378536,
             \"id\" : 2725,
-            \"address\" : \"2 rue du Général Blaise\",
+            \"address\" : \"2 rue du Gꯩral Blaise\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-maurice-gardette-2725\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-maurice-gardette-2725\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Maurice Kriegel Valrimont\",
@@ -4398,7 +4399,7 @@
             \"id\" : 2651,
             \"address\" : \"1 square de Clignancourt\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-maurice-kriegel-valrimont-2651\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-maurice-kriegel-valrimont-2651\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Monseigneur Maillet\",
@@ -4409,7 +4410,7 @@
             \"id\" : 2671,
             \"address\" : \"18 rue Augustin Thierry\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-monseigneur-maillet-2671\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-monseigneur-maillet-2671\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Montholon\",
@@ -4420,7 +4421,7 @@
             \"id\" : 2469,
             \"address\" : \"2 rue Mayran\",
             \"zipcode\" : \"75009\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-montholon-2469\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-montholon-2469\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Nadar\",
@@ -4429,9 +4430,9 @@
             \"lat\" : 48.886189,
             \"lng\" : 2.3413814000001,
             \"id\" : 2676,
-            \"address\" : \"2 rue St Eleuthère\",
+            \"address\" : \"2 rue St Eleuth\u00e8re\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-nadar-2676\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-nadar-2676\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Necker\",
@@ -4442,7 +4443,7 @@
             \"id\" : 2497,
             \"address\" : \"1 rue Tessier\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-necker-2497\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-necker-2497\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Olivier Noyer-Leonidas\",
@@ -4451,9 +4452,9 @@
             \"lat\" : 48.830708,
             \"lng\" : 2.323059,
             \"id\" : 2579,
-            \"address\" : \"5 rue Léonidas\",
+            \"address\" : \"5 rue L갮idas\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-olivier-noyer-leonidas-2579\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-olivier-noyer-leonidas-2579\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Ozanam\",
@@ -4464,7 +4465,7 @@
             \"id\" : 2458,
             \"address\" : \"18  rue stanislas\",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-ozanam-2458\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-ozanam-2458\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Pablo Casals\",
@@ -4475,7 +4476,7 @@
             \"id\" : 2552,
             \"address\" : \"41 rue Emeriau\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-pablo-casals-2552\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-pablo-casals-2552\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Paganini\",
@@ -4486,7 +4487,7 @@
             \"id\" : 2704,
             \"address\" : \"48 boulevard Davout\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-paganini-2704\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-paganini-2704\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Paturle\",
@@ -4497,7 +4498,7 @@
             \"id\" : 2596,
             \"address\" : \"1 rue Paturle\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-paturle-2596\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-paturle-2596\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Paul Gilot\",
@@ -4508,7 +4509,7 @@
             \"id\" : 2548,
             \"address\" : \"38 bis rue de la Convention\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-paul-gilot-2548\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-paul-gilot-2548\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Paul Grimault\",
@@ -4519,7 +4520,7 @@
             \"id\" : 2567,
             \"address\" : \"28 rue de la Fontaine \u00e0 Mulard\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-paul-grimault-2567\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-paul-grimault-2567\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Paul Langevin\",
@@ -4530,18 +4531,18 @@
             \"id\" : 2446,
             \"address\" : \"20 rue Monge\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-paul-langevin-2446\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-paul-langevin-2446\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Paul Painlevé\",
+        $jardins[] = array("{ \"name\" : \"Square Paul PainlevꜢ,
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.850262,
             \"lng\" : 2.344455,
             \"id\" : 2444,
-            \"address\" : \"2 place Paul Painlevé\",
+            \"address\" : \"2 place Paul PainlevꜢ,
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-paul-painleve-2444\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-paul-painleve-2444\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Paul Paray\",
@@ -4552,7 +4553,7 @@
             \"id\" : 2810,
             \"address\" : \"24 rue Christine de Pisan\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-paul-paray-2810\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-paul-paray-2810\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Paul Robin\",
@@ -4563,7 +4564,7 @@
             \"id\" : 2678,
             \"address\" : \"10 place Hebert\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-paul-robin-2678\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-paul-robin-2678\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Pauly\",
@@ -4574,7 +4575,7 @@
             \"id\" : 2569,
             \"address\" : \"17 rue Pauly\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-pauly-2569\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-pauly-2569\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Petit\",
@@ -4585,7 +4586,7 @@
             \"id\" : 2753,
             \"address\" : \"31 rue Petit\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-petit-2753\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-petit-2753\"        }");
     
     
         
@@ -4597,7 +4598,7 @@
             \"id\" : 2683,
             \"address\" : \"22 rue Raymond Queneau\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-raymond-queneau-2683\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-raymond-queneau-2683\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Raymond Souplex\",
@@ -4608,10 +4609,10 @@
             \"id\" : 2684,
             \"address\" : \"200 rue Marcadet\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-raymond-souplex-2684\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-raymond-souplex-2684\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Rébeval\",
+        $jardins[] = array("{ \"name\" : \"Square R꣥val\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689463_marker32roll.png\",
             \"lat\" : 48.8742148,
@@ -4619,10 +4620,10 @@
             \"id\" : 2666,
             \"address\" : \"13-15 rue Rebeval\",
             \"zipcode\" : \"75019\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-rebeval-2666\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-rebeval-2666\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Réjane\",
+        $jardins[] = array("{ \"name\" : \"Square Rꫡne\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.848976,
@@ -4630,10 +4631,10 @@
             \"id\" : 2711,
             \"address\" : \"58 rue de Lagny\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-rejane-2711\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-rejane-2711\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square René Le Gall\",
+        $jardins[] = array("{ \"name\" : \"Square Ren題e Gall\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8329755,
@@ -4641,10 +4642,10 @@
             \"id\" : 1766,
             \"address\" : \"28 rue de Croulebarbe\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-rene-le-gall-1766\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-rene-le-gall-1766\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square René Viviani\",
+        $jardins[] = array("{ \"name\" : \"Square Ren顖iviani\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/06\/10\/41x53\/1276182930_marker32roll.png\",
             \"lat\" : 48.851669,
@@ -4652,7 +4653,7 @@
             \"id\" : 2441,
             \"address\" : \"2 rue du Fouarre\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-rene-viviani-2441\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-rene-viviani-2441\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Robert Bajac\",
@@ -4663,7 +4664,7 @@
             \"id\" : 2512,
             \"address\" : \"1 boulevard Kellermann\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-robert-bajac-2512\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-robert-bajac-2512\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Robert Blache\",
@@ -4674,7 +4675,7 @@
             \"id\" : 2485,
             \"address\" : \"6 rue Monseigneur Rodhain\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-robert-blache-2485\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-robert-blache-2485\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Robert Montagne\",
@@ -4685,7 +4686,7 @@
             \"id\" : 2829,
             \"address\" : \"place du puits de l'Ermite\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-robert-montagne-2829\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-robert-montagne-2829\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Robert Schuman\",
@@ -4694,20 +4695,20 @@
             \"lat\" : 48.869228,
             \"lng\" : 2.271832,
             \"id\" : 2610,
-            \"address\" : \"41 avenue du Maréchal Fayolle\",
+            \"address\" : \"41 avenue du Marꤨal Fayolle\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-robert-schuman-2610\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-robert-schuman-2610\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Roger Stéphane\",
+        $jardins[] = array("{ \"name\" : \"Square Roger St걨ane\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8524867,
             \"lng\" : 2.3279982,
             \"id\" : 2459,
-            \"address\" : \"7 rue Récamier\",
+            \"address\" : \"7 rue Rꤡmier\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-roger-stephane-2459\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-roger-stephane-2459\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Saint Lambert\",
@@ -4716,9 +4717,9 @@
             \"lat\" : 48.841778,
             \"lng\" : 2.297932,
             \"id\" : 1768,
-            \"address\" : \"2 rue Jean Formigé\",
+            \"address\" : \"2 rue Jean FormigꜢ,
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-saint-lambert-1768\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-saint-lambert-1768\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Saint-Ambroise\",
@@ -4729,7 +4730,7 @@
             \"id\" : 2590,
             \"address\" : \"71 bis boulevard Voltaire\",
             \"zipcode\" : \"75011\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-saint-ambroise-2590\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-saint-ambroise-2590\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Saint-Bernard - Sa\u00efd Bouziri\",
@@ -4740,7 +4741,7 @@
             \"id\" : 2686,
             \"address\" : \"16 rue Affre\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-saint-bernard-said-bouziri-2686\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-saint-bernard-said-bouziri-2686\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Saint-Eloi\",
@@ -4751,7 +4752,7 @@
             \"id\" : 2597,
             \"address\" : \"11 rue du Colonel Rozanoff\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-saint-eloi-2597\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-saint-eloi-2597\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Saint-Gilles Grand Veneur - Pauline Roland\",
@@ -4762,7 +4763,7 @@
             \"id\" : 2428,
             \"address\" : \"9 rue du Grand Veneur\",
             \"zipcode\" : \"75003\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-saint-gilles-grand-veneur-pauline-roland-2428\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-saint-gilles-grand-veneur-pauline-roland-2428\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Saint-Laurent\",
@@ -4773,10 +4774,10 @@
             \"id\" : 2487,
             \"address\" : \"68 boulevard de Magenta\",
             \"zipcode\" : \"75010\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-saint-laurent-2487\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-saint-laurent-2487\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Saint-Médard\",
+        $jardins[] = array("{ \"name\" : \"Square Saint-Mꥡrd\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.840096,
@@ -4784,10 +4785,10 @@
             \"id\" : 2478,
             \"address\" : \"32 rue Censier\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-saint-medard-2478\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-saint-medard-2478\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Sainte Hélène\",
+        $jardins[] = array("{ \"name\" : \"Square Sainte Hꭜu00e8ne\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8961149,
@@ -4795,7 +4796,7 @@
             \"id\" : 2687,
             \"address\" : \"43 rue Letort\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-sainte-helene-2687\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-sainte-helene-2687\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Sainte Odile\",
@@ -4806,7 +4807,7 @@
             \"id\" : 2642,
             \"address\" : \"9 boulevard de la Somme\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-sainte-odile-2642\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-sainte-odile-2642\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Samuel Beckett\",
@@ -4817,7 +4818,7 @@
             \"id\" : 2852,
             \"address\" : \"47 rue Gandon\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-samuel-beckett-2852\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-samuel-beckett-2852\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Samuel Rousseau\",
@@ -4828,7 +4829,7 @@
             \"id\" : 2467,
             \"address\" : \"2 rue Casimir Perier\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-samuel-rousseau-2467\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-samuel-rousseau-2467\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Samuel-De-Champlain\",
@@ -4839,7 +4840,7 @@
             \"id\" : 1770,
             \"address\" : \"18 avenue Gambetta\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-samuel-de-champlain-1770\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-samuel-de-champlain-1770\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Santiago du Chili\",
@@ -4850,7 +4851,7 @@
             \"id\" : 2473,
             \"address\" : \"1avenue de la Motte Picquet\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-santiago-du-chili-2473\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-santiago-du-chili-2473\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Sarah Bernhardt\",
@@ -4861,10 +4862,10 @@
             \"id\" : 1774,
             \"address\" : \"2 rue de Buzenval\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-sarah-bernhardt-1774\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-sarah-bernhardt-1774\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Séverine\",
+        $jardins[] = array("{ \"name\" : \"Square S귥rine\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.867889,
@@ -4872,7 +4873,7 @@
             \"id\" : 1776,
             \"address\" : \"7 rue le Vau\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-severine-1776\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-severine-1776\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Sorbier\",
@@ -4883,7 +4884,7 @@
             \"id\" : 2717,
             \"address\" : \"13 rue Sorbier\",
             \"zipcode\" : \"75020\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-sorbier-2717\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-sorbier-2717\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Suzanne Buisson\",
@@ -4894,7 +4895,7 @@
             \"id\" : 2688,
             \"address\" : \"7 bis rue Girardon\",
             \"zipcode\" : \"75018\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-suzanne-buisson-2688\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-suzanne-buisson-2688\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Taras Chevtchenko\",
@@ -4905,10 +4906,10 @@
             \"id\" : 2832,
             \"address\" : \"186 boulevard Saint-Germain\",
             \"zipcode\" : \"75006\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-taras-chevtchenko-2832\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-taras-chevtchenko-2832\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Théodore Monod (ex-Scipion)\",
+        $jardins[] = array("{ \"name\" : \"Square Th갤ore Monod (ex-Scipion)\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.838951,
@@ -4916,7 +4917,7 @@
             \"id\" : 2448,
             \"address\" : \"23 rue du Fer \u00e0 Moulin\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-theodore-monod-ex-scipion-2448\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-theodore-monod-ex-scipion-2448\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Thomas Jefferson\",
@@ -4927,7 +4928,7 @@
             \"id\" : 2606,
             \"address\" : \"1 place des Etats-Unis\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-thomas-jefferson-2606\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-thomas-jefferson-2606\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Tolsto\u00ef\",
@@ -4936,9 +4937,9 @@
             \"lat\" : 48.852749,
             \"lng\" : 2.260372,
             \"id\" : 2620,
-            \"address\" : \"1 avenue du Maréchal Lyautey\",
+            \"address\" : \"1 avenue du Marꤨal Lyautey\",
             \"zipcode\" : \"75016\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-tolstoi-2620\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-tolstoi-2620\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Trousseau\",
@@ -4949,10 +4950,10 @@
             \"id\" : 2576,
             \"address\" : \"2 rue Antoine Vollon\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-trousseau-2576\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-trousseau-2576\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Ulysse Trélat\",
+        $jardins[] = array("{ \"name\" : \"Square Ulysse Trꭡt\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.8229235,
@@ -4960,7 +4961,7 @@
             \"id\" : 2521,
             \"address\" : \"112 rue Regnault\",
             \"zipcode\" : \"75013\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-ulysse-trelat-2521\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-ulysse-trelat-2521\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Van Vollenhoven\",
@@ -4971,7 +4972,7 @@
             \"id\" : 2593,
             \"address\" : \"5 rue Marcel Dubois\",
             \"zipcode\" : \"75012\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-van-vollenhoven-2593\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-van-vollenhoven-2593\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Villa Sainte Croix\",
@@ -4982,7 +4983,7 @@
             \"id\" : 2643,
             \"address\" : \"10 villa Sainte Croix\",
             \"zipcode\" : \"75017\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-villa-sainte-croix-2643\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-villa-sainte-croix-2643\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Square Violet\",
@@ -4993,10 +4994,10 @@
             \"id\" : 2531,
             \"address\" : \"4 place Violet\",
             \"zipcode\" : \"75015\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-violet-2531\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-violet-2531\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Square Yves Klein (ex-Campagne Première)\",
+        $jardins[] = array("{ \"name\" : \"Square Yves Klein (ex-Campagne Premi\u00e8re)\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.838886,
@@ -5004,7 +5005,7 @@
             \"id\" : 2865,
             \"address\" : \"boulevard Raspail\",
             \"zipcode\" : \"75014\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/square-yves-klein-ex-campagne-premiere-2865\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/square-yves-klein-ex-campagne-premiere-2865\"        }");
     
         
         $jardins[] = array("{ \"name\" : \"Squares Auguste Mariette-Pacha et Michel Foucault\",
@@ -5015,15 +5016,15 @@
             \"id\" : 2445,
             \"address\" : \"16 rue Jean de Beauvais\",
             \"zipcode\" : \"75005\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/squares-auguste-mariette-pacha-et-michel-foucault-2445\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/squares-auguste-mariette-pacha-et-michel-foucault-2445\"        }");
     
         
-        $jardins[] = array("{ \"name\" : \"Squares Pierre-de-Gaulle et de l'Abbé-Esquerre\",
+        $jardins[] = array("{ \"name\" : \"Squares Pierre-de-Gaulle et de l'Abb鮅squerre\",
             \"picto\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33.png\",
             \"pictoRoll\" : \"http:\/\/filer.paris.fr\/equipements\/uploads\/pictos\/2010\/07\/09\/original\/1278689546_marker33roll.png\",
             \"lat\" : 48.85144,
             \"lng\" : 2.313846,
             \"id\" : 2480,
-            \"address\" : \"2 place du Président Mithouard\",
+            \"address\" : \"2 place du Pr괩dent Mithouard\",
             \"zipcode\" : \"75007\",
-            \"url\" : \"http:\/\/equipement.paris.fr\/squares-pierre-de-gaulle-et-de-l-abbe-esquerre-2480\"        }");
+            \"url\"  : \"http:\/\/equipement.paris.fr\/squares-pierre-de-gaulle-et-de-l-abbe-esquerre-2480\"        }");

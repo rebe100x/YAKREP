@@ -3,7 +3,7 @@
 ini_set ('max_execution_time', 0);
 set_time_limit(0);
 ini_set('display_errors',1);
-require_once("../LIB/library.php");
+
 require_once("../LIB/conf.php");
 
 $conf = new conf();
@@ -15,6 +15,17 @@ $filesource = $db->filesource;
 
 $records = array();
 
+$records[] = array(
+	"title"=>"Cibul Sitemap",
+	"content" =>"",
+	"origin" => "http://cibul.net/sitemap.xml",
+	"licence" => "Cibul",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"tag" => array("lieux culturels"),
+	"zone" => array(1),
+	);
+	
 $records[] = array(
 	"title"=>"Parcs et jardins de Paris",
 	"content" =>"",

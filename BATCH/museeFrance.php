@@ -7,7 +7,7 @@
 /* batch to parse "Etablissements culturels de Montpellier"
  * */
 
-include_once "../LIB/place.php";
+include_once "../LIB/conf.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/museeFrance_small.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Liste-des-Mus%C3%A9es-de-France-30382165";
@@ -17,23 +17,21 @@ $debug = 0;
 			
 $row = 0;
 $updateFlag = empty($_GET['updateFlag'])?0:1;
-$results = array('row'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0);
-
+$results = array('row'=>0,'rejected'=>0,'parse'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,"record"=>array());
 
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-        $num = count($data);
         
 		if($row > 0){
 			foreach ($data as $key => &$value) {
 				$value = utf8_encode($value);
 			}
 			
+			
 			$currentPlace = new Place();
-
-			$currentPlace->title = $data[4];
-
+			
+			$currentPlace->title = $data[4];			
 			$currentPlace->origin = $origin;
 			$currentPlace->filesourceTitle = $fileTitle;
 			$currentPlace->licence = $licence;
@@ -49,10 +47,10 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			}
 			else
 			{
-				$currentPlace->contact["closing"] = $data[9];
-				$currentPlace->contact["opening"] = $data[10];
+				$currentPlace->contact->closing = $data[9];
+				$currentPlace->contact->opening = $data[10];
 				if (!empty($data[11]))
-					$currentPlace->contact["special opening"] = "Nocturnes : ". $data[11];
+					$currentPlace->contact->sopening = "Nocturnes : ". $data[11];
 			}
 
 			$currentPlace->setTagIndoor();
@@ -61,13 +59,19 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$cat = array("CULTURE", "GEOLOCALISATION", "GEOLOCALISATION#YAKDICO", "CULTURE#MUSEE");
 			$currentPlace->setYakCat($cat);
 			
-			if ($data[1] == "PARIS")
-				$currentPlace->setZoneParis();
-			elseif ($data[1] == "HERAULT")
-				$currentPlace->setZoneMontpellier();
-			else
-				$currentPlace->setZoneOther();
 			
+			
+			if ($data[1] == "PARIS")
+					$zoneName = "PARIS";
+			elseif ($data[1] == "HERAULT")
+				$zoneName = "MONTPELLIER";	
+			else{
+				$results['rejected'] ++;	
+				$results['row'] ++;	
+				continue;
+			}	
+			
+			$currentPlace->setZone($zoneName);
 			print "<b>$currentPlace->title</b><br> ";
 
 			preg_replace("/B.P./i", "", $data[5]);	
@@ -77,15 +81,25 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			//echo $locationQuery;
 			$res = $currentPlace->saveToMongoDB($locationQuery, $debug,$updateFlag);
 			
+			
+			if(!empty($res['error'])){
+				echo $res['error'];
+				echo '<br><b>BATCH FAILLED</b><br>';
+				exit;
+			}
+			
 			foreach ($res as $k=>$v) {
 				if(isset($v))
 					$results[$k]+=$v;
 			}
 			
-			$results['row'] ++;	
+			
+			
+			$results['parse'] ++;	
+		
 		}
-
 		$row++;
+		$results['row'] ++;	
 		
 
     }

@@ -19,7 +19,7 @@ class conf
 	private $fronturl;
 	private $backurl;
 	private $thumburl;
-	private $mdb;
+	
 
 	function __construct(){
 		

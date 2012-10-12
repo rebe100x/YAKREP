@@ -1,0 +1,367 @@
+"a";1;"Métro";"GARE DU NORD";"48146629";4;5;0;0;0;"Paris";10
+"a";2;"Métro";"SAINT-LAZARE ";"46790941";3;9;12;13;14;"Paris";08
+"a";3;"Métro";"GARE DE LYON ";"34523049";1;14;"A";;;"Paris";12
+"a";4;"Métro";"MONTPARNASSE-BIENVENUE";"31152275";4;6;12;13;0;"Paris";14
+"a";5;"Métro";"GARE DE L'EST";"19671320";4;5;7;0;0;"Paris";10
+"a";6;"Métro";"REPUBLIQUE";"17095806";3;5;8;9;11;"Paris";11
+"a";7;"Métro";"BIBLIOTHEQUE";"15826727";14;0;0;0;0;"Paris";13
+"a";8;"Métro";"CHATELET";"14440964";1;4;7;11;14;"Paris";01
+"a";9;"Métro";"LA DEFENSE";"13853216";1;0;0;0;0;"Puteaux";
+"a";10;"Métro";"LES HALLES";"13113834";4;0;0;0;0;"Paris";01
+"a";11;"Métro";"HOTEL DE VILLE";"12760823";1;11;0;0;0;"Paris";04
+"a";12;"Métro";"FRANKLIN D. ROOSEVELT";"12640577";1;9;0;0;0;"Paris";08
+"a";13;"Métro";"BASTILLE";"12517181";1;5;8;0;0;"Paris";12
+"a";14;"Métro";"OPERA";"12389715";3;7;8;0;0;"Paris";09
+"a";15;"Métro";"PLACE D'ITALIE";"12168442";5;6;7;0;0;"Paris";13
+"a";16;"Métro";"BELLEVILLE";"11794952";2;11;0;0;0;"Paris";10
+"a";17;"Métro";"PORTE D'ORLEANS";"9598097";4;0;0;0;0;"Paris";14
+"a";18;"Métro";"PALAIS-ROYAL";"9559535";1;7;0;0;0;"Paris";01
+"a";19;"Métro";"NATION";"9481963";1;2;6;9;0;"Paris";12
+"a";20;"Métro";"BARBES-ROCHECHOUART";"9323474";2;4;0;0;0;"Paris";18
+"a";21;"Métro";"PLACE CLICHY";"9255747";2;13;0;0;0;"Paris";17
+"a";22;"Métro";"SAINT-MICHEL";"9159024";4;0;0;0;0;"Paris";05
+"a";23;"Métro";"GARE D'AUSTERLITZ";"9063260";5;10;0;0;0;"Paris";13
+"a";24;"Métro";"PORTE DE CLIGNANCOURT";"9000298";4;0;0;0;0;"Paris";18
+"a";25;"Métro";"CHARLES DE GAULLE-ETOILE";"8980015";1;2;6;0;0;"Paris";08
+"a";26;"Métro";"PORTE MAILLOT";"8852329";1;0;0;0;0;"Paris";16
+"a";27;"Métro";"ESPLANADE DE LA DEFENSE";"8721277";1;0;0;0;0;"Puteaux";
+"a";28;"Métro";"TROCADERO";"8455619";6;9;0;0;0;"Paris";16
+"a";29;"Métro";"HAVRE-CAUMARTIN";"8343415";3;9;0;0;0;"Paris";09
+"a";30;"Métro";"LA MOTTE-PICQUET-GRENELLE";"8099346";6;8;10;0;0;"Paris";15
+"a";31;"Métro";"BIR-HAKEIM";"7825821";6;0;0;0;0;"Paris";15
+"a";32;"Métro";"CHAUSSEE D'ANTIN-LA FAYETTE";"7778782";7;9;0;0;0;"Paris";09
+"a";33;"Métro";"GAMBETTA";"7576845";3;"3bis";0;0;0;"Paris";20
+"a";34;"Métro";"MADELEINE";"7412746";8;12;14;0;0;"Paris";08
+"a";35;"Métro";"AUBERVILLIERS-PANTIN-QUATRE CHEMINS";"7356008";7;0;0;0;0;"Aubervilliers";
+"a";36;"Métro";"STRASBOURG-SAINT-DENIS";"7346063";4;8;9;0;0;"Paris";02
+"a";37;"Métro";"OLYMPIADES";"7245724";14;0;0;0;0;"Paris";13
+"a";38;"Métro";"CRIMEE";"7183997";7;0;0;0;0;"Paris";19
+"a";39;"Métro";"INVALIDES";"6931062";8;13;0;0;0;"Paris";07
+"a";40;"Métro";"STALINGRAD";"6906194";2;5;7;0;0;"Paris";19
+"a";41;"Métro";"LA CHAPELLE";"6903632";2;0;0;0;0;"Paris";09
+"a";42;"Métro";"MAIRIE DE CLICHY";"6892451";13;0;0;0;0;"Clichy";
+"a";43;"Métro";"CONCORDE";"6866631";1;8;12;0;0;"Paris";08
+"a";44;"Métro";"GRANDS BOULEVARDS";"6826718";8;9;0;0;0;"Paris";09
+"a";45;"Métro";"CHATEAU ROUGE";"6798017";4;0;0;0;0;"Paris";18
+"a";46;"Métro";"PONT DE NEUILLY";"6794402";1;0;0;0;0;"Neuilly Sur Seine";
+"a";47;"Métro";"BOBIGNY-PABLO PICASSO";"6722182";5;0;0;0;0;"Bobigny";
+"a";48;"Métro";"ANVERS";"6667509";2;0;0;0;0;"Paris";18
+"a";49;"Métro";"CHATILLON-MONTROUGE";"6540563";13;0;0;0;0;"Chatillon";
+"a";50;"Métro";"GALLIENI";"6314009";3;0;0;0;0;"Bagnolet";
+"a";51;"Métro";"MAIRIE DE MONTREUIL";"6300355";9;0;0;0;0;"Montreuil";
+"a";52;"Métro";"PORTE DE VERSAILLES";"6275922";12;0;0;0;0;"Paris";15
+"a";53;"Métro";"SAINT-PAUL";"6265848";1;0;0;0;0;"Paris";04
+"a";54;"Métro";"ODEON";"6239672";4;10;0;0;0;"Paris";06
+"a";55;"Métro";"VILLIERS";"6193182";2;3;0;0;0;"Paris";17
+"a";56;"Métro";"GEORGE V";"6192199";1;0;0;0;0;"Paris";08
+"a";57;"Métro";"PIGALLE";"6172069";2;12;0;0;0;"Paris";18
+"a";58;"Métro";"MARCADET-POISSONNIERS";"6064992";4;12;0;0;0;"Paris";18
+"a";59;"Métro";"JAURES";"6046012";2;5;"7bis";0;0;"Paris";19
+"a";60;"Métro";"SAINT-MANDE-TOURELLE";"5973612";1;0;0;0;0;"Saint Mandé";
+"a";61;"Métro";"REAUMUR-SEBASTOPOL";"5860077";3;4;0;0;0;"Paris";03
+"a";62;"Métro";"MARCEL SEMBAT";"5816044";9;0;0;0;0;"Boulogne Billancourt";
+"a";63;"Métro";"CONVENTION";"5780845";12;0;0;0;0;"Paris";15
+"a";64;"Métro";"MIROMESNIL";"5769023";9;13;0;0;0;"Paris";08
+"a";65;"Métro";"LA COURNEUVE-8 MAI 1945";"5707118";7;0;0;0;0;"La Courneuve";
+"a";66;"Métro";"VILLEJUIF-LOUIS ARAGON";"5650185";7;0;0;0;0;"Villejuif";
+"a";67;"Métro";"SEVRES-BABYLONE";"5618445";10;12;0;0;0;"Paris";07
+"a";68;"Métro";"BERCY";"5565249";6;14;0;0;0;"Paris";12
+"a";69;"Métro";"COUR SAINT-EMILION";"5550822";14;0;0;0;0;"Paris";12
+"a";70;"Métro";"REUILLY-DIDEROT";"5451933";1;8;0;0;0;"Paris";12
+"a";71;"Métro";"DAUMESNIL";"5435445";6;8;0;0;0;"Paris";12
+"a";72;"Métro";"LES SABLONS";"5430088";1;0;0;0;0;"Neuilly Sur Seine";
+"a";73;"Métro";"BASILIQUE DE SAINT-DENIS";"5415515";13;0;0;0;0;"Saint Denis";
+"a";74;"Métro";"GABRIEL PERI";"5377830";13;0;0;0;0;"Asnières";
+"a";75;"Métro";"SAINT-DENIS-UNIVERSITE";"5365746";13;0;0;0;0;"Saint Denis";
+"a";76;"Métro";"ALESIA";"5317934";4;0;0;0;0;"Paris";14
+"a";77;"Métro";"RICHELIEU-DROUOT";"5297670";8;9;0;0;0;"Paris";09
+"a";78;"Métro";"VOLTAIRE";"5273953";9;0;0;0;0;"Paris";11
+"a";79;"Métro";"HOCHE";"5217935";5;0;0;0;0;"Pantin";
+"a";80;"Métro";"BONNE NOUVELLE";"5196140";8;9;0;0;0;"Paris";10
+"a";81;"Métro";"PASTEUR";"5089504";6;12;0;0;0;"Paris";09
+"a";82;"Métro";"PONT DE LEVALLOIS-BECON";"5085695";3;0;0;0;0;"Levallois-Perret";
+"a";83;"Métro";"PYRAMIDES";"5084082";7;14;0;0;0;"Paris";01
+"a";84;"Métro";"CROIX DE CHAVAUX";"4978787";9;0;0;0;0;"Montreuil";
+"a";85;"Métro";"PORTE DE SAINT-CLOUD";"4932701";9;0;0;0;0;"Paris";16
+"a";86;"Métro";"PERE LACHAISE";"4880201";2;3;0;0;0;"Paris";20
+"a";87;"Métro";"CRETEIL-PREFECTURE";"4865573";8;0;0;0;0;"Créteil";
+"a";88;"Métro";"CHATEAU DE VINCENNES";"4858849";1;0;0;0;0;"Vincennes";
+"a";89;"Métro";"CHATEAU D'EAU";"4842822";4;0;0;0;0;"Paris";10
+"a";90;"Métro";"PORTE DE MONTREUIL";"4822893";9;0;0;0;0;"Paris";20
+"a";91;"Métro";"PORTE DE BAGNOLET";"4751655";3;0;0;0;0;"Paris";20
+"a";92;"Métro";"GLACIERE";"4739497";6;0;0;0;0;"Paris";13
+"a";93;"Métro";"PORTE DE VANVES";"4715395";13;0;0;0;0;"Paris";14
+"a";94;"Métro";"PEREIRE";"4678888";3;0;0;0;0;"Paris";17
+"a";95;"Métro";"PLAISANCE";"4645997";13;0;0;0;0;"Paris";14
+"a";96;"Métro";"MAIRIE DES LILAS";"4602681";11;0;0;0;0;"Les Lilas";
+"a";97;"Métro";"COLONEL FABIEN";"4554566";2;0;0;0;0;"Paris";10
+"a";98;"Métro";"SAINT-GERMAIN DES PRES";"4548167";4;0;0;0;0;"Paris";06
+"a";99;"Métro";"GUY MOQUET";"4524101";13;0;0;0;0;"Paris";17
+"a";100;"Métro";"LAUMIERE";"4518075";5;0;0;0;0;"Paris";19
+"a";101;"Métro";"CHAMPS-ELYSEES-CLEMENCEAU";"4502691";1;13;0;0;0;"Paris";08
+"a";102;"Métro";"LE KREMLIN-BICETRE";"4492364";7;0;0;0;0;"Kremlin-Bicêtre";
+"a";103;"Métro";"RAMBUTEAU";"4491306";11;0;0;0;0;"Paris";03
+"a";104;"Métro";"PORTE DE PANTIN";"4477959";5;0;0;0;0;"Paris";19
+"a";105;"Métro";"ECOLE MILITAIRE";"4403029";8;0;0;0;0;"Paris";07
+"a";106;"Métro";"JULES JOFFRIN";"4384318";12;0;0;0;0;"Paris";18
+"a";107;"Métro";"PORTE DE VINCENNES";"4363767";1;0;0;0;0;"Paris";12
+"a";108;"Métro";"PONT DE SEVRES";"4352829";9;0;0;0;0;"Boulogne Billancourt";
+"a";109;"Métro";"DENFERT-ROCHEREAU";"4335086";4;6;0;0;0;"Paris";14
+"a";110;"Métro";"ROBESPIERRE";"4317097";9;0;0;0;0;"Montreuil";
+"a";111;"Métro";"MENILMONTANT";"4294888";2;0;0;0;0;"Paris";11
+"a";112;"Métro";"BALARD";"4263152";8;0;0;0;0;"Paris";15
+"a";113;"Métro";"BLANCHE";"4252071";2;0;0;0;0;"Paris";09
+"a";114;"Métro";"OBERKAMPF";"4198870";5;9;0;0;0;"Paris";11
+"a";115;"Métro";"MAIRIE D'ISSY";"4194027";12;0;0;0;0;"Issy Les Moulineaux";
+"a";116;"Métro";"PORTE DE CLICHY";"4156619";13;0;0;0;0;"Paris";17
+"a";117;"Métro";"LA MUETTE";"4112862";9;0;0;0;0;"Paris";16
+"a";118;"Métro";"JUSSIEU";"4080680";7;10;0;0;0;"Paris";05
+"a";119;"Métro";"ALMA-MARCEAU";"4080301";9;0;0;0;0;"Paris";08
+"a";120;"Métro";"VICTOR HUGO";"3966843";2;0;0;0;0;"Paris";16
+"a";121;"Métro";"TERNES";"3930362";2;0;0;0;0;"Paris";17
+"a";122;"Métro";"ALEXANDRE DUMAS";"3926266";2;0;0;0;0;"Paris";11
+"a";123;"Métro";"CHARONNE";"3924516";9;0;0;0;0;"Paris";12
+"a";124;"Métro";"PASSY";"3918954";6;0;0;0;0;"Paris";16
+"a";125;"Métro";"MALAKOFF-PLATEAU DE VANVES";"3912036";13;0;0;0;0;"Malakoff";
+"a";126;"Métro";"PORTE DES LILAS";"3899020";"3bis";11;0;0;0;"Paris";20
+"a";127;"Métro";"CHARLES MICHELS";"3892728";10;0;0;0;0;"Paris";15
+"a";128;"Métro";"OURCQ";"3887042";5;0;0;0;0;"Paris";19
+"a";129;"Métro";"ARTS ET METIERS";"3859066";3;11;0;0;0;"Paris";03
+"a";130;"Métro";"DUPLEIX";"3855503";6;0;0;0;0;"Paris";15
+"a";131;"Métro";"VAUGIRARD";"3853128";12;0;0;0;0;"Paris";15
+"a";132;"Métro";"LES GOBELINS";"3830231";7;0;0;0;0;"Paris";13
+"a";133;"Métro";"LEDRU-ROLLIN";"3829461";8;0;0;0;0;"Paris";12
+"a";134;"Métro";"PORTE DE SAINT-OUEN";"3814464";13;0;0;0;0;"Paris";17
+"a";135;"Métro";"CENSIER-DAUBENTON";"3766777";7;0;0;0;0;"Paris";06
+"a";136;"Métro";"BOULOGNE-JEAN JAURES";"3748047";10;0;0;0;0;"Boulogne Billancourt";
+"a";137;"Métro";"MAIRIE DE SAINT-OUEN";"3732408";13;0;0;0;0;"Saint Ouen";
+"a";138;"Métro";"ANATOLE FRANCE";"3702732";3;0;0;0;0;"Levallois-Perret";
+"a";139;"Métro";"CADET";"3650405";7;0;0;0;0;"Paris";09
+"a";140;"Métro";"GONCOURT";"3648533";11;0;0;0;0;"Paris";11
+"a";141;"Métro";"EGLISE DE PANTIN";"3632300";5;0;0;0;0;"Pantin";
+"a";142;"Métro";"TOLBIAC";"3612890";7;0;0;0;0;"Paris";13
+"a";143;"Métro";"MARX DORMOY";"3586107";12;0;0;0;0;"Paris";18
+"a";144;"Métro";"POISSONNIERE";"3570062";7;0;0;0;0;"Paris";10
+"a";145;"Métro";"PORTE DE CHAMPERRET";"3559682";3;0;0;0;0;"Paris";17
+"a";146;"Métro";"SAINT-DENIS-PORTE DE PARIS";"3517853";13;0;0;0;0;"Saint Denis";
+"a";147;"Métro";"FUNICULAIRE";"3488052";2;0;0;0;0;"Paris";18
+"a";148;"Métro";"FORT D'AUBERVILLIERS";"3455421";7;0;0;0;0;"Aubervilliers";
+"a";149;"Métro";"PORTE DE LA CHAPELLE";"3431552";12;0;0;0;0;"Paris";18
+"a";150;"Métro";"JOURDAIN";"3418732";11;0;0;0;0;"Paris";20
+"a";151;"Métro";"SAINT-PLACIDE";"3404889";4;0;0;0;0;"Paris";06
+"a";152;"Métro";"BROCHANT";"3401859";13;0;0;0;0;"Paris";17
+"a";153;"Métro";"CORENTIN CELTON";"3385005";12;0;0;0;0;"Issy Les Moulineaux";
+"a";154;"Métro";"LES COURTILLES";"3377106";13;0;0;0;0;"Asnières sur Seine";
+"a";155;"Métro";"ECOLE VETERINAIRE DE MAISONS-ALFORT";"3371386";8;0;0;0;0;"Maisons -Alfort";
+"a";156;"Métro";"PARMENTIER";"3357432";3;0;0;0;0;"Paris";11
+"a";157;"Métro";"BOURSE";"3350796";3;0;0;0;0;"Paris";02
+"a";158;"Métro";"COURONNES";"3324335";2;0;0;0;0;"Paris";11
+"a";159;"Métro";"SENTIER";"3318660";3;0;0;0;0;"Paris";03
+"a";160;"Métro";"PYRENEES";"3279317";11;0;0;0;0;"Paris";20
+"a";161;"Métro";"PERNETY";"3275971";13;0;0;0;0;"Paris";14
+"a";162;"Métro";"PLACE DES FETES";"3265485";"7bis";11;0;0;0;"Paris";19
+"a";163;"Métro";"LOUISE MICHEL";"3240270";3;0;0;0;0;"Levallois-Perret";
+"a";164;"Métro";"GAITE";"3223366";13;0;0;0;0;"Paris";14
+"a";165;"Métro";"DUROC";"3218029";10;13;0;0;0;"Paris";07
+"a";166;"Métro";"PORTE DE LA VILLETTE";"3209252";7;0;0;0;0;"Paris";19
+"a";167;"Métro";"CAMBRONNE";"3155480";6;0;0;0;0;"Paris";15
+"a";168;"Métro";"PORTE DE CHOISY";"3116890";7;0;0;0;0;"Paris";13
+"a";169;"Métro";"CRETEIL-UNIVERSITE";"3116625";8;0;0;0;0;"Créteil";
+"a";170;"Métro";"CORENTIN CARIOU";"3090833";7;0;0;0;0;"Paris";19
+"a";171;"Métro";"GARIBALDI";"3088530";13;0;0;0;0;"Saint Ouen";
+"a";172;"Métro";"QUAI DE LA GARE";"3085406";6;0;0;0;0;"Paris";13
+"a";173;"Métro";"RUE DE LA POMPE";"3081914";9;0;0;0;0;"Paris";16
+"a";174;"Métro";"LAMARCK-CAULAINCOURT";"3054528";12;0;0;0;0;"Paris";18
+"a";175;"Métro";"CHEVALERET";"2999174";6;0;0;0;0;"Paris";13
+"a";176;"Métro";"SIMPLON";"2996051";4;0;0;0;0;"Paris";18
+"a";177;"Métro";"MARAICHERS";"2986282";9;0;0;0;0;"Paris";20
+"a";178;"Métro";"CHARENTON-ECOLES";"2975899";8;0;0;0;0;"Charenton";
+"a";179;"Métro";"LA FOURCHE";"2975434";13;0;0;0;0;"Paris";08
+"a";180;"Métro";"FAIDHERBE-CHALIGNY";"2974641";8;0;0;0;0;"Paris";12
+"a";181;"Métro";"MAIRIE D'IVRY";"2973671";7;0;0;0;0;"Ivry";
+"a";182;"Métro";"PLACE MONGE";"2927184";7;0;0;0;0;"Paris";06
+"a";183;"Métro";"SAINT-AUGUSTIN";"2923768";9;0;0;0;0;"Paris";08
+"a";184;"Métro";"BOULOGNE-PONT DE SAINT-CLOUD";"2900015";10;0;0;0;0;"Boulogne Billancourt";
+"a";185;"Métro";"NOTRE-DAME-DE-LORETTE";"2849349";12;0;0;0;0;"Paris";09
+"a";186;"Métro";"SAINT-MAUR";"2846171";3;0;0;0;0;"Paris";11
+"a";187;"Métro";"PORTE DAUPHINE";"2840152";2;0;0;0;0;"Paris";16
+"a";188;"Métro";"BOUCICAUT";"2826775";8;0;0;0;0;"Paris";15
+"a";189;"Métro";"ARGENTINE";"2820883";1;0;0;0;0;"Paris";17
+"a";190;"Métro";"SAINT-PHILIPPE-DU-ROULE";"2813350";9;0;0;0;0;"Paris";08
+"a";191;"Métro";"SAINT-AMBROISE";"2758716";9;0;0;0;0;"Paris";11
+"a";192;"Métro";"CARREFOUR PLEYEL";"2754091";13;0;0;0;0;"Saint Denis";
+"a";193;"Métro";"ROME";"2747395";2;0;0;0;0;"Paris";17
+"a";194;"Métro";"CLUNY LA SORBONNE";"2744528";10;0;0;0;0;0;
+"a";195;"Métro";"COMMERCE";"2700300";8;0;0;0;0;"Paris";15
+"a";196;"Métro";"DUGOMMIER";"2694014";6;0;0;0;0;"Paris";12
+"a";197;"Métro";"COURCELLES";"2685096";2;0;0;0;0;"Paris";17
+"a";198;"Métro";"PORTE DOREE";"2675992";8;0;0;0;0;"Paris";12
+"a";199;"Métro";"RUE DES BOULETS";"2669336";9;0;0;0;0;"Paris";11
+"a";200;"Métro";"ETIENNE MARCEL";"2661074";4;0;0;0;0;"Paris";01
+"a";201;"Métro";"BILLANCOURT";"2643194";9;0;0;0;0;"Boulogne Billancourt";
+"a";202;"Métro";"NATIONALE";"2626967";6;0;0;0;0;"Paris";13
+"a";203;"Métro";"JACQUES BONSERGENT";"2622801";5;0;0;0;0;"Paris";10
+"a";204;"Métro";"LIBERTE";"2607263";8;0;0;0;0;"Charenton";
+"a";205;"Métro";"CORVISART";"2604292";6;0;0;0;0;"Paris";13
+"a";206;"Métro";"LOUVRE";"2582023";1;0;0;0;0;"Paris";01
+"a";207;"Métro";"WAGRAM";"2575735";3;0;0;0;0;"Paris";17
+"a";208;"Métro";"RUE DU BAC";"2563169";12;0;0;0;0;"Paris";07
+"a";209;"Métro";"PORTE D'ITALIE";"2562120";7;0;0;0;0;"Paris";13
+"a";210;"Métro";"MAUBERT-MUTUALITE";"2549853";10;0;0;0;0;"Paris";05
+"a";211;"Métro";"VOLONTAIRES";"2547550";12;0;0;0;0;"Paris";15
+"a";212;"Métro";"MALESHERBES";"2546859";3;0;0;0;0;"Paris";17
+"a";213;"Métro";"ABBESSES";"2545127";12;0;0;0;0;"Paris";18
+"a";214;"Métro";"BERAULT";"2531531";1;0;0;0;0;"Vincennes";
+"a";215;"Métro";"LOUIS BLANC";"2523039";7;"7bis";0;0;0;"Paris";10
+"a";216;"Métro";"RIQUET";"2519241";7;0;0;0;0;"Paris";19
+"a";217;"Métro";"TUILERIES";"2473945";1;0;0;0;0;"Paris";01
+"a";218;"Métro";"JAVEL-ANDRE CITROEN";"2473278";10;0;0;0;0;"Paris";15
+"a";219;"Métro";"SOLFERINO";"2449915";12;0;0;0;0;"Paris";07
+"a";220;"Métro";"BREGUET-SABIN";"2448167";5;0;0;0;0;"Paris";11
+"a";221;"Métro";"LOURMEL";"2441226";8;0;0;0;0;"Paris";15
+"a";222;"Métro";"SAINT-SULPICE";"2432022";4;0;0;0;0;"Paris";06
+"a";223;"Métro";"SEVRES-LECOURBE";"2416242";6;0;0;0;0;"Paris";15
+"a";224;"Métro";"VILLEJUIF-LEO LAGRANGE";"2392154";7;0;0;0;0;"Villejuif";
+"a";225;"Métro";"BEL AIR";"2369793";6;0;0;0;0;"Paris";12
+"a";226;"Métro";"LES AGNETTES";"2367677";13;0;0;0;0;"Asnières sur Seine";
+"a";227;"Métro";"CITE";"2364993";4;0;0;0;0;"Paris";04
+"a";228;"Métro";"RANELAGH";"2315446";9;0;0;0;0;"Paris";16
+"a";229;"Métro";"BOBIGNY-PANTIN-RAYMOND QUENEAU";"2251347";5;0;0;0;0;"Pantin";
+"a";230;"Métro";"VAVIN";"2242491";4;0;0;0;0;"Paris";14
+"a";231;"Métro";"LE PELETIER";"2235088";7;0;0;0;0;"Paris";09
+"a";232;"Métro";"EDGAR QUINET";"2224650";6;0;0;0;0;"Paris";14
+"a";233;"Métro";"MICHEL-ANGE-AUTEUIL";"2206285";9;10;0;0;0;"Paris";16
+"a";234;"Métro";"TRINITE-D'ESTIENNE D'ORVES";"2192391";12;0;0;0;0;"Paris";09
+"a";235;"Métro";"TELEGRAPHE";"2160412";11;0;0;0;0;"Paris";20
+"a";236;"Métro";"MAISON BLANCHE";"2155971";7;0;0;0;0;"Paris";13
+"a";237;"Métro";"BOISSIERE";"2145714";6;0;0;0;0;"Paris";16
+"a";238;"Métro";"VILLEJUIF-PAUL VAILLANT-COUTURIER";"2118126";7;0;0;0;0;"Villejuif";
+"a";239;"Métro";"IENA";"2115003";9;0;0;0;0;"Paris";16
+"a";240;"Métro";"MICHEL BIZOT";"2111494";8;0;0;0;0;"Paris";12
+"a";241;"Métro";"CRETEIL-L'ECHAT";"2109885";8;0;0;0;0;"Créteil";
+"a";242;"Métro";"JASMIN";"2065058";9;0;0;0;0;"Paris";16
+"a";243;"Métro";"LA TOUR-MAUBOURG";"2055583";8;0;0;0;0;"Paris";07
+"a";244;"Métro";"NOTRE-DAME-DES-CHAMPS";"2030493";12;0;0;0;0;"Paris";06
+"a";245;"Métro";"SAINT-MARCEL";"2023002";5;0;0;0;0;"Paris";13
+"a";246;"Métro";"EXELMANS";"1985640";9;0;0;0;0;"Paris";16
+"a";247;"Métro";"MAISONS-ALFORT-LES JUILLIOTTES";"1976516";8;0;0;0;0;"Maisons -Alfort";
+"a";248;"Métro";"MICHEL-ANGE-MOLITOR";"1939507";9;10;0;0;0;"Paris";16
+"a";249;"Métro";"SAINT-JACQUES";"1937457";6;0;0;0;0;"Paris";13
+"a";250;"Métro";"FELIX FAURE";"1932459";8;0;0;0;0;"Paris";15
+"a";251;"Métro";"AVRON";"1922250";2;0;0;0;0;"Paris";11
+"a";252;"Métro";"MABILLON";"1915829";10;0;0;0;0;"Paris";06
+"a";253;"Métro";"PORTE D'IVRY";"1903789";7;0;0;0;0;"Paris";13
+"a";254;"Métro";"BUZENVAL";"1853733";9;0;0;0;0;"Paris";20
+"a";255;"Métro";"SAINT-FRANCOIS-XAVIER";"1850407";13;0;0;0;0;"Paris";07
+"a";256;"Métro";"MALAKOFF-RUE ETIENNE DOLET";"1846661";13;0;0;0;0;"Malakoff";
+"a";257;"Métro";"PHILIPPE AUGUSTE";"1813811";2;0;0;0;0;"Paris";11
+"a";258;"Métro";"MONTGALLET";"1793225";8;0;0;0;0;"Paris";12
+"a";259;"Métro";"RASPAIL";"1785546";4;6;0;0;0;"Paris";14
+"a";260;"Métro";"QUATRE-SEPTEMBRE";"1751431";3;0;0;0;0;"Paris";02
+"a";261;"Métro";"LIEGE";"1731063";13;0;0;0;0;"Paris";08
+"a";262;"Métro";"MOUTON-DUVERNET";"1690457";4;0;0;0;0;"Paris";14
+"a";263;"Métro";"SAINT-SEBASTIEN-FROISSART";"1680231";8;0;0;0;0;"Paris";03
+"a";264;"Métro";"FILLES DU CALVAIRE";"1663111";8;0;0;0;0;"Paris";03
+"a";265;"Métro";"CARDINAL LEMOINE";"1661863";10;0;0;0;0;"Paris";05
+"a";266;"Métro";"RICHARD LENOIR";"1640016";5;0;0;0;0;"Paris";11
+"a";267;"Métro";"SEGUR";"1627318";10;0;0;0;0;"Paris";15
+"a";268;"Métro";"PONT NEUF";"1612517";7;0;0;0;0;"Paris";04
+"a";269;"Métro";"SULLY-MORLAND";"1606960";7;0;0;0;0;"Paris";04
+"a";270;"Métro";"MONCEAU";"1605664";2;0;0;0;0;"Paris";17
+"a";271;"Métro";"CHATEAU-LANDON";"1600022";7;0;0;0;0;"Paris";10
+"a";272;"Métro";"PONT MARIE";"1595098";7;0;0;0;0;"Paris";04
+"a";273;"Métro";"EUROPE";"1536565";3;0;0;0;0;"Paris";08
+"a";274;"Métro";"MAISONS-ALFORT-STADE";"1523038";8;0;0;0;0;"Maisons -Alfort";
+"a";275;"Métro";"VARENNE";"1517830";13;0;0;0;0;"Paris";07
+"a";276;"Métro";"PICPUS";"1496432";6;0;0;0;0;"Paris";12
+"a";277;"Métro";"AVENUE EMILE ZOLA";"1479756";10;0;0;0;0;"Paris";15
+"a";278;"Métro";"CHEMIN VERT";"1448436";8;0;0;0;0;"Paris";11
+"a";279;"Métro";"PIERRE CURIE";"1416989";7;0;0;0;0;"Ivry";
+"a";280;"Métro";"MIRABEAU";"1387272";10;0;0;0;0;"Paris";16
+"a";281;"Métro";"RENNES";"1307167";12;0;0;0;0;"Paris";06
+"a";282;"Métro";"TEMPLE";"1268036";3;0;0;0;0;"Paris";02
+"a";283;"Métro";"SAINT-GEORGES";"1254251";12;0;0;0;0;"Paris";09
+"a";284;"Métro";"CAMPO-FORMIO";"1234237";5;0;0;0;0;"Paris";13
+"a";285;"Métro";"QUAI DE LA RAPEE";"1201924";5;0;0;0;0;"Paris";12
+"a";286;"Métro";"KLEBER";"1150016";6;0;0;0;0;"Paris";16
+"a";287;"Métro";"BOTZARIS";"1096111";"7bis";0;0;0;0;"Paris";19
+"a";288;"Métro";"ASSEMBLEE NATIONALE";"1085710";12;0;0;0;0;"Paris";07
+"a";289;"Métro";"SAINT-FARGEAU";"979912";"3bis";0;0;0;0;"Paris";08
+"a";290;"Métro";"PORTE DE CHARENTON";"957771";8;0;0;0;0;"Paris";12
+"a";291;"Métro";"VANEAU";"928476";10;0;0;0;0;"Paris";07
+"a";292;"Métro";"FALGUIERE";"926922";12;0;0;0;0;"Paris";15
+"a";293;"Métro";"PORTE D'AUTEUIL";"721009";10;0;0;0;0;"Paris";16
+"a";294;"Métro";"DANUBE";"679746";"7bis";0;0;0;0;"Paris";19
+"a";295;"Métro";"CHARDON-LAGACHE";"636141";10;0;0;0;0;"Paris";16
+"a";296;"Métro";"BOLIVAR";"582328";"7bis";0;0;0;0;"Paris";19
+"a";297;"Métro";"BUTTES-CHAUMONT";"575182";"7bis";0;0;0;0;"Paris";19
+"a";298;"Métro";"PRE-SAINT-GERVAIS";"451729";"7bis";0;0;0;0;"Paris";19
+"a";299;"Métro";"CRETEIL-POINTE DU LAC";"389235";8;0;0;0;0;;
+"a";300;"Métro";"PELLEPORT";"364642";"3bis";0;0;0;0;"Paris";20
+"a";301;"Métro";"EGLISE D'AUTEUIL";"178152";10;0;0;0;0;"Paris";16
+"a";1;"RER";"GARE DU NORD-RER";"44596876";"B";0;0;0;0;"Paris";10
+"a";2;"RER";"GARE DE LYON-RER";"31495687";"A";0;0;0;0;"Paris";12
+"a";3;"RER";"LA DEFENSE-RER";"29783058";"A";0;0;0;0;"Puteaux ";
+"a";4;"RER";"NANTERRE-PREFECTURE";"23052703";"A";0;0;0;0;"Nanterre ";
+"a";5;"RER";"CHATELET-LES HALLES-RER";"12986517";"A";"B";0;0;0;"Paris";01
+"a";6;"RER";"VAL DE FONTENAY";"11369665";"A";0;0;0;0;"Fontenay-sous-Bois";
+"a";7;"RER";"CHARLES DE GAULLE-ETOILE-RER";"9974724";"A";0;0;0;0;"Paris";17
+"a";8;"RER";"MASSY-PALAISEAU";"8479103";"B";0;0;0;0;"Massy";
+"a";9;"RER";"SAINT-MICHEL-NOTRE-DAME";"8410856";"B";0;0;0;0;"Paris";00
+"a";10;"RER";"NOISY-LE-GRAND-MONT D'EST";"6866727";"A";0;0;0;0;"Noisy-le-Grand";
+"a";11;"RER";"RUEIL-MALMAISON";"6615943";"A";0;0;0;0;"Rueil-Malmaison ";
+"a";12;"RER";"ANTONY";"6372562";"B";0;0;0;0;"Antony";
+"a";13;"RER";"CITE UNIVERSITAIRE";"6359072";"B";0;0;0;0;"Paris";14
+"a";14;"RER";"VINCENNES";"5874104";"A";0;0;0;0;"Vincennes";
+"a";15;"RER";"LUXEMBOURG";"5838336";"B";0;0;0;0;"Paris";05
+"a";16;"RER";"AUBER";"5667365";"A";0;0;0;0;"Paris";09
+"a";17;"RER";"NANTERRE-UNIVERSITE";"5214188";"A";0;0;0;0;"Nanterre ";
+"a";18;"RER";"NOISY-CHAMPS";"4669805";"A";0;0;0;0;"Champs-sur-Marne";
+"a";19;"RER";"NEUILLY-PLAISANCE";"4647935";"A";0;0;0;0;"Neuilly-sur-Seine";
+"a";20;"RER";"MARNE-LA-VALLEE-CHESSY";"4578909";"A";0;0;0;0;"Montévrain";
+"a";21;"RER";"SAINT-GERMAIN-EN-LAYE";"4383920";"A";0;0;0;0;"Saint-Germain-en-Laye";
+"a";22;"RER";"BOURG-LA-REINE";"4309137";"B";0;0;0;0;"Bourg la Reine";
+"a";23;"RER";"DENFERT-ROCHEREAU-RER";"4262370";"B";0;0;0;0;"Paris";14
+"a";24;"RER";"NATION-RER";"4195903";"A";0;0;0;0;"Paris";12
+"a";25;"RER";"TORCY";"3712967";"A";0;0;0;0;"Torcy ";
+"a";26;"RER";"SAINT-MAUR-CRETEIL";"3626427";"A";0;0;0;0;"Saint-Maur des Fossés ";
+"a";27;"RER";"JOINVILLE-LE-PONT";"3535908";"A";0;0;0;0;"Joinville-le-Pont";
+"a";28;"RER";"NANTERRE-VILLE";"3408388";"A";0;0;0;0;"Nanterre ";
+"a";29;"RER";"CHAMPIGNY";"3279877";"A";0;0;0;0;"Saint-Maur des Fossés";
+"a";30;"RER";"PORT ROYAL";"3242096";"B";0;0;0;0;"Paris";05
+"a";31;"RER";"VAL D'EUROPE";"3161331";"A";0;0;0;0;"Serris ";
+"a";32;"RER";"LAPLACE";"3145389";"B";0;0;0;0;"Arcueil";
+"a";33;"RER";"ARCUEIL-CACHAN";"3101352";"B";0;0;0;0;"Arcueil";
+"a";34;"RER";"LA CROIX DE BERNY";"2832453";"B";0;0;0;0;"Antony";
+"a";35;"RER";"NOGENT-SUR-MARNE";"2792732";"A";0;0;0;0;"Nogent-sur-Marne";
+"a";36;"RER";"BUSSY-SAINT-GEORGES";"2766096";"A";0;0;0;0;"Bussy-Saint-Georges ";
+"a";37;"RER";"NOISIEL";"2564613";"A";0;0;0;0;"Noisiel";
+"a";38;"RER";"FONTENAY-SOUS-BOIS";"2410731";"A";0;0;0;0;"Fontenay-sous-Bois";
+"a";39;"RER";"ORSAY-VILLE";"2290579";"B";0;0;0;0;"Orsay";
+"a";40;"RER";"ROBINSON";"2262137";"B";0;0;0;0;"Sceaux";
+"a";41;"RER";"BOISSY-SAINT-LEGER";"2235716";"A";0;0;0;0;"Boissy-Saint-Léger";
+"a";42;"RER";"GENTILLY";"2092205";"B";0;0;0;0;"Gentilly";
+"a";43;"RER";"LE VESINET-LE PECQ";"2078606";"A";0;0;0;0;"Le Vésinet ";
+"a";44;"RER";"CHATOU-CROISSY";"2057141";"A";0;0;0;0;"Chatou ";
+"a";45;"RER";"LE PARC DE SAINT-MAUR";"2048678";"A";0;0;0;0;"Saint-Maur des Fossés";
+"a";46;"RER";"BAGNEUX";"1985787";"B";0;0;0;0;"Cachan";
+"a";47;"RER";"SUCY-BONNEUIL";"1895918";"A";0;0;0;0;"Sucy-en-Brie ";
+"a";48;"RER";"BRY-SUR-MARNE";"1874920";"A";0;0;0;0;"Bry-sur-Marne ";
+"a";49;"RER";"LA VARENNE-CHENNEVIERES";"1830795";"A";0;0;0;0;"saint-Maur des Fossés ";
+"a";50;"RER";"LES BACONNETS";"1592744";"B";0;0;0;0;"Antony";
+"a";51;"RER";"LOGNES";"1571347";"A";0;0;0;0;"Lognes ";
+"a";52;"RER";"LE VESINET-CENTRE";"1218399";"A";0;0;0;0;"Le Vésinet ";
+"a";53;"RER";"FONTENAY-AUX-ROSES";"1028095";"B";0;0;0;0;"Fontenay aux roses";
+"a";54;"RER";"PALAISEAU";"964017";"B";0;0;0;0;"Palaiseau";
+"a";55;"RER";"SAINT-REMY-LES-CHEVREUSE";"911726";"B";0;0;0;0;"St-Rémy-Lès-Chevreuse";
+"a";56;"RER";"LE GUICHET";"865385";"B";0;0;0;0;"Orsay";
+"a";57;"RER";"PALAISEAU-VILLEBON";"865323";"B";0;0;0;0;"Palaiseau";
+"a";58;"RER";"LOZERE";"765952";"B";0;0;0;0;"Palaiseau";
+"a";59;"RER";"GIF-SUR-YVETTE";"717784";"B";0;0;0;0;"Gif sur Yvette";
+"a";60;"RER";"SCEAUX";"713823";"B";0;0;0;0;"sceaux";
+"a";61;"RER";"BURES-SUR-YVETTE";"670230";"B";0;0;0;0;"Bures sur Yvette";
+"a";62;"RER";"FONTAINE-MICHALON";"575331";"B";0;0;0;0;"Antony";
+"a";63;"RER";"MASSY-VERRIERES";"572805";"B";0;0;0;0;"Massy";
+"a";64;"RER";"COURCELLE-SUR-YVETTE";"571411";"B";0;0;0;0;"Gif sur Yvette";
+"a";65;"RER";"PARC DE SCEAUX";"523365";"B";0;0;0;0;"Antony";
+"a";66;"RER";"LA HACQUINIERE";"425311";"B";0;0;0;0;"Bures sur Yvette";

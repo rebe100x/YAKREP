@@ -95,8 +95,10 @@ require_once("conf.php");
 
 	function __construct() {
 		$this->conf = new Conf();
-		$m = new Mongo(); 
-		$db = $m->selectDB($this->conf->db());
+		
+		$db = $this->conf->mdb();
+		
+		
 		$this->infoColl = $db->info;
 		$this->placeColl = $db->place;	
 		$this->yakCatColl = $db->yakcat;
@@ -144,9 +146,11 @@ require_once("conf.php");
 		if( !empty($this->location->lat) && !empty($this->location->lng) ){
 			//print_r($this->location);
 			$rangeQuery = array('title' => $this->title, "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
-		}
+			$doublon = $this->infoColl->findOne($rangeQuery);
+		}else
+			$doublon = NULL;
 		
-		$doublon = $this->infoColl->findOne($rangeQuery);
+		
 		
 		
 		return $doublon;
@@ -183,10 +187,11 @@ require_once("conf.php");
 		
 		$this->setFilesourceId();
 		
-		//$this->setPlaceid($locationQuery, $debug);
+		
 
 		// if we have a place geolocalized
 		if($this->placeName || $this->address){
+		
 			$resPlace = $this->linkToPlace($locationQuery, $debug);
 		
 			// logs
@@ -364,6 +369,7 @@ require_once("conf.php");
 			$newPlace->zone = $this->zone;
 			
 			$resPlace = $newPlace->saveToMongoDB($locationQuery, $debug);
+			
 			if(!empty($resPlace['error'])){
 				echo $resPlace['error'];
 				echo '<br><b>BATCH FAILLED</b><br>Place creation failed';

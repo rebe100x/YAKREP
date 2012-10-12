@@ -26,7 +26,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>48.851875,'lng'=>2.356374),
 	"address" => array(
-				'street_number'=>''
+				'street_number'=>'',
 				'street'=>'',
 				'arr'=>'',
 				'city'=>'Paris',

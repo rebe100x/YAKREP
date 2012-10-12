@@ -19,7 +19,7 @@ require_once('../LIB/conf.php');
 
 
 ini_set('display_errors',1);
-$filenameInput = "./input/VilleMTP_MTP_EffectifSco_2012_small.csv";
+$filenameInput = "./input/VilleMTP_MTP_EffectifSco_2012.csv";
 $row = 0;
 $i = 0;
 $place;

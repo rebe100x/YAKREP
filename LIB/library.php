@@ -47,8 +47,9 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
     $result = curl_exec($ch);
     curl_close($ch);
     $json = json_decode($result);
-    //var_dump($json);
-    if(sizeof($json->results) > 0){
+    var_dump($json);
+    
+	if(sizeof($json->results) > 0){
 	    //$res = $json->results[0]->geometry->location;
 		$res = $json->results[0];
 		$address = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");

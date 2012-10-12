@@ -20,7 +20,7 @@ $debug = 1;
 $row = 0;
 $updateFlag = empty($_GET['updateFlag'])?0:1;
 
-$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
+$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
 require_once('./input/jardins.php');
 

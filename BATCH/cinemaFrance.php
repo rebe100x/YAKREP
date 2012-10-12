@@ -76,7 +76,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
     fclose($handle);
 
-   prettyLog($results);
+   $currentPlace->prettyLog($results);
     
 }
 

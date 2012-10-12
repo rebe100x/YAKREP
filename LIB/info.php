@@ -125,7 +125,7 @@ require_once("conf.php");
 		$this->creationDate = time();
 		$this->lastModifDate = time();
 		$this->dateEndPrint = '';
-		$this->address = new Address();
+		$this->address = ''; // NOTE that in INFO, the address is only a human readable string and in PLACE, it is an object
 		$this->location = new Location();
 		$this->contact = new Contact();
 		$this->status = 0;
@@ -147,17 +147,9 @@ require_once("conf.php");
 		}
 		
 		$doublon = $this->infoColl->findOne($rangeQuery);
-			
-		if ($doublon != NULL) {
-			print "Info already exists.<br>";
-			$res = 1;
-		}
-		else {
-			print "Info doesn't exist. <br>";
-			$res = 0;
-		}
 		
-		return $res;
+		
+		return $doublon;
 	}
 
 	/* Find location for a place
@@ -187,7 +179,7 @@ require_once("conf.php");
  		
 		// must be set : ZONE and PLACENAME or ADDRESS
 		// and ORIGIN and FILETITLE and LICENCE
-		$res = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
+		$res = array('duplicate'=>0,'insert'=>0,'getPlaceinDB'=>0,'insertPlace'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
 		
 		$this->setFilesourceId();
 		
@@ -196,16 +188,32 @@ require_once("conf.php");
 		// if we have a place geolocalized
 		if($this->placeName || $this->address){
 			$resPlace = $this->linkToPlace($locationQuery, $debug);
-			var_dump($resPlace);
-			// no duplicated
-			if($this->getDoublon() == 0){
+		
+			// logs
+			if($resPlace['insert']==0)
+				$res['getPlaceinDB']++;
+			else{
+				$res['duplicate'] = $resPlace['duplicate'];
+				$res['insertPlace'] = $resPlace['insert'];
+				$res['locErr'] = $resPlace['locErr'];
+				$res['callGMAP'] = $resPlace['callGMAP'];
+				
+			}
+			$doublon = $this->getDoublon();
+			
+			if(!$doublon){
 				$this->moveData();
 				$this->saveInfo();
 				echo '<br>save for the map<br>';
 				$res['insert'] ++;
 			}else{
-				$res['duplicate'] ++;	
-				echo '<br>duplicate<br>';
+				$res['duplicate'] = 1;	
+				if($flagUpdate == 1){ // if we are asked to update
+					
+					
+					$this->updateInfo($doublon['_id']);
+					$res['update'] = 1;
+				}
 			}
 			
 			
@@ -259,7 +267,7 @@ require_once("conf.php");
 			"yakType"		=>	$this->yakType,
 			"yakCat" 		=>	$this->yakCat,
 			"freeTag"		=>	$this->freeTag,
-			"pubDate"		=>	$this->pubDate,
+			"pubDate"		=>	new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
 			"dateEndPrint"	=> 	$this->dateEndPrint,
@@ -272,8 +280,45 @@ require_once("conf.php");
 			"placeid"		=>	$this->placeid,
 			);	
 			$this->infoColl->save($record);
-			$this->infoColl->ensureIndex(array("location"=>"2d"));
+			$this->infoColl->ensureIndex(array("location"=>"2d","pubDate"=>-1,"yakType"=>1,"print"=>1,"status"=>1));
 			print "$this->title : info saved in db.<br>";
+			return  $record['_id'];
+	
+	
+	}
+	
+	
+	private function updateInfo($id){
+			
+			$record = array(
+			"title"			=>	$this->title,
+			"content" 		=>	$this->content,
+			"thumb" 		=>	$this->thumb,
+			"origin"		=>	$this->origin,	
+			"filesourceId"	=>	$this->filesourceId,
+			"access"		=>	$this->access,
+			"licence"		=>	$this->licence,
+			"outGoingLink"	=>	$this->outGoingLink,
+			"heat"			=>	$this->heat,
+			"print"			=>	$this->print,
+			"yakType"		=>	$this->yakType,
+			"yakCat" 		=>	$this->yakCat,
+			"freeTag"		=>	$this->freeTag,
+			"pubDate"		=>	new MongoDate(gmmktime()),
+			"creationDate" 	=>	new MongoDate(gmmktime()),
+			"lastModifDate" =>	new MongoDate(gmmktime()),
+			"dateEndPrint"	=> 	$this->dateEndPrint,
+			"location" 		=>	$this->location,
+			"address" 		=>	$this->address,
+			"contact"		=>	$this->contact,
+			"status" 		=>	$this->status,
+			"user"			=> 	$this->user, 
+			"zone"			=> 	$this->zone,
+			"placeid"		=>	$this->placeid,
+			);	
+			$this->infoColl->update(array("_id"=>$id),$record);
+			$this->infoColl->ensureIndex(array("location"=>"2d","pubDate"=>-1,"yakType"=>1,"print"=>1,"status"=>1));
+			print "$this->title : info updated in db.<br>";
 			return  $record['_id'];
 	
 	
@@ -289,28 +334,26 @@ require_once("conf.php");
 	*/
 	function linkToPlace($locationQuery, $debug)
 	{
+		$newPlace = new Place();
 		$resPlace = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 		// we try first on the name of the place
 		if (!empty($this->placeName))
 			$theString2Search = $this->placeName;
 		elseif (!empty($this->address)) // but if no place name, we try the address
 			$theString2Search = $this->address;
-		echo $theString2Search;	
-		$rangeQuery = array('title' => $theString2Search, 'status' => 1, 'zone'=> $this->zone);
-			var_dump($rangeQuery);
-		$result = $this->placeColl->findOne($rangeQuery);
-		if ($result != NULL) {
+			
+		$result = $newPlace->getDuplicated($theString2Search,$this->zone);
+		if ($result != NULL) {			
 			if (!empty($result['location'])) // we set the location without calling gmap
 				$this->location = $result['location'];
 				$this->placeid = $result['_id'];
-				print "Place found in db in db <br>";
 				$this->status = 1; // here it must be 1 because of the query
 				$this->print = 1; 
-				
+				$this->address = $result['title'];
 		}
 		else {
 			print "$this->title : Place doesn't exist in db (creation).<br>";
-			$newPlace = new Place();
+			
 			
 			$newPlace->title = $this->placeName;			
 			$newPlace->origin = $this->origin;
@@ -329,7 +372,8 @@ require_once("conf.php");
 			
 			$theNewPlace = $resPlace['record'];
 			$this->placeid = $theNewPlace['_id'];
-			$this->location = $theNewPlace['location'];	
+			$this->location = $theNewPlace['location'];
+			$this->address = $theNewPlace['formatted_address'];
 			$this->status = $theNewPlace['status']; // if gmap did not work we have a status 10
 			if($this->status != 1)
 				$this->print = 0; 	
@@ -358,6 +402,7 @@ require_once("conf.php");
 
 		// if more than one info on the same location
 		if($dataCount > 0){
+			$this->location = (object)$this->location;
 			$this->location = randomPositionArround(array('lat'=>$this->location->lat,'lng'=>$this->location->lng));
 		}
 
@@ -390,5 +435,23 @@ require_once("conf.php");
  		return $str;
  	
  }
+ //$res = array('duplicate'=>0,'insert'=>0,'getPlaceinDB'=>0,'insertPlace'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
+ //$resPlace = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
+ //$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
+ function prettyLog($results){
+	print "<br>________________________________________________<br>";
+    print "Rows : " . $results['row'] . "<br>";
+	print "Rejected : " . $results['rejected'] . "<br>";
+	print "Parsed : " . $results['parse'] . "<br>";
+	print "Duplicated : " . $results['duplicate'] . "<br>";
+	print "Place in db : " . $results['getPlaceinDB'] . "<br>";
+	print "Place created : " . $results['insertPlace'] . "<br>";
+    print "Call to gmap : " . $results['callGMAP'] . "<br>";
+    print "Location error (call gmap) : " . $results['locErr'] . "<br>";
+    print "Insertions : " . $results['insert'] . "<br>";
+    print "Updates : " . $results['update'] . "<br>";
+    print "<i>to force update, use ?updateFlag=1</i>";
+
+}	
 
 }

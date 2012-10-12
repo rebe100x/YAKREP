@@ -3,15 +3,10 @@
 ini_set ('max_execution_time', 0);
 set_time_limit(0);
 ini_set('display_errors',1);
-require_once("../LIB/library.php");
+
 require_once("../LIB/conf.php");
 
-$conf = new conf();
-$m = new Mongo(); 
-$db = $m->selectDB($conf->db());
-
-
-$yakcat = $db->yakcat;
+$yakcat = $conf->db->yakcat;
 
 $records = array();
 
@@ -19,10 +14,33 @@ $records = array();
 /*LEVEL 1*/
 
 $records[] = array(
+	"_id" => new MongoId("5077ec30fa9a95000f000028"),
+	"title"=> "Statistiques",
+	"path" => "STATISTIQUES",
+	"pathN" => "STATISTIQUES",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
 	"_id" => new MongoId("50696022fa9a95501400000a"),
 	"title"=> "Religion",
 	"path" => "RELIGION",
 	"pathN" => "RELIGION",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+$records[] = array(
+	"_id" => new MongoId("5077ebb1fa9a95600d0001dc"),
+	"title"=> "Transport",
+	"path" => "TRANSPORT",
+	"pathN" => "TRANSPORT",
 	"level" => 1,
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
@@ -462,12 +480,12 @@ $records[] = array(
 $records[] = array(
 	"_id" => new MongoId("506479f54a53042191020000"),
 	"title"=> "Station",
-	"path" => "Géolocalisation, Station",
-	"pathN" => "GEOLOCALISATION#STATION",
-	"ancestors" => array("Géolocalisation"),
-	"parent" => "Géolocalisation",
-	"ancestorsId" => array(new MongoId("504d89f4fa9a958808000001")),
-	"parentId" => new MongoId("504d89f4fa9a958808000001"),
+	"path" => "Transport, Station",
+	"pathN" => "TRANSPORT#STATION",
+	"ancestors" => array("Transport"),
+	"parent" => "Transport",
+	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),
+	"parentId" => new MongoId("5077ebb1fa9a95600d0001dc"),
 	"level" => 2,
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),

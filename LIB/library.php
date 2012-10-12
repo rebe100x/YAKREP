@@ -39,7 +39,7 @@ function getApercite($link){
 function getLocationGMap($q,$output = 'PHP',$debug = 0){
 	
 	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$q."&sensor=false";
-    echo ($debug==1)?'<br>'.$url:"";
+    echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
     
 	$ch = curl_init();
     curl_setopt($ch,CURLOPT_URL,$url);
@@ -71,19 +71,19 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 		}
 		
 		if($debug==1){
-			echo '---ADDRESS---<br>';
+			echo '<br>---ADDRESS---<br>';
 			var_dump($address);
 		}	
 		$location = $json->results[0]->geometry->location;
 		
 		if($debug==1){
-			echo '---LOCATION---<br>';
+			echo '<br>---LOCATION---<br>';
 			var_dump($location);
 		}	
 		$formatted_address = $json->results[0]->formatted_address;
 		
 		if($debug==1){
-			echo '---FORMATTED ADDRESS---<br>';
+			echo '<br>---FORMATTED ADDRESS---<br>';
 			var_dump($formatted_address);
 		}	
 		$res = array("formatted_address"=>$formatted_address,"address"=>$address,"location"=>array($location->lat,$location->lng),"status"=>$json->status);
@@ -123,117 +123,117 @@ function rewriteArrondissementParis($romanLetters){
 		
         case 'IIe':
             case 'IIeme':
-                case 'II�me':
+                case 'IIème':
             $output = '2e arrondissement';
         break;
         
         case 'IIIe':
             case 'IIIeme':
-                case 'III�me':
+                case 'IIIème':
             $output = '3e arrondissement';
         break;
         
         case 'IVe':
             case 'IVeme':
-                case 'IV�me':
+                case 'IVème':
             $output = '4e arrondissement';
         break;
         
         case 'Ve':
             case 'Veme':
-                case 'V�me':
+                case 'Vème':
             $output = '5e arrondissement';
         break;
         
         case 'VIe':
             case 'VIeme':
-                case 'VI�me':
+                case 'VIème':
             $output = '6e arrondissement';
         break;
         
         case 'VIIe':
             case 'VIIeme':
-                case 'VII�me':
+                case 'VIIème':
             $output = '7e arrondissement';
         break;
         
         case 'VIIIe':
             case 'VIIIeme':
-                case 'VIII�me':
+                case 'VIIIème':
             $output = '8e arrondissement';
         break;
         
         case 'IXe':
             case 'IXeme':
-                case 'IX�me':
+                case 'IXème':
             $output = '9e arrondissement';
         break;
         
         case 'Xe':
             case 'Xeme':
-                case 'X�me':
+                case 'Xème':
             $output = '10e arrondissement';
         break;
         
         case 'XIe':
         	case 'XIeme':
-                case 'XI�me':
+                case 'XIème':
             $output = '11e arrondissement';
         break;
         
         case 'XIIe':
         	case 'XIIeme':
-        		case 'XII�me':
+        		case 'XIIème':
             $output = '12e arrondissement';
         break;
         
         case 'XIIIe':
         	case 'XIIIeme':
-        		case 'XIII�me':
+        		case 'XIIIème':
             $output = '13e arrondissement';
         break;
         
         case 'XIVe':
         	case 'XIVeme':
-        		case 'XIV�me':
+        		case 'XIVème':
             $output = '14e arrondissement';
         break;
         
         case 'XVe':
         	case 'XVeme':
-        		case 'XV�me':
+        		case 'XVème':
             $output = '15e arrondissement';
         break;
         
         case 'XVIe':
             case 'XVIeme':
-        	   case 'XVI�me':
+        	   case 'XVIème':
             $output = '16e arrondissement';
         break;
         
         case 'XVIIe':
         case 'XVIIeme':
-        	case 'XVII�me':
+        	case 'XVII�ème':
             $output = '17e arrondissement';
         break;
         
         case 'XVIIIe':
         	case 'XVIIIeme':
-        		case 'XVIII�me':
+        		case 'XVIIIème':
         
             $output = '18e arrondissement';
         break;
         
         case 'XIXe':
         	case 'XIXeme':
-        		case 'XIX�me':
+        		case 'XIXème':
         
             $output = '19e arrondissement';
         break;
         
         case 'XXe':
         case 'XXeme':
-        case 'XX�me':
+        case 'XXème':
             $output = '20e arrondissement';
         break;
         
@@ -420,7 +420,7 @@ function randomPositionArround($loc){
 	$lat1 = $loc['lat'];
 	$lon1 = $loc['lng'];
 	$brng = deg2rad(rand(0,360));
-	$d = rand(1100,10000)/100000;
+	$d = rand(1100,10000)/1000000;
 	$R= 6371;
 	$lat1R = deg2rad($lat1);
 	$lon1R = deg2rad($lon1);
@@ -435,18 +435,6 @@ function randomPositionArround($loc){
 }
 
 
-function prettyLog($results){
-	print "<br>________________________________________________<br>";
-    print "Rows : " . $results['row'] . "<br>";
-	print "Rejected : " . $results['rejected'] . "<br>";
-	print "Parsed : " . $results['parse'] . "<br>";
-	print "Duplicated : " . $results['duplicate'] . "<br>";
-    print "Call to gmap : " . $results['callGMAP'] . "<br>";
-    print "Location error (call gmap) : " . $results['locErr'] . "<br>";
-    print "Insertions : " . $results['insert'] . "<br>";
-    print "Updates : " . $results['update'] . "<br>";
-    print "<i>to force update, use ?updateFlag=1</i>";
 
-}	
 
 ?>

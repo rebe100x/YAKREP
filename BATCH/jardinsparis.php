@@ -64,7 +64,7 @@ foreach($jardins as $jardinJSON){
 	$row++;
 }
 
-prettyLog($results);
+$currentPlace->prettyLog($results);
 
 
 

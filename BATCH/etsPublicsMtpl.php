@@ -15,13 +15,13 @@
 
 include_once "../LIB/conf.php";
 ini_set('display_errors',1);
-$filenameInput = "./input/VilleMTP_MTP_EtabliPublic_2011.csv";
+$filenameInput = "./input/VilleMTP_MTP_EtabliPublic_2011_small.csv";
 $origin = "http://opendata.montpelliernumerique.fr/Etablissements-publics";
 $fileTitle = "Etablissements publics";
 $licence = "licence ouverte";
 $debug = 0;
 $row = 0;
-$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
+$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 $updateFlag = empty($_GET['updateFlag'])?0:1;
 if (($handle = fopen($filenameInput, "r")) !== FALSE) 
 {
@@ -91,7 +91,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE)
 		$row++;
     }
     fclose($handle);
-    prettyLog($results);
+    $place->prettyLog($results);
 }
 
 ?>

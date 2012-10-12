@@ -10,6 +10,7 @@ include_once "info.php";
 include_once "address.php";
 include_once "contact.php";
 include_once "location.php";
+include_once "stringUtil.php";
 
 class conf
 {
@@ -18,9 +19,10 @@ class conf
 	private $fronturl;
 	private $backurl;
 	private $thumburl;
-	
+	private $mdb;
 
 	function __construct(){
+		
 		switch($this->deploy){
 			case 'dev':
 				$this->db = 'yakwala';
@@ -42,7 +44,9 @@ class conf
 			break;
 			
 		}
-	
+		$m = new Mongo(); 
+		$this->mdb = $m->selectDB($this->db());
+
 	}
 
 	public function getDeploy() {
@@ -57,12 +61,15 @@ class conf
         return  $this->fronturl;
     }
 	
-	    public function backurl() {
+	public function backurl() {
         return  $this->backurl;
     }
 	
-	    public function thumburl() {
+	public function thumburl() {
         return  $this->thumburl;
+    }
+	public function mdb() {
+        return  $this->mdb;
     }
 	
 	

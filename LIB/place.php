@@ -115,6 +115,18 @@ require_once("conf.php");
  		}
  	}
 
+	/*
+	* 
+	*
+	*/
+	function getDuplicated($title,$zone){
+	
+			$theString2Search = StringUtil::accentToRegex($title);
+			$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone);
+			$doublon = $this->placeColl->findOne($rangeQuery);
+			return $doublon;
+	}
+
  	/* INPUT : 
 	* locationQuery : the query to gmap. If null, we assume we already have the address and location in the file
 	* debug = 1 to print debug
@@ -132,17 +144,14 @@ require_once("conf.php");
 			$this->setFilesourceId();
 
 			
-
-			// detect duplicated records
-			$rangeQuery = array('title' => $this->title,'zone' => $this->zone);
-			$doublon = $this->placeColl->findOne($rangeQuery);
+			$doublon = $this->getDuplicated($this->title,$this->zone);
 			
 			// if no duplicated
 			if (!$doublon) {
 				// if we asked for a geoloc
 				if ( strlen($locationQuery)>0) {
-					//$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
-					$loc = array("formatted_address"=>"this is a test","address"=>array('street'=>'street test'),"location"=>array(48.8,2.2),"status"=>'OK');
+					$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
+					//$loc = array("formatted_address"=>"this is a test","address"=>array('street'=>'street test'),"location"=>array(48.8,2.2),"status"=>'OK');
 					$res['callGMAP'] = 1;
 					if ($loc['status'] ==  'OK') {
 						// transfert GMAP result to DB :
@@ -283,7 +292,7 @@ require_once("conf.php");
  	*/
  	public function setYakCat ($catPathArray) {
  		
-		var_dump($this);
+		//var_dump($this);
  		$yakCatArray = iterator_to_array($this->yakCatColl->find());
  		foreach ($catPathArray as $catPath) {
  			foreach ($yakCatArray as $cat) {
@@ -410,4 +419,19 @@ require_once("conf.php");
  		
  		return $str;
  	}
+	
+	function prettyLog($results){
+		print "<br>________________________________________________<br>";
+		print "Rows : " . $results['row'] . "<br>";
+		print "Rejected : " . $results['rejected'] . "<br>";
+		print "Parsed : " . $results['parse'] . "<br>";
+		print "Duplicated : " . $results['duplicate'] . "<br>";
+		print "Call to gmap : " . $results['callGMAP'] . "<br>";
+		print "Location error (call gmap) : " . $results['locErr'] . "<br>";
+		print "Insertions : " . $results['insert'] . "<br>";
+		print "Updates : " . $results['update'] . "<br>";
+		print "<i>to force update, use ?updateFlag=1</i>";
+
+	}	
+
  }

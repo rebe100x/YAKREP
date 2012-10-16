@@ -57,7 +57,7 @@ $placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
 $persistDays =  3;
 $flagForceUpdate = (empty($_GET['forceUpdate']))?0:1;
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
-$daysBack = 3;//We only get the last X days
+$daysBack = 5;//We only get the last X days
 if(!empty($_GET['q'])){
     
     if($flagForceUpdate)
@@ -66,7 +66,7 @@ if(!empty($_GET['q'])){
               
     $q = $_GET['q']; 
     switch( $q ){
-        case 'leparisien75':
+        case 'parisien75':
 			$yakType =  1;
 			$yakCatName = array('Actualités');
 			$persistDays =  3;
@@ -329,14 +329,16 @@ if(!empty($_GET['q'])){
 			foreach($locationTmp as $loc){
 				echo "<br>Location found by XL : ".$loc;
 				//check if in db
-				$place = $placeColl->findOne(array('title'=>$loc,"status"=>1));
+				
+				$place = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>1));
+				//var_dump($place);
 				if($place && $flagForceUpdate != 1){ // FROM DB
 					echo "<br> Location found in DB !";
 					$logLocationInDB++;
 					//$geoloc[] = array($place['location']['lat'],$place['location']['lng']);
 					$status = 1;
 					$print = 1;
-					$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng']);	
+					$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address']);	
 				 }else{    // FROM GMAP
 					echo "<br> Call to GMAP: ".$loc.', Paris, France';
 					$logCallToGMap++;
@@ -380,7 +382,7 @@ if(!empty($_GET['q'])){
 							  );
 							  
 							  
-					$res = $placeColl->findOne(array('title'=>$loc));
+					$res = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>1));
 					//echo '---<br>';
 					//var_dump($res);
 					//echo '---<br>';
@@ -470,7 +472,7 @@ if(!empty($_GET['q'])){
 			$info['placeId'] = new MongoId($geolocItem['_id']);
 			
 			// check if data is not in DB
-			$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035)));
+			$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>1));
 			//var_dump($dataExists);
 			if(empty($dataExists)){
 				echo "<br> The info does not exist in DB, we insert it.";
@@ -545,7 +547,7 @@ $batchlogColl->save(
 }
 
     echo "no request<br>try this :";
-    echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=leparisien75\"/>".$_SERVER['PHP_SELF']."?q=leparisien75</a>" ;
+    echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien75\"/>".$_SERVER['PHP_SELF']."?q=parisien75</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=concertandco\"/>".$_SERVER['PHP_SELF']."?q=concertandco</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=expo-a-paris\"/>".$_SERVER['PHP_SELF']."?q=expo-a-paris</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=telerama\"/>".$_SERVER['PHP_SELF']."?q=telerama</a>" ;

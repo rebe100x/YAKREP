@@ -122,8 +122,9 @@ require_once("conf.php");
 	function getDuplicated($title,$zone){
 	
 			$theString2Search = StringUtil::accentToRegex($title);
-			$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone);
+			$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>1);
 			$doublon = $this->placeColl->findOne($rangeQuery);
+			
 			return $doublon;
 	}
 
@@ -147,9 +148,10 @@ require_once("conf.php");
 			$doublon = $this->getDuplicated($this->title,$this->zone);
 			
 			// if no duplicated
-			if (!$doublon) {
+			if (empty($doublon)) {
+			
 				// if we asked for a geoloc
-				if ( strlen($locationQuery)>0) {
+				if ( strlen($locationQuery)>0 ) {
 					$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
 					//$loc = array("formatted_address"=>"this is a test","address"=>array('street'=>'street test'),"location"=>array(48.8,2.2),"status"=>'OK');
 					$res['callGMAP'] = 1;
@@ -194,6 +196,7 @@ require_once("conf.php");
 				"zone"			=> 	$this->zone,
 			);
 			
+				
 				$resSave = $this->savePlace($record);
 				$res['record'] = $record; // TODO : cast to array ???
 				$res['error'] = $resSave['error'];
@@ -217,7 +220,6 @@ require_once("conf.php");
 					$res['update'] = 1;
 				}
 			}
-		//var_dump($res);
 		return  $res;
  	}
  	
@@ -322,8 +324,8 @@ require_once("conf.php");
  	/* Set place location manually */
  	function setLocation($latitude, $longitude) 
  	{
- 		$this->location->lat = $latitude;
- 		$this->location->lng = $longitude;
+ 		$this->location->lat = (float)$latitude;
+ 		$this->location->lng = (float)$longitude;
  	}
 
  	/* Add Tags in yakTag array

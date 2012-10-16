@@ -31,7 +31,7 @@ $fileTitle = "Cibul Sitemap";
 $debug = 1;
 $row = 0;
 $updateFlag = empty($_GET['updateFlag'])?0:1;
-$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
+$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
 /*
  * sitemap.xml
@@ -70,7 +70,7 @@ foreach ($urlset->url as $url) {
 	if ($url->uid) {
 
 		if($debug)
-			echo "Call to cibul Api for Uid: ", $url->uid, "<br />";
+			echo "<br>-----------------<br>Call to cibul Api for Uid: ", $url->uid;
 
 		$chuid = curl_init();
 
@@ -97,8 +97,11 @@ foreach ($urlset->url as $url) {
 				$currentPlace->licence = $licence;
 				$currentPlace->setZone("PARIS");
 				$currentPlace->formatted_address = $location->address;
+				var_dump($location->latitude);
+				
 				$currentPlace->setLocation($location->latitude, $location->longitude);
 				$currentPlace->origin = $origin;
+				
 				
 				if (preg_match("/paris/i", $location->address) 
 					|| preg_match("/75[0-9]{3}/i", $location->address) ) {
@@ -117,12 +120,14 @@ foreach ($urlset->url as $url) {
 				}
 				
 				if($debug)
-					echo  "<br>TRY TO INSERT : <b>".$currentPlace->title."</b>".$location->address." ==> Zone : ".$currentPlace->zone."<br>";
+					echo  "<br>TRY TO INSERT : <b>".$currentPlace->title."</b>: ".$location->address." ==> Zone : ".$currentPlace->zone;
 					
 				$cat = array("GEOLOCALISATION","GEOLOCALISATION#YAKDICO","CULTURE");
 				$currentPlace->setYakCat($cat);
 				
 				$res = $currentPlace->saveToMongoDB('', $debug,$updateFlag);
+				if($res['record']['_id'])
+					echo '<br>SAVED ID = '.$res['record']['_id'];
 				foreach ($res as $k=>$v) {
 					if(isset($v))
 						$results[$k]+=$v;
@@ -132,11 +137,11 @@ foreach ($urlset->url as $url) {
 		}
 		$results['row'] ++;	
 		$row++;
-		if($row >50)
+		if($row > 2)
 			break;
 	}
 }
-prettyLog($results);
+$currentPlace->prettyLog($results);
 ?>
 </body>
 </html>

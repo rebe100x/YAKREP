@@ -47,13 +47,14 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
     $result = curl_exec($ch);
     curl_close($ch);
     $json = json_decode($result);
-    var_dump($json);
-    
-	if(sizeof($json->results) > 0){
+    //var_dump($json);
+    if(sizeof($json->results) > 0){
 	    //$res = $json->results[0]->geometry->location;
 		$res = $json->results[0];
-		$address = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
+		$address = array("street_number"=>"","street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
 		foreach($res->address_components as $itemAddress){
+			if(in_array("street_number",$itemAddress->types)) 
+				$address['street_number'] = $itemAddress->long_name;
 			if(in_array("route",$itemAddress->types) || in_array("transit_station",$itemAddress->types)) 
 				$address['street'] = $itemAddress->long_name;
 			if(in_array("sublocality",$itemAddress->types))
@@ -358,6 +359,10 @@ function getZipCodeFromParisArr($str){
 
 function indexForOntology($str)
 {            
+
+   $str = str_replace("&","&#x26;",$str); 
+   $str = str_replace("\"","&#x22;",$str); 
+   
    $search=array(
 	 "[é|É]",
 	 "[ê|Ê]",
@@ -380,7 +385,9 @@ function indexForOntology($str)
 	 "[ò|Ò|ø|Ø|ó|Ó|õ|Õ]",
 	 "[ÿ|ý|Ý]",
 	 "[ñ|Ñ]",
-	 "[Ð]");
+	 "[Ð]",
+	 "[\']"
+	 );
 
 	//replacement array
 	$replace=array(
@@ -405,7 +412,8 @@ function indexForOntology($str)
 		"o",
 		"y",
 		"n",
-		"d"
+		"d",
+		"&#x27;"
 	);
 
 	

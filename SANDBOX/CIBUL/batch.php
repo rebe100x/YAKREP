@@ -30,6 +30,8 @@ $licence = "CIBUL";
 $fileTitle = "Cibul Sitemap";
 $debug = 1;
 $row = 0;
+$access = 1;
+$user = 0;
 $updateFlag = empty($_GET['updateFlag'])?0:1;
 $results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
 
@@ -60,6 +62,7 @@ else {
 	}
 }
 
+echo "<hr />";
 /*
  * Xml parsing with simpleXml
  */
@@ -88,6 +91,8 @@ foreach ($urlset->url as $url) {
 			echo "<b>Api call unsuccessfull </b><br />";
 		}
 		else {
+			var_dump($result->data);
+
 			foreach ($result->data->locations as $location) {
 				$currentPlace = new Place();
 				$currentPlace->filesourceTitle = $fileTitle;
@@ -95,7 +100,6 @@ foreach ($urlset->url as $url) {
 				$currentPlace->outGoingLink = $location->slug;
 				$currentPlace->origin = $origin;
 				$currentPlace->licence = $licence;
-				$currentPlace->setZone("PARIS");
 				$currentPlace->formatted_address = $location->address;
 				$currentPlace->setLocation($location->latitude, $location->longitude);
 				$currentPlace->origin = $origin;
@@ -110,33 +114,71 @@ foreach ($urlset->url as $url) {
 					|| preg_match("/5310/i", $location->address)) {
 					$zone = 3;
 				}else{
-					echo "<br>".$location->address." <b>not in your zone -> skip it !</b> ";
+					echo $location->address." <b>not in your zone -> skipped.</b><br />";
 					$results['rejected'] ++;	
 					$results['row'] ++;	
 					continue;
 				}
 				
+				$currentPlace->zone = $zone;
+
 				if($debug)
-					echo  "<br>TRY TO INSERT : <b>".$currentPlace->title."</b>".$location->address." ==> Zone : ".$currentPlace->zone."<br>";
+					echo  "TRYING TO INSERT: <b>".$currentPlace->title."</b> ".$location->address." -> Zone : ".$currentPlace->zone."<br />";
 					
 				$cat = array("GEOLOCALISATION","GEOLOCALISATION#YAKDICO","CULTURE");
 				$currentPlace->setYakCat($cat);
 				
 				$res = $currentPlace->saveToMongoDB('', $debug,$updateFlag);
+
+				/* Info */
+				$info = new Info();
+				$info->title = $result->data->title->fr;
+
+				$info->content = $result->data->description->fr;
+				
+				// e.g: //cibul.s3.amazonaws.com/evtbevent_rencontre-avec-christophe-botti-auteur-de-th-tre_00.jpg
+				// $info->thumb = $result->data->imageThumb;
+				$info->origin = $origin;
+				$info->filesourceTitle = $fileTitle;
+				$info->access = $access;
+				$info->licence = $licence;
+				$info->pubDate = gmmktime();
+				// A recuperer de $result;
+				$info->dateEndPrint = gmmktime(0, 0, 0, 9, 1, 2013);
+				$info->heat = 1;
+				$cat = array("GEOLOCALISATION","GEOLOCALISATION#YAKDICO","CULTURE");
+				$info->setYakCat($cat);
+				$info->status = 1;
+				$info->print = 1;
+				$info->yakType = 2;
+				$info->zone = $zone;
+				$info->placeName = $currentPlace->title;
+				$info->address = $currentPlace->address;
+				
+				$res = $info->saveToMongoDB("", $debug, $updateFlag);
+				
+				/*
 				foreach ($res as $k=>$v) {
 					if(isset($v))
 						$results[$k]+=$v;
 				}
+				*/
 			}
+
+			/*
 			$results['parse'] ++;
+			*/
 		}
+		/*
 		$results['row'] ++;	
+		*/
 		$row++;
-		if($row >50)
+		if($row > 1)
 			break;
+		echo "<hr />";
 	}
 }
-prettyLog($results);
+//prettyLog($results);
 ?>
 </body>
 </html>

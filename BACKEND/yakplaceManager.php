@@ -945,6 +945,36 @@ $records[] = array(
 	
 );	
 
+
+$records[] = array(
+	"_id" => new MongoId("507eaca21d22b3954e0000e0"),
+	"title"=>"Montpellier",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.6107690,'lng'=>3.8767160),
+	"address" => array(
+				'street_number'=>'',
+				'street'=>'',
+				'arr'=>'',
+				'city'=>'Montpellier',
+				'state'=>'Hérault',
+				'area'=>'Languedoc-Roussillon',
+				'country'=>'France',
+				'zip'=>'34000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 2
+	
+);	
+
 $records[] = array(
 	"_id" => new MongoId("50517fe1fa9a95040b000007"),
 	"title"=>"Paris",
@@ -975,6 +1005,63 @@ $records[] = array(
 );	
 
 
+$records[] = array(
+	"_id" => new MongoId("507e814dfa9a95e00c000000"),
+	"title"=>"Namur",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>50.465317,'lng'=>4.867709),
+	"address" => array(
+				'street_number'=>'',
+				'street'=>'',
+				'arr'=>'',
+				'city'=>'Namur',
+				'state'=>'',
+				'area'=>'Région wallonne',
+				'country'=>'Belgique',
+				'zip'=>'',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 5
+	
+);	
+
+$records[] = array(
+	"_id" => new MongoId("507e9ce11d22b3944e00005a"),
+	"title"=>"Bruxelles",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>50.850337,'lng'=>4.351699),
+	"address" => array(
+				'street_number'=>'',
+				'street'=>'',
+				'arr'=>'',
+				'city'=>'Bruxelles',
+				'state'=>'',
+				'area'=>'Bruxelles-Capitale',
+				'country'=>'Belgique',
+				'zip'=>'',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 4
+	
+);	
 //$place->update(array("_id"=>"50517fe1fa9a95040b000007"),array('$pull'=>array('yakCat'=>1)));
 
 $records[] = array(
@@ -1328,6 +1415,8 @@ foreach($records as $record){
 echo "<br>".$row1." records added.";
 echo "<br>".$row2." records updated.";
        		
+$place->ensureIndex(array("location"=>"2d"));
+$place->ensureIndex(array("title"=>1,"content"=>1,"status"=>1,"zone"=>1));
 
 //$place->remove(array('title'=>new MongoRegex("/bois de Boulogne/i")));		
 //$place->remove(array('status'=>10));

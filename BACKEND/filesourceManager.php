@@ -16,6 +16,19 @@ $filesource = $db->filesource;
 $records = array();
 
 $records[] = array(
+	"_id" => new MongoId("507e74defa9a95f00c000027"),
+	"title"=>"Villes de Belgique",
+	"content" =>"",
+	"origin" => "Wikipedia - Yakwala",
+	"licence" => "Wikipedia - Yakwala",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"tag" => array(""),
+	"zone" => array(3,4,5,6),
+	);
+	
+$records[] = array(
+	"_id" => new MongoId("5078092e1d22b31a050000aa"),
 	"title"=>"Cibul Sitemap",
 	"content" =>"",
 	"origin" => "http://cibul.net/sitemap.xml",
@@ -27,6 +40,7 @@ $records[] = array(
 	);
 	
 $records[] = array(
+	"_id" => new MongoId("5078092e1d22b31a050000ae"),
 	"title"=>"Parcs et jardins de Paris",
 	"content" =>"",
 	"origin" => "operator",
@@ -38,6 +52,7 @@ $records[] = array(
 	);
 	
 $records[] = array(
+	"_id" => new MongoId("5078092e1d22b31a050000b2"),
 	"title"=>"Effectifs scolaires",
 	"content" =>"Cette donnée renseigne les effectifs scolaires pour les écoles maternelles et primaires de la commune de Montpellier. En plus des informations classiques comme le nom et l’adresse, pour chaque établissement le fichier renseigne le nombre d’enfants maximum, le nombre de classes et enfin le nombre de classes supplémentaires planifiées.",
 	"origin" => "http://opendata.montpelliernumerique.fr/Effectifs-scolaires",
@@ -50,6 +65,7 @@ $records[] = array(
 	);
 	
 $records[] = array(
+	"_id" => new MongoId("5078092e1d22b31a050000b6"),
 	"title"=>"Etablissements publics",
 	"content" =>"Ce jeu de données détient la liste de la majeure partie des établissements recevants du public dans la Ville de Montpellier. Par exemple, on y retrouve les hôpitaux, les maisons pour tous, les bibliothèques, etc. Cette données a été mise à jour en collaboration avec l’association Mandarine et la communauté OpenStreetMap.",
 	"origin" => "http://opendata.montpelliernumerique.fr/Etablissements-publics",
@@ -61,6 +77,7 @@ $records[] = array(
 	);	
 	
 $records[] = array(
+	"_id" => new MongoId("5078092e1d22b31a050000ba"),
 	"title"=>"Trafic annuel entrant par station",
 	"content" =>"Trafic annuel des stations du réseau ferré parisien, en terme de nombre de voyageurs entrants. Pour chaque station, les informations suivantes sont communiquées: - le trafic annuel 2011 des entrants directs uniquement - le classement par réseau (Métro et RER) de chaque gare et station - les lignes de correspondances RATP Métro et RER - La ville de rattachement et pour Paris, l'arrondissement (pour les stations à cheval sur plusieurs villes / arrondissements, c'est l'adresse postale de la station qui est retenue).",
 	"origin" => "http://www.data.gouv.fr/donnees/view/Trafic-annuel-entrant-par-station-564116",
@@ -72,6 +89,7 @@ $records[] = array(
 	);	
 	
 $records[] = array(
+	"_id" => new MongoId("5078092e1d22b31a050000be"),
 	"title"=>"Etablissements cinématographiques",
 	"content" =>"Liste des établissements cinématographiques en 2010 avec leur adresse. Données : région / ville /numéro d'autorisation / enseigne / adresse / adresse complémentaire / commune / code postal",
 	"origin" => "http://www.data.gouv.fr/donnees/view/Liste-des-établissements-cinématographiques-en-2010-avec-leur-adresse-30382098",
@@ -83,6 +101,7 @@ $records[] = array(
 	);	
 	
 $records[] = array(
+	"_id" => new MongoId("5078092e1d22b31a050000c2"),
 	"title"=>"Musées de France",
 	"content" =>"Liste des Musées de France.Libellés des colonnes : Régions ; Départements ; Fermé (oui si le musée est fermé) ; Annexe (si annexe au musée) ; Nom du musée ; Coordonnées postale (Adresse, Ville, CP) ; Siteweb ; périodes d'ouverture et de fermeture annuelle ; Jours nocturnes",
 	"origin" => "http://www.data.gouv.fr/donnees/view/Liste-des-Musées-de-France-30382165",
@@ -94,6 +113,7 @@ $records[] = array(
 	);	
 	
 $records[] = array(
+	"_id" => new MongoId("5078092e1d22b31a050000c6"),
 	"title"=>"Offres culturelles",
 	"content" =>"Liste des évènements culturels et des organismes producteurs d'événements en France et des grandes manifestations en France et à l'étranger. Liste des champs : Identifiant de l’organisme ; Nom de l’organisme ; Autre nom ; Type d’organisme ; Sous-type de l’organisme ; Adresse ; Nom du lieu ; Adresse ; Accès handicapés ; Classé au titre des Monuments historiques ; Date de classement du site ; Inscrit à l’inventaire supplémentaire des Monuments historiques ; Date d’inscription ; Elément classé ou inscrit ; Etendu de la protection ; Situé dans un espace protégé ; Intitulé de l’offre culturelle ; Nature de l’offre ; Liste des thèmes associés à l’offre ; Dates, horaires, conditions d’accès et lieu d’accueil de cette offre ;Liste des dates et tarifs de l’offre ;, date début ; date fin.",
 	"origin" => "http://www.data.gouv.fr/donnees/view/Agenda---Offres-culture-2011-30382214",
@@ -108,20 +128,28 @@ $records[] = array(
 
 
 
-
-$row = 0;	
+$row1 = 0;	
+$row2 = 0;	
 foreach($records as $record){
 	$res = $filesource->findOne(array('title'=>$record['title']));
 	if(empty($res)){
-		$row++;
+		$row1++;
 		$filesource->save($record);
-		$filesource->ensureIndex('title');
-		$filesource->ensureIndex('content');
-		$filesource->ensureIndex('tag');
-		echo $record['_id'].'<br>';                    
+		echo $record['title']." : ".$record['_id']."<br>";                    
+	}else{
+	echo $record['title'] .' is in db<br>';
+		if(!empty($record["_id"])){
+			$row2++;
+			$filesource->update(array("_id"=>$record["_id"]),$record);
+		}
+	
 	}
+	
 }
-echo "<br>".$row." records added.";          
-                                     
+
+echo "<br>".$row1." records added.";
+echo "<br>".$row2." records updated.";
+$filesource->ensureIndex(array('title'=>1,'content'=>1,'tag'=>1));
+
 
 ?>

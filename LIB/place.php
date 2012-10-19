@@ -90,7 +90,7 @@ require_once("conf.php");
  		$this->yakTag = array();
 		$this->yakCat = array();
 		$this->humanCat = array();
- 		$this->freeTag = '';
+ 		$this->freeTag = array();
  		$this->creationDate = time();
  		$this->lastModifDate = time();
  		$this->location = new Location();
@@ -381,8 +381,14 @@ require_once("conf.php");
 			case 'EGHEZEE':
 				$zone = 3;
 			break;
-			case 'OTHER':
+			case 'REGION DE BRUXELLES':
 				$zone = 4;
+			break;
+			case 'REGION WALLONNE':
+				$zone = 5;
+			break;
+			case 'REGION FLAMANDE':
+				$zone = 6;
 			break;
 			default:
 				$zone = 0;

@@ -35,7 +35,7 @@
  * 
  * */
 
-require_once("../LIB/library.php");
+
 require_once("../LIB/conf.php");
 $conf = new conf();
 
@@ -70,67 +70,162 @@ if(!empty($_GET['q'])){
 			$yakType =  1;
 			$yakCatName = array('Actualités');
 			$persistDays =  3;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
 		break;
         case 'telerama':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
 			$persistDays =  10;
-        break;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
+		break;
 		case 'concertandco':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture','Musique','Concert');
 			$persistDays =  7;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";			
+			$zone = 1;			
 		break;
         case 'expo-a-paris':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture','Exposition');
 			$persistDays =  7;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
+
 		break;
         case 'paris-bouge':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
 			$persistDays =  180;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
+			
 		break;
         case 'sortir-a-paris':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
 			$persistDays =  7;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
+			
 		break;
         case 'figaro-culture':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
 			$persistDays =  7;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
+			
 		break;
         case 'exponaute':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture','Exposition');
 			$persistDays =  14;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
+			
 		break;
         case 'agenda-culturel-75':
 			$yakType =  2; // agenda
 			$yakCatName = array('Actualités','Culture');
 			$persistDays =  14;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
+			
         break;
 		case 'france3-faitsdivers':
 			$yakType =  1; // actu
 			$yakCatName = array('Actualités');
 			$persistDays =  3;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
+			
         break;
 		case 'france3-faitsdivers':
 			$yakType =  1; // actu
 			$yakCatName = array('Actualités');
 			$persistDays =  3;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
         break;
 		case 'testfeed':
-			$yakType =  10; // actu
+			$yakType =  10; // Test
 			$yakCatName = array('Actualités');
 			$persistDays =  3;
+			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
+			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
+			$defaultPlaceName = "Paris";
+			$defaultCountryName = "France";
+			$zone = 1;
+        break;
+		case 'rtbf_namur':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;
+			$defaultGeoloc = array(50.4005010,5.1335125);  // CENTRE DE LA REGION 
+			$defaultPlaceId = '507e814dfa9a95e00c000000';  // NAMUR PLACE ID 
+			$defaultPlaceName = "Namur";
+			$defaultCountryName = "Belgique";
+			$zone = 5;
+        break;
+		case 'rtbf_bruxelles':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;
+			$defaultGeoloc = array(50.4005010,5.1335125);  // CENTRE DE LA REGION 
+			$defaultPlaceId = '507e9ce11d22b3944e00005a';  // BRUXELLES PLACE ID 
+			$defaultPlaceName = "Bruxelles";
+			$defaultCountryName = "Belgique";
+			$zone = 4;
+        break;
+		case 'zone2':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;
+			$defaultGeoloc = array(50.4005010,5.1335125);  
+			$defaultPlaceId = '507eaca21d22b3954e0000e0';  
+			$defaultPlaceName = "Montpellier";
+			$defaultCountryName = "France";
+			$zone = 2;
         break;
 	}
 	
-	$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
-	$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
-	$defaultPlaceName = "Paris";
+	
 	$geolocYakCatId = "504d89f4fa9a958808000001"; // GEOLOC : @TODO softcode this
 	
 	echo '<br> Default location of the feed : Paris';
@@ -330,7 +425,7 @@ if(!empty($_GET['q'])){
 				echo "<br>Location found by XL : ".$loc;
 				//check if in db
 				
-				$place = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>1));
+				$place = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>$zone));
 				//var_dump($place);
 				if($place && $flagForceUpdate != 1){ // FROM DB
 					echo "<br> Location found in DB !";
@@ -340,9 +435,9 @@ if(!empty($_GET['q'])){
 					$print = 1;
 					$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address']);	
 				 }else{    // FROM GMAP
-					echo "<br> Call to GMAP: ".$loc.', Paris, France';
+					echo "<br> Call to GMAP: ".$loc.', '.$defaultPlaceName.', '.$defaultCountryName;
 					$logCallToGMap++;
-					$resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($loc.', Paris, France'))),'PHP',1);
+					$resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($loc.', '.$defaultPlaceName.'. '.$defaultCountryName))),'PHP',1);
 					//$resGMap =  array(48.884134,2.351761);
 					//var_dump($resGMap);
 					echo '___<br>';
@@ -377,12 +472,12 @@ if(!empty($_GET['q'])){
 								"location" => array("lat"=>$geolocGMAP[0],"lng"=>$geolocGMAP[1]),
 								"status" => $status,
 								"user" => 0,
-								"zone"=> 1,
+								"zone"=> $zone,
 								"address" => $addressGMAP,
 							  );
 							  
 							  
-					$res = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>1));
+					$res = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>$zone));
 					//echo '---<br>';
 					//var_dump($res);
 					//echo '---<br>';
@@ -465,14 +560,14 @@ if(!empty($_GET['q'])){
 			$info['print'] = $print;
 			$info['status'] = $status;
 			$info['user'] = 0;
-			$info['zone'] = 1;
+			$info['zone'] = $zone;
 			$info['location'] = array("lat"=>$geolocItem['lat'],"lng"=>$geolocItem['lng']);
 			//$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
 			$info['address'] = $geolocItem['address'];
 			$info['placeId'] = new MongoId($geolocItem['_id']);
 			
 			// check if data is not in DB
-			$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>1));
+			$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$zone));
 			//var_dump($dataExists);
 			if(empty($dataExists)){
 				echo "<br> The info does not exist in DB, we insert it.";
@@ -557,6 +652,9 @@ $batchlogColl->save(
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=exponaute\"/>".$_SERVER['PHP_SELF']."?q=exponaute</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=agenda-culturel-75\"/>".$_SERVER['PHP_SELF']."?q=agenda-culturel-75</a>" ;
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=france3-faitsdivers\"/>".$_SERVER['PHP_SELF']."?q=france3-faitsdivers</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=rtbf_namur\"/>".$_SERVER['PHP_SELF']."?q=rtbf_namur</a>";
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=rtbf_bruxelles\"/>".$_SERVER['PHP_SELF']."?q=rtbf_bruxelles</a>";
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=zone2\"/>".$_SERVER['PHP_SELF']."?q=zone2</a>";
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=testfeed\"/>".$_SERVER['PHP_SELF']."?q=testfeed</a>" ;
     echo "<br>To print all text of the info add ti url : &showAllText=1";    
     

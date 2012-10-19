@@ -9,10 +9,10 @@ require_once("../LIB/conf.php");
 $conf = new conf();
 $m = new Mongo(); 
 $db = $m->selectDB($conf->db());
+
 $yakcat = $db->yakcat;
 
 $records = array();
-
 
 /*LEVEL 1*/
 
@@ -182,6 +182,21 @@ $records[] = array(
 	"status" => 1
 );
 
+$records[] = array(
+	"_id" => new MongoId("507e5a9a1d22b30c44000068"),
+	"title"=> "Ville",
+	"path" => "Géolocalisation, Ville",
+	"pathN" => "GEOLOCALISATION#VILLE",
+	"ancestors" => array("Géolocalisation"),
+	"parent" => "Géolocalisation",
+	"ancestorsId" => array(new MongoId("504d89f4fa9a958808000001")),
+	"parentId" => new MongoId("504d89f4fa9a958808000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 
 
 $records[] = array(

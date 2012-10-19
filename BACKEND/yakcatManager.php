@@ -6,7 +6,10 @@ ini_set('display_errors',1);
 
 require_once("../LIB/conf.php");
 
-$yakcat = $conf->db->yakcat;
+$conf = new conf();
+$m = new Mongo(); 
+$db = $m->selectDB($conf->db());
+$yakcat = $db->yakcat;
 
 $records = array();
 

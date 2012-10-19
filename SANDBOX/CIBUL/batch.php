@@ -13,6 +13,82 @@
 
 require_once("../../LIB/conf.php");
 
+function resizeImage($path, $cropWidth, $cropHeight)
+{
+	$filename = basename($path);
+	$info = pathinfo($filename);
+	$dirname = dirname($path);
+
+	switch (strtolower($info['extension']))
+	{
+		case 'jpg':
+		case 'jpeg':
+			$source = imagecreatefromjpeg($path);
+			break;
+		case 'png':
+			$source = imagecreatefrompng($path);
+			break;
+		case 'gif':
+			$source = imagecreatefromgif($path);
+			break;
+		default:
+			$source = false;
+			break;
+	}
+	if ($source)
+	{
+		list($width, $height) = getimagesize($path);
+
+		$a = $cropWidth/$cropHeight;
+		$b = $width/$height;
+
+		if(($a > $b))
+		{
+			$src_rect_width  = $a * $height;
+			$src_rect_height = $height;
+		}
+		else
+		{
+			$src_rect_height = $width/$a;
+			$src_rect_width  = $width;
+		}
+
+		$destination_thumb = imagecreatetruecolor($cropWidth, $cropHeight);
+		$src_rect_xoffset = ($width - $src_rect_width)/2;
+		$src_rect_yoffset = ($height - $src_rect_height)/2;
+
+		imagecopyresized($destination_thumb, $source, 0, 0, $src_rect_xoffset, $src_rect_yoffset, $cropWidth, $cropHeight, $src_rect_width, $src_rect_height);
+
+		$dir_for_thumbs = $dirname.'/resized';
+
+		if (!file_exists($dir_for_thumbs))
+			mkdir($dir_for_thumbs, 0755);
+
+		$path_thumb = $dir_for_thumbs.'/'.$filename;
+
+		switch (strtolower($info['extension']))
+		{
+			case 'jpg':
+			case 'jpeg':
+				imagejpeg($destination_thumb, $path_thumb, 100);
+				break;
+			case 'png':
+				imagepng($destination_thumb, $path_thumb, 100);
+				break;
+			case 'gif':
+				imagegif($destination_thumb, $path_thumb);
+				break;
+			default:
+				break;
+
+		}
+
+		// Destruction des objets temporaires
+		imagedestroy($destination_thumb);
+		imagedestroy($source);
+	}
+}
+
 /*
  * Variables
  */
@@ -33,7 +109,7 @@ $row = 0;
 $access = 1;
 $user = 0;
 $updateFlag = empty($_GET['updateFlag'])?0:1;
-$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
+$results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
 /*
  * sitemap.xml
@@ -73,7 +149,7 @@ foreach ($urlset->url as $url) {
 	if ($url->uid) {
 
 		if($debug)
-			echo "Call to cibul Api for Uid: ", $url->uid, "<br />";
+			echo "Call to cibul Api for Uid: ", $url->uid . "<br />";
 
 		$chuid = curl_init();
 
@@ -101,8 +177,11 @@ foreach ($urlset->url as $url) {
 				$currentPlace->origin = $origin;
 				$currentPlace->licence = $licence;
 				$currentPlace->formatted_address = $location->address;
+				var_dump($location->latitude);
+				
 				$currentPlace->setLocation($location->latitude, $location->longitude);
 				$currentPlace->origin = $origin;
+				
 				
 				if (preg_match("/paris/i", $location->address) 
 					|| preg_match("/75[0-9]{3}/i", $location->address) ) {
@@ -123,12 +202,19 @@ foreach ($urlset->url as $url) {
 				$currentPlace->zone = $zone;
 
 				if($debug)
-					echo  "TRYING TO INSERT: <b>".$currentPlace->title."</b> ".$location->address." -> Zone : ".$currentPlace->zone."<br />";
+					echo  "TRYING TO INSERT: <b>".$currentPlace->title."</b>: ".$location->address." -> Zone : ".$currentPlace->zone."<br />";
 					
 				$cat = array("GEOLOCALISATION","GEOLOCALISATION#YAKDICO","CULTURE");
 				$currentPlace->setYakCat($cat);
 				
 				$res = $currentPlace->saveToMongoDB('', $debug,$updateFlag);
+				
+				if($res['record']['_id'])
+					echo 'Place saved ID = '.$res['record']['_id']."<br />";
+				foreach ($res as $k=>$v) {
+					if(isset($v))
+						$results[$k]+=$v;
+				}
 
 				/* Info */
 				$info = new Info();
@@ -138,6 +224,37 @@ foreach ($urlset->url as $url) {
 				
 				// e.g: //cibul.s3.amazonaws.com/evtbevent_rencontre-avec-christophe-botti-auteur-de-th-tre_00.jpg
 				// $info->thumb = $result->data->imageThumb;
+
+				$fullPath = 'thumbs/'.basename($result->data->imageThumb);
+
+				if (file_exists($fullPath))
+				{
+					// A verifier si on garde la version deja existante ou si on met a jour
+					unlink($fullPath);
+				}
+				
+				$fp = fopen($fullPath, 'x');
+
+				$cleanUrl = ltrim($result->data->imageThumb, "/");
+
+				echo "Gettimg thumbnail from URL = ".$cleanUrl."<br />";
+
+				$ch = curl_init($cleanUrl);
+				curl_setopt($ch, CURLOPT_HEADER, 0);
+    			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+   				curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+				$rawdata = curl_exec($ch);
+				curl_close($ch);
+				fwrite($fp, $rawdata);
+				fclose($fp);
+
+				if (getimagesize($fullPath))
+					echo $fullPath . ' Downloaded OK<br />';
+				else
+					echo $fullPath . ' Download Failed<br />';
+
+				resizeImage($fullPath, 300, 300);
+
 				$info->origin = $origin;
 				$info->filesourceTitle = $fileTitle;
 				$info->access = $access;
@@ -155,30 +272,24 @@ foreach ($urlset->url as $url) {
 				$info->placeName = $currentPlace->title;
 				$info->address = $currentPlace->address;
 				
-				$res = $info->saveToMongoDB("", $debug, $updateFlag);
-				
-				/*
-				foreach ($res as $k=>$v) {
-					if(isset($v))
-						$results[$k]+=$v;
-				}
-				*/
+				$res = $info->saveToMongoDB('', $debug,$updateFlag);
 			}
 
-			/*
 			$results['parse'] ++;
-			*/
+			
 		}
-		/*
+		
 		$results['row'] ++;	
-		*/
+
 		$row++;
-		if($row > 1)
+		if($row > 2)
 			break;
 		echo "<hr />";
 	}
 }
-//prettyLog($results);
+
+$currentPlace->prettyLog($results);
+
 ?>
 </body>
 </html>

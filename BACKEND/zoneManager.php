@@ -14,7 +14,157 @@ $zone = $db->zone;
 
 $records = array();
 
+/*BANLIEUE PARIS*/
+$records[] = array(
+	"_id" => new MongoId("507ff2f6fa9a95e80c00048d"),
+	"name"=>"Val-d'Oise",
+	"location" => array('lat'=>49.06159010,'lng'=>2.15813510),
+	"num"=>13,
+	"formatted_address"=> "Val-d'Oise, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>"Val-d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'95000',
+			),
+	"box"=>array(
+			'tl'=>array('lat'=>49.2415040,'lng'=>1.60873310),
+			'br'=>array('lat'=>48.90867490,'lng'=>2.59497910),
+	),			
+	"status" => 1
+);
+$records[] = array(
+	"_id" => new MongoId("507fed53fa9a95e80c000483"),
+	"name"=>"Val-de-Marne",
+	"location" => array('lat'=>48.79314260,'lng'=>2.47403370),
+	"num"=>12,
+	"formatted_address"=> "Val-de-Marne, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Val-de-Marne',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'94000',
+			),
+	"box"=>array(
+			'tl'=>array('lat'=>48.8614840,'lng'=>2.30867590),
+			'br'=>array('lat'=>48.68764300000001,'lng'=>2.61564190),
+	),			
+	"status" => 1
+);
+$records[] = array(
+	"_id" => new MongoId("507fed53fa9a95e80c000481"),
+	"name"=>"Seine-Saint-Denis",
+	"location" => array('lat'=>48.91374550,'lng'=>2.48457290),
+	"num"=>11,
+	"formatted_address"=> "Seine-Saint-Denis, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Seine-Saint-Denis',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'93000',
+			),
+	"box"=>array(
+			'tl'=>array('lat'=>49.0123290,'lng'=>2.28831090),
+			'br'=>array('lat'=>48.8072480,'lng'=>2.60329190),
+	),			
+	"status" => 1
+);
 
+$records[] = array(
+	"_id" => new MongoId("507fed53fa9a95e80c000482"),
+	"name"=>"Hauts-de-Seine",
+	"location" => array('lat'=>48.8285080,'lng'=>2.21880680),
+	"num"=>10,
+	"formatted_address"=> "Hauts-de-Seine, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Hauts-de-Seine',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'92000',
+			),
+	"box"=>array(
+			'tl'=>array('lat'=>48.95096190,'lng'=>2.1457020),
+			'br'=>array('lat'=>48.7293510,'lng'=>2.3369410),
+	),			
+	"status" => 1
+);
+
+
+
+$records[] = array(
+	"_id" => new MongoId("507fed53fa9a95e80c000484"),
+	"name"=>"Essonne",	
+	"location" => array('lat'=>48.45856980,'lng'=>2.15694160),
+	"num"=>9,
+	"formatted_address"=> "Essonne, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Essonne',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'91000',
+			),
+	"box"=>array(
+			'tl'=>array('lat'=>48.77613190,'lng'=>1.91451310),
+			'br'=>array('lat'=>48.28455599999999,'lng'=>2.58563310),
+	),			
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("507fed53fa9a95e80c000485"),
+	"name"=>"Yvelines",
+	"location" => array('lat'=>48.78509390,'lng'=>1.82565720),
+	"num"=>8,
+	"formatted_address"=> "Yvelines, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Yvelines',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'78000',
+			),
+	"box"=>array(
+			'tl'=>array('lat'=>49.08544810,'lng'=>1.446170),
+			'br'=>array('lat'=>48.43855689999999,'lng'=>2.22912690),
+	),			
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("507fed53fa9a95e80c000486"),
+	"name"=>"Seine-et-Marne",
+	"location" => array('lat'=>48.8410820,'lng'=>2.9993660),
+	"num"=>7,
+	"formatted_address"=> "Seine-et-Marne, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Seine et Marne',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'77000',
+			),
+	"box"=>array(
+			'tl'=>array('lat'=>49.11789790,'lng'=>2.39232610),
+			'br'=>array('lat'=>48.12008110,'lng'=>3.55900690),
+	),			
+	"status" => 1
+);	
+
+
+
+/*BELGIQUE*/
 $records[] = array(
 	"_id" => new MongoId("507e6d6cfa9a95f00c000002"),
 	"name"=>"Région flamande",
@@ -151,9 +301,9 @@ foreach($records as $record){
 	if(empty($res)){
 		$row1++;
 		$zone->save($record);
-		echo $record['_id']."<br>";                    
+		echo $record['name']." : ".$record['_id']."<br>";                    
 	}else{
-		if($record["_id"]){
+		if(!empty($record["_id"])){
 			$row2++;
 			$zone->update(array("_id"=>$record["_id"]),$record);
 		}

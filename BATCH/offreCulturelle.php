@@ -19,7 +19,7 @@ require_once("../LIB/place.php");
 require_once("../LIB/library.php");
 
 ini_set('display_errors',1);
-$filenameInput = "./input/offreCulturelle.csv";
+$filenameInput = "./input/offreCulturelle_small.csv";
 $origin = "http://www.data.gouv.fr/donnees/view/Agenda---Offres-culture-2011-30382214";
 $fileTitle = "Offres culturelles";
 $licence = "Licence ouverte";

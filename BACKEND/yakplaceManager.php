@@ -14,6 +14,160 @@ $records = array();
 
 
 
+$records[] = array(
+	"_id" => new MongoId("50841e8c1d22b32a6100000a"),
+	"title"=>"Le Point éphémère",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("506479f54a53042191010000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.881608,'lng'=>2.368623),
+	"formatted_address"=> "206 Quai de Valmy, Paris, France",
+	"address" => array(
+				'street_number'=>'206',
+				'street'=>"Quai de Valmy",
+				'arr'=>'10ème',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75010',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+	
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("50841d901d22b30168000007"),
+	"title"=>"Galeries Lafayette",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.873441,'lng'=>2.332132),
+	"formatted_address"=> "40 Boulevard Haussmann, 75009 Paris, France",
+	"address" => array(
+				'street_number'=>'40',
+				'street'=>"Boulevard Haussmann",
+				'arr'=>'9th arrondissement of Paris',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75009',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+	
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("50813b26fa9a950c14000003"),
+	"title"=>"Essonne",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.45856980,'lng'=>2.15694160),
+	"formatted_address"=> "Essonne, 91000 France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Essonne',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'91000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+	
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("50813b26fa9a950c14000004"),
+	"title"=>"Yvelines",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.78509390,'lng'=>1.82565720),
+	"formatted_address"=> "Yvelines, 78000 France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Yvelines',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'78000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+	
+	
+);
+$records[] = array(
+	"_id" => new MongoId("50811ceffa9a95280f000037"),
+	"title"=>"Seine-et-Marne",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.8410820,'lng'=>2.9993660),
+	"formatted_address"=> "Seine-et-Marne, 77000 France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Seine-et-Marne',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'77000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+	
+	
+);
+
 
 $records[] = array(
 	"_id" => new MongoId("507d22471d22b30b44000016"),
@@ -955,7 +1109,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.6107690,'lng'=>3.8767160),
@@ -984,7 +1138,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>48.851875,'lng'=>2.356374),
@@ -1014,7 +1168,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>50.465317,'lng'=>4.867709),
@@ -1043,7 +1197,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>50.850337,'lng'=>4.351699),
@@ -1062,7 +1216,7 @@ $records[] = array(
 	"zone"=> 4
 	
 );	
-//$place->update(array("_id"=>"50517fe1fa9a95040b000007"),array('$pull'=>array('yakCat'=>1)));
+
 
 $records[] = array(
 	"_id" => new MongoId("5059750efa9a954014000058"),
@@ -1418,6 +1572,24 @@ echo "<br>".$row2." records updated.";
 $place->ensureIndex(array("location"=>"2d"));
 $place->ensureIndex(array("title"=>1,"content"=>1,"status"=>1,"zone"=>1));
 
+
+//$place->update(array("_id"=>"50517fe1fa9a95040b000007"),array('$pull'=>array('yakCat'=>1)));
+
 //$place->remove(array('title'=>new MongoRegex("/bois de Boulogne/i")));		
+
 //$place->remove(array('status'=>10));
+
+
+//$cursor = $place->find(array('filesourceId'=>new MongoId("507ff6e7fa9a95e80c000497")))->sort(array("creation"=>-1));
+//var_dump(iterator_to_array($cursor));
+/*
+foreach ($cursor as $doc) {
+    //echo $doc['creation']->sec;
+	echo date('d-m-Y',$doc['creationDate']->sec) .'  '.	$doc['title']." yakcat :".$doc['yakCat'][0]." -- ".$doc['yakCat'][1]."<br>";
+}*/
+
+//$res = $place->update(array('filesourceId'=>new MongoId("507ff6e7fa9a95e80c000497")),array('$set'=>array('yakCat'=>array(new MongoId("507e5a9a1d22b30c44000068"),new MongoId("504d89f4fa9a958808000001")))),array("multiple" => true));
+//$res = $place->update(array('filesourceId'=>new MongoId("507e74defa9a95f00c000027")),array('$set'=>array('yakCat'=>array(new MongoId("507e5a9a1d22b30c44000068"),new MongoId("504d89f4fa9a958808000001")))),array("multiple" => true));
+
+
 ?>

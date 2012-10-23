@@ -122,7 +122,7 @@ require_once("conf.php");
 	function getDuplicated($title,$zone){
 	
 			$theString2Search = StringUtil::accentToRegex($title);
-			$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>1);
+			$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'),'zone' => $zone,"status"=>1);
 			$doublon = $this->placeColl->findOne($rangeQuery);
 			
 			return $doublon;

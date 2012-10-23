@@ -6,7 +6,7 @@ ini_set('display_errors',1);
  * */
 function getApercite($link){
 	
-	$fullpath = "thumb/".md5($link).'.jpeg';
+	$fullpath = "thumb/".md5($link).'.jpg';
 	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;
 	$ch = curl_init ($img);
     curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -26,6 +26,134 @@ function getApercite($link){
 }
 
 
+function createImgThumb($link,$conf){
+
+	// get the file
+	$hash = md5($link);
+	echo $link;
+	$filePathDestOriginal = 'original/'.$hash.'.jpg';
+	$filePathDestThumb = 'thumb/'.$hash.'.jpg';
+	$filePathDestBig = 'big/'.$hash.'.jpg';
+	$ch = curl_init ($link);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+    $rawdata=curl_exec($ch);
+    curl_close ($ch);
+   
+	if(file_exists($filePathDestOriginal)){
+        @unlink($filePathDestOriginal);
+    }
+	$fp = fopen($filePathDestOriginal,'x');
+    fwrite($fp, $rawdata);
+    fclose($fp); 	
+	// create thumb and full size
+	$res1 = redimg(array(0=>array('W'=>120,'H'=>90)),$filePathDestThumb,$filePathDestOriginal,0);
+    $res2 = redimg(array(0=>array('W'=>512,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   
+
+	if($res1 && $res2)
+		$res = $hash.'.jpg';
+		
+    return $res;
+}
+
+
+  /*
+     * redim une img en plusieurs tailles
+     * filePathSrc : le path source : ../data/img.gif
+     * arrayDataOutput : array(array('W','H')) si un param est null, on redim avec l'autre en gardant le ratio, si les 2 sont fournis on force le ratio
+     * 
+     * */
+    function redimg($arrayDataOutput,$filePathDest,$filePathSrc,$flagClean=0){
+		
+        
+		foreach($arrayDataOutput as $row)
+        {
+			var_dump($row);
+			
+            if( file_exists($filePathSrc) ){
+                $data = file_get_contents($filePathSrc);
+                $im = imagecreatefromstring($data);
+				if($im){
+					if( file_exists($filePathDest) )
+						@unlink($filePathDest);
+				   
+				   $x = imagesx($im);
+				   $y = imagesy($im);
+					
+				   $ratioInput = ( $y>0 ) ? $x / $y : 1 ;
+				   
+				   if( $row['W'] == 0 && $row['H'] == 0 ){
+						$width = $x;
+						$height = $y;
+					}
+					else{
+						
+						if( $row['W'] > 0 && $row['H'] > 0){
+							$ratioOutput = $row['W'] /$row['H'];
+							
+							if ($ratioOutput > $ratioInput) {
+								$height = $row['H'];
+								$width = $ratioInput * $row['H'];
+							} else {
+								$height = $row['W'] / $ratioInput;
+								$width = $row['W'];
+							}
+						
+							if ($height > $row['H']) {
+								$height = $row['H'];
+							}
+							if ($width > $row['W']) {
+								$height = $row['W'];
+							}
+						
+						}else{
+						   $width = ( $row['W'] > 0 ) ? ($row['W']) : ($row['H'] * $ratioInput);
+						   $height = ( $row['H'] > 0 ) ? ($row['H']) : ($row['W'] / $ratioInput); 
+						}
+					}
+				  
+					if( $row['W'] > 0 && $row['H'] > 0)
+						$copyIm = ImageCreateTrueColor($row['W'],$row['H']);
+					else
+						 $copyIm = ImageCreateTrueColor($width,$height);
+						 
+					imagealphablending($copyIm, false);
+					imagesavealpha($copyIm, true);  
+					imagealphablending($im, true);
+					$transparent = imagecolorallocatealpha($copyIm, 255, 255, 255, 127);
+					if( $row['W'] > 0 && $row['H'] > 0)
+						imagefilledrectangle($copyIm, 0, 0, $row['W'],$row['H'], $transparent);
+					else
+						imagefilledrectangle($copyIm, 0, 0, $width, $height, $transparent);
+						
+					if( $row['W'] > 0 && $row['H'] > 0)
+						ImageCopyResampled($copyIm,$im,($row['W']-$width)/2, ($row['H']-$height)/2,0,0,$width,$height,$x,$y);
+					else
+						ImageCopyResampled($copyIm,$im,0,0,0,0,$width,$height,$x,$y);
+						
+						
+					imagejpeg($copyIm,$filePathDest,100);
+					chmod($filePathDest,0777);
+					$res = 1;
+				}else					
+					$res = 0;
+            }
+            else
+            {
+                $res = 0;
+            }
+            
+        }
+        
+        //on ne conserve pas l'original
+        if($flagClean == 1){
+            @unlink(filePathSrc); 
+            
+        }
+		return $res;
+    } 
+	
 /* call to gmap
  * retrun a php array(X,Y)
  * ready to go in mongo

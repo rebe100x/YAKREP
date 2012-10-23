@@ -223,12 +223,42 @@ if(!empty($_GET['q'])){
 			$defaultCountryName = "France";
 			$zone = 2;
         break;
+		case 'parisien77':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;			
+			$defaultGeoloc = array(48.8410820,2.9993660);  
+			$defaultPlaceId = '507eaca21d22b3954e0000e0';  
+			$defaultPlaceName = "Seine-et-Marne";
+			$defaultCountryName = "France";
+			$zone = 7;
+        break;
+		case 'parisien78':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;			
+			$defaultGeoloc = array(48.78509390,1.82565720);  
+			$defaultPlaceId = '50813b26fa9a950c14000004';  
+			$defaultPlaceName = "Yvelines";
+			$defaultCountryName = "France";
+			$zone = 7;
+        break;
+		case 'parisien91':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;			
+			$defaultGeoloc = array(48.45856980,2.15694160);  
+			$defaultPlaceId = '50813b26fa9a950c14000003';  
+			$defaultPlaceName = "Essonne";
+			$defaultCountryName = "France";
+			$zone = 7;
+        break;
 	}
 	
 	
 	$geolocYakCatId = "504d89f4fa9a958808000001"; // GEOLOC : @TODO softcode this
 	
-	echo '<br> Default location of the feed : Paris';
+	echo '<br> Default location of the feed :'.$defaultPlaceName;
 	$searchDate = date('Y/m/d',(mktime()-86400*$daysBack));
 	$url = "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$q."&of=json&b=0&hf=1000&s=document_item_date";
 	
@@ -262,6 +292,9 @@ if(!empty($_GET['q'])){
 		$yakdico = array();
 		$yakdicotitle = array();
 		$yakdicotext = array();
+		$ville = array();
+		$villetitle = array();
+		$villetext = array();
 		$locationTmp = array();
 		$geolocGMAP = array();
 		$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
@@ -294,6 +327,7 @@ if(!empty($_GET['q'])){
 		  echo "<br><b>Title XL : </b>".$titleXL."<br><b>Content : </b>".$content."<br><b>Content XL : </b>".$contentXL."<br><a target='_blank' href='".$outGoingLink."'>More</a><br> ";
 		}
 		
+		
 		// fetch annotations
 		//echo "<br><br>----annotations:<br>";
 		foreach($groups as $group){
@@ -301,6 +335,32 @@ if(!empty($_GET['q'])){
 			 foreach($group->categories as $category){
 				//var_dump($category);
 				 //echo '<br>'.$category->title;
+				 /*
+				 if($group->id == "villetitle"){
+					$flagIncluded = 0;
+					foreach($villetitle as $vl){
+					   if( preg_match("/".$vl."/",$category->title) > 0 || preg_match("/".$category->title."/",$vl) > 0)
+						   $flagIncluded++;
+					}
+					if($flagIncluded == 0)
+					   $villetitle[]= $category->title;
+				 }
+				 
+				 if($group->id == "villetext"){
+					$flagIncluded = 0;
+					foreach($villetext as $vl){
+					   if( preg_match("/".$vl."/",$category->title) > 0 || preg_match("/".$category->title."/",$vl) > 0)
+						   $flagIncluded++;
+					}
+					if($flagIncluded == 0)
+					   $villetext[]= $category->title;
+				 }
+				 
+				  if(empty($villetitle))
+					$ville = $villetext; 
+				 else
+					$ville = $villetitle; 
+			*/
 				 if($group->id == "adressetitle"){
 					$flagIncluded = 0;
 					foreach($adressetitle as $adr){
@@ -368,6 +428,16 @@ if(!empty($_GET['q'])){
 				 else
 					$yakdico = $yakdicotitle; 
 					
+				/*VILLE*/
+				 if($group->id == "villetitle")
+					   $villetitle = $category->title;
+				 if($group->id == "villetext")
+					   $villetext = $category->title;
+				 if(empty($villetitle))
+					$ville = $villetext; 
+				 else
+					$ville = $villetitle; 	
+				 	
 				 /*OTHER CAT*/   
 				 if($group->id == "Person_People")
 					   $freeTag[]= $category->title;
@@ -396,7 +466,7 @@ if(!empty($_GET['q'])){
 				if(is_array($yakdico))
 					foreach($yakdico as $dico)
 						$locationTmp[] = $dico;
-			else   
+				else   
 					$locationTmp[] = $yakdico;
 			}else{    
 				if(!empty($arrondissement)){
@@ -416,7 +486,13 @@ if(!empty($_GET['q'])){
 				}
 			}
 		}
-			 
+		
+		echo "VILLE<br>";
+		var_dump($ville);
+		// last step, if we didn't find anything, we take the town :
+		if(empty($locationTmp) && !empty($ville)){
+			$locationTmp[] = $ville;
+		}	
 		$placeArray = array();	 
 		// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
 		if(sizeof($locationTmp ) > 0){
@@ -474,6 +550,7 @@ if(!empty($_GET['q'])){
 								"user" => 0,
 								"zone"=> $zone,
 								"address" => $addressGMAP,
+								"formatted_address" => $formatted_addressGMAP,
 							  );
 							  
 							  
@@ -527,12 +604,40 @@ if(!empty($_GET['q'])){
 			$yakCatId[] = new MongoId($catId['_id']);
 		}
 	
+		
+	
+		// get image
+		$img = array();
+		$dom = new domDocument;
+		$dom->loadHTML($content);
+		$dom->preserveWhiteSpace = false;
+		$images = $dom->getElementsByTagName('img');
+		foreach ($images as $image) {
+		  $img[] =  $image->getAttribute('src');
+		}
+		if(sizeof($img) > 0){
+			
+			$res = createImgThumb($img[0],$conf);
+			echo $res.'<br>';
+			if($res == false)
+				$thumb = getApercite($outGoingLink);
+			else
+				$thumb = 'thumb/'.createImgThumb($img[0],$conf);
+			
+		}else
+			$thumb = getApercite($outGoingLink);
+		
+		$title = strip_tags($title);			
+		$content = strip_tags($content);
+		
+		
 		// NOTE:  WE INTRODUCE MULTIPLE INFO IF WE HAVE MULTIPLE LOCATIONS
 		$i = 0;
-		
 		//var_dump($placeArray);
-	
 		foreach($placeArray as $geolocItem){
+
+		
+			
 			
 			$datePubArray1 = explode(' ',$datePub);
 			$datePubArrayD = explode('/',$datePubArray1[0]);
@@ -544,7 +649,6 @@ if(!empty($_GET['q'])){
 			$info['title'] = $title;
 			$info['content'] = $content;
 			$info['outGoingLink'] = $outGoingLink;
-			$thumb = getApercite($outGoingLink);
 			$info['thumb'] = $thumb;
 			$info['origin'] = $q;
 			$info['access'] = 2;
@@ -593,6 +697,7 @@ if(!empty($_GET['q'])){
 				   
 				$infoColl->insert($info,array('fsync'=>true));
 				$infoColl->ensureIndex(array("location"=>"2d"));
+				$infoColl->ensureIndex(array("location"=>"2d","pubDate"=>-1,"yakType"=>1,"print"=>1,"status"=>1));
 				$logDataInserted++;    
 			}else{
 				if($flagForceUpdate == 1){
@@ -643,6 +748,9 @@ $batchlogColl->save(
 
     echo "no request<br>try this :";
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien75\"/>".$_SERVER['PHP_SELF']."?q=parisien75</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien77\"/>".$_SERVER['PHP_SELF']."?q=parisien77</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien78\"/>".$_SERVER['PHP_SELF']."?q=parisien78</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien91\"/>".$_SERVER['PHP_SELF']."?q=parisien91</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=concertandco\"/>".$_SERVER['PHP_SELF']."?q=concertandco</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=expo-a-paris\"/>".$_SERVER['PHP_SELF']."?q=expo-a-paris</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=telerama\"/>".$_SERVER['PHP_SELF']."?q=telerama</a>" ;

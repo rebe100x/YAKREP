@@ -42,7 +42,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$currentPlace->content = "Superficie ".$data[5]."km² <br>Population (2008):".$data[6]."<br>Densité hab./km²".$data[7]."<br>Sections:".$data[8];
 			$currentPlace->freeTag = array($data[2]);
 			// YakCat
-			$cat = array("GEOLOCALISATION#VILLE", "GEOLOCALISATION", "GEOLOCALISATION#YAKDICO");
+			$cat = array("GEOLOCALISATION#VILLE", "GEOLOCALISATION");
 			$currentPlace->setYakCat($cat);
 			
 			if (trim($data[0]) == "Région de Bruxelles")

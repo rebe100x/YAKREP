@@ -6,16 +6,13 @@ ini_set('display_errors',1);
 
 require_once("../LIB/conf.php");
 
-
-
-$records = array();
-
-
 $conf = new conf();
 $m = new Mongo(); 
 $db = $m->selectDB($conf->db());
 
 $yakcat = $db->yakcat;
+
+$records = array();
 
 /*LEVEL 1*/
 

@@ -144,16 +144,23 @@ require_once("conf.php");
 	{
 		//var_dump($this);
 		if( !empty($this->location->lat) && !empty($this->location->lng) ){
-			//print_r($this->location);
-			$theString2Search = StringUtil::accentToRegex($this->title);
-			$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
-			$doublon = $this->infoColl->findOne($rangeQuery);
-		}else
+				//print_r($this->location);
+			
+				$rangeQuery = array('title' => $this->title, "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
+				$doublon = $this->infoColl->findOne($rangeQuery);
+				if(empty($doublon)){
+					$theString2Search = StringUtil::accentToRegex($this->title);
+					$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
+					$doublon = $this->infoColl->findOne($rangeQuery);
+				}		
+			}else
 			$doublon = NULL;
 		
 		
-		
-		
+		echo '-------';
+		echo "<br>";
+		var_dump($rangeQuery);
+		var_dump($doublon);
 		return $doublon;
 	}
 

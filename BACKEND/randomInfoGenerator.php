@@ -174,7 +174,7 @@ $record = array(
 	"user" => 0,
 	"zone" => 1,
 	"location" => array('lat'=>$lat2,'lng'=>$lon2),
-	"address" => "parc des Expositions de la porte de Versailles", 
+	"address" => "", 
 	"placeId" => new MongoId("506a9e011d22b3457800001e"),
 
 );

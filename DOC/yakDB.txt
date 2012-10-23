@@ -17,6 +17,7 @@ INFO
 	creationDate : creation  in db (for debug)
 	lastModifDate : modfi in db ( for debug )
 	dateEndPrint : date max de print sur le front
+	eventDate : array('dateFrom'=>mongodate,'dateStart'=>mongodate,'hreventdate'=>'human readable date')
 	location[x,y]
 	status : flag for the workflow : 1: OK , 10 alert gmap not found
 	user : who created the info ( 0 for a batch )
@@ -50,6 +51,7 @@ array({
 	freeTag : array("tramway")
 	creationDate : 132154654,
 	lastModifDate : 132132165,
+	eventDate : array('dateFrom'=>new MongoDate(gmmktime(0.1.2.3.4.5.6)),'dateStart'=>new MongoDate(gmmktime(0.1.2.3.4.5.6)),'hreventdate'=>'le 2012-04-12, 17:30:00 - 19:30:00'),
 	location : [48.839032,2.268741]
 	status : 1,
 	user : 0,

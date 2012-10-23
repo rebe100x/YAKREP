@@ -98,8 +98,8 @@ $sitemap = "";
 $sitemapUrl = "http://cibul.net/sitemap.xml";
 $localSitemap = "./sitemap.xml";
 
-$cibulApiKey = "22640375947e8efe580bbe056e4c7b60";
 $cibulApiUrl = 'https://api.cibul.net/v1/events/';
+$cibulApiKey = "22640375947e8efe580bbe056e4c7b60";
 
 $origin = "Cibul.net";
 $licence = "CIBUL";
@@ -155,6 +155,8 @@ foreach ($urlset->url as $url) {
 
 		curl_setopt($chuid, CURLOPT_URL, $cibulApiUrl . $url->uid . "?key=" . $cibulApiKey);
 
+		echo "<br>".$cibulApiUrl . $url->uid . "?key=" . $cibulApiKey;
+		
 		curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
 

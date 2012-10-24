@@ -23,13 +23,15 @@ $results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'l
 
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
-    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+    while (($data = fgetcsv($handle, 10000, ";")) !== FALSE) {
        
 	   if($row  > 0){
 		
 			foreach ($data as $key => &$value) {
 				$value = trim($value);
 			}
+			
+			usleep(rand(rand(0,2),rand(3,11))*100);
 			
 			$currentPlace = new Place();
 

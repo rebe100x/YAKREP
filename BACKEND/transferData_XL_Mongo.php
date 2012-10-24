@@ -227,7 +227,7 @@ if(!empty($_GET['q'])){
 			$yakType =  1; // actu
 			$yakCatName = array('Actualités');
 			$persistDays =  3;			
-			$defaultGeoloc = array(48.8410820,2.9993660);  
+			$defaultGeoloc = array(48.841082,2.999366);  
 			$defaultPlaceId = '507eaca21d22b3954e0000e0';  
 			$defaultPlaceName = "Seine-et-Marne";
 			$defaultCountryName = "France";
@@ -237,11 +237,11 @@ if(!empty($_GET['q'])){
 			$yakType =  1; // actu
 			$yakCatName = array('Actualités');
 			$persistDays =  3;			
-			$defaultGeoloc = array(48.78509390,1.82565720);  
+			$defaultGeoloc = array(48.7850939,1.8256572);  
 			$defaultPlaceId = '50813b26fa9a950c14000004';  
 			$defaultPlaceName = "Yvelines";
 			$defaultCountryName = "France";
-			$zone = 7;
+			$zone = 8;
         break;
 		case 'parisien91':
 			$yakType =  1; // actu
@@ -251,8 +251,49 @@ if(!empty($_GET['q'])){
 			$defaultPlaceId = '50813b26fa9a950c14000003';  
 			$defaultPlaceName = "Essonne";
 			$defaultCountryName = "France";
-			$zone = 7;
+			$zone = 9;
         break;
+		case 'parisien92':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;			
+			$defaultGeoloc = array(48.828508,2.2188068);  
+			$defaultPlaceId = '5087def6fa9a951c0d000019';  
+			$defaultPlaceName = "Hauts-de-Seine";
+			$defaultCountryName = "France";
+			$zone = 11;
+        break;
+		case 'parisien93':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;			
+			$defaultGeoloc = array(48.9137455,2.4845729);  
+			$defaultPlaceId = '5087def6fa9a951c0d000018';  
+			$defaultPlaceName = "Seine-Saint-Denis";
+			$defaultCountryName = "France";
+			$zone = 12;
+        break;
+		case 'parisien94':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;			
+			$defaultGeoloc = array(48.7931426,2.4740337);  
+			$defaultPlaceId = '5087def6fa9a951c0d000017';  
+			$defaultPlaceName = "Val-de-Marne";
+			$defaultCountryName = "France";
+			$zone = 10;
+        break;
+		case 'parisien95':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;			
+			$defaultGeoloc = array(49.0615901,2.1581351);  
+			$defaultPlaceId = '5087def6fa9a951c0d000016';  
+			$defaultPlaceName = "Val-d'Oise";
+			$defaultCountryName = "France";
+			$zone = 13;
+        break;
+		
 	}
 	
 	
@@ -751,6 +792,10 @@ $batchlogColl->save(
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien77\"/>".$_SERVER['PHP_SELF']."?q=parisien77</a>" ;
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien78\"/>".$_SERVER['PHP_SELF']."?q=parisien78</a>" ;
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien91\"/>".$_SERVER['PHP_SELF']."?q=parisien91</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien92\"/>".$_SERVER['PHP_SELF']."?q=parisien92</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien93\"/>".$_SERVER['PHP_SELF']."?q=parisien93</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien94\"/>".$_SERVER['PHP_SELF']."?q=parisien94</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=parisien95\"/>".$_SERVER['PHP_SELF']."?q=parisien95</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=concertandco\"/>".$_SERVER['PHP_SELF']."?q=concertandco</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=expo-a-paris\"/>".$_SERVER['PHP_SELF']."?q=expo-a-paris</a>" ;
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=telerama\"/>".$_SERVER['PHP_SELF']."?q=telerama</a>" ;

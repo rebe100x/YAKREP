@@ -76,6 +76,132 @@ $records[] = array(
 	
 );
 
+
+$records[] = array(
+	"_id" => new MongoId("5087def6fa9a951c0d000016"),
+	"title"=>"Val-d'Oise",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>49.06159010,'lng'=>2.15813510),
+	"formatted_address"=> "Val-d'Oise, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'',
+				'state'=>"Val-d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'95000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 13,
+	
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("5087def6fa9a951c0d000017"),
+	"title"=>"Val-de-Marne",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.79314260,'lng'=>2.47403370),
+	"formatted_address"=> "Val-de-Marne, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Val-de-Marne',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'94000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 12,
+	
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("5087def6fa9a951c0d000018"),
+	"title"=>"Seine-Saint-Denis",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.91374550,'lng'=>2.48457290),
+	"formatted_address"=> "Seine-Saint-Denis, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Seine-Saint-Denis',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'93000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 11,
+	
+	
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("5087def6fa9a951c0d000019"),
+	"title"=>"Hauts-de-Seine",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.8285080,'lng'=>2.21880680),
+	"formatted_address"=> "Hauts-de-Seine, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'Hauts-de-Seine',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'92000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 10,
+	
+	
+);
+
 $records[] = array(
 	"_id" => new MongoId("50813b26fa9a950c14000003"),
 	"title"=>"Essonne",
@@ -102,7 +228,7 @@ $records[] = array(
 			),
 	"status" => 1,
 	"user" => 0, 
-	"zone"=> 1,
+	"zone"=> 9,
 	
 	
 );
@@ -133,7 +259,7 @@ $records[] = array(
 			),
 	"status" => 1,
 	"user" => 0, 
-	"zone"=> 1,
+	"zone"=> 8,
 	
 	
 );
@@ -163,7 +289,7 @@ $records[] = array(
 			),
 	"status" => 1,
 	"user" => 0, 
-	"zone"=> 1,
+	"zone"=> 7,
 	
 	
 );

@@ -8,7 +8,7 @@ ini_set('display_errors',1);
 
 
 $yakcats = array('ville'=>new MongoId("507e5a9a1d22b30c44000068"),'yakdico'=>new MongoId("5056b7aafa9a95180b000000"));
-$zones = array(1,2,3,4,5,6,7,8,9,1,11,12,13); 
+$zones = array(1,2,3,4,5,6,7,8,9,10,11,12,13); 
 
 
 $templateFile ='./input/ontologyTemplate.xml';

@@ -4,6 +4,20 @@ ini_set('display_errors',1);
 /* call to webservice to get and store a preview of the link 
  * return true if success
  * */
+function getTeleportImg($spec){
+	require_once('teleportd.class.php');
+	$apiKey = "2a4f8afd5f3a95d73a53a9076910dba4";
+	$tl = new Teleportd($apiKey);
+	$fullpath = "thumb/".md5(mktime()).'.jpg';
+	$json= $tl->search($spec);
+
+    return $json;
+}
+
+
+/* call to webservice to get and store a preview of the link 
+ * return true if success
+ * */
 function getApercite($link){
 	
 	$fullpath = "thumb/".md5($link).'.jpg';

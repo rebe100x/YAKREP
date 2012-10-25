@@ -109,8 +109,37 @@ $records[]= array(
 	"status" => 1
 );
 
+$records[]= array(
+	"_id" => new MongoId("50896423fa9a954c01000000"),
+	"title"=> "Restaurant",
+	"path" => "Restaurant",
+	"pathN" => "RESTAURANT",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
 /*LEVEL 2*/
 
+
+$records[]= array(
+	"_id" => new MongoId("50895efefa9a95dc07000000"),
+	"title"=> "Aéroport",
+	"path" => "Transport, Aéroport",
+	"pathN" => "TRANSPORT#AEROPORT",
+	"ancestors" => array("Transport"),
+	"parent" => "Transport",
+	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),
+	"parentId" => new MongoId("5077ebb1fa9a95600d0001dc"),
+	"tag" => array(""),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 
 $records[]= array(
 	"_id" => new MongoId("50535d5bfa9a95ac0d0000b6"),
@@ -215,6 +244,21 @@ $records[] = array(
 	"status" => 1
 );
 
+$records[] = array(
+	"_id" => new MongoId("50896395fa9a950007000000"),
+	"title"=> "Lycée",
+	"path" => "Education, Lycée",
+	"pathN" => "EDUCATION#LYCEE",
+	"ancestors" => array("Education"),
+	"parent" => "Education",
+	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211")),
+	"parentId" => new MongoId("504dbb06fa9a95680b000211"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 
 
 
@@ -586,7 +630,7 @@ foreach($records as $record){
 	if(empty($res)){
 		$row1++;
 		$yakcat->save($record);
-		echo $record['_id']."<br>";                    
+		echo $record['title']. ' : ' .$record['_id']."<br>";                    
 	}else{
 		if($record["_id"]){
 			$row2++;
@@ -602,7 +646,9 @@ echo "<br>".$row2." updated added.";
 echo "<br><hr><br>";
 
 getChilYakcat($yakcat);
-                
+            
+$yakcat->ensureIndex(array("title"=>1));
+			
 function getChilYakcat($yakcat,$id='',$level=1){
 	
 	if($level < 5){

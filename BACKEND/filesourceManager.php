@@ -162,6 +162,6 @@ foreach($records as $record){
 echo "<br>".$row1." records added.";
 echo "<br>".$row2." records updated.";
 $filesource->ensureIndex(array('title'=>1,'content'=>1,'tag'=>1));
-
+$filesource->ensureIndex(array("title"=>1));
 
 ?>

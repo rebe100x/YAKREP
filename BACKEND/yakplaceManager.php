@@ -14,6 +14,197 @@ $records = array();
 
 
 
+
+$records[] = array(
+	"_id" => new MongoId("50896788fa9a954c01000005"),
+	"title"=>"le vieux Garges",
+	"content" =>"Quartier de Garges-lès-Gonesse",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.971795,'lng'=>2.399329),
+	"formatted_address"=> "95140 Garges-lès-Gonesse, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Garges-lès-Gonesse',
+				'state'=>"Val d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'95140',
+			),			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 13,
+	
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("5089648bfa9a954c01000002"),
+	"title"=>"Buffalo Grill",
+	"content" =>"Chaine de restaurants de viande grillée",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>49.020601,'lng'=>2.466612),
+	"formatted_address"=> "6 rue Léonard de Vinci, rue Joseph Cugnot, 95190 Goussainville, France",
+	"address" => array(
+				'street_number'=>'6',
+				'street'=>"rue Léonard de Vinci",
+				'arr'=>'',
+				'city'=>'Goussainville',
+				'state'=>"Val d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'95190',
+			),			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 13,
+	
+	
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("508962b1fa9a95980b000000"),
+	"title"=>"lycée Georges-Braque",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896395fa9a950007000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.950493,'lng'=>2.250671),
+	"formatted_address"=> "21 Rue Victor Puiseux, 95100 Argenteuil, France",
+	"address" => array(
+				'street_number'=>'21',
+				'street'=>"Rue Victor Puiseux",
+				'arr'=>'',
+				'city'=>'Argenteuil',
+				'state'=>"Val d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'95100',
+			),			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 13,
+	
+	
+);
+
+
+
+$records[] = array(
+	"_id" => new MongoId("50896788fa9a954c01000006"),
+	"title"=>"Aéroport du Bourget",
+	"content" =>"Aéroport de Paris - Le Bourget",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50895efefa9a95dc07000000"),new MongoId("5077ebb1fa9a95600d0001dc")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.964329,'lng'=>2.439969),
+	"formatted_address"=> "Aéroport de Paris - Le Bourget, Bonneuil-en-France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Le Bourget',
+				'state'=>'Seine-Saint-Denis',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'93350',
+			),			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 12,
+	
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("508960e4fa9a95dc07000002"),
+	"title"=>"Aéroport d'Orly",
+	"content" =>"Aéroport de Paris - Orly",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50895efefa9a95dc07000000"),new MongoId("5077ebb1fa9a95600d0001dc")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.728398,'lng'=>2.36694),
+	"formatted_address"=> "Aéroport de Paris - Orly, Essonne, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Orly',
+				'state'=>'Essone',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'94396',
+			),			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 9,
+	
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("508960e4fa9a95dc07000003"),
+	"title"=>"Roissy",
+	"content" =>"Aéroport de Paris - Roissy , Aéroport Charles-de-Gaulle",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50895efefa9a95dc07000000"),new MongoId("5077ebb1fa9a95600d0001dc")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>49.009726,'lng'=>2.547772),
+	"formatted_address"=> "Aéroport Charles-de-Gaulle, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Roissy-en-France',
+				'state'=>"Val d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>' 95700',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 13,
+	
+	
+);
+
+
 $records[] = array(
 	"_id" => new MongoId("50841e8c1d22b32a6100000a"),
 	"title"=>"Le Point éphémère",
@@ -1705,6 +1896,8 @@ $place->ensureIndex(array("title"=>1,"content"=>1,"status"=>1,"zone"=>1));
 
 //$place->remove(array('status'=>10));
 
+//$place->remove(array('filesourceId'=>new MongoId("507ff6e7fa9a95e80c000497")));
+
 
 //$cursor = $place->find(array('filesourceId'=>new MongoId("507ff6e7fa9a95e80c000497")))->sort(array("creation"=>-1));
 //var_dump(iterator_to_array($cursor));
@@ -1718,4 +1911,15 @@ foreach ($cursor as $doc) {
 //$res = $place->update(array('filesourceId'=>new MongoId("507e74defa9a95f00c000027")),array('$set'=>array('yakCat'=>array(new MongoId("507e5a9a1d22b30c44000068"),new MongoId("504d89f4fa9a958808000001")))),array("multiple" => true));
 
 
+/*
+$place->update(array("zone"=>30,"filesourceId"=>new MongoId("507ff6e7fa9a95e80c000497")),array('$set'=>array('zone'=>11)),array('multiple'=>true));
+
+$cursor = $place->find(array("zone"=>10,'filesourceId'=>new MongoId("507ff6e7fa9a95e80c000497")));
+//var_dump(iterator_to_array($cursor));
+
+foreach ($cursor as $doc) {
+    //echo $doc['creation']->sec;
+	echo date('d-m-Y',$doc['creationDate']->sec) .'  '.	$doc['title']." yakcat :".$doc['yakCat'][0]." -- <br>";
+}
+*/
 ?>

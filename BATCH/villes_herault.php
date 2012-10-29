@@ -4,14 +4,14 @@
 		content="text/html;charset=utf-8" />
 
 <?php
-/* batch to parse ville d'ILE DE FRANCE
+/* batch to parse ville de l'HERAULT ( zone2 MOntpellier )
  * */
 
 include_once "../LIB/conf.php";
 ini_set('display_errors',1);
-$filenameInput = "./input/villes-idf_small.csv";
+$filenameInput = "./input/villes-herault.csv";
 $origin = "Wikipedia Yakwala";
-$fileTitle = "Villes d'Ile-de-France";
+$fileTitle = "Villes de l'Hérault";
 $licence = "Yakwala";
 $debug = 1;
 			
@@ -42,34 +42,13 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 			$currentPlace->origin = $origin;
 			$currentPlace->filesourceTitle = $fileTitle;
 			$currentPlace->licence = $licence;
-			$content = (!empty($data[5]))?"Superficie ".$data[4]."km² <br>":"";
-			$content .= (!empty($data[5]))?"Population :".$data[5]."<br>":"";
-			$content .= (!empty($data[6]))?"Densité : ".$data[6]."hab./km²<br>":"";
-			$currentPlace->content = $content;
+		
 			
 			// YakCat
 			$cat = array("GEOLOCALISATION#VILLE", "GEOLOCALISATION");
 			$currentPlace->setYakCat($cat);
+			$zone = 2;
 			
-			if (trim($data[0]) == "77")
-				$zone = 7;
-			elseif (trim($data[0]) == "78")
-				$zone = 8;
-			elseif (trim($data[0]) == "91")
-				$zone = 9;
-			elseif (trim($data[0]) == "92")
-				$zone = 11;//10
-			elseif (trim($data[0]) == "93")
-				$zone = 12;//11
-			elseif (trim($data[0]) == "94")
-				$zone = 10;//12
-			elseif (trim($data[0]) == "95")
-				$zone = 13;
-			else{
-				$results['rejected'] ++;	
-				$results['row'] ++;	
-				continue;
-			}
 			
 			$currentPlace->zone = $zone;
 			print "<br><b>$currentPlace->title</b>";

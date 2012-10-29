@@ -203,6 +203,16 @@ if(!empty($_GET['q'])){
 			$defaultCountryName = "Belgique";
 			$zone = 5;
         break;
+		case 'sudinfo_namur':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités');
+			$persistDays =  3;
+			$defaultGeoloc = array(50.4005010,5.1335125);  // CENTRE DE LA REGION 
+			$defaultPlaceId = '507e814dfa9a95e00c000000';  // NAMUR PLACE ID 
+			$defaultPlaceName = "Namur";
+			$defaultCountryName = "Belgique";
+			$zone = 5;
+        break;
 		case 'rtbf_bruxelles':
 			$yakType =  1; // actu
 			$yakCatName = array('Actualités');
@@ -806,6 +816,7 @@ $batchlogColl->save(
     echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=agenda-culturel-75\"/>".$_SERVER['PHP_SELF']."?q=agenda-culturel-75</a>" ;
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=france3-faitsdivers\"/>".$_SERVER['PHP_SELF']."?q=france3-faitsdivers</a>" ;
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=rtbf_namur\"/>".$_SERVER['PHP_SELF']."?q=rtbf_namur</a>";
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=sudinfo_namur\"/>".$_SERVER['PHP_SELF']."?q=sudinfo_namur</a>";
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=rtbf_bruxelles\"/>".$_SERVER['PHP_SELF']."?q=rtbf_bruxelles</a>";
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=zone2\"/>".$_SERVER['PHP_SELF']."?q=zone2</a>";
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=testfeed\"/>".$_SERVER['PHP_SELF']."?q=testfeed</a>" ;

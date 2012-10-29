@@ -1455,7 +1455,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")), // ATTENTION NOT IN YAKCAT VILLE : TOO BIG
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>48.851875,'lng'=>2.356374),
@@ -1485,7 +1485,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")), 
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>50.465317,'lng'=>4.867709),

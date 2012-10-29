@@ -122,7 +122,7 @@ require_once("conf.php");
 		$this->humanCat = array();
 		$this->yakTag = array();
 		$this->yakCat = array();
-		$this->freeTag = '';
+		$this->freeTag = array();
 		$this->pubDate = '';
 		$this->creationDate = time();
 		$this->lastModifDate = time();
@@ -153,14 +153,17 @@ require_once("conf.php");
 					$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
 					$doublon = $this->infoColl->findOne($rangeQuery);
 				}		
-			}else
+			}
+		else
 			$doublon = NULL;
-		
 		
 		echo '-------';
 		echo "<br>";
-		var_dump($rangeQuery);
-		var_dump($doublon);
+
+		if (isset($rangeQuery))
+			var_dump($rangeQuery);
+		if ($doublon)
+			var_dump($doublon);
 		return $doublon;
 	}
 
@@ -399,6 +402,24 @@ require_once("conf.php");
 		return $resPlace;
 	}
 
+ 	/* Add yakCat to the info
+ 	** Input parameter : an array with yakCat to add (no accent, upper case)
+ 	** example : Array('CULTURE#CINEMA','#SPORT#PETANQUE');
+ 	*/
+ 	public function setYakCat ($catPathArray) {
+ 		
+		//var_dump($this);
+ 		$yakCatArray = iterator_to_array($this->yakCatColl->find());
+ 		foreach ($catPathArray as $catPath) {
+ 			foreach ($yakCatArray as $cat) {
+ 				if ( $cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) 
+					|| "#".$cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) ) {
+ 					$this->yakCat[] = $cat['_id'];
+ 					$this->humanCat[] = $cat['title'];
+ 				}
+ 			}
+ 		}
+ 	}
 	
 	/* move slightly an info to avoid superposition
 	* 

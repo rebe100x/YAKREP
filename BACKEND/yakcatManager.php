@@ -17,6 +17,18 @@ $records = array();
 /*LEVEL 1*/
 
 $records[] = array(
+	"_id" => new MongoId("508fc6ebfa9a95680b000029"),
+	"title"=> "Immobilier",
+	"path" => "IMMOBILIER",
+	"pathN" => "IMMOBILIER",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
 	"_id" => new MongoId("5077ec30fa9a95000f000028"),
 	"title"=> "Statistiques",
 	"path" => "STATISTIQUES",
@@ -227,6 +239,21 @@ $records[] = array(
 	"status" => 1
 );
 
+$records[] = array(
+	"_id" => new MongoId("50900846fa9a958c09000000"),
+	"title"=> "Rue",
+	"path" => "Géolocalisation, Rue",
+	"pathN" => "GEOLOCALISATION#RUE",
+	"ancestors" => array("Géolocalisation"),
+	"parent" => "Géolocalisation",
+	"ancestorsId" => array(new MongoId("504d89f4fa9a958808000001")),
+	"parentId" => new MongoId("504d89f4fa9a958808000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 
 $records[] = array(
 	"_id" => new MongoId("5056b89bfa9a95180b000001"),

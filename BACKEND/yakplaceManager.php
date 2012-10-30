@@ -1911,15 +1911,18 @@ foreach ($cursor as $doc) {
 //$res = $place->update(array('filesourceId'=>new MongoId("507e74defa9a95f00c000027")),array('$set'=>array('yakCat'=>array(new MongoId("507e5a9a1d22b30c44000068"),new MongoId("504d89f4fa9a958808000001")))),array("multiple" => true));
 
 
-/*
-$place->update(array("zone"=>30,"filesourceId"=>new MongoId("507ff6e7fa9a95e80c000497")),array('$set'=>array('zone'=>11)),array('multiple'=>true));
 
-$cursor = $place->find(array("zone"=>10,'filesourceId'=>new MongoId("507ff6e7fa9a95e80c000497")));
+//$place->update(array("zone"=>30,"filesourceId"=>new MongoId("507ff6e7fa9a95e80c000497")),array('$set'=>array('zone'=>11)),array('multiple'=>true));
+
+/*
+$cursor = $place->find(array('origin'=>new MongoRegex("/http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47")));		
 //var_dump(iterator_to_array($cursor));
 
 foreach ($cursor as $doc) {
     //echo $doc['creation']->sec;
 	echo date('d-m-Y',$doc['creationDate']->sec) .'  '.	$doc['title']." yakcat :".$doc['yakCat'][0]." -- <br>";
 }
+
+$place->remove(array('origin'=>new MongoRegex("/http://opendata.paris.fr/opendata/jsp/site/Portal.jsp?document_id=47")));	
 */
 ?>

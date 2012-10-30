@@ -16,6 +16,18 @@ $filesource = $db->filesource;
 $records = array();
 
 $records[] = array(
+	"_id" => new MongoId("508fc3b6fa9a95680b000000"),
+	"title"=>"rues de Paris",
+	"content" =>"",
+	"origin" => "Yakwala",
+	"licence" => "Yakwala",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"tag" => array(""),
+	"zone" => array(1),
+	);
+	
+$records[] = array(
 	"_id" => new MongoId("508e7eb0fa9a954c0900006c"),
 	"title"=>"Villes de l'Hérault",
 	"content" =>"",

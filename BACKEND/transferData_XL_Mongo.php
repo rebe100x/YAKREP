@@ -301,7 +301,29 @@ if(!empty($_GET['q'])){
 			$defaultPlaceId = '5087def6fa9a951c0d000016';  
 			$defaultPlaceName = "Val-d'Oise";
 			$defaultCountryName = "France";
-			$zone = 13;
+			$zone = 13;		
+        break;
+		case 'century_75014':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités','Immobilier');
+			$persistDays =  3;			
+			$defaultGeoloc = array(0,0);  
+			$defaultPlaceId = '';  
+			$defaultPlaceName = "";
+			$defaultCountryName = "";
+			$zone = 1;		
+			$daysBack = 50;
+        break;
+		case 'rebe100x':
+			$yakType =  1; // actu
+			$yakCatName = array('Actualités','Immobilier');
+			$persistDays =  3;			
+			$defaultGeoloc = array(0,0);  
+			$defaultPlaceId = '';  
+			$defaultPlaceName = "";
+			$defaultCountryName = "";
+			$zone = 1;		
+			$daysBack = 5;
         break;
 		
 	}
@@ -372,6 +394,10 @@ if(!empty($_GET['q'])){
 			
 			  
 		}
+		// clean :
+		$content = (!empty($content))?strip_tags($content):"";
+		$title = strip_tags(trim($title));			
+		
 		echo "<br><b>".$title."</b> ( ".$datePub." )<br>";
 		
 		if($flagShowAllText == 1){
@@ -629,7 +655,7 @@ if(!empty($_GET['q'])){
 		
 			
 		}else{
-			if(sizeof($adresse)==0 && sizeof($yakdico)==0 && sizeof($arrondissement)==0 && sizeof($quartier)==0){
+			if(sizeof($ville)==0 && sizeof($adresse)==0 && sizeof($yakdico)==0 && sizeof($arrondissement)==0 && sizeof($quartier)==0){
 				//echo "No interesting location detected by Exalead. The info is not transfered to Mongo.";
 				// here we can choose to add the info in the db for the fils d'actu...
 				echo "No interesting location detected by Exalead. The info is transfered to Mongo with the feed's default location and the print flag to 0.";
@@ -658,107 +684,117 @@ if(!empty($_GET['q'])){
 		
 	
 		// get image
-		$img = array();
-		$dom = new domDocument;
-		$dom->loadHTML($content);
-		$dom->preserveWhiteSpace = false;
-		$images = $dom->getElementsByTagName('img');
-		foreach ($images as $image) {
-		  $img[] =  $image->getAttribute('src');
-		}
-		if(sizeof($img) > 0){
-			
-			$res = createImgThumb($img[0],$conf);
-			echo $res.'<br>';
-			if($res == false)
+		if(!empty($content)){
+			$img = array();
+			$dom = new domDocument;
+			$dom->loadHTML($content);
+			$dom->preserveWhiteSpace = false;
+			$images = $dom->getElementsByTagName('img');
+			foreach ($images as $image) {
+			  $img[] =  $image->getAttribute('src');
+			}
+			if(sizeof($img) > 0){
+				
+				$res = createImgThumb($img[0],$conf);
+				echo $res.'<br>';
+				if($res == false)
+					$thumb = getApercite($outGoingLink);
+				else
+					$thumb = 'thumb/'.createImgThumb($img[0],$conf);
+				
+			}else
 				$thumb = getApercite($outGoingLink);
-			else
-				$thumb = 'thumb/'.createImgThumb($img[0],$conf);
-			
+		}elseif(!empty($title)){
+			$pattern = "/((http|https|ftp)\:\/\/)?[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?\/([a-zA-Z0-9\-\.\?_&amp;%\$#\=~\/\'\,])*/";
+			preg_match($pattern, $title,$urls);
+			echo "<br>URL".$urls;
+			if(sizeof($urls) > 0)
+				$thumb = getApercite($urls[0]);
 		}else
-			$thumb = getApercite($outGoingLink);
+			$thumb = getApercite($outGoingLink);		
 		
-		$title = strip_tags($title);			
-		$content = strip_tags($content);
+		
 		
 		
 		// NOTE:  WE INTRODUCE MULTIPLE INFO IF WE HAVE MULTIPLE LOCATIONS
 		$i = 0;
 		//var_dump($placeArray);
 		foreach($placeArray as $geolocItem){
-
-		
 			
 			
-			$datePubArray1 = explode(' ',$datePub);
-			$datePubArrayD = explode('/',$datePubArray1[0]);
-			$datePubArrayT = explode(':',$datePubArray1[1]);
-			
-			$tsPub = gmmktime($datePubArrayT[0],$datePubArrayT[1],$datePubArrayT[2],$datePubArrayD[0],$datePubArrayD[1],$datePubArrayD[2]);
-			echo "<br>time: ".$datePubArrayT[0]."-".$datePubArrayT[1]."-".$datePubArrayT[2]."-".$datePubArrayD[0]."-".$datePubArrayD[1]."-".$datePubArrayD[2];
-			$info = array();
-			$info['title'] = $title;
-			$info['content'] = $content;
-			$info['outGoingLink'] = $outGoingLink;
-			$info['thumb'] = $thumb;
-			$info['origin'] = $q;
-			$info['access'] = 2;
-			$info['licence'] = "reserved";
-			$info['heat'] = "80";
-			$info['yakCat'] = $yakCatId;
-			$info['yakType'] = $yakType; // actu
-			$info['freeTag'] = $freeTag;
-			$info['pubDate'] = new MongoDate($tsPub);
-			$info['creationDate'] = new MongoDate(gmmktime());
-			$info['lastModifDate'] = new MongoDate(gmmktime());
-			$info['dateEndPrint'] = new MongoDate(gmmktime()+$persistDays*86400); // 
-			$info['print'] = $print;
-			$info['status'] = $status;
-			$info['user'] = 0;
-			$info['zone'] = $zone;
-			$info['location'] = array("lat"=>$geolocItem['lat'],"lng"=>$geolocItem['lng']);
-			//$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
-			$info['address'] = $geolocItem['address'];
-			$info['placeId'] = new MongoId($geolocItem['_id']);
-			
-			// check if data is not in DB
-			$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$zone));
-			//var_dump($dataExists);
-			if(empty($dataExists)){
-				echo "<br> The info does not exist in DB, we insert it.";
-				// we check if there is another info printed at this point :
-				$dataCount = 0;
-				// here we take only 30 days of max history
-				$dataCount = $infoColl->count(array(
-													"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),
-													"pubDate"=>array('$gte'=>new MongoDate(gmmktime()-86400*30)),
-													"print"=>1,
-													"status"=>1	
-													)
-											); 
-				//$dataDebug = $infoColl->find(array("location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035)));
-				//var_dump(iterator_to_array($dataDebug));
+			if(!empty($title) &&!empty($geolocItem['lat']) && !empty($geolocItem['lng'])){
 				
-				//echo $dataCount.'azerty<br>';  
-				// if more than one info on the same location
-				if($dataCount > 0 && $print ==  1){
-					$lepas = ceil($dataCount/12);
-					$info['location'] = array("lat"=>(0.000015*sin(3.1415*$dataCount/6)+$geolocItem['lat']),"lng"=>(0.00002*cos(3.1415*$dataCount/6)+$geolocItem['lng']));
+				
+				$datePubArray1 = explode(' ',$datePub);
+				$datePubArrayD = explode('/',$datePubArray1[0]);
+				$datePubArrayT = explode(':',$datePubArray1[1]);
+				
+				$tsPub = gmmktime($datePubArrayT[0],$datePubArrayT[1],$datePubArrayT[2],$datePubArrayD[0],$datePubArrayD[1],$datePubArrayD[2]);
+				echo "<br>time: ".$datePubArrayT[0]."-".$datePubArrayT[1]."-".$datePubArrayT[2]."-".$datePubArrayD[0]."-".$datePubArrayD[1]."-".$datePubArrayD[2];
+				$info = array();
+				$info['title'] = $title;
+				$info['content'] = $content;
+				$info['outGoingLink'] = $outGoingLink;
+				$info['thumb'] = $thumb;
+				$info['origin'] = $q;
+				$info['access'] = 2;
+				$info['licence'] = "reserved";
+				$info['heat'] = "80";
+				$info['yakCat'] = $yakCatId;
+				$info['yakType'] = $yakType; // actu
+				$info['freeTag'] = $freeTag;
+				$info['pubDate'] = new MongoDate($tsPub);
+				$info['creationDate'] = new MongoDate(gmmktime());
+				$info['lastModifDate'] = new MongoDate(gmmktime());
+				$info['dateEndPrint'] = new MongoDate(gmmktime()+$persistDays*86400); // 
+				$info['print'] = $print;
+				$info['status'] = $status;
+				$info['user'] = 0;
+				$info['zone'] = $zone;
+				$info['location'] = array("lat"=>$geolocItem['lat'],"lng"=>$geolocItem['lng']);
+				//$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
+				$info['address'] = $geolocItem['address'];
+				$info['placeId'] = new MongoId($geolocItem['_id']);
+				
+				// check if data is not in DB
+				$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$zone));
+				//var_dump($dataExists);
+				if(empty($dataExists)){
+					echo "<br> The info does not exist in DB, we insert it.";
+					// we check if there is another info printed at this point :
+					$dataCount = 0;
+					// here we take only 30 days of max history
+					$dataCount = $infoColl->count(array(
+														"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),
+														"pubDate"=>array('$gte'=>new MongoDate(gmmktime()-86400*30)),
+														"print"=>1,
+														"status"=>1	
+														)
+												); 
+					//$dataDebug = $infoColl->find(array("location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035)));
+					//var_dump(iterator_to_array($dataDebug));
+					
+					//echo $dataCount.'azerty<br>';  
+					// if more than one info on the same location
+					if($dataCount > 0 && $print ==  1){
+						$lepas = ceil($dataCount/12);
+						$info['location'] = array("lat"=>(0.000015*sin(3.1415*$dataCount/6)+$geolocItem['lat']),"lng"=>(0.00002*cos(3.1415*$dataCount/6)+$geolocItem['lng']));
+					}
+					   
+					$infoColl->insert($info,array('fsync'=>true));
+					$infoColl->ensureIndex(array("location"=>"2d"));
+					$infoColl->ensureIndex(array("location"=>"2d","pubDate"=>-1,"yakType"=>1,"print"=>1,"status"=>1));
+					$logDataInserted++;    
+				}else{
+					if($flagForceUpdate == 1){
+					  echo "<br> The info exists in DB, we force the update.";
+					  $info['lastModifDate'] = new MongoDate(gmmktime());
+					  $infoColl->update(array("_id"=> $dataExists['_id']),$info);
+					  $infoColl->ensureIndex(array("location"=>"2d"));
+					  $logDataUpdated++;
+					}else
+					  echo "<br> The info exists in DB => doing nothing.";    
 				}
-				   
-				$infoColl->insert($info,array('fsync'=>true));
-				$infoColl->ensureIndex(array("location"=>"2d"));
-				$infoColl->ensureIndex(array("location"=>"2d","pubDate"=>-1,"yakType"=>1,"print"=>1,"status"=>1));
-				$logDataInserted++;    
-			}else{
-				if($flagForceUpdate == 1){
-				  echo "<br> The info exists in DB, we force the update.";
-				  $info['lastModifDate'] = new MongoDate(gmmktime());
-				  $infoColl->update(array("_id"=> $dataExists['_id']),$info);
-				  $infoColl->ensureIndex(array("location"=>"2d"));
-				  $logDataUpdated++;
-				}else
-				  echo "<br> The info exists in DB => doing nothing.";    
 			}
 		}
 	}   
@@ -819,6 +855,8 @@ $batchlogColl->save(
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=sudinfo_namur\"/>".$_SERVER['PHP_SELF']."?q=sudinfo_namur</a>";
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=rtbf_bruxelles\"/>".$_SERVER['PHP_SELF']."?q=rtbf_bruxelles</a>";
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=zone2\"/>".$_SERVER['PHP_SELF']."?q=zone2</a>";
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=century_75014\"/>".$_SERVER['PHP_SELF']."?q=century_75014</a>" ;
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=rebe100x\"/>".$_SERVER['PHP_SELF']."?q=rebe100x</a>" ;
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=testfeed\"/>".$_SERVER['PHP_SELF']."?q=testfeed</a>" ;
     echo "<br>To print all text of the info add ti url : &showAllText=1";    
     

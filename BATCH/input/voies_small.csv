@@ -1,115 +1,18 @@
 TYPVOIE;PREVOIE;NOMVOIE;TYPO;DATE_ARRET;CDGI;HISTO;TEXTE;QUARTIER;1er;2e;3e;4e;5e;6e;7e;8e;9e;10e;11e;12e;13e;14e;15e;16e;17e;18e;19e;20e;ARRON
-voie;;cz/15;voie CZ/15;;;Historique.~ Voie projetée.;;Saint-Lambert.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;Xve
-voie;;da/15;voie DA/15;;;Historique.~ Voie projetée.;;Saint-Lambert.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;Xve
-voie;;ci/18;voie CI/18;;X515;"Historique.~ Voie projetée lors de l'aménagement du secteur des ""poissonniers"".";;Goutte d’Or.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;XVIIIe
-voie;;ck/18;voie CK/18;;X551;"Historique.~ Voie projetée de la ZAC ""Pajol"".";;Chapelle.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;XVIIIe
-voie;;fo/20;voie FO/20;;X521;"Historique.~ Voie projetée lors de l'aménagement de la ZAC ""Porte des Lilas"".";;Saint-Fargeau.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;XXe
-voie;;fp/20;voie FP/20;;X524;"Historique.~ Voie projetée lors de l'aménagement de la ZAC ""Porte des Lilas"".";;Saint-Fargeau.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;XXe
-voie;;fq/20;voie FQ/20;;X528;"Historique.~ Voie projetée lors de l'aménagement de la ZAC ""Porte des Lilas"".";;Saint-Fargeau.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;XXe
-voie;;cd/17;voie CD/17;;X542;"Historique.~ Voie projetée dans le cadre de la ZAC ""Cardinet-Chalabre"".";;Epinettes.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;XVIIe
-place;;mohamed bouazizi;place Mohamed Bouazizi;17/05/2011;6404;"Historique.~ Terrasse créée lors de l'aménagement de la zone ""Alésia-Montsouris"" et précédemment dénommée voie BO/14.
-Orig. du nom.~ En hommage à Mohamed Bouazizi, jeune vendeur ambulant tunisien, symbole du soulèvement du peuple tunisien et à sa révolution de janvier 2011.";"Dénomination.~ Délib. mun. du 16 et 17 mai 2011.
-Nota.~ La dénomination complète de la place est :""place Mohamed Bouazizi en hommage au peuple tunisien et à sa révolution de janvier 2011"".";Parc de Montsouris.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIVe
-place;du;révérend père carré;place du Révérend Père Carré;17/05/2011;8177;Orig. du nom.~ Robert-Ambroise-Marie Carré (Fleury-les-Aubrais, 1908-Ancourt, 2004) homme d’église, écrivain et prédicateur dans l’esprit d’une spiritualité ouverte sans acceptation de race et de religion. Grand Officier de la Légion d’Honneur, Croix de guerre avec palme, Chevalier des Palmes académiques, Commandeur des Arts et des Lettres, Chevalier de l’ordre de Léopold de Belgique.;Dénomination.~ Délib. mun. du 16 et 17 mai 2011.;Faubourg du Roule.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VIIIe
-place;;mahmoud darwich;place Mahmoud Darwich;17/05/2011;5914;"Historique.~ Précédemment dénommée esplanade Mahmoud Darwich du 29 mars 2010 au 16 mai 2011.
-Orig. du nom.~ Mahmoud Darwich (Al-Birwah (Galilée), 1941-Houston (Texas), 2008) poète engagé, représentant de l’identité palestinienne à travers le monde.";Dénomination.~ Délib. mun. du 29 et 30mars 2010, modifiée le 16 et 17 mai 2011.;Saint-Germain des Prés.;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VIe
-rue;;gaston gallimard;rue Gaston Gallimard;17/05/2011;3980;"Historique.~ Cette voie a été créée en 1907, sous le nom de square de l'Université. De 1911 à 1929, c'était une partie de la rue de Beaune. Précédemment, partie publique de la rue Sébastien Bottin.
-Orig. du nom.~ Gaston Gallimard (Paris, 1881-Neuilly-sur-Seine, 1975) éditeur. Il contribua à la publication de nombreux prix littéraires.";"Alignements (retenus au PSMV du VIIe ardt) et nivellement. ~ Déc. du 4 septembre 1913 (UP) : 1° côté impair sur une longueur de 51 m environ à partir de la rue de l'Université ; 2° côté pair, entre les rue de l'Université et Montalembert.
-Numérotage. ~ Arr. du 12 octobre 1929.
-Dénomination. ~ Délib. mun. du 16 et 17 mai 2011.";Saint-Thomas d'Aquin.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VIIe
-rue;;léo fränkel;rue Léo Fränkel;17/05/2011;5518;"Historique.~ Voie créée lors de l'aménagement de la ZAC ""Paris Rive Gauche"" et précédemment identifiée voie EY/13.
-Orig. du nom.~ Léo Fränkel (Ujlak, Obuda, quartier de Budapest, 1844-Paris, 1896) ouvrier-bijoutier. Militant syndicaliste reconnu citoyen de pleins droits, élu de la Commune et ministre du Travail.";Dénomination.~ Délib. mun. du 16 et 17 mai 2011.;Gare.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIIIe
-place;de la;bergère d'ivry;place de la Bergère d'Ivry;04/11/2002;903;"Orig. du nom. ~ Le 25 mai 1827, Aimée Millot, dite ""la bergère d’Ivry"" fut la victime  du crime passionnel commis par Honoré Ulbach dont elle avait rejeté l’amour à la demande de sa patronne.";Dénomination. ~ Arr. mun. du 4 novembre 2002.;Croulebarbe.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIIIe
-place;;marlène dietrich;place Marlène Dietrich;05/11/2002;6101;Orig. du nom. ~ Maria Magdalene Von Losch dite Marlène Dietrich (Berlin, 1901-Paris, 1992). Actrice et chanteuse d’origine allemande.;Dénomination. ~ Arr. mun. du 5 novembre 2002.;Chaillot.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;XVIe
-place;;coluche;place Coluche;05/11/2002;2229;Dénomination. ~ Arr. mun. du 5 novembre 2002.;"Orig. du nom. ~ Michel Colucci dit Coluche (Paris, 1944-Opio, Alpes-Maritimes, 1986). Humoriste et comédien. Fondateur des ""Restaurants du Coeur "" ouverts en 1985.";Maison Blanche. Parc de Montsouris.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIIIe, XIVe
-rue;;albert roussel;rue Albert Roussel;06/03/2003;103;"Historique. ~ Voie créée dans le cadre de l'aménagement de la Zac ""Porte d'Asnières"", précédemment dénommée voie BM/17.
-Orig. du nom. ~ Albert Roussel (Tourcoing, 1869-Royan, 1937) compositeur français.";"Nota. ~ voie privée ouverte à la circulation publique sur 140 m à partir du boulevard Berthier (arr. mun. du 4 septembre 2002), et jusqu'à la rue Stéphane Grappelli (arr. mun. du 7 octobre 2003).
-Dénomination. ~ Arr. mun. du 6 mars 2003.";Batignolles.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;XVIIe
-villa;;méridienne;villa Méridienne;03/12/2002;6275;"Historique. ~ Précédemment dénommée voie AJ/14, créée lors de l'aménagement de la zone ""Alésia-Montsouris"".
-Orig. du nom. ~ Le méridien de Paris traverse le fond de l'impasse. Deux médaillons en bronze scellés dans le sol en matérialisent l'axe Nord/Sud. Ces médaillons font parties de l'oeuvre imaginaire de l'artiste néerlandais Jan Dibbets, conçue dans les années 1990.";Dénomination. ~ Déc. mun. du 3 décembre 2002.;Parc de Montsouris.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIVe
-rue;;georges duhamel;rue Georges Duhamel;17/12/2002;4128;"Historique.~ Précédemment dénommée voie BN/15, créée lors de l'aménagement de la Z.A.C. ""Vaugirard"".
-Orig. du nom.~ Georges Duhamel (Paris, 1884-Valmondois, Val d'Oise, 1966), chirurgien militaire, puis écrivain. Il obtint le prix Goncourt en 1918, et entra à l'Académie Française en 1935.";Dénomination.~ Arr. mun. du 17 décembre 2002.;Necker.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;XVe
-place;;jane evrard;place Jane Evrard;17/12/2002;4815;Orig. du nom.~ Jane Evrard (1893, Neuilly Plaisance-1984), violoniste et chef d'orchestre. En 1930, elle fonde l'orchestre féminin de Paris, ensemble à cordes composée de vingt-cinq femmes.;Dénomination.~ Arr. mun. du 17 décembre 2002.;Muette.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;XVIe
-villa;des;hautes traverses;villa des Hautes Traverses;17/12/2002;4498;"Historique.~ Voie créée dans le cadre de l'aménagement de la Zac ""Réunion"". Précédemment dénommée voie FE/20.
-Orig. du nom.~Ancien lieu-dit situé sur la commune de Charonne.";Dénomination.~ Déc. mun. du 17 décembre 2002.;Charonne.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;XXe
-allée;;jean sablon;allée Jean Sablon;06/01/2003;4954;"Orig. du nom.~ Jean Sablon (Nogent-sur-Marne, 1906-Cannes-la-Bocca, 1994) célèbre interprète de la chanson française, sacré meilleur ""crooner"" français. Il fut le pionnier de l'utilisation du micro en France, et obtint le grand prix du Disque en 1937.";Dénomination.~ Arr. mun. du 6 janvier 2003.;Muette.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;XVIe
-villa;;alexandre tansman;villa Alexandre Tansman;30/12/1999;162;"Historique. ~ Précédemment, voie H/16.
-Orig. du nom.~ Alexandre Tansman (Lodz, Pologne, 1897-Paris, 1986) compositeur. Il a vécu une grande partie de sa vie dans le 16ème arrondissement.";"Classement, alignements (retenus au POS et non repris au PLU) et nivellement.~ Arr. mun. du 29 avril 1997.
-Dénomination. ~ Arr. mun. du 30 décembre 1999";Auteuil.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;XVIe
-passage;de la;hutte au garde;passage de la Hutte au Garde;06/03/2003;4681;"Historique. ~ Voie créée dans le cadre de l'aménagement de la Zac ""Porte d'Asnières"", précédemment dénommée voie BQ/17.
-Orig. du nom. ~ Référence à l'ancienne présence d'une hutte utilisée par les gardes-chasses des garennes royales au XVIIe siècle.";Dénomination. ~ Arr. mun. du 6 mars 2003.;Batignolles.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;XVIIe
-rue;d';alger;rue d'Alger;;191;"Orig. du nom. ~ En mémoire de la prise d'Alger par l'armée française, le 5 juillet 1830.
-Historique. ~ Ouvert par MM. Périer frères et Chéronnet sur l'emplacement de l'ancien Hôtel de Noailles. Précédemment rue Louis-Philippe Ier. Une ordonnance royale du 16 novembre 1834 fixait à 16 m la hauteur maxima des maisons en bordure de la voie.
-";"Alignements (non retenus au POS et non repris au PLU). ~ Ord. des 21 juillet et 20 septembre 1830.
-Dénomination. ~ Voie dénommée en 1832.";Place Vendôme.;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;Ier
-allée;;louis aragon;allée Louis Aragon;28/08/1985;5765;"Orig. du nom. ~ Louis Aragon (Paris, 1897-Paris, 1982), écrivain et poète français.
-Historique. ~ Voie située dans le secteur des Halles. Elle avait été provisoirement dénommée Z/1.
-";"Dénomination. ~ Arr. mun. du 28 août 1985.
-";Halles.;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;Ier
-rue;d';argenteuil;rue d'Argenteuil;;433;"Orig. du nom. ~ Ancien chemin d'Argenteuil.
-Historique. ~ En 1564, une partie de la rue d'Argenteuil était dénommée rue de la Haute Voirie Saint-Honoré.
-";"Alignements (non retenus au POS et non repris au PLU). ~ Déc. du 27 juin 1876 (UP) : 1° côté pair ; 2° côté impair sur une longueur de 72 m environ à partir de la rue de l'Echelle. Ord. du 4 octobre 1826, le surplus de la voie.
-Nivellement. ~ Déc. du 27 février 1877 (UP).
-Numérotage. ~ Arr. du 13 octobre 1883 (nos 19 à 33).";Palais Royal.;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;Ier
-rue;;baillet;rue Baillet;;630;"Orig. du nom. ~ Baillet, argentier de Charles V ; demeurait au n° 4.
-Historique. ~ Dénommée successivement rue Dame Gloriette (1297), rue Gloriette (1300), rue Baillette ou Baillet (vers 1350).
-";Alignements (non retenus au POS et non repris au PLU). ~ Ord. du 23 juillet 1828.;Saint-Germain l'Auxerrois.;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;Ier
-rue;;bailleul;rue Bailleul;;632;"Orig. du nom. ~ Robert Bailleul, clerc des comptes, y habitait en 1423.
-Historique. ~ Dénommée, en 1721, d'Averon ou Daveron. Son nom actuel date de 1423.
-";Alignements (non retenus au POS et non repris au PLU). ~ Ord. du 23 juillet 1828.;Halles.;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;Ier
-place;des;magasins de l'opéra comique;place des Magasins de l'Opéra Comique;06/03/2003;5900;"Historique.~ Voie créée dans le cadre de l'aménagement de la ZAC ""Porte d'Asnières"", précédemment dénommée voie BS/17.
-Orig. du nom. ~ Référence à la présence, à côté de cette place, d'un des magasins des décors de l'Opéra Comique, théâtre fondé au début du XVIIIe siècle.";"Nota. ~ voie privée ouverte à la circulation publique (arr. mun. du 27 juillet 2006).
-Dénomination. ~ Arr. mun. du 6 mars 2003.";Batignolles.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;XVIIe
-;;grand balcon;Grand Balcon;18/12/1996;640;"Orig. du nom. ~ Balcon couvert faisant le tour de la place Basse.
-Historique. ~ Voie créée lors de l'aménagement du secteur Forum Central des Halles.
-";"Observation. ~ Deux escaliers relient le côté ouest de cette voie à la rue Baltard située dans le jardin des Halles.
-Dénomination. ~ Arr. mun. du 18 décembre 1996.
-";Halles.;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;Ier
-rue;;baltard;rue Baltard;02/04/1985;650;"Orig. du nom. ~ Victor Baltard (Paris, 1805-Paris, 1874), architecte, restaurateur et aquarelliste français. Architecte des anciennes Halles Centrales de Paris.
-Historique. ~ Voie créée lors de l'aménagement du secteur des Halles. Elle avait été provisoirement dénommée K/1.
-";"Dénomination. ~ Arr. mun. du 2 avril 1985.
-";Halles.;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;Ier
-place;;maurice barrès;place Maurice Barrès;24/03/1924;6194;"Orig. du nom. ~ Maurice Barrès (1862-1923), écrivain et homme politique français. Député de Paris.
-Monument classé. ~ Eglise de l'Assomption.
-";"Observation. ~ Un décret du 25 février 1913 avait approuvé des alignements qui n'ont pas été suivis.
-Dénomination. ~ Arr. du 24 mars 1924.
-";Place Vendôme.;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;Ier
-place;;basse;place Basse;18/12/1996;707;"Historique. ~ Voie créée lors de l'aménagement du secteur Forum Central des Halles.
-";"Observation. ~ Dessert également la rue Basse et la rue des Bons Vivants.
-Dénomination. ~ Arr. mun. du 18 décembre 1996.
-";Halles.;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;Ier
-rue;;andré pieyre de mandiargues;rue André Pieyre de Mandiargues;06/12/1999;342;"Orig. du nom. ~ André Pieyre de Mandiargues (1909-1991) poète, romancier et critique français.
-Historique. ~ Précédemment, voie DB/13, créée dans le cadre de l'aménagement de la ZAC ""Tage-Kellermann"" et intégrée au jardin.";Dénomination. ~ Arr. mun. du 6 décembre 1999.;Maison Blanche.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIIIe
-place;de;sydney;place de Sydney;30/05/2000;9135;"Historique.~ Voie précédemment dénommée place d'Australie.
-Orig. du nom.~ Commémoration du pacte d'amitié qui unit depuis 1998 la ville de Paris et Sydney, la plus grande ville d'Australie.";Dénomination.~ Arr. mun. du 30 mai 2000.;Gros Caillou. Grenelle.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;VIIe, XVe
-place;de la;commune de paris;place de la Commune de Paris;12/10/1999;2251;Orig. du nom.~ Commémoration de la Commune de Paris, insurrection de la capitale, de 1871 qui correspond à la fois à un refus patriotique de la défaite contre la Prusse, et à une exaltation sociale.;Dénomination.~ Arr. mun. du 12 octobre 1999.;Maison Blanche.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIIIe
-passage;;saint-émilion;passage Saint-Émilion;17/03/2000;8586;"Historique.~ Voie située dans les anciens entrepôts vinicoles de Bercy, créée de lors de l'aménagement de la ZAC ""Bercy"".
-Orig. du nom.~ Passage qui traverse la cour Saint-Emilion ; référence à un célèbre vin.";Dénomination.~ Déc. mun. du 17 mars 2000.;Bercy.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIIe
-passage;;saint-vivant;passage Saint-Vivant;17/03/2000;8781;"Historique.~ Voie située dans les anciens entrepôts vinicoles de Bercy, créée lors de l'aménagement de la ZAC ""Bercy"".
-Orig. du nom.~ Référence à un armagnac qui était produit par le dernier occupant des chais de Bercy.";Dénomination.~ Déc. mun. du 17 mars 2000.;Bercy.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIIe
-passage;de l';Yonne;passage de l' Yonne;17/03/2000;9979;"Historique.~ Voie située dans les anciens entrepôts vinicoles de Bercy, créée lors de l’aménagement de la ZAC  Bercy.
-Orig. du nom.~ L'Yonne, affluent de la Seine.";Dénomination.~ Déc. mun. du 17 mars 2000.;Bercy.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIIe
-rue;;joseph kosma;rue Joseph Kosma;28/01/2000;5017;"Historique.~ Voie créée dans le cadre du lotissement ""Parc des Musiciens"". Elle avait été provisoirement dénommée DT/19.
-Orig. du nom.~ Joseph Kosma (Budapest, 1905-La Roche-Guyon, 1969) compositeur.";"Dénomination.~ Arr. mun. du 28 janvier 2000.
-Nota.~ voie privée ouverte à la circulation publique par arrêté de voirie du 2 octobre 2000.";Pont de Flandre.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;XIXe
-place;;jean-paul sartre-simone de beauvoir;place Jean-Paul Sartre-Simone de Beauvoir;21/04/2000;4949;Orig. du nom.~ Jean-Paul Sartre (Paris, 1905-Paris, 1980), philosophe, écrivain. Simone de Beauvoir (Paris, 1908-Paris, 1986) écrivain.;Dénomination.~ Arr. mun. du 21 avril 2000.;Saint-Germain des Prés.;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VIe
-allée;;samuel beckett;allée Samuel Beckett;16/12/1999;B136;Orig. du nom.~ Samuel Beckett (Dublin, 1906-Paris, 1989) écrivain irlandais. Il a vécu en France à partir de 1938.;Dénomination.~ Arr. mun. du 16 décembre 1999.;Parc de montsouris.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIVe
-rue;du;marquis d'arlandes;rue du Marquis d'Arlandes;28/01/2000;6117;Orig. du nom.~ François-Laurent d'Arlandes (Anneyron, 1742-1809) officier militaire, aéronaute. Il a effectué avec Pilâtre de Rozier, le 21 novembre 1783, le premier voyage aérien en montgolfière.;Dénomination.~ Arr. mun. du 28 janvier 2000.;Plaine de Monceaux.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;XVIIe
-promenade;;maurice carême;promenade Maurice Carême;13/06/2000;6185;Orig. du nom.~ Maurice Carême (Wavre, Belgique, 1899-Anderlecht, 1978) poète et romancier belge d'expression française.;Dénomination. ~ Arr. mun. du 13 juin 2000.;Notre-Dame.;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;IVe
-villa;des;glizières;villa des Glizières;30/12/1999;4204;"Historique. ~ Précédemment, voie G/16
-Orig. du nom. ~Ce nom tire son origine du lieu-dit les""glizières"" qui fait allusion aux glaisières, terrains d'où était tirée la glaise autrefois.";"Classement, alignements (retenus au POS et non repris au PLU) et nivellement. ~ Arr. mun. du 29 avril 1997.
-Dénomination. ~ Arr. mun. du 30 décembre 1999";Auteuil.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;XVIe
-villa;des;guignières;villa des Guignières;30/12/1999;4385;"Historique. ~ Précédemment, voie N/16.
-Orig. du nom. ~ Ce nom provient de plantation de guigniers, variétés de cerisiers donnant des cerises à chair sucrée et de couleur noire ou rouge foncée.";"Classement. ~ Contrat administratif du 6 octobre 1997 (vente du sol de voie par la SNCF à la Ville de Paris).
-Dénomination. ~ Arr. mun. du 30 décembre 1999";Muette.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;XVIe
-avenue;;hussein 1er de jordanie;avenue Hussein 1er de Jordanie;06/12/1999;4683;Orig. du nom.~ Hussein 1er de Jordanie (1935-1999) roi de jordanie (1952). Il fût l'un des artisans majeurs de la paix au Proche-Orient.;Dénomination. ~ Arr. mun. du 6 décembre 1999.;Chaillot.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;XVIe
-villa;du;clos de malevart;villa du Clos de Malevart;30/12/1999;2138;"Historique. ~ Précédemment, voie Q/11.
-Orig. du nom.~ La rue du Faubourg du Temple, à proximité, a été tracée sur un très ancien chemin ouvert au travers d'un lieu-dit champêtre appellé au 12ème siècle , ""clos de Malevart"".";"Classement, alignements (retenus au POS et non repris au PLU) et nivellement. ~ Arr. mun. du 15 mai 1995.
-Dénomination. ~ Arr. mun. du 30 décembre 1999";Folie-Méricourt.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIe
-boulevard;du;général jean simon;boulevard du Général Jean Simon;02/08/2005;4034;"Historique. ~ Voie créée dans le cadre de l'aménagement de la Zac ""Paris Rive Gauche"", précédemment dénommée voie CA/13, et qui intègre une partie du boulevard Masséna.
-Orig. du nom.~ Jean Simon (Brest, 1912-Cherbourg, 2003), résistant de la première heure engagé dans les Forces Françaises Libres. Il participa à la guerre d'Indochine, à l'opération de Suez et à la conclusion des accords d'Evian mettant fin à la guerre d'Algérie. Chancelier de l'Ordre de la Libération.";"Alignements (non retenus au POS et non repris au PLU). ~ Déc. du 9 septembre 1861 à partir d’une dizaine de mètres, côté pair, de l’avenue de la Porte de Vitry, jusqu’à une longueur de 200 m environ.
-Dénomination.~ Arr. mun. du 2 août 2005.";Gare.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIIIe
-rue;;ella fitzgerald;rue Ella Fitzgerald;08/07/2009;3181;"Historique. ~ Rue précédemment dénommée voie BH/19.
-Orig. du nom.~ Ella Fitzgerald (Newport News (Virginie)-1917, Beverly Hills (Californie)-1996), chanteuse de jazz de grande renommée, décorée de la National Medal of Arts en 1987 et élevée au rang de Commandeur des Arts et Lettres par le gouvernement français.";"Nota. ~ Voie d'accès aux installations portuaires du canal de l'Ourcq.
-Observation. ~ Le côté est de la voie forme la limite du territoire de Pantin.
-Dénomination.~ Délib. mun. du 6, 7, et 8 juillet 2009.";Pont de Flandre.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;XIXe
+rue;des;camÃ©lias;rue des CamÃ©lias;;1456;"Historique. ~ La rue des CamÃ©lias finissait rue des Arbustes. Cette partie dÃ©classÃ©e par l'arrÃªtÃ© du 10 janvier 1973 a Ã©tÃ© supprimÃ©e dans le cadre de l'amÃ©nagement de l'Ã®lot des Mariniers.
+";"Ouverture. ~ Ouverte en 1880.
+Classement. ~ Arr. du 26 fÃ©vrier 1937.
+Alignements (retenus au POS et non repris au PLU). ~ Arr. du 26 fÃ©vrier 1937, au droit des nos 1, 3, 5 et 2.
+Alignements (non retenus au POS et non repris au PLU). ~ Arr. du 26 fÃ©vrier 1937, cÃ´tÃ©s impair et pair, sur une longueur de 25 m Ã  partir de la rue Raymond Losserand sauf au droit des nos 1, 3, 5 et 2. Arr. du 10 janvier 1973 pour le fond de l'impasse.
+Nivellement. ~ Arr. du 10 janvier 1973.";Plaisance.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIVe
+rue;;du cange;rue Du Cange;;2950;"Orig. du nom. ~ Charles Dufresne, sieur du Cange (1610-1688), Ã©rudit.
+Historique. ~ La partie privÃ©e de cette voie qui Ã©tait comprise entre les rues de Gergovie et du Moulin de la Vierge a Ã©tÃ© supprimÃ©e lors de l'amÃ©nagement de la Zac ""Guilleminot-VercingÃ©torix"". PrÃ©cÃ©demment, rue des Trois Soeurs.
+";"Classement. ~ DÃ©c. du 23 mai 1863.
+Alignements (non retenus au PAZ de la Zac ""Guilleminot-VercingÃ©torix"" et non repris au PLU) et nivellement. ~ DÃ©c. du 30 aoÃ»t 1881.
+DÃ©nomination. ~ DÃ©c. du 10 fÃ©vrier 1875.";Plaisance.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIVe
+rue;de l';abbÃ© carton;rue de l'AbbÃ© Carton;03/02/1954;4;"Orig. du nom. ~ L'abbÃ© Carton (1815-1887), fondateur de l'hospice Notre-Dame de Bon Secours, voisinage de cet Ã©tablissement.
+Historique. ~ PrÃ©cÃ©demment rue Julie.
+";"Ouverture. ~ Le surplus de la voie faisant suite Ã  la partie M a Ã©tÃ© ouvert en 1941 par la Ville de Paris.
+Classement, alignements (non retenus au POS et non repris au PLU) et nivellement. ~ Arr. du 9 juin 1931 sur une longueur de 334 m environ Ã  partir de la rue des Suisses (M).
+NumÃ©rotage. ~ Arr. du 26 mai 1941.
+DÃ©nomination. ~ Arr. du 3 fÃ©vrier 1954.";Plaisance.;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;VRAI;FAUX;FAUX;FAUX;FAUX;FAUX;FAUX;XIVe

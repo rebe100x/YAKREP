@@ -80,6 +80,19 @@ class conf
 	public function thumburl() {
         return  $this->thumburl;
     }
+
+	public function thumbpath() {
+        return  $_SERVER["DOCUMENT_ROOT"] . $this->thumbpath;
+    }
+
+	public function bigpath() {
+        return  $_SERVER["DOCUMENT_ROOT"] . $this->bigpath;
+    }
+
+	public function originalpath() {
+        return  $_SERVER["DOCUMENT_ROOT"] . $this->originalpath;
+    }
+
 	public function mdb() {
         return  $this->mdb;
     }

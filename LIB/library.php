@@ -45,9 +45,10 @@ function createImgThumb($link,$conf){
 	// get the file
 	$hash = md5($link);
 	echo $link;
-	$filePathDestOriginal = 'original/'.$hash.'.jpg';
-	$filePathDestThumb = 'thumb/'.$hash.'.jpg';
-	$filePathDestBig = 'big/'.$hash.'.jpg';
+
+	$filePathDestOriginal = $conf->originalpath() .$hash.'.jpg';
+	$filePathDestThumb = $conf->thumbpath() .$hash.'.jpg';
+	$filePathDestBig = $conf->bigpath() .$hash.'.jpg';
 	$ch = curl_init ($link);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

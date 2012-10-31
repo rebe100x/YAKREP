@@ -35,6 +35,10 @@ $user = 0;
 $updateFlag = empty($_GET['updateFlag'])?0:1;
 $results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
+$conf = new Conf();
+$m = new Mongo(); 
+$db = $m->selectDB($conf->db());
+
 function getJSONfromUID($uid)
 {
 	global $cibulApiKey, $cibulApiUrl;
@@ -89,24 +93,13 @@ $currentPlace;
 
 foreach ($urlset->url as $url) {
 
-	if ($url->uid) {
+	if ($url->uid && $url->loc) {
+		$infoQuery = array("outGoingLink" => $url->loc);
+		$dataExists = $db->info->findOne($infoQuery);
 
-		if ($url->loc) {
-
-			$conf = new Conf();
-			$m = new Mongo(); 
-			$db = $m->selectDB($conf->db());
-
-			$theString2Search = $url->loc;
-			$rangeQuery = array('outGoingLink' => new MongoRegex("/.*{$theString2Search}.*/i"));
-			$doublon = $db->place->findOne($rangeQuery);
+		if (!empty($dataExists)) {
+				echo "Ignored event ". $url->loc . "<br />";
 		}
-
-		echo "DOUBLON :" . $doublon;
-
-		if($doublon != NULL) {
-				echo "Ignored event ". $url->loc . "<hr />";
-		} 
 		else {
 			if($debug) {
 				echo "Call to cibul Api for Uid: ". $url->uid . "<br />";
@@ -118,12 +111,10 @@ foreach ($urlset->url as $url) {
 			}
 			else {
 				foreach ($result->data->locations as $location) {
-					var_dump($result->data);
 
 					$currentPlace = new Place();
 					$currentPlace->filesourceTitle = $fileTitle;
 					$currentPlace->title = $location->placename;
-					$currentPlace->outGoingLink = $result->data->link;
 					$currentPlace->origin = $origin;
 					$currentPlace->licence = $licence;
 					$currentPlace->formatted_address = $location->address;
@@ -167,24 +158,28 @@ foreach ($urlset->url as $url) {
 					/* Info */
 					$info = new Info();
 					$info->title = $result->data->title->fr;
-
 					$info->content = $result->data->description->fr;
-					
-					// e.g: //cibul.s3.amazonaws.com/evtbevent_rencontre-avec-christophe-botti-auteur-de-th-tre_00.jpg
-					// $info->thumb = $result->data->imageThumb;
-
-					//$fullPath = 'thumbs/'.basename($result->data->imageThumb);
-
-					//$thumb = 'thumb/'.createImgThumb($result->data->imageThumb,$conf);
-
 					$info->thumb = createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
 					$info->origin = $origin;
 					$info->filesourceTitle = $fileTitle;
 					$info->access = $access;
 					$info->licence = $licence;
-					$info->pubDate = new MongoDate(strtotime("2012-04-01 10:26:38"));
-					// A recuperer de $result;
-					$info->dateEndPrint = new MongoDate(gmmktime());
+
+					// Link to cibul description
+					$info->outGoingLink = $url->loc;
+
+					$info->pubDate = new MongoDate(gmmktime());
+
+					// First date in the list is the end date, rest is a list of hours
+					foreach ($location->dates as $date) {
+						$dateEnd = DateTime::createFromFormat('Y-m-d', $date->date);
+						break;
+					}
+
+					$dateEndPrint = strtotime("+3 days", $dateEnd->getTimestamp());
+
+					$info->dateEndPrint = new MongoDate($dateEndPrint);
+
 					$info->heat = 1;
 					$cat = array("CULTURE");
 
@@ -208,17 +203,18 @@ foreach ($urlset->url as $url) {
 				}
 
 				$results['parse'] ++;
-				
-			}
-			
-			$results['row'] ++;
 
-			$row++;
-			if($row > 2)
-				break;
-			echo "<hr />";
+				$results['row'] ++;
+				$row++;
+			}
 		}
+
+
+		echo "<hr />";
 	}
+
+	if($row > 2)
+		break;
 }
 
 $currentPlace->prettyLog($results);

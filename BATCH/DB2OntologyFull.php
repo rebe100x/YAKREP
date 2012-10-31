@@ -34,15 +34,8 @@ foreach($yakcats as $yakcatName=>$yakcatId) {
 			$row++;
 			var_dump($place['yakCat']);
 			
-			if($yakcatName=="ville"){
-				$level = "exact";
-				echo "<br>LEVEL".$level;
-			}
-			else{
-				$level = "normalized";
-				echo "<br>LEVEL".$level;
-				$place['title'] = mb_strtolower($place['title'], 'UTF-8');
-			}
+			$level = "exact";
+			
 			
 			echo '<br>place:'.indexForOntology($place['title']);
 			$ontolgyXML.= '

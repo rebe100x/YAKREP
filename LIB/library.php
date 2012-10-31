@@ -83,8 +83,6 @@ function createImgThumb($link,$conf){
         
 		foreach($arrayDataOutput as $row)
         {
-			var_dump($row);
-			
             if( file_exists($filePathSrc) ){
                 $data = file_get_contents($filePathSrc);
                 $im = imagecreatefromstring($data);
@@ -94,6 +92,9 @@ function createImgThumb($link,$conf){
 				   
 				   $x = imagesx($im);
 				   $y = imagesy($im);
+				
+					
+						
 					
 				   $ratioInput = ( $y>0 ) ? $x / $y : 1 ;
 				   
@@ -102,6 +103,13 @@ function createImgThumb($link,$conf){
 						$height = $y;
 					}
 					else{
+						
+						if($x < $row['W'] && $y < $row['H']){
+							
+							$ratioOutput = 1;
+							$height = $row['H'];
+							$width = $row['W'];
+						}
 						
 						if( $row['W'] > 0 && $row['H'] > 0){
 							$ratioOutput = $row['W'] /$row['H'];

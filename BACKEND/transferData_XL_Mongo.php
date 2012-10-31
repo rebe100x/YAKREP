@@ -394,9 +394,6 @@ if(!empty($_GET['q'])){
 			
 			  
 		}
-		// clean :
-		$content = (!empty($content))?strip_tags($content):"";
-		$title = strip_tags(trim($title));			
 		
 		echo "<br><b>".$title."</b> ( ".$datePub." )<br>";
 		
@@ -412,7 +409,8 @@ if(!empty($_GET['q'])){
 			 foreach($group->categories as $category){
 				//var_dump($category);
 				 //echo '<br>'.$category->title;
-				 /*
+				 
+				 /*city*/
 				 if($group->id == "villetitle"){
 					$flagIncluded = 0;
 					foreach($villetitle as $vl){
@@ -433,12 +431,25 @@ if(!empty($_GET['q'])){
 					   $villetext[]= $category->title;
 				 }
 				 
-				  if(empty($villetitle))
-					$ville = $villetext; 
-				 else
-					$ville = $villetitle; 
-			*/
-				 if($group->id == "adressetitle"){
+				 // any city in the title has the priority,
+				 if(sizeof($villetitle) > 0){
+					if(sizeof($villetext) > 0){//  but need to check if the text has not the same address but more precise
+						$villetitleTMP = array();
+						foreach($villetitle as $adrtitle){
+							foreach($villetext as $adrtext){
+								if( preg_match("/".$adrtitle."/",$adrtext) > 0)
+									$villetitleTMP[] = $adrtext;  
+							}
+						}
+					if(sizeof($villetitleTMP) > 0)
+					   $villetitle = $villetitleTMP;
+					}
+					$ville = $villetitle;
+				 }else
+					$ville = $villetext;
+				  
+				 /*address*/
+				 if($group->id == "adressetitle3"){
 					$flagIncluded = 0;
 					foreach($adressetitle as $adr){
 					   if( preg_match("/".$adr."/",$category->title) > 0 || preg_match("/".$category->title."/",$adr) > 0)
@@ -448,7 +459,7 @@ if(!empty($_GET['q'])){
 					   $adressetitle[]= $category->title;
 				 }
 
-				 if($group->id == "adressetext"){
+				 if($group->id == "adressetext3"){
 					$flagIncluded = 0;
 					foreach($adressetext as $adr){
 					   if( preg_match("/".$adr."/",$category->title) > 0 || preg_match("/".$category->title."/",$adr) > 0)
@@ -505,7 +516,7 @@ if(!empty($_GET['q'])){
 				 else
 					$yakdico = $yakdicotitle; 
 					
-				/*VILLE*/
+				/*VILLE*//*
 				 if($group->id == "villetitle")
 					   $villetitle = $category->title;
 				 if($group->id == "villetext")
@@ -514,7 +525,7 @@ if(!empty($_GET['q'])){
 					$ville = $villetext; 
 				 else
 					$ville = $villetitle; 	
-				 	
+				 	*/
 				 /*OTHER CAT*/   
 				 if($group->id == "Person_People")
 					   $freeTag[]= $category->title;
@@ -557,19 +568,24 @@ if(!empty($_GET['q'])){
 						if(is_array($quartier))
 							foreach($quartier as $quar)
 								$locationTmp[] = $quar;
-					else 
-					 $locationTmp[] = $quartier;
+						else 
+							$locationTmp[] = $quartier;
+					}else{
+						if(is_array($ville))
+							foreach($ville as $vil)
+								$locationTmp[] = $vil;
+						else 
+							$locationTmp[] = $ville;
 					}
 				}
 			}
 		}
 		
-		echo "VILLE<br>";
-		var_dump($ville);
+		
 		// last step, if we didn't find anything, we take the town :
-		if(empty($locationTmp) && !empty($ville)){
-			$locationTmp[] = $ville;
-		}	
+		//if(empty($locationTmp) && !empty($ville)){
+		//	$locationTmp[] = $ville;
+		//}	
 		$placeArray = array();	 
 		// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
 		if(sizeof($locationTmp ) > 0){
@@ -586,7 +602,7 @@ if(!empty($_GET['q'])){
 					//$geoloc[] = array($place['location']['lat'],$place['location']['lng']);
 					$status = 1;
 					$print = 1;
-					$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address']);	
+					$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print);	
 				 }else{    // FROM GMAP
 					echo "<br> Call to GMAP: ".$loc.', '.$defaultPlaceName.', '.$defaultCountryName;
 					$logCallToGMap++;
@@ -594,7 +610,7 @@ if(!empty($_GET['q'])){
 					//$resGMap =  array(48.884134,2.351761);
 					//var_dump($resGMap);
 					echo '___<br>';
-					if(!empty($resGMap)){
+					if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlaceName.', '.$defaultCountryName){
 						echo "<br> GMAP found the coordinates of this location ! ";
 						$status = 1;
 						$print = 1;
@@ -647,7 +663,7 @@ if(!empty($_GET['q'])){
 						}else
 						   echo "<br> The location exists in db => doing nothing.";
 					}
-					$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1],'address'=>$formatted_addressGMAP);
+					$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1],'address'=>$formatted_addressGMAP,'status'=>$status,'print'=>$print);
 				 
 				 }         
 			}
@@ -670,7 +686,7 @@ if(!empty($_GET['q'])){
 			$print = 0;
 			$geoloc = array($defaultGeoloc);
 			$status = 1;
-			$placeArray[] = array('_id'=>$defaultPlaceId,'lat'=>$defaultGeoloc[0],'lng'=>$defaultGeoloc[1],'address'=>$defaultPlaceName);	
+			$placeArray[] = array('_id'=>$defaultPlaceId,'lat'=>$defaultGeoloc[0],'lng'=>$defaultGeoloc[1],'address'=>$defaultPlaceName,'status'=>$status,'print'=>$print);	
 		}
 		
 	
@@ -691,12 +707,13 @@ if(!empty($_GET['q'])){
 			$dom->preserveWhiteSpace = false;
 			$images = $dom->getElementsByTagName('img');
 			foreach ($images as $image) {
-			  $img[] =  $image->getAttribute('src');
+						
+			$img[] =  $image->getAttribute('src');
 			}
-			if(sizeof($img) > 0){
-				
+			if(sizeof($img) > 0 && $img[0] != '' ){
+					echo 'IMG'.$img[0].'<br>';
 				$res = createImgThumb($img[0],$conf);
-				echo $res.'<br>';
+				
 				if($res == false)
 					$thumb = getApercite($outGoingLink);
 				else
@@ -704,21 +721,16 @@ if(!empty($_GET['q'])){
 				
 			}else
 				$thumb = getApercite($outGoingLink);
-		}elseif(!empty($title)){
-			$pattern = "/((http|https|ftp)\:\/\/)?[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?\/([a-zA-Z0-9\-\.\?_&amp;%\$#\=~\/\'\,])*/";
-			preg_match($pattern, $title,$urls);
-			echo "<br>URL".$urls;
-			if(sizeof($urls) > 0)
-				$thumb = getApercite($urls[0]);
-		}else
-			$thumb = getApercite($outGoingLink);		
+		}
 		
 		
+		// clean :
+		$content = (!empty($content))?strip_tags($content):"";
+		$title = strip_tags(trim($title));			
 		
 		
 		// NOTE:  WE INTRODUCE MULTIPLE INFO IF WE HAVE MULTIPLE LOCATIONS
 		$i = 0;
-		//var_dump($placeArray);
 		foreach($placeArray as $geolocItem){
 			
 			
@@ -747,8 +759,8 @@ if(!empty($_GET['q'])){
 				$info['creationDate'] = new MongoDate(gmmktime());
 				$info['lastModifDate'] = new MongoDate(gmmktime());
 				$info['dateEndPrint'] = new MongoDate(gmmktime()+$persistDays*86400); // 
-				$info['print'] = $print;
-				$info['status'] = $status;
+				$info['print'] = $geolocItem['print'];
+				$info['status'] = $geolocItem['status'];
 				$info['user'] = 0;
 				$info['zone'] = $zone;
 				$info['location'] = array("lat"=>$geolocItem['lat'],"lng"=>$geolocItem['lng']);

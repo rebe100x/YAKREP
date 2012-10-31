@@ -13,8 +13,9 @@ $db = $m->selectDB($conf->db());
 $info = $db->info;
 
 $res = $info->ensureIndex(array("location"=>"2d"));
-$res = $info->ensureIndex(array("yakType"=>1,"print"=>1,"status"=>1,"pubDate"=>-1));
-$res = $info->ensureIndex(array("yakType"=>1,"print"=>1,"status"=>1,"pubDate"=>-1,"user"=>1,"freeTag"=>1));
+$res = $info->ensureIndex(array("location"=>"2d","yakType"=>1,"print"=>1,"status"=>1,"pubDate"=>-1));
+$res = $info->ensureIndex(array("location"=>"2d","yakType"=>1,"print"=>1,"status"=>1,"pubDate"=>-1,"user"=>1,"freeTag"=>1));
+$res = $info->ensureIndex(array("location"=>"2d","yakType"=>1,"print"=>1,"status"=>1,"pubDate"=>-1,"yakCat"=>1));
 
 
 
@@ -80,6 +81,8 @@ foreach ($cursor as $doc) {
     //echo $doc['pubDate']->sec;
 	echo date('d-m-Y',$doc['pubDate']->sec) .'  '.	$doc['title']."<br>";
 }
+
+echo 'end';
 //$info->remove(array('pubDate'=> array('$gt' => $start, '$lte' => $end)));
 //$info->remove(array('zone'=>5));
 //$info->remove(array('zone'=>6));

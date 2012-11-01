@@ -17,6 +17,42 @@ $records = array();
 /*LEVEL 1*/
 
 $records[] = array(
+	"_id" => new MongoId("50923b9afa9a95d409000000"),
+	"title"=> "Agenda",
+	"path" => "AGENDA",
+	"pathN" => "AGENDA",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50923b9afa9a95d409000001"),
+	"title"=> "Infos pratiques",
+	"path" => "INFOSPRATIQUES",
+	"pathN" => "INFOSPRATIQUES",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("5092390bfa9a95f40c000000"),
+	"title"=> "Discussion",
+	"path" => "DISCUSSION",
+	"pathN" => "DISCUSSION",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
 	"_id" => new MongoId("508fc6ebfa9a95680b000029"),
 	"title"=> "Immobilier",
 	"path" => "IMMOBILIER",

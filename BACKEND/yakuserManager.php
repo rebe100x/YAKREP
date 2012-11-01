@@ -207,5 +207,5 @@ foreach($records as $record){
 }
 echo "<br>".$row." records added.";          
                                      
-
+$user->ensureIndex(array("name"=>1,"login"=>1,'status'=>1));
 ?>

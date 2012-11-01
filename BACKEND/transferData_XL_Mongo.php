@@ -78,7 +78,7 @@ if(!empty($_GET['q'])){
 		break;
         case 'telerama':
 			$yakType =  2; // agenda
-			$yakCatName = array('Actualités','Culture');
+			$yakCatName = array('Actualités','Culture','Agenda');
 			$persistDays =  10;
 			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
 			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
@@ -88,7 +88,7 @@ if(!empty($_GET['q'])){
 		break;
 		case 'concertandco':
 			$yakType =  2; // agenda
-			$yakCatName = array('Actualités','Culture','Musique','Concert');
+			$yakCatName = array('Actualités','Culture','Musique','Concert','Agenda');
 			$persistDays =  7;
 			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
 			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
@@ -98,7 +98,7 @@ if(!empty($_GET['q'])){
 		break;
         case 'expo-a-paris':
 			$yakType =  2; // agenda
-			$yakCatName = array('Actualités','Culture','Exposition');
+			$yakCatName = array('Actualités','Culture','Exposition','Agenda');
 			$persistDays =  7;
 			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
 			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
@@ -109,7 +109,7 @@ if(!empty($_GET['q'])){
 		break;
         case 'paris-bouge':
 			$yakType =  2; // agenda
-			$yakCatName = array('Actualités','Culture');
+			$yakCatName = array('Actualités','Culture','Agenda');
 			$persistDays =  180;
 			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
 			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
@@ -120,7 +120,7 @@ if(!empty($_GET['q'])){
 		break;
         case 'sortir-a-paris':
 			$yakType =  2; // agenda
-			$yakCatName = array('Actualités','Culture');
+			$yakCatName = array('Actualités','Culture','Agenda');
 			$persistDays =  7;
 			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
 			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
@@ -131,7 +131,7 @@ if(!empty($_GET['q'])){
 		break;
         case 'figaro-culture':
 			$yakType =  2; // agenda
-			$yakCatName = array('Actualités','Culture');
+			$yakCatName = array('Actualités','Culture','Agenda');
 			$persistDays =  7;
 			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
 			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
@@ -142,7 +142,7 @@ if(!empty($_GET['q'])){
 		break;
         case 'exponaute':
 			$yakType =  2; // agenda
-			$yakCatName = array('Actualités','Culture','Exposition');
+			$yakCatName = array('Actualités','Culture','Exposition','Agenda');
 			$persistDays =  14;
 			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
 			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
@@ -153,7 +153,7 @@ if(!empty($_GET['q'])){
 		break;
         case 'agenda-culturel-75':
 			$yakType =  2; // agenda
-			$yakCatName = array('Actualités','Culture');
+			$yakCatName = array('Actualités','Culture','Agenda');
 			$persistDays =  14;
 			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
 			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
@@ -172,16 +172,6 @@ if(!empty($_GET['q'])){
 			$defaultCountryName = "France";
 			$zone = 1;
 			
-        break;
-		case 'france3-faitsdivers':
-			$yakType =  1; // actu
-			$yakCatName = array('Actualités');
-			$persistDays =  3;
-			$defaultGeoloc = array(48.851875,2.356374);  // PARIS location @TODO softcode this
-			$defaultPlaceId = '50517fe1fa9a95040b000007';  // PARIS PLACE ID @TODO softcode this
-			$defaultPlaceName = "Paris";
-			$defaultCountryName = "France";
-			$zone = 1;
         break;
 		case 'testfeed':
 			$yakType =  10; // Test

@@ -143,7 +143,7 @@ foreach ($urlset->url as $url) {
 					if($debug)
 						echo  "TRYING TO INSERT: <b>".$currentPlace->title."</b>: ".$location->address." -> Zone : ".$currentPlace->zone."<br />";
 						
-					$cat = array("CULTURE");
+					$cat = array("GEOLOCALISATION", "GEOLOCALISATION#YAKDICO","CULTURE"); // FOR THE PLACE : need a YAKDICO
 					$currentPlace->setYakCat($cat);
 					
 					$res = $currentPlace->saveToMongoDB('', $debug,$updateFlag);
@@ -159,7 +159,7 @@ foreach ($urlset->url as $url) {
 					$info = new Info();
 					$info->title = $result->data->title->fr;
 					$info->content = $result->data->description->fr;
-					$info->thumb = createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
+					$info->thumb = "/thumb/".createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
 					$info->origin = $origin;
 					$info->filesourceTitle = $fileTitle;
 					$info->access = $access;
@@ -181,7 +181,7 @@ foreach ($urlset->url as $url) {
 					$info->dateEndPrint = new MongoDate($dateEndPrint);
 
 					$info->heat = 1;
-					$cat = array("CULTURE");
+					$cat = array("CULTURE","AGENDA");  // FOR THE INFO
 
 					$freeTag = array();
 					foreach (explode(",", $result->data->tags->fr) as $tag) {

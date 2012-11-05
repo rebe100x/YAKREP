@@ -243,3 +243,10 @@ creationDate : la date d'entrée en base
 lastModifDate : la date de modif
 tags : mots clés ( ceux trouvés sur le site ) array("éducation" ; "effectif scolaire" ; "école" : "école primaire" ; "école maternelle" ; "enfant" ; "montpellier")
 
+--------------------------------
+TAG
+--------------------------------
+_id
+title : le tag
+creationDate : la date d'entrée en base
+

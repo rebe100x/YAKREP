@@ -165,8 +165,9 @@ require_once("conf.php");
 			$doublon = NULL;
 		*/
 
+		/* Testing title and event date for duplicates */
 		$theString2Search = StringUtil::accentToRegex(preg_quote($this->title));
-		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $this->zone,"status"=>1);
+		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"), 'eventDate' => $this->eventDate, 'zone' => $this->zone,"status"=>1);
 		$doublon = $this->infoColl->findOne($rangeQuery);
 
 		return $doublon;
@@ -266,6 +267,7 @@ require_once("conf.php");
 				echo '<br>info save for the feed<br>';
 		}
 		
+		var_dump($this->content);
 		return $res;
 	}
 	

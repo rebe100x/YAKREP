@@ -129,24 +129,24 @@ foreach ($urlset->url as $url) {
 					if (preg_match("/paris/i", $location->address) 
 						|| preg_match("/75[0-9]{3}/i", $location->address) ) {
 						$zone = 1;
-				}else if (preg_match("/montpellier/i", $location->address)
-					|| preg_match("/34[0-9]{3}/i", $location->address)) {
-					$zone = 2;
-				}else if (preg_match("/EGHEZEE/i", $location->address)
-					|| preg_match("/5310/i", $location->address)) {
-					$zone = 3;
-				}else{
-					echo $location->address." <b>not in your zone -> skipped.</b><br />";
-					$results['rejected'] ++;	
-					$results['row'] ++;	
-					continue;
-				}
+					}else if (preg_match("/montpellier/i", $location->address)
+						|| preg_match("/34[0-9]{3}/i", $location->address)) {
+						$zone = 2;
+					}else if (preg_match("/EGHEZEE/i", $location->address)
+						|| preg_match("/5310/i", $location->address)) {
+						$zone = 3;
+					}else{
+						echo $location->address." <b>not in your zone -> skipped.</b><br />";
+						$results['rejected'] ++;	
+						$results['row'] ++;	
+						continue;
+					}
 				
-				$currentPlace->zone = $zone;
+					$currentPlace->zone = $zone;
 
-				if($debug)
-					echo  "TRYING TO INSERT: <b>".$currentPlace->title."</b>: ".$location->address." -> Zone : ".$currentPlace->zone."<br />";
-				
+					if($debug)
+						echo  "TRYING TO INSERT: <b>".$currentPlace->title."</b>: ".$location->address." -> Zone : ".$currentPlace->zone."<br />";
+					
 					$cat = array("GEOLOCALISATION", "GEOLOCALISATION#YAKDICO","CULTURE"); // FOR THE PLACE : need a YAKDICO
 					$currentPlace->setYakCat($cat);
 					
@@ -161,8 +161,22 @@ foreach ($urlset->url as $url) {
 
 					/* Info */
 					$info = new Info();
-					$info->title = $result->data->title->fr;
-					$info->content = $result->data->description->fr;
+					var_dump($result->data->title);
+
+					if (isset($result->data->title->fr)) {
+						$info->title = $result->data->title->fr;
+					}
+					else {
+						$info->title = $result->data->title->en;
+					}
+
+					if (isset($result->data->description->fr)) {
+						$info->content = html_entity_decode($result->data->description->fr);
+					}
+					else {
+						$info->content = htmlentities($result->data->description->en);
+					}
+
 
 					$info->thumb = "/thumb/".createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
 
@@ -186,7 +200,16 @@ foreach ($urlset->url as $url) {
 					$cat = array("CULTURE","AGENDA");  // FOR THE INFO
 
 					$freeTag = array();
-					foreach (explode(",", $result->data->tags->fr) as $tag) {
+
+					$cibulTags = array();
+					if (isset($result->data->tags->fr)) {
+						$cibulTags = explode(",", $result->data->tags->fr);
+					}
+					else {
+						$cibulTags = explode(",", $result->data->tags->en);
+					}
+
+					foreach ($cibulTags as $tag) {
 						$freeTag[] = $tag;
 						$temp_tag = suppr_accents($tag);
 						if (preg_match("/THEATRE/i", $temp_tag)) {
@@ -243,7 +266,7 @@ foreach ($urlset->url as $url) {
 		echo "<hr />";
 	}
 
-	if($row > 2)
+	if($row > 15)
 		break;
 }
 

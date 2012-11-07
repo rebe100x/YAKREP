@@ -67,7 +67,10 @@ require_once("conf.php");
 	public $creationDate;
 
 	public $lastModifDate;
-	
+
+	// Event date
+	public $eventDate;
+
 	// date max de print sur le front
 	public $dateEndPrint;
 	
@@ -90,8 +93,10 @@ require_once("conf.php");
 	
 	// Name of place
 	public $placeName;
+
 	// Id of place
 	public $placeid;
+
 
 	function __construct() {
 		$this->conf = new Conf();
@@ -126,6 +131,7 @@ require_once("conf.php");
 		$this->pubDate = '';
 		$this->creationDate = time();
 		$this->lastModifDate = time();
+		$this->evenDate = array();
 		$this->dateEndPrint = '';
 		$this->address = ''; // NOTE that in INFO, the address is only a human readable string and in PLACE, it is an object
 		$this->location = new Location();
@@ -286,6 +292,7 @@ require_once("conf.php");
 			"pubDate"		=>	new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
+			"eventDate"		=>	$this->eventDate,
 			"dateEndPrint"	=> 	$this->dateEndPrint,
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,
@@ -323,6 +330,7 @@ require_once("conf.php");
 			"pubDate"		=>	new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
+			"eventDate"		=>	$this->eventDate,
 			"dateEndPrint"	=> 	$this->dateEndPrint,
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,

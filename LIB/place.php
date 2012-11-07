@@ -205,10 +205,12 @@ require_once("conf.php");
 				if(empty($res['error'])){
 					$res['insert'] = 1;
 				}
-			}else{ // if already in db
+			}
+			else{ // if already in db
 				$res['duplicate'] = 1;
 				$res['record'] = $doublon;
 				if($flagUpdate == 1){ // if we are asked to update
+					$record = array();
 					if (strlen($locationQuery) > 0) { // if we are asked to get the location
 						$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
 						$res['callGMAP'] = 1;

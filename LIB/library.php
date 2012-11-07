@@ -61,7 +61,7 @@ function createImgThumb($link,$conf){
     }
 	$fp = fopen($filePathDestOriginal,'x');
     fwrite($fp, $rawdata);
-    fclose($fp); 	
+    fclose($fp);
 	// create thumb and full size
 	$res1 = redimg(array(0=>array('W'=>120,'H'=>90)),$filePathDestThumb,$filePathDestOriginal,0);
     $res2 = redimg(array(0=>array('W'=>512,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   

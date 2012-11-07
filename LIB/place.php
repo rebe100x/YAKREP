@@ -2,8 +2,8 @@
 require_once("conf.php");
 
 
- class Place
- {
+class Place
+{
 	//collection
 	public $placeColl;
 	//yakcat collection
@@ -11,28 +11,28 @@ require_once("conf.php");
 	//filesource collection
 	public $filesourceColl;
  	//Conf
- 	public $conf;
+	public $conf;
  	// name of the place ( can be a building, an area, a street ... )
- 	public $title;
+	public $title;
  	// some text to describe the place
- 	public $content;
+	public $content;
  	// a local link to a picture of the place
- 	public $thumb;
+	public $thumb;
  	// where did we get this info
- 	public $origin;
+	public $origin;
 	// mongoId (can be null if data is not coming from a file parsed) but never null in a batch
 	public $filesourceId;
 	// name of the file source
 	public $filesourceTitle;
  	// 1 - public / 2 - privé for the api ( all open data is public )
- 	public $access;
+	public $access;
  	// copy the licence of the file you used
- 	public $licence;
+	public $licence;
 	
- 	public $outGoingLink;
+	public $outGoingLink;
 
  	// [{ enfants:0/1 }{ handicapés:0/1 }{ personnes agées:0/1 }{ couvert, intérieur:0/1 }{ gay friendly:0/1 }{ gratuit:0/1 }{ animaux:0/1 }]
- 	public $yakTag;
+	public $yakTag;
 
  	//Mongo ID idyakCat
 	public $yakCat;
@@ -42,32 +42,32 @@ require_once("conf.php");
 
 	public $freeTag;
 
- 	public $creationDate;
+	public $creationDate;
 
- 	public $lastModifDate;
+	public $lastModifDate;
 
  	// location object
- 	public $location;
+	public $location;
 
 	// array of address elements
- 	public $address;
+	public $address;
 	
 	// human readable address
 	public $formatted_address;
 
 	// contact object
- 	public $contact;
+	public $contact;
 
  	// flag for the workflow : 1 is validated
- 	public $status;
+	public $status;
 
  	// who created the info ( 0 for a batch )
- 	public $user;
+	public $user;
 
  	// used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee , 4 Other
- 	public $zone;
+	public $zone;
 
- 	function __construct() {
+	function __construct() {
 		
 		$this->conf = new Conf();
 		
@@ -77,41 +77,38 @@ require_once("conf.php");
 		$this->placeColl = $db->place;	
 		$this->yakCatColl = $db->yakcat;
 		$this->filesourceColl = $db->filesource;
- 		
- 		$this->title = '';
- 		$this->content = '';
- 		$this->thumb = '';
- 		$this->origin = '';
- 		$this->filesourceId = '';
- 		$this->filesourceTitle = '';
- 		$this->access = 1;
- 		$this->licence = '';
- 		$this->outGoingLink = '';
- 		$this->yakTag = array();
+
+		$this->title = '';
+		$this->content = '';
+		$this->thumb = '';
+		$this->origin = '';
+		$this->filesourceId = '';
+		$this->filesourceTitle = '';
+		$this->access = 1;
+		$this->licence = '';
+		$this->outGoingLink = '';
+		$this->yakTag = array();
 		$this->yakCat = array();
 		$this->humanCat = array();
- 		$this->freeTag = array();
- 		$this->creationDate = time();
- 		$this->lastModifDate = time();
- 		$this->location = new Location();
+		$this->freeTag = array();
+		$this->creationDate = time();
+		$this->lastModifDate = time();
+		$this->location = new Location();
 		$this->address = new Address();
 		$this->formatted_address = "";
 		$this->contact = new Contact();
 		$this->status = 0;
 		$this->user = 0;
 		$this->zone = 0;
- 	}
-
- 
-
+	}
 
  	/* Drop all places in db (if dev environment)
  	** else do nothing
  	*/
  	function dropAllPlaces() {
  		if ($this->conf->getDeploy() == "dev" || $this->conf->getDeploy() == "preprod") {
-	 		
-	 		$this->placeColl->drop();
+
+ 			$this->placeColl->drop();
  		}
  	}
 
@@ -120,12 +117,38 @@ require_once("conf.php");
 	*
 	*/
 	function getDuplicated($title,$zone){
-	
-			$theString2Search = StringUtil::accentToRegex($title);
-			$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>1);
-			$doublon = $this->placeColl->findOne($rangeQuery);
+
+		$theString2Search = StringUtil::accentToRegex(preg_quote($title));
+		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>1);
+		$doublon = $this->placeColl->findOne($rangeQuery);
+
+		return $doublon;
+	}
+
+	/*
+	 * locationQuery : the query to gmap
+	 * res : reference to return value from saveToMongoDB
+	 */
+	function getLocationFromQuery($locationQuery, &$res) {
+		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
+		
+		$res['callGMAP'] = 1;
+
+		if ($loc['status'] ==  'OK') {
+			// transfert GMAP result to DB :
 			
-			return $doublon;
+			$this->location->lat = $loc['location'][0];
+			$this->location->lng = $loc['location'][1];
+			$this->address = (object)($loc['address']);
+			$this->formatted_address = $loc['formatted_address'];
+			$this->status = 1;
+		}
+		else {
+			$this->status = 10;
+			$res['locErr'] = 1;
+
+			echo '<br>Err: GMAP did not return result '.$locationQuery;
+		}
 	}
 
  	/* INPUT : 
@@ -138,94 +161,77 @@ require_once("conf.php");
 	
 	function saveToMongoDB($locationQuery = "", $debug, $flagUpdate = false) {
 		
-		
-		
-			$res = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
-			
-			$this->setFilesourceId();
+		$res = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
-			
-			$doublon = $this->getDuplicated($this->title,$this->zone);
-			
-			// if no duplicated
-			if (empty($doublon)) {
+		$this->setFilesourceId();
+
+		$record = array(
+			"title"			=>	$this->title,
+			"content" 		=>	$this->content,
+			"thumb" 		=>	$this->thumb,
+			"origin"		=>	$this->origin,
+			"filesourceId"	=>	$this->filesourceId,	
+			"access"		=>	$this->access,
+			"licence"		=>	$this->licence,
+			"outGoingLink" 	=>	$this->outGoingLink,
+			"yakCat" 		=>	$this->yakCat,
+			"yakTag" 		=>	$this->yakTag,
+			"creationDate" 	=>	new MongoDate(gmmktime()),
+			"lastModifDate" =>	new MongoDate(gmmktime()),
+			"location" 		=>	$this->location,
+			"address" 		=>	$this->address,
+			"formatted_address" 		=>	$this->formatted_address,
+			"contact"		=>	$this->contact,
+			"status" 		=>	$this->status,
+			"user"			=> 	$this->user, 
+			"zone"			=> 	$this->zone,
+			);
+
+		$doublon = $this->getDuplicated($this->title,$this->zone);
+
+		// if no duplicated
+		if (empty($doublon)) {
 			
 				// if we asked for a geoloc
-				if ( strlen($locationQuery)>0 ) {
+			if ( strlen($locationQuery)>0 ) {
+				getLocationFromQuery($locationQuery, $res);
+			} else {
+				$this->status = 1;
+			}
+
+			$resSave = $this->savePlace($record);
+			$res['record'] = $record; // TODO : cast to array ???
+			$res['error'] = $resSave['error'];
+			$this->placeColl->ensureIndex(array("location"=>"2d"));
+			$this->placeColl->ensureIndex(array("title"=>1,"status"=>1,"zone"=>1));
+			if(empty($res['error'])){
+				$res['insert'] = 1;
+			}
+		}
+		else{ // if already in db
+			$res['duplicate'] = 1;
+			$res['record'] = $doublon;
+
+			if($flagUpdate == 1){ // if we are asked to update
+				$record = $res['record'];
+
+				if (strlen($locationQuery) > 0) { // if we are asked to get the location
 					$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
-					//$loc = array("formatted_address"=>"this is a test","address"=>array('street'=>'street test'),"location"=>array(48.8,2.2),"status"=>'OK');
 					$res['callGMAP'] = 1;
-					if ($loc['status'] ==  'OK') {
-						// transfert GMAP result to DB :
-						
-						$this->location->lat = $loc['location'][0];
-						$this->location->lng = $loc['location'][1];
-						$this->address = (object)($loc['address']);
-						$this->formatted_address = $loc['formatted_address'];
-						$this->status = 1;
-					}
-					else {
-						$this->status = 10;
-						$res['locErr'] = 1;
-						echo '<br>Err: GMAP did not return result '.$locationQuery;
-					}
-				} else {
-					$this->status = 1;
+					$record['location'] = $loc['location'];
+					$record['address'] = $loc['address'];
+					$record['formatted_address'] = $loc['formatted_address'];
 				}
-				
-				
-				$record = array(
-				"title"			=>	$this->title,
-				"content" 		=>	$this->content,
-				"thumb" 		=>	$this->thumb,
-				"origin"		=>	$this->origin,
-				"filesourceId"	=>	$this->filesourceId,	
-				"access"		=>	$this->access,
-				"licence"		=>	$this->licence,
-				"outGoingLink" 	=>	$this->outGoingLink,
-				"yakCat" 		=>	$this->yakCat,
-				"yakTag" 		=>	$this->yakTag,
-				"creationDate" 	=>	new MongoDate(gmmktime()),
-				"lastModifDate" =>	new MongoDate(gmmktime()),
-				"location" 		=>	$this->location,
-				"address" 		=>	$this->address,
-				"formatted_address" 		=>	$this->formatted_address,
-				"contact"		=>	$this->contact,
-				"status" 		=>	$this->status,
-				"user"			=> 	$this->user, 
-				"zone"			=> 	$this->zone,
-			);
-			
-				
-				$resSave = $this->savePlace($record);
-				$res['record'] = $record; // TODO : cast to array ???
-				$res['error'] = $resSave['error'];
-				$this->placeColl->ensureIndex(array("location"=>"2d"));
-				$this->placeColl->ensureIndex(array("title"=>1,"status"=>1,"zone"=>1));
-				if(empty($res['error'])){
-					$res['insert'] = 1;
-				}
+
+				$this->placeColl->update(array("_id"=>$doublon['_id']),$record);
+				$res['update'] = 1;
 			}
-			else{ // if already in db
-				$res['duplicate'] = 1;
-				$res['record'] = $doublon;
-				if($flagUpdate == 1){ // if we are asked to update
-					$record = array();
-					if (strlen($locationQuery) > 0) { // if we are asked to get the location
-						$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
-						$res['callGMAP'] = 1;
-						$record['location'] = $loc['location'];
-						$record['address'] = $loc['address'];
-						$record['formatted_address'] = $loc['formatted_address'];
-					}
-					$this->placeColl->update(array("_id"=>$doublon['_id']),$record);
-					$res['update'] = 1;
-				}
-			}
+		}
+
 		return  $res;
- 	}
- 	
-	
+	}
+
+
 	/* Save the place after a check on param not nullable
 	* Input : record
 	* Output : the error text if there is one
@@ -234,36 +240,36 @@ require_once("conf.php");
 		
 		$res = array('error'=>'','id'=>'');
 		// protect not nullable fields
- 		if(strlen(trim($this->title)) > 0 
-		&& strlen(trim($this->licence)) > 0 
-		&& strlen(trim($this->origin)) > 0
-		&& strlen(trim($this->filesourceTitle)) > 0
-		&& (!empty($this->zone))
-		&& sizeof($this->yakCat) > 0
-		&& (!empty($this->status))
-		&& (!empty($this->access))		
-		){
+		if(strlen(trim($this->title)) > 0 
+			&& strlen(trim($this->licence)) > 0 
+			&& strlen(trim($this->origin)) > 0
+			&& strlen(trim($this->filesourceTitle)) > 0
+			&& (!empty($this->zone))
+			&& sizeof($this->yakCat) > 0
+			&& (!empty($this->status))
+			&& (!empty($this->access))		
+			){
 			$this->placeColl->save($record);
-			$res['id'] = $record['_id'];
-		}else{
-			$res['error'] = "<br><b>Error:</b> A non nullable field is empty :<br>".
-			"<b>title:</b> ".$this->title."<br>" .
-			"<b>licence:</b> ".$this->licence."<br>" .
-			"<b>origin:</b> ".$this->origin."<br>" .
-			"<b>filesourceTitle:</b> ".$this->filesourceTitle."<br>" .
-			"<b>zone:</b> ".$this->zone."<br>" . 
-			"<b>yakCat:</b> ".serialize($this->yakCat)."<br>".
-			"<b>Status:</b> ".$this->status."<br>".
-			"<b>Access:</b> ".$this->access."<br>";
-		}
-		
-		return $res;
+		$res['id'] = $record['_id'];
+	}else{
+		$res['error'] = "<br><b>Error:</b> A non nullable field is empty :<br>".
+		"<b>title:</b> ".$this->title."<br>" .
+		"<b>licence:</b> ".$this->licence."<br>" .
+		"<b>origin:</b> ".$this->origin."<br>" .
+		"<b>filesourceTitle:</b> ".$this->filesourceTitle."<br>" .
+		"<b>zone:</b> ".$this->zone."<br>" . 
+		"<b>yakCat:</b> ".serialize($this->yakCat)."<br>".
+		"<b>Status:</b> ".$this->status."<br>".
+		"<b>Access:</b> ".$this->access."<br>";
 	}
+
+	return $res;
+}
  	/* Set telephone number in contact field
  	** Input parameter : a tel number, key word 'tel' or 'mobile'
  	*/
  	function setTel($tel, $type = "tel") {
-		$this->contact->tel = mb_ereg_replace("[ /)(.-]","",$tel);
+ 		$this->contact->tel = mb_ereg_replace("[ /)(.-]","",$tel);
  	}
 
  	/* Set web site in contact field
@@ -271,22 +277,22 @@ require_once("conf.php");
 	*/
  	function setWeb ($web) {
  		$pattern = "@^(http(s?)\:\/\/)?(www\.)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*(\/)?([a-z0-9][_a-z0-9\-\/\.\&\?\+\=\,]*)*$@i";
-		
-		$webArray = preg_split("/[\s]+/", $web);
-		$result = preg_grep($pattern, $webArray);
-		if (!empty($result)) {
-			$result = array_values($result);
-			$this->contact->web = $result[0];
-		}
-			
+
+ 		$webArray = preg_split("/[\s]+/", $web);
+ 		$result = preg_grep($pattern, $webArray);
+ 		if (!empty($result)) {
+ 			$result = array_values($result);
+ 			$this->contact->web = $result[0];
+ 		}
+
  	}
 
  	/* Set email in contact field
  	** Input parameter : an email address
 	*/
-	function setMail ($mail) {
-		$mail = strtolower($mail);
-		if (filter_var($mail, FILTER_VALIDATE_EMAIL))
+ 	function setMail ($mail) {
+ 		$mail = strtolower($mail);
+ 		if (filter_var($mail, FILTER_VALIDATE_EMAIL))
  			$this->contact->mail = $mail;
  	}
 
@@ -301,34 +307,34 @@ require_once("conf.php");
  		foreach ($catPathArray as $catPath) {
  			foreach ($yakCatArray as $cat) {
  				if ( $cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) 
-					|| "#".$cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) ) {
+ 					|| "#".$cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) ) {
  					$this->yakCat[] = $cat['_id'];
- 					$this->humanCat[] = $cat['title'];
- 				}
+ 				$this->humanCat[] = $cat['title'];
  			}
  		}
  	}
- 	
- 	/* Search for the filesourceId in the DB and assign it to the specific field */
- 	function setFilesourceId()
- 	{
- 		$res = $this->filesourceColl->findOne(array('title'=>$this->filesourceTitle));
- 		
- 		if(!empty($res))
-			$this->filesourceId = $res['_id'];  
-		else{
-			echo "No file resource with the name <b>".$this->filesourceTitle."</b>. Please check in db and create the record";
-			exit;
-		}
-		
+ }
+
+ /* Search for the filesourceId in the DB and assign it to the specific field */
+ function setFilesourceId()
+ {
+ 	$res = $this->filesourceColl->findOne(array('title'=>$this->filesourceTitle));
+
+ 	if(!empty($res))
+ 		$this->filesourceId = $res['_id'];  
+ 	else{
+ 		echo "No file resource with the name <b>".$this->filesourceTitle."</b>. Please check in db and create the record";
+ 		exit;
  	}
 
- 	/* Set place location manually */
- 	function setLocation($latitude, $longitude) 
- 	{
- 		$this->location->lat = (float)$latitude;
- 		$this->location->lng = (float)$longitude;
- 	}
+ }
+
+ /* Set place location manually */
+ function setLocation($latitude, $longitude) 
+ {
+ 	$this->location->lat = (float)$latitude;
+ 	$this->location->lng = (float)$longitude;
+ }
 
  	/* Add Tags in yakTag array
  	*/
@@ -340,18 +346,18 @@ require_once("conf.php");
  		$this->yakTag[] = "Disabled";
  	}
 
-	function setTagElderly() {
+ 	function setTagElderly() {
  		$this->yakTag[] = "Elderly person";
  	}
 
  	function setTagIndoor() {
  		$this->yakTag[] = "Indoor";
  	}
-	
-	function setTagOutdoor() {
+
+ 	function setTagOutdoor() {
  		$this->yakTag[] = "Outdoor";
  	}
-	
+
  	function setTagGay() {
  		$this->yakTag[] = "Gay friendly";
  	}
@@ -366,7 +372,7 @@ require_once("conf.php");
  	function setTagCarPark() {
  		$this->yakTag[] = "Car park";
  	}
-	
+
 	/*SET THE ZONE
 	* input : zone name
 	* return : nothing
@@ -375,27 +381,27 @@ require_once("conf.php");
 		$err = 1;
 		switch($zoneName){
 			case 'PARIS':
-				$zone = 1;
+			$zone = 1;
 			break;
 			case 'MONTPELLIER':
-				$zone = 2;
+			$zone = 2;
 			break;
 			case 'EGHEZEE':
-				$zone = 3;
+			$zone = 3;
 			break;
 			case 'REGION DE BRUXELLES':
-				$zone = 4;
+			$zone = 4;
 			break;
 			case 'REGION WALLONNE':
-				$zone = 5;
+			$zone = 5;
 			break;
 			case 'REGION FLAMANDE':
-				$zone = 6;
+			$zone = 6;
 			break;
 			default:
-				$zone = 0;
-				$err = "ZONE NOT KNOWN";
-		
+			$zone = 0;
+			$err = "ZONE NOT KNOWN";
+
 		}
 		
 		$this->zone = $zone;
@@ -403,32 +409,32 @@ require_once("conf.php");
 	}
 	
 
- 	function prettyPrint() {
+	function prettyPrint() {
 
- 		$str = "<div>\n";
- 		$str .= "\t<h4>" . $this->title . "</h4>\n";
- 		$str .= "\t<p>YakCats: ";
+		$str = "<div>\n";
+		$str .= "\t<h4>" . $this->title . "</h4>\n";
+		$str .= "\t<p>YakCats: ";
 
 		if (!empty($this->humanCat)) {
-	 		foreach ($this->humanCat as $key => $value) {
-	 			$str .= $value . " ";
-	 		}
+			foreach ($this->humanCat as $key => $value) {
+				$str .= $value . " ";
+			}
 
-	 		$str .= "</p>\n";
+			$str .= "</p>\n";
 		}
- 		if (!empty($this->yakTag)) {
-	 		$str .= "\t<p>YakTags: ";
+		if (!empty($this->yakTag)) {
+			$str .= "\t<p>YakTags: ";
 
-	 		foreach ($this->yakTag as $key => $value) {
-	 			$str .= $value . " ";
-	 		}
+			foreach ($this->yakTag as $key => $value) {
+				$str .= $value . " ";
+			}
 
-	 		$str .= "</p>\n";
-	 	}
- 		$str .= "</div>";
- 		
- 		return $str;
- 	}
+			$str .= "</p>\n";
+		}
+		$str .= "</div>";
+
+		return $str;
+	}
 	
 	function prettyLog($results){
 		print "<br>________________________________________________<br>";
@@ -444,4 +450,4 @@ require_once("conf.php");
 
 	}	
 
- }
+}

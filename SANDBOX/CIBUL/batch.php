@@ -123,6 +123,7 @@ foreach ($urlset->url as $url) {
 					$currentPlace->formatted_address = $location->address;
 					$currentPlace->setLocation($location->latitude, $location->longitude);
 					$currentPlace->origin = $origin;
+					$currentPlace->status = 1;
 					
 					
 					if (preg_match("/paris/i", $location->address) 
@@ -214,7 +215,6 @@ foreach ($urlset->url as $url) {
 						$dateDay = DateTime::createFromFormat('Y-m-d', $date->date);
 
 						$dateFrom = DateTime::createFromFormat('Y-m-d H:i:s', $date->date . " " . $date->timeStart);
-						var_dump($dateFrom);
 						$eventDate['dateFrom'] = new MongoDate(date_timestamp_get($dateFrom));
 
 						$dateEnd = DateTime::createFromFormat('Y-m-d H:i:s', $date->date . " " . $date->timeEnd);

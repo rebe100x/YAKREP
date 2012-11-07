@@ -44,7 +44,8 @@ function createImgThumb($link,$conf){
 
 	// get the file
 	$hash = md5($link);
-	echo $link;
+	
+	//echo $link;
 
 	$filePathDestOriginal = $conf->originalpath() .$hash.'.jpg';
 	$filePathDestThumb = $conf->thumbpath() .$hash.'.jpg';

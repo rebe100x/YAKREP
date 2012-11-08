@@ -67,7 +67,10 @@ require_once("conf.php");
 	public $creationDate;
 
 	public $lastModifDate;
-	
+
+	// Event date
+	public $eventDate;
+
 	// date max de print sur le front
 	public $dateEndPrint;
 	
@@ -90,8 +93,10 @@ require_once("conf.php");
 	
 	// Name of place
 	public $placeName;
+
 	// Id of place
 	public $placeid;
+
 
 	function __construct() {
 		$this->conf = new Conf();
@@ -126,6 +131,7 @@ require_once("conf.php");
 		$this->pubDate = '';
 		$this->creationDate = time();
 		$this->lastModifDate = time();
+		$this->evenDate = array();
 		$this->dateEndPrint = '';
 		$this->address = ''; // NOTE that in INFO, the address is only a human readable string and in PLACE, it is an object
 		$this->location = new Location();
@@ -142,6 +148,7 @@ require_once("conf.php");
  	*/
 	function getDoublon()
 	{
+		/*
 		//var_dump($this);
 		if( !empty($this->location->lat) && !empty($this->location->lng) ){
 				//print_r($this->location);
@@ -156,14 +163,13 @@ require_once("conf.php");
 			}
 		else
 			$doublon = NULL;
-		
-		echo '-------';
-		echo "<br>";
+		*/
 
-		if (isset($rangeQuery))
-			var_dump($rangeQuery);
-		if ($doublon)
-			var_dump($doublon);
+		/* Testing title and event date for duplicates */
+		$theString2Search = StringUtil::accentToRegex(preg_quote($this->title));
+		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"), 'eventDate' => $this->eventDate, 'zone' => $this->zone,"status"=>1);
+		$doublon = $this->infoColl->findOne($rangeQuery);
+
 		return $doublon;
 	}
 
@@ -217,17 +223,15 @@ require_once("conf.php");
 			}
 			$doublon = $this->getDoublon();
 			
-			if(!$doublon){
+			if(empty($doublon)){
 				$this->moveData();
 				$this->saveInfo();
-				echo '<br>save for the map<br>';
 				$res['insert'] ++;
 			}else{
+
 				$res['duplicate'] = 1;	
 				if($flagUpdate == 1){ // if we are asked to update
-					
-					
-					$this->updateInfo($doublon['_id']);
+					$this->updateInfo(new MongoId($doublon['_id']));
 					$res['update'] = 1;
 				}
 			}
@@ -263,6 +267,7 @@ require_once("conf.php");
 				echo '<br>info save for the feed<br>';
 		}
 		
+		var_dump($this->content);
 		return $res;
 	}
 	
@@ -286,6 +291,7 @@ require_once("conf.php");
 			"pubDate"		=>	new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
+			"eventDate"		=>	$this->eventDate,
 			"dateEndPrint"	=> 	$this->dateEndPrint,
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,
@@ -323,6 +329,7 @@ require_once("conf.php");
 			"pubDate"		=>	new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
+			"eventDate"		=>	$this->eventDate,
 			"dateEndPrint"	=> 	$this->dateEndPrint,
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,
@@ -335,7 +342,7 @@ require_once("conf.php");
 			$this->infoColl->update(array("_id"=>$id),$record);
 			$this->infoColl->ensureIndex(array("location"=>"2d","pubDate"=>-1,"yakType"=>1,"print"=>1,"status"=>1));
 			print "$this->title : info updated in db.<br>";
-			return  $record['_id'];
+			return  $id;
 	
 	
 	}
@@ -359,7 +366,7 @@ require_once("conf.php");
 			$theString2Search = $this->address;
 			
 		$result = $newPlace->getDuplicated($theString2Search,$this->zone);
-		if ($result != NULL) {			
+		if (empty($doublon)) {			
 			if (!empty($result['location'])) // we set the location without calling gmap
 				$this->location = $result['location'];
 				$this->placeid = $result['_id'];
@@ -369,7 +376,6 @@ require_once("conf.php");
 		}
 		else {
 			print "$this->title : Place doesn't exist in db (creation).<br>";
-			
 			
 			$newPlace->title = $this->placeName;			
 			$newPlace->origin = $this->origin;

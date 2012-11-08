@@ -16,7 +16,11 @@ $user = $db->user;
 $records = array();
 
 
+
+
+/*
 $records[] = array(
+	"_id" => new MongoId("506c0323fa9a95740b000000"),
 	"name"=>"Tintin Reporter",
 	"bio" =>"",
 	"mail" =>"tintin@gmail.com",
@@ -41,6 +45,7 @@ $records[] = array(
 
 
 $records[] = array(
+	"_id" => new MongoId("50939deafa9a95140b000000"),
 	"name"=>"Renaud Bess",
 	"bio" =>"ma bio",
 	"mail" =>"renaud@gmail.com",
@@ -50,7 +55,7 @@ $records[] = array(
 	"thumb" => "",
 	"type" => 1,
 	"login"=>"renaud",	
-	"password"=> "renaud",
+	"password"=> "9409083fa88379a7ed6301554c1e3d62",
 	"usersubs" => array(),
 	"placesubs" => array(),
 	"tagsubs" => array(),
@@ -63,6 +68,7 @@ $records[] = array(
 );	
 
 $records[] = array(
+	"_id" => new MongoId("506c0323fa9a95740b000004"),
 	"name"=>"Association",
 	"bio" =>"",
 	"mail" =>"asso@gmail.com",
@@ -85,6 +91,7 @@ $records[] = array(
 );	
 
 $records[] = array(
+	"_id" => new MongoId("506c0323fa9a95740b000006"),
 	"name"=>"Entreprise",
 	"bio" =>"",
 	"mail" =>"etp@gmail.com",
@@ -107,6 +114,7 @@ $records[] = array(
 );	
 
 $records[] = array(
+	"_id" => new MongoId("506c0323fa9a95740b000008"),
 	"name"=>"Institution",
 	"bio" =>"",
 	"mail" =>"inst@gmail.com",
@@ -129,6 +137,7 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("506c0323fa9a95740b00000a"),
 	"name"=>"L'été est fini",
 	"bio" =>"",
 	"mail" =>"toto@gmail.com",
@@ -153,6 +162,7 @@ $records[] = array(
 
 
 $records[] = array(
+	"_id" => new MongoId("506c0323fa9a95740b00000c"),
 	"name"=>"Julien",
 	"bio" =>"",
 	"mail" =>"jlebot.info@gmail.com",
@@ -175,6 +185,7 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("506c0323fa9a95740b00000e"),
 	"name"=>"Damien",
 	"bio" =>"",
 	"mail" =>"",
@@ -195,17 +206,57 @@ $records[] = array(
 	"lastLoginDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
-$row = 0;	
+*/
+
+$salt = sha1(mktime());
+
+$records[] = array(
+	"_id" => new MongoId("5098b8a7fa9a95300b000000"),
+	"name"=>"Renaud",
+	"bio" =>"",
+	"mail" =>"",
+	"web" =>"",
+	"address" => array(),
+	"tag" => array(),
+	"thumb" => "",
+	"type" => 1,
+	"login"=>"renaud",
+		
+	//"password"=> "damien",
+	"hash"=> sha1("renaudyakwala@secure".$salt),
+	"salt"=> $salt,
+	"token"=>sha1(mktime()),
+	"usersubs" => array(),
+	"placesubs" => array(),
+	"tagsubs" => array(),
+	"favplace" => array(),
+	"location" => array('lat'=>48.851875,'lng'=>2.356374),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"lastLoginDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+$row1 = 0;	
+$row2 = 0;	
 foreach($records as $record){
 	$res = $user->findOne(array('mail'=>$record['mail']));
 	if(empty($res)){
-		$row++;
+		$row1++;
 		$user->save($record);
-		$user->ensureIndex(array("location"=>"2d"));
-		echo $record['_id'].'<br>';                    
+		echo $record['mail']. ' : ' .$record['_id']."<br>";                    
+	}else{
+		if($record["_id"]){
+			$row2++;
+			$user->update(array("_id"=>$record["_id"]),$record);
+		}
+	
 	}
+	
 }
-echo "<br>".$row." records added.";          
-                                     
+echo "<br>".$row1." records added.";
+echo "<br>".$row2." updated added.";
+                    
+
+					
 $user->ensureIndex(array("name"=>1,"login"=>1,'status'=>1));
 ?>

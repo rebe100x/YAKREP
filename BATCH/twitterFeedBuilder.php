@@ -23,8 +23,8 @@ if(!empty($_GET['screen_name'])){
 	$rss = "";
 				
 	//?screen_name=Century21_PP
-	
 	$url = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=false&trim_user=false&count=20&exclude_replies=true&contributor_details=false&screen_name=".$screen_name;
+	
 	$ch = curl_init ($url);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -38,12 +38,17 @@ if(!empty($_GET['screen_name'])){
 	//var_dump($tweet);exit;
 	
 	$img = !empty($tweet->entities->media)?$tweet->entities->media[0]->media_url:"";
-		
+	//	echo $tweet->user->profile_background_image_url." == http://a0.twimg.com/images/themes/theme1/bg.png";
+	if($tweet->user->profile_background_image_url == "http://a0.twimg.com/images/themes/theme1/bg.png")	
+		$img = "http://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/220px-Twitter_Bird.svg.png";
+	else
+		$img = $tweet->user->profile_background_image_url;
+	
 	$rss .= "
 		<item>
 		<title><![CDATA[".($tweet->text)."]]></title>
 		<description><![CDATA[<img src='".$img."' />]]></description>
-		<link><![CDATA[".$tweet->user->profile_background_image_url."?".$tweet->id_str."]]></link>
+		<link><![CDATA[".$img."?".$tweet->id_str."]]></link>
 		<pubDate>".$tweet->created_at."</pubDate>
 		<guid isPermaLink='false' ><![CDATA[".$tweet->id_str."]]></guid>
 		</item>

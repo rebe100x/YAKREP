@@ -17,7 +17,7 @@ INFO
 	creationDate : creation  in db (for debug)
 	lastModifDate : modfi in db ( for debug )
 	dateEndPrint : date max de print sur le front
-	eventDate : array('dateFrom'=>mongodate,'dateStart'=>mongodate,'hreventdate'=>'human readable date')
+	eventDate : array('dateFrom'=>mongodate,'dateEnd'=>mongodate,'hreventdate'=>'human readable date')
 	location[x,y]
 	status : flag for the workflow : 1: OK , 10 alert gmap not found
 	user : who created the info ( 0 for a batch )
@@ -218,8 +218,10 @@ web : url website
 tag : array("tag","tag")
 thumb => link to a thumbnail
 type : 1: normal, 2 media, 3 assoc, 4 Entreprise, 5 Institution
-login : 
-password : 
+login : string
+salt : string : the salt to create the password hash
+hash : string : the password hash
+token : String : a unique token to validate the user registration
 usersubsc : array({iduser})
 tagsubsc : array({"tag","tag","tag"})
 placesubsc : array({idplace})
@@ -228,7 +230,7 @@ location : array(lat,lng)
 creationDate => new MongoDate
 lastModifDate => new MongoDate
 lastLoginDate => new MongoDate
-
+status => 1 ok, 2 waiting for validation , 3 blacklisted
 
 
 --------------------------------
@@ -249,4 +251,18 @@ TAG
 _id
 title : le tag
 creationDate : la date d'entrée en base
+
+--------------------------------
+FEED : list feeds to parse. (used in the trasferdata_XL_Mongo.php)
+--------------------------------
+	"_id" => new MongoId(""),
+	"name"=>"parisien75",
+	"yakCatNameArray" => array('Actualités'),
+	"persistDays" => 3,
+	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
+	"type" => 1,
+	"defaultPrintFlag" => 1,// if we don't localise the info, what do we do ? 2 => we ignore the news , 1 => we print it on the map at the the default location of the feed, 0 => we localise with the default place, but we store if in print flag 0 (only for the text news feed) 
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 50, // how manny days back we search in the XL's index
 

@@ -390,9 +390,7 @@ function rewriteArrondissementParis($romanLetters){
             $output = '20e arrondissement';
         break;
         
-        default:
-        	$output = $romanLetters.' arrondissement';
-        break;
+        
 	}
 	
 	return $output;

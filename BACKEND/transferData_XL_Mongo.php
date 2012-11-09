@@ -81,7 +81,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			// get default PLACE
 			$defaultPlace = $placeColl->findOne(array('_id'=>$feed['defaultPlaceId']));
 			
-			var_dump($defaultPlace);
+			//var_dump($defaultPlace);
 			echo '<br> Parsing feed: <b>'.$feed['name'].'</b>';
 			echo '<br> Default location of the feed : <b>'.$defaultPlace['title'].'</b>';
 			$searchDate = date('Y/m/d',(mktime()-86400*$feed['daysBack']));
@@ -459,7 +459,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					$img[] =  $image->getAttribute('src');
 					}
 					if(sizeof($img) > 0 && $img[0] != '' ){
-							echo 'IMG'.$img[0].'<br>';
 						$res = createImgThumb($img[0],$conf);
 						
 						if($res == false)
@@ -513,11 +512,13 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['content'] = $content;
 						$info['outGoingLink'] = $outGoingLink;
 						$info['thumb'] = $thumb;
-						$info['origin'] = $q;
+						$info['origin'] = $feed['humanName'];
+						$info['originLink'] = $feed['link'];
 						$info['access'] = 2;
 						$info['licence'] = "reserved";
 						$info['heat'] = "80";
 						$info['yakCat'] = $yakCatId;
+						$info['yakCatName'] = $feed['yakCatNameArray'];
 						$info['yakType'] = $feed['type']; // actu
 						$info['freeTag'] = $freeTag;
 						$info['pubDate'] = new MongoDate($tsPub);

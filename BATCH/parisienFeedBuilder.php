@@ -6,13 +6,13 @@
 
  /*
  http://rss.leparisien.fr/leparisien/rss/paris-75.xml
- http://www.leparisien.fr/seine-et-marne-77/rss.xml
- http://www.leparisien.fr/yvelines-78/rss.xml
- http://www.leparisien.fr/essonne-91/rss.xml
- http://www.leparisien.fr/hauts-de-seine-92/rss.xml
- http://www.leparisien.fr/seine-saint-denis-93/rss.xml
- http://www.leparisien.fr/val-de-marne-94/rss.xml
- http://www.leparisien.fr/val-d-oise-95/rss.xml
+ http://rss.leparisien.fr/leparisien/rss/seine-et-marne-77.xml
+ http://rss.leparisien.fr/leparisien/rss/yvelines-78.xml
+ http://rss.leparisien.fr/leparisien/rss/essonne-91.xml
+ http://rss.leparisien.fr/leparisien/rss/hauts-de-seine-92.xml
+ http://rss.leparisien.fr/leparisien/rss/seine-saint-denis-93.xml
+ http://rss.leparisien.fr/leparisien/rss/val-de-marne-94.xml
+ http://rss.leparisien.fr/leparisien/rss/val-d-oise-95.xml
  
  */
 include_once "../LIB/conf.php";
@@ -33,7 +33,8 @@ if(!empty($_GET['feed_name'])){
 	$feed_name = $_GET['feed_name'];
 	$rss = "";
 				
-	$url = "http://rss.leparisien.fr/".$feed_name;
+	$url = "http://rss.leparisien.fr/leparisien/rss/".$feed_name;
+	//echo $url;
 	$ch = curl_init ($url);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -41,6 +42,7 @@ if(!empty($_GET['feed_name'])){
 	curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
 	$rawdata=curl_exec($ch);
 	curl_close ($ch);
+	//echo $rawdata;
 	$infos = simplexml_load_string($rawdata);
 	
 	foreach ($infos->channel->item as $info) {
@@ -67,14 +69,14 @@ if(!empty($_GET['feed_name'])){
 	echo $header.$rss.$footer; 
 
 }else{
-	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=/leparisien/rss/paris-75.xml\">paris</a><br>";
-	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=/seine-et-marne-77/rss.xml\">seine et marne 77</a><br>";
-	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=/yvelines-78/rss.xml\">yveline 78</a><br>";
-	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=/essonne-91/rss.xml\">essonne 91</a><br>";
-	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=/hauts-de-seine-92/rss.xml\">hauts de seine 92</a><br>";
-	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=/seine-saint-denis-93/rss.xml\">seine saint denis 93</a><br>";
-	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=/val-de-marne-94/rss.xml\">val de marne</a><br>";
-	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=/val-d-oise-95/rss.xml\">val d'oise</a><br>";
+	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=paris-75.xml\">paris</a><br>";
+	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=seine-et-marne-77.xml\">seine et marne 77</a><br>";
+	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=yvelines-78.xml\">yveline 78</a><br>";
+	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=essonne-91.xml\">essonne 91</a><br>";
+	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=hauts-de-seine-92.xml\">hauts de seine 92</a><br>";
+	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=seine-saint-denis-93.xml\">seine saint denis 93</a><br>";
+	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=val-de-marne-94.xml\">val de marne</a><br>";
+	echo "use : <a href=\"".$_SERVER['PHP_SELF']."?feed_name=val-d-oise-95.xml\">val d'oise</a><br>";
 }
    
 ?>

@@ -3,6 +3,7 @@ INFO
 	content
 	thumb : le thumbnail
 	origin : source of the info ( leparisien.fr, username,  )
+	originLink : link to the source 
 	filesourceId = mongoId (can be null if data is not coming from a file parsed)
 	access : 1 public - 2 privé ( API )
 	licence : type de licence
@@ -11,6 +12,7 @@ INFO
     print : flags if need to be printed on the map / fils info
 	yakType : 1 actu, 2 agenda, 3 promo, 4 conversation	
 	yakCat [{ mongoId }]
+	yakCatName : array : liste de yakcats
 	yakTag ["enfants","handicapés","personnes agées,"couvert",'intérieur',"gay friendly","gratuit","animaux"]
 	freeTag [{}]
 	pubDate : publication date in the feed
@@ -20,7 +22,7 @@ INFO
 	eventDate : array('dateFrom'=>mongodate,'dateEnd'=>mongodate,'hreventdate'=>'human readable date')
 	location[x,y]
 	status : flag for the workflow : 1: OK , 10 alert gmap not found
-	user : who created the info ( 0 for a batch )
+	user : id of the user who created the info ( 0 for a batch )
 	zone : used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee, 4 Other
 	contact : object : only if different from the place contact ( ex: for an expo the museaum and the expo do not have the same contact )
 	address : the address human readable for printing ( formated address )
@@ -257,6 +259,8 @@ FEED : list feeds to parse. (used in the trasferdata_XL_Mongo.php)
 --------------------------------
 	"_id" => new MongoId(""),
 	"name"=>"parisien75",
+	"humanName" nom du fournisseur de la donnée : leparisien.fr
+	"link" : lien général vers le site
 	"yakCatNameArray" => array('Actualités'),
 	"persistDays" => 3,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),

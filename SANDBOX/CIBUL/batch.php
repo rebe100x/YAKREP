@@ -25,13 +25,15 @@ $localSitemap = "./sitemap.xml";
 $cibulApiUrl = 'https://api.cibul.net/v1/events/';
 $cibulApiKey = "22640375947e8efe580bbe056e4c7b60";
 
-$origin = "Cibul.net";
+$origin = "Cibul";
+$originLink ="http://cibul.net";
 $licence = "CIBUL";
 $fileTitle = "Cibul Sitemap";
 $debug = 1;
 $row = 0;
 $access = 1;
 $user = 0;
+
 $updateFlag = empty($_GET['updateFlag'])?0:1;
 $results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
@@ -148,6 +150,7 @@ foreach ($urlset->url as $url) {
 						echo  "TRYING TO INSERT: <b>".$currentPlace->title."</b>: ".$location->address." -> Zone : ".$currentPlace->zone."<br />";
 					
 					$cat = array("GEOLOCALISATION", "GEOLOCALISATION#YAKDICO","CULTURE"); // FOR THE PLACE : need a YAKDICO
+					
 					$currentPlace->setYakCat($cat);
 					
 					$res = $currentPlace->saveToMongoDB('', $debug,$updateFlag);
@@ -198,7 +201,7 @@ foreach ($urlset->url as $url) {
 					$info->heat = 1;
 
 					$cat = array("CULTURE","AGENDA");  // FOR THE INFO
-
+					$catName = array("Culture", "Agenda"); // FOR THE INFO
 					$freeTag = array();
 
 					$cibulTags = array();
@@ -214,17 +217,22 @@ foreach ($urlset->url as $url) {
 						$temp_tag = suppr_accents($tag);
 						if (preg_match("/THEATRE/i", $temp_tag)) {
 							$cat[] = "CULTURE#THEATRE";
+							$catName[] = "Théatre";
 						}
 						else if (preg_match("/CONCERT/i", $temp_tag)) {
 							$cat[] = "CULTURE#MUSIQUE";
+							$catName[] = "Musique";
 						}
 						else if (preg_match("/OPERA/i", $temp_tag)) {
 							$cat[] = "CULTURE#MUSIQUE";
-							$info->yakTag[] = "Classique";
+							$catName[] = "Musique";
+							$info->freeTag[] = "Classique";
+							$info->freeTag[] = "Opéra";
 						}
 					}
 
 					$info->setYakCat($cat);
+					$info->yakCatName = $catName;
 					$info->freeTag = $freeTag;
 					$info->status = 1;
 					$info->print = 1;

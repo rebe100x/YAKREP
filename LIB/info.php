@@ -115,6 +115,7 @@ require_once("conf.php");
 		$this->content = '';
 		$this->thumb = '';
 		$this->origin = '';
+		$this->originLink = '';
 		$this->filesourceId = '';
 		$this->filesourceTitle = '';
 		$this->access = 1;
@@ -124,9 +125,11 @@ require_once("conf.php");
 		$this->print = 0;
 		$this->yakType = 0;
 		$this->yakCat = array();
+		$this->yakCatName = array();
 		$this->humanCat = array();
 		$this->yakTag = array();
 		$this->yakCat = array();
+		$this->yakCatName = array();
 		$this->freeTag = array();
 		$this->pubDate = '';
 		$this->creationDate = time();
@@ -148,8 +151,9 @@ require_once("conf.php");
  	*/
 	function getDoublon()
 	{
-		/*
+		
 		//var_dump($this);
+		
 		if( !empty($this->location->lat) && !empty($this->location->lng) ){
 				//print_r($this->location);
 			
@@ -157,19 +161,17 @@ require_once("conf.php");
 				$doublon = $this->infoColl->findOne($rangeQuery);
 				if(empty($doublon)){
 					$theString2Search = StringUtil::accentToRegex($this->title);
-					$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
+					$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035,'zone' => $this->zone,"status"=>1));
 					$doublon = $this->infoColl->findOne($rangeQuery);
 				}		
 			}
 		else
 			$doublon = NULL;
-		*/
-
 		/* Testing title and event date for duplicates */
-		$theString2Search = StringUtil::accentToRegex(preg_quote($this->title));
-		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"), 'eventDate' => $this->eventDate, 'zone' => $this->zone,"status"=>1);
-		$doublon = $this->infoColl->findOne($rangeQuery);
-
+		//$theString2Search = StringUtil::accentToRegex(preg_quote($this->title));
+		//$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"), 'eventDate' => $this->eventDate, 'zone' => $this->zone,"status"=>1);
+		//$doublon = $this->infoColl->findOne($rangeQuery);
+		
 		return $doublon;
 	}
 
@@ -279,6 +281,7 @@ require_once("conf.php");
 			"content" 		=>	$this->content,
 			"thumb" 		=>	$this->thumb,
 			"origin"		=>	$this->origin,	
+			"originLink"	=>	$this->originLink,	
 			"filesourceId"	=>	$this->filesourceId,
 			"access"		=>	$this->access,
 			"licence"		=>	$this->licence,
@@ -287,6 +290,7 @@ require_once("conf.php");
 			"print"			=>	$this->print,
 			"yakType"		=>	$this->yakType,
 			"yakCat" 		=>	$this->yakCat,
+			"yakCatName"	=>	$this->yakCatName,
 			"freeTag"		=>	$this->freeTag,
 			"pubDate"		=>	new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),
@@ -317,6 +321,7 @@ require_once("conf.php");
 			"content" 		=>	$this->content,
 			"thumb" 		=>	$this->thumb,
 			"origin"		=>	$this->origin,	
+			"originLink"	=>	$this->originLink,	
 			"filesourceId"	=>	$this->filesourceId,
 			"access"		=>	$this->access,
 			"licence"		=>	$this->licence,
@@ -325,6 +330,7 @@ require_once("conf.php");
 			"print"			=>	$this->print,
 			"yakType"		=>	$this->yakType,
 			"yakCat" 		=>	$this->yakCat,
+			"yakCatName"	=>	$this->yakCatName,
 			"freeTag"		=>	$this->freeTag,
 			"pubDate"		=>	new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),

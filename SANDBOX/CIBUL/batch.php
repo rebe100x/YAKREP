@@ -29,7 +29,8 @@ $cibulApiUrl = 'https://api.cibul.net/v1/events/';
 $cibulApiKey = "22640375947e8efe580bbe056e4c7b60";
 
 // Default inserted places settings
-$origin = "Cibul.net";
+$origin = "Cibul";
+$originLink ="http://cibul.net";
 $licence = "CIBUL";
 $fileTitle = "Cibul Sitemap";
 $debug = 1;
@@ -175,6 +176,7 @@ foreach ($urlset->url as $url) {
 					
 					// Set default yakCats
 					$cat = array("GEOLOCALISATION", "GEOLOCALISATION#YAKDICO","CULTURE");
+
 					$currentPlace->setYakCat($cat);
 					
 					$res = $currentPlace->saveToMongoDB('', $debug,$updateFlag);
@@ -227,7 +229,7 @@ foreach ($urlset->url as $url) {
 
 					// Default yakCat
 					$cat = array("CULTURE","AGENDA");
-
+					$catName = array("Culture", "Agenda"); 
 					/* Begin regex to find yakCats */
 					$freeTag = array();
 					$cibulTags = array();
@@ -244,17 +246,22 @@ foreach ($urlset->url as $url) {
 						$temp_tag = suppr_accents($tag);
 						if (preg_match("/THEATRE/i", $temp_tag)) {
 							$cat[] = "CULTURE#THEATRE";
+							$catName[] = "Théatre";
 						}
 						else if (preg_match("/CONCERT/i", $temp_tag)) {
 							$cat[] = "CULTURE#MUSIQUE";
+							$catName[] = "Musique";
 						}
 						else if (preg_match("/OPERA/i", $temp_tag)) {
 							$cat[] = "CULTURE#MUSIQUE";
-							$info->yakTag[] = "Classique";
+							$catName[] = "Musique";
+							$info->freeTag[] = "Classique";
+							$info->freeTag[] = "Opéra";
 						}
 					}
 
 					$info->setYakCat($cat);
+					$info->yakCatName = $catName;
 					$info->freeTag = $freeTag;
 					/* End regex to find yakCats */
 

@@ -14,17 +14,21 @@
 	require_once("../../LIB/conf.php");
 
 /*
- * Variables
+ * Global batch variables
  */
+
+// true to refresh SiteMap.xml from cibul.net
 $refreshSiteMap = false;
 
 $sitemap = "";
 $sitemapUrl = "http://cibul.net/sitemap.xml";
 $localSitemap = "./sitemap.xml";
 
+// Cibul api details
 $cibulApiUrl = 'https://api.cibul.net/v1/events/';
 $cibulApiKey = "22640375947e8efe580bbe056e4c7b60";
 
+// Default inserted places settings
 $origin = "Cibul.net";
 $licence = "CIBUL";
 $fileTitle = "Cibul Sitemap";
@@ -32,15 +36,27 @@ $debug = 1;
 $row = 0;
 $access = 1;
 $user = 0;
+
+// UpdateFlag is a query parameter, if 1, force update
 $updateFlag = empty($_GET['updateFlag'])?0:1;
+
+// Array to store logs
 $results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
+// Open conf for environment variables
 $conf = new Conf();
+
+// Init mongodb connection
 $m = new Mongo(); 
 $db = $m->selectDB($conf->db());
 
-function getJSONfromUID($uid)
-{
+/**
+* Calls the Api with the pre-defined key.
+* Param: 
+*	$uid - event id from sitemap.xml
+* Returns result data in JSON from Cibul.net api
+*/
+function getJSONfromUID($uid) {
 	global $cibulApiKey, $cibulApiUrl;
 	$chuid = curl_init();
 
@@ -54,65 +70,75 @@ function getJSONfromUID($uid)
 	return json_decode($json);
 }
 
-/*
- * sitemap.xml
- * If refreshSiteMap is set to True, will get a new sitemap.xml from cibul,
- * otherwise it will load the local one.
- */
+/**
+*	Print message if $debug is set to true.
+*/
+function print_debug($message) {
+	global $debug;
+
+	if ($debug)
+		echo $message;
+}
+
+/* Begin refreshSiteMap */
 if ($refreshSiteMap) {
-	echo "Getting sitemap.xml from ", $sitemapUrl, "<br />";
+	print_debug("Getting sitemap.xml from " . $sitemapUrl .  "<br />");
 
 	$sitemap = file_get_contents("http://cibul.net/sitemap.xml");
 	file_put_contents($localSitemap, $sitemap);
 
-	echo "Done, saved in ", realpath($localSitemap), "<br />";
+	print_debug("Done, saved in " . realpath($localSitemap) .  "<br />");
 }
 else {
-	echo "Skipping sitemap update", "<br />";
-	echo "Loading local file located in ", realpath($localSitemap), "<br />";
-
-	if (! file_exists($localSitemap)) {
-		echo "Failed to load file.", "<br />";
-		return;
-	}
-	else {
-		$sitemap = file_get_contents($localSitemap);
-		echo "Load successful <br />";
-	}
+	print_debug("Skipping sitemap update" .  "<br />");
 }
 
-echo "<hr />";
-/*
- * Xml parsing with simpleXml
- */
+print_debug("Loading local file located in " . realpath($localSitemap) . "<br />");
+
+if (! file_exists($localSitemap)) {
+	print_debug("Failed to load file. Terminating now." .  "<br />");
+	return;	// Exit batch
+}
+else {
+	$sitemap = file_get_contents($localSitemap);
+	print_debug("Load successful" . "<br />");
+}
+/* End refreshSiteMap */
+
+print_debug("<hr />");
+
+/* Begin sitemap parsing with simpleXml */
 $urlset = simplexml_load_string($sitemap);
 $currentPlace;
 
 foreach ($urlset->url as $url) {
 
-	if ($url->uid && $url->loc) {
+	if ($url->uid && $url->loc) {	// Only parse events with an uid and a direct link
+
 		$infoQuery = array("outGoingLink" => $url->loc);
 		$dataExists = $db->info->findOne($infoQuery);
 
-		if (!empty($dataExists)) {
+		if (!empty($dataExists)) {	// Data already exists in mongo
 			if ($updateFlag) {
-				echo "Event ". $url->loc . " already in DB, forcing update.<br />";
+				print_debug("Event ". $url->loc . " already in DB, forcing update." . "<br />");
 			}
 			else {
-				echo "Ignored event ". $url->loc . "<br />";
+				print_debug("Ignored event ". $url->loc . "<br />");
 			}
 		}
 
-		if (empty($dataExists) || $updateFlag) {
-			if($debug) {
-				echo "Call to cibul Api for Uid: ". $url->uid . "<br />";
-			}
+		if (empty($dataExists) || $updateFlag) {	// data doesn't exist OR we need to force update
+			print_debug( "Call to cibul Api for Uid: ". $url->uid . "<br />");
 
 			$result = getJSONfromUID($url->uid);
+
+			// Error on api call
 			if ($result->data == FALSE) {
-				echo "<b>Api call unsuccessful</b><br />";
+				print_debug("<b>Api call unsuccessful</b>" . "<br />");
 			}
 			else {
+
+				/* Begin place insertion in mongodb */
 				foreach ($result->data->locations as $location) {
 
 					$currentPlace = new Place();
@@ -125,7 +151,7 @@ foreach ($urlset->url as $url) {
 					$currentPlace->origin = $origin;
 					$currentPlace->status = 1;
 					
-					
+					// Set zone or skip
 					if (preg_match("/paris/i", $location->address) 
 						|| preg_match("/75[0-9]{3}/i", $location->address) ) {
 						$zone = 1;
@@ -136,32 +162,32 @@ foreach ($urlset->url as $url) {
 						|| preg_match("/5310/i", $location->address)) {
 						$zone = 3;
 					}else{
-						echo $location->address." <b>not in your zone -> skipped.</b><br />";
+						print_debug($location->address . " <b>not in your zone -> skipped.</b>" . "<br />");
 						$results['rejected'] ++;	
-						$results['row'] ++;	
+						$results['row'] ++;
+
+						// Skip the rest of the loop
 						continue;
 					}
-				
 					$currentPlace->zone = $zone;
 
-					if($debug)
-						echo  "TRYING TO INSERT: <b>".$currentPlace->title."</b>: ".$location->address." -> Zone : ".$currentPlace->zone."<br />";
+					print_debug("TRYING TO INSERT: <b>".$currentPlace->title."</b>: ".$location->address." -> Zone : ".$currentPlace->zone."<br />");
 					
-					$cat = array("GEOLOCALISATION", "GEOLOCALISATION#YAKDICO","CULTURE"); // FOR THE PLACE : need a YAKDICO
+					// Set default yakCats
+					$cat = array("GEOLOCALISATION", "GEOLOCALISATION#YAKDICO","CULTURE");
 					$currentPlace->setYakCat($cat);
 					
 					$res = $currentPlace->saveToMongoDB('', $debug,$updateFlag);
 					
 					if($res['record']['_id'])
-						echo 'Place saved ID = '.$res['record']['_id']."<br />";
+						print_debug('Place saved ID = '.$res['record']['_id']."<br />");
 					foreach ($res as $k=>$v) {
 						if(isset($v))
 							$results[$k]+=$v;
 					}
 
-					/* Info */
+					/* Begin info insertion in mongodb */
 					$info = new Info();
-					var_dump($result->data->title);
 
 					if (isset($result->data->title->fr)) {
 						$info->title = $result->data->title->fr;
@@ -174,10 +200,10 @@ foreach ($urlset->url as $url) {
 						$info->content = html_entity_decode($result->data->description->fr);
 					}
 					else {
-						$info->content = htmlentities($result->data->description->en);
+						$info->content = html_entity_decode($result->data->description->en);
 					}
 
-
+					// Using createImgThumb from /lib/library.php
 					$info->thumb = "/thumb/".createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
 
 					$info->origin = $origin;
@@ -188,20 +214,24 @@ foreach ($urlset->url as $url) {
 					// Link to cibul description
 					$info->outGoingLink = $url->loc;
 
-					// Set timezone
+					// Set timezone if not already set in php.ini
 					if( ! ini_get('date.timezone') ) {
 						date_default_timezone_set('Europe/Paris');
 					}
 
 					$dateUpdatedAt = DateTime::createFromFormat('Y-m-d H:i:s', $result->data->updatedAt);
 					$info->pubDate = new MongoDate($dateUpdatedAt->getTimestamp());
+
+					// Heat set to 1 for new infos
 					$info->heat = 1;
 
-					$cat = array("CULTURE","AGENDA");  // FOR THE INFO
+					// Default yakCat
+					$cat = array("CULTURE","AGENDA");
 
+					/* Begin regex to find yakCats */
 					$freeTag = array();
-
 					$cibulTags = array();
+
 					if (isset($result->data->tags->fr)) {
 						$cibulTags = explode(",", $result->data->tags->fr);
 					}
@@ -226,6 +256,8 @@ foreach ($urlset->url as $url) {
 
 					$info->setYakCat($cat);
 					$info->freeTag = $freeTag;
+					/* End regex to find yakCats */
+
 					$info->status = 1;
 					$info->print = 1;
 					$info->yakType = 2;
@@ -253,7 +285,9 @@ foreach ($urlset->url as $url) {
 
 						$res = $info->saveToMongoDB('', $debug,$updateFlag);
 					}
+					/* End info insertion in mongodb */
 				}
+				/* End place insertion in mongodb */
 
 				$results['parse'] ++;
 
@@ -261,14 +295,14 @@ foreach ($urlset->url as $url) {
 				$row++;
 			}
 		}
-
-
-		echo "<hr />";
+		print_debug("<hr />");
 	}
 
+	// Temporary break after 15 insertions
 	if($row > 15)
 		break;
 }
+/* End sitemap parsing with simpleXml */
 
 $currentPlace->prettyLog($results);
 

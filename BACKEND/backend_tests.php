@@ -2166,7 +2166,7 @@ $records[] = array(
     "status" => 3,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
-    "zone" => 1
+    "zone" => new MongoId("50091badfa9a95d408000000")
 
 );
 $records[] = array(

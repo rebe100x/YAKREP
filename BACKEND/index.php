@@ -9,6 +9,8 @@
 <li><a href="zoneManager.php">Manage Zones</a></li>
 <li><a href="randomInfoGenerator.php">Random infos</a></li>
 <li><a href="../TOOLS/moadmin.php">Mongo DB</a></li>
+
+<li><a href="backend_tests.php">Ajouts zones/users/places pour tests backend</a></li>
 </ul>
 
 

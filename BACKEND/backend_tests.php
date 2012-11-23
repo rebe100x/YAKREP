@@ -1,9 +1,9 @@
 <?php
-ini_set('max_execution_time', 0);
-set_time_limit(0);
-ini_set('display_errors', 1);
+
 require_once("../LIB/library.php");
 require_once("../LIB/conf.php");
+
+include_once("catManager.php");
 
 $conf = new conf();
 $m    = new Mongo();
@@ -52,7 +52,7 @@ $records[] = array(
     "creationDate" => new MongoDate(gmmktime()),
     "lastModifDate" => new MongoDate(gmmktime()),
     "lastLoginDate" => new MongoDate(gmmktime()),
-    "status" => 3
+    "status" => 1
 );
 
 $salt      = sha1(mktime());
@@ -82,7 +82,7 @@ $records[] = array(
     "creationDate" => new MongoDate(gmmktime()),
     "lastModifDate" => new MongoDate(gmmktime()),
     "lastLoginDate" => new MongoDate(gmmktime()),
-    "status" => 3
+    "status" => 2
 );
 
 $row1 = 0;
@@ -150,7 +150,7 @@ $records[] = array(
             'lng' => 2.59497910
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 $records[] = array(
     "_id" => new MongoId("507fed53fa9a95e80c000483"),
@@ -179,7 +179,7 @@ $records[] = array(
             'lng' => 2.61564190
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 $records[] = array(
     "_id" => new MongoId("507fed53fa9a95e80c000481"),
@@ -208,7 +208,7 @@ $records[] = array(
             'lng' => 2.60329190
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 $records[] = array(
@@ -238,7 +238,7 @@ $records[] = array(
             'lng' => 2.3369410
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 
@@ -270,7 +270,7 @@ $records[] = array(
             'lng' => 2.58563310
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 $records[] = array(
@@ -300,7 +300,7 @@ $records[] = array(
             'lng' => 2.22912690
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 $records[] = array(
@@ -330,7 +330,7 @@ $records[] = array(
             'lng' => 3.55900690
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 
@@ -363,7 +363,7 @@ $records[] = array(
             'lng' => 5.911010099999999
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 $records[] = array(
@@ -393,7 +393,7 @@ $records[] = array(
             'lng' => 6.407820
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 $records[] = array(
@@ -423,7 +423,7 @@ $records[] = array(
             'lng' => 4.43697990
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 
@@ -454,7 +454,7 @@ $records[] = array(
             'lng' => 2.413902
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 
@@ -485,7 +485,7 @@ $records[] = array(
             'lng' => 3.89843
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 
@@ -516,7 +516,7 @@ $records[] = array(
             'lng' => 4.995689
         )
     ),
-    "status" => 3
+    "status" => 2
 );
 
 $row1 = 0;
@@ -589,7 +589,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '95140'
     ),
-    "status" => 3,
+    "status" => 2,
     "user" => new MongoId("50ae4e6507f2603505000000"),
     "zone" => new MongoId("507ff2f6fa9a95e80c00048d")
 
@@ -627,7 +627,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '95190'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000000"),
 
@@ -668,7 +668,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '95100'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -711,7 +711,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '93350'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000000"),
 
@@ -752,7 +752,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '94396'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000000"),
 
@@ -793,7 +793,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => ' 95700'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000000"),
 
@@ -834,7 +834,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75010'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000000"),
 
@@ -873,7 +873,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75009'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -912,7 +912,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '95000'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -988,7 +988,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '93000'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1027,7 +1027,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '92000'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000000"),
 
@@ -1065,7 +1065,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '91000'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000000"),
 
@@ -1103,7 +1103,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '78000'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1140,7 +1140,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '77000'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1180,7 +1180,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75005'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1219,7 +1219,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75005'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000000"),
 
@@ -1259,7 +1259,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75001'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1298,7 +1298,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75001'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1337,7 +1337,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75001'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1375,7 +1375,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75004'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1414,7 +1414,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75004'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1453,7 +1453,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75010'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000000"),
 
@@ -1492,7 +1492,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75015'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1531,7 +1531,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75015'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1570,7 +1570,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75015'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1610,7 +1610,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75007'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1651,7 +1651,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75004'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1690,7 +1690,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75017'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1729,7 +1729,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '92130'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1768,7 +1768,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '92130'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1807,7 +1807,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '92310'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1847,7 +1847,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75004'
     ),
-    "status" => 3,
+    "status" => 10,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1886,7 +1886,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75004'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1925,7 +1925,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75004'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -1964,7 +1964,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75004'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -2003,7 +2003,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75004'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -2042,7 +2042,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75011'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -2081,7 +2081,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75001'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
 
@@ -2124,7 +2124,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75004'
     ),
-    "status" => 3,
+    "status" => 1,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2163,7 +2163,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75003'
     ),
-    "status" => 3,
+    "status" => 10,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => 1
@@ -2233,7 +2233,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75019'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2270,7 +2270,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '34000'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2305,7 +2305,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75000'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2342,7 +2342,7 @@ $records[] = array(
         'country' => 'Belgique',
         'zip' => ''
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2378,7 +2378,7 @@ $records[] = array(
         'country' => 'Belgique',
         'zip' => ''
     ),
-    "status" => 3,
+    "status" => 1,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2420,7 +2420,7 @@ $records[] = array(
         'country' => 'France',
         'zip' => '75015'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2463,7 +2463,7 @@ $records[] = array(
         'transportation' => 'Métro Monceau',
         'web' => 'http://www.ateliersdart.com'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2506,7 +2506,7 @@ $records[] = array(
         'transportation' => 'T3, T2, M12 : station Porte de Versailles, Parc des Expositions',
         'web' => 'http://www.viparis.com'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2548,7 +2548,7 @@ $records[] = array(
         'transportation' => 'T3, T2, M12 : station Porte de Versailles, Parc des Expositions',
         'web' => 'http://www.viparis.com'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2588,7 +2588,7 @@ $records[] = array(
         Plusieurs lignes de bus traversent le parc, comme les lignes 46, 112 et 325. Le pourtour du parc est également desservi par plusieurs lignes. De plus, quelques stations de Vélib' sont réparties le long des frontières.',
         'web'=>'http://www.paris.fr/loisirs/paris-au-vert/bois-de-vincennes/p6566"
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2627,7 +2627,7 @@ $records[] = array(
         'transportation' => 'RER C : Avenue Henri Martin, Avenue Foch, Métro Ranelagh, Porte Dauphine',
         'web' => 'http://www.paris.fr/loisirs/paris-au-vert/bois-de-boulogne/p6567'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2669,7 +2669,7 @@ $records[] = array(
         'transportation' => 'Metro ligne 2 Jaurès, Stalingrad, Ligne 5 : Laumière, Ligne 7: Riquet',
         'web' => 'http://fr.wikipedia.org/wiki/Bassin_de_la_Villette'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2719,7 +2719,7 @@ $records[] = array(
         Le Jardin d'Acclimatation est desservi par 6 bus : 43 - 73 - 82 - PC - 174 - 244",
         'web' => 'http://www.jardindacclimatation.fr'
     ),
-    "status" => 3,
+    "status" => 2,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2762,7 +2762,7 @@ $records[] = array(
         'transportation' => "M5, M10, Gare d'Austerlitz",
         'web' => 'http://www.jardindesplantes.net/'
     ),
-    "status" => 3,
+    "status" => 1,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2801,7 +2801,7 @@ $records[] = array(
     "contact" => array(
         'transportation' => 'Metro ligne 4 Etienne Marcel'
     ),
-    "status" => 3,
+    "status" => 1,
 
     "user" => new MongoId("50ae4e6507f2603505000001"),
     "zone" => new MongoId("50091badfa9a95d408000000")
@@ -2842,7 +2842,7 @@ $place->ensureIndex(array(
 $place->ensureIndex(array(
     "title" => 1,
     "content" => 1,
-    "status" => 3,
+    "status" => 2,
     "zone" => 1
 ));
 

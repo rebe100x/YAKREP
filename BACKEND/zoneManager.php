@@ -1,12 +1,12 @@
 ﻿<!doctype html><html><head><meta charset="utf-8" /><title>YAKWALA BATCH - ZONE MANAGER</title></head><body>
-<?php 
+<?php
 ini_set ('max_execution_time', 0);
 set_time_limit(0);
 ini_set('display_errors',1);
 require_once("../LIB/conf.php");
 
 $conf = new conf();
-$m = new Mongo(); 
+$m = new Mongo();
 $db = $m->selectDB($conf->db());
 
 $zone = $db->zone;
@@ -32,7 +32,7 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>49.2415040,'lng'=>1.60873310),
 			'br'=>array('lat'=>48.90867490,'lng'=>2.59497910),
-	),			
+	),
 	"status" => 1
 );
 $records[] = array(
@@ -52,7 +52,7 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>48.8614840,'lng'=>2.30867590),
 			'br'=>array('lat'=>48.68764300000001,'lng'=>2.61564190),
-	),			
+	),
 	"status" => 1
 );
 $records[] = array(
@@ -72,7 +72,7 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>49.0123290,'lng'=>2.28831090),
 			'br'=>array('lat'=>48.8072480,'lng'=>2.60329190),
-	),			
+	),
 	"status" => 1
 );
 
@@ -93,7 +93,7 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>48.95096190,'lng'=>2.1457020),
 			'br'=>array('lat'=>48.7293510,'lng'=>2.3369410),
-	),			
+	),
 	"status" => 1
 );
 
@@ -101,7 +101,7 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("507fed53fa9a95e80c000484"),
-	"name"=>"Essonne",	
+	"name"=>"Essonne",
 	"location" => array('lat'=>48.45856980,'lng'=>2.15694160),
 	"num"=>9,
 	"formatted_address"=> "Essonne, France",
@@ -116,7 +116,7 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>48.77613190,'lng'=>1.91451310),
 			'br'=>array('lat'=>48.28455599999999,'lng'=>2.58563310),
-	),			
+	),
 	"status" => 1
 );
 
@@ -137,7 +137,7 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>49.08544810,'lng'=>1.446170),
 			'br'=>array('lat'=>48.43855689999999,'lng'=>2.22912690),
-	),			
+	),
 	"status" => 1
 );
 
@@ -158,9 +158,9 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>49.11789790,'lng'=>2.39232610),
 			'br'=>array('lat'=>48.12008110,'lng'=>3.55900690),
-	),			
+	),
 	"status" => 1
-);	
+);
 
 
 
@@ -182,9 +182,9 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>51.50510,'lng'=>2.54494060),
 			'br'=>array('lat'=>50.68736000000001,'lng'=>5.911010099999999),
-	),			
+	),
 	"status" => 1
-);	
+);
 
 $records[] = array(
 	"_id" => new MongoId("507e6d6cfa9a95f00c000003"),
@@ -203,9 +203,9 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>50.811920,'lng'=>2.84212990),
 			'br'=>array('lat'=>49.497010,'lng'=>6.407820),
-	),			
+	),
 	"status" => 1
-);	
+);
 
 $records[] = array(
 	"_id" => new MongoId("507e6d6cfa9a95f00c000004"),
@@ -224,9 +224,9 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>50.91370999999999,'lng'=>4.31380),
 			'br'=>array('lat'=>50.79624010,'lng'=>4.43697990),
-	),			
+	),
 	"status" => 1
-);	
+);
 
 
 $records[] = array(
@@ -246,9 +246,9 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>43.624768,'lng'=>2.252541),
 			'br'=>array('lat'=>48.815907,'lng'=>2.413902),
-	),			
+	),
 	"status" => 1
-);	
+);
 
 
 $records[] = array(
@@ -268,9 +268,9 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>43.618928,'lng'=>3.862038),
 			'br'=>array('lat'=>43.59643,'lng'=>3.89843),
-	),			
+	),
 	"status" => 1
-);	
+);
 
 
 $records[] = array(
@@ -290,30 +290,30 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>50.623984,'lng'=>4.814072),
 			'br'=>array('lat'=>50.528488,'lng'=>4.995689),
-	),			
+	),
 	"status" => 1
-);	
+);
 
-$row1 = 0;	
-$row2 = 0;	
+$row1 = 0;
+$row2 = 0;
 foreach($records as $record){
 	$res = $zone->findOne(array('name'=>$record['name']));
 	if(empty($res)){
 		$row1++;
 		$zone->save($record);
-		echo $record['name']." : ".$record['_id']."<br>";                    
+		echo $record['name']." : ".$record['_id']."<br>";
 	}else{
 		if(!empty($record["_id"])){
 			$row2++;
 			$zone->update(array("_id"=>$record["_id"]),$record);
 		}
-	
+
 	}
-	
+
 }
 echo "<br>".$row1." records added.";
 echo "<br>".$row2." updated added.";
-                                    
+
 $zone->ensureIndex(array("location"=>"2d"));
 $zone->ensureIndex(array("box"=>"2d"));
 $zone->ensureIndex(array("num"=>"unique"));

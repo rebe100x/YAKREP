@@ -1,6 +1,7 @@
 <ul>
 <li><a href="transferData_XL_Mongo.php">Transfer data from Exalead to MongoDB</a></li>
 <li><a href="catManager.php">Manage Categories</a></li>
+<li><a href="clientManager.php">Manage Clients</a></li>
 <li><a href="feedManager.php">Manage Feeds</a></li>
 <li><a href="filesourceManager.php">Manage Filesources</a></li>
 <li><a href="infoManager.php">Manage Infos</a></li>

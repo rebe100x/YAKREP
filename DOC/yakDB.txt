@@ -233,7 +233,12 @@ creationDate => new MongoDate
 lastModifDate => new MongoDate
 lastLoginDate => new MongoDate
 status => 1 ok, 2 waiting for validation , 3 blacklisted
-
+apistatus =>2	//{type: Number, required: true, default: 2,index: true}
+apicode => ""      // { type: String }
+apiCodeCreationDate  => new MongoDate //  {type: Date}		
+apiToken  => ""   //  {type: String}		
+apiTokenCreationDate => new MongoDate    //  {type: Date}		
+  
 
 --------------------------------
 FILESOURCE
@@ -270,3 +275,11 @@ FEED : list feeds to parse. (used in the trasferdata_XL_Mongo.php)
 	"status" => 1,
 	"daysBack" => 50, // how manny days back we search in the XL's index
 
+-----------------------------------
+CLIENT
+-----------------------------------
+	"_id" => new MongoId(""),
+	"name"=>"DTWeb",
+	"secret"=>"dfsdfsdfqsj42d5fdfdke",
+	"link" => "http://wwwdtweb.fr",
+	"status" => 1,

@@ -19,8 +19,9 @@ class conf
 	private $fronturl;
 	private $backurl;
 	private $thumburl;
+	private $bigpath;
+	private $originalpath;
 	
-
 	function __construct(){
 		
 		switch($this->deploy){

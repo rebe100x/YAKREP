@@ -20,8 +20,8 @@ INFO
 	lastModifDate : modfi in db ( for debug )
 	dateEndPrint : date max de print sur le front
 	eventDate : array('dateFrom'=>mongodate,'dateEnd'=>mongodate,'hreventdate'=>'human readable date')
-	location[x,y]
-	status : flag for the workflow : 1: OK , 10 alert gmap not found
+	location : array('lat'=>float,'lng'=>float)
+	status : flag for the workflow : 1: OK ,2, wait for validation, 3 rejected,  10 alert gmap not found
 	user : id of the user who created the info ( 0 for a batch )
 	zone : used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee, 4 Other
 	contact : object : only if different from the place contact ( ex: for an expo the museaum and the expo do not have the same contact )
@@ -54,7 +54,7 @@ array({
 	creationDate : 132154654,
 	lastModifDate : 132132165,
 	eventDate : array('dateFrom'=>new MongoDate(gmmktime(0.1.2.3.4.5.6)),'dateStart'=>new MongoDate(gmmktime(0.1.2.3.4.5.6)),'hreventdate'=>'le 2012-04-12, 17:30:00 - 19:30:00'),
-	location : [48.839032,2.268741]
+	location : array('lat'=>float,'lng'=>float)
 	status : 1,
 	user : 0,
 	zone: 1,
@@ -90,7 +90,7 @@ PLACE
 	freeTag [{}]
 	creationDate
 	lastModifDate
-	location[x,y]
+	location : array('lat'=>float,'lng'=>float)
 	status : flag for the workflow : 1 is validated
 	user : who created the info ( 0 for a batch )
 	zone : used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee , 4 Other
@@ -283,3 +283,26 @@ CLIENT
 	"secret"=>"dfsdfsdfqsj42d5fdfdke",
 	"link" => "http://wwwdtweb.fr",
 	"status" => 1,
+
+-----------------------------------
+TOP
+-----------------------------------
+	"_id" => new MongoId(""),
+	"infoid"=>"MongoId(""),
+	"type"=>"liked" or "commented",
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+
+-----------------------------------
+GEOTOP
+-----------------------------------
+	"_id" => new MongoId(""),
+	"infoid"=>"MongoId(""),
+	"type"=>"liked" or "commented",
+	"creationDate" => new MongoDate(gmmktime()),
+	"center" => array('lat'=>48.132165,'lng'=>2.388643),
+	"range" => 4
+	"box" => array(tl,br),
+	"zoom" => 3
+	"status" => 1,
+	

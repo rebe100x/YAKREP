@@ -13,8 +13,100 @@ $place = $db->place;
 $records = array();
 
 
+$records[] = array(
+	"_id" => new MongoId("50896788fa9a954c01000005"),
+	"title"=>"le vieux Garges",
+	"content" =>"Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse ",
+	"thumb" => "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62501/pictures/128_128/no-user.png",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.google.com",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.971795,'lng'=>2.399329),
+	"formatted_address"=> "95140 Garges-lès-Gonesse, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Garges-lès-Gonesse',
+				'state'=>"Val d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'95140',
+			),			
+	"status" => 2,
+	"user" => new MongoId("50af2054fba918480c000006"), 
+	"zone"=> 13,
+	
+	
+);
 
+$records[] = array(
+	"_id" => new MongoId("50b31555fa9a95a00b000000"),
+	"title"=>"le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges ",
+	"content" =>"Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse ",
+	"thumb" => "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62501/pictures/128_128/no-user.png",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.google.com",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.971795,'lng'=>2.399329),
+	"formatted_address"=> "95140 Garges-lès-Gonesse, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Garges-lès-Gonesse',
+				'state'=>"Val d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'95140',
+			),			
+	"status" => 2,
+	"user" => new MongoId("50af2054fba918480c000006"), 
+	"zone"=> 13,
+	
+	
+);
 
+$records[] = array(
+	//"_id" => new MongoId(""),
+	"title"=>"l'été est chaud",
+	"content" =>"l'arbre est énorme",
+	"thumb" => "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62501/pictures/128_128/no-user.png",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.google.com",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.971795,'lng'=>2.399329),
+	"formatted_address"=> "95140 Garges-lès-Gonesse, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Garges-lès-Gonesse',
+				'state'=>"Val d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'95140',
+			),			
+	"status" => 2,
+	"user" => new MongoId("50af2054fba918480c000006"), 
+	"zone"=> 13,
+	
+	
+);
+
+/*
 $records[] = array(
 	"_id" => new MongoId("50896788fa9a954c01000005"),
 	"title"=>"le vieux Garges",
@@ -1864,7 +1956,7 @@ $records[] = array(
 	"user" => 0, 
 	"zone"=> 1
 );
-
+*/
            
                    
 $row1=0;	

@@ -29,7 +29,7 @@ class conf
 				$this->db = 'yakwala';
 				$this->fronturl = 'http://dev.yakwala.fr';
 				$this->backurl = 'http://dev.backend.yakwala.fr';
-				$this->thumburl = 'http://dev.backend.yakwala.fr/BACKEND/thumb/';
+				$this->thumburl = 'http://dev.batch.yakwala.fr/BACKEND/thumb/';
 				$this->thumbpath = '/BACKEND/thumb/';
 				$this->bigpath = '/BACKEND/big/';
 				$this->originalpath = '/BACKEND/original/';
@@ -37,9 +37,9 @@ class conf
 			break;
 			case 'preprod':
 				$this->db = 'yakwala_preprod';
-				$this->fronturl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62501';
-				$this->backurl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com/PREPROD/YAKREP/';
-				$this->thumburl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com/PREPROD/YAKREP/BACKEND/thumb';				
+				$this->fronturl = 'http://labs.yakwala.fr';
+				$this->backurl = 'http://backend.yakwala.fr/PREPROD/YAKREP/';
+				$this->thumburl = 'http://batch.yakwala.fr/PREPROD/YAKREP/BACKEND/thumb';				
 				$this->thumbpath = '/PREPROD/YAKREP/BACKEND/thumb/';
 				$this->bigpath = '/PREPROD/YAKREP/BACKEND/big/';
 				$this->originalpath = '/PREPROD/YAKREP/BACKEND/original/';
@@ -47,12 +47,12 @@ class conf
 			break;
 			case 'prod':
 				$this->db = 'yakwala';
-				$this->fronturl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62500';
-				$this->backurl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com/YAKREP/';
-				$this->thumburl = 'http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com/YAKREP/BACKEND/thumb';
-				$this->thumbpath = '/YAKREP/BACKEND/thumb/';
-				$this->bigpath = '/YAKREP/BACKEND/big/';
-				$this->originalpath = '/YAKREP/BACKEND/original/';
+				$this->fronturl = 'http://labs.yakwala.fr';
+				$this->backurl = 'http://backend.yakwala.fr/PREPROD/YAKREP/';
+				$this->thumburl = 'http://batch.yakwala.fr/PREPROD/YAKREP/BACKEND/thumb';				
+				$this->thumbpath = '/PREPROD/YAKREP/BACKEND/thumb/';
+				$this->bigpath = '/PREPROD/YAKREP/BACKEND/big/';
+				$this->originalpath = '/PREPROD/YAKREP/BACKEND/original/';
 				
 			break;
 			

@@ -33,6 +33,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>1,
 );		
 
 	
@@ -56,8 +57,9 @@ $records[] = array(
 	"type" => 1,
 	"defaultPrintFlag" => 1,
 	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 1,
+	"status" => 0,
 	"daysBack" => 5,
+	"zone" =>1,
 );	
 
 
@@ -74,6 +76,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>5,
 );	
 
 $records[] = array(
@@ -89,6 +92,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>5,
 );	
 
 
@@ -105,6 +109,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>4,
 );	
 
 $records[] = array(
@@ -120,6 +125,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>2,
 );	
 
 $records[] = array(
@@ -135,6 +141,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>1,
 );
 
 $records[] = array(
@@ -150,6 +157,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>7,
 );	
 
 
@@ -166,6 +174,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>8,
 );
 
 
@@ -182,6 +191,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>9,
 );			
 
 $records[] = array(
@@ -197,6 +207,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>10,
 );			
 
 
@@ -213,6 +224,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>11,
 );			
 
 
@@ -229,6 +241,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>12,
 );			
 
 $records[] = array(
@@ -244,6 +257,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
+	"zone" =>13,
 );
 
 // IMMOBILIER
@@ -260,6 +274,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 50,
+	"zone" =>1,
 );
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000055"),
@@ -274,6 +289,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 50,
+	"zone" =>1,
 );
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000056"),
@@ -286,8 +302,9 @@ $records[] = array(
 	"type" => 1,
 	"defaultPrintFlag" => 1,
 	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 1,
+	"status" => 0,
 	"daysBack" => 50,
+	"zone" =>1,
 );					
 				
 $row1 = 0;	

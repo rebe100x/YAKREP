@@ -47,10 +47,11 @@ if(!empty($_GET['screen_name'])){
 	$rss .= "
 		<item>
 		<title><![CDATA[".($tweet->text)."]]></title>
-		<description><![CDATA[<img src='".$img."' />]]></description>
+		<description><![CDATA[]]></description>
 		<link><![CDATA[".$img."?".$tweet->id_str."]]></link>
 		<pubDate>".$tweet->created_at."</pubDate>
 		<guid isPermaLink='false' ><![CDATA[".$tweet->id_str."]]></guid>
+		<enclosure url='".$img."' type='image/jpeg'/>
 		</item>
 		";
 	}

@@ -85,7 +85,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			echo '<br> Parsing feed: <b>'.$feed['name'].'</b>';
 			echo '<br> Default location of the feed : <b>'.$defaultPlace['title'].'</b>';
 			$searchDate = date('Y/m/d',(mktime()-86400*$feed['daysBack']));
-			$url = "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$feed['name']."&of=json&b=0&hf=1000&s=document_item_date";
+			$url = "http://ec2-54-246-84-102.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$feed['name']."&of=json&b=0&hf=1000&s=document_item_date";
 			
 			echo '<br> Days back : <b>'.$feed['daysBack'].'</b>';
 			echo '<br> Url called : <b>'.$url.'</b>';
@@ -120,6 +120,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$ville = array();
 				$villetitle = array();
 				$villetext = array();
+				$enclosure = "";
 				$locationTmp = array();
 				$geolocGMAP = array();
 				$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
@@ -147,6 +148,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						  $datePub = $meta->value;
 					if($meta->name == "url")
 						  $outGoingLink = $meta->value;
+					if($meta->name == "image_enclosure")
+						  $enclosure = $meta->value;
 				}
 				
 				echo "<br><br>*******************************************************************************<br>";
@@ -211,7 +214,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							   $adressetitle[]= $category->title;
 						 }
 
-						 if($group->id == "adressetext3"){
+						 if($group->id == "adessetext3"){
 							$flagIncluded = 0;
 							foreach($adressetext as $adr){
 							   if( preg_match("/".$adr."/",$category->title) > 0 || preg_match("/".$category->title."/",$adr) > 0)
@@ -239,9 +242,9 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							$adresse = $adressetext;
 						 
 						 /*QUARTIER*/
-						 if($group->id == "quartiertitle")
+						 if($group->id == "quartiertitle2")
 							$quartiertitle = $category->title;
-						 if($group->id == "quartiertext")
+						 if($group->id == "quartiertext2")
 							$quartiertext = $category->title;
 						 if(empty($quartiertitle))
 							$quartier = $quartiertext; 
@@ -277,7 +280,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						 
 						 if($group->id == "Event")
 							   $freeTag[]= $category->title;
-											
+						
+						
 					 }
 				}
 					
@@ -370,10 +374,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 										"title"=> $loc,
 										"content" =>"",
 										"thumb" => "",
-										"origin"=>$q,    
+										"origin"=>$feed['humanName'],    
 										"access"=> 2,
 										"licence"=> "Yakwala",
-										"outGoingLink" => "",
+										"outGoingLink" => $feed['link'],
 										"yakCat" => array(new MongoId($geolocYakCatId)), 
 										"creationDate" => new MongoDate(gmmktime()),
 										"lastModifDate" => new MongoDate(gmmktime()),
@@ -448,26 +452,35 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				
 			
 				// get image
-				if(!empty($content)){
-					$img = array();
-					$dom = new domDocument;
-					$dom->loadHTML($content);
-					$dom->preserveWhiteSpace = false;
-					$images = $dom->getElementsByTagName('img');
-					foreach ($images as $image) {
-								
-					$img[] =  $image->getAttribute('src');
-					}
-					if(sizeof($img) > 0 && $img[0] != '' ){
-						$res = createImgThumb($img[0],$conf);
-						
-						if($res == false)
+				
+				if(!empty($enclosure)){
+					$res = createImgThumb($enclosure,$conf);
+					if($res == false)
 							$thumb = getApercite($outGoingLink);
 						else
-							$thumb = 'thumb/'.createImgThumb($img[0],$conf);
-						
-					}else
-						$thumb = getApercite($outGoingLink);
+							$thumb = 'thumb/'.$res;
+				}else{
+					if(!empty($content)){
+						$img = array();
+						$dom = new domDocument;
+						$dom->loadHTML($content);
+						$dom->preserveWhiteSpace = false;
+						$images = $dom->getElementsByTagName('img');
+						foreach ($images as $image) {
+									
+						$img[] =  $image->getAttribute('src');
+						}
+						if(sizeof($img) > 0 && $img[0] != '' ){
+							$res = createImgThumb($img[0],$conf);
+							
+							if($res == false)
+								$thumb = getApercite($outGoingLink);
+							else
+								$thumb = 'thumb/'.$res;
+							
+						}else
+							$thumb = getApercite($outGoingLink);
+					}
 				}
 				
 				// catch keyword words in title

@@ -28,7 +28,7 @@ class conf
 			case 'dev':
 				$this->db = 'yakwala';
 				$this->fronturl = 'http://dev.yakwala.fr';
-				$this->backurl = 'http://dev.backend.yakwala.fr';
+				$this->backurl = 'http://dev.batch.yakwala.fr';
 				$this->thumburl = 'http://dev.batch.yakwala.fr/BACKEND/thumb/';
 				$this->thumbpath = '/BACKEND/thumb/';
 				$this->bigpath = '/BACKEND/big/';
@@ -38,7 +38,7 @@ class conf
 			case 'preprod':
 				$this->db = 'yakwala_preprod';
 				$this->fronturl = 'http://labs.yakwala.fr';
-				$this->backurl = 'http://backend.yakwala.fr/PREPROD/YAKREP/';
+				$this->backurl = 'http://batch.yakwala.fr/PREPROD/YAKREP/';
 				$this->thumburl = 'http://batch.yakwala.fr/PREPROD/YAKREP/BACKEND/thumb';				
 				$this->thumbpath = '/PREPROD/YAKREP/BACKEND/thumb/';
 				$this->bigpath = '/PREPROD/YAKREP/BACKEND/big/';
@@ -48,11 +48,11 @@ class conf
 			case 'prod':
 				$this->db = 'yakwala';
 				$this->fronturl = 'http://labs.yakwala.fr';
-				$this->backurl = 'http://backend.yakwala.fr/PREPROD/YAKREP/';
-				$this->thumburl = 'http://batch.yakwala.fr/PREPROD/YAKREP/BACKEND/thumb';				
-				$this->thumbpath = '/PREPROD/YAKREP/BACKEND/thumb/';
-				$this->bigpath = '/PREPROD/YAKREP/BACKEND/big/';
-				$this->originalpath = '/PREPROD/YAKREP/BACKEND/original/';
+				$this->backurl = 'http://batch.yakwala.fr/YAKREP/';
+				$this->thumburl = 'http://batch.yakwala.fr/YAKREP/BACKEND/thumb';				
+				$this->thumbpath = '/PROD/YAKREP/BACKEND/thumb/';
+				$this->bigpath = '/PROD/YAKREP/BACKEND/big/';
+				$this->originalpath = '/PROD/YAKREP/BACKEND/original/';
 				
 			break;
 			

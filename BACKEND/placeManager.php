@@ -13,100 +13,40 @@ $place = $db->place;
 $records = array();
 
 
+
+
 $records[] = array(
-	"_id" => new MongoId("50896788fa9a954c01000005"),
-	"title"=>"le vieux Garges",
-	"content" =>"Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse ",
-	"thumb" => "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62501/pictures/128_128/no-user.png",
+	"_id" => new MongoId("50c5e3311d22b3db2c000959"),
+	"title"=>"Bouches-du-Rhône",
+	"content" =>"",
+	"thumb" => "",
 	"origin"=>"operator",	
 	"access"=> 1,
 	"licence"=> "Yakwala",
-	"outGoingLink" => "http://www.google.com",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("50c5e0c91d22b3bf38000fb0"),new MongoId("506479f54a53042191000000")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"location" => array('lat'=>48.971795,'lng'=>2.399329),
-	"formatted_address"=> "95140 Garges-lès-Gonesse, France",
+	"location" => array('lat'=>43.297198,'lng'=>5.365997),
+	"formatted_address"=> "Bouches du Rhône, France",
 	"address" => array(
-				'street_number'=>'',
-				'street'=>"",
 				'arr'=>'',
-				'city'=>'Garges-lès-Gonesse',
-				'state'=>"Val d'Oise",
-				'area'=>'Ile-de-France',
+				'city'=>'',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
 				'country'=>'France',
-				'zip'=>'95140',
-			),			
-	"status" => 2,
-	"user" => new MongoId("50af2054fba918480c000006"), 
-	"zone"=> 13,
+				'zip'=>'13000',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
 	
 	
 );
 
-$records[] = array(
-	"_id" => new MongoId("50b31555fa9a95a00b000000"),
-	"title"=>"le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges le vieux Garges ",
-	"content" =>"Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse Quartier de Garges-lès-Gonesse ",
-	"thumb" => "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62501/pictures/128_128/no-user.png",
-	"origin"=>"operator",	
-	"access"=> 1,
-	"licence"=> "Yakwala",
-	"outGoingLink" => "http://www.google.com",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"location" => array('lat'=>48.971795,'lng'=>2.399329),
-	"formatted_address"=> "95140 Garges-lès-Gonesse, France",
-	"address" => array(
-				'street_number'=>'',
-				'street'=>"",
-				'arr'=>'',
-				'city'=>'Garges-lès-Gonesse',
-				'state'=>"Val d'Oise",
-				'area'=>'Ile-de-France',
-				'country'=>'France',
-				'zip'=>'95140',
-			),			
-	"status" => 2,
-	"user" => new MongoId("50af2054fba918480c000006"), 
-	"zone"=> 13,
-	
-	
-);
 
-$records[] = array(
-	//"_id" => new MongoId(""),
-	"title"=>"l'été est chaud",
-	"content" =>"l'arbre est énorme",
-	"thumb" => "http://ec2-54-247-18-97.eu-west-1.compute.amazonaws.com:62501/pictures/128_128/no-user.png",
-	"origin"=>"operator",	
-	"access"=> 1,
-	"licence"=> "Yakwala",
-	"outGoingLink" => "http://www.google.com",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"location" => array('lat'=>48.971795,'lng'=>2.399329),
-	"formatted_address"=> "95140 Garges-lès-Gonesse, France",
-	"address" => array(
-				'street_number'=>'',
-				'street'=>"",
-				'arr'=>'',
-				'city'=>'Garges-lès-Gonesse',
-				'state'=>"Val d'Oise",
-				'area'=>'Ile-de-France',
-				'country'=>'France',
-				'zip'=>'95140',
-			),			
-	"status" => 2,
-	"user" => new MongoId("50af2054fba918480c000006"), 
-	"zone"=> 13,
-	
-	
-);
 
-/*
+
 $records[] = array(
 	"_id" => new MongoId("50896788fa9a954c01000005"),
 	"title"=>"le vieux Garges",
@@ -736,6 +676,8 @@ $records[] = array(
 	
 );
 
+
+
 $records[] = array(
 	"_id" => new MongoId("507d123e1d22b3954e000025"),
 	"title"=>"voies sur berges",
@@ -765,6 +707,94 @@ $records[] = array(
 	"zone"=> 1,
 	
 	
+);
+
+
+   
+$records[] = array(
+	"_id" => new MongoId("50ceb9cafa9a951c0d000002"),
+	"title"=>"Tour d’Argent",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.855341,'lng'=>2.345618),
+	"formatted_address"=> "Quai de la Tournelle, Paris, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"Quai de la Tournelle",
+				'arr'=>'5',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75005',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);   
+$records[] = array(
+	"_id" => new MongoId("50ceb9cafa9a951c0d000003"),
+	"title"=>"Tribunal de grande instance de Paris",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.855341,'lng'=>2.345618),
+	"formatted_address"=> "4 Boulevard du Palais, 75001 Paris",
+	"address" => array(
+				'street_number'=>'4',
+				'street'=>"Boulevard du Palais",
+				'arr'=>'1',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75001',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
+  
+$records[] = array(
+	"_id" => new MongoId("50ceb9cafa9a951c0d000004"),
+	"title"=>"Grand Palais",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.866663,'lng'=>2.309998),
+	"formatted_address"=> "21 Avenue Franklin Delano Roosevelt, 75008 Paris",
+	"address" => array(
+				'street_number'=>'21',
+				'street'=>"Avenue Franklin Delano Roosevelt",
+				'arr'=>'8',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75008',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
 );
 
 $records[] = array(
@@ -1956,7 +1986,7 @@ $records[] = array(
 	"user" => 0, 
 	"zone"=> 1
 );
-*/
+
            
                    
 $row1=0;	

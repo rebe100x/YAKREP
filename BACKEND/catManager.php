@@ -456,6 +456,23 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("50c5e0c91d22b3bf38000fb0"),
+	"title"=> "Cyclisme",
+	"path" => "Sport, Cyclisme",
+	"pathN" => "SPORT#CYCLISME",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+
+$records[] = array(
 	"_id" => new MongoId("50647e2d4a53041f91000000"),
 	"title"=> "Patinoire",
 	"path" => "Sport, Patinoire",

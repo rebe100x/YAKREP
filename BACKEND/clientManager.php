@@ -23,7 +23,15 @@ $records[] = array(
 	"_id" => new MongoId("50a0e2c4fa9a95240b000001"),
 	"name"=>"Yakwala Mobile",
 	"secret"=>"5645a25f963bd0ac846b17eb517cd638754f1a7b",
-	"link" => "dev.backend.yakwala.com/",
+	"link" => "dev.batch.yakwala.fr",
+	"status" => 1,
+);
+
+$records[] = array(
+	"_id" => new MongoId("50c6e96efa9a952c0b000001"),
+	"name"=>"API tester 1",
+	"secret"=>"4b211727eefce920b16485310ddf4d995a752b69",
+	"link" => "dev.batch.yakwala.fr",
 	"status" => 1,
 );
 

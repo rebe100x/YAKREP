@@ -14,6 +14,29 @@ $zone = $db->zone;
 
 $records = array();
 
+/*MARSEILE*/
+$records[] = array(
+	"_id" => new MongoId("50c5e0601d22b34e440010a7"),
+	"name"=>"Bouches-du-Rhône",
+	"location" => array('lat'=>43.297198,'lng'=>5.365997),
+	"num"=>14,
+	"formatted_address"=> "Bouches du Rhône, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13000',
+			),
+	"box"=>array(
+			'tl'=>array('lat'=>43.854336,'lng'=>4.514557),
+			'br'=>array('lat'=>43.197167,'lng'=>5.651642),
+	),
+	"status" => 1
+);
+
+
 /*BANLIEUE PARIS*/
 $records[] = array(
 	"_id" => new MongoId("507ff2f6fa9a95e80c00048d"),

@@ -1,0 +1,32 @@
+"Raison Sociale";"Type";"Sous-type";"Ligne adresse 1";"Numéro";"Complément numéro";"Type de voie";"Voie";"Ligne adresse 3";"Boite postale";"Code postal";"Ville";"Bureau distributeur";"Indicateur cédex";"Cédex";"Téléphone";"Mail";"Adresse Web";"Longitude";"Latitude";
+"Cycles et Balades";"cdt:LocationMaterielSportLoisir";"";"";"1";"";"Rue";"Du Moulin";"";"";"13430";"Eyguières";"EYGUIERES";"non";"";"06 50 69 19 14";"contact@cycleset balades.fr";"http://www.cyclesetbalades.fr";"5.031362";"43.6970387";
+"Chez Germaine";"cdt:LocationMaterielSportLoisir";"";"";"";"";"";"";"";"";"13129";"Arles";"SALIN DE GIRAUD";"non";"";"04 86 63 60 05";"germaine@9business.fr";"";"4.7070616";"43.4063446";
+"Europbike";"cdt:LocationMaterielSportLoisir";"";"";"";"";"";"";"";"";"13200";"Arles";"ARLES";"non";"";"06 38 14 49 50";"europbikeprovence@hotmail.fr";"http://www.europbike-provence.net";"4.620473";"43.599729";
+"Cycles Sports Péra";"cdt:LocationMaterielSportLoisir";"";"";"228";"";"Boulevard";"Nostradamus";"";"";"13300";"Salon de Provence";"SALON DE PROVENCE";"non";"";"04 90 56 44 10";"";"";"5.094313";"43.642508";
+"La maison jaune";"cdt:LocationMaterielSportLoisir";"";"";"1";"";"Rond-point";"Des arènes";"";"";"13200";"Arles";"ARLES";"non";"";"04 90 96 30 18";"lamaisonjaunearles@yahoo.fr";"";"4.6243751";"43.6017739";
+"Wattmobile location de vélos électriques et de scooters";"cdt:LocationMaterielSportLoisir";"";"";"";"";"Square";"Narvik";"";"";"13001";"Marseille";"MARSEILLE";"non";"";"08 11 14 13 13";"contact@wattmobile.net";"http://www.wattmobile.net";"5.3821768";"43.300771";
+"Maison des Transports";"cdt:LocationMaterielSportLoisir";"";"Le Chalet";"171";"";"Avenue";"De Luminy";"";"";"13009";"Marseille";"MARSEILLE";"non";"";"04 91 26 21 80";"lgaudier@maison des transports.org";"http://www.voitureandco.com";"5.43768";"43.239344";
+"Au Vélo Electrique location et vente";"cdt:LocationMaterielSportLoisir";"";"";"64";"";"Rue";"Raphaël Ponson";"";"";"13008";"Marseille";"MARSEILLE";"non";"";"09 50 95 22 22";"contact@auveloelectrique.fr";"http://www.auveloelectrique.fr";"5.3880737";"43.2662988";
+"LocScooterMarseille.com";"cdt:LocationMaterielSportLoisir";"";"";"17";"";"Rue";"Flégier";"";"";"13001";"Marseille";"MARSEILLE";"non";"";"06 51 77 96 33";"contact@locscootermarseille.com";"http://LocScooTerMarseille.com";"5.3852008";"43.3019968";
+"""Le Vélo"" location publique de vélo";"cdt:LocationMaterielSportLoisir";"";"";"";"";"";"";"";"";"13001";"Marseille";"MARSEILLE";"non";"";"08 00 80 12 25";"";"http://www.levelo-mpm.fr";"5.3821768";"43.300771";
+"SARL GSAG";"cdt:LocationMaterielSportLoisir";"";"Station Service du Vieux port";"20-26";"";"Rue";"Caisserie";"";"";"13002";"Marseille";"MARSEILLE";"non";"";"04 91 90 58 28
+06 17 09 73 87";"autogarcia@orange.fr";"";"5.3678283";"43.2969346";
+"Proxi Pousse vélo taxi";"cdt:LocationMaterielSportLoisir";"";"";"125";"";"Rue";"Jean de Bernardy";"";"";"13001";"Marseille";"MARSEILLE";"non";"";"09 41 46 40 07
+06 26 51 66 12";"proxipousse@gmail.com";"http://www.proxi-pousse.org";"5.3996739";"43.3090951";
+"Au Vélo Electrique location et vente";"cdt:LocationMaterielSportLoisir";"";"";"13";"";"Rue";"Fondère";"";"";"13004";"Marseille";"MARSEILLE";"non";"";"09 50 95 09 00";"contact@auveloelectrique.fr";"http://www.auveloelectrique.fr";"5.3994556";"43.3018686";
+"Wallgreen";"cdt:LocationMaterielSportLoisir";"";"";"";"";"Avenue";"De Saint-Menet";"";"";"13011";"Marseille";"MARSEILLE";"non";"";"04 91 27 01 50";"";"http://www.wallgreen.com";"";"";
+"Location de vélos à l'hôtel Longo Maï";"cdt:LocationMaterielSportLoisir";"";"";"";"";"";"";"";"";"13200";"Arles";"ARLES";"non";"";"04 90 97 21 91";"jray13200@aol.com";"http://www.longomai.com";"4.620473";"43.599729";
+"Camargue Découverte";"cdt:LocationMaterielSportLoisir";"";"Mas St Bertrand";"";"";"CD";"36C";"Route du Vaccarès";"";"13129";"Arles";"SALIN DE GIRAUD";"non";"";"04 42 48 80 69";"";"http://www.camarguedecouverte.com";"4.727752";"43.408271";
+"Location de vélos à Méjanes";"cdt:LocationMaterielSportLoisir";"";"Domaine Paul Ricard";"";"";"";"";"";"";"13200";"Arles";"ARLES";"non";"";"04 90 97 06 17
+04 90 97 10 10";"mejanes@ricard.fr";"http://www.mejanes.camargue.fr";"4.620473";"43.599729";
+"Taco and Co";"cdt:LocationMaterielSportLoisir";"";"Gare Routière";"";"";"Avenue";"Paulin Talabot";"";"";"13200";"Arles";"ARLES";"non";"";"06 50 29 60 00";"";"";"4.6316604";"43.6834569";
+"Location de vélos à l'hôtel Régence";"cdt:LocationMaterielSportLoisir";"";"";"5";"";"Rue";"Marius Jouveau";"";"";"13200";"Arles";"ARLES";"non";"";"04 90 96 39 85";"contact@hotel-regence.com";"http://www.hotel-regence.com";"4.6304617";"43.6810095";
+"Kayak Vert Camargue";"cdt:LocationMaterielSportLoisir";"";"Mas de Sylvéréal";"";"";"RD";"38";"";"";"13460";"Saintes Maries de la Mer";"LES SAINTES MARIES DE LA MER";"non";"";"06 09 56 06 47
+04 66 73 57 17";"kayakvert.camargue@wanadoo.fr";"http://www.kayakvert-camargue.fr";"4.43879";"43.5131812";
+"Luberon Biking - 02 Bicycle Shop";"cdt:LocationMaterielSportLoisir";"";"";"80";"";"Route";"D'Aix";"";"";"13510";"Eguilles";"EGUILLES";"non";"";"04 90 90 14 62";"contact@luberon-biking.fr";"http://www.luberon-biking.fr";"5.3753841";"43.5658173";
+"Occadéco - Location de vélos";"cdt:LocationMaterielSportLoisir";"";"";"2";"";"Avenue";"Des Belges";"";"";"13100";"Aix en Provence";"AIX EN PROVENCE";"non";"";"04 42 26 78 92";"occadeco.aix@orange.fr";"http://www.occadeco.com";"5.444994";"43.525865";
+"Cycloplanet - Location de vélos";"cdt:LocationMaterielSportLoisir";"";"";"33";"";"Avenue";"Sainte Victoire";"";"";"13100";"Aix en Provence";"AIX EN PROVENCE";"non";"";"04 42 63 24 71
+06 43 22 27 45";"contact@cycloplanet.com";"http://www.cycloplanet.com";"5.454782";"43.532027";
+"Aix'prit vélo- Location de vélos";"cdt:LocationMaterielSportLoisir";"";"";"20";"";"Rue";"Fernand Dol";"";"";"13100";"Aix en Provence";"AIX EN PROVENCE";"non";"";"04 42 21 24 05";"info@aixpritvelo.com";"http://www.aixpritvelo.com";"5.451018";"43.52604";
+"Electric Cycles - Location de vélos électriques";"cdt:LocationMaterielSportLoisir";"";"";"17";"bis";"Rue";"Frédéric Mistral";"";"";"13100";"Aix en Provence";"AIX EN PROVENCE";"non";"";"04 42 39 90 37
+06 34 49 16 96";"contact@electric-cycles.fr";"http://electric-cycles.fr";"5.451051";"43.525061";

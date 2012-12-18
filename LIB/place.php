@@ -119,7 +119,7 @@ class Place
 	function getDuplicated($title,$zone){
 
 		$theString2Search = StringUtil::accentToRegex(preg_quote($title));
-		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>1);
+		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>1); // TODO : 1 or 2  and 3 throw an alert
 		$doublon = $this->placeColl->findOne($rangeQuery);
 
 		return $doublon;

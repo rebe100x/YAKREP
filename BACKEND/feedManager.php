@@ -15,10 +15,25 @@ $feed = $db->feed;
 $records = array();
 
 
+
+// OPENDATA
+$records[] = array(
+	"_id" => new MongoId("50c5e1171d22b31544001273"),
+	"name"=>"test",
+	"humanName"=>"test",	
+	"link"=>"http://data.visitprovence.com/les-donnees/fiche-donnee/donnees/liste-des-loueurs-de-velo/",
+	"yakCatNameArray" => array('Sport','Cyclisme'),
+	"persistDays" => 180,
+	"defaultPlaceId" => new MongoId('50c5e3311d22b3db2c000959'),
+	"type" => 2,
+	"defaultPrintFlag" => 1,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 5,
+	"zone" =>1,
+);	
+
 // CULTURE
-
-
-	
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000045"),

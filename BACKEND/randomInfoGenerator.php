@@ -163,6 +163,7 @@ $record = array(
 	"licence" => "reserved",
 	"heat" => 80,
 	"yakCat" => array(),
+	"yakCatName" => array(),
 	"freeTag" => array("yakwala"),
 	"yakType" => $yakType,
 	"pubDate" => new MongoDate(gmmktime()),

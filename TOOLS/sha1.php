@@ -11,7 +11,7 @@
 <body>
 
 <?php
-$pass = 'yakwala2012 infohyperlocale';
+$pass = 'yakwala2012kjbjd23aplkfs';
 echo "<br>1: ".$pass;
 $pass2 = sha1($pass);
 echo "<br>2: ".$pass2;

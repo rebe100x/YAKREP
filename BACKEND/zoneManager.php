@@ -12,7 +12,31 @@ $db = $m->selectDB($conf->db());
 $zone = $db->zone;
 
 
+
 $records = array();
+
+/* BRETAGNE */
+$records[] = array(
+	"_id" => new MongoId("50c879b49bab883f11000000"),
+	"name"=>"Bretagne",
+	"location" => array('lat'=>48.259427,'lng'=>-2.925568),
+	"num"=>15,
+//	"formatted_address"=> "Val-d'Oise, France",
+/*	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>"Val-d'Oise",
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'95000',
+			),*/
+//	"box"=>array(
+//			'tl'=>array('lat'=>49.2415040,'lng'=>1.60873310),
+//			'br'=>array('lat'=>48.90867490,'lng'=>2.59497910),
+//	),
+	"status" => 1
+);
+
 
 /*BANLIEUE PARIS*/
 $records[] = array(

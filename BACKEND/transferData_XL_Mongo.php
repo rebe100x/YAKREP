@@ -2,7 +2,7 @@
 <?php 
 /* Access Exalead index in GET, and return a JSON object
  * 
- * if an address is detected by EXALEAD, we apply a logic to find out the more significant address
+ * if an location is detected by EXALEAD, we apply a logical process to find out the more significant address
  * The input from Exalead has the following facets : all are ARRAYS (more than one location can be detected in the news)
  * adressetitle : an address : 3, rue Sufflot in the title of the news
  * adressetext : same but in the text of the news
@@ -12,15 +12,19 @@
  * arrondissemementtext : same in the text of the news
  * quartiertitle : like : "quartier Latin"
  * quartiertext : same in the text of the news 
+ * villetitle 
+ * villetext
  * Persons and Organizations are stored has freeTags 
  * 
  * 
  * the logic is the following :
  * the title has the priority. We take the text only if title is empty.
- * first we check the adresse, if empty we look at the yakdico than at the arrondissement and finally the quartier.
+ * The smaller entity ( = the more precise ) is more significant : 
+ * first we check the adresse, if empty we look at the yakdico than at the quartierand finally the arrondissement  and after the city.
  * 
- * Data enrichment:
- * first we make a screenshot of the article with apercite api
+ * Data process :
+ * we get the enclosed image and resize it.
+ * if no image, we make a screenshot of the article with apercite api
  * second we get the XY with a call to GMAP
  * we call GMAP only if we do not have the location in our PLACE collection ( to spare calls to gmap)
  * after a call to gmap we store in our db the result for next time
@@ -214,7 +218,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							   $adressetitle[]= $category->title;
 						 }
 
-						 if($group->id == "adessetext3"){
+						 if($group->id == "adressetext3"){
 							$flagIncluded = 0;
 							foreach($adressetext as $adr){
 							   if( preg_match("/".$adr."/",$category->title) > 0 || preg_match("/".$category->title."/",$adr) > 0)
@@ -303,19 +307,20 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						else   
 							$locationTmp[] = $yakdico;
 					}else{    
-						if(!empty($arrondissement)){
-							if(is_array($arrondissement))
-								foreach($arrondissement as $arr)
-									$locationTmp[] = rewriteArrondissementParis($arr);
-							else   
-								$locationTmp[] = rewriteArrondissementParis($arrondissement);
-						}else{
-							if(!empty($quartier)){
+						if(!empty($quartier)){
 								if(is_array($quartier))
 									foreach($quartier as $quar)
 										$locationTmp[] = $quar;
 								else 
 									$locationTmp[] = $quartier;
+						}else{
+							if(!empty($arrondissement)){
+							if(is_array($arrondissement))
+								foreach($arrondissement as $arr)
+									$locationTmp[] = rewriteArrondissementParis($arr);
+							else   
+								$locationTmp[] = rewriteArrondissementParis($arrondissement);
+							
 							}else{
 								if(is_array($ville))
 									foreach($ville as $vil)
@@ -337,14 +342,19 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".$loc;
 						//check if in db
 						
-						$place = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>$defaultPlace['zone']));
+						$place = $placeColl->findOne(array('title'=>$loc,"zone"=>$defaultPlace['zone']));
 						//var_dump($place);
 						if($place && $flagForceUpdate != 1){ // FROM DB
 							echo "<br> Location found in DB !";
 							$logLocationInDB++;
 							//$geoloc[] = array($place['location']['lat'],$place['location']['lng']);
-							$status = 1;
-							$print = 1;
+							if($place['status'] == 3){ // if the place has been blacklisted by the operator
+								$status = 11; // alert status
+								$print = 0; // don't print on the map, but can be printed on the news feed
+							}else{
+								$status = 1;
+								$print = 1;
+							}
 							$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print);	
 						 }else{    // FROM GMAP
 							echo "<br> Call to GMAP: ".$loc.', '.$defaultPlace['title'].', '.$defaultPlace['address']['country'];
@@ -355,8 +365,17 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							echo '___<br>';
 							if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlace['title'].', '.$defaultPlace['address']['country']){
 								echo "<br> GMAP found the coordinates of this location ! ";
-								$status = 1;
-								$print = 1;
+								// check if the result is in the zone
+								$zoneObj = new Zone();
+								$zoneNums = $zoneObj->findNumByLocation(array('lat'=>$resGMap['location'][0],'lng'=>$resGMap['location'][1]));
+								if(!in_array($feed['zone'],$zoneNums)){
+									echo "<br><b>Err:</b>Location found is not in the feed zone ( ".$feed['zone']." )";
+									$status = 12;
+									$print = 0;
+								}else{
+									$status = 1;
+									$print = 1;
+								}
 								$geolocGMAP = $resGMap['location'];
 								$addressGMAP = $resGMap['address'];
 								$formatted_addressGMAP = $resGMap['formatted_address'];

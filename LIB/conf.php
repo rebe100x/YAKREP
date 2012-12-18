@@ -10,6 +10,7 @@ include_once "info.php";
 include_once "address.php";
 include_once "contact.php";
 include_once "location.php";
+include_once "zone.php";
 include_once "stringUtil.php";
 
 class conf

@@ -507,6 +507,52 @@ function getZipCodeFromParisArr($str){
 	
 }
 
+/**
+ * Normilize YAKCAT 
+ *	Create the pathN by uppercase , suppr accents, and special char
+ * @param string
+ * @return string normilized
+ */
+function yakcatPathN($string) { 
+	$res=""; 
+			
+	//pattern array 
+	$search=array(		 
+	"[Ç|¢|ç]", 
+	"[ü|û|ù|Ü|ú|Ú|Û|Ù]", 
+	"[é|ê|ë|è|É|Ê|Ë|È]", 
+	"[â|ä|à|å|Ä|Å|á|Á|Â|À|ã|Ã]", 
+	"[ï|î|ì|í|Í|Î|Ï|Ì]", 
+	"[ô|ö|ò|Ö|ø|Ø|ó|Ó|Ô|Ò|õ|Õ]", 
+	"[ÿ|ý|Ý]", 
+	"[ñ|Ñ]", 
+	"[Ð]" 
+	); 
+	
+	//replacement array 
+	$replace=array(
+	"c", 
+	"u", 
+	"e", 
+	"a", 
+	"i", 
+	"o", 
+	"y", 
+	"n", 
+	"d" 
+	); 
+
+	$string = preg_replace($search,$replace,$string);       //remplacement 
+	$string = trim($string); 
+	$string = ereg_replace(" ","",$string); 
+
+	$string = ereg_replace("[^0-9a-zA-Z]","",$string); 
+	$string = strtoupper($string); 
+	
+	
+	
+	return $string; 
+}
 
 function indexForOntology($str)
 {            

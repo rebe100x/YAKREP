@@ -12,9 +12,11 @@ $db = $m->selectDB($conf->db());
 $zone = $db->zone;
 
 
+
 $records = array();
 
-/*MARSEILE*/
+
+/*MARSEILLE*/
 $records[] = array(
 	"_id" => new MongoId("50c5e0601d22b34e440010a7"),
 	"name"=>"Bouches-du-Rhône",
@@ -33,6 +35,26 @@ $records[] = array(
 			'tl'=>array('lat'=>43.854336,'lng'=>4.514557),
 			'br'=>array('lat'=>43.197167,'lng'=>5.651642),
 	),
+	
+/* BRETAGNE */
+$records[] = array(
+	"_id" => new MongoId("50c879b49bab883f11000000"),
+	"name"=>"Bretagne",
+	"location" => array('lat'=>48.259427,'lng'=>-2.925568),
+	"num"=>15,
+	"formatted_address"=> "Bretagne, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>"",
+				'area'=>'Bretagne',
+				'country'=>'France',
+				'zip'=>'',
+			),
+//	"box"=>array(
+//			'tl'=>array('lat'=>49.2415040,'lng'=>1.60873310),
+//			'br'=>array('lat'=>48.90867490,'lng'=>2.59497910),
+//	),
 	"status" => 1
 );
 

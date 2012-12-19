@@ -28,6 +28,18 @@ $records[] = array(
 	);
 	
 $records[] = array(
+	"_id" => new MongoId("50c883f49bab882610000000"),
+	"title"=>"Villes de France",
+	"content" =>"",
+	"origin" => "Yakwala",
+	"licence" => "Yakwala",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"tag" => array(""),
+	"zone" => array(2,7,8,9,10,11,12,13,15),
+	);	
+	
+$records[] = array(
 	"_id" => new MongoId("508e7eb0fa9a954c0900006c"),
 	"title"=>"Villes de l'Hérault",
 	"content" =>"",

@@ -2,6 +2,7 @@
 require_once("conf.php");
 
 
+
 class Place
 {
 	//collection
@@ -116,10 +117,14 @@ class Place
 	* 
 	*
 	*/
-	function getDuplicated($title,$zone){
+	function getDuplicated($title,$zone,$thestatus=1){
 
 		$theString2Search = StringUtil::accentToRegex(preg_quote($title));
+<<<<<<< HEAD
 		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>1); // TODO : 1 or 2  and 3 throw an alert
+=======
+		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>$thestatus);
+>>>>>>> f4bcbf4f91a365923c89df90e044c2f67b305a91
 		$doublon = $this->placeColl->findOne($rangeQuery);
 
 		return $doublon;
@@ -129,7 +134,7 @@ class Place
 	 * locationQuery : the query to gmap
 	 * res : reference to return value from saveToMongoDB
 	 */
-	function getLocationFromQuery($locationQuery, &$res) {
+	 function getLocationFromQuery($locationQuery='', &$res) {
 		$loc = getLocationGMap(urlencode(utf8_decode(suppr_accents($locationQuery))),'PHP', $debug);
 		
 		$res['callGMAP'] = 1;
@@ -187,19 +192,23 @@ class Place
 			"zone"			=> 	$this->zone,
 			);
 
-		$doublon = $this->getDuplicated($this->title,$this->zone);
+			//print_r($record);
+		$doublon = $this->getDuplicated($this->title,$this->zone,$this->status);
 
+		var_dump($doublon);
 		// if no duplicated
 		if (empty($doublon)) {
 			
 				// if we asked for a geoloc
 			if ( strlen($locationQuery)>0 ) {
-				getLocationFromQuery($locationQuery, $res);
-			} else {
-				$this->status = 1;
-			}
+			   //locationQuery="sdfsdfsd";
+			   //$res=array();
+				$this->getLocationFromQuery($locationQuery, $res);
+			
+			} 
 
 			$resSave = $this->savePlace($record);
+			//print_r($resSave);
 			$res['record'] = $record; // TODO : cast to array ???
 			$res['error'] = $resSave['error'];
 			$this->placeColl->ensureIndex(array("location"=>"2d"));
@@ -249,7 +258,8 @@ class Place
 			&& (!empty($this->status))
 			&& (!empty($this->access))		
 			){
-			$this->placeColl->save($record);
+			$test=$this->placeColl->save($record);
+			print_r($record);
 		$res['id'] = $record['_id'];
 	}else{
 		$res['error'] = "<br><b>Error:</b> A non nullable field is empty :<br>".

@@ -204,7 +204,13 @@ foreach ($urlset->url as $url) {
 					else {
 						$info->content = html_entity_decode($result->data->description->en);
 					}
-
+					
+					if (isset($result->data->freeText->fr)) {
+						$info->content .= html_entity_decode($result->data->freeText->fr);
+					}
+					else {
+						$info->content .= html_entity_decode($result->data->freeText->en);
+					}
 					// Using createImgThumb from /lib/library.php
 					$info->thumb = "/thumb/".createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
 
@@ -220,10 +226,9 @@ foreach ($urlset->url as $url) {
 					if( ! ini_get('date.timezone') ) {
 						date_default_timezone_set('Europe/Paris');
 					}
-
+					
 					$dateUpdatedAt = DateTime::createFromFormat('Y-m-d H:i:s', $result->data->updatedAt);
 					$info->pubDate = new MongoDate($dateUpdatedAt->getTimestamp());
-
 					// Heat set to 1 for new infos
 					$info->heat = 1;
 
@@ -242,8 +247,8 @@ foreach ($urlset->url as $url) {
 					}
 
 					foreach ($cibulTags as $tag) {
-						$freeTag[] = $tag;
-						$temp_tag = suppr_accents($tag);
+						$freeTag[] = yakcatPathN($tag,0);
+						$temp_tag = yakcatPathN($tag,1);
 						if (preg_match("/THEATRE/i", $temp_tag)) {
 							$cat[] = "CULTURE#THEATRE";
 							$catName[] = "Théatre";
@@ -273,6 +278,8 @@ foreach ($urlset->url as $url) {
 
 					// Duplicate info for each date
 					foreach ($location->dates as $date) {
+					echo '<hr>date';
+					var_dump($date);
 						$eventDate = array();
 						$dateDay = DateTime::createFromFormat('Y-m-d', $date->date);
 
@@ -288,8 +295,9 @@ foreach ($urlset->url as $url) {
 						$info->eventDate = $eventDate;
 
 						$dateEndPrint = strtotime("+7 days", date_timestamp_get($dateEnd));
-						$info->dateEndPrint = new MongoDate($dateEndPrint);
-
+						$info->dateEndPrint = new MongoDate($dateEndPrint);  
+						//$info->dateEndPrint = new MongoDate(mktime()+7*86400); // FOR DEBUG
+						
 						$res = $info->saveToMongoDB('', $debug,$updateFlag);
 					}
 					/* End info insertion in mongodb */
@@ -306,7 +314,7 @@ foreach ($urlset->url as $url) {
 	}
 
 	// Temporary break after 15 insertions
-	if($row > 15)
+	if($row > 1)
 		break;
 }
 /* End sitemap parsing with simpleXml */

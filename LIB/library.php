@@ -508,12 +508,13 @@ function getZipCodeFromParisArr($str){
 }
 
 /**
- * Normilize YAKCAT 
- *	Create the pathN by uppercase , suppr accents, and special char
+ * Normalize YAKCAT and TAGS
+ * Create the pathN by uppercase , suppr accents, and special char
  * @param string
+ * @param toUpper : if 1 perform an upper case at the end, default : 1
  * @return string normilized
  */
-function yakcatPathN($string) { 
+function yakcatPathN($string,$toUpper=1) { 
 	$res=""; 
 			
 	//pattern array 
@@ -544,15 +545,17 @@ function yakcatPathN($string) {
 
 	$string = preg_replace($search,$replace,$string);       //remplacement 
 	$string = trim($string); 
-	$string = ereg_replace(" ","",$string); 
-
-	$string = ereg_replace("[^0-9a-zA-Z]","",$string); 
-	$string = strtoupper($string); 
+	$string = preg_replace("/039/i","",$string); 
+	$string = preg_replace( "/[^a-z0-9]/i", "", $string );
+	if($toUpper)
+		$string = strtoupper($string); 
 	
 	
 	
 	return $string; 
 }
+
+
 
 function indexForOntology($str)
 {            
@@ -639,6 +642,7 @@ function randomPositionArround($loc){
 
 	return array('lat'=>$lat2,'lng'=>$lon2);
 }
+
 
 
 

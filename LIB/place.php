@@ -121,6 +121,7 @@ class Place
 
 		$theString2Search = StringUtil::accentToRegex(preg_quote($title));
 		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>$thestatus); // TODO : status 1 or 2  and 3 throw an alert
+
 		$doublon = $this->placeColl->findOne($rangeQuery);
 
 		return $doublon;

@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-  <loc>http://cibul.net/event/mama-cumbia-sound-system-17-edicion-apocaliptica-con-el-sargento-garcia/fr</loc>
-  <priority>0.9</priority>
-  <changefreq>daily</changefreq>
-  <lastmod>2012-12-19</lastmod>
-  <uid>98076042</uid>
-</url>
-<url>
-  <loc>http://cibul.net/event/war-in-the-bed-outer-rim-schnaps-gambetta-club/fr</loc>
-  <priority>0.9</priority>
-  <changefreq>daily</changefreq>
-  <lastmod>2012-12-19</lastmod>
-  <uid>10454779</uid>
-</url>
-<url>
 	<loc>http://cibul.net/en</loc>
 	<priority>0.9</priority>
 	<changefreq>daily</changefreq>
@@ -7821,6 +7807,13 @@
   <uid>39163378</uid>
 </url>
 <url>
+  <loc>http://cibul.net/event/open-space-os1/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-09-25</lastmod>
+  <uid>44461891</uid>
+</url>
+<url>
   <loc>http://cibul.net/event/producer-night/fr</loc>
   <priority>0.9</priority>
   <changefreq>daily</changefreq>
@@ -9884,6 +9877,13 @@
   <changefreq>daily</changefreq>
   <lastmod>2012-10-18</lastmod>
   <uid>86134949</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/finale-dj-contest-fanatek-techno-events-100-techno/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-10-18</lastmod>
+  <uid>98606742</uid>
 </url>
 <url>
   <loc>http://cibul.net/event/le-petit-mali/fr</loc>
@@ -13603,6 +13603,13 @@
   <uid>66337570</uid>
 </url>
 <url>
+  <loc>http://cibul.net/event/r-cital-de-piano-de-pierre-chalmeau/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-11-29</lastmod>
+  <uid>92853792</uid>
+</url>
+<url>
   <loc>http://cibul.net/event/xmas-market-avec-showcases-bs-lavoir-moderne-parisien-garage-mu/fr</loc>
   <priority>0.9</priority>
   <changefreq>daily</changefreq>
@@ -13659,7 +13666,7 @@
   <uid>61425100</uid>
 </url>
 <url>
-  <loc>http://cibul.net/event/prochain-p-tit-d-j-vivacit-s-les-r-unions-mensuelles-du-r-seau-d-ducation-l-environnement-urbain%2A544/fr</loc>
+  <loc>http://cibul.net/event/prochain-p-tit-d-j-vivacit-s-les-r-unions-mensuelles-du-r-seau-d-ducation-l-environnement-urbain%2A406/fr</loc>
   <priority>0.9</priority>
   <changefreq>daily</changefreq>
   <lastmod>2012-11-30</lastmod>
@@ -14294,6 +14301,34 @@
   <changefreq>daily</changefreq>
   <lastmod>2012-12-05</lastmod>
   <uid>33935647</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/les-championnats-intergalactiques-d-humour-dr-le/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-05</lastmod>
+  <uid>9724669</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/le-myst-re-de-la-grande-seinpresse/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-05</lastmod>
+  <uid>8565296</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/amou-tati%2A184/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-05</lastmod>
+  <uid>83871678</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/la-bidone/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-05</lastmod>
+  <uid>61227131</uid>
 </url>
 <url>
   <loc>http://cibul.net/event/mais-n-te-prom-ne-pas-donc-pas-toute-nue-mais-va-donc-t-rhabiller/fr</loc>
@@ -15015,6 +15050,636 @@
   <changefreq>daily</changefreq>
   <lastmod>2012-12-19</lastmod>
   <uid>10454779</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/bang-bang-w-dbridge/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>23572252</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/nahual/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>11488466</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/sweety-weekly-party-producer-night/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>92043736</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/all-naked%2A100/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>80016503</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/drops-of-sweat%2A673/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>99822210</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/mad-sin-sugar-tiger-dead-boobs/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>23343931</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/get-in-step%2A87/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>61644182</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/fritz-kalkbrenner/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>43987098</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/section-show-time/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>97687922</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/all-time-low/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>42601326</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/skank-it-up%2A589/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>12102147</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/alain-souchon-fait-son-petit-tour%2A611/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>11541822</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/digital-whomp/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>62678879</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/just-4-ladies/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>91935912</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/ghoul-cannabis-corpse-genital-grinder/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>49005943</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/sweety-weekly-party-kick-snare/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>58687283</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/the-darkness/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>19393757</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/matisyahu/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>53629278</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/bullet-for-my-valentine/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>63017750</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/killing-joke/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>40859213</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/alice-russel/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>78325345</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/walk-off-the-earth/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>58236192</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/off-the-hook%2A792/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>99350895</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/poni-hoax/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>36285636</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/femi-kuti/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>9923361</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/ellie-goulding/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>9895052</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/imagine-dragons/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-19</lastmod>
+  <uid>26516237</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/quand-on-parle-du-loup/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-20</lastmod>
+  <uid>59804540</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/la-java-des-balkans%2A718/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-20</lastmod>
+  <uid>35628955</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/faites-le-mur%2A345/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-20</lastmod>
+  <uid>23000787</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/meetup-mozilla/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-20</lastmod>
+  <uid>64088193</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/bang-bang%2A29/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>36188364</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/la-culott-e/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>27627370</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/caf-outil-2020-energy/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>51834943</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/love-shirts-drinks/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>73611481</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/eclipse-mondkopf-trafik-vernissage-et-performance/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>64250055</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/eclipse-mondkopf-trafik-vs-trafik/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>12451337</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/tomorrow-andrey-gryazev/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>99454934</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/moscowbeat-proxy-tesla-boy-mujuice-pompeya-dza/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>47781570</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/if-the-kids-are-united-stereo-total-the-electronic-conspiracy-1-re-partie-microfaune-dj-s-all-stars/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>93665671</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/crise-par-1024/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>87694529</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/electric-electric-powerdove-double-nelson/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>28686722</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/digital-nation-avec-zombie-nation-joris-delacroix-maelstrom-spitzer-m-me/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>25470589</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/hipopsession-dj-premier-guest-t-k-o/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>78835675</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/bionic-orchestra-contact-in-vivo/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>69783482</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/disiz-fixpen-sill/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>53933667</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/sacr-s-belges/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>7231318</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/balthazar-1ere-partie/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>32396053</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/lescop-yan-wagner-tablo-d/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>39494714</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/riddimwize-rick-wayne-lancy-rankin-junior-natural-nassadjah-meditative-sounds-zion-gate-hi-fi/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>23162000</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/citygame-3-3-testez-les-jeux-vid-os-de-demain/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>35108951</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/gazouilly-petit-oiseau-cin-concert-partir-de-2-ans/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>47429154</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/t-t-1ere-partie/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>54440973</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/bri-ka-brak-pr-sent-par-double-cadence-cin-concert-partir-de-4-ans/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>10289823</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/back-in-the-ussr/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>43037108</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/so-rock-so-foot/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>33747547</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/1name4acrew%2A449/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>90042917</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/the-datsuns-el-royce%2A623/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>6991655</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/zenzile-yosh%2A160/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>11625451</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/melody-s-echo-chamber-motorama%2A343/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>22213633</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/hipopsession-m-dine-roc-humanist-youkoff%2A850/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>47563045</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/hackathon-open-data%2A584/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>4558161</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/sapin-le-jour-ogre-la-nuit-sophie-marie-larrouy-guests/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>38477823</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/fergessen-de-retour-lyon-en-janvier/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-21</lastmod>
+  <uid>89546558</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/bad-little-bubble-b-par-la-cie-mesden/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-22</lastmod>
+  <uid>66012761</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/je-ne-suis-personne-la-compagnie-des-attentifs/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-22</lastmod>
+  <uid>30444573</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/folfox-auren/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-22</lastmod>
+  <uid>83791252</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/eloise-decazes-eric-chenaux-d-j-mu/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-22</lastmod>
+  <uid>63064376</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/leonore-boulanger-concert-organis-avec-la-blogoth-que/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-22</lastmod>
+  <uid>70162849</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/kitsun-club-night-part-1-avec-saint-michel-punks-jump-up-le-crayon-wanderlust/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-23</lastmod>
+  <uid>90805884</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/keep-the-lights-on/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-23</lastmod>
+  <uid>77403433</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/wanderlust-pr-sente-mirror-people-zimmer-civilian/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-26</lastmod>
+  <uid>24919822</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/acid-arab-and-very-special-guest-baris-k/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-26</lastmod>
+  <uid>24572122</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/le-sourire-de-la-morte/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-26</lastmod>
+  <uid>46276086</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/mona-is-burning-2nd-part/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-26</lastmod>
+  <uid>29769576</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/wanderlust-pr-sente-blende-kartell-cezaire/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-26</lastmod>
+  <uid>85070984</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/colorswing-post-apocalypse/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-26</lastmod>
+  <uid>76626283</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/new-year-eve-wanderlust/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-26</lastmod>
+  <uid>98430472</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/chlo-jackson-grego-g-wanderlust/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-27</lastmod>
+  <uid>36059241</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/wanderlust-pr-sente-prins-thomas-zimmer-himan/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-27</lastmod>
+  <uid>46196077</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/the-c90s-get-a-room-heko-wanderlust/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-27</lastmod>
+  <uid>57528538</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/wanderlust-pr-sente-bit-funk-idjut-boys/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-27</lastmod>
+  <uid>97033154</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/24-32-feat-dirty-swift-janowsky-simon-rezlem-arthur-kristfallen-toni-vegas-olivier-de-san-nicolas/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-27</lastmod>
+  <uid>21812430</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/suburblight-en-concert-au-gambetta-club/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-27</lastmod>
+  <uid>4383599</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/gypsy-night-fever-5-special-balkan-vs-cumbia/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-28</lastmod>
+  <uid>41654537</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/pirates-des-cara-bes-la-teuf/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-28</lastmod>
+  <uid>40072781</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/31-night-fever-sono-sans-fronti-res/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-28</lastmod>
+  <uid>95789159</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/sono-sans-frontieres-dj-dam-mr-toubab/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-28</lastmod>
+  <uid>90050328</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/aggro-reggae-party%2A160/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-28</lastmod>
+  <uid>71548107</uid>
+</url>
+<url>
+  <loc>http://cibul.net/event/stalawa-sound/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2012-12-28</lastmod>
+  <uid>33818702</uid>
 </url>
 <url>
   <loc>http://cibul.net/the-incompetents/fr</loc>
@@ -19167,11 +19832,6 @@
   <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://cibul.net/levas-joanna/fr</loc>
-  <priority>0.9</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
   <loc>http://cibul.net/claude-namer/fr</loc>
   <priority>0.9</priority>
   <changefreq>daily</changefreq>
@@ -21718,6 +22378,56 @@
 </url>
 <url>
   <loc>http://cibul.net/jean-michel-augier/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/delphine-fb1344849666/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/fanny/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/palo-altours/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/laculotteparis/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/audrey/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/guillaume-rouault-de-coligny/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/jacob-fb100000699806102/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/interlude-fb1366903714/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/ga-lle-fb670314367/fr</loc>
+  <priority>0.9</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://cibul.net/suburblight/fr</loc>
   <priority>0.9</priority>
   <changefreq>daily</changefreq>
 </url>

@@ -41,6 +41,7 @@ require_once("conf.php");
  	
  	public $outGoingLink;
  	
+	public $originLink;
  	// the importance of the info 0->100
  	public $heat; 
  	

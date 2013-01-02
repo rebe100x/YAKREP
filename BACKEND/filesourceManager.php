@@ -174,7 +174,19 @@ $records[] = array(
 
 
 
+$records[] = array(
+ "_id" => new MongoId("50e42ac09bab884612000000"),
+	"title"=>"Ouest France",
+	"content" =>"Info de Ouest France.",
+	"licence" => "Licence ouverte",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
 
+	);	
+
+
+
+	
 
 $row1 = 0;	
 $row2 = 0;	

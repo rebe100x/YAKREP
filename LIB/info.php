@@ -158,11 +158,14 @@ require_once("conf.php");
 		if( !empty($this->location->lat) && !empty($this->location->lng) ){
 				//print_r($this->location);
 			
-				$rangeQuery = array('title' => $this->title, "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
-				$doublon = $this->infoColl->findOne($rangeQuery);
+				//$rangeQuery = array('title' => $this->title, "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
+				//$doublon = $this->infoColl->findOne($rangeQuery);
 				if(empty($doublon)){
 					$theString2Search = StringUtil::accentToRegex($this->title);
-					$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035,'zone' => $this->zone,"status"=>1));
+					if(empty($this->evenDate['hreventdate']))
+						$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035,'zone' => $this->zone,"status"=>1));
+					else
+						$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035,'zone' => $this->zone,"status"=>1,'eventDate.$.hreventdate'=>$this->evenDate['hreventdate']));
 					$doublon = $this->infoColl->findOne($rangeQuery);
 				}		
 			}
@@ -202,11 +205,10 @@ require_once("conf.php");
  	function saveToMongoDB($locationQuery = "", $debug, $flagUpdate = false) {
  		
 		// must be set : ZONE and PLACENAME or ADDRESS
-		// and ORIGIN and FILETITLE and LICENCE
+		// and ORIGIN and FILETITLE and LICENCE and TYPE
 		$res = array('duplicate'=>0,'insert'=>0,'getPlaceinDB'=>0,'insertPlace'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0);
 		
 		$this->setFilesourceId();
-		
 		
 
 		// if we have a place geolocalized
@@ -270,7 +272,7 @@ require_once("conf.php");
 				echo '<br>info save for the feed<br>';
 		}
 		
-		var_dump($this->content);
+		//var_dump($this->content);
 		return $res;
 	}
 	
@@ -293,11 +295,11 @@ require_once("conf.php");
 			"yakCat" 		=>	$this->yakCat,
 			"yakCatName"	=>	$this->yakCatName,
 			"freeTag"		=>	$this->freeTag,
-			"pubDate"		=>	new MongoDate(gmmktime()),
+			"pubDate"		=>	(!empty($this->pubDate))?$this->pubDate:new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
 			"eventDate"		=>	$this->eventDate,
-			"dateEndPrint"	=> 	$this->dateEndPrint,
+			"dateEndPrint"	=> 	(!empty($this->dateEndPrint))?$this->dateEndPrint:new MongoDate(gmmktime()+7*86400),
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,
 			"contact"		=>	$this->contact,
@@ -333,11 +335,11 @@ require_once("conf.php");
 			"yakCat" 		=>	$this->yakCat,
 			"yakCatName"	=>	$this->yakCatName,
 			"freeTag"		=>	$this->freeTag,
-			"pubDate"		=>	new MongoDate(gmmktime()),
+			"pubDate"		=>	(!empty($this->pubDate))?$this->pubDate:new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
 			"eventDate"		=>	$this->eventDate,
-			"dateEndPrint"	=> 	$this->dateEndPrint,
+			"dateEndPrint"	=> 	(!empty($this->dateEndPrint))?$this->dateEndPrint:new MongoDate(gmmktime()+7*86400),
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,
 			"contact"		=>	$this->contact,

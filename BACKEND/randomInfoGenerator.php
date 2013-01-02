@@ -151,7 +151,8 @@ $options = array(
     return $fullpath;
 	*/
 // TYPE	
-$yakType = rand(1,4);
+//$yakType = rand(1,4);
+$yakType = 4;
 
 $record = array(
 	"title"=> $title,
@@ -169,7 +170,7 @@ $record = array(
 	"pubDate" => new MongoDate(gmmktime()),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"dateEndPrint" => new MongoDate(gmmktime()),
+	"dateEndPrint" => new MongoDate(gmmktime()+3*60*60),
 	"print" => 1,
 	"status" => 1,
 	"user" => 0,

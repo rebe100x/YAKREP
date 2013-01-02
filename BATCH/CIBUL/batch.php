@@ -38,6 +38,17 @@ $row = 0;
 $access = 1;
 $user = 0;
 
+/*
+http://cibul.net/event/stage-esprit-et-corps-surmonter-la-dualit-de-l-acteur-stage-en-anglais-traduit-en-fran-ais/fr#sClient=
+https://api.cibul.net/v1/events/28601182?key=22640375947e8efe580bbe056e4c7b60
+ne pas dupliquer
+entre le hreventdate : Le ou A partir du
+mettre la datepub à la date de pub
+mettre la endprint à dateevent[last] +1
+
+
+*/
+
 // UpdateFlag is a query parameter, if 1, force update
 $updateFlag = empty($_GET['updateFlag'])?0:1;
 
@@ -60,8 +71,9 @@ $db = $m->selectDB($conf->db());
 function getJSONfromUID($uid) {
 	global $cibulApiKey, $cibulApiUrl;
 	$chuid = curl_init();
-
-	curl_setopt($chuid, CURLOPT_URL, $cibulApiUrl . $uid . "?key=" . $cibulApiKey);	
+	$url = $cibulApiUrl . $uid . "?key=" . $cibulApiKey;
+	echo "<br>URL CALLED : "+$url+"<br>";
+	curl_setopt($chuid, CURLOPT_URL, $url);	
 	curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
 	curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
 
@@ -111,11 +123,13 @@ print_debug("<hr />");
 /* Begin sitemap parsing with simpleXml */
 $urlset = simplexml_load_string($sitemap);
 $currentPlace;
-
+$callCibull = 0;
 foreach ($urlset->url as $url) {
-
-	if ($url->uid && $url->loc) {	// Only parse events with an uid and a direct link
-
+	
+	$lastModificationDate = DateTime::createFromFormat('Y-m-d', $url->lastmod);
+	$fromDate = DateTime::createFromFormat('Y-m-d', "2012-12-01");
+	if ($url->uid && $url->loc &&  $lastModificationDate->getTimestamp() > $fromDate->getTimestamp() ) {	// Only parse events with an uid and a direct link and a modif date 
+		echo '<br>LAST MODIF :'+$url->lastmod;
 		$infoQuery = array("outGoingLink" => $url->loc);
 		$dataExists = $db->info->findOne($infoQuery);
 
@@ -124,7 +138,7 @@ foreach ($urlset->url as $url) {
 				print_debug("Event ". $url->loc . " already in DB, forcing update." . "<br />");
 			}
 			else {
-				print_debug("Ignored event ". $url->loc . "<br />");
+				print_debug("Evetn already in db: ". $url->loc . "<br />");
 			}
 		}
 
@@ -132,7 +146,7 @@ foreach ($urlset->url as $url) {
 			print_debug( "Call to cibul Api for Uid: ". $url->uid . "<br />");
 
 			$result = getJSONfromUID($url->uid);
-
+			$callCibull++;
 			// Error on api call
 			if ($result->data == FALSE) {
 				print_debug("<b>Api call unsuccessful</b>" . "<br />");
@@ -204,7 +218,13 @@ foreach ($urlset->url as $url) {
 					else {
 						$info->content = html_entity_decode($result->data->description->en);
 					}
-
+					
+					if (isset($result->data->freeText->fr)) {
+						$info->content .= html_entity_decode($result->data->freeText->fr);
+					}
+					else {
+						$info->content .= html_entity_decode($result->data->freeText->en);
+					}
 					// Using createImgThumb from /lib/library.php
 					$info->thumb = "/thumb/".createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
 
@@ -220,12 +240,12 @@ foreach ($urlset->url as $url) {
 					if( ! ini_get('date.timezone') ) {
 						date_default_timezone_set('Europe/Paris');
 					}
-
+					
 					$dateUpdatedAt = DateTime::createFromFormat('Y-m-d H:i:s', $result->data->updatedAt);
 					$info->pubDate = new MongoDate($dateUpdatedAt->getTimestamp());
-
+					
 					// Heat set to 1 for new infos
-					$info->heat = 1;
+					$info->heat = 80;
 
 					// Default yakCat
 					$cat = array("CULTURE","AGENDA");
@@ -242,19 +262,26 @@ foreach ($urlset->url as $url) {
 					}
 
 					foreach ($cibulTags as $tag) {
-						$freeTag[] = $tag;
-						$temp_tag = suppr_accents($tag);
+						$freeTag[] = yakcatPathN($tag,0);
+						$temp_tag = yakcatPathN($tag,1);
 						if (preg_match("/THEATRE/i", $temp_tag)) {
-							$cat[] = "CULTURE#THEATRE";
-							$catName[] = "Théatre";
+							if(!in_array("CULTURE#THEATRE",$cat))
+								$cat[] = "CULTURE#THEATRE";
+							if(!in_array("Théatre",$catName))	
+								$catName[] = "Théatre";
 						}
 						else if (preg_match("/CONCERT/i", $temp_tag)) {
-							$cat[] = "CULTURE#MUSIQUE";
-							$catName[] = "Musique";
+							if(!in_array("CULTURE#MUSIQUE",$cat))
+								$cat[] = "CULTURE#MUSIQUE";
+							if(!in_array("Musique",$catName))
+								$catName[] = "Musique";
 						}
 						else if (preg_match("/OPERA/i", $temp_tag)) {
-							$cat[] = "CULTURE#MUSIQUE";
-							$catName[] = "Musique";
+							if(!in_array("CULTURE#MUSIQUE",$cat))
+								$cat[] = "CULTURE#MUSIQUE";
+							if(!in_array("Musique",$catName))
+								$catName[] = "Musique";
+							
 							$info->freeTag[] = "Classique";
 							$info->freeTag[] = "Opéra";
 						}
@@ -270,9 +297,32 @@ foreach ($urlset->url as $url) {
 					$info->yakType = 2;
 					$info->zone = $zone;
 					$info->placeName = $currentPlace->title;
+					if(sizeof($location->dates) > 1)
+						echo '<div style=\'background-color:#00FF00\'>MULTIPLE DATE</div>';
+					$eventDate = array();
+					foreach ($location->dates as $date) {
+						$eventDate = array();
 
+						$dateTimeFrom = DateTime::createFromFormat('Y-m-d H:i:s', $date->date . " " . $date->timeStart);
+						$eventDate['dateTimeFrom'] = new MongoDate(date_timestamp_get($dateTimeFrom));
+
+						$dateTimeEnd = DateTime::createFromFormat('Y-m-d H:i:s', $date->date . " " . $date->timeEnd);
+						$eventDate['dateTimeEnd'] = new MongoDate(date_timestamp_get($dateTimeEnd));
+						$info->eventDate[] = $eventDate;
+						
+					}
+					
+					$dateEndPrint = strtotime("+1 day", date_timestamp_get($dateTimeEnd));
+					$info->dateEndPrint = new MongoDate($dateEndPrint);  
+					//$info->dateEndPrint = new MongoDate(mktime()+7*86400); // FOR DEBUG
+					
+					$res = $info->saveToMongoDB('', $debug,$updateFlag);
+					echo 'INFO SAVED';
+					/*
 					// Duplicate info for each date
 					foreach ($location->dates as $date) {
+					echo '<hr>date';
+					var_dump($date);
 						$eventDate = array();
 						$dateDay = DateTime::createFromFormat('Y-m-d', $date->date);
 
@@ -287,11 +337,17 @@ foreach ($urlset->url as $url) {
 						
 						$info->eventDate = $eventDate;
 
-						$dateEndPrint = strtotime("+7 days", date_timestamp_get($dateEnd));
-						$info->dateEndPrint = new MongoDate($dateEndPrint);
-
+						$dateEndPrint = strtotime("+1 day", date_timestamp_get($dateEnd));
+						$info->dateEndPrint = new MongoDate($dateEndPrint);  
+						//$info->dateEndPrint = new MongoDate(mktime()+7*86400); // FOR DEBUG
+								
 						$res = $info->saveToMongoDB('', $debug,$updateFlag);
+						echo 'INFO SAVED';
 					}
+					*/
+					
+					
+					
 					/* End info insertion in mongodb */
 				}
 				/* End place insertion in mongodb */
@@ -306,11 +362,12 @@ foreach ($urlset->url as $url) {
 	}
 
 	// Temporary break after 15 insertions
-	if($row > 15)
+	if($row > 5)
 		break;
 }
 /* End sitemap parsing with simpleXml */
 
+echo "<br>call to cibul"+$callCibull+"<br>";
 $currentPlace->prettyLog($results);
 
 ?>

@@ -16,7 +16,7 @@ include_once "cat.php";
 
 class conf
 {
-	private $deploy = 'dev'; 
+	private $deploy = 'devrenaud'; 
     private $db;
 	private $fronturl;
 	private $backurl;
@@ -35,6 +35,16 @@ class conf
 				$this->thumbpath = '/YAKREP/BACKEND/thumb/';
 				$this->bigpath = '/YAKREP/BACKEND/big/';
 				$this->originalpath = '/YAKREP/BACKEND/original/';
+				
+			break;
+			case 'devrenaud':
+				$this->db = 'yakwala';
+				$this->fronturl = 'http://dev.yakwala.fr';
+				$this->backurl = 'http://dev.batch.yakwala.fr';
+				$this->thumburl = 'http://dev.batch.yakwala.fr/BACKEND/thumb/';
+				$this->thumbpath = '/BACKEND/thumb/';
+				$this->bigpath = '/BACKEND/big/';
+				$this->originalpath = '/BACKEND/original/';
 				
 			break;
 			case 'preprod':

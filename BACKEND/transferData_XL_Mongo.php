@@ -277,13 +277,13 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							
 						 /*OTHER CAT*/   
 						 if($group->id == "Person_People")
-							   $freeTag[]= $category->title;
+							   $freeTag[]= yakcatPathN($category->title,0);
 										
 						 if($group->id == "Organization")
-							   $freeTag[]= $category->title;
+							   $freeTag[]= yakcatPathN($category->title,0);
 						 
 						 if($group->id == "Event")
-							   $freeTag[]= $category->title;
+							   $freeTag[]= yakcatPathN($category->title,0);
 						
 						
 					 }
@@ -556,7 +556,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['pubDate'] = new MongoDate($tsPub);
 						$info['creationDate'] = new MongoDate(gmmktime());
 						$info['lastModifDate'] = new MongoDate(gmmktime());
-						$info['dateEndPrint'] = new MongoDate(gmmktime()+$feed['persistDays']*86400); // 
+						$info['dateEndPrint'] = new MongoDate($tsPub+$feed['persistDays']*86400); // 
 						$info['print'] = $geolocItem['print'];
 						$info['status'] = $geolocItem['status'];
 						$info['user'] = 0;

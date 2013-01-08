@@ -289,7 +289,7 @@ $records[] = array(
 	"defaultPrintFlag" => 2,// if not geolocalized, we ignore the news 
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
-	"daysBack" => 50,
+	"daysBack" => 5,
 	"zone" =>1,
 );
 $records[] = array(
@@ -304,7 +304,7 @@ $records[] = array(
 	"defaultPrintFlag" => 0,
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
-	"daysBack" => 50,
+	"daysBack" => 5,
 	"zone" =>1,
 );
 $records[] = array(
@@ -319,7 +319,7 @@ $records[] = array(
 	"defaultPrintFlag" => 1,
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 0,
-	"daysBack" => 50,
+	"daysBack" => 5,
 	"zone" =>1,
 );					
 				

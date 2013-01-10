@@ -12,7 +12,7 @@ include_once "contact.php";
 include_once "location.php";
 include_once "zone.php";
 include_once "stringUtil.php";
-include_once "cat.php";
+//include_once "cat.php";
 
 class conf
 {

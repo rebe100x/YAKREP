@@ -9,12 +9,12 @@
 include_once "../LIB/conf.php";
 ini_set('display_errors',1);
 $filenameInput = "./input/francevilles.csv";
-$origin = "Wikipedia Yakwala";
+$origin = "Yakwala";
 $fileTitle = "Villes de France";
 $licence = "Yakwala";
 $country = 'France';
 $status = 1;
-$debug = 1;
+$debug = 0;
 $cat = array("GEOLOCALISATION#VILLE", "GEOLOCALISATION");
 $row = 0;
 $updateFlag = empty($_GET['updateFlag'])?0:1;
@@ -24,13 +24,26 @@ $lastid =  '';
 if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 
   while (($data = fgetcsv($handle, 50000, ",")) !== FALSE) {
+  
     if($row  > 0 ){
+		
       foreach ($data as $key => &$value) {
         $value = trim($value);
+		echo $value.'-';
       }
-      if (trim($data[1]) == $lastid) continue;
-      else {$lastid = trim($data[1]);}
-      //sleep(1);
+	  
+	 
+      if ($data[1] == $lastid) {
+	  echo 'continue';
+	  continue;
+      }
+	  else {
+	  echo 'proceed';
+		$lastid = $data[1];
+		//echo '<br>lastid'.$lastid;
+		}
+		echo $lastid;
+      
       $currentPlace = new Place();
       $currentPlace->title = $data[3];
       $currentPlace->origin = $origin;
@@ -40,45 +53,59 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
       $currentPlace-> status = $status;
       $currentPlace->setYakCat($cat);
       	
-      $zn = substr(trim($data[0]),0,2);
+	  $zipCode = trim($data[0]);
+	  if(strlen($zipCode) == 4)
+		$zipCode = "0".$zipCode;
+		
+      $zn = substr($zipCode,0,2);
+	  echo 'ZN'.$zn;
       if (trim($data[8]) == "BRETAGNE")
-      $zone = 15;
+		$zone = 15;
       elseif ($zn == "77")
-      $zone = 7;
+		$zone = 7;
       elseif ($zn == "78")
-      $zone = 8;
+		$zone = 8;
       elseif ($zn == "91")
-      $zone = 9;
+		$zone = 9;
       elseif ($zn == "92")
-      $zone = 11;//10
+		$zone = 11;//10
       elseif ($zn == "93")
-      $zone = 12;//11
+		$zone = 12;//11
       elseif ($zn == "94")
-      $zone = 10;//12
+		$zone = 10;//12
       elseif ($zn == "95")
-      $zone = 13;
+		$zone = 13;
       elseif ($zn == "34")
-      $zone = 2;
-      	
-      else{
+		$zone = 2;
+	  elseif ($zn == "84")
+		$zone = 14;
+	  elseif ($zn == "13")
+		$zone = 14;
+	  elseif ($zn == "04")
+		$zone = 14;
+      else{	  
+		echo '<br>rejected not in zone';
         $results['rejected'] ++;
         $results['row'] ++;
-        $row++;
+        //$row++;
         continue;
       }
+	  
+	  
       $currentPlace->zone = $zone;
-      	
+      	echo $zone;
       unset($titles);
       $title1 ='';$title2 ='';$title3 ='';$title4 ='';
       $title = $currentPlace->title;
       $titles[] = $title;
       	
       $lng =''; $lat = '';
-      if ($data[11] <> '' ) $lng = trim($data[11]);
-      if ($data[12] <> '' ) $lat = trim($data[12]);
+      if ($data[11] <> '' ) $lat = (float)($data[11]);
+      if ($data[12] <> '' ) $lng = (float)($data[12]);
 
-      //tests on title :
-
+	$location = new location();
+	$location->set($lat,$lng);
+	
       if (strpos($title, '-') !== FALSE) {
         $title1= str_replace('-',' ',$title);
         $titles[] = $title1;
@@ -104,31 +131,36 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
         }
 
       }
-      $address['city'] = trim($data[3]);
+	  
+	  
+	  
+	  $address['city'] = trim($data[3]);
       $address['country'] = $country;
-      $address['zip'] = trim($data[0]);
+      $address['zip'] = $zipCode;
       $address['state'] = trim($data[10]);
       $address['area'] = trim($data[8]);
       $currentPlace->address = $address;
       $currentPlace->formatted_address =  $address['city'] .", ".	$address['state'].", $country" ;
-      if (($lng<>'') &&($lat <>'')) {$locationQuery = '';
-      $currentPlace-> location =new location($lat,$lng);
+      if (($lng<>'') &&($lat <>'')) {
+		$locationQuery = '';
+		$currentPlace-> location = $location;
       }
-      else $locationQuery= $data[3]. ' ' . $data[10].', France';
+      else 
+		$locationQuery= $data[3]. ' ' . $data[10].', France';
 
       for ($i = 0; $i < sizeof($titles); $i++){
         $currentPlace->title = $titles[$i];
         //print_r($currentPlace);
-
+	
         $res = $currentPlace->saveToMongoDB($locationQuery, $debug,$updateFlag);
-        //print_r($res);
+        print_r($res);
 
       }
     }
 
     $results['row'] ++;
     $row++;
-
+	
   }
 
   fclose($handle);

@@ -76,6 +76,34 @@ $records[] = array(
 
 
 $records[] = array(
+	"_id" => new MongoId("50eefc29fa9a953c0a00001d"),
+	"title"=>"Provence-Alpes-Côte d'Azur",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("50c5e0c91d22b3bf38000fb0"),new MongoId("506479f54a53042191000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.935175,'lng'=>6.067918),
+	"formatted_address"=> "Provence-Alpes-Côte d'Azur, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>"",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13000',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+$records[] = array(
 	"_id" => new MongoId("50c5e3311d22b3db2c000959"),
 	"title"=>"Bouches-du-Rhône",
 	"content" =>"",
@@ -100,8 +128,6 @@ $records[] = array(
 	"status" => 1,
 	"user" => 0, 
 	"zone"=> 14,
-	
-	
 );
 
 

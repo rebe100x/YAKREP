@@ -62,23 +62,166 @@ $records[] = array(
 
 // INFO ACTU
 
+/*PACA*/
+/*
+
+
+
+
+http://www.laprovence.com/rss/Avignon-A-la-une.xml
+http://www.laprovence.com/rss/Digne-les-bains-A-la-une.xml
+http://www.laprovence.com/rss/Marseille-A-la-une.xml
+http://www.laprovence.com/rss/Gap-A-la-une.xml
+http://www.laprovence.com/rss/Aix-en-Provence-A-la-une.xml
+http://www.laprovence.com/rss/Arles-A-la-une.xml
+http://www.laprovence.com/rss/Aubagne-A-la-une.xml
+http://www.laprovence.com/rss/Carpentras-A-la-une.xml
+http://www.laprovence.com/rss/Cavaillon-A-la-une.xml
+http://www.laprovence.com/rss/Istres-A-la-une.xml
+http://www.laprovence.com/rss/Manosque-A-la-une.xml
+http://www.laprovence.com/rss/Martigues-A-la-une.xml
+http://www.laprovence.com/rss/Orange-A-la-une.xml
+http://www.laprovence.com/rss/Salon-de-Provence-A-la-une.xml
+*/
+
+//http://www.laprovence.com/rss/rss_om.xml
 $records[] = array(
-	"_id" => new MongoId("509bb30efa9a95c40b00004a"),
-	"name"=>"france3-faitsdivers",
-	"humanName"=>"france3.fr",	
-	"link"=>"http://france3.fr",
+	"_id" => new MongoId("50eef86efa9a955c0a000000"),
+	"name"=>"laprovence om",
+	"humanName"=>"La Provence",	
+	"link"=>"http://www.laprovence.com",
+	"yakCatNameArray" => array('Actualités','Sport','Football'),
+	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
+	"type" => 1,
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 5,
+	"zone" =>14,
+);
+
+//http://www.laprovence.com/rss/OM-Actualites-A-la-une.xml
+$records[] = array(
+	"_id" => new MongoId("50eef86efa9a955c0a000001"),
+	"name"=>"laprovence om direct",
+	"humanName"=>"La Provence",	
+	"link"=>"http://www.laprovence.com",
+	"yakCatNameArray" => array('Actualités','Sport','Football'),
+	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
+	"type" => 1,
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 5,
+	"zone" =>14,
+);
+
+//http://www.laprovence.com/rss/Politique.xml
+$records[] = array(
+	"_id" => new MongoId("50eef86efa9a955c0a000002"),
+	"name"=>"laprovence politique",
+	"humanName"=>"La Provence",	
+	"link"=>"http://www.laprovence.com",
+	"yakCatNameArray" => array('Actualités','Politique'),
+	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
+	"type" => 1,
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 5,
+	"zone" =>14,
+);
+
+//http://www.laprovence.com/rss/Economie-A-la-une.xml
+$records[] = array(
+	"_id" => new MongoId("50eef86efa9a955c0a000003"),
+	"name"=>"laprovence economie",
+	"humanName"=>"La Provence",	
+	"link"=>"http://www.laprovence.com",
+	"yakCatNameArray" => array('Actualités','Economie'),
+	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
+	"type" => 1,
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 5,
+	"zone" =>14,
+);
+
+//http://www.laprovence.com/rss/Sports-en-direct.xml
+$records[] = array(
+	"_id" => new MongoId("50eef86efa9a955c0a000004"),
+	"name"=>"laprovence sport direct",
+	"humanName"=>"La Provence",	
+	"link"=>"http://www.laprovence.com",
+	"yakCatNameArray" => array('Actualités','Sport'),
+	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
+	"type" => 1,
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 5,
+	"zone" =>14,
+);
+//http://www.laprovence.com/rss/Sport-Region.xml
+$records[] = array(
+	"_id" => new MongoId("50eef86efa9a955c0a000005"),
+	"name"=>"laprovence sport region",
+	"humanName"=>"La Provence",	
+	"link"=>"http://www.laprovence.com",
+	"yakCatNameArray" => array('Actualités','Sport'),
+	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
+	"type" => 1,
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 5,
+	"zone" =>14,
+);
+
+//http://www.laprovence.com/rss/Region.xml
+$records[] = array(
+	"_id" => new MongoId("50eef86efa9a955c0a000006"),
+	"name"=>"laprovence region",
+	"humanName"=>"La Provence",	
+	"link"=>"http://www.laprovence.com",
 	"yakCatNameArray" => array('Actualités'),
 	"persistDays" => 1,
-	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
 	"type" => 1,
-	"defaultPrintFlag" => 1,
+	"defaultPrintFlag" => 0,
 	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 0,
+	"status" => 1,
 	"daysBack" => 5,
-	"zone" =>1,
+	"zone" =>14,
+);
+
+//http://www.laprovence.com/rss/Region-en-direct.xml
+$records[] = array(
+	"_id" => new MongoId("50eef24afa9a954c0a000041"),
+	"name"=>"laprovenceregiondirect",
+	"humanName"=>"La Provence",	
+	"link"=>"http://www.laprovence.com",
+	"yakCatNameArray" => array('Actualités'),
+	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
+	"type" => 1,
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 5,
+	"zone" =>14,
 );	
 
 
+
+/*BELGIQUE*/
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b00004b"),
 	"name"=>"rtbf_namur",
@@ -128,6 +271,7 @@ $records[] = array(
 	"zone" =>4,
 );	
 
+/*MONTPELIER*/
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b00004e"),
 	"name"=>"zone2",
@@ -143,6 +287,26 @@ $records[] = array(
 	"daysBack" => 5,
 	"zone" =>2,
 );	
+
+
+/*IDF*/
+$records[] = array(
+	"_id" => new MongoId("509bb30efa9a95c40b00004a"),
+	"name"=>"france3-faitsdivers",
+	"humanName"=>"france3.fr",	
+	"link"=>"http://france3.fr",
+	"yakCatNameArray" => array('Actualités'),
+	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
+	"type" => 1,
+	"defaultPrintFlag" => 1,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 0,
+	"daysBack" => 5,
+	"zone" =>1,
+);	
+
+
 
 $records[] = array(
 	"_id" => new MongoId("509b6150fa9a95a40b000000"),
@@ -278,6 +442,21 @@ $records[] = array(
 
 // IMMOBILIER
 $records[] = array(
+	"_id" => new MongoId("50ed3b42fa9a95040c000000"),
+	"name"=>"PARIS_ATTITUDE",
+	"humanName"=>"Paris attitude",	
+	"link"=>"http://www.twitter.com/PARIS_ATTITUDE",
+	"yakCatNameArray" => array('Immobilier','Location'),
+	"persistDays" => 7,
+	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
+	"type" => 1,
+	"defaultPrintFlag" => 2,// if not geolocalized, we ignore the news 
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 2,
+	"daysBack" => 5,
+	"zone" =>1,
+);
+$records[] = array(
 	"_id" => new MongoId("509b6178fa9a95a40b000003"),
 	"name"=>"PARIS_ATT_VENTE",
 	"humanName"=>"Paris attitude Vente",	
@@ -292,6 +471,7 @@ $records[] = array(
 	"daysBack" => 5,
 	"zone" =>1,
 );
+
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000055"),
 	"name"=>"century_75014",

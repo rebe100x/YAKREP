@@ -192,8 +192,8 @@ function createImgThumb($link,$conf){
 function getLocationGMap($q,$output = 'PHP',$debug = 0){
 	
 	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$q."&sensor=false";
-    echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
-    
+    //echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
+    echo '<br>--- URL CALLED : '.$url;
 	$ch = curl_init();
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 

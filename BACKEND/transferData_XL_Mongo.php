@@ -332,8 +332,15 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					}
 				}
 				
+				// la ville
+				$laville = '';
+				if(sizeof($ville) > 0){
+					if(is_array($ville))
+						$laville = $ville[0];
+					else 
+						$laville = $ville;
+				}
 				
-					
 				$placeArray = array();	 
 				// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
 				if(sizeof($locationTmp ) > 0){
@@ -359,7 +366,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						 }else{    // FROM GMAP
 							echo "<br> Call to GMAP: ".$loc.', '.$defaultPlace['title'].', '.$defaultPlace['address']['country'];
 							$logCallToGMap++;
-							$resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($loc.', '.$defaultPlace['title'].'. '.$defaultPlace['address']['country']))),'PHP',1);
+							$resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlace['title'] ) ? ', '.$laville:'').', '.$defaultPlace['title'].'. '.$defaultPlace['address']['country']))),'PHP',1);
 							//$resGMap =  array(48.884134,2.351761);
 							//var_dump($resGMap);
 							echo '___<br>';

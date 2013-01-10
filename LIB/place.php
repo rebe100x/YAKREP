@@ -162,7 +162,7 @@ class Place
 	**/
 	
 	function saveToMongoDB($locationQuery = "", $debug, $flagUpdate = false) {
-		
+		echo 'SAVE';
 		$res = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
 		$this->setFilesourceId();
@@ -192,7 +192,7 @@ class Place
 			//print_r($record);
 		$doublon = $this->getDuplicated($this->title,$this->zone,$this->status);
 
-		var_dump($doublon);
+		//var_dump($doublon);
 		// if no duplicated
 		if (empty($doublon)) {
 			
@@ -203,7 +203,7 @@ class Place
 				$this->getLocationFromQuery($locationQuery, $res);
 			
 			} 
-
+//var_dump($record);exit;
 			$resSave = $this->savePlace($record);
 			//print_r($resSave);
 			$res['record'] = $record; // TODO : cast to array ???

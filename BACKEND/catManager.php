@@ -17,6 +17,54 @@ $records = array();
 /*LEVEL 1*/
 
 $records[] = array(
+	"_id" => new MongoId("50f00cecfa9a957c0c000001"),
+	"title"=> "Administration",
+	"path" => "ADMINISTRATION",
+	"pathN" => "ADMINISTRATION",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50efebbffa9a95b40c000000"),
+	"title"=> "Politique",
+	"path" => "POLITIQUE",
+	"pathN" => "POLITIQUE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50efebbffa9a95b40c000001"),
+	"title"=> "Economie",
+	"path" => "ECONOMIE",
+	"pathN" => "ECONOMIE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50f025f7fa9a957c0c000048"),
+	"title"=> "Commerce",
+	"path" => "Commerce",
+	"pathN" => "COMMERCE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
 	"_id" => new MongoId("50923b9afa9a95d409000000"),
 	"title"=> "Agenda",
 	"path" => "AGENDA",
@@ -170,6 +218,40 @@ $records[]= array(
 );
 
 /*LEVEL 2*/
+$records[]= array(
+	"_id" => new MongoId("50f01dcefa9a95bc0c00005f"),
+	"title"=> "Location",
+	"path" => "Immobilier, Location",
+	"pathN" => "IMMOBILIER#LOCATION",
+	"ancestors" => array("Immobilier"),
+	"parent" => "Immobilier",
+	"ancestorsId" => array(new MongoId("508fc6ebfa9a95680b000029")),
+	"parentId" => new MongoId("508fc6ebfa9a95680b000029"),
+	"tag" => array(""),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[]= array(
+	"_id" => new MongoId("50f00d35fa9a95b40c000003"),
+	"title"=> "Mairie",
+	"path" => "Administration, Mairie",
+	"pathN" => "ADMINISTRATION#MAIRIE",
+	"ancestors" => array("Administration"),
+	"parent" => "Administration",
+	"ancestorsId" => array(new MongoId("50f00cecfa9a957c0c000001")),
+	"parentId" => new MongoId("50f00cecfa9a957c0c000001"),
+	"tag" => array(""),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
 
 
 $records[]= array(
@@ -624,6 +706,38 @@ $records[] = array(
 	"title"=> "Station",
 	"path" => "Transport, Station",
 	"pathN" => "TRANSPORT#STATION",
+	"ancestors" => array("Transport"),
+	"parent" => "Transport",
+	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),
+	"parentId" => new MongoId("5077ebb1fa9a95600d0001dc"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50f049e6fa9a95d40c000004"),
+	"title"=> "Gare",
+	"path" => "Transport, Gare",
+	"pathN" => "TRANSPORT#GARRE",
+	"ancestors" => array("Transport"),
+	"parent" => "Transport",
+	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),
+	"parentId" => new MongoId("5077ebb1fa9a95600d0001dc"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50f049e6fa9a95d40c000005"),
+	"title"=> "Port",
+	"path" => "Transport, Port",
+	"pathN" => "TRANSPORT#PORT",
 	"ancestors" => array("Transport"),
 	"parent" => "Transport",
 	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),

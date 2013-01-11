@@ -12,6 +12,8 @@ $place = $db->place;
 
 $records = array();
 
+
+
 $records[] = array(
 	"_id" => new MongoId("50deec85fa9a95880a000000"),
 	"title"=>"Champs Elysées",
@@ -21,7 +23,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>48.870925,'lng'=>2.304333),
@@ -52,7 +54,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>48.870925,'lng'=>2.304333),
@@ -73,7 +75,265 @@ $records[] = array(
 	
 	
 );
+/*
+la Sainte-Victoire
+tunnel Prado-Carénage
+centre commercial Grand Littoral
+l'Hôtel de Ville
+Mucem 
+parc Chanot
+clinique Juge
+casino de Bandol
+le pays d'Arles
+la Canebière 43.296136,5.376946
+*/
+//43.414774,5.352719
+//Plan de Campagne
+//Plan de campagne
+//Grand port maritime
+$records[] = array(
+	"_id" => new MongoId("50f04a04fa9a95bc0c000061"),
+	"title"=>"Grand port maritime",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50f049e6fa9a95d40c000004")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.319152,'lng'=>5.361923),
+	"formatted_address"=> "Plan de Campagne, Marseille, France",
+	"address" => array(
+				'city'=>'',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13000',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+$records[] = array(
+	"_id" => new MongoId("50f02635fa9a95d40c000000"),
+	"title"=>"Plan de campagne",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50f025f7fa9a957c0c000048")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.536354,'lng'=>5.610872),
+	"formatted_address"=> "Plan de Campagne, Marseille, France",
+	"address" => array(
+				'city'=>'',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13000',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+$records[] = array(
+	"_id" => new MongoId("50f02635fa9a95d40c000001"),
+	"title"=>"Plan de Campagne",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50f025f7fa9a957c0c000048")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.536354,'lng'=>5.610872),
+	"formatted_address"=> "Plan de Campagne, Marseille, France",
+	"address" => array(
+				'city'=>'',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13000',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
 
+$records[] = array(
+	"_id" => new MongoId("50f00edffa9a957c0c000003"),
+	"title"=>"la Sainte-Victoire",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.536354,'lng'=>5.610872),
+	"formatted_address"=> "Montagne Sainte-Victoire,Vauvenargues France",
+	"address" => array(
+				'city'=>'Vauvenargues',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13126',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+$records[] = array(
+	"_id" => new MongoId("50f00edffa9a957c0c000004"),
+	"title"=>"l'Hôtel de Ville",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50f00d35fa9a95b40c000003")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.296246,'lng'=>5.369929),
+	"formatted_address"=> "Quai du Port, 13002 Marseille, France",
+	"address" => array(
+				'street'=>'Quai du Port',
+				'arr'=>'2ème',
+				'city'=>'Marseille',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13002',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+ 
+$records[] = array(
+	"_id" => new MongoId("50f00edffa9a957c0c000005"),
+	"title"=>"Mucem",
+	"content" =>"Musée des civilisations de l'Europe et de la Méditerranée (MuCEM)",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.mucem.org/",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50535d5bfa9a95ac0d0000b6")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.676253,'lng'=>4.629866),
+	"formatted_address"=> "21 Rue Bugeaud, 13003 Marseille France",
+	"address" => array(
+				'street_number'=>'21',
+				'street'=>'Rue Bugeaud',
+				'arr'=>'3ème',
+				'city'=>'Marseille',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13003',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("50f00edffa9a957c0c000006"),
+	"title"=>"pays d'Arles",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.676253,'lng'=>4.629866),
+	"formatted_address"=> "Provence-Alpes-Côte d'Azur, France",
+	"address" => array(
+				'street'=>'La Canebière',
+				'arr'=>'1er',
+				'city'=>'Marseille',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13001',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+$records[] = array(
+	"_id" => new MongoId("50f00edffa9a957c0c000007"),
+	"title"=>"Canebière",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.296136,'lng'=>5.376946),
+	"formatted_address"=> "Provence-Alpes-Côte d'Azur, France",
+	"address" => array(
+				'street'=>'La Canebière',
+				'arr'=>'1er',
+				'city'=>'Marseille',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13001',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+$records[] = array(
+	"_id" => new MongoId("50f00edffa9a957c0c000008"),
+	"title"=>"Vieux-Port",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.295137,'lng'=>5.374178),
+	"formatted_address"=> "Provence-Alpes-Côte d'Azur, France",
+	"address" => array(
+
+				'arr'=>'1er',
+				'city'=>'Marseille',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13001',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
 
 $records[] = array(
 	"_id" => new MongoId("50eefc29fa9a953c0a00001d"),
@@ -84,7 +344,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("50c5e0c91d22b3bf38000fb0"),new MongoId("506479f54a53042191000000")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.935175,'lng'=>6.067918),
@@ -112,7 +372,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("50c5e0c91d22b3bf38000fb0"),new MongoId("506479f54a53042191000000")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.297198,'lng'=>5.365997),
@@ -142,7 +402,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50896423fa9a954c01000000")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>48.971795,'lng'=>2.399329),

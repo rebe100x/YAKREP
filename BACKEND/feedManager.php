@@ -23,7 +23,7 @@ $records[] = array(
 	"name"=>"test",
 	"humanName"=>"test",	
 	"link"=>"http://data.visitprovence.com/les-donnees/fiche-donnee/donnees/liste-des-loueurs-de-velo/",
-	"yakCatNameArray" => array('Sport','Cyclisme'),
+	"yakCatNameArray" => array('SPORT','Cyclisme'),
 	"persistDays" => 180,
 	"defaultPlaceId" => new MongoId('50c5e3311d22b3db2c000959'),
 	"type" => 2,
@@ -41,7 +41,7 @@ $records[] = array(
 	"name"=>"paris-bouge",
 	"humanName"=>"parisbouge.com",	
 	"link"=>"http://www.parisbouge.com/",
-	"yakCatNameArray" => array('Actualités','Culture','Agenda'),
+	"yakCatNameArray" => array('ACTUALITES','Culture','Agenda'),
 	"persistDays" => 180,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
 	"type" => 2,
@@ -64,7 +64,7 @@ $records[] = array(
 
 /*PACA*/
 /*
-
+//https://twitter.com/MuCEM_Officiel
 
 
 
@@ -84,30 +84,17 @@ http://www.laprovence.com/rss/Orange-A-la-une.xml
 http://www.laprovence.com/rss/Salon-de-Provence-A-la-une.xml
 */
 
-//http://www.laprovence.com/rss/rss_om.xml
-$records[] = array(
-	"_id" => new MongoId("50eef86efa9a955c0a000000"),
-	"name"=>"laprovence om",
-	"humanName"=>"La Provence",	
-	"link"=>"http://www.laprovence.com",
-	"yakCatNameArray" => array('Actualités','Sport','Football'),
-	"persistDays" => 1,
-	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
-	"type" => 1,
-	"defaultPrintFlag" => 0,
-	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 1,
-	"daysBack" => 5,
-	"zone" =>14,
-);
 
+
+//http://www.laprovence.com/rss/rss_om.xml
 //http://www.laprovence.com/rss/OM-Actualites-A-la-une.xml
+
 $records[] = array(
 	"_id" => new MongoId("50eef86efa9a955c0a000001"),
-	"name"=>"laprovence om direct",
+	"name"=>"laprovenceom",
 	"humanName"=>"La Provence",	
 	"link"=>"http://www.laprovence.com",
-	"yakCatNameArray" => array('Actualités','Sport','Football'),
+	"yakCatNameArray" => array('ACTUALITES','SPORT','FOOTBALL'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
 	"type" => 1,
@@ -121,10 +108,10 @@ $records[] = array(
 //http://www.laprovence.com/rss/Politique.xml
 $records[] = array(
 	"_id" => new MongoId("50eef86efa9a955c0a000002"),
-	"name"=>"laprovence politique",
+	"name"=>"laprovencepolitique",
 	"humanName"=>"La Provence",	
 	"link"=>"http://www.laprovence.com",
-	"yakCatNameArray" => array('Actualités','Politique'),
+	"yakCatNameArray" => array('ACTUALITES','POLITIQUE'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
 	"type" => 1,
@@ -138,10 +125,10 @@ $records[] = array(
 //http://www.laprovence.com/rss/Economie-A-la-une.xml
 $records[] = array(
 	"_id" => new MongoId("50eef86efa9a955c0a000003"),
-	"name"=>"laprovence economie",
+	"name"=>"laprovenceeconomie",
 	"humanName"=>"La Provence",	
 	"link"=>"http://www.laprovence.com",
-	"yakCatNameArray" => array('Actualités','Economie'),
+	"yakCatNameArray" => array('ACTUALITES','ECONOMIE'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
 	"type" => 1,
@@ -152,29 +139,15 @@ $records[] = array(
 	"zone" =>14,
 );
 
+
+//http://www.laprovence.com/rss/Sport-Region.xml
 //http://www.laprovence.com/rss/Sports-en-direct.xml
 $records[] = array(
-	"_id" => new MongoId("50eef86efa9a955c0a000004"),
-	"name"=>"laprovence sport direct",
-	"humanName"=>"La Provence",	
-	"link"=>"http://www.laprovence.com",
-	"yakCatNameArray" => array('Actualités','Sport'),
-	"persistDays" => 1,
-	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
-	"type" => 1,
-	"defaultPrintFlag" => 0,
-	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 1,
-	"daysBack" => 5,
-	"zone" =>14,
-);
-//http://www.laprovence.com/rss/Sport-Region.xml
-$records[] = array(
 	"_id" => new MongoId("50eef86efa9a955c0a000005"),
-	"name"=>"laprovence sport region",
+	"name"=>"laprovencesport",
 	"humanName"=>"La Provence",	
 	"link"=>"http://www.laprovence.com",
-	"yakCatNameArray" => array('Actualités','Sport'),
+	"yakCatNameArray" => array('ACTUALITES','SPORT'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
 	"type" => 1,
@@ -185,30 +158,16 @@ $records[] = array(
 	"zone" =>14,
 );
 
-//http://www.laprovence.com/rss/Region.xml
-$records[] = array(
-	"_id" => new MongoId("50eef86efa9a955c0a000006"),
-	"name"=>"laprovence region",
-	"humanName"=>"La Provence",	
-	"link"=>"http://www.laprovence.com",
-	"yakCatNameArray" => array('Actualités'),
-	"persistDays" => 1,
-	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
-	"type" => 1,
-	"defaultPrintFlag" => 0,
-	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 1,
-	"daysBack" => 5,
-	"zone" =>14,
-);
+
 
 //http://www.laprovence.com/rss/Region-en-direct.xml
+//http://www.laprovence.com/rss/Region.xml
 $records[] = array(
 	"_id" => new MongoId("50eef24afa9a954c0a000041"),
-	"name"=>"laprovenceregiondirect",
+	"name"=>"laprovenceregion",
 	"humanName"=>"La Provence",	
 	"link"=>"http://www.laprovence.com",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'),
 	"type" => 1,
@@ -227,7 +186,7 @@ $records[] = array(
 	"name"=>"rtbf_namur",
 	"humanName"=>"la RTBF",	
 	"link"=>"http://http://www.rtbf.be",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('507e814dfa9a95e00c000000'),
 	"type" => 1,
@@ -243,7 +202,7 @@ $records[] = array(
 	"name"=>"sudinfo_namur",
 	"humanName"=>"Sud Info",	
 	"link"=>"http://www.sudinfo.be",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('507e814dfa9a95e00c000000'),
 	"type" => 1,
@@ -260,7 +219,7 @@ $records[] = array(
 	"name"=>"rtbf_bruxelles",
 	"humanName"=>"la RTBF",	
 	"link"=>"http://www.rtbf.be",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('507e9ce11d22b3944e00005a'),
 	"type" => 1,
@@ -277,7 +236,7 @@ $records[] = array(
 	"name"=>"zone2",
 	"humanName"=>"toutmontpellier.fr",	
 	"link"=>"http://www.toutmontpellier.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('507eaca21d22b3954e0000e0'),
 	"type" => 1,
@@ -295,7 +254,7 @@ $records[] = array(
 	"name"=>"france3-faitsdivers",
 	"humanName"=>"france3.fr",	
 	"link"=>"http://france3.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
 	"type" => 1,
@@ -313,7 +272,7 @@ $records[] = array(
 	"name"=>"parisien75",
 	"humanName"=>"leparisien.fr",	
 	"link"=>"http://www.leparisien.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
 	"type" => 1,
@@ -329,7 +288,7 @@ $records[] = array(
 	"name"=>"parisien77",
 	"humanName"=>"leparisien.fr",	
 	"link"=>"http://www.leparisien.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50811ceffa9a95280f000037'),
 	"type" => 1,
@@ -346,7 +305,7 @@ $records[] = array(
 	"name"=>"parisien78",
 	"humanName"=>"leparisien.fr",	
 	"link"=>"http://www.leparisien.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50813b26fa9a950c14000004'),
 	"type" => 1,
@@ -363,7 +322,7 @@ $records[] = array(
 	"name"=>"parisien91",
 	"humanName"=>"leparisien.fr",	
 	"link"=>"http://www.leparisien.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50813b26fa9a950c14000003'),
 	"type" => 1,
@@ -379,7 +338,7 @@ $records[] = array(
 	"name"=>"parisien92",
 	"humanName"=>"leparisien.fr",	
 	"link"=>"http://www.leparisien.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('5087def6fa9a951c0d000019'),
 	"type" => 1,
@@ -396,7 +355,7 @@ $records[] = array(
 	"name"=>"parisien93",
 	"humanName"=>"leparisien.fr",	
 	"link"=>"http://www.leparisien.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('5087def6fa9a951c0d000018'),
 	"type" => 1,
@@ -413,7 +372,7 @@ $records[] = array(
 	"name"=>"parisien94",
 	"humanName"=>"leparisien.fr",	
 	"link"=>"http://www.leparisien.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('5087def6fa9a951c0d000017'),
 	"type" => 1,
@@ -429,7 +388,7 @@ $records[] = array(
 	"name"=>"parisien95",
 	"humanName"=>"leparisien.fr",	
 	"link"=>"http://www.leparisien.fr",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('5087def6fa9a951c0d000016'),
 	"type" => 1,
@@ -446,7 +405,7 @@ $records[] = array(
 	"name"=>"PARIS_ATTITUDE",
 	"humanName"=>"Paris attitude",	
 	"link"=>"http://www.twitter.com/PARIS_ATTITUDE",
-	"yakCatNameArray" => array('Immobilier','Location'),
+	"yakCatNameArray" => array('IMMOBILIER','IMMOBILIER#LOCATION'),
 	"persistDays" => 7,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
 	"type" => 1,
@@ -461,7 +420,7 @@ $records[] = array(
 	"name"=>"PARIS_ATT_VENTE",
 	"humanName"=>"Paris attitude Vente",	
 	"link"=>"http://www.twitter.com/PARIS_ATT_VENTE",
-	"yakCatNameArray" => array('Immobilier'),
+	"yakCatNameArray" => array('IMMOBILIER'),
 	"persistDays" => 7,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
 	"type" => 1,
@@ -477,7 +436,7 @@ $records[] = array(
 	"name"=>"century_75014",
 	"humanName"=>"Century21 14ème",	
 	"link"=>"http://www.twitter.com/century_75014",
-	"yakCatNameArray" => array('Immobilier'),
+	"yakCatNameArray" => array('IMMOBILIER'),
 	"persistDays" => 7,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
 	"type" => 1,
@@ -492,7 +451,7 @@ $records[] = array(
 	"name"=>"rebe100x",
 	"humanName"=>"rebe100x",	
 	"link"=>"http://www.twitter.com/rebe100x",
-	"yakCatNameArray" => array('Actualités'),
+	"yakCatNameArray" => array('ACTUALITES'),
 	"persistDays" => 7,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
 	"type" => 1,

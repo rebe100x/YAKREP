@@ -467,15 +467,27 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					
 				}
 				
-			
+				/*
 				// CONVERT YAKCAT TO AN ARRAY OF _ID
 				$yakCatId = array();
 				foreach($feed['yakCatNameArray'] as $cat){
 					$catId = $yakcatColl->findOne(array('title'=>$cat));
 					$yakCatId[] = new MongoId($catId['_id']);
 				}
+				*/
+				$yakCatId = array();
+				$yakCatName = array();
+				$yakCatArray = iterator_to_array($yakcatColl->find());
+				foreach ($feed['yakCatNameArray'] as $catPath) {
+					foreach ($yakCatArray as $cat) {
+						if ( $cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) 
+							|| "#".$cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) ) {
+							$yakCatId[] = new MongoId($cat['_id']);
+							$yakCatName[] = $cat['title'];
+						}
+					}
+				}
 			
-				
 			
 				// get image
 				
@@ -520,7 +532,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				if(!empty($title)){
 					$matches = array();
 					if (preg_match_all('/#([^\s]+)/', $title, $matches)) {
-					var_dump($matches);
+					//var_dump($matches);
 							$freeTag = array_merge($freeTag,$matches[1]);
 						}
 				}
@@ -557,7 +569,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['licence'] = "reserved";
 						$info['heat'] = "80";
 						$info['yakCat'] = $yakCatId;
-						$info['yakCatName'] = $feed['yakCatNameArray'];
+						$info['yakCatName'] = $yakCatName;
 						$info['yakType'] = $feed['type']; // actu
 						$info['freeTag'] = $freeTag;
 						$info['pubDate'] = new MongoDate($tsPub);

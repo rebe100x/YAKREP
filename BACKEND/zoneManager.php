@@ -20,14 +20,14 @@ $records = array();
 /*MARSEILLE*/	
 $records[] = array(
 	"_id" => new MongoId("50c5e0601d22b34e440010a7"),
-	"name"=>"Marseille",
+	"name"=>"Provence: 04,05,84,13",
 	"location" => array('lat'=>43.297198,'lng'=>5.365997),
 	"num"=>14,
 	"formatted_address"=> "Marseille, France",
 	"address" => array(
 				'arr'=>'',
 				'city'=>'',
-				'state'=>"Bouches-du-Rhône",
+				'state'=>"",
 				'area'=>"Provence-Alpes-Côte-d'Azur",
 				'country'=>'France',
 				'zip'=>'13000',

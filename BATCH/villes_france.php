@@ -26,7 +26,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
   while (($data = fgetcsv($handle, 50000, ",")) !== FALSE) {
   
     if($row  > 0 ){
-		
+			
+		echo '<br>';	
       foreach ($data as $key => &$value) {
         $value = trim($value);
 		echo $value.'-';
@@ -34,15 +35,14 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 	  
 	 
       if ($data[1] == $lastid) {
-	  echo 'continue';
+		echo '<br>CONTINUE';
 	  continue;
-      }
-	  else {
-	  echo 'proceed';
+      } else {
+		echo '<br>PROCEED';
 		$lastid = $data[1];
-		//echo '<br>lastid'.$lastid;
-		}
-		echo $lastid;
+	  }
+		
+	   echo $lastid;
       
       $currentPlace = new Place();
       $currentPlace->title = $data[3];
@@ -58,7 +58,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 		$zipCode = "0".$zipCode;
 		
       $zn = substr($zipCode,0,2);
-	  echo 'ZN'.$zn;
+	  
       if (trim($data[8]) == "BRETAGNE")
 		$zone = 15;
       elseif ($zn == "77")
@@ -93,7 +93,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 	  
 	  
       $currentPlace->zone = $zone;
-      	echo $zone;
+      	
       unset($titles);
       $title1 ='';$title2 ='';$title3 ='';$title4 ='';
       $title = $currentPlace->title;
@@ -153,7 +153,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
         //print_r($currentPlace);
 	
         $res = $currentPlace->saveToMongoDB($locationQuery, $debug,$updateFlag);
-        print_r($res);
+        //print_r($res);
 
       }
     }

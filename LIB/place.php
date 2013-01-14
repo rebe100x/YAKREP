@@ -120,8 +120,8 @@ class Place
 	function getDuplicated($title,$zone,$thestatus=1){
 
 		$theString2Search = StringUtil::accentToRegex(preg_quote($title));
-		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>$thestatus); // TODO : status 1 or 2  and 3 throw an alert
-
+		//$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>$thestatus); // TODO : status 1 or 2  and 3 throw an alert
+		$rangeQuery = array('title' => $title,'zone' => $zone,"status"=>$thestatus); 
 		$doublon = $this->placeColl->findOne($rangeQuery);
 
 		return $doublon;
@@ -162,7 +162,7 @@ class Place
 	**/
 	
 	function saveToMongoDB($locationQuery = "", $debug, $flagUpdate = false) {
-		echo 'SAVE';
+		
 		$res = array('duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
 		$this->setFilesourceId();
@@ -256,7 +256,7 @@ class Place
 			&& (!empty($this->access))		
 			){
 			$test=$this->placeColl->save($record);
-			print_r($record);
+			//print_r($record);
 		$res['id'] = $record['_id'];
 	}else{
 		$res['error'] = "<br><b>Error:</b> A non nullable field is empty :<br>".

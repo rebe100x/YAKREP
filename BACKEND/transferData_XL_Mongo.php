@@ -317,10 +317,9 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							if(!empty($arrondissement)){
 							if(is_array($arrondissement))
 								foreach($arrondissement as $arr)
-									$locationTmp[] = rewriteArrondissementParis($arr);
+									$locationTmp[] = rewriteArrondissement($arr);
 							else   
-								$locationTmp[] = rewriteArrondissementParis($arrondissement);
-							
+								$locationTmp[] = rewriteArrondissement($arrondissement);
 							}else{
 								if(is_array($ville))
 									foreach($ville as $vil)
@@ -526,16 +525,17 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					if (preg_match("/FOOT/i", $title) || preg_match("/FOOTBALL/i", $title)) {
 							$yakCatId[] = new MongoId("50647e2d4a53041f91040000");
 						}
-				}
-				
-				// catch twitter hashtag in title
-				if(!empty($title)){
+					if (preg_match("/MP 2013/i", $title) || preg_match("/FOOTBALL/i", $title)) {
+							$yakCatId[] = new MongoId("50647e2d4a53041f91040000");
+						}	
+					// catch twitter hashtag in title
 					$matches = array();
 					if (preg_match_all('/#([^\s]+)/', $title, $matches)) {
-					//var_dump($matches);
 							$freeTag = array_merge($freeTag,$matches[1]);
-						}
+					}
 				}
+				
+				
 				
 			
 				

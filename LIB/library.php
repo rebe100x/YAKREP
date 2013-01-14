@@ -258,123 +258,175 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 //var_dump($res);
 
 
-/** Rewrite the arrondissements of Paris to fit gmap type
+/** Rewrite the arrondissements to fit gmap type
  * enter VIe or VIeme or VI�me
- * output 6�me arrondissement
+ * output 6ème arrondissement
  * 
  * */
-function rewriteArrondissementParis($romanLetters){
-	$output = $romanLetters;
-
+function rewriteArrondissement($romanLetters){
 	
 	$romanLetters = str_replace(array('(',')','arrondissement',',','.','-',' '),'',$romanLetters);
-	
+	$output = $romanLetters;
 	switch($romanLetters){
 		case 'Ier':
-		case 'Ie':
-		case ' Ier':	
+			case 'Ie':
+				case ' Ier':	
+					case ' 1e':
+						case ' 1er':
 			$output = '1er arrondissement';
 		break;
 		
         case 'IIe':
             case 'IIeme':
                 case 'IIème':
+					case '2e':
+						case '2eme':
+							case '2ème':
+							
             $output = '2e arrondissement';
         break;
         
         case 'IIIe':
             case 'IIIeme':
                 case 'IIIème':
+					case '3e':
+						case '3eme':
+							case '3ème':
             $output = '3e arrondissement';
         break;
         
         case 'IVe':
             case 'IVeme':
                 case 'IVème':
+					case '4e':
+						case '4eme':
+							case '4ème':
             $output = '4e arrondissement';
         break;
         
         case 'Ve':
             case 'Veme':
                 case 'Vème':
+					case '5e':
+						case '5eme':
+							case '5ème':
             $output = '5e arrondissement';
         break;
         
         case 'VIe':
             case 'VIeme':
                 case 'VIème':
+					case '6e':
+						case '6eme':
+							case '6ème':
             $output = '6e arrondissement';
         break;
         
         case 'VIIe':
             case 'VIIeme':
                 case 'VIIème':
+					case '7e':
+						case '7eme':
+							case '7ème':
             $output = '7e arrondissement';
         break;
         
         case 'VIIIe':
             case 'VIIIeme':
                 case 'VIIIème':
+					case '8e':
+						case '8eme':
+							case '8ème':
             $output = '8e arrondissement';
         break;
         
         case 'IXe':
             case 'IXeme':
                 case 'IXème':
+					case '9e':
+						case '9eme':
+							case '9ème':
             $output = '9e arrondissement';
         break;
         
         case 'Xe':
             case 'Xeme':
                 case 'Xème':
+					case '10e':
+						case '10eme':
+							case '10ème':
             $output = '10e arrondissement';
         break;
         
         case 'XIe':
         	case 'XIeme':
                 case 'XIème':
+					case '11e':
+						case '11eme':
+							case '11ème':
             $output = '11e arrondissement';
         break;
         
         case 'XIIe':
         	case 'XIIeme':
         		case 'XIIème':
+					case '12e':
+						case '12eme':
+							case '12ème':
             $output = '12e arrondissement';
         break;
         
         case 'XIIIe':
         	case 'XIIIeme':
         		case 'XIIIème':
+					case '13e':
+						case '13eme':
+							case '13ème':
             $output = '13e arrondissement';
         break;
         
         case 'XIVe':
         	case 'XIVeme':
         		case 'XIVème':
+					case '14e':
+						case '14eme':
+							case '14ème':
             $output = '14e arrondissement';
         break;
         
         case 'XVe':
         	case 'XVeme':
         		case 'XVème':
+					case '15e':
+						case '15eme':
+							case '15ème':
             $output = '15e arrondissement';
         break;
         
         case 'XVIe':
             case 'XVIeme':
         	   case 'XVIème':
+					case '16e':
+						case '16eme':
+							case '16ème':
             $output = '16e arrondissement';
         break;
         
         case 'XVIIe':
-        case 'XVIIeme':
-        	case 'XVII�ème':
+			case 'XVIIeme':
+				case 'XVIIème':
+					case '17e':
+						case '17eme':
+							case '17ème':
             $output = '17e arrondissement';
         break;
         
         case 'XVIIIe':
         	case 'XVIIIeme':
         		case 'XVIIIème':
+					case '18e':
+						case '18eme':
+							case '18ème':
         
             $output = '18e arrondissement';
         break;
@@ -382,13 +434,19 @@ function rewriteArrondissementParis($romanLetters){
         case 'XIXe':
         	case 'XIXeme':
         		case 'XIXème':
+					case '19e':
+						case '19eme':
+							case '19ème':
         
             $output = '19e arrondissement';
         break;
         
         case 'XXe':
-        case 'XXeme':
-        case 'XXème':
+			case 'XXeme':
+				case 'XXème':
+					case '20e':
+						case '20eme':
+							case '20ème':
             $output = '20e arrondissement';
         break;
         

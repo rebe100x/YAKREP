@@ -8,7 +8,7 @@
 
 include_once "../LIB/conf.php";
 ini_set('display_errors',1);
-$filenameInput = "./input/francevilles.csv";
+$filenameInput = "./input/francevilles_small.csv";
 $origin = "Yakwala";
 $fileTitle = "Villes de France";
 $licence = "Yakwala";

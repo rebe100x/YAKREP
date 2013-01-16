@@ -179,15 +179,17 @@ function createImgThumb($link,$conf){
 		return $res;
     } 
 	
+	
+	
 /* call to gmap
  * retrun a php array(X,Y)
  * ready to go in mongo
  * can output JSON or PHP array
- * 
+ * We do not take results if approximate ( gmap status )
  * if no location from gmap, status = 10
  * call exemple : $resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($loc.', Paris, France'))),'PHP',1);
  
- * return value : array('status'=>'OK','location'=>array(lat,lng),'address'=>array(street,arr,city,state,area,country,zip))
+ * return value : array('status'=>'OK','location'=>array(lat,lng),'address'=>array(street,arr,city,state,area,country,zip),'formatted_address'=>'2 rue des Amandiers')
  * */
 function getLocationGMap($q,$output = 'PHP',$debug = 0){
 	
@@ -202,33 +204,89 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
     $json = json_decode($result);
     //var_dump($json);
     if(sizeof($json->results) > 0){
-	    //$res = $json->results[0]->geometry->location;
-		$res = $json->results[0];
-		$address = array("street_number"=>"","street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
-		foreach($res->address_components as $itemAddress){
-			if(in_array("street_number",$itemAddress->types)) 
-				$address['street_number'] = $itemAddress->long_name;
-			if(in_array("route",$itemAddress->types) || in_array("transit_station",$itemAddress->types)) 
-				$address['street'] = $itemAddress->long_name;
-			if(in_array("sublocality",$itemAddress->types))
-				$address['arr'] = $itemAddress->long_name;
-			if(in_array("locality",$itemAddress->types))
-				$address['city'] = $itemAddress->long_name;
-			if(in_array("administrative_area_level_2",$itemAddress->types))
-				$address['state'] = $itemAddress->long_name;
-			if(in_array("administrative_area_level_1",$itemAddress->types))
-				$address['area'] = $itemAddress->long_name;
-			if(in_array("country",$itemAddress->types))
-				$address['country']= $itemAddress->long_name;
-			if(in_array("postal_code",$itemAddress->types))
-				$address['zip']= $itemAddress->long_name;
-				
+	    
+		$status = $json->results[0]->geometry->location_type;
+		if($status != "APPROXIMATE"){
+			$res = $json->results[0];
+			$address = array("street_number"=>"","street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
+			foreach($res->address_components as $itemAddress){
+				if(in_array("street_number",$itemAddress->types)) 
+					$address['street_number'] = $itemAddress->long_name;
+				if(in_array("route",$itemAddress->types) || in_array("transit_station",$itemAddress->types)) 
+					$address['street'] = $itemAddress->long_name;
+				if(in_array("sublocality",$itemAddress->types))
+					$address['arr'] = $itemAddress->long_name;
+				if(in_array("locality",$itemAddress->types))
+					$address['city'] = $itemAddress->long_name;
+				if(in_array("administrative_area_level_2",$itemAddress->types))
+					$address['state'] = $itemAddress->long_name;
+				if(in_array("administrative_area_level_1",$itemAddress->types))
+					$address['area'] = $itemAddress->long_name;
+				if(in_array("country",$itemAddress->types))
+					$address['country']= $itemAddress->long_name;
+				if(in_array("postal_code",$itemAddress->types))
+					$address['zip']= $itemAddress->long_name;
+					
+			}
+			
+			if($debug==1){
+				echo '<br>---ADDRESS---<br>';
+				var_dump($address);
+			}	
+			$location = $json->results[0]->geometry->location;
+			
+			if($debug==1){
+				echo '<br>---LOCATION---<br>';
+				var_dump($location);
+			}	
+			$formatted_address = $json->results[0]->formatted_address;
+			
+			if($debug==1){
+				echo '<br>---FORMATTED ADDRESS---<br>';
+				var_dump($formatted_address);
+			}	
+			$res = array("formatted_address"=>$formatted_address,"address"=>$address,"location"=>array($location->lat,$location->lng),"status"=>$json->status);
+			if($output == 'JSON')    
+				$res = json_encode($res);
+			if($output == 'PHP')    
+				$res = $res;
+		}else{
+			$res=0;
 		}
 		
-		if($debug==1){
-			echo '<br>---ADDRESS---<br>';
-			var_dump($address);
-		}	
+    }else
+        $res = 0;
+     
+	 
+    return $res;
+    
+}
+
+	
+/* call to google place api
+ * retrun a php array(X,Y)
+ * ready to go in mongo
+ * can output JSON or PHP array
+ * if no location from gmap, status = 10
+ 
+ * return value : array('status'=>'OK','location'=>array(lat,lng),'address'=>array(street,arr,city,state,area,country,zip),'formatted_address'=>'2 rue des Amandiers')
+ * */
+function getPlaceGMap($q,$output = 'PHP',$debug = 0){
+	
+	//$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$q."&sensor=false";
+	$url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=".$q."&sensor=false&key=AIzaSyAbYNYyPVWQ78bvZIHHR_djLt-FMEfy2wY";
+    //echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
+    echo '<br>--- URL CALLED : '.$url;
+	$ch = curl_init();
+    curl_setopt($ch,CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    $result = curl_exec($ch);
+    curl_close($ch);
+	$json = json_decode($result);
+    if(sizeof($json->results) > 0){
+	    $res = $json->results[0];
+		
 		$location = $json->results[0]->geometry->location;
 		
 		if($debug==1){
@@ -241,11 +299,13 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 			echo '<br>---FORMATTED ADDRESS---<br>';
 			var_dump($formatted_address);
 		}	
-		$res = array("formatted_address"=>$formatted_address,"address"=>$address,"location"=>array($location->lat,$location->lng),"status"=>$json->status);
-	    if($output == 'JSON')    
-	        $res = json_encode($res);
-	    if($output == 'PHP')    
-	        $res = $res;
+		$res = array("formatted_address"=>$formatted_address,"address"=>array(),"location"=>array($location->lat,$location->lng),"status"=>$json->status);
+		if($output == 'JSON')    
+			$res = json_encode($res);
+		if($output == 'PHP')    
+			$res = $res;
+	
+		
     }else
         $res = 0;
      

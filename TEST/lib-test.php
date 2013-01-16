@@ -25,7 +25,9 @@ $arr = '(14e)';
 $theArr = rewriteArrondissement($arr);
 echo $theArr;
 
-
+$str =  " 2013-03-19T09:30:00.0Z#2013-03-19T17:00:00.0Z 2013-03-20T09:30:00.0Z#2013-03-20T17:00:00.0Z ";
+$arr = explode(' ',$str);
+var_dump($arr);
 ?>
 </body>
 </html>

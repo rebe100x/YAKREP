@@ -19,6 +19,35 @@ $records = array();
 
 
 $records[] = array(
+	"_id" => new MongoId("50f6659cfa9a95000d0000ca"),
+	"title"=>"Bus Palladium",
+	"content" =>"C’est James Arch qui créa le Bus Palladium dans les années 60.",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.lebuspalladium.com",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("506479f54a53042191010000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.880776,'lng'=>2.33487),
+	"formatted_address"=> "6 Rue Pierre Fontaine, 75009 Paris",
+	"address" => array(
+				'street_number'=>'6',
+				'street'=>"Rue Pierre Fontaine",
+				'arr'=>'9',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75009',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
+
+$records[] = array(
 	"_id" => new MongoId("50f3ccbefa9a95f809000000"),
 	"title"=>"siège du Parti communiste",
 	"content" =>"",
@@ -1283,36 +1312,7 @@ $records[] = array(
 	
 );
 
-$records[] = array(
-	"_id" => new MongoId("508960e4fa9a95dc07000003"),
-	"title"=>"Roissy",
-	"content" =>"Aéroport de Paris - Roissy , Aéroport Charles-de-Gaulle",
-	"thumb" => "",
-	"origin"=>"operator",	
-	"access"=> 1,
-	"licence"=> "Yakwala",
-	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50895efefa9a95dc07000000"),new MongoId("5077ebb1fa9a95600d0001dc")),
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"location" => array('lat'=>49.009726,'lng'=>2.547772),
-	"formatted_address"=> "Aéroport Charles-de-Gaulle, France",
-	"address" => array(
-				'street_number'=>'',
-				'street'=>"",
-				'arr'=>'',
-				'city'=>'Roissy-en-France',
-				'state'=>"Val d'Oise",
-				'area'=>'Ile-de-France',
-				'country'=>'France',
-				'zip'=>' 95700',
-			),
-	"status" => 1,
-	"user" => 0, 
-	"zone"=> 13,
-	
-	
-);
+
 
 
 $records[] = array(

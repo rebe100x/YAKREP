@@ -71,7 +71,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
               
     $q = (empty($_GET['q']))?"":$_GET['q']; 
 	
-		if(!empty($q) || $_GET['q'] == 'all'){
+		if(!empty($q) || $q == 'all'){
 		
 		if($q == 'all') // we parse all valid feeds
 			$query = array('status'=>1);
@@ -434,10 +434,15 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							}else{ // FROM GMAP
 								echo "<br> Call to GMAP: ".$loc.', '.$defaultPlace['title'].', '.$defaultPlace['address']['country'];
 								$logCallToGMap++;
+								echo '<br>loc'.$loc;
+								echo '<br>laville'.$laville;
+								echo '<br>$defaultPlace title'.$defaultPlace['title'];
+								echo '<br>$defaultPlace country'.$defaultPlace['address']['country'];		
+								$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlace['title'] && $laville != $loc) ? ', '.$laville:'').', '.$defaultPlace['title'].'. '.$defaultPlace['address']['country'])));
 								if(empty($lieu))
-									$resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlace['title'] ) ? ', '.$laville:'').', '.$defaultPlace['title'].'. '.$defaultPlace['address']['country']))),'PHP',1);
+									$resGMap = getLocationGMap($gQuery,'PHP',1);
 								else
-									$resGMap = getPlaceGMap(urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlace['title'] ) ? ', '.$laville:'').', '.$defaultPlace['title'].'. '.$defaultPlace['address']['country']))),'PHP',1);
+									$resGMap = getPlaceGMap($gQuery,'PHP',1);
 								echo '___<br>';
 								if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlace['title'].', '.$defaultPlace['address']['country']){
 									echo "<br> GMAP found the coordinates of this location ! ";
@@ -513,104 +518,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				
 					
 				}else{
-					/*
-					//is there a place found by XL ?
-					if(!empty($lieu)){
-						
-						echo "<br><b style='background-color:#00FF00;'>Place found by XL :</b> ".$lieu;
-						
-						//check if in db if the place exists
-						$place = $placeColl->findOne(array('title'=>$lieu,"zone"=>$defaultPlace['zone']));
-						//var_dump($place);
-						if($place && $flagForceUpdate != 1){ // FROM DB
-							echo "<br> Place found in DB !";
-							$logLocationInDB++;
-							if($place['status'] == 3){ // if the place has been blacklisted by the operator
-								$status = 11; // alert status
-								$print = 0; // don't print on the map, but can be printed on the news feed
-							}else{
-								$status = 1;
-								$print = 1;
-							}
-							$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print);	
-						 }else{ // the place is not in db
-							// FROM THE INPUT
-							if(!empty($geolocationInput) && !empty($placeInput)){
-								$status = 1;
-								$geolocGMAP = array((float)$geolocationInput[0],(float)$geolocationInput[1]);
-								$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
-								$print = 1;
-								$formatted_addressGMAP = $addressInput;
-							}else{ // FROM GMAP PLACE API
-								echo "<br> Call to GOOGLE PLACE API: ".$lieu;
-								$logCallToGMap++;
-								$resGMap = getPlaceGMap(urlencode(utf8_decode(suppr_accents($lieu.( (strlen($laville)> 0 && $laville != $defaultPlace['title'] ) ? ', '.$laville:'').', '.$defaultPlace['title'].'. '.$defaultPlace['address']['country']))),'PHP',1);
-								echo '___<br>';
-								if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlace['title'].', '.$defaultPlace['address']['country']){
-									echo "<br> GMAP found the coordinates of this location ! ";
-									// check if the result is in the zone
-									$zoneObj = new Zone();
-									$zoneNums = $zoneObj->findNumByLocation(array('lat'=>$resGMap['location'][0],'lng'=>$resGMap['location'][1]));
-									if(!in_array($feed['zone'],$zoneNums)){
-										echo "<br><b>Err:</b>Location found is not in the feed zone ( ".$feed['zone']." )";
-										$status = 12;
-										$print = 0;
-									}else{
-										$status = 1;
-										$print = 1;
-									}
-									$geolocGMAP = $resGMap['location'];
-									$addressGMAP = $resGMap['address'];
-									$formatted_addressGMAP = $resGMap['formatted_address'];
-								}else{
-									echo "<br> GMAP did not succeed to find a location, we store the INFO in db with status 10.";
-									$status = 10;
-									$geolocGMAP = array(0,0);
-									$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
-									$print = 0;
-									$formatted_addressGMAP = "";
-								} 
-							}	
-								// we store the result in PLACE for next time
-							
-							$place = array(
-										"title"=> $lieu,
-										"content" =>"",
-										"thumb" => "",
-										"origin"=>$feed['humanName'],    
-										"access"=> 2,
-										"licence"=> "Yakwala",
-										"outGoingLink" => $feed['link'],
-										"yakCat" => array(new MongoId($geolocYakCatId)), 
-										"creationDate" => new MongoDate(gmmktime()),
-										"lastModifDate" => new MongoDate(gmmktime()),
-										"location" => array("lat"=>$geolocGMAP[0],"lng"=>$geolocGMAP[1]),
-										"status" => $status,
-										"user" => 0,
-										"zone"=> $defaultPlace['zone'],
-										"address" => $addressGMAP,
-										"formatted_address" => $formatted_addressGMAP,
-									  );
-									  
-									  
-							$res = $placeColl->findOne(array('title'=>$lieu,"status"=>1,"zone"=>$defaultPlace['zone']));
-							if(empty($res)){// The place is not in db
-								echo "<br> The Place does not exist in db, we create it.";
-								$placeColl->save($place); 
-								
-								$placeColl->ensureIndex(array("location"=>"2d"));
-							}else{ // The place already in DB, we update if the flag tells us to
-								if($flagForceUpdate ==  1){
-									echo "<br> The place exists in db and we update it.";
-									$placeColl->update(array("_id"=> $res['_id']),$place); 
-									$placeColl->ensureIndex(array("location"=>"2d"));
-								}else
-								   echo "<br> The place exists in db => doing nothing.";
-							}
-							$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1],'address'=>$formatted_addressGMAP,'status'=>$status,'print'=>$print);
-						 
-						 }  
-					}else*/
 						{ // Nothing found by XL
 						if(sizeof($lieu)==0 && sizeof($ville)==0 && sizeof($adresse)==0 && sizeof($yakdico)==0 && sizeof($arrondissement)==0 && sizeof($quartier)==0){
 							//echo "No interesting location detected by Exalead. The info is not transfered to Mongo.";
@@ -743,6 +650,11 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$datePubArrayT = explode(':',$datePubArray1[1]);
 						
 						$tsPub = gmmktime($datePubArrayT[0],$datePubArrayT[1],$datePubArrayT[2],$datePubArrayD[0],$datePubArrayD[1],$datePubArrayD[2]);
+						if($feed['yakType'] == 2)
+							$tsEnd = date_timestamp_get($dateTimeFrom) + $feed['persistDays']*86400;
+						else
+							$tsEnd = $tsPub + $feed['persistDays']*86400;
+							
 						echo "<br>time: ".$datePubArrayT[0]."-".$datePubArrayT[1]."-".$datePubArrayT[2]."-".$datePubArrayD[0]."-".$datePubArrayD[1]."-".$datePubArrayD[2];
 						$info = array();
 						$info['title'] = $title;
@@ -756,13 +668,13 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['heat'] = "80";
 						$info['yakCat'] = $yakCatId;
 						$info['yakCatName'] = $yakCatName;
-						$info['yakType'] = $feed['yakType']; // actu
+						$info['yakType'] = $feed['yakType'];
 						$info['freeTag'] = $freeTag;
 						$info['pubDate'] = new MongoDate($tsPub);
 						$info['eventDate'] = $eventDate;
 						$info['creationDate'] = new MongoDate(gmmktime());
 						$info['lastModifDate'] = new MongoDate(gmmktime());
-						$info['dateEndPrint'] = new MongoDate($tsPub+$feed['persistDays']*86400); // 
+						$info['dateEndPrint'] = new MongoDate($tsEnd); // 
 						$info['print'] = $geolocItem['print'];
 						$info['status'] = $geolocItem['status'];
 						$info['user'] = 0;
@@ -864,7 +776,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 	$feeds = $feedColl->find()->sort(array('name'=>'desc'));
 	
 	foreach ($feeds as $feed) {
-		echo "<br>".(($feed['status']==1)?"ACTIVE":"DISABLED")."--- <a href=\"".$_SERVER['PHP_SELF']."?q=".$feed['name']."\"/>".$feed['name']."</a> " ;
+		echo "<br>".(($feed['status']==1)?"ACTIVE":"DISABLED")."--- <a href=\"".$_SERVER['PHP_SELF']."?q=".$feed['XLconnector']."\"/>".$feed['name']."</a> " ;
 	
 	}
 	

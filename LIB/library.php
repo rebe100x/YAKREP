@@ -1,6 +1,20 @@
 <?php 
 ini_set('display_errors',1);
 
+/*cast object to array going deeply in the object*/
+function object_to_array($data){
+    if (is_array($data) || is_object($data))
+    {
+        $result = array();
+        foreach ($data as $key => $value)
+        {
+            $result[$key] = object_to_array($value);
+        }
+        return $result;
+    }
+    return $data;
+}
+
 /* call to webservice to get and store a preview of the link 
  * return true if success
  * */
@@ -525,8 +539,8 @@ var_dump($res);
 /*Clean all accentuated char
  **/
 
-function suppr_accents($str)
-{
+function suppr_accents($str){
+
   $avant = array('À','Á','Â','Ã','Ä','Å','Ā','Ă','Ą','Ǎ','Ǻ','Æ','Ǽ',
 'Ç','Ć','Ĉ','Ċ','Č','Ð','Ď','Đ',
 'É','È','Ê','Ë','Ē','Ĕ','Ė','Ę','Ě','Ĝ','Ğ','Ġ','Ģ',

@@ -19,16 +19,53 @@ $var = $graph->resource( $uri )->dump();
 var_dump($var);
 */
 //$uri = "http://api.mp2013.fr/events?from=2013-01-01&to=2013-02-15&lang=fr&format=rdf&offset=0&limit=100";
+/*
 $uri = "./input/test.xml";
 $xml = file_get_contents($uri);
 $events = simplexml_load_string($xml);
 var_dump($events);exit;
-$currentPlace;
-$callCibull = 0;
-foreach ($urlset->description as $desc) {
-	echo $desc;
+*/
+
+
+
+//$test = get_object_vars($prog);
+//print_r($test);
+
+function object_to_array($data)
+{
+    if (is_array($data) || is_object($data))
+    {
+        $result = array();
+        foreach ($data as $key => $value)
+        {
+            $result[$key] = object_to_array($value);
+        }
+        return $result;
+    }
+    return $data;
 }
-exit;
+
+function getFeedData($type) {
+	$url= "http://api.mp2013.fr/events?from=2013-01-01&to=2013-02-15&lang=fr&format=json&offset=0&limit=10";
+	$chuid = curl_init();
+	//echo "<br>URL CALLED : "+$url+"<br>";
+	curl_setopt($chuid, CURLOPT_URL, $url);	
+	curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+	$data = trim(curl_exec($chuid));
+	curl_close($chuid);
+
+	switch($type){
+		case 'JSON':
+			$result = object_to_array(json_decode($data));
+		break;
+		default:
+		
+	}
+	return $result;
+}
+
 $m = new Mongo(); 
 $db = $m->selectDB($conf->db());
 
@@ -40,14 +77,71 @@ $statColl = $db->stat;
 $feedColl = $db->feed;
 
 $feeds = $feedColl->find(array('status'=>1));
-		
+
+
 foreach ($feeds as $feed) {
-	if(!empty($feed['feedType']) && $feed['feedType'] == "RDS"){
-		echo $feed['name'];
+	
+	if(!empty($feed['feedType'])){
+		$canvas = $feed['parsingTemplate'];		
+		$data = getFeedData($feed['feedType']);
+		$xml = "";
+		$file = $feed['name'].".xml";
+		header("Content-Type: application/rss+xml; charset=utf-8");
+		$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
+	
+		foreach($data[$feed['rootElement']] as $item){
+			if(!empty($item[$canvas['title']])){
+				//var_dump($item);
+				foreach($canvas as $canvasElt){
+					$tmp = explode('->',$canvasElt);
+					$obj = $item;
+					foreach($tmp as $val)
+						$obj = $obj[$val];
+						
+					$itemArray[$canvasElt] = $obj;
+				}
+				var_dump($itemArray);
+				/*
+				$tmp = explode('->',$canvas['outGoingLink']);
+				$obj = $item;
+				foreach($tmp as $val)
+					$obj = $obj[$val];
+				*/	
+				$xml .= "
+					<item>
+						<title><![CDATA[".$itemArray[$canvas['title']]."]]></title>
+						<description><![CDATA[".$itemArray[$canvas['content']]."]]></description>
+						<outGoingLink><![CDATA[".$itemArray[$canvas['outGoingLink']]."]]></outGoingLink>
+						<thumb><![CDATA[".$canvas['title']."]]></thumb>
+						<yakCats><![CDATA[".$canvas['title']."#".$canvas['title']."]]></yakCats>
+						<yakType><![CDATA[".$canvas['title']."]]></yakType>
+						<freeTag><![CDATA[".$canvas['title']."]]></freeTag>
+						<pubDate><![CDATA[".$canvas['title']."]]></pubDate>
+						<address><![CDATA[".$canvas['title']."]]></address>
+						<place><![CDATA[".$canvas['title']."]]></place>
+						<geolocation><![CDATA[".$canvas['title']."#".$canvas['title']."]]></geolocation> 
+						<eventDate><![CDATA[".$canvas['title']."#".$canvas['title']."|".$canvas['title']."#".$canvas['title']."]]></eventDate>
+					</item>
+					";
+				
+
+			
+			}
+				
+		}
+		$footer ="</items>";
+
+		echo  $header.$xml.$footer;
+			
+
+		/*
+		$fh = fopen('/usr/share/nginx/html/DATA/'.$file, 'w') or die("error");
+		fwrite($fh, $header.$xml.$footer);
+		fclose($fh);*/
 	}
 	
 }
-	
+	/*
 	$file = "testFeed.xml";
 
 	header("Content-Type: application/rss+xml; charset=utf-8");
@@ -113,11 +207,12 @@ foreach ($feeds as $feed) {
 			<eventDate><![CDATA[".$dateTimeFrom1."#".$dateTimeEnd1."|".$dateTimeFrom2."#".$dateTimeEnd2."]]></eventDate>
 		</item>
 		";
-
+	
 
 $footer ="</items>";
 
 echo  $header.$xml.$footer;
+*/
 /*
 $fh = fopen('/usr/share/nginx/html/DATA/'.$file, 'w') or die("error");
 fwrite($fh, $header.$xml.$footer);

@@ -18,6 +18,7 @@ $records = array();
 */
 
 
+
 $records[] = array(
 	"_id" => new MongoId("50f6659cfa9a95000d0000ca"),
 	"title"=>"Bus Palladium",
@@ -609,6 +610,64 @@ $records[] = array(
 
 /*MARSEILLE*/
 
+
+$records[] = array(
+	"_id" => new MongoId("50f818fdfa9a95d80a000160"),
+	"title"=>"Salon",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("507e5a9a1d22b30c44000068")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.640221,'lng'=>5.097013),
+	"formatted_address"=> "13300 Salon-de-Provence, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Salon-de-Provence',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13300',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+$records[] = array(
+	"_id" => new MongoId("50f7f34dfa9a95880b0001e9"),
+	"title"=>"Cadarache",
+	"content" =>"Le centre d'études de Cadarache est l'un des plus importants centres de recherche et développement sur l'énergie nucléaire en Europe.",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://fr.wikipedia.org/wiki/Centre_de_Cadarache",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("50f7f334fa9a958c0b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.68922,'lng'=>5.756149),
+	"formatted_address"=> "13115 Saint-Paul-lès-Durance, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Saint-Paul-lès-Durance',
+				'state'=>"Bouches-du-Rhône",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13115',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
 
 $records[] = array(
 	"_id" => new MongoId("50f3f836fa9a95f809000085"),

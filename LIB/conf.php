@@ -16,7 +16,7 @@ include_once "stringUtil.php";
 
 class conf
 {
-	private $deploy = 'devrenaud'; 
+	public $deploy = 'devrenaud'; 
     private $db;
 	private $fronturl;
 	private $backurl;

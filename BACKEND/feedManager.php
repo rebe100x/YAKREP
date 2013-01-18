@@ -13,51 +13,62 @@ $feed = $db->feed;
 
 $records = array();
 	
-// PARSER
+
+$records[] = array(
+	"_id" => new MongoId("50f90ebc1d22b32548000118"),
+	"XLconnector"=>"parser",
+	"name"=>"MP2013",
+	"humanName"=>"Marseille-Provence 2013",	
+	"link"=>"http://api.mp2013.fr/events?from=2013-01-01&to=2013-02-15&lang=fr&format=json&offset=0&limit=10",
+	"yakCatNameArray" => array('Agenda','Culture'),
+	"yakCatId"=>array(),
+ 	"persistDays" => 3,
+	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
+	"yakType" => 2,
+	"feedType" => "JSON",
+	"defaultPrintFlag" => 1,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 365,
+	"zone" =>1,
+);
+
 $records[] = array(
 	"_id" => new MongoId("50f53573fa9a95381100006a"),
-	"name"=>"parser",
+	"XLconnector"=>"parser",
 	"humanName"=>"parser",	
-	"link"=>"http://test.com",
+	"name"=>"Universal parser",
+	"link"=>"http://api.mp2013.fr/events?from=2013-01-01&to=2013-02-15&lang=fr&format=json&offset=0&limit=10",
+	"rootElement"=>"rdf:Description",
+	"parsingTemplate"=>array(
+						'title' => 'name',
+						'content' => 'description',
+						'address' => 'event:location.place:address.address:name+event:location.place:address.address:streetAddress+event:location.place:address.address:postalCode+event:location.place:address.address:addressLocality',
+						'outGoingLink' => '@attributes->rdf:about',	
+					),
 	"yakCatNameArray" => array('TEST'),
 	"yakCatId"=>array(),
  	"persistDays" => 3,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
 	"yakType" => 2,
-	"feedType" => "RDF",
+	"feedType" => "JSON",
 	"defaultPrintFlag" => 1,
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
-	"daysBack" => 5,
+	"daysBack" => 365,
 	"zone" =>1,
 );	
 
 
 
-// OPENDATA
-$records[] = array(
-	"_id" => new MongoId("50c5e1171d22b31544001273"),
-	"name"=>"test",
-	"humanName"=>"test",	
-	"link"=>"http://data.visitprovence.com/les-donnees/fiche-donnee/donnees/liste-des-loueurs-de-velo/",
-	"yakCatNameArray" => array('SPORT','Cyclisme'),
-	"yakCatId"=>array(),
-	"persistDays" => 180,
-	"defaultPlaceId" => new MongoId('50c5e3311d22b3db2c000959'),
-	"yakType" => 2,
-	"defaultPrintFlag" => 1,
-	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 1,
-	"daysBack" => 5,
-	"zone" =>1,
-);	
 
 // CULTURE
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000045"),
-	"name"=>"paris-bouge",
+	"XLconnector"=>"paris-bouge",
 	"humanName"=>"parisbouge.com",	
+	"name"=>"Paris Bouge",
 	"link"=>"http://www.parisbouge.com/",
 	"yakCatNameArray" => array('ACTUALITES','Culture','Agenda'),
 	"yakCatId"=>array(),
@@ -110,8 +121,9 @@ http://www.laprovence.com/rss/Salon-de-Provence-A-la-une.xml
 
 $records[] = array(
 	"_id" => new MongoId("50eef86efa9a955c0a000001"),
-	"name"=>"laprovenceom",
+	"XLconnector"=>"laprovenceom",
 	"humanName"=>"La Provence",	
+	"name"=>"La Provence OM",
 	"link"=>"http://www.laprovence.com",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000"),new MongoId("506479f54a53042191000000"),new MongoId("50647e2d4a53041f91040000")),
 	"persistDays" => 1,
@@ -127,8 +139,9 @@ $records[] = array(
 //http://www.laprovence.com/rss/Politique.xml
 $records[] = array(
 	"_id" => new MongoId("50eef86efa9a955c0a000002"),
-	"name"=>"laprovencepolitique",
+	"XLconnector"=>"laprovencepolitique",
 	"humanName"=>"La Provence",	
+	"name"=>"La Provence Politique",
 	"link"=>"http://www.laprovence.com",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000"),new MongoId("50efebbffa9a95b40c000000")),
 	"persistDays" => 1,
@@ -144,8 +157,9 @@ $records[] = array(
 //http://www.laprovence.com/rss/Economie-A-la-une.xml
 $records[] = array(
 	"_id" => new MongoId("50eef86efa9a955c0a000003"),
-	"name"=>"laprovenceeconomie",
+	"XLconnector"=>"laprovenceeconomie",
 	"humanName"=>"La Provence",	
+	"name"=>"La Provence Eco",
 	"link"=>"http://www.laprovence.com",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000"),new MongoId("50efebbffa9a95b40c000001")),
 	"persistDays" => 1,
@@ -163,8 +177,9 @@ $records[] = array(
 //http://www.laprovence.com/rss/Sports-en-direct.xml
 $records[] = array(
 	"_id" => new MongoId("50eef86efa9a955c0a000005"),
-	"name"=>"laprovencesport",
+	"XLconnector"=>"laprovencesport",
 	"humanName"=>"La Provence",	
+	"name"=>"La Provence Sport",
 	"link"=>"http://www.laprovence.com",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000"),new MongoId("506479f54a53042191000000")),
 	"yakCatId"=>array(),
@@ -184,8 +199,9 @@ $records[] = array(
 //http://www.laprovence.com/rss/Region.xml
 $records[] = array(
 	"_id" => new MongoId("50eef24afa9a954c0a000041"),
-	"name"=>"laprovenceregion",
+	"XLconnector"=>"laprovenceregion",
 	"humanName"=>"La Provence",	
+	"name"=>"La Provence Region",
 	"link"=>"http://www.laprovence.com",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"yakCatId"=>array(),
@@ -204,8 +220,9 @@ $records[] = array(
 /*BELGIQUE*/
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b00004b"),
-	"name"=>"rtbf_namur",
+	"XLconnector"=>"rtbf_namur",
 	"humanName"=>"la RTBF",	
+	"name"=>"RTBF Namur",
 	"link"=>"http://http://www.rtbf.be",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"yakCatId"=>array(),
@@ -221,8 +238,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b00004c"),
-	"name"=>"sudinfo_namur",
+	"XLconnector"=>"sudinfo_namur",
 	"humanName"=>"Sud Info",	
+	"name"=>"Sud Info",
 	"link"=>"http://www.sudinfo.be",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -238,8 +256,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b00004d"),
-	"name"=>"rtbf_bruxelles",
+	"XLconnector"=>"rtbf_bruxelles",
 	"humanName"=>"la RTBF",	
+	"name"=>"RTBF Bruxelles",
 	"link"=>"http://www.rtbf.be",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -255,8 +274,9 @@ $records[] = array(
 /*MONTPELIER*/
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b00004e"),
-	"name"=>"zone2",
+	"XLconnector"=>"zone2",
 	"humanName"=>"toutmontpellier.fr",	
+	"name"=>"Tout Montpellier",
 	"link"=>"http://www.toutmontpellier.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -273,8 +293,9 @@ $records[] = array(
 /*IDF*/
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b00004a"),
-	"name"=>"france3-faitsdivers",
+	"XLconnector"=>"france3-faitsdivers",
 	"humanName"=>"france3.fr",	
+	"name"=>"FR3 Faits Divers",
 	"link"=>"http://france3.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -291,8 +312,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509b6150fa9a95a40b000000"),
-	"name"=>"parisien75",
+	"XLconnector"=>"parisien75",
 	"humanName"=>"leparisien.fr",	
+	"name"=>"Le Parisien 75",
 	"link"=>"http://www.leparisien.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -307,8 +329,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b00004f"),
-	"name"=>"parisien77",
+	"XLconnector"=>"parisien77",
 	"humanName"=>"leparisien.fr",	
+	"name"=>"Le Parisien 77",
 	"link"=>"http://www.leparisien.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -324,8 +347,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000050"),
-	"name"=>"parisien78",
+	"XLconnector"=>"parisien78",
 	"humanName"=>"leparisien.fr",	
+	"name"=>"Le Parisien 78",
 	"link"=>"http://www.leparisien.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -341,8 +365,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000051"),
-	"name"=>"parisien91",
+	"XLconnector"=>"parisien91",
 	"humanName"=>"leparisien.fr",	
+	"name"=>"Le Parisien 91",
 	"link"=>"http://www.leparisien.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -357,8 +382,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000052"),
-	"name"=>"parisien92",
-	"humanName"=>"leparisien.fr",	
+	"XLconnector"=>"parisien92",
+	"humanName"=>"leparisien.fr",
+	"name"=>"Le Parisien 92",	
 	"link"=>"http://www.leparisien.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -374,8 +400,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000053"),
-	"name"=>"parisien93",
+	"XLconnector"=>"parisien93",
 	"humanName"=>"leparisien.fr",	
+	"name"=>"Le Parisien 93",
 	"link"=>"http://www.leparisien.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -391,8 +418,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000054"),
-	"name"=>"parisien94",
+	"XLconnector"=>"parisien94",
 	"humanName"=>"leparisien.fr",	
+	"name"=>"Le Parisien 94",
 	"link"=>"http://www.leparisien.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -407,8 +435,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509b6178fa9a95a40b000002"),
-	"name"=>"parisien95",
+	"XLconnector"=>"parisien95",
 	"humanName"=>"leparisien.fr",	
+	"name"=>"Le Parisien 95",
 	"link"=>"http://www.leparisien.fr",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
@@ -424,8 +453,9 @@ $records[] = array(
 // IMMOBILIER
 $records[] = array(
 	"_id" => new MongoId("50ed3b42fa9a95040c000000"),
-	"name"=>"PARIS_ATTITUDE",
+	"XLconnector"=>"PARIS_ATTITUDE",
 	"humanName"=>"Paris attitude",	
+	"name"=>"Paris Attitude",
 	"link"=>"http://www.twitter.com/PARIS_ATTITUDE",
 	"yakCatId"=>array(new MongoId("508fc6ebfa9a95680b000029"),new MongoId("50f01dcefa9a95bc0c00005f")),
 	"persistDays" => 7,
@@ -439,8 +469,9 @@ $records[] = array(
 );
 $records[] = array(
 	"_id" => new MongoId("509b6178fa9a95a40b000003"),
-	"name"=>"PARIS_ATT_VENTE",
+	"XLconnector"=>"PARIS_ATT_VENTE",
 	"humanName"=>"Paris attitude Vente",	
+	"name"=>"Paris Attitude Vente",
 	"link"=>"http://www.twitter.com/PARIS_ATT_VENTE",
 	"yakCatId"=>array(new MongoId("508fc6ebfa9a95680b000029")),
 	"persistDays" => 7,
@@ -455,8 +486,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000055"),
-	"name"=>"century_75014",
+	"XLconnector"=>"century_75014",
 	"humanName"=>"Century21 14ème",	
+	"name"=>"Century21 75014",
 	"link"=>"http://www.twitter.com/century_75014",
 	"yakCatId"=>array(new MongoId("508fc6ebfa9a95680b000029")),
 	"persistDays" => 7,
@@ -470,8 +502,9 @@ $records[] = array(
 );
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b000056"),
-	"name"=>"rebe100x",
+	"XLconnector"=>"rebe100x",
 	"humanName"=>"rebe100x",	
+	"name"=>"Tweeter test @rebe100x",
 	"link"=>"http://www.twitter.com/rebe100x",
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 7,
@@ -487,11 +520,11 @@ $records[] = array(
 $row1 = 0;	
 $row2 = 0;	
 foreach($records as $record){
-	$res = $feed->findOne(array('name'=>$record['name']));
+	$res = $feed->findOne(array('name'=>$record['name'],'humanName'=>$record['humanName'],"XLconnector"=>$record['XLconnector']));
 	if(empty($res)){
 		$row1++;
 		$feed->save($record);
-		echo $record['name']. ' : ' .$record['_id']."<br>";                    
+		echo $record['humanName']. ' : ' .$record['_id']."<br>";                    
 	}else{
 		if($record["_id"]){
 			$row2++;
@@ -506,5 +539,5 @@ echo "<br>".$row2." updated added.";
                     
 
 					
-$feed->ensureIndex(array("name"=>1,"login"=>1,'status'=>1));
+$feed->ensureIndex(array("XLconnector"=>1,"login"=>1,'status'=>1));
 ?>

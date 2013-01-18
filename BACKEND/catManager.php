@@ -217,7 +217,37 @@ $records[]= array(
 	"status" => 1
 );
 
+$records[]= array(
+	"_id" => new MongoId("50f7f315fa9a95880b0001e7"),
+	"title"=> "Energie",
+	"path" => "Energie",
+	"pathN" => "ENERGIE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+/*********/
 /*LEVEL 2*/
+/********/
+$records[]= array(
+	"_id" => new MongoId("50f7f334fa9a958c0b000000"),
+	"title"=> "Centrale nucléaire",
+	"path" => "Energie, Centrale nucléaire",
+	"pathN" => "ENERGIE#CENTRALENUCLEAIRE",
+	"ancestors" => array("Energie"),
+	"parent" => "Immobilier",
+	"ancestorsId" => array(new MongoId("50f7f315fa9a95880b0001e7")),
+	"parentId" => new MongoId("50f7f315fa9a95880b0001e7"),
+	"tag" => array("Centre d'essais nucléaires"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
 $records[]= array(
 	"_id" => new MongoId("50f01dcefa9a95bc0c00005f"),
 	"title"=> "Location",
@@ -460,6 +490,23 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("506479f54a53042191010000"),
+	"title"=> "Concert",
+	"path" => "Culture, Concert",
+	"pathN" => "CULTURE#CONCERT",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+
+$records[] = array(
 	"_id" => new MongoId("504df70ffa9a957c0b000006"),
 	"title"=> "Exposition",
 	"path" => "Culture, Exposition",
@@ -685,21 +732,6 @@ $records[] = array(
 );
 
 
-$records[] = array(
-	"_id" => new MongoId("506479f54a53042191010000"),
-	"title"=> "Concert",
-	"path" => "Culture, Concert",
-	"pathN" => "CULTURE#CONCERT",
-	"ancestors" => array("Culture"),
-	"parent" => "Culture",
-	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
-	"parentId" => new MongoId("504d89cffa9a957004000001"),
-	"level" => 2,
-	"thumb" => "",
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
-);
 
 $records[] = array(
 	"_id" => new MongoId("506479f54a53042191020000"),
@@ -799,6 +831,24 @@ $records[] = array(
 
 
 /*LEVEL 3*/
+
+
+$records[] = array(
+	"_id" => new MongoId("50f90b48fa9a953809000000"),
+	"title"=> "Danse",
+	"path" => "Culture, Spectacle, Danse",
+	"pathN" => "CULTURE#SPECTACLE#DANSE",
+	"ancestors" => array("Culture", "Spectacle"),
+	"parent" => "Spectacle",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001"),new MongoId("50696022fa9a955014000009")),
+	"parentId" => new MongoId("50696022fa9a955014000009"),
+	"level" => 3,
+	"thumb" => "",
+	"tag"=> array("Chorégraphie"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 
 $records[] = array(
 	"_id" => new MongoId("5061a0d3fa9a95f009000000"),

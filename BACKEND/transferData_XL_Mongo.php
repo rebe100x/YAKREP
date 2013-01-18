@@ -129,7 +129,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$villetext = array();
 				$enclosure = "";
 				$geolocationInput = array();
-				$addressInput = "";
+				$addressInput = array();
 				$yakcatInput = array();
 				$placeInput = array();
 				$locationTmp = array();
@@ -400,7 +400,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				}
 				
 				
-				
 				$placeArray = array();	 
 				// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
 				if(sizeof($locationTmp ) > 0){
@@ -438,8 +437,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								echo '<br>laville'.$laville;
 								echo '<br>$defaultPlace title'.$defaultPlace['title'];
 								echo '<br>$defaultPlace country'.$defaultPlace['address']['country'];		
+								echo '<br>$lieu'.$lieu;	
 								$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlace['title'] && $laville != $loc) ? ', '.$laville:'').', '.$defaultPlace['title'].'. '.$defaultPlace['address']['country'])));
-								if(empty($lieu))
+								//echo 'LIEU'.sizeof($lieu);
+								if(sizeof($lieu)==0)
 									$resGMap = getLocationGMap($gQuery,'PHP',1);
 								else
 									$resGMap = getPlaceGMap($gQuery,'PHP',1);
@@ -470,6 +471,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								} 
 							}	
 							
+							
+								
 							/*ONLY FOR TEST DELETE IN PRODUCTION THE SAVE OF THE PLACE FROM ADDRESS*/
 							// we store the result in PLACE for next time
 							
@@ -560,7 +563,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				
 				$eventDate = array();
 				
-				var_dump($eventDateInput);
+				//var_dump($eventDateInput);
 				$i=0;
 				foreach ($eventDateInput as $date) {
 					
@@ -654,7 +657,39 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							$tsEnd = date_timestamp_get($dateTimeFrom) + $feed['persistDays']*86400;
 						else
 							$tsEnd = $tsPub + $feed['persistDays']*86400;
+						/*
+						// Avoid having places in Paris and Marseille with no precise location on the map
+						if($geolocItem['address'] == "Marseille, Bouches-du-Rhône, France"
+							|| $geolocItem['address'] == "Provence-Alpes-Côte d'Azur, France"
+							|| $geolocItem['address'] == "Marseille, France"
+							){
+							$geolocItem['print'] = 0;
+						}*/
+						if(empty($addressInput))
+							echo 'EMPTY ADDRESSINPTU';
+						else
+							var_dump($addressInput);
 							
+						if(empty($placeInput))
+							echo 'EMPTY placeInput';
+						else
+							var_dump($placeInput);
+							
+						echo "<br>adresse".sizeof($adresse)."<br>lieu".sizeof($lieu)."<br>yakdico".sizeof($yakdico)."<br>quartier".sizeof($quartier)."<br>arr".sizeof($arrondissement)."<br>geoinput".sizeof($geolocationInput)."<br>addressInput".$addressInput."  ".sizeof($addressInput)."<br>placeinput".sizeof($placeInput)."<br>ville".$ville.'  '.sizeof($ville);
+						if( sizeof($adresse) == 0 
+							&& sizeof($lieu) == 0 
+							&& sizeof($yakdico) == 0 
+							&& sizeof($quartier) == 0
+							&& sizeof($arrondissement) == 0
+							&& sizeof($geolocationInput) == 0
+							&& sizeof($addressInput) == 0
+							&& sizeof($placeInput) == 0
+							&& ($laville == "Marseille" || $laville == "Paris")
+						){
+							echo "NO PRINT";
+							$geolocItem['print'] = 0;
+						}
+				
 						echo "<br>time: ".$datePubArrayT[0]."-".$datePubArrayT[1]."-".$datePubArrayT[2]."-".$datePubArrayD[0]."-".$datePubArrayD[1]."-".$datePubArrayD[2];
 						$info = array();
 						$info['title'] = $title;

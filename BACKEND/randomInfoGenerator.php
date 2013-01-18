@@ -59,6 +59,10 @@ switch($zone){
 		$lat1 = 50.583346;
 		$lon1 = 4.900031;
 	break;
+	case "14":
+		$lat1 = 43.298698;
+		$lon1 = 5.370941;
+	break;
 }
 echo 'LAT'.$lat1;
 //$brng = deg2rad(96.02167);

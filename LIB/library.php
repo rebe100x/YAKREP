@@ -220,7 +220,8 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
     if(sizeof($json->results) > 0){
 	    
 		$status = $json->results[0]->geometry->location_type;
-		if($status != "APPROXIMATE"){
+		echo '<br>status '.$status;
+		//if($status != "APPROXIMATE"){
 			$res = $json->results[0];
 			$address = array("street_number"=>"","street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
 			foreach($res->address_components as $itemAddress){
@@ -264,9 +265,9 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 				$res = json_encode($res);
 			if($output == 'PHP')    
 				$res = $res;
-		}else{
+		/*}else{
 			$res=0;
-		}
+		}*/
 		
     }else
         $res = 0;

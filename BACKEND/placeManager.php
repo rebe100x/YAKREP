@@ -1084,7 +1084,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.676253,'lng'=>4.629866),
-	"formatted_address"=> "Provence-Alpes-Côte d'Azur, France",
+	"formatted_address"=> "Arles, Provence-Alpes-Côte d'Azur, France",
 	"address" => array(
 				'street'=>'La Canebière',
 				'arr'=>'1er',
@@ -1112,7 +1112,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.296136,'lng'=>5.376946),
-	"formatted_address"=> "Provence-Alpes-Côte d'Azur, France",
+	"formatted_address"=> "La Canebière, Marseille, Provence-Alpes-Côte d'Azur, France",
 	"address" => array(
 				'street'=>'La Canebière',
 				'arr'=>'1er',
@@ -1140,9 +1140,8 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.295137,'lng'=>5.374178),
-	"formatted_address"=> "Provence-Alpes-Côte d'Azur, France",
+	"formatted_address"=> "le Vieux-Port, Marseille, Provence-Alpes-Côte d'Azur, France",
 	"address" => array(
-
 				'arr'=>'1er',
 				'city'=>'Marseille',
 				'state'=>"Bouches-du-Rhône",

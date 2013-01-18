@@ -76,7 +76,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 		if($q == 'all') // we parse all valid feeds
 			$query = array('status'=>1);
 		else
-			$query = array('name'=>$q,'status'=>1);
+			$query = array('XLconnector'=>$q,'status'=>1);
 		
 		$feeds = $feedColl->find($query);
 		
@@ -89,7 +89,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			echo '<br> Parsing feed: <b>'.$feed['name'].'</b>';
 			echo '<br> Default location of the feed : <b>'.$defaultPlace['title'].'</b>';
 			$searchDate = date('Y/m/d',(mktime()-86400*$feed['daysBack']));
-			$url = "http://ec2-54-246-84-102.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$feed['name']."&of=json&b=0&hf=1000&s=document_item_date";
+			$url = "http://ec2-54-246-84-102.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$feed['XLconnector']."&of=json&b=0&hf=1000&s=document_item_date";
 			
 			echo '<br> Days back : <b>'.$feed['daysBack'].'</b>';
 			echo '<br> Url called : <b>'.$url.'</b>';

@@ -1,5 +1,9 @@
 ﻿<!doctype html><html><head><meta charset="utf-8" /><title>YAKWALA BATCH</title></head><body>
-<?php 
+<?php
+
+//"defaultPrintFlag" => 0, if not geolocalized, we localize at the default location but we don't print on the map ( only in the text feed )
+// "defaultPrintFlag" => 1,// if not geolocalized, we localize at the default location and we print on the map
+ 
 ini_set ('max_execution_time', 0);
 set_time_limit(0);
 ini_set('display_errors',1);
@@ -15,6 +19,43 @@ $records = array();
 	
 
 $records[] = array(
+	"_id" => new MongoId("50fd24f3fa9a955c0b00016b"),
+	"XLconnector"=>"parser",
+	"humanName"=>"CCIMP",	
+	"name"=>"CCIMP",
+	"link"=>"http://opendata.regionpaca.fr/donnees/detail/signataires-de-la-charte-esprit-client-de-la-ccimp.html",
+	"fileSource"=>"./input/CCIMP-A-CLIENTS-01-2013_small.csv",
+	"rootElement"=>"",
+	"lineToBegin"=>"3",
+	"parsingTemplate"=>array(
+						'title' => " #YKL2 est signataire de la charte Esprit Client 2013 de la CCIMP",
+						'content' => "",
+						'address' => "#YKL3 #YKL4 #YKL5 #YKL6 #YKL7, FRANCE",
+						'outGoingLink' => "http://www.espritclient.ccimp.com/",
+						'latitude'=>"#YKL15",
+						'longitude'=>"#YKL14",
+						'thumb'=>'',
+						'yakCats'=>'',
+						'freeTag'=>'#YKL13',
+						'place'=> '#YKL2',
+						'eventDate' => '',
+						'pubDate'=>'2013-01-01T00:00:00+0100',
+					),
+	"yakCatNameArray" => array('Commerce'),
+	"yakCatId"=>array("50f025f7fa9a957c0c000048"),
+ 	"persistDays" => 365,
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'), //PACA
+	"yakType" => 3, // infos pratiques
+	"feedType" => "CSV",
+	"defaultPrintFlag" => 1,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 365,
+	"zone" =>14,
+);	
+
+	
+$records[] = array(
 	"_id" => new MongoId("50f90ebc1d22b32548000118"),
 	"XLconnector"=>"parser",
 	"name"=>"MP2013",
@@ -23,14 +64,13 @@ $records[] = array(
 	"yakCatNameArray" => array('Agenda','Culture'),
 	"yakCatId"=>array(),
  	"persistDays" => 3,
-	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
+	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'), // PACA
 	"yakType" => 2,
-	"feedType" => "JSON",
 	"defaultPrintFlag" => 1,
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 365,
-	"zone" =>1,
+	"zone" =>14,
 );
 
 $records[] = array(
@@ -49,14 +89,14 @@ $records[] = array(
 	"yakCatNameArray" => array('TEST'),
 	"yakCatId"=>array(),
  	"persistDays" => 3,
-	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
+	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'), //PAris
 	"yakType" => 2,
 	"feedType" => "JSON",
 	"defaultPrintFlag" => 1,
 	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 1,
+	"status" => 0,
 	"daysBack" => 365,
-	"zone" =>1,
+	"zone" =>0,
 );	
 
 
@@ -70,15 +110,15 @@ $records[] = array(
 	"humanName"=>"parisbouge.com",	
 	"name"=>"Paris Bouge",
 	"link"=>"http://www.parisbouge.com/",
-	"yakCatNameArray" => array('ACTUALITES','Culture','Agenda'),
-	"yakCatId"=>array(),
-	"persistDays" => 180,
+	"yakCatNameArray" => array('Actualités','Culture'),
+	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000"),new MongoId("504d89cffa9a957004000001")),
+	"persistDays" => 90,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
-	"yakType" => 2,
-	"defaultPrintFlag" => 1,
+	"yakType" => 1,
+	"defaultPrintFlag" => 0,
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
-	"daysBack" => 5,
+	"daysBack" => 50,
 	"zone" =>1,
 );		
 

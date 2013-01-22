@@ -10,7 +10,15 @@ $conf = new conf();
 $m = new Mongo(); 
 $db = $m->selectDB($conf->db());
 
+
+	
+	
 $info = $db->info;
+
+if(!empty($_GET['cleanRandomInfo'])){
+	$info->remove(array('origin'=>'random generator'));
+	exit;
+}
 
 $res = $info->ensureIndex(array("location"=>"2d"));
 $res = $info->ensureIndex(array("yakType"=>1,"print"=>1,"status"=>1,"pubDate"=>-1));
@@ -50,65 +58,49 @@ switch($zone){
 	case "1":
 		$lat1 = 48.851875;
 		$lon1 = 2.356374;
+		$range = 1;
 	break;
 	case "2":
 		$lat1 = 43.610787;
 		$lon1 = 3.876715;
+		$range = 1;
 	break;
 	case "3":
 		$lat1 = 50.583346;
 		$lon1 = 4.900031;
+		$range = 1;
 	break;
 	case "14":
 		$lat1 = 43.298698;
 		$lon1 = 5.370941;
+		$range = 10;
 	break;
 }
-echo 'LAT'.$lat1;
-//$brng = deg2rad(96.02167);
-$brng = deg2rad(rand(0,360));
-$d = rand(1100,10000)/1000;
-$R= 6371;
-$lat1R = deg2rad($lat1);
-$lon1R = deg2rad($lon1);
-$lat2R = asin( sin($lat1R)*cos($d/$R) + cos($lat1R)*sin($d/$R)*cos($brng) );
 
-$lon2R = $lon1R + atan2(sin($brng)*sin($d/$R)*cos($lat1R), cos($d/$R)-sin($lat1R)*sin($lat2R));
+$point = generatePointArround($lat1,$lon1,$range);
 
-$lon2 = rad2deg($lon2R);
-$lat2 = rad2deg($lat2R);
-
+$flag = isItWatter($point->lat,$point->lng);
+if($flag==1)
+		echo '<br>IN WATTER';
+	else
+		echo '<br>IN LAND';
+$i=0;
+while($flag == 1){
+	$tmpPoint = generatePointArround($lat1,$lon1,$range); 
+	$point->set($tmpPoint->lat,$tmpPoint->lng);
+	$flag = isItWatter($point->lat,$point->lng);
+	if($flag==1)
+		echo '<br>IN WATTER';
+	else
+		echo '<br>IN LAND';
+	if($i> 10)
+		return;
+	else
+		$i++;
+}
+	
 // WEB LINK
 
-$urlWebsite = "http://www.randomwebsite.com/cgi-bin/random.pl";
-$options = array( 
-        CURLOPT_RETURNTRANSFER => true,     // return web page 
-        CURLOPT_HEADER         => true,    // return headers 
-        CURLOPT_FOLLOWLOCATION => true,     // follow redirects 
-        CURLOPT_ENCODING       => "",       // handle all encodings 
-        CURLOPT_USERAGENT      => "spider", // who am i 
-        CURLOPT_AUTOREFERER    => true,     // set referer on redirect 
-        CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect 
-        CURLOPT_TIMEOUT        => 120,      // timeout on response 
-        CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects 
-    ); 
-
-	/*
-    $ch      = curl_init( $urlWebsite ); 
-    curl_setopt_array( $ch, $options ); 
-    $contentWeb = curl_exec( $ch ); 
-    //$err     = curl_errno( $ch ); 
-    //$errmsg  = curl_error( $ch ); 
-    $header  = curl_getinfo( $ch ); 
-    curl_close( $ch ); 
-
-    //$header['errno']   = $err; 
-   // $header['errmsg']  = $errmsg; 
-    //$header['content'] = $content; 
-    
-	echo $header["url"];
-	$thumb = getApercite($header["url"]);
-	*/
 	echo "<br>ZONE".$zone."<br>";
 
 	$webArray = array("http://www.lemonde.fr/",
@@ -134,26 +126,7 @@ $options = array(
 					"http://www.monde-diplomatique.fr/");
 					$weburl = $webArray[rand(0,sizeof($webArray)-1)];
 	$thumb = getApercite($weburl);
-// THUMB
-	//$thumb = "test";
-	/*
-	$fullpath = "thumb/".md5($link).'.jpeg';
-	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;
-	$ch = curl_init ($img);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
-    $rawdata=curl_exec($ch);
-    curl_close ($ch);
-    if(file_exists($fullpath)){
-        unlink($fullpath);
-    }
-    $fp = fopen($fullpath,'x');
-    fwrite($fp, $rawdata);
-    fclose($fp);
-	
-    return $fullpath;
-	*/
+
 // TYPE	
 //$yakType = rand(1,4);
 $yakType = 4;
@@ -179,7 +152,7 @@ $record = array(
 	"status" => 1,
 	"user" => 0,
 	"zone" => 1,
-	"location" => array('lat'=>$lat2,'lng'=>$lon2),
+	"location" => array('lat'=>$point->lat,'lng'=>$point->lng),
 	"address" => "", 
 	"placeId" => new MongoId("506a9e011d22b3457800001e"),
 
@@ -195,9 +168,7 @@ $info->ensureIndex(array("yakType"=>1,"print"=>1,"status"=>1,"pubDate"=>-1));
 $info->ensureIndex(array("yakType"=>1,"print"=>1,"status"=>1,"pubDate"=>-1,"user"=>1,"freeTag"=>1));
 
 echo "<br>SAVE : ".$record['_id'];
-echo  $title.' '.$lat2.' '.$lon2;
-if(!empty($_GET['cleanRandomInfo']))
-	$info->remove(array('origin'=>'random generator'));
+echo  $title.' '.$point->lat.' , '.$point->lng;
 
 echo "<br><br>------------------To remove random data, call : ?cleanRandomInfo=1";	
 ?>

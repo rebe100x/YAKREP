@@ -17,7 +17,7 @@ $batchlogColl = $db->batchlog;
 $statColl = $db->stat;
 $feedColl = $db->feed;
 
-$feed = $feedColl->findOne(array('name'=>'mp2013'));
+$feed = $feedColl->findOne(array('name'=>'MP2013'));
 	
 	$url= "http://api.mp2013.fr/events?from=".date('Y')."-".date('m')."-".date('d')."&to=2013-12-31&lang=fr&format=json&offset=0&limit=2000";
 	$url= "http://api.mp2013.fr/events?from=2013-01-01&to=2013-12-31&lang=fr&format=json&offset=0&limit=2000";
@@ -38,7 +38,18 @@ $feed = $feedColl->findOne(array('name'=>'mp2013'));
 	$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
 
 	foreach($data['rdf:Description'] as $item){
-		if(!empty($item['name']) && $item['canceled'] == 'False' ){
+			
+			$address = '';	
+			$place = '';
+			$geolocation ='';
+			$thumb = "";
+			$freeTag = array();
+			$yakcats = array();
+			
+		if(!empty($item['name']) && $item['canceled'] == 'False' && !empty($item['startDate']) 
+			&& ( (!empty($item['event:location']['place:geo']['geo:latitude']) && !empty($item['event:location']['place:geo']['geo:longitude'])) 
+				  || (!empty($item['event:location']['place:address']['address:addressLocality']) && !empty($item['event:location']['place:address']['address:name']) )	) 
+				){
 			//var_dump($item);
 			$itemId = substr($item['@attributes']['rdf:about'],strpos($item['@attributes']['rdf:about'],'#')+1);
 			$startYear = substr($item['startDate'],0,4);
@@ -56,10 +67,10 @@ $feed = $feedColl->findOne(array('name'=>'mp2013'));
 			if(!empty($item['event:location']['place:address']['address:name']))
 				$place = $item['event:location']['place:address']['address:name'];
 				
-			$thumb = "";
+			
 			if(!empty($item['image']) && sizeof($item['image']) > 0)
 				$thumb = $item['image'];
-			$address = '';	
+			
 			if(!empty($item['event:location']['place:address']['address:name']))
 				$address .= $item['event:location']['place:address']['address:name'].", ";
 			
@@ -75,7 +86,7 @@ $feed = $feedColl->findOne(array('name'=>'mp2013'));
 			if( !empty($item['event:location']['place:address']['address:streetAddress']) || !empty($item['event:location']['place:address']['address:postalCode']) || !empty($item['event:location']['place:address']['address:addressLocality']))
 				$address .= ", France";
 			
-			$geolocation ='';
+			
 			if(!empty($item['event:location']['place:geo']['geo:latitude']) && !empty($item['event:location']['place:geo']['geo:longitude']))
 				$geolocation = $item['event:location']['place:geo']['geo:latitude']."#".$item['event:location']['place:geo']['geo:longitude'];
 			
@@ -159,82 +170,7 @@ $feed = $feedColl->findOne(array('name'=>'mp2013'));
 	}
 
 
-	/*
-	$file = "testFeed.xml";
-
-	header("Content-Type: application/rss+xml; charset=utf-8");
-	$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
 	
-	$xml = "";
-	
-	$title1 = "title1 rue des Martyrs";
-	$title2 = "title2";
-	$content = "content1";
-	$outGoingLink = "http://link1.com";
-	$thumb1 = "http://ta.kewego.com/t/0/0288/154x114_8173d12acb2s_2.jpg";
-	$thumb2 = "http://www.laprovence.com/media/imagecache/home_image_article1/aixrotondephotoneige.jpg";
-	$yakCatId1 = "504d89cffa9a957004000001";	
-	$yakCatId2 = "50923b9afa9a95d409000000";	
-	$yakType1 = 2;
-	$yakType2 = 3;
-	$freeTag = "Ligue1";
-	$pubDate = "2013-01-16T09:30:00.0Z";
-	$address1 = "rue des Martyrs, Paris, France";
-	$address2 = "";
-	$lat1 = "48.878095";
-	$lng1 = "2.339474";
-	$lat2 = "";
-	$lng2 = "";
-	$dateTimeFrom1 = "2013-03-19T09:30:00.0Z";
-	$dateTimeEnd1 = "2013-03-19T17:00:00.0Z";
-	$dateTimeFrom2 = "2013-03-20T09:30:00.0Z";
-	$dateTimeEnd2 = "2013-03-20T17:00:00.0Z";
-	$place1 = "Hôpital Necker";
-	$place2 = "Hotel de Crillon";
-		
-	$xml .= "
-		<item>
-			<title><![CDATA[".$title1."]]></title>
-			<description><![CDATA[".$content."]]></description>
-			<outGoingLink><![CDATA[".$outGoingLink."]]></outGoingLink>
-			<thumb><![CDATA[".$thumb1."]]></thumb>
-			<yakCats><![CDATA[".$yakCatId1."#".$yakCatId2."]]></yakCats>
-			<yakType><![CDATA[".$yakType1."]]></yakType>
-			<freeTag><![CDATA[".$freeTag."]]></freeTag>
-			<pubDate><![CDATA[".$pubDate."]]></pubDate>
-			<address><![CDATA[".$address1."]]></address>
-			<place><![CDATA[".$place1."]]></place>
-			<geolocation><![CDATA[".$lat1."#".$lng1."]]></geolocation> 
-			<eventDate><![CDATA[".$dateTimeFrom1."#".$dateTimeEnd1."|".$dateTimeFrom2."#".$dateTimeEnd2."]]></eventDate>
-		</item>
-		";
-	
-	$xml .= "
-		<item>
-			<title><![CDATA[".$title2."]]></title>
-			<description><![CDATA[".$content."]]></description>
-			<outGoingLink><![CDATA[".$outGoingLink."]]></outGoingLink>
-			<thumb><![CDATA[".$thumb2."]]></thumb>
-			<yakCats><![CDATA[".$yakCatId1."#".$yakCatId2."]]></yakCats>
-			<yakType><![CDATA[".$yakType2."]]></yakType>
-			<freeTag><![CDATA[".$freeTag."]]></freeTag>
-			<pubDate><![CDATA[".$pubDate."]]></pubDate>
-			<address><![CDATA[".$address2."]]></address>
-			<place><![CDATA[".$place2."]]></place>
-			<geolocation><![CDATA[".$lat2."#".$lng2."]]></geolocation> 
-			<eventDate><![CDATA[".$dateTimeFrom1."#".$dateTimeEnd1."|".$dateTimeFrom2."#".$dateTimeEnd2."]]></eventDate>
-		</item>
-		";
-	
-
-$footer ="</items>";
-
-echo  $header.$xml.$footer;
-*/
-/*
-$fh = fopen('/usr/share/nginx/html/DATA/'.$file, 'w') or die("error");
-fwrite($fh, $header.$xml.$footer);
-fclose($fh);*/
    
 ?>
 

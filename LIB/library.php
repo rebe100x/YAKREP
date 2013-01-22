@@ -1,6 +1,127 @@
 <?php 
 ini_set('display_errors',1);
 
+function trimArray($i){
+	return trim($i);	
+}
+/*
+ generate random point arround a center
+
+*/
+function generatePointArround($lat1,$lon1,$range=1)
+{
+	$point = new Location();
+	
+	$brng = deg2rad(rand(0,360));
+	$d = rand(1100,10000*$range)/1000;
+	$R= 6371;
+	$lat1R = deg2rad($lat1);
+	$lon1R = deg2rad($lon1);
+	$lat2R = asin( sin($lat1R)*cos($d/$R) + cos($lat1R)*sin($d/$R)*cos($brng) );
+
+	$lon2R = $lon1R + atan2(sin($brng)*sin($d/$R)*cos($lat1R), cos($d/$R)-sin($lat1R)*sin($lat2R));
+
+	$lon2 = rad2deg($lon2R);
+	$lat2 = rad2deg($lat2R);
+	$point->set($lat2,$lon2);
+	return $point;
+}
+/*
+	
+*/
+function isItWatter($lat,$lng) {
+	
+	$GMAPStaticUrl = "https://maps.googleapis.com/maps/api/staticmap?center=".$lat.",".$lng."&size=40x40&maptype=roadmap&sensor=false&zoom=12&key=AIzaSyAbYNYyPVWQ78bvZIHHR_djLt-FMEfy2wY";	
+	//echo $GMAPStaticUrl;
+	$chuid = curl_init();
+	curl_setopt($chuid, CURLOPT_URL, $GMAPStaticUrl);	
+	curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
+	$data = trim(curl_exec($chuid));
+	curl_close($chuid);
+	$image = imagecreatefromstring($data);
+	
+	ob_start();
+	imagepng($image);
+	$contents =  ob_get_contents();
+	ob_end_clean();
+
+	echo "<img src='data:image/png;base64,".base64_encode($contents)."' />";
+	
+	$hexaColor = imagecolorat($image,0,0);
+	$color_tran = imagecolorsforindex($image, $hexaColor);
+	
+	$hexaColor2 = imagecolorat($image,0,1);
+	$color_tran2 = imagecolorsforindex($image, $hexaColor2);
+	
+	$hexaColor3 = imagecolorat($image,0,2);
+	$color_tran3 = imagecolorsforindex($image, $hexaColor3);
+	
+	$red = $color_tran['red'] + $color_tran2['red'] + $color_tran3['red'];
+	$green = $color_tran['green'] + $color_tran2['green'] + $color_tran3['green'];
+	$blue = $color_tran['blue'] + $color_tran2['blue'] + $color_tran3['blue'];
+	
+	imagedestroy($image);
+	var_dump($red,$green,$blue);
+	//int(492) int(570) int(660) 
+	if($red == 492 && $green == 570 && $blue == 660)
+		return 1;
+	else
+		return 0;
+}
+
+
+/* load data form url or from file
+
+*/
+function getFeedData($feed){
+	if( empty($feed['fileSource']) && !empty($feed['link']) ){
+		$chuid = curl_init();
+		curl_setopt($chuid, CURLOPT_URL, $feed['link']);	
+		curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+		$data = trim(curl_exec($chuid));
+		curl_close($chuid);
+		$data = object_to_array(json_decode($data));
+		
+	}elseif( !empty($feed['fileSource']) ){
+		if (($handle = fopen($feed['fileSource'], "r")) !== FALSE) {
+			while (($line = fgetcsv($handle, 10000, ";")) !== FALSE) {
+				$data[] = $line;
+			}
+		}
+	}else{
+		$data = false;
+	}	
+
+	return $data;	
+}
+
+/* Build an XML item of an XL feed crawler
+*/
+function buildXMLItem($itemArray){
+	
+$date = new DateTime();
+$xml = "
+	<item>
+		<title><![CDATA[".(!empty($itemArray['title'])?$itemArray['title']:'')."]]></title>
+		<description><![CDATA[".(!empty($itemArray['content'])?$itemArray['content']:'')."]]></description>
+		<outGoingLink><![CDATA[".(!empty($itemArray['outGoingLink'])?$itemArray['outGoingLink']:'')."]]></outGoingLink>
+		<thumb><![CDATA[".(!empty($itemArray['thumb'])?$itemArray['thumb']:'')."]]></thumb>
+		<yakCats><![CDATA[".(!empty($itemArray['yakCats'])?$itemArray['yakCats']:'')."]]></yakCats>
+		<freeTag><![CDATA[".(!empty($itemArray['freeTag'])?$itemArray['freeTag']:'')."]]></freeTag>
+		<pubDate><![CDATA[".(!empty($itemArray['pubDate'])?$itemArray['pubDate']:$date->format(DateTime::ISO8601))."]]></pubDate>
+		<address><![CDATA[".(!empty($itemArray['address'])?$itemArray['address']:'')."]]></address>
+		<place><![CDATA[".(!empty($itemArray['place'])?$itemArray['place']:'')."]]></place>
+		<geolocation><![CDATA[".((!empty($itemArray['latitude']) && !empty($itemArray['longitude']))? $itemArray['latitude']."#".$itemArray['longitude']:'')."]]></geolocation> 
+		<eventDate><![CDATA[".(!empty($itemArray['eventDate'])?$itemArray['eventDate']:'')."]]></eventDate>
+	</item>
+";
+	return $xml;
+	//$itemArray['eventDate']."#".$itemArray['title']."|".$itemArray['title']."#".$itemArray['title']
+}
+
 /*cast object to array going deeply in the object*/
 function object_to_array($data){
     if (is_array($data) || is_object($data))

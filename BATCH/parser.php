@@ -31,40 +31,7 @@ var_dump($events);exit;
 //$test = get_object_vars($prog);
 //print_r($test);
 
-function object_to_array($data)
-{
-    if (is_array($data) || is_object($data))
-    {
-        $result = array();
-        foreach ($data as $key => $value)
-        {
-            $result[$key] = object_to_array($value);
-        }
-        return $result;
-    }
-    return $data;
-}
 
-function getFeedData($type) {
-	$url= "http://api.mp2013.fr/events?from=2013-01-01&to=2013-02-15&lang=fr&format=json&offset=0&limit=10";
-	$chuid = curl_init();
-	//echo "<br>URL CALLED : "+$url+"<br>";
-	curl_setopt($chuid, CURLOPT_URL, $url);	
-	curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
-
-	$data = trim(curl_exec($chuid));
-	curl_close($chuid);
-
-	switch($type){
-		case 'JSON':
-			$result = object_to_array(json_decode($data));
-		break;
-		default:
-		
-	}
-	return $result;
-}
 
 $m = new Mongo(); 
 $db = $m->selectDB($conf->db());
@@ -76,148 +43,99 @@ $batchlogColl = $db->batchlog;
 $statColl = $db->stat;
 $feedColl = $db->feed;
 
-$feeds = $feedColl->find(array('status'=>1));
+$res = $feedColl->find(array('status'=>1));
 
+$feeds = iterator_to_array($res);
+//var_dump($feeds);
+
+function mapIt($i){
+	return '/'.$i.'/';
+}
 
 foreach ($feeds as $feed) {
-	
+	$file = $feed['name'].".xml";	
 	if(!empty($feed['feedType'])){
-		$canvas = $feed['parsingTemplate'];		
-		$data = getFeedData($feed['feedType']);
+		$canvas = $feed['parsingTemplate'];
+		//var_dump($feed);
+		$data = getFeedData($feed);
 		$xml = "";
-		$file = $feed['name'].".xml";
-		header("Content-Type: application/rss+xml; charset=utf-8");
 		$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
 	
-		foreach($data[$feed['rootElement']] as $item){
-			if(!empty($item[$canvas['title']])){
+		if(!empty($feed['rootElement']))
+			$items = $data[$feed['rootElement']];
+		else
+			$items = $data;
+			
+		$line = 0;
+		foreach($items as $item){
+			
+			
+			if(!empty($canvas['title']) && $line >= $feed['lineToBegin'] ){ // we don't take empty lines and header
 				//var_dump($item);
-				foreach($canvas as $canvasElt){
-					$tmp = explode('->',$canvasElt);
-					$obj = $item;
-					foreach($tmp as $val)
-						$obj = $obj[$val];
+				$itemArray = array();
+			
+				if($feed['feedType'] == 'CSV'){
+					foreach($canvas as $key=>$val){
+						$thevalue = '';
+						//echo $item[2];
+						if(!empty($val)){
+							preg_match_all('/(#YKL)(\d+)/', $val, $out);
+							$tmp = array();
+							foreach($out[2] as $o)
+								$tmp[] = $item[$o];
+							$thevalue = preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
+							
+						}else
+							$thevalue = '';
+							
+						$thevalueClean = $thevalue;
 						
-					$itemArray[$canvasElt] = $obj;
+						if($key == 'freeTag' || $key == 'yakCats'){
+							$tmp = explode(',',$thevalue);
+							$tmp = array_map('trimArray',$tmp);  
+							$thevalueClean = implode('#',$tmp);
+						}
+						
+						if($key == 'longitude' || $key == 'latitude'){
+							$thevalueClean = str_replace(',','.',$thevalueClean);
+							$thevalueClean = (float)$thevalueClean;
+						}
+						
+						$itemArray[$key] = $thevalueClean;
+					}		
 				}
-				var_dump($itemArray);
-				/*
-				$tmp = explode('->',$canvas['outGoingLink']);
-				$obj = $item;
-				foreach($tmp as $val)
-					$obj = $obj[$val];
-				*/	
-				$xml .= "
-					<item>
-						<title><![CDATA[".$itemArray[$canvas['title']]."]]></title>
-						<description><![CDATA[".$itemArray[$canvas['content']]."]]></description>
-						<outGoingLink><![CDATA[".$itemArray[$canvas['outGoingLink']]."]]></outGoingLink>
-						<thumb><![CDATA[".$canvas['title']."]]></thumb>
-						<yakCats><![CDATA[".$canvas['title']."#".$canvas['title']."]]></yakCats>
-						<yakType><![CDATA[".$canvas['title']."]]></yakType>
-						<freeTag><![CDATA[".$canvas['title']."]]></freeTag>
-						<pubDate><![CDATA[".$canvas['title']."]]></pubDate>
-						<address><![CDATA[".$canvas['title']."]]></address>
-						<place><![CDATA[".$canvas['title']."]]></place>
-						<geolocation><![CDATA[".$canvas['title']."#".$canvas['title']."]]></geolocation> 
-						<eventDate><![CDATA[".$canvas['title']."#".$canvas['title']."|".$canvas['title']."#".$canvas['title']."]]></eventDate>
-					</item>
-					";
 				
-
-			
-			}
+				if($feed['feedType'] == 'JSON'){
+					foreach($canvas as $canvasElt){
+						$tmp = explode('->',$canvasElt);
+						$obj = $item;
+						foreach($tmp as $val)
+							$obj = $obj[$val];
+							
+						$itemArray[$canvasElt] = $obj;
+					}
+				}
 				
+				//var_dump($itemArray);
+				
+				$xml .= buildXMLItem($itemArray);
+			}			
+			$line++;
 		}
+		
 		$footer ="</items>";
+	}
+}
 
+	if(substr($conf->deploy,0,3) == 'dev'){
+		header("Content-Type: application/rss+xml; charset=utf-8");
 		echo  $header.$xml.$footer;
-			
-
-		/*
+	}else{		
 		$fh = fopen('/usr/share/nginx/html/DATA/'.$file, 'w') or die("error");
 		fwrite($fh, $header.$xml.$footer);
-		fclose($fh);*/
+		fclose($fh);
 	}
 	
-}
-	/*
-	$file = "testFeed.xml";
-
-	header("Content-Type: application/rss+xml; charset=utf-8");
-	$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
-	
-	$xml = "";
-	
-	$title1 = "title1 rue des Martyrs";
-	$title2 = "title2";
-	$content = "content1";
-	$outGoingLink = "http://link1.com";
-	$thumb1 = "http://ta.kewego.com/t/0/0288/154x114_8173d12acb2s_2.jpg";
-	$thumb2 = "http://www.laprovence.com/media/imagecache/home_image_article1/aixrotondephotoneige.jpg";
-	$yakCatId1 = "504d89cffa9a957004000001";	
-	$yakCatId2 = "50923b9afa9a95d409000000";	
-	$yakType1 = 2;
-	$yakType2 = 3;
-	$freeTag = "Ligue1";
-	$pubDate = "2013-01-16T09:30:00.0Z";
-	$address1 = "rue des Martyrs, Paris, France";
-	$address2 = "";
-	$lat1 = "48.878095";
-	$lng1 = "2.339474";
-	$lat2 = "";
-	$lng2 = "";
-	$dateTimeFrom1 = "2013-03-19T09:30:00.0Z";
-	$dateTimeEnd1 = "2013-03-19T17:00:00.0Z";
-	$dateTimeFrom2 = "2013-03-20T09:30:00.0Z";
-	$dateTimeEnd2 = "2013-03-20T17:00:00.0Z";
-	$place1 = "Hôpital Necker";
-	$place2 = "Hotel de Crillon";
-		
-	$xml .= "
-		<item>
-			<title><![CDATA[".$title1."]]></title>
-			<description><![CDATA[".$content."]]></description>
-			<outGoingLink><![CDATA[".$outGoingLink."]]></outGoingLink>
-			<thumb><![CDATA[".$thumb1."]]></thumb>
-			<yakCats><![CDATA[".$yakCatId1."#".$yakCatId2."]]></yakCats>
-			<yakType><![CDATA[".$yakType1."]]></yakType>
-			<freeTag><![CDATA[".$freeTag."]]></freeTag>
-			<pubDate><![CDATA[".$pubDate."]]></pubDate>
-			<address><![CDATA[".$address1."]]></address>
-			<place><![CDATA[".$place1."]]></place>
-			<geolocation><![CDATA[".$lat1."#".$lng1."]]></geolocation> 
-			<eventDate><![CDATA[".$dateTimeFrom1."#".$dateTimeEnd1."|".$dateTimeFrom2."#".$dateTimeEnd2."]]></eventDate>
-		</item>
-		";
-	
-	$xml .= "
-		<item>
-			<title><![CDATA[".$title2."]]></title>
-			<description><![CDATA[".$content."]]></description>
-			<outGoingLink><![CDATA[".$outGoingLink."]]></outGoingLink>
-			<thumb><![CDATA[".$thumb2."]]></thumb>
-			<yakCats><![CDATA[".$yakCatId1."#".$yakCatId2."]]></yakCats>
-			<yakType><![CDATA[".$yakType2."]]></yakType>
-			<freeTag><![CDATA[".$freeTag."]]></freeTag>
-			<pubDate><![CDATA[".$pubDate."]]></pubDate>
-			<address><![CDATA[".$address2."]]></address>
-			<place><![CDATA[".$place2."]]></place>
-			<geolocation><![CDATA[".$lat2."#".$lng2."]]></geolocation> 
-			<eventDate><![CDATA[".$dateTimeFrom1."#".$dateTimeEnd1."|".$dateTimeFrom2."#".$dateTimeEnd2."]]></eventDate>
-		</item>
-		";
-	
-
-$footer ="</items>";
-
-echo  $header.$xml.$footer;
-*/
-/*
-$fh = fopen('/usr/share/nginx/html/DATA/'.$file, 'w') or die("error");
-fwrite($fh, $header.$xml.$footer);
-fclose($fh);*/
-   
 ?>
 
 

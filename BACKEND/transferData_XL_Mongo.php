@@ -76,7 +76,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 		if($q == 'all') // we parse all valid feeds
 			$query = array('status'=>1);
 		else
-			$query = array('XLconnector'=>$q,'status'=>1);
+			$query = array('name'=>$q,'status'=>1);
 		
 		$feeds = $feedColl->find($query);
 		
@@ -89,7 +89,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			echo '<br> Parsing feed: <b>'.$feed['name'].'</b>';
 			echo '<br> Default location of the feed : <b>'.$defaultPlace['title'].'</b>';
 			$searchDate = date('Y/m/d',(mktime()-86400*$feed['daysBack']));
-			$url = "http://ec2-54-246-84-102.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$feed['XLconnector']."&of=json&b=0&hf=1000&s=document_item_date";
+			if($feed['XLconnector']=='parser')
+				$origin ="+AND+file_name%3D".$feed['name'].'.xml';
+			else
+				$origin ="";
+				
+			$url = "http://ec2-54-246-84-102.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$feed['XLconnector'].$origin."&of=json&b=0&hf=1000&s=document_item_date";
 			
 			echo '<br> Days back : <b>'.$feed['daysBack'].'</b>';
 			echo '<br> Url called : <b>'.$url.'</b>';
@@ -106,7 +111,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			echo '<br><br>Fetching news...<br>';
 			$item = 0;
 			foreach($hits as $hit){
-				
+				//if($item > 100)
+				//	exit;
 				$item ++;
 				$lieu = array();
 				$lieutitle = array();
@@ -141,6 +147,14 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$content = "";
 				$titleXL = "";
 				$contentXL = "";
+				$contact = array();
+				$tel = "";
+				$mobile = "";
+				$mail = "";
+				$transportation = "";
+				$web = "";
+				$opening = "";
+				$thumb = "";
 				
 				
 				$metas = $hit->metas;
@@ -177,6 +191,23 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						  $yakcatInput = explode('#',trim($meta->value));
 					if($meta->name == "item_place")
 						  $placeInput = trim($meta->value);
+					if($meta->name == "item_freetag"){
+						  $freetagInput = explode('#',trim($meta->value));
+						  foreach($freetagInput as $tagInput)
+							$freeTag[] = $tagInput;
+					}
+					if($meta->name == "item_tel")
+						  $telInput = trim($meta->value);
+					if($meta->name == "item_mobile")
+						  $mobileInput = trim($meta->value);
+					if($meta->name == "item_mail")
+						  $mailInput = trim($meta->value);
+					if($meta->name == "item_transportation")
+						  $transportationInput = trim($meta->value);
+					if($meta->name == "item_web")
+						  $webInput = trim($meta->value);
+					if($meta->name == "item_opening")
+						  $openingInput = trim($meta->value);
 						
 					
 				}
@@ -420,7 +451,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								$status = 1;
 								$print = 1;
 							}
-							$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print);	
+							
+							$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print,'contact'=>$place['contact']);	
 						 }else{ // the place is not in db
 							
 							// FROM THE INPUT
@@ -476,6 +508,15 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							/*ONLY FOR TEST DELETE IN PRODUCTION THE SAVE OF THE PLACE FROM ADDRESS*/
 							// we store the result in PLACE for next time
 							
+							$contact = array(
+												"tel"=>$tel,
+												"mobile"=>$mobile,
+												"mail"=>$mail,
+												"transportation"=>$transportation,
+												"web"=>$web,
+												"opening"=>$opening,
+											);
+							
 							$place = array(
 										"title"=> $loc,
 										"content" =>"",
@@ -493,17 +534,16 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 										"zone"=> $defaultPlace['zone'],
 										"address" => $addressGMAP,
 										"formatted_address" => $formatted_addressGMAP,
+										"contact"=>$contact,
 									  );
 									  
 									  
 							$res = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>$defaultPlace['zone']));
-							//echo '---<br>';
-							//var_dump($res);
-							//echo '---<br>';
+							
 							if(empty($res)){// The place is not in db
 								echo "<br> The location does not exist in db, we create it.";
 								$placeColl->save($place); 
-								
+								var_dump($place);
 								$placeColl->ensureIndex(array("location"=>"2d"));
 							}else{ // The place already in DB, we update if the flag tells us to
 								if($flagForceUpdate ==  1){
@@ -513,7 +553,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								}else
 								   echo "<br> The location exists in db => doing nothing.";
 							}
-							$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1],'address'=>$formatted_addressGMAP,'status'=>$status,'print'=>$print);
+							$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1],'address'=>$formatted_addressGMAP,'status'=>$status,'print'=>$print,'contact'=>$contact);
 						 
 						 }         
 					}
@@ -540,7 +580,15 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							$print = $feed['defaultPrintFlag'] ;
 							$geoloc = array($defaultPlace['location']);
 							$status = 1;
-							$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlace['title'],'status'=>$status,'print'=>$print);	
+							$contact = array(
+												"tel"=>"",
+												"mobile"=>"",
+												"mail"=>"",
+												"transportation"=>"",
+												"web"=>"",
+												"opening"=>"",
+											);
+							$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlace['title'],'status'=>$status,'print'=>$print,'contact'=>$contact);	
 						}
 					
 					}
@@ -549,7 +597,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				}
 				
 			
-				
+				/* YAKCATS */
 				$yakCatIdArray = array();
 				$yakCatId = array();
 				$yakCatName = array();
@@ -561,14 +609,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				}
 			
 				
+				/* EVENT DATE */
 				$eventDate = array();
-				
-				//var_dump($eventDateInput);
 				$i=0;
 				foreach ($eventDateInput as $date) {
-					
-					
-					
 					$fixedDate = str_replace('.0Z','Z',$date[0]);
 					$dateTimeFrom = DateTime::createFromFormat(DateTime::ISO8601, $fixedDate);
 					$eventDate[$i]['dateTimeFrom'] = new MongoDate(date_timestamp_get($dateTimeFrom));
@@ -580,8 +624,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					$i++;
 				}
 			
-				// get image
-				
+				/* THUMB  */
 				if(!empty($enclosure)){
 					$res = createImgThumb($enclosure,$conf);
 					if($res == false)
@@ -592,27 +635,28 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					if(!empty($content)){
 						$img = array();
 						$dom = new domDocument;
-						$dom->loadHTML($content);
-						$dom->preserveWhiteSpace = false;
-						$images = $dom->getElementsByTagName('img');
-						foreach ($images as $image) {
-									
-						$img[] =  $image->getAttribute('src');
-						}
-						if(sizeof($img) > 0 && $img[0] != '' ){
-							$res = createImgThumb($img[0],$conf);
-							
-							if($res == false)
+						if($dom->loadHTML($content)){
+							$dom->preserveWhiteSpace = false;
+							$images = $dom->getElementsByTagName('img');
+							foreach ($images as $image) {
+								$img[] =  $image->getAttribute('src');
+							}
+							if(sizeof($img) > 0 && $img[0] != '' ){
+								$res = createImgThumb($img[0],$conf);
+								
+								if($res == false)
+									$thumb = getApercite($outGoingLink);
+								else
+									$thumb = 'thumb/'.$res;
+								
+							}else
 								$thumb = getApercite($outGoingLink);
-							else
-								$thumb = 'thumb/'.$res;
-							
-						}else
-							$thumb = getApercite($outGoingLink);
+						}
 					}
 				}
 				
 				// catch keyword words in title
+				// here we should look in the yakcat collection
 				if(!empty($title)){
 					if (preg_match("/FOOT/i", $title) || preg_match("/FOOTBALL/i", $title)) {
 							$yakCatId[] = new MongoId("50647e2d4a53041f91040000");
@@ -621,7 +665,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							$yakCatId[] = new MongoId("50647e2d4a53041f91060000");
 						}	
 						
-					if (preg_match("/MP 2013/i", $title) ) {
+					if (preg_match("/MP 2013/i", $title) || preg_match("/Marseille-Provence 2013/i", $title) ) {
 							$freeTag[] = "MP2013";
 						}	
 					// catch twitter hashtag in title
@@ -652,28 +696,19 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$datePubArrayD = explode('/',$datePubArray1[0]);
 						$datePubArrayT = explode(':',$datePubArray1[1]);
 						
-						$tsPub = gmmktime($datePubArrayT[0],$datePubArrayT[1],$datePubArrayT[2],$datePubArrayD[0],$datePubArrayD[1],$datePubArrayD[2]);
-						if($feed['yakType'] == 2)
+						
+						if($feed['yakType'] == 2){
 							$tsEnd = date_timestamp_get($dateTimeFrom) + $feed['persistDays']*86400;
-						else
+							$tsPub = $tsEnd - 15 * 86400;
+						}	
+						else{
+							$tsPub = gmmktime($datePubArrayT[0],$datePubArrayT[1],$datePubArrayT[2],$datePubArrayD[0],$datePubArrayD[1],$datePubArrayD[2]);
 							$tsEnd = $tsPub + $feed['persistDays']*86400;
-						/*
-						// Avoid having places in Paris and Marseille with no precise location on the map
-						if($geolocItem['address'] == "Marseille, Bouches-du-Rhône, France"
-							|| $geolocItem['address'] == "Provence-Alpes-Côte d'Azur, France"
-							|| $geolocItem['address'] == "Marseille, France"
-							){
-							$geolocItem['print'] = 0;
-						}*/
-						if(empty($addressInput))
-							echo 'EMPTY ADDRESSINPTU';
-						else
-							var_dump($addressInput);
-							
-						if(empty($placeInput))
-							echo 'EMPTY placeInput';
-						else
-							var_dump($placeInput);
+						}
+					
+						// debug : all data shown this year
+						//$tsPub = 1356998400;
+						//$tsEnd = 1388534400;
 							
 						echo "<br>adresse".sizeof($adresse)."<br>lieu".sizeof($lieu)."<br>yakdico".sizeof($yakdico)."<br>quartier".sizeof($quartier)."<br>arr".sizeof($arrondissement)."<br>geoinput".sizeof($geolocationInput)."<br>addressInput".$addressInput."  ".sizeof($addressInput)."<br>placeinput".sizeof($placeInput)."<br>ville".$ville.'  '.sizeof($ville);
 						if( sizeof($adresse) == 0 
@@ -718,6 +753,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						//$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
 						$info['address'] = $geolocItem['address'];
 						$info['placeId'] = new MongoId($geolocItem['_id']);
+						$info['contact'] = $geolocItem['contact'];
+						
 						
 						// check if data is not in DB
 						$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$defaultPlace['zone']));
@@ -748,6 +785,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							$infoColl->ensureIndex(array("location"=>"2d"));
 							$infoColl->ensureIndex(array("location"=>"2d","pubDate"=>-1,"yakType"=>1,"print"=>1,"status"=>1));
 							$logDataInserted++;    
+								
 						}else{
 							$logDataAlreadyInDB++;
 							if($flagForceUpdate == 1){
@@ -808,10 +846,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 	}
     echo "<br><br><hr><b>FEEDS:</b><br>";
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=all\">ALL FEEDS</a>" ;
-	$feeds = $feedColl->find()->sort(array('name'=>'desc'));
+	$feeds = $feedColl->find()->sort(array('humanName'=>'desc'));
 	
 	foreach ($feeds as $feed) {
-		echo "<br>".(($feed['status']==1)?"ACTIVE":"DISABLED")."--- <a href=\"".$_SERVER['PHP_SELF']."?q=".$feed['XLconnector']."\"/>".$feed['name']."</a> " ;
+		echo "<br>".(($feed['status']==1)?"ACTIVE":"DISABLED")."--- <a href=\"".$_SERVER['PHP_SELF']."?q=".$feed['name']."\"/>".$feed['humanName']."</a> " ;
 	
 	}
 	

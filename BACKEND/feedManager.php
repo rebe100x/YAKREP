@@ -17,6 +17,44 @@ $feed = $db->feed;
 
 $records = array();
 	
+$records[] = array(
+	"_id" => new MongoId("50ffb135fa9a95e00a000000"),
+	"XLconnector"=>"parser",
+	"humanName"=>"Nice Matin - Menton",	
+	"name"=>"nicematin-menton",  // will be the file name
+	"link"=>"http://www.nicematin.com/taxonomy/term/389/rss",
+	"fileSource"=>"",
+	"rootElement"=>"/rss/channel/item",
+	"lineToBegin"=>"0",
+	"parsingTemplate"=>array(
+						'title' => "#YKLtitle",
+						'content' => "#YKLdescription",
+						'address' => "",
+						'outGoingLink' => "#YKLlink",
+						'latitude'=>"",
+						'longitude'=>"",
+						'thumb'=>'',
+						'yakCats'=>'',
+						'freeTag'=>'',
+						'place'=> '',
+						'eventDate' => '',
+						'pubDate'=>'#YKLpubDate',
+						'telephone'=>''
+					),
+	"yakCatNameArray" => array('Actualités'),
+	"yakCatId"=>array("504d89c5fa9a957004000000"),
+ 	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('50ff9f89fa9a95100b000000'), // MENTON
+	"defaultPlaceSearchName" => "Provence-Alpes-Côte-d'Azur",
+	"yakType" => 1, // actu
+	"feedType" => "RSS",
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 2,
+	"zone" =>14,
+);	
+
 
 $records[] = array(
 	"_id" => new MongoId("50fd24f3fa9a955c0b00016b"),
@@ -28,7 +66,7 @@ $records[] = array(
 	"rootElement"=>"",
 	"lineToBegin"=>"3",
 	"parsingTemplate"=>array(
-						'title' => " #YKL2 est signataire de la charte Esprit Client 2013 de la CCIMP",
+						'title' => "#YKL2 est signataire de la charte Esprit Client 2013 de la CCIMP",
 						'content' => "",
 						'address' => "#YKL3 #YKL4 #YKL5 #YKL6 #YKL7, FRANCE",
 						'outGoingLink' => "http://www.espritclient.ccimp.com/",
@@ -40,6 +78,7 @@ $records[] = array(
 						'place'=> '#YKL2',
 						'eventDate' => '',
 						'pubDate'=>'2013-01-01T00:00:00+0100',
+						'telephone'=>'#YKL10'
 					),
 	"yakCatNameArray" => array('Commerce'),
 	"yakCatId"=>array("50f025f7fa9a957c0c000048"),

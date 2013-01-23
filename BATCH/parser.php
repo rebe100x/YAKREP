@@ -43,99 +43,163 @@ $batchlogColl = $db->batchlog;
 $statColl = $db->stat;
 $feedColl = $db->feed;
 
-$res = $feedColl->find(array('status'=>1));
+$q = (empty($_GET['q']))?"":$_GET['q']; 
 
-$feeds = iterator_to_array($res);
-//var_dump($feeds);
+if($q != ''){
+	if($q == 'all') // we parse all valid feeds
+		$query = array('status'=>1);
+	else
+		$query = array('name'=>$q,'status'=>1);
 
-function mapIt($i){
-	return '/'.$i.'/';
-}
+	$res = $feedColl->find($query);
 
-foreach ($feeds as $feed) {
-	$file = $feed['name'].".xml";	
-	if(!empty($feed['feedType'])){
-		$canvas = $feed['parsingTemplate'];
-		//var_dump($feed);
-		$data = getFeedData($feed);
-		$xml = "";
-		$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
-	
-		if(!empty($feed['rootElement']))
-			$items = $data[$feed['rootElement']];
-		else
-			$items = $data;
+	$feeds = iterator_to_array($res);
+	//var_dump($feeds);
+
+	function mapIt($i){
+		return '/'.$i.'/';
+	}
+
+	foreach ($feeds as $feed) {
+		$file = $feed['name'].".xml";	
+		if(!empty($feed['feedType'])){
+			$canvas = $feed['parsingTemplate'];
+			//var_dump($feed);
+			$data = getFeedData($feed);
+			if(!empty($data)){
+				$xml = "";
+				$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
 			
-		$line = 0;
-		foreach($items as $item){
-			
-			
-			if(!empty($canvas['title']) && $line >= $feed['lineToBegin'] ){ // we don't take empty lines and header
-				//var_dump($item);
-				$itemArray = array();
-			
-				if($feed['feedType'] == 'CSV'){
-					foreach($canvas as $key=>$val){
-						$thevalue = '';
-						//echo $item[2];
-						if(!empty($val)){
-							preg_match_all('/(#YKL)(\d+)/', $val, $out);
-							$tmp = array();
-							foreach($out[2] as $o)
-								$tmp[] = $item[$o];
-							$thevalue = preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
-							
-						}else
-							$thevalue = '';
-							
-						$thevalueClean = $thevalue;
-						
-						if($key == 'freeTag' || $key == 'yakCats'){
-							$tmp = explode(',',$thevalue);
-							$tmp = array_map('trimArray',$tmp);  
-							$thevalueClean = implode('#',$tmp);
+				
+				$line = 0;
+				foreach($data as $item){
+					
+					
+					if(!empty($canvas['title']) ){ // we don't take empty lines and header
+						//var_dump($item);
+						$itemArray = array();
+					
+						if($feed['feedType'] == 'CSV'){
+							if($line >= $feed['lineToBegin']){
+								foreach($canvas as $key=>$val){
+									$thevalue = '';
+									if(!empty($val)){
+										preg_match_all('/(#YKL)(\d+)/', $val, $out);
+										$tmp = array();
+										foreach($out[2] as $o)
+											$tmp[] = $item[$o];
+										$thevalue = preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
+										
+									}else
+										$thevalue = '';
+										
+									$thevalueClean = $thevalue;
+									
+									if($key == 'freeTag' || $key == 'yakCats'){
+										$tmp = explode(',',$thevalue);
+										$tmp = array_map('trimArray',$tmp);  
+										$thevalueClean = implode('#',$tmp);
+									}
+									if($key == 'longitude' || $key == 'latitude'){
+										$thevalueClean = str_replace(',','.',$thevalueClean);
+										$thevalueClean = (float)$thevalueClean;
+									}
+									
+									$itemArray[$key] = $thevalueClean;
+								}
+							}
 						}
 						
-						if($key == 'longitude' || $key == 'latitude'){
-							$thevalueClean = str_replace(',','.',$thevalueClean);
-							$thevalueClean = (float)$thevalueClean;
+						if($feed['feedType'] == 'RSS'){
+							
+							foreach($canvas as $key=>$val){
+								$thevalue = '';
+								if(!empty($val)){
+									
+									preg_match_all('/(#YKL)(\w+)/', $val, $out);
+									$tmp = array();
+									foreach($out[2] as $o)
+										$tmp[] = $item[$o];
+									/*echo '<br>';
+									var_dump($out[0]);
+									echo "VAL".$val;
+									var_dump(array_map('mapIt',$out[0]));
+									var_dump($tmp);*/
+									$thevalue = @preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
+									
+								}else
+									$thevalue = '';
+									
+								$thevalueClean = $thevalue;
+								
+								if($key == 'freeTag' || $key == 'yakCats'){
+									$tmp = explode(',',$thevalue);
+									$tmp = array_map('trimArray',$tmp);  
+									$thevalueClean = implode('#',$tmp);
+								}
+								//echo '<br>key:'.$key.' - '.$thevalueClean;
+								if($key == 'longitude' || $key == 'latitude'){
+									$thevalueClean = str_replace(',','.',$thevalueClean);
+									$thevalueClean = (float)$thevalueClean;
+								}
+								
+								$itemArray[$key] = $thevalueClean;
+							}
+							
+							
+							
 						}
 						
-						$itemArray[$key] = $thevalueClean;
-					}		
+						if($feed['feedType'] == 'JSON'){
+							foreach($canvas as $canvasElt){
+								$tmp = explode('->',$canvasElt);
+								$obj = $item;
+								foreach($tmp as $val)
+									$obj = $obj[$val];
+									
+								$itemArray[$canvasElt] = $obj;
+							}
+						}
+						
+						//var_dump($itemArray);
+						
+						$xml .= buildXMLItem($itemArray);
+					}			
+					$line++;
 				}
 				
-				if($feed['feedType'] == 'JSON'){
-					foreach($canvas as $canvasElt){
-						$tmp = explode('->',$canvasElt);
-						$obj = $item;
-						foreach($tmp as $val)
-							$obj = $obj[$val];
-							
-						$itemArray[$canvasElt] = $obj;
-					}
+				$footer ="</items>";
+				// echo or write the file according to env var
+				if(substr($conf->deploy,0,3) == 'dev'){
+					header("Content-Type: application/rss+xml; charset=utf-8");
+					echo  $header.$xml.$footer;
+				}else{		
+					$fh = fopen('/usr/share/nginx/html/DATA/'.$file, 'w') or die("error");
+					fwrite($fh, $header.$xml.$footer);
+					fclose($fh);
+					echo 'File Saved '.$file;
 				}
-				
-				//var_dump($itemArray);
-				
-				$xml .= buildXMLItem($itemArray);
-			}			
-			$line++;
+			}else
+				echo 'No DATA';
+			
+			
 		}
-		
-		$footer ="</items>";
 	}
-}
 
-	if(substr($conf->deploy,0,3) == 'dev'){
-		header("Content-Type: application/rss+xml; charset=utf-8");
-		echo  $header.$xml.$footer;
-	}else{		
-		$fh = fopen('/usr/share/nginx/html/DATA/'.$file, 'w') or die("error");
-		fwrite($fh, $header.$xml.$footer);
-		fclose($fh);
-	}
 	
+	
+}else{
+	echo "<!doctype html><html><head><meta charset='utf-8' /><title>YAKWALA BATCH</title></head><body>";
+	echo "<br><br><hr><b>FEEDS:</b><br>";
+	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=all\">ALL FEEDS</a>";
+	$feeds = $feedColl->find()->sort(array('humanName'=>'desc'));
+	
+	foreach ($feeds as $feed) {
+		echo "<br>".(($feed['status']==1)?"ACTIVE":"DISABLED")."--- <a href=\"".$_SERVER['PHP_SELF']."?q=".$feed['name']."\"/>".$feed['name']."</a> " ;
+	
+	}
+
+}	
 ?>
 
 

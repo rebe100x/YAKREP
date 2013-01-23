@@ -608,7 +608,69 @@ $records[] = array(
 	
 );
 
-/*MARSEILLE*/
+
+/************/
+/*PACA*/
+/***********/
+
+$records[] = array(
+	"_id" => new MongoId("50ffd121fa9a95f80a000002"),
+	"title"=>"Palais de l'Europe",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.774441,'lng'=>7.497568),
+	"formatted_address"=> "8 Avenue Boyer, 06506 Menton, France",
+	"address" => array(
+				'street_number'=>'8',
+				'street'=>"Avenue Boyer",
+				'arr'=>'',
+				'city'=>'Menton',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06506',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("50ff9f89fa9a95100b000000"),
+	"title"=>"Menton",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.774441,'lng'=>7.497568),
+	"formatted_address"=> "06500 Menton, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Menton',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06500',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
 
 
 $records[] = array(

@@ -81,10 +81,19 @@ function getFeedData($feed){
 		curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-		$data = trim(curl_exec($chuid));
+		$res = trim(curl_exec($chuid));
 		curl_close($chuid);
-		$data = object_to_array(json_decode($data));
-		
+		//var_dump($data);
+		if($feed['feedType'] == 'JSON')
+			$data = object_to_array(json_decode($res));
+		if($feed['feedType'] == 'RSS'){
+			$tmp = simplexml_load_string($res);
+			$data = $tmp->xpath($feed['rootElement']);
+			$data = json_decode(json_encode((array) $data), 1);
+		}
+		if($feed['feedType'] == 'CSV'){
+			
+		}
 	}elseif( !empty($feed['fileSource']) ){
 		if (($handle = fopen($feed['fileSource'], "r")) !== FALSE) {
 			while (($line = fgetcsv($handle, 10000, ";")) !== FALSE) {
@@ -115,7 +124,12 @@ $xml = "
 		<address><![CDATA[".(!empty($itemArray['address'])?$itemArray['address']:'')."]]></address>
 		<place><![CDATA[".(!empty($itemArray['place'])?$itemArray['place']:'')."]]></place>
 		<geolocation><![CDATA[".((!empty($itemArray['latitude']) && !empty($itemArray['longitude']))? $itemArray['latitude']."#".$itemArray['longitude']:'')."]]></geolocation> 
-		<eventDate><![CDATA[".(!empty($itemArray['eventDate'])?$itemArray['eventDate']:'')."]]></eventDate>
+		<telephone><![CDATA[".(!empty($itemArray['telephone'])?$itemArray['telephone']:'')."]]></telephone>
+		<mobile><![CDATA[".(!empty($itemArray['mobile'])?$itemArray['mobile']:'')."]]></mobile>
+		<mail><![CDATA[".(!empty($itemArray['mail'])?$itemArray['mail']:'')."]]></mail>
+		<transportation><![CDATA[".(!empty($itemArray['transportation'])?$itemArray['transportation']:'')."]]></transportation>
+		<web><![CDATA[".(!empty($itemArray['web'])?$itemArray['web']:'')."]]></web>
+		<opening><![CDATA[".(!empty($itemArray['opening'])?$itemArray['opening']:'')."]]></opening>
 	</item>
 ";
 	return $xml;

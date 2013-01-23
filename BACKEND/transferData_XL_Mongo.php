@@ -69,7 +69,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
         echo "<br> <b>WARNING :</b> You are forcing update : we will always call GMAP for the location and any record in INFO will be updated.";
             
               
-    $q = (empty($_GET['q']))?"":$_GET['q']; 
+		$q = (empty($_GET['q']))?"":$_GET['q']; 
 	
 		if(!empty($q) || $q == 'all'){
 		
@@ -87,7 +87,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			
 			//var_dump($defaultPlace);
 			echo '<br> Parsing feed: <b>'.$feed['name'].'</b>';
-			echo '<br> Default location of the feed : <b>'.$defaultPlace['title'].'</b>';
+			echo '<br> Default location of the feed : <b>'.$defaultPlaceTitle.'</b>';
 			$searchDate = date('Y/m/d',(mktime()-86400*$feed['daysBack']));
 			if($feed['XLconnector']=='parser')
 				$origin ="+AND+file_name%3D".$feed['name'].'.xml';
@@ -155,6 +155,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$web = "";
 				$opening = "";
 				$thumb = "";
+				$defaultPlaceTitle = (empty($feed['defaultPlaceSearchName'])?$defaultPlace['title']:$feed['defaultPlaceSearchName']);		
 				
 				
 				$metas = $hit->metas;
@@ -409,6 +410,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									else   
 										$locationTmp[] = rewriteArrondissement($arrondissement);
 									}else{
+									
 										if(is_array($ville))
 											foreach($ville as $vil)
 												$locationTmp[] = $vil;
@@ -436,6 +438,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				if(sizeof($locationTmp ) > 0){
 					
 					foreach($locationTmp as $loc){
+						
 						echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".$loc;
 						
 						//check if in db if the place exists
@@ -463,21 +466,25 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								$print = 1;
 								$formatted_addressGMAP = $addressInput;
 							}else{ // FROM GMAP
-								echo "<br> Call to GMAP: ".$loc.', '.$defaultPlace['title'].', '.$defaultPlace['address']['country'];
+								
+								echo "<br> Call to GMAP: ".$loc.', '.$defaultPlaceTitle.', '.$defaultPlace['address']['country'];
 								$logCallToGMap++;
+								
 								echo '<br>loc'.$loc;
 								echo '<br>laville'.$laville;
-								echo '<br>$defaultPlace title'.$defaultPlace['title'];
+								echo '<br>$defaultPlace title'.$defaultPlaceTitle;
 								echo '<br>$defaultPlace country'.$defaultPlace['address']['country'];		
-								echo '<br>$lieu'.$lieu;	
-								$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlace['title'] && $laville != $loc) ? ', '.$laville:'').', '.$defaultPlace['title'].'. '.$defaultPlace['address']['country'])));
+								echo '<br>$lieu'.$lieu;
+								
+								
+								$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) ) ? ', '.$laville:'').', '.$defaultPlaceTitle.'. '.$defaultPlace['address']['country'])));
 								//echo 'LIEU'.sizeof($lieu);
 								if(sizeof($lieu)==0)
 									$resGMap = getLocationGMap($gQuery,'PHP',1);
 								else
 									$resGMap = getPlaceGMap($gQuery,'PHP',1);
 								echo '___<br>';
-								if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlace['title'].', '.$defaultPlace['address']['country']){
+								if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlaceTitle.', '.$defaultPlace['address']['country']){
 									echo "<br> GMAP found the coordinates of this location ! ";
 									// check if the result is in the zone
 									$zoneObj = new Zone();
@@ -588,7 +595,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 												"web"=>"",
 												"opening"=>"",
 											);
-							$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlace['title'],'status'=>$status,'print'=>$print,'contact'=>$contact);	
+							$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
 						}
 					
 					}

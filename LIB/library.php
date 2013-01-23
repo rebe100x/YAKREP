@@ -76,20 +76,36 @@ function isItWatter($lat,$lng) {
 */
 function getFeedData($feed){
 	if( empty($feed['fileSource']) && !empty($feed['link']) ){
-		$chuid = curl_init();
-		curl_setopt($chuid, CURLOPT_URL, $feed['link']);	
-		curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
-
-		$res = trim(curl_exec($chuid));
-		curl_close($chuid);
+		$res = array();
+		$data = array();
+		if(is_array($feed['link'])){
+			foreach($feed['link'] as $link){
+				$chuid = curl_init();
+				curl_setopt($chuid, CURLOPT_URL, $link);	
+				curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
+				curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
+				$res[] = trim(curl_exec($chuid));
+				curl_close($chuid);
+			}
+		}else{
+			$chuid = curl_init();
+			curl_setopt($chuid, CURLOPT_URL, $feed['link']);	
+			curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
+			$res[] = trim(curl_exec($chuid));
+			curl_close($chuid);
+		}
 		//var_dump($data);
-		if($feed['feedType'] == 'JSON')
-			$data = object_to_array(json_decode($res));
+		if($feed['feedType'] == 'JSON'){
+			foreach($res as $r)
+				$data = array_merge($data,object_to_array(json_decode($r)));
+		}
 		if($feed['feedType'] == 'RSS'){
-			$tmp = simplexml_load_string($res);
-			$data = $tmp->xpath($feed['rootElement']);
-			$data = json_decode(json_encode((array) $data), 1);
+			foreach($res as $r){
+				$tmp = simplexml_load_string($r);
+				$tmp2 = $tmp->xpath($feed['rootElement']);
+				$data = array_merge(json_decode(json_encode((array) $tmp2), 1),$data);
+			}
 		}
 		if($feed['feedType'] == 'CSV'){
 			

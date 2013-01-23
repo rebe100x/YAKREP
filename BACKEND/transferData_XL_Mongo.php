@@ -84,6 +84,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			
 			// get default PLACE
 			$defaultPlace = $placeColl->findOne(array('_id'=>$feed['defaultPlaceId']));
+			$defaultPlaceTitle = (empty($feed['defaultPlaceSearchName'])?$defaultPlace['title']:$feed['defaultPlaceSearchName']);		
 			
 			//var_dump($defaultPlace);
 			echo '<br> Parsing feed: <b>'.$feed['name'].'</b>';
@@ -155,7 +156,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$web = "";
 				$opening = "";
 				$thumb = "";
-				$defaultPlaceTitle = (empty($feed['defaultPlaceSearchName'])?$defaultPlace['title']:$feed['defaultPlaceSearchName']);		
+				
 				
 				
 				$metas = $hit->metas;

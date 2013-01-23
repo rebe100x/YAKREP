@@ -608,10 +608,100 @@ $records[] = array(
 	
 );
 
-
+ 
 /************/
 /*PACA*/
 /***********/
+
+
+$records[] = array(
+	"_id" => new MongoId("51001c5cfa9a953c0b000005"),
+	"title"=>"Promenade des Anglais",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.681343,'lng'=>7.232094),
+	"formatted_address"=> "Promenade des Anglais, Nice",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"Promenade des Anglais",
+				'arr'=>'',
+				'city'=>'Nice',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+$records[] = array(
+	"_id" => new MongoId("51001a93fa9a954c0b00002b"),
+	"title"=>"Villa Eilenroc",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.551861,'lng'=>7.128668),
+	"formatted_address"=> "Villa Eilenroc, Avenue Mrs Beaumont, Antibes",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"Avenue Mrs Beaumont",
+				'arr'=>'',
+				'city'=>'Antibe',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06004',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("51001906fa9a954c0b00001c"),
+	"title"=>"route de la Siesta",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.61125,'lng'=>7.126452),
+	"formatted_address"=> "Route de la Siesta, 06004, Antibe, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"Route de la Siesta",
+				'arr'=>'',
+				'city'=>'Antibe',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06004',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
 
 $records[] = array(
 	"_id" => new MongoId("50ffd121fa9a95f80a000002"),
@@ -622,7 +712,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.774441,'lng'=>7.497568),
@@ -642,6 +732,156 @@ $records[] = array(
 	"zone"=> 14,
 );
 
+
+$records[] = array(
+	"_id" => new MongoId("510022a0fa9a954c0b00002e"),
+	"title"=>"Cagnes",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.66365,'lng'=>7.149181),
+	"formatted_address"=> "06800 Cagnes-sur-Mer, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Cagnes-sur-Mer',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06800',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+
+/*villes pour nice matin*/
+$records[] = array(
+	"_id" => new MongoId("510022a0fa9a954c0b00002f"),
+	"title"=>"Nice",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.69568,'lng'=>7.266426),
+	"formatted_address"=> "06000 Nice, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Nice',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("510022a0fa9a954c0b000030"),
+	"title"=>"Cannes",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.553027,'lng'=>7.017689),
+	"formatted_address"=> "06400 Cannes, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Cannes',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06400',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("510022a0fa9a954c0b000031"),
+	"title"=>"Cagnes-sur-Mer",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.66365,'lng'=>7.149181),
+	"formatted_address"=> "06800 Cagnes-sur-Mer, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Cagnes-sur-Mer',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06800',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+$records[] = array(
+	"_id" => new MongoId("51001523fa9a953c0b000000"),
+	"title"=>"Antibe",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.597092,'lng'=>7.09743),
+	"formatted_address"=> "06500 Antibe, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Antibe',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06004',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
 
 $records[] = array(
 	"_id" => new MongoId("50ff9f89fa9a95100b000000"),
@@ -671,7 +911,7 @@ $records[] = array(
 	"user" => 0, 
 	"zone"=> 14,
 );
-
+/*END villes pour nice matin END*/
 
 $records[] = array(
 	"_id" => new MongoId("50f818fdfa9a95d80a000160"),

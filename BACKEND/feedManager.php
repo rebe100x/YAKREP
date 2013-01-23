@@ -16,6 +16,165 @@ $db = $m->selectDB($conf->db());
 $feed = $db->feed;
 
 $records = array();
+
+
+$records[] = array(
+	"_id" => new MongoId("51002445fa9a953c0b000008"),
+	"XLconnector"=>"parser",
+	"humanName"=>"Nice Matin - Nice",	
+	"name"=>"nicematin-nice",  // will be the file name
+	"link"=>array("http://www.nicematin.com/taxonomy/term/394/rss"
+					,"http://www.nicematin.com/taxonomy/term/61/rss"
+					,"http://www.nicematin.com/derniere-minute/rss"),
+	"fileSource"=>"",
+	"rootElement"=>"/rss/channel/item",
+	"lineToBegin"=>"0",
+	"parsingTemplate"=>array(
+						'title' => "#YKLtitle",
+						'content' => "#YKLdescription",
+						'address' => "",
+						'outGoingLink' => "#YKLlink",
+						'latitude'=>"",
+						'longitude'=>"",
+						'thumb'=>'',
+						'yakCats'=>'',
+						'freeTag'=>'',
+						'place'=> '',
+						'eventDate' => '',
+						'pubDate'=>'#YKLpubDate',
+						'telephone'=>''
+					),
+	"yakCatNameArray" => array('Actualités'),
+	"yakCatId"=>array("510022a0fa9a954c0b000031"),
+ 	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('510022a0fa9a954c0b00002f'), // 
+	"defaultPlaceSearchName" => "Provence-Alpes-Côte-d'Azur",
+	"yakType" => 1, // actu
+	"feedType" => "RSS",
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 2,
+	"zone" =>14,
+);	
+
+
+
+$records[] = array(
+	"_id" => new MongoId("51002445fa9a953c0b000009"),
+	"XLconnector"=>"parser",
+	"humanName"=>"Nice Matin - Cannes",	
+	"name"=>"nicematin-cannes",  // will be the file name
+	"link"=>"http://www.nicematin.com/taxonomy/term/335/rss",
+	"fileSource"=>"",
+	"rootElement"=>"/rss/channel/item",
+	"lineToBegin"=>"0",
+	"parsingTemplate"=>array(
+						'title' => "#YKLtitle",
+						'content' => "#YKLdescription",
+						'address' => "",
+						'outGoingLink' => "#YKLlink",
+						'latitude'=>"",
+						'longitude'=>"",
+						'thumb'=>'',
+						'yakCats'=>'',
+						'freeTag'=>'',
+						'place'=> '',
+						'eventDate' => '',
+						'pubDate'=>'#YKLpubDate',
+						'telephone'=>''
+					),
+	"yakCatNameArray" => array('Actualités'),
+	"yakCatId"=>array("510022a0fa9a954c0b000031"),
+ 	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('510022a0fa9a954c0b000030'), // 
+	"defaultPlaceSearchName" => "Provence-Alpes-Côte-d'Azur",
+	"yakType" => 1, // actu
+	"feedType" => "RSS",
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 2,
+	"zone" =>14,
+);	
+
+$records[] = array(
+	"_id" => new MongoId("51002445fa9a953c0b00000a"),
+	"XLconnector"=>"parser",
+	"humanName"=>"Nice Matin - Cagnes Sur Mer",	
+	"name"=>"nicematin-cagnes-sur-mer",  // will be the file name
+	"link"=>"http://www.nicematin.com/taxonomy/term/333/rss",
+	"fileSource"=>"",
+	"rootElement"=>"/rss/channel/item",
+	"lineToBegin"=>"0",
+	"parsingTemplate"=>array(
+						'title' => "#YKLtitle",
+						'content' => "#YKLdescription",
+						'address' => "",
+						'outGoingLink' => "#YKLlink",
+						'latitude'=>"",
+						'longitude'=>"",
+						'thumb'=>'',
+						'yakCats'=>'',
+						'freeTag'=>'',
+						'place'=> '',
+						'eventDate' => '',
+						'pubDate'=>'#YKLpubDate',
+						'telephone'=>''
+					),
+	"yakCatNameArray" => array('Actualités'),
+	"yakCatId"=>array("510022a0fa9a954c0b000031"),
+ 	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('510022a0fa9a954c0b000031'), // 
+	"defaultPlaceSearchName" => "Provence-Alpes-Côte-d'Azur",
+	"yakType" => 1, // actu
+	"feedType" => "RSS",
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 2,
+	"zone" =>14,
+);	
+	
+	
+	
+$records[] = array(
+	"_id" => new MongoId("5100162bfa9a951c0b000000"),
+	"XLconnector"=>"parser",
+	"humanName"=>"Nice Matin - Antibe",	
+	"name"=>"nicematin-antibe",  // will be the file name
+	"link"=>"http://www.nicematin.com/taxonomy/term/310/rss",
+	"fileSource"=>"",
+	"rootElement"=>"/rss/channel/item",
+	"lineToBegin"=>"0",
+	"parsingTemplate"=>array(
+						'title' => "#YKLtitle",
+						'content' => "#YKLdescription",
+						'address' => "",
+						'outGoingLink' => "#YKLlink",
+						'latitude'=>"",
+						'longitude'=>"",
+						'thumb'=>'',
+						'yakCats'=>'',
+						'freeTag'=>'',
+						'place'=> '',
+						'eventDate' => '',
+						'pubDate'=>'#YKLpubDate',
+						'telephone'=>''
+					),
+	"yakCatNameArray" => array('Actualités'),
+	"yakCatId"=>array("504d89c5fa9a957004000000"),
+ 	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('51001523fa9a953c0b000000'), 
+	"defaultPlaceSearchName" => "Provence-Alpes-Côte-d'Azur",
+	"yakType" => 1, // actu
+	"feedType" => "RSS",
+	"defaultPrintFlag" => 0,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 2,
+	"zone" =>14,
+);	
 	
 $records[] = array(
 	"_id" => new MongoId("50ffb135fa9a95e00a000000"),

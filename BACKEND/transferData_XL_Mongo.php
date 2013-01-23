@@ -612,8 +612,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$yakCatIdArray = array_merge($yakcatInput,$feed['yakCatId']);
 				foreach ($yakCatIdArray as $id) {
 					$yc = ($yakcatColl->findOne(array('_id'=>new MongoId($id))));
-					if(!empty($yc))$yakCatId[] = new MongoId($yc['_id']);
-					$yakCatName[] = $yc['title'];
+					if(!empty($yc)){
+						$yakCatId[] = new MongoId($yc['_id']);
+						$yakCatName[] = $yc['title'];
+					}
 				}
 			
 				

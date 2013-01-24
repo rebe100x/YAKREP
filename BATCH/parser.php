@@ -62,6 +62,7 @@ if($q != ''){
 
 	foreach ($feeds as $feed) {
 		$file = $feed['name'].".xml";	
+		//echo $file;
 		if(!empty($feed['feedType'])){
 			$canvas = $feed['parsingTemplate'];
 			//var_dump($feed);

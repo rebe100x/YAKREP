@@ -613,6 +613,35 @@ $records[] = array(
 /*PACA*/
 /***********/
 
+$records[] = array(
+	"_id" => new MongoId("5101588dfa9a95000a000000"),
+	"title"=>"Stade Vélodrome",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("506479f54a53042191000000"),new MongoId("50647e2d4a53041f91040000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.269878,'lng'=>5.395918),
+	"formatted_address"=> "3 Boulevard Michelet, 13008 Marseille, France",
+	"address" => array(
+				'street_number'=>'3',
+				'street'=>"Boulevard Michelet",
+				'arr'=>'',
+				'city'=>'Marseille',
+				'state'=>"Bouches-du-Rôhne",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'13008',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
 
 $records[] = array(
 	"_id" => new MongoId("51001c5cfa9a953c0b000005"),

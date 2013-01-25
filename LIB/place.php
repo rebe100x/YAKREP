@@ -182,7 +182,7 @@ class Place
 			"lastModifDate" =>	new MongoDate(gmmktime()),
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,
-			"formatted_address" 		=>	$this->formatted_address,
+			"formatted_address" =>	$this->formatted_address,
 			"contact"		=>	$this->contact,
 			"status" 		=>	$this->status,
 			"user"			=> 	$this->user, 
@@ -295,7 +295,9 @@ class Place
  	}
 
  	/* Set email in contact field
- 	** Input parameter : an email address
+ 	** Input parameter : an email 
+
+
 	*/
  	function setMail ($mail) {
  		$mail = strtolower($mail);

@@ -364,6 +364,7 @@ require_once("conf.php");
 	** Input parameter : location query for gmap, debug 0 or 1 
 	** Output : the result of the place creation ( null if no creation ) 
 	*/
+	
 	function linkToPlace($locationQuery, $debug)
 	{
 		$newPlace = new Place();
@@ -427,14 +428,35 @@ require_once("conf.php");
  		$yakCatArray = iterator_to_array($this->yakCatColl->find());
  		foreach ($catPathArray as $catPath) {
  			foreach ($yakCatArray as $cat) {
+ 				
  				if ( $cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) 
 					|| "#".$cat['pathN'] == strtoupper(suppr_accents(utf8_encode($catPath))) ) {
  					$this->yakCat[] = $cat['_id'];
  					$this->humanCat[] = $cat['title'];
+ 					echo $cat['_id'];
+ 					echo $cat['title'];
  				}
  			}
  		}
  	}
+ public function setYakCatOuest($catPathArray) {
+ 		$this->yakCat=array();$this->humanCat=array();
+		//var_dump($this);
+ 		$yakCatArray = iterator_to_array($this->yakCatColl->find());
+ 		foreach ($catPathArray as $catPath) {
+ 			foreach ($yakCatArray as $cat) {
+ 				
+ 				if ( substr($cat['pathN'],-strlen(strtoupper(suppr_accents(utf8_encode($catPath)))))==strtoupper(suppr_accents(utf8_encode($catPath)))   ) {
+ 					
+ 					
+ 					$this->yakCat[]= $cat['_id'];
+ 					$this->yakCatName[]= $cat['title'];
+ 					echo $cat['_id'];
+ 					echo $cat['title'];
+ 					
+ 			}
+ 		}
+ 	}}
 	
 	/* move slightly an info to avoid superposition
 	* 

@@ -951,7 +951,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("507e5a9a1d22b30c44000068")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.640221,'lng'=>5.097013),
@@ -3017,7 +3017,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.6107690,'lng'=>3.8767160),
@@ -3065,6 +3065,128 @@ $records[] = array(
 	"zone"=> 1
 	
 );	
+
+
+
+$records[] = array(
+	"_id" => new MongoId("51025082fa9a957c0f000000"),
+	"title"=>"Principauté de Monaco",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.73129,'lng'=>7.423754),
+	"formatted_address"=> "Monaco",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>'',
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'',
+				'area'=>'',
+				'country'=>'Monaco',
+				'zip'=>'98000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("51025082fa9a957c0f000001"),
+	"title"=>"Monte-Carlo",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.73129,'lng'=>7.423754),
+	"formatted_address"=> "Monaco",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>'',
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'',
+				'area'=>'',
+				'country'=>'Monaco',
+				'zip'=>'98000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("51025082fa9a957c0f000002"),
+	"title"=>"Monte Carlo",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.73129,'lng'=>7.423754),
+	"formatted_address"=> "Monaco",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>'',
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'',
+				'area'=>'',
+				'country'=>'Monaco',
+				'zip'=>'98000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14
+	
+);
+
+$records[] = array(
+	"_id" => new MongoId("51025082fa9a957c0f000003"),
+	"title"=>"Monaco",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.73129,'lng'=>7.423754),
+	"formatted_address"=> "Monaco",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>'',
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'',
+				'area'=>'',
+				'country'=>'Monaco',
+				'zip'=>'98000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14
+	
+);
 
 
 $records[] = array(

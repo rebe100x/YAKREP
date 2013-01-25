@@ -214,6 +214,7 @@ function createImgThumb($link,$conf){
 
 	$filePathDestOriginal = $conf->originalpath() .$hash.'.jpg';
 	$filePathDestThumb = $conf->thumbpath() .$hash.'.jpg';
+	$filePathDestMedium = $conf->mediumpath() .$hash.'.jpg';
 	$filePathDestBig = $conf->bigpath() .$hash.'.jpg';
 	$ch = curl_init ($link);
     curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -229,9 +230,10 @@ function createImgThumb($link,$conf){
     fwrite($fp, $rawdata);
     fclose($fp);
 	// create thumb and full size
-	$res1 = redimg(array(0=>array('W'=>80,'H'=>60)),$filePathDestThumb,$filePathDestOriginal,0);
-    $res2 = redimg(array(0=>array('W'=>120,'H'=>90)),$filePathDestThumb,$filePathDestOriginal,0);
-	$res3 = redimg(array(0=>array('W'=>512,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   
+	
+	$res1 = redimg(array(0=>array('W'=>120,'H'=>90)),$filePathDestThumb,$filePathDestOriginal,0);
+	$res2 = redimg(array(0=>array('W'=>320,'H'=>240)),$filePathDestMedium,$filePathDestOriginal,0);   
+	$res3 = redimg(array(0=>array('W'=>560,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   
 	
 	if($res1 && $res2 && $res3)
 		$res = $hash.'.jpg';

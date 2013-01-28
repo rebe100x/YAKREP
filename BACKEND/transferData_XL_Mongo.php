@@ -635,6 +635,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				}
 			
 				/* THUMB  */
+				echo "<br>enclosre:".$enclosure;
 				if(!empty($enclosure)){
 					$res = createImgThumb($enclosure,$conf);
 					if($res == false)

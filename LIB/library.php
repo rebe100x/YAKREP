@@ -186,7 +186,7 @@ function getTeleportImg($spec){
 function getApercite($link){
 	
 	$fullpath = "thumb/".md5($link).'.jpg';
-	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;
+	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;	
 	$ch = curl_init ($img);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

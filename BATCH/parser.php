@@ -71,7 +71,6 @@ if($q != ''){
 				$xml = "";
 				$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
 			
-				
 				$line = 0;
 				foreach($data as $item){
 					
@@ -117,15 +116,23 @@ if($q != ''){
 								$thevalue = '';
 								if(!empty($val)){
 									
-									preg_match_all('/(#YKL)(\w+)/', $val, $out);
+									if(strpos($val,'->')){
+										preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
+									}else
+										preg_match_all('/(#YKL)(\w+)/', $val, $out);
+									//var_dump($out);
 									$tmp = array();
-									foreach($out[2] as $o)
-										$tmp[] = $item[$o];
-									/*echo '<br>';
-									var_dump($out[0]);
-									echo "VAL".$val;
-									var_dump(array_map('mapIt',$out[0]));
-									var_dump($tmp);*/
+									$o1 = array();
+									foreach($out[2] as $o){
+										if(strpos($o,'->')){
+											$o1 = explode('->',$o);
+											if(!empty($o1[1])){
+												$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]]['@attributes'][$o1[1]]) )? $item[$o1[0]]['@attributes'][$o1[1]] : '';
+											}else
+												$tmp[] = (empty($item[$o]))?'':$item[$o];
+										}else
+											$tmp[] = (empty($item[$o]))?'':$item[$o];
+									}
 									$thevalue = @preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
 									
 								}else

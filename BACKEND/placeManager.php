@@ -761,6 +761,34 @@ $records[] = array(
 	"zone"=> 14,
 );
 
+$records[] = array(
+	"_id" => new MongoId("510681c8fa9a95400b00014c"),
+	"title"=>"Jazz à Juan",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("504d89cffa9a957004000001"),new MongoId("506479f54a53042191010000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.565933,'lng'=>7.115128),
+	"formatted_address"=> "Pinède Gould, Antibes Juan-les-Pins, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'',
+				'state'=>"",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06160',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
 
 $records[] = array(
 	"_id" => new MongoId("510022a0fa9a954c0b00002e"),
@@ -941,6 +969,37 @@ $records[] = array(
 	"zone"=> 14,
 );
 /*END villes pour nice matin END*/
+
+ 
+$records[] = array(
+	"_id" => new MongoId("51067635fa9a95200b000047"),
+	"title"=>"Gadagne",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.9226546,'lng'=>4.9454803),
+	"formatted_address"=> "84470 Châteauneuf-de-Gadagne, France",
+	"address" => array(
+				'street_number'=>"",
+				'street'=>"",
+				'arr'=>"",
+				'city'=>"Châteauneuf-de-Gadagne",
+				'state'=>"Vaucluse",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>"France",
+				'zip'=>"84470",
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
 
 $records[] = array(
 	"_id" => new MongoId("50f818fdfa9a95d80a000160"),
@@ -1241,6 +1300,9 @@ $records[] = array(
 	"user" => 0, 
 	"zone"=> 14,
 );
+
+
+
 
 $records[] = array(
 	"_id" => new MongoId("50f04a04fa9a95bc0c000061"),

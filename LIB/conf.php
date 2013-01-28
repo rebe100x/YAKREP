@@ -105,7 +105,9 @@ class conf
 	public function bigpath() {
         return  $_SERVER["DOCUMENT_ROOT"] . $this->bigpath;
     }
-
+	public function mediumpath() {
+        return  $_SERVER["DOCUMENT_ROOT"] . $this->mediumpath;
+    }
 	public function originalpath() {
         return  $_SERVER["DOCUMENT_ROOT"] . $this->originalpath;
     }

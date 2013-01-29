@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Evenements>
+<evenement id="2714884" genre="225">
+    <Organisme>
+      <Nom><![CDATA[paroisse Sainte-Catherine-de-Sienne]]></Nom>
+      <Commune type="ORG" insee="35051" cp="35510"><![CDATA[Cesson-Sévigné]]></Commune>
+      <SiteInternet />
+    </Organisme>
+    <Genre id="225"><![CDATA[Réunion, débat, rencontre]]></Genre>
+    <Etat statut="V" />
+    <Titre><![CDATA[Elections: un vote pour quelle société]]></Titre>
+    <Corps>
+      <Debut><![CDATA[Vendredi 16 mars, à 20h30, espace Jean XXIII, centre paroissial, 2, rue du muguet , Cesson-Sévigné. ]]></Debut>
+      <Descriptif><![CDATA[Présentation et débat autour du document des Evêques de France. Elections : un vote pour quelle société. Ce document est disponible sur demande à stmartincesson@wanadoo.fr.]]></Descriptif>
+      <Fin><![CDATA[ Gratuit. ]]></Fin>
+    </Corps>
+    <Communes>
+      <Commune type="EVT" insee="35051" cp="35510"><![CDATA[Cesson-Sévigné]]></Commune>
+      <Commune type="PAR" insee="35051" cp="35510"><![CDATA[Cesson-Sévigné]]></Commune>
+    </Communes>
+    <Geolocalisation>
+      <Latitude>48.11829</Latitude>
+      <Longitude>-1.60576</Longitude>
+      <Precision>rue</Precision>
+    </Geolocalisation>
+    <Dates>
+      <Date type="CRE" jour="11" mois="03" annee="2012" />
+      <Date type="MOD" jour="11" mois="03" annee="2012" />
+      <Date type="VAL" jour="11" mois="03" annee="2012" />
+      <Date type="PAR" jour="14" mois="03" annee="2012" />
+    </Dates>
+    <DatesEvenement>
+      <Date type="unique">
+        <Date jour="16" mois="03" annee="2012" />
+      </Date>
+    </DatesEvenement>
+    <Url><![CDATA[http://www.infolocale.fr/cesson-sevigne_35051/agenda/reunions--assemblees/elections-un-vote-pour-quelle-societe_782656]]></Url>
+    <Photos />
+  </evenement>
+  <evenement id="3138484" genre="116">
+    <Organisme>
+      <Nom><![CDATA[Judo-club]]></Nom>
+      <Commune type="ORG" insee="35266" cp="35230"><![CDATA[Saint-Erblon]]></Commune>
+      <SiteInternet><![CDATA[judoclubsainterblon.skyrock.com]]></SiteInternet>
+    </Organisme>
+    <Genre id="116"><![CDATA[Annoncer un tournoi]]></Genre>
+    <Etat statut="V" />
+    <Titre><![CDATA[Judo : championnats départementaux individuels juniors et cadets]]></Titre>
+    <Corps>
+      <Debut><![CDATA[Du samedi 17 novembre au dimanche 18 novembre, à 9h, complexe sportif Colette-Besson, rue de Rennes, Noyal-Châtillon-sur-Seiche. ]]></Debut>
+      <Descriptif><![CDATA[Le judo-club intercommunal de Saint-Erblon, Noyal-Châtillon, Bourgbarré et Pont-Péan organise son tournoi labellisé poussins et challenge des petits samouraïs. Le club reçoit également les championnats départementaux individuels juniors le samedi, et cadets le dimanche.]]></Descriptif>
+      <Fin><![CDATA[ Gratuit. ]]></Fin>
+    </Corps>
+    <Communes>
+      <Commune type="EVT" insee="35206" cp="35230"><![CDATA[Noyal-Châtillon-sur-Seiche]]></Commune>
+      <Commune type="PAR" insee="35206" cp="35230"><![CDATA[Noyal-Châtillon-sur-Seiche]]></Commune>
+    </Communes>
+    <Geolocalisation>
+      <Latitude>48.03547</Latitude>
+      <Longitude>-1.664563</Longitude>
+      <Precision>rue</Precision>
+    </Geolocalisation>
+    <Dates>
+      <Date type="CRE" jour="12" mois="11" annee="2012" />
+      <Date type="MOD" jour="13" mois="11" annee="2012" />
+      <Date type="VAL" jour="13" mois="11" annee="2012" />
+      <Date type="PAR" jour="15" mois="11" annee="2012" />
+    </Dates>
+    <DatesEvenement>
+      <Date type="periode">
+        <Date type="debut" jour="17" mois="11" annee="2012" />
+        <Date type="fin" jour="18" mois="11" annee="2012" />
+      </Date>
+    </DatesEvenement>
+    <Url><![CDATA[http://loisir.infolocale.fr/noyal-chatillon-sur-seiche_35206/sortie/sports/judo--championnats-departementaux-individuels-juniors-et-cadets_1230357]]></Url>
+    <Photos />
+  </evenement>
+  <evenement id="3140894" genre="12">
+    <Organisme>
+      <Nom><![CDATA[Entre les nuages]]></Nom>
+      <Commune type="ORG" insee="35126" cp="35580"><![CDATA[Guichen]]></Commune>
+      <SiteInternet />
+    </Organisme>
+    <Genre id="12"><![CDATA[Danse]]></Genre>
+    <Etat statut="V" />
+    <Titre><![CDATA[Spectacle « Mais où est passé mon nez ? »]]></Titre>
+    <Corps>
+      <Debut><![CDATA[Danse. ]]></Debut>
+      <Descriptif><![CDATA[Compagnie Entre les nuages. Spectacle jeune public mêlant joyeusement danse, théâtre, vidéo. René a perdu son nez de clown, il entre dans une recherche effrénée ou tout objet peut potentiellement devenir un nez. Recherche où l’on retrouve le clown dans tous ses états, entre poésie et burlesque.]]></Descriptif>
+      <Fin><![CDATA[ Dimanche 2 décembre, à 16h30, centre culturel l’Antichambre, 85, avenue du Maréchal-Leclerc, Mordelles. Contact et réservation : tél. 02 23 41 27 06, spectacle@lantichambre-mordelles.fr. ]]></Fin>
+    </Corps>
+    <Communes>
+      <Commune type="EVT" insee="35196" cp="35310"><![CDATA[Mordelles]]></Commune>
+      <Commune type="PAR" insee="35196" cp="35310"><![CDATA[Mordelles]]></Commune>
+    </Communes>
+    <Geolocalisation>
+      <Latitude>48.07652</Latitude>
+      <Longitude>-1.840936</Longitude>
+      <Precision>rue</Precision>
+    </Geolocalisation>
+    <Dates>
+      <Date type="CRE" jour="13" mois="11" annee="2012" />
+      <Date type="MOD" jour="15" mois="11" annee="2012" />
+      <Date type="VAL" jour="15" mois="11" annee="2012" />
+      <Date type="PAR" jour="01" mois="12" annee="2012" />
+    </Dates>
+    <DatesEvenement>
+      <Date type="unique">
+        <Date jour="02" mois="12" annee="2012" />
+      </Date>
+    </DatesEvenement>
+    <Url><![CDATA[http://loisir.infolocale.fr/mordelles_35196/sortie/spectacle/spectacle---mais-ou-est-passe-mon-nez---_1237476]]></Url>
+    <Photos />
+  </evenement>
+  <evenement id="2863236" genre="118">
+    <Organisme>
+      <Nom><![CDATA[Judo-club]]></Nom>
+      <Commune type="ORG" insee="35266" cp="35230"><![CDATA[Saint-Erblon]]></Commune>
+      <SiteInternet><![CDATA[judoclubsainterblon.skyrock.com]]></SiteInternet>
+    </Organisme>
+    <Genre id="118"><![CDATA[Autre]]></Genre>
+    <Etat statut="V" />
+    <Titre><![CDATA[Championnat régional judo et tournois interclubs]]></Titre>
+    <Corps>
+      <Debut><![CDATA[Samedi 26 mai et dimanche 27 mai, salle Colette-Besson, Bréquigny, Rennes. ]]></Debut>
+      <Descriptif><![CDATA[Le judo-club intercommunal organise le samedi à partir de 10 h son tournoi Baby-do suivi du challenge Petits samouraïs. À 13 h 30 débutera le tournoi poussins qui sera suivi d’un tournoi équipes. Dimanche, à partir de 9 h, aura lieu le championnat de Bretagne individuels seniors M-F.]]></Descriptif>
+      <Fin><![CDATA[ Gratuit. ]]></Fin>
+    </Corps>
+    <Communes>
+      <Commune type="EVT" insee="35238" cp="35000"><![CDATA[Rennes]]></Commune>
+      <Commune type="PAR" insee="35266" cp="35230"><![CDATA[Saint-Erblon]]></Commune>
+    </Communes>
+    <Geolocalisation>
+      <Latitude>48.11178</Latitude>
+      <Longitude>-1.68026</Longitude>
+      <Precision>rue</Precision>
+    </Geolocalisation>
+    <Dates>
+      <Date type="CRE" jour="22" mois="05" annee="2012" />
+      <Date type="MOD" jour="23" mois="05" annee="2012" />
+      <Date type="VAL" jour="23" mois="05" annee="2012" />
+      <Date type="PAR" jour="24" mois="05" annee="2012" />
+    </Dates>
+    <DatesEvenement>
+      <Date type="unique">
+        <Date jour="26" mois="05" annee="2012" />
+      </Date>
+      <Date type="unique">
+        <Date jour="27" mois="05" annee="2012" />
+      </Date>
+    </DatesEvenement>
+    <Url><![CDATA[http://loisir.infolocale.fr/saint-erblon_35266/sortie/sports/championnat-regional-judo-et-tournois-interclubs_925363]]></Url>
+    <Photos />
+  </evenement>
+  <evenement id="3008177" genre="161">
+    <Organisme>
+      <Nom><![CDATA[voxcivilian]]></Nom>
+      <Commune type="ORG" insee="35085" cp="35270"><![CDATA[Combourg]]></Commune>
+      <SiteInternet><![CDATA[www.myspace.com/voxcivilian]]></SiteInternet>
+    </Organisme>
+    <Genre id="161"><![CDATA[Rock]]></Genre>
+    <Etat statut="V" />
+    <Titre><![CDATA[Mass Hysteria, Voxcivilian et Vortex]]></Titre>
+    <Corps>
+      <Debut><![CDATA[Rock. ]]></Debut>
+      <Descriptif><![CDATA[Rock’n Boudoir présente, en accord avec New Tracks Prod : Mass Hysteria pour la sortie de son album « L’armée des ombres ». Apparu en 1997, Mass Hysteria trace sa route et peut revendiquer sans problème l’étiquette de groupe métal français incontournable. 1res parties : Voxcivilian et Vortex.]]></Descriptif>
+      <Fin><![CDATA[ Jeudi 25 octobre, à 20h30, Antipode, 2, rue André-Trasbot, Rennes. Tarif 18€, autre : 20 € sur place. ]]></Fin>
+    </Corps>
+    <Communes>
+      <Commune type="EVT" insee="35238" cp="35000"><![CDATA[Rennes]]></Commune>
+      <Commune type="PAR" insee="35238" cp="35000"><![CDATA[Rennes]]></Commune>
+    </Communes>
+    <Geolocalisation>
+      <Latitude>48.10071</Latitude>
+      <Longitude>-1.70903</Longitude>
+      <Precision>rue</Precision>
+    </Geolocalisation>
+    <Dates>
+      <Date type="CRE" jour="01" mois="09" annee="2012" />
+      <Date type="MOD" jour="07" mois="09" annee="2012" />
+      <Date type="VAL" jour="07" mois="09" annee="2012" />
+      <Date type="PAR" jour="14" mois="09" annee="2012" />
+    </Dates>
+    <DatesEvenement>
+      <Date type="unique">
+        <Date jour="25" mois="10" annee="2012" />
+      </Date>
+    </DatesEvenement>
+    <Url><![CDATA[http://loisir.infolocale.fr/rennes_35238/sortie/concerts/mass-hysteria--voxcivilian-et-vortex_1101274]]></Url>
+    <Photos>
+      <Photo>
+        <Path>infolocale_3008177_0.jpg</Path>
+        <Legende><![CDATA[Mass Hysteria en concert le jeudi 25 octobre à l'antipode]]></Legende>
+        <Credit><![CDATA[Eric CANTO]]></Credit>
+      </Photo>
+      <Photo>
+        <Path>infolocale_3008177_1.jpg</Path>
+        <Legende><![CDATA[Voxcivilian en concert avec Mass Hysteria, jeudi 25 octobre]]></Legende>
+        <Credit><![CDATA[Stephane RENOU]]></Credit>
+      </Photo>
+      <Photo>
+        <Path>infolocale_3008177_2.jpg</Path>
+        <Legende><![CDATA[Vortex en concert avec Mass Hysteria, jeudi 25 octobre]]></Legende>
+        <Credit><![CDATA[Guillaume AZE]]></Credit>
+      </Photo>
+    </Photos>
+  </evenement>
+  </Evenements>

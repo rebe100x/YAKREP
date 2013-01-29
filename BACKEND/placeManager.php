@@ -644,6 +644,95 @@ $records[] = array(
 
 
 $records[] = array(
+	"_id" => new MongoId("51077a72fa9a95ac0b000000"),
+	"title"=>"Vieux-Nice",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.697324,'lng'=>7.2787),
+	"formatted_address"=> "Vieux-Nice, Nice",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Nice',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+
+$records[] = array(
+	"_id" => new MongoId("51078415fa9a95b00b000000"),
+	"title"=>"Fête du citron",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.774162,'lng'=>7.497654),
+	"formatted_address"=> "8 Avenue Boyer, 06500 Menton",
+	"address" => array(
+				'street_number'=>'8',
+				'street'=>"Avenue Boyer",
+				'arr'=>'',
+				'city'=>'Menton',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06500',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+$records[] = array(
+	"_id" => new MongoId("51078415fa9a95b00b000001"),
+	"title"=>"la Prom'",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.681343,'lng'=>7.232094),
+	"formatted_address"=> "Promenade des Anglais, Nice",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"Promenade des Anglais",
+				'arr'=>'',
+				'city'=>'Nice',
+				'state'=>"Alpes-Maritimes",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'06000',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+$records[] = array(
 	"_id" => new MongoId("51001c5cfa9a953c0b000005"),
 	"title"=>"Promenade des Anglais",
 	"content" =>"",
@@ -799,7 +888,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.66365,'lng'=>7.149181),
@@ -831,7 +920,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.69568,'lng'=>7.266426),
@@ -861,7 +950,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.553027,'lng'=>7.017689),
@@ -891,7 +980,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.66365,'lng'=>7.149181),
@@ -920,7 +1009,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.597092,'lng'=>7.09743),
@@ -949,7 +1038,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.774441,'lng'=>7.497568),
@@ -980,7 +1069,7 @@ $records[] = array(
 	"access"=> 1,
 	"licence"=> "Yakwala",
 	"outGoingLink" => "",
-	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>43.9226546,'lng'=>4.9454803),
@@ -1000,7 +1089,7 @@ $records[] = array(
 	"zone"=> 14,
 );
 
-
+/*
 $records[] = array(
 	"_id" => new MongoId("50f818fdfa9a95d80a000160"),
 	"title"=>"Salon",
@@ -1029,6 +1118,7 @@ $records[] = array(
 	"user" => 0, 
 	"zone"=> 14,
 );
+*/
 
 $records[] = array(
 	"_id" => new MongoId("50f7f34dfa9a95880b0001e9"),

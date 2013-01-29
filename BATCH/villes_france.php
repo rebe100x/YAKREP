@@ -80,11 +80,7 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 	  elseif ($zn == "84" || $zn == "13" || $zn == "05" || $zn == "04" || $zn == "06" || $zn == "83")
 		$zone = 14;
 	  else{	  
-		echo '<br>rejected not in zone';
-        $results['rejected'] ++;
-        $results['row'] ++;
-        //$row++;
-        continue;
+		$zone = 0;
       }
 	  
 	  

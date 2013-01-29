@@ -84,6 +84,7 @@ if($q != ''){
 								foreach($canvas as $key=>$val){
 									$thevalue = '';
 									if(!empty($val)){
+										
 										preg_match_all('/(#YKL)(\d+)/', $val, $out);
 										$tmp = array();
 										foreach($out[2] as $o)
@@ -96,7 +97,7 @@ if($q != ''){
 									$thevalueClean = $thevalue;
 									
 									if($key == 'freeTag' || $key == 'yakCats'){
-										$tmp = explode(',',$thevalue);
+										$tmp = explode(',',$thevalueClean);
 										$tmp = array_map('trimArray',$tmp);  
 										$thevalueClean = implode('#',$tmp);
 									}
@@ -106,16 +107,16 @@ if($q != ''){
 									}
 									
 									$itemArray[$key] = $thevalueClean;
+									
 								}
 							}
 						}
 						
 						if($feed['feedType'] == 'RSS'){
-							
+							//var_dump($item);
 							foreach($canvas as $key=>$val){
 								$thevalue = '';
 								if(!empty($val)){
-									
 									if(strpos($val,'->')){
 										preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
 									}else
@@ -133,6 +134,8 @@ if($q != ''){
 										}else
 											$tmp[] = (empty($item[$o]))?'':$item[$o];
 									}
+									//var_dump( $o);
+									//var_dump( $item);
 									$thevalue = @preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
 									
 								}else
@@ -172,6 +175,7 @@ if($q != ''){
 						//var_dump($itemArray);
 						
 						$xml .= buildXMLItem($itemArray);
+						
 					}			
 					$line++;
 				}

@@ -3,6 +3,7 @@
 
 //"defaultPrintFlag" => 0, if not geolocalized, we localize at the default location but we don't print on the map ( only in the text feed )
 // "defaultPrintFlag" => 1,// if not geolocalized, we localize at the default location and we print on the map
+// "defaultPrintFlag" => 2,// do not perform a geoloc and locate on the default location of the feed
  
  
 // name : nameof the file
@@ -225,7 +226,7 @@ $records[] = array(
 	"humanName"=>"CCIMP",	
 	"name"=>"CCIMP",
 	"link"=>"http://opendata.regionpaca.fr/donnees/detail/signataires-de-la-charte-esprit-client-de-la-ccimp.html",
-	"fileSource"=>"./input/CCIMP-A-CLIENTS-01-2013_small.csv",
+	"fileSource"=>"./input/CCIMP-A-CLIENTS-01-2013.csv",
 	"rootElement"=>"",
 	"lineToBegin"=>"3",
 	"parsingTemplate"=>array(
@@ -319,17 +320,8 @@ $records[] = array(
 	"parsingTemplate"=>array(
 						'title' => "#YKLtitle",
 						'content' => "#YKLdescription",
-						'address' => "",
-						'outGoingLink' => "#YKLlink",
-						'latitude'=>"",
-						'longitude'=>"",
-						'thumb'=>'',
-						'yakCats'=>'',
-						'freeTag'=>'',
-						'place'=> '',
-						'eventDate' => '',
-						'pubDate'=>'#YKLpubDate',
-						'telephone'=>''
+						'outGoingLink' => "#YKLlink",						
+						
 					),
 	"yakCatNameArray" => array('Actualités','Culture'),
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000"),new MongoId("504d89cffa9a957004000001")),
@@ -411,10 +403,10 @@ $records[] = array(
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000"),new MongoId("506479f54a53042191000000"),new MongoId("50647e2d4a53041f91040000")),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('5101588dfa9a95000a000000'),
-	"defaultPlaceSearchName" => "France",
+	"defaultPlaceSearchName" => "Stade Vélodrome, Marseille, France",
 	"yakType" => 1,
 	"feedType" => "RSS",
-	"defaultPrintFlag" => 1,
+	"defaultPrintFlag" => 2,
 	"creationDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"daysBack" => 5,
@@ -722,18 +714,30 @@ $records[] = array(
 /*MONTPELIER*/
 $records[] = array(
 	"_id" => new MongoId("509bb30efa9a95c40b00004e"),
-	"XLconnector"=>"zone2",
+	"XLconnector"=>"parser",
 	"humanName"=>"Tout Montpellier",	
 	"name"=>"toutmontpellier",
-	"link"=>"http://www.toutmontpellier.fr",
+	"link"=>"http://www.toutmontpellier.fr/rss.xml",
+	"feedType" => "RSS",
+	"fileSource"=>"",
+	"rootElement"=>"/rss/channel/item",
+	"lineToBegin"=>"0",
+	"parsingTemplate"=>array(
+						'title' => "#YKLtitle",
+						'outGoingLink' => "#YKLlink",
+						'thumb'=>"#YKLimage.url",
+						'pubDate'=>"#YKLpubDate",
+					),
+	"yakCatNameArray" => array('Actualités'),
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
-	"persistDays" => 1,
+	"persistDays" => 3,
 	"defaultPlaceId" => new MongoId('507eaca21d22b3954e0000e0'),
+	"defaultPlaceSearchName" => "",
 	"yakType" => 1,
 	"defaultPrintFlag" => 1,
 	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 1,
-	"daysBack" => 5,
+	"status" => 0,
+	"daysBack" => 10,
 	"zone" =>2,
 );	
 
@@ -748,6 +752,7 @@ $records[] = array(
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
+	
 	"yakType" => 1,
 	"defaultPrintFlag" => 1,
 	"creationDate" => new MongoDate(gmmktime()),
@@ -760,10 +765,22 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("509b6150fa9a95a40b000000"),
-	"XLconnector"=>"parisien75",
+	"XLconnector"=>"parser",
 	"humanName"=>"Le Parisien 75",	
 	"name"=>"leparisien75",
-	"link"=>"http://www.leparisien.fr",
+	"link"=>array("http://rss.leparisien.fr/leparisien/rss/paris-75.xml"),
+	"feedType" => "RSS",
+	"fileSource"=>"",
+	"rootElement"=>"/rss/channel/item",
+	"lineToBegin"=>"0",
+	"parsingTemplate"=>array(
+						'title' => "#YKLtitle",
+						'content' => "#YKLdescription",
+						'outGoingLink' => "#YKLlink",
+						'thumb'=>"#YKLenclosure->url",
+						'pubDate'=>"#YKLpubDate",
+					),
+	"yakCatNameArray" => array('Actualités'),
 	"yakCatId"=>array(new MongoId("504d89c5fa9a957004000000")),
 	"persistDays" => 1,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),

@@ -129,6 +129,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$quartiertitle = array();
 				$quartiertext = array();
 				$yakdico = array();
+				$yakdicoTmp = array();
 				$yakdicotitle = array();
 				$yakdicotext = array();
 				$ville = array();
@@ -266,7 +267,17 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							$ville = $villetitle;
 						 }else
 							$ville = $villetext;
-						  
+						
+						// filter in our zone
+						$villeTmp = array();
+						foreach($ville as $v){
+							$isInZone = $placeColl->findOne(array('title'=>$v,"zone"=>$defaultPlace['zone']));
+							if($isInZone)
+								$villeTmp[] = $v;								
+						}
+						$ville = $villeTmp;	
+						
+	
 						 /*address*/
 						 if($group->id == "adressetitle3"){
 							$flagIncluded = 0;
@@ -337,9 +348,13 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						 if($group->id == "yakdicotext")
 							   $yakdicotext = $category->title;
 						 if(empty($yakdicotitle))
-							$yakdico = $yakdicotext; 
+							$yakdicoTmp = $yakdicotext; 
 						 else
-							$yakdico = $yakdicotitle; 
+							$yakdicoTmp = $yakdicotitle; 
+						
+						$isInZone = $placeColl->findOne(array('title'=>$yakdicoTmp,"zone"=>$defaultPlace['zone']));
+						if($isInZone)
+							$yakdico = $yakdicoTmp;
 						
 						 /*LIEU*/
 						 if(empty($placeInput)){
@@ -368,242 +383,239 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					 }
 				}
 					
+				// if the news must be mapped on the default feed's location 	
+				if($feed['defaultPrintFlag'] == 2){
+					$print = 1;
+					$geoloc = array($defaultPlace['location']);
+					$status = 1;
+					$contact = array("tel"=>"","mobile"=>"","mail"=>"","transportation"=>"","web"=>"","opening"=>"",);
+								$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
+				}else{
 				
-				
-				//logical construction of the address :
-				/*Priority :  ADDRESSINPUT -> ADDRESSE -> YAKDICO -> ARRONDISSEMENT -> QUARTIER -> VILLE*/
-				 // set address from input or from semantic factory
-				 if(!empty($addressInput) && !empty($geolocationInput)){
-					$locationTmp[] = $addressInput;
-				 }else{
-					if(!empty($adresse)){
-						if(is_array($adresse))
-						   foreach($adresse as $ad)
-							   $locationTmp[] = $ad;
-						else   
-							$locationTmp[] = $adresse;
-					}else{	
-						if(!empty($lieu)){
-								if(is_array($lieu))
-									foreach($lieu as $l)
-										$locationTmp[] = $l;
-								else   
-									$locationTmp[] = $lieu;
-						}else{
-							if(!empty($yakdico)){
-								if(is_array($yakdico))
-									foreach($yakdico as $dico)
-										$locationTmp[] = $dico;
-								else   
-									$locationTmp[] = $yakdico;
-							}else{    
-								if(!empty($quartier)){
-										if(is_array($quartier))
-											foreach($quartier as $quar)
-												$locationTmp[] = $quar;
-										else 
-											$locationTmp[] = $quartier;
-								}else{
-									if(!empty($arrondissement)){
-									if(is_array($arrondissement))
-										foreach($arrondissement as $arr)
-											$locationTmp[] = rewriteArrondissement($arr);
+					//logical construction of the address :
+					/*Priority :  ADDRESSINPUT -> ADDRESSE -> YAKDICO -> ARRONDISSEMENT -> QUARTIER -> VILLE*/
+					 // set address from input or from semantic factory
+					 if(!empty($addressInput) && !empty($geolocationInput)){
+						$locationTmp[] = $addressInput;
+					 }else{
+						if(!empty($adresse)){
+							if(is_array($adresse))
+							   foreach($adresse as $ad)
+								   $locationTmp[] = $ad;
+							else   
+								$locationTmp[] = $adresse;
+						}else{	
+							if(!empty($lieu)){
+									if(is_array($lieu))
+										foreach($lieu as $l)
+											$locationTmp[] = $l;
 									else   
-										$locationTmp[] = rewriteArrondissement($arrondissement);
+										$locationTmp[] = $lieu;
+							}else{
+								if(!empty($yakdico)){
+									if(is_array($yakdico))
+										foreach($yakdico as $dico)
+											$locationTmp[] = $dico;
+									else   
+										$locationTmp[] = $yakdico;
+								}else{    
+									if(!empty($quartier)){
+											if(is_array($quartier))
+												foreach($quartier as $quar)
+													$locationTmp[] = $quar;
+											else 
+												$locationTmp[] = $quartier;
 									}else{
-									
-										if(is_array($ville))
-											foreach($ville as $vil)
-												$locationTmp[] = $vil;
-										else 
-											$locationTmp[] = $ville;
+										if(!empty($arrondissement)){
+										if(is_array($arrondissement))
+											foreach($arrondissement as $arr)
+												$locationTmp[] = rewriteArrondissement($arr);
+										else   
+											$locationTmp[] = rewriteArrondissement($arrondissement);
+										}else{
+										
+											if(is_array($ville))
+												foreach($ville as $vil)
+													$locationTmp[] = $vil;
+											else 
+												$locationTmp[] = $ville;
+										}
 									}
 								}
 							}
 						}
 					}
-				}
-				
-				// la ville
-				$laville = '';
-				if(sizeof($ville) > 0){
-					if(is_array($ville))
-						$laville = $ville[0];
-					else 
-						$laville = $ville;
-				}
-				
-				
-				$placeArray = array();	 
-				// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
-				if(sizeof($locationTmp ) > 0){
 					
-					foreach($locationTmp as $loc){
+					// la ville
+					$laville = '';
+					if(sizeof($ville) > 0){
+						if(is_array($ville))
+							$laville = $ville[0];
+						else 
+							$laville = $ville;
+					}
+					
+					
+					$placeArray = array();	 
+					// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
+					if(sizeof($locationTmp ) > 0){
 						
-						echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".$loc;
-						
-						//check if in db if the place exists
-						$place = $placeColl->findOne(array('title'=>$loc,"zone"=>$defaultPlace['zone']));
-						//var_dump($place);
-						if($place && $flagForceUpdate != 1){ // FROM DB
-							echo "<br> Location found in DB !";
-							$logLocationInDB++;
-							if($place['status'] == 3){ // if the place has been blacklisted by the operator
-								$status = 11; // alert status
-								$print = 0; // don't print on the map, but can be printed on the news feed
-							}else{
-								$status = 1;
-								$print = 1;
-							}
+						foreach($locationTmp as $loc){
 							
-							$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print,'contact'=>$place['contact']);	
-						 }else{ // the place is not in db
+							echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".$loc;
 							
-							// FROM THE INPUT
-							if(!empty($geolocationInput) && !empty($addressInput)){
-								$status = 1;
-								$geolocGMAP = array((float)$geolocationInput[0],(float)$geolocationInput[1]);
-								$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
-								$print = 1;
-								$formatted_addressGMAP = $addressInput;
-							}else{ // FROM GMAP
-								
-								echo "<br> Call to GMAP: ".$loc.', '.$defaultPlaceTitle.', '.$defaultPlace['address']['country'];
-								$logCallToGMap++;
-								
-								echo '<br>loc'.$loc;
-								echo '<br>laville'.$laville;
-								echo '<br>$defaultPlace title'.$defaultPlaceTitle;
-								echo '<br>$defaultPlace country'.$defaultPlace['address']['country'];		
-								echo '<br>$lieu'.$lieu;
-								
-								
-								$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) ) ? ', '.$laville:'').', '.$defaultPlaceTitle.'. '.$defaultPlace['address']['country'])));
-								//echo 'LIEU'.sizeof($lieu);
-								if(sizeof($lieu)==0)
-									$resGMap = getLocationGMap($gQuery,'PHP',1);
-								else
-									$resGMap = getPlaceGMap($gQuery,'PHP',1);
-								echo '___<br>';
-								if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlaceTitle.', '.$defaultPlace['address']['country']){
-									echo "<br> GMAP found the coordinates of this location ! ";
-									// check if the result is in the zone
-									$zoneObj = new Zone();
-									$zoneNums = $zoneObj->findNumByLocation(array('lat'=>$resGMap['location'][0],'lng'=>$resGMap['location'][1]));
-									if(!in_array($feed['zone'],$zoneNums)){
-										echo "<br><b>Err:</b>Location found is not in the feed zone ( ".$feed['zone']." )";
-										$status = 12;
-										$print = 0;
-									}else{
-										$status = 1;
-										$print = 1;
-									}
-									$geolocGMAP = $resGMap['location'];
-									$addressGMAP = $resGMap['address'];
-									$formatted_addressGMAP = $resGMap['formatted_address'];
+							//check if in db if the place exists
+							$place = $placeColl->findOne(array('title'=>$loc,"zone"=>$defaultPlace['zone']));
+							//var_dump($place);
+							if($place && $flagForceUpdate != 1){ // FROM DB
+								echo "<br> Location found in DB !";
+								$logLocationInDB++;
+								if($place['status'] == 3){ // if the place has been blacklisted by the operator
+									$status = 11; // alert status
+									$print = 0; // don't print on the map, but can be printed on the news feed
 								}else{
-									echo "<br> GMAP did not succeed to find a location, we store the INFO in db with status 10.";
-									$status = 10;
-									$geolocGMAP = array(0,0);
-									$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
-									$print = 0;
-									$formatted_addressGMAP = "";
-								} 
-							}	
-							
-							
+									$status = 1;
+									$print = 1;
+								}
 								
-							/*ONLY FOR TEST DELETE IN PRODUCTION THE SAVE OF THE PLACE FROM ADDRESS*/
-							// we store the result in PLACE for next time
-							
-							$contact = array(
-												"tel"=>$tel,
-												"mobile"=>$mobile,
-												"mail"=>$mail,
-												"transportation"=>$transportation,
-												"web"=>$web,
-												"opening"=>$opening,
-											);
-							
-							$place = array(
-										"title"=> $loc,
-										"content" =>"",
-										"thumb" => "",
-										"origin"=>$feed['humanName'],    
-										"access"=> 2,
-										"licence"=> "Yakwala",
-										"outGoingLink" => $feed['link'],
-										"yakCat" => array(new MongoId($geolocYakCatId)), 
-										"creationDate" => new MongoDate(gmmktime()),
-										"lastModifDate" => new MongoDate(gmmktime()),
-										"location" => array("lat"=>$geolocGMAP[0],"lng"=>$geolocGMAP[1]),
-										"status" => $status,
-										"user" => 0,
-										"zone"=> $defaultPlace['zone'],
-										"address" => $addressGMAP,
-										"formatted_address" => $formatted_addressGMAP,
-										"contact"=>$contact,
-									  );
-									  
-									  
-							$res = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>$defaultPlace['zone']));
-							
-							if(empty($res)){// The place is not in db
-								echo "<br> The location does not exist in db, we create it.";
-								$placeColl->save($place); 
-								var_dump($place);
-								$placeColl->ensureIndex(array("location"=>"2d"));
-							}else{ // The place already in DB, we update if the flag tells us to
-								if($flagForceUpdate ==  1){
-									echo "<br> The location exists in db and we update it.";
-									$placeColl->update(array("_id"=> $res['_id']),$place); 
+								$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print,'contact'=>$place['contact']);	
+							 }else{ // the place is not in db
+								
+								// FROM THE INPUT
+								if(!empty($geolocationInput) && !empty($addressInput)){
+									$status = 1;
+									$geolocGMAP = array((float)$geolocationInput[0],(float)$geolocationInput[1]);
+									$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
+									$print = 1;
+									$formatted_addressGMAP = $addressInput;
+								}else{ // FROM GMAP
+									
+									echo "<br> Call to GMAP: ".$loc.', '.$defaultPlaceTitle.', '.$defaultPlace['address']['country'];
+									$logCallToGMap++;
+									
+									echo '<br>loc'.$loc;
+									echo '<br>laville'.$laville;
+									echo '<br>$defaultPlace title'.$defaultPlaceTitle;
+									echo '<br>$defaultPlace country'.$defaultPlace['address']['country'];		
+									echo '<br>$lieu'.$lieu;
+									
+									
+									$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) ) ? ', '.$laville:'').', '.$defaultPlaceTitle.'. '.$defaultPlace['address']['country'])));
+									//echo 'LIEU'.sizeof($lieu);
+									if(sizeof($lieu)==0)
+										$resGMap = getLocationGMap($gQuery,'PHP',1);
+									else
+										$resGMap = getPlaceGMap($gQuery,'PHP',1);
+									echo '___<br>';
+									if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlaceTitle.', '.$defaultPlace['address']['country']){
+										echo "<br> GMAP found the coordinates of this location ! ";
+										// check if the result is in the zone
+										$zoneObj = new Zone();
+										$zoneNums = $zoneObj->findNumByLocation(array('lat'=>$resGMap['location'][0],'lng'=>$resGMap['location'][1]));
+										if(!in_array($feed['zone'],$zoneNums)){
+											echo "<br><b>Err:</b>Location found is not in the feed zone ( ".$feed['zone']." )";
+											$status = 12;
+											$print = 0;
+										}else{
+											$status = 1;
+											$print = 1;
+										}
+										$geolocGMAP = $resGMap['location'];
+										$addressGMAP = $resGMap['address'];
+										$formatted_addressGMAP = $resGMap['formatted_address'];
+									}else{
+										echo "<br> GMAP did not succeed to find a location, we store the INFO in db with status 10.";
+										$status = 10;
+										$geolocGMAP = array(0,0);
+										$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
+										$print = 0;
+										$formatted_addressGMAP = "";
+									} 
+								}	
+								
+								
+									
+								/*ONLY FOR TEST DELETE IN PRODUCTION THE SAVE OF THE PLACE FROM ADDRESS*/
+								// we store the result in PLACE for next time
+								
+								$contact = array(
+													"tel"=>$tel,
+													"mobile"=>$mobile,
+													"mail"=>$mail,
+													"transportation"=>$transportation,
+													"web"=>$web,
+													"opening"=>$opening,
+												);
+								
+								$place = array(
+											"title"=> $loc,
+											"content" =>"",
+											"thumb" => "",
+											"origin"=>$feed['humanName'],    
+											"access"=> 2,
+											"licence"=> "Yakwala",
+											"outGoingLink" => $feed['link'],
+											"yakCat" => array(new MongoId($geolocYakCatId)), 
+											"creationDate" => new MongoDate(gmmktime()),
+											"lastModifDate" => new MongoDate(gmmktime()),
+											"location" => array("lat"=>$geolocGMAP[0],"lng"=>$geolocGMAP[1]),
+											"status" => $status,
+											"user" => 0,
+											"zone"=> $defaultPlace['zone'],
+											"address" => $addressGMAP,
+											"formatted_address" => $formatted_addressGMAP,
+											"contact"=>$contact,
+										  );
+										  
+										  
+								$res = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>$defaultPlace['zone']));
+								
+								if(empty($res)){// The place is not in db
+									echo "<br> The location does not exist in db, we create it.";
+									$placeColl->save($place); 
+									var_dump($place);
 									$placeColl->ensureIndex(array("location"=>"2d"));
-								}else
-								   echo "<br> The location exists in db => doing nothing.";
-							}
-							$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1],'address'=>$formatted_addressGMAP,'status'=>$status,'print'=>$print,'contact'=>$contact);
-						 
-						 }         
-					}
-					
-				
-					
-				}else{
-						{ // Nothing found by XL
-						if(sizeof($lieu)==0 && sizeof($ville)==0 && sizeof($adresse)==0 && sizeof($yakdico)==0 && sizeof($arrondissement)==0 && sizeof($quartier)==0){
-							//echo "No interesting location detected by Exalead. The info is not transfered to Mongo.";
-							// here we can choose to add the info in the db for the fils d'actu...
-							echo "No interesting location detected by Exalead. The info is transfered to Mongo with the feed's default location and the print flag to 0.";
-						}else{
-						 echo "Address no significative enough to find a localization : 
-						 <br>adresse= ".implode(',',$adresse)."
-						 <br>yakdico= ".implode(',',$yakdico)."
-						 <br>arrondissement = ".implode(',',$arrondissement)."
-						 <br>quartier = ".implode(',',$quartier);
-
+								}else{ // The place already in DB, we update if the flag tells us to
+									if($flagForceUpdate ==  1){
+										echo "<br> The location exists in db and we update it.";
+										$placeColl->update(array("_id"=> $res['_id']),$place); 
+										$placeColl->ensureIndex(array("location"=>"2d"));
+									}else
+									   echo "<br> The location exists in db => doing nothing.";
+								}
+								$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1],'address'=>$formatted_addressGMAP,'status'=>$status,'print'=>$print,'contact'=>$contact);
+							 
+							 }         
 						}
 						
-						// if feedflag tell us to put the info on the default feed location	
-						if($feed['defaultPrintFlag'] != 2){
-							$print = $feed['defaultPrintFlag'] ;
-							$geoloc = array($defaultPlace['location']);
-							$status = 1;
-							$contact = array(
-												"tel"=>"",
-												"mobile"=>"",
-												"mail"=>"",
-												"transportation"=>"",
-												"web"=>"",
-												"opening"=>"",
-											);
-							$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
-						}
 					
-					}
+						
+					}else{
+							{ // Nothing found by XL
+							if(sizeof($lieu)==0 && sizeof($ville)==0 && sizeof($adresse)==0 && sizeof($yakdico)==0 && sizeof($arrondissement)==0 && sizeof($quartier)==0){
+								//echo "No interesting location detected by Exalead. The info is not transfered to Mongo.";
+								// here we can choose to add the info in the db for the fils d'actu...
+								echo "No interesting location detected by Exalead. The info is transfered to Mongo with the feed's default location and the print flag to 0.";
+							}else{
+							 echo "Address no significative enough to find a localization : 
+							 <br>adresse= ".implode(',',$adresse)."
+							 <br>yakdico= ".implode(',',$yakdico)."
+							 <br>arrondissement = ".implode(',',$arrondissement)."
+							 <br>quartier = ".implode(',',$quartier);
 
-					
+							}
+							
+							// if feedflag tell us to put the info on the default feed location	
+							if($feed['defaultPrintFlag'] == 1 || $feed['defaultPrintFlag'] == 0){
+								$print = $feed['defaultPrintFlag'] ;
+								$geoloc = array($defaultPlace['location']);
+								$status = 1;
+								$contact = array("tel"=>"","mobile"=>"","mail"=>"","transportation"=>"","web"=>"","opening"=>"",);
+								$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
+							}
+						}
+					}
 				}
-				
 			
 				/* YAKCATS */
 				$yakCatIdArray = array();
@@ -678,7 +690,14 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						
 					if (preg_match("/MP 2013/i", $title) || preg_match("/Marseille-Provence 2013/i", $title) ) {
 							$freeTag[] = "MP2013";
+						}
+					if (preg_match("/Midem/", $title) ) {
+							$freeTag[] = "Midem";
 						}	
+					if (preg_match("/Saint-Valentin/", $title) || preg_match("/St-Valentin/", $title) || preg_match("/St Valentin/", $title) || preg_match("/Saint Valentin/", $title) ) {
+							$freeTag[] = "StValentin";
+						}	
+					
 					// catch twitter hashtag in title
 					$matches = array();
 					if (preg_match_all('/#([^\s]+)/', $title, $matches)) {

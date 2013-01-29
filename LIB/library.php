@@ -82,6 +82,7 @@ function getFeedData($feed){
 			foreach($feed['link'] as $link){
 				$chuid = curl_init();
 				curl_setopt($chuid, CURLOPT_URL, $link);	
+				//curl_setopt($chuid,CURLOPT_FOLLOWLOCATION,TRUE);
 				curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
 				curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
 				$res[] = trim(curl_exec($chuid));
@@ -89,20 +90,22 @@ function getFeedData($feed){
 			}
 		}else{
 			$chuid = curl_init();
-			curl_setopt($chuid, CURLOPT_URL, $feed['link']);	
+			curl_setopt($chuid, CURLOPT_URL, $feed['link']);
+			curl_setopt($chuid,CURLOPT_FOLLOWLOCATION,TRUE);
 			curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
 			$res[] = trim(curl_exec($chuid));
 			curl_close($chuid);
 		}
-		//var_dump($data);
+		
+		
 		if($feed['feedType'] == 'JSON'){
 			foreach($res as $r)
 				$data = array_merge($data,object_to_array(json_decode($r)));
 		}
 		if($feed['feedType'] == 'RSS'){
 			foreach($res as $r){
-				$tmp = simplexml_load_string($r);
+				$tmp = simplexml_load_string($r,'SimpleXMLElement', LIBXML_NOCDATA);
 				$tmp2 = $tmp->xpath($feed['rootElement']);
 				$data = array_merge(json_decode(json_encode((array) $tmp2), 1),$data);
 			}
@@ -126,30 +129,32 @@ function getFeedData($feed){
 /* Build an XML item of an XL feed crawler
 */
 function buildXMLItem($itemArray){
-	
-$date = new DateTime();
-$xml = "
-	<item>
-		<title><![CDATA[".(!empty($itemArray['title'])?$itemArray['title']:'')."]]></title>
-		<description><![CDATA[".(!empty($itemArray['content'])?$itemArray['content']:'')."]]></description>
-		<outGoingLink><![CDATA[".(!empty($itemArray['outGoingLink'])?$itemArray['outGoingLink']:'')."]]></outGoingLink>
-		<thumb><![CDATA[".(!empty($itemArray['thumb'])?$itemArray['thumb']:'')."]]></thumb>
-		<yakCats><![CDATA[".(!empty($itemArray['yakCats'])?$itemArray['yakCats']:'')."]]></yakCats>
-		<freeTag><![CDATA[".(!empty($itemArray['freeTag'])?$itemArray['freeTag']:'')."]]></freeTag>
-		<pubDate><![CDATA[".(!empty($itemArray['pubDate'])?$itemArray['pubDate']:$date->format(DateTime::ISO8601))."]]></pubDate>
-		<address><![CDATA[".(!empty($itemArray['address'])?$itemArray['address']:'')."]]></address>
-		<place><![CDATA[".(!empty($itemArray['place'])?$itemArray['place']:'')."]]></place>
-		<geolocation><![CDATA[".((!empty($itemArray['latitude']) && !empty($itemArray['longitude']))? $itemArray['latitude']."#".$itemArray['longitude']:'')."]]></geolocation> 
-		<telephone><![CDATA[".(!empty($itemArray['telephone'])?$itemArray['telephone']:'')."]]></telephone>
-		<mobile><![CDATA[".(!empty($itemArray['mobile'])?$itemArray['mobile']:'')."]]></mobile>
-		<mail><![CDATA[".(!empty($itemArray['mail'])?$itemArray['mail']:'')."]]></mail>
-		<transportation><![CDATA[".(!empty($itemArray['transportation'])?$itemArray['transportation']:'')."]]></transportation>
-		<web><![CDATA[".(!empty($itemArray['web'])?$itemArray['web']:'')."]]></web>
-		<opening><![CDATA[".(!empty($itemArray['opening'])?$itemArray['opening']:'')."]]></opening>
-	</item>
-";
+	$xml = "";
+	if(sizeof($itemArray)>0){	
+		$date = new DateTime();
+		$xml = "
+			<item>
+				<title><![CDATA[".(!empty($itemArray['title'])?$itemArray['title']:'')."]]></title>
+				<description><![CDATA[".(!empty($itemArray['content'])?$itemArray['content']:'')."]]></description>
+				<outGoingLink><![CDATA[".(!empty($itemArray['outGoingLink'])?$itemArray['outGoingLink']:'')."]]></outGoingLink>
+				<thumb><![CDATA[".(!empty($itemArray['thumb'])?$itemArray['thumb']:'')."]]></thumb>
+				<yakCats><![CDATA[".(!empty($itemArray['yakCats'])?$itemArray['yakCats']:'')."]]></yakCats>
+				<freeTag><![CDATA[".(!empty($itemArray['freeTag'])?$itemArray['freeTag']:'')."]]></freeTag>
+				<pubDate><![CDATA[".(!empty($itemArray['pubDate'])?$itemArray['pubDate']:$date->format(DateTime::ISO8601))."]]></pubDate>
+				<address><![CDATA[".(!empty($itemArray['address'])?$itemArray['address']:'')."]]></address>
+				<place><![CDATA[".(!empty($itemArray['place'])?$itemArray['place']:'')."]]></place>
+				<geolocation><![CDATA[".((!empty($itemArray['latitude']) && !empty($itemArray['longitude']))? $itemArray['latitude']."#".$itemArray['longitude']:'')."]]></geolocation> 
+				<telephone><![CDATA[".(!empty($itemArray['telephone'])?$itemArray['telephone']:'')."]]></telephone>
+				<mobile><![CDATA[".(!empty($itemArray['mobile'])?$itemArray['mobile']:'')."]]></mobile>
+				<mail><![CDATA[".(!empty($itemArray['mail'])?$itemArray['mail']:'')."]]></mail>
+				<transportation><![CDATA[".(!empty($itemArray['transportation'])?$itemArray['transportation']:'')."]]></transportation>
+				<web><![CDATA[".(!empty($itemArray['web'])?$itemArray['web']:'')."]]></web>
+				<opening><![CDATA[".(!empty($itemArray['opening'])?$itemArray['opening']:'')."]]></opening>
+			</item>
+		";
+	}
+		
 	return $xml;
-	//$itemArray['eventDate']."#".$itemArray['title']."|".$itemArray['title']."#".$itemArray['title']
 }
 
 /*cast object to array going deeply in the object*/

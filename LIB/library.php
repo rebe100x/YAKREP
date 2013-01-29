@@ -643,7 +643,14 @@ function randomPositionArround($loc){
 	return array('lat'=>$lat2,'lng'=>$lon2);
 }
 
-
+//function to determine an array of keywords in a text, in case of ambiguous category 
+function strpos_arr($haystack, $needle) {
+if(!is_array($needle)) $needle = array($needle);
+foreach($needle as $what) {
+if(($pos = strpos($haystack, $what))!==false) return $pos;
+}
+return false;
+}
 
 
 

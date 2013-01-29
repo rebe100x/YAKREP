@@ -228,6 +228,11 @@ require_once("conf.php");
 			}
 			$doublon = $this->getDoublon();
 			
+		//	echo "XXXXX";
+			
+			//print_r($doublon);
+		//	exit;
+			
 			if(empty($doublon)){
 				$this->moveData();
 				$this->saveInfo();
@@ -338,7 +343,6 @@ require_once("conf.php");
 			"pubDate"		=>	(!empty($this->pubDate))?$this->pubDate:new MongoDate(gmmktime()),
 			"creationDate" 	=>	new MongoDate(gmmktime()),
 			"lastModifDate" =>	new MongoDate(gmmktime()),
-			"eventDate"		=>	$this->eventDate,
 			"dateEndPrint"	=> 	(!empty($this->dateEndPrint))?$this->dateEndPrint:new MongoDate(gmmktime()+7*86400),
 			"location" 		=>	$this->location,
 			"address" 		=>	$this->address,

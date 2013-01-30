@@ -11,4 +11,6 @@ TEST PLAN
 8) test each input with this test : 
 c'est l'été
 9) CHANGE your account type to 2 and try to post
+10) test different screen size : phone, tablet, medium and big screen
+11) test with different browser : Chrome, FF, IE10
 

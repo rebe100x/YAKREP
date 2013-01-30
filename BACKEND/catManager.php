@@ -312,7 +312,7 @@ $records[]= array(
 	"parent" => "Culture",
 	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
 	"parentId" => new MongoId("504d89cffa9a957004000001"),
-	"tag" => array("théâtre"),
+	"tag" => array(""),
 	"level" => 2,
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
@@ -680,6 +680,38 @@ $records[] = array(
 	"level" => 2,
 	"thumb" => "",
 	"tag"=> array("football, foot"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("51094f75fa9a95280c000000"),
+	"title"=> "Handball",
+	"path" => "Sport, Handball",
+	"pathN" => "SPORT#HANDBALL",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("51094f75fa9a95280c000001"),
+	"title"=> "Basket",
+	"path" => "Sport, Basket",
+	"pathN" => "SPORT#BASKET",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1

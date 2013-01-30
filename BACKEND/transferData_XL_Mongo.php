@@ -116,6 +116,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				//	exit;
 				$item ++;
 				$lieu = array();
+				$lieuTmp = array();
 				$lieutitle = array();
 				$lieutext = array();
 				$adresse = array();
@@ -157,7 +158,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$web = "";
 				$opening = "";
 				$thumb = "";
-				
+				$placeArray = array();	
 				
 				
 				$metas = $hit->metas;
@@ -368,7 +369,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								$lieu = $lieutitle; 
 						 }else
 							$lieu = $placeInput;
-							
+						
+					
 						 /*OTHER CAT*/   
 						 if($group->id == "Person_People")
 							   $freeTag[]= yakcatPathN($category->title,0);
@@ -389,7 +391,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					$geoloc = array($defaultPlace['location']);
 					$status = 1;
 					$contact = array("tel"=>"","mobile"=>"","mail"=>"","transportation"=>"","web"=>"","opening"=>"",);
-								$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
+					$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
 				}else{
 				
 					//logical construction of the address :
@@ -456,7 +458,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					}
 					
 					
-					$placeArray = array();	 
+					 
 					// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
 					if(sizeof($locationTmp ) > 0){
 						

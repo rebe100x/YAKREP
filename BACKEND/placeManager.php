@@ -643,6 +643,68 @@ $records[] = array(
 );
 
 
+
+
+$records[] = array(
+	"_id" => new MongoId("5108edce1d22b37655000377"),
+	"title"=>"opéra-théâtre",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("504df6b1fa9a957c0b000004")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.949617,'lng'=>4.805864),
+	"formatted_address"=> "1 Rue Racine, 84000 Avignon, France",
+	"address" => array(
+				'street_number'=>"1",
+				'street'=>"Rue Racine",
+				'arr'=>"",
+				'city'=>"Avignon",
+				'state'=>"Vaucluse",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>"France",
+				'zip'=>"84000",
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("5108edce1d22b37655000378"),
+	"title"=>"Opéra-Théâtre",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("504df6b1fa9a957c0b000004")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.949617,'lng'=>4.805864),
+	"formatted_address"=> "1 Rue Racine, 84000 Avignon, France",
+	"address" => array(
+				'street_number'=>"1",
+				'street'=>"Rue Racine",
+				'arr'=>"",
+				'city'=>"Avignon",
+				'state'=>"Vaucluse",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>"France",
+				'zip'=>"84000",
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
 $records[] = array(
 	"_id" => new MongoId("51077a72fa9a95ac0b000000"),
 	"title"=>"Vieux-Nice",
@@ -1631,6 +1693,34 @@ $records[] = array(
 				'area'=>"Provence-Alpes-Côte-d'Azur",
 				'country'=>'France',
 				'zip'=>'13001',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("51095062fa9a95280c000003"),
+	"title"=>"Var",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.464881,'lng'=>6.240234),
+	"formatted_address"=> "Var, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>"Var",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>'France',
+				'zip'=>'83000',
 			),	
 	"status" => 1,
 	"user" => 0, 

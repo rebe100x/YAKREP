@@ -17,6 +17,54 @@ $records = array();
 /*LEVEL 1*/
 
 $records[] = array(
+	"_id" => new MongoId("50f00cecfa9a957c0c000001"),
+	"title"=> "Administration",
+	"path" => "ADMINISTRATION",
+	"pathN" => "ADMINISTRATION",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50efebbffa9a95b40c000000"),
+	"title"=> "Politique",
+	"path" => "POLITIQUE",
+	"pathN" => "POLITIQUE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50efebbffa9a95b40c000001"),
+	"title"=> "Economie",
+	"path" => "ECONOMIE",
+	"pathN" => "ECONOMIE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50f025f7fa9a957c0c000048"),
+	"title"=> "Commerce",
+	"path" => "Commerce",
+	"pathN" => "COMMERCE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
 	"_id" => new MongoId("50923b9afa9a95d409000000"),
 	"title"=> "Agenda",
 	"path" => "AGENDA",
@@ -109,6 +157,8 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1
 );
+
+
 $records[] = array(
 	"_id" => new MongoId("50596c9cfa9a953c14000000"),
 	"title"=> "Loisir",
@@ -169,7 +219,71 @@ $records[]= array(
 	"status" => 1
 );
 
+$records[]= array(
+	"_id" => new MongoId("50f7f315fa9a95880b0001e7"),
+	"title"=> "Energie",
+	"path" => "Energie",
+	"pathN" => "ENERGIE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+/*********/
 /*LEVEL 2*/
+/********/
+$records[]= array(
+	"_id" => new MongoId("50f7f334fa9a958c0b000000"),
+	"title"=> "Centrale nucléaire",
+	"path" => "Energie, Centrale nucléaire",
+	"pathN" => "ENERGIE#CENTRALENUCLEAIRE",
+	"ancestors" => array("Energie"),
+	"parent" => "Immobilier",
+	"ancestorsId" => array(new MongoId("50f7f315fa9a95880b0001e7")),
+	"parentId" => new MongoId("50f7f315fa9a95880b0001e7"),
+	"tag" => array("Centre d'essais nucléaires"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[]= array(
+	"_id" => new MongoId("50f01dcefa9a95bc0c00005f"),
+	"title"=> "Location",
+	"path" => "Immobilier, Location",
+	"pathN" => "IMMOBILIER#LOCATION",
+	"ancestors" => array("Immobilier"),
+	"parent" => "Immobilier",
+	"ancestorsId" => array(new MongoId("508fc6ebfa9a95680b000029")),
+	"parentId" => new MongoId("508fc6ebfa9a95680b000029"),
+	"tag" => array(""),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[]= array(
+	"_id" => new MongoId("50f00d35fa9a95b40c000003"),
+	"title"=> "Mairie",
+	"path" => "Administration, Mairie",
+	"pathN" => "ADMINISTRATION#MAIRIE",
+	"ancestors" => array("Administration"),
+	"parent" => "Administration",
+	"ancestorsId" => array(new MongoId("50f00cecfa9a957c0c000001")),
+	"parentId" => new MongoId("50f00cecfa9a957c0c000001"),
+	"tag" => array(""),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
 
 
 $records[]= array(
@@ -198,7 +312,7 @@ $records[]= array(
 	"parent" => "Culture",
 	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
 	"parentId" => new MongoId("504d89cffa9a957004000001"),
-	"tag" => array("théâtre"),
+	"tag" => array(""),
 	"level" => 2,
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
@@ -378,6 +492,23 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("506479f54a53042191010000"),
+	"title"=> "Concert",
+	"path" => "Culture, Concert",
+	"pathN" => "CULTURE#CONCERT",
+	"ancestors" => array("Culture"),
+	"parent" => "Culture",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
+	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+
+$records[] = array(
 	"_id" => new MongoId("504df70ffa9a957c0b000006"),
 	"title"=> "Exposition",
 	"path" => "Culture, Exposition",
@@ -555,6 +686,38 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("51094f75fa9a95280c000000"),
+	"title"=> "Handball",
+	"path" => "Sport, Handball",
+	"pathN" => "SPORT#HANDBALL",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("51094f75fa9a95280c000001"),
+	"title"=> "Basket",
+	"path" => "Sport, Basket",
+	"pathN" => "SPORT#BASKET",
+	"ancestors" => array("Sport"),
+	"parent" => "Sport",
+	"ancestorsId" => array(new MongoId("506479f54a53042191000000")),
+	"parentId" => new MongoId("506479f54a53042191000000"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
 	"_id" => new MongoId("50647e2d4a53041f91050000"),
 	"title"=> "Rugby",
 	"path" => "Sport, Rugby",
@@ -603,15 +766,16 @@ $records[] = array(
 );
 
 
+
 $records[] = array(
-	"_id" => new MongoId("506479f54a53042191010000"),
-	"title"=> "Concert",
-	"path" => "Culture, Concert",
-	"pathN" => "CULTURE#CONCERT",
-	"ancestors" => array("Culture"),
-	"parent" => "Culture",
-	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001")),
-	"parentId" => new MongoId("504d89cffa9a957004000001"),
+	"_id" => new MongoId("506479f54a53042191020000"),
+	"title"=> "Station",
+	"path" => "Transport, Station",
+	"pathN" => "TRANSPORT#STATION",
+	"ancestors" => array("Transport"),
+	"parent" => "Transport",
+	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),
+	"parentId" => new MongoId("5077ebb1fa9a95600d0001dc"),
 	"level" => 2,
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
@@ -620,10 +784,26 @@ $records[] = array(
 );
 
 $records[] = array(
-	"_id" => new MongoId("506479f54a53042191020000"),
-	"title"=> "Station",
-	"path" => "Transport, Station",
-	"pathN" => "TRANSPORT#STATION",
+	"_id" => new MongoId("50f049e6fa9a95d40c000004"),
+	"title"=> "Gare",
+	"path" => "Transport, Gare",
+	"pathN" => "TRANSPORT#GARRE",
+	"ancestors" => array("Transport"),
+	"parent" => "Transport",
+	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),
+	"parentId" => new MongoId("5077ebb1fa9a95600d0001dc"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[] = array(
+	"_id" => new MongoId("50f049e6fa9a95d40c000005"),
+	"title"=> "Port",
+	"path" => "Transport, Port",
+	"pathN" => "TRANSPORT#PORT",
 	"ancestors" => array("Transport"),
 	"parent" => "Transport",
 	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),
@@ -685,6 +865,24 @@ $records[] = array(
 
 
 /*LEVEL 3*/
+
+
+$records[] = array(
+	"_id" => new MongoId("50f90b48fa9a953809000000"),
+	"title"=> "Danse",
+	"path" => "Culture, Spectacle, Danse",
+	"pathN" => "CULTURE#SPECTACLE#DANSE",
+	"ancestors" => array("Culture", "Spectacle"),
+	"parent" => "Spectacle",
+	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001"),new MongoId("50696022fa9a955014000009")),
+	"parentId" => new MongoId("50696022fa9a955014000009"),
+	"level" => 3,
+	"thumb" => "",
+	"tag"=> array("Chorégraphie"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
 
 $records[] = array(
 	"_id" => new MongoId("5061a0d3fa9a95f009000000"),

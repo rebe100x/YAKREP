@@ -1,6 +1,176 @@
 <?php 
 ini_set('display_errors',1);
 
+function trimArray($i){
+	return trim($i);	
+}
+/*
+ generate random point arround a center
+
+*/
+function generatePointArround($lat1,$lon1,$range=1)
+{
+	$point = new Location();
+	
+	$brng = deg2rad(rand(0,360));
+	$d = rand(1100,10000*$range)/1000;
+	$R= 6371;
+	$lat1R = deg2rad($lat1);
+	$lon1R = deg2rad($lon1);
+	$lat2R = asin( sin($lat1R)*cos($d/$R) + cos($lat1R)*sin($d/$R)*cos($brng) );
+
+	$lon2R = $lon1R + atan2(sin($brng)*sin($d/$R)*cos($lat1R), cos($d/$R)-sin($lat1R)*sin($lat2R));
+
+	$lon2 = rad2deg($lon2R);
+	$lat2 = rad2deg($lat2R);
+	$point->set($lat2,$lon2);
+	return $point;
+}
+/*
+	
+*/
+function isItWatter($lat,$lng) {
+	
+	$GMAPStaticUrl = "https://maps.googleapis.com/maps/api/staticmap?center=".$lat.",".$lng."&size=40x40&maptype=roadmap&sensor=false&zoom=12&key=AIzaSyAbYNYyPVWQ78bvZIHHR_djLt-FMEfy2wY";	
+	//echo $GMAPStaticUrl;
+	$chuid = curl_init();
+	curl_setopt($chuid, CURLOPT_URL, $GMAPStaticUrl);	
+	curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
+	$data = trim(curl_exec($chuid));
+	curl_close($chuid);
+	$image = imagecreatefromstring($data);
+	
+	ob_start();
+	imagepng($image);
+	$contents =  ob_get_contents();
+	ob_end_clean();
+
+	echo "<img src='data:image/png;base64,".base64_encode($contents)."' />";
+	
+	$hexaColor = imagecolorat($image,0,0);
+	$color_tran = imagecolorsforindex($image, $hexaColor);
+	
+	$hexaColor2 = imagecolorat($image,0,1);
+	$color_tran2 = imagecolorsforindex($image, $hexaColor2);
+	
+	$hexaColor3 = imagecolorat($image,0,2);
+	$color_tran3 = imagecolorsforindex($image, $hexaColor3);
+	
+	$red = $color_tran['red'] + $color_tran2['red'] + $color_tran3['red'];
+	$green = $color_tran['green'] + $color_tran2['green'] + $color_tran3['green'];
+	$blue = $color_tran['blue'] + $color_tran2['blue'] + $color_tran3['blue'];
+	
+	imagedestroy($image);
+	var_dump($red,$green,$blue);
+	//int(492) int(570) int(660) 
+	if($red == 492 && $green == 570 && $blue == 660)
+		return 1;
+	else
+		return 0;
+}
+
+
+/* load data form url or from file
+
+*/
+function getFeedData($feed){
+	if( empty($feed['fileSource']) && !empty($feed['link']) ){
+		$res = array();
+		$data = array();
+		if(is_array($feed['link'])){
+			foreach($feed['link'] as $link){
+				$chuid = curl_init();
+				curl_setopt($chuid, CURLOPT_URL, $link);	
+				//curl_setopt($chuid,CURLOPT_FOLLOWLOCATION,TRUE);
+				curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
+				curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
+				$res[] = trim(curl_exec($chuid));
+				curl_close($chuid);
+			}
+		}else{
+			$chuid = curl_init();
+			curl_setopt($chuid, CURLOPT_URL, $feed['link']);
+			curl_setopt($chuid,CURLOPT_FOLLOWLOCATION,TRUE);
+			curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
+			$res[] = trim(curl_exec($chuid));
+			curl_close($chuid);
+		}
+		
+		
+		if($feed['feedType'] == 'JSON'){
+			foreach($res as $r)
+				$data = array_merge($data,object_to_array(json_decode($r)));
+		}
+		if($feed['feedType'] == 'RSS'){
+			foreach($res as $r){
+				$tmp = simplexml_load_string($r,'SimpleXMLElement', LIBXML_NOCDATA);
+				$tmp2 = $tmp->xpath($feed['rootElement']);
+				$data = array_merge(json_decode(json_encode((array) $tmp2), 1),$data);
+			}
+		}
+		if($feed['feedType'] == 'CSV'){
+			
+		}
+	}elseif( !empty($feed['fileSource']) ){
+		if (($handle = fopen($feed['fileSource'], "r")) !== FALSE) {
+			while (($line = fgetcsv($handle, 10000, ";")) !== FALSE) {
+				$data[] = $line;
+			}
+		}
+	}else{
+		$data = false;
+	}	
+
+	return $data;	
+}
+
+/* Build an XML item of an XL feed crawler
+*/
+function buildXMLItem($itemArray){
+	$xml = "";
+	if(sizeof($itemArray)>0){	
+		$date = new DateTime();
+		$xml = "
+			<item>
+				<title><![CDATA[".(!empty($itemArray['title'])?$itemArray['title']:'')."]]></title>
+				<description><![CDATA[".(!empty($itemArray['content'])?$itemArray['content']:'')."]]></description>
+				<outGoingLink><![CDATA[".(!empty($itemArray['outGoingLink'])?$itemArray['outGoingLink']:'')."]]></outGoingLink>
+				<thumb><![CDATA[".(!empty($itemArray['thumb'])?$itemArray['thumb']:'')."]]></thumb>
+				<yakCats><![CDATA[".(!empty($itemArray['yakCats'])?$itemArray['yakCats']:'')."]]></yakCats>
+				<freeTag><![CDATA[".(!empty($itemArray['freeTag'])?$itemArray['freeTag']:'')."]]></freeTag>
+				<pubDate><![CDATA[".(!empty($itemArray['pubDate'])?$itemArray['pubDate']:$date->format(DateTime::ISO8601))."]]></pubDate>
+				<address><![CDATA[".(!empty($itemArray['address'])?$itemArray['address']:'')."]]></address>
+				<place><![CDATA[".(!empty($itemArray['place'])?$itemArray['place']:'')."]]></place>
+				<geolocation><![CDATA[".((!empty($itemArray['latitude']) && !empty($itemArray['longitude']))? $itemArray['latitude']."#".$itemArray['longitude']:'')."]]></geolocation> 
+				<telephone><![CDATA[".(!empty($itemArray['telephone'])?$itemArray['telephone']:'')."]]></telephone>
+				<mobile><![CDATA[".(!empty($itemArray['mobile'])?$itemArray['mobile']:'')."]]></mobile>
+				<mail><![CDATA[".(!empty($itemArray['mail'])?$itemArray['mail']:'')."]]></mail>
+				<transportation><![CDATA[".(!empty($itemArray['transportation'])?$itemArray['transportation']:'')."]]></transportation>
+				<web><![CDATA[".(!empty($itemArray['web'])?$itemArray['web']:'')."]]></web>
+				<opening><![CDATA[".(!empty($itemArray['opening'])?$itemArray['opening']:'')."]]></opening>
+			</item>
+		";
+	}
+		
+	return $xml;
+}
+
+/*cast object to array going deeply in the object*/
+function object_to_array($data){
+    if (is_array($data) || is_object($data))
+    {
+        $result = array();
+        foreach ($data as $key => $value)
+        {
+            $result[$key] = object_to_array($value);
+        }
+        return $result;
+    }
+    return $data;
+}
+
 /* call to webservice to get and store a preview of the link 
  * return true if success
  * */
@@ -21,7 +191,7 @@ function getTeleportImg($spec){
 function getApercite($link){
 	
 	$fullpath = "thumb/".md5($link).'.jpg';
-	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;
+	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;	
 	$ch = curl_init ($img);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -49,6 +219,7 @@ function createImgThumb($link,$conf){
 
 	$filePathDestOriginal = $conf->originalpath() .$hash.'.jpg';
 	$filePathDestThumb = $conf->thumbpath() .$hash.'.jpg';
+	$filePathDestMedium = $conf->mediumpath() .$hash.'.jpg';
 	$filePathDestBig = $conf->bigpath() .$hash.'.jpg';
 	$ch = curl_init ($link);
     curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -64,9 +235,10 @@ function createImgThumb($link,$conf){
     fwrite($fp, $rawdata);
     fclose($fp);
 	// create thumb and full size
-	$res1 = redimg(array(0=>array('W'=>80,'H'=>60)),$filePathDestThumb,$filePathDestOriginal,0);
-    $res2 = redimg(array(0=>array('W'=>120,'H'=>90)),$filePathDestThumb,$filePathDestOriginal,0);
-	$res3 = redimg(array(0=>array('W'=>512,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   
+	
+	$res1 = redimg(array(0=>array('W'=>120,'H'=>90)),$filePathDestThumb,$filePathDestOriginal,0);
+	$res2 = redimg(array(0=>array('W'=>320,'H'=>240)),$filePathDestMedium,$filePathDestOriginal,0);   
+	$res3 = redimg(array(0=>array('W'=>560,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   
 	
 	if($res1 && $res2 && $res3)
 		$res = $hash.'.jpg';
@@ -179,21 +351,23 @@ function createImgThumb($link,$conf){
 		return $res;
     } 
 	
+	
+	
 /* call to gmap
  * retrun a php array(X,Y)
  * ready to go in mongo
  * can output JSON or PHP array
- * 
+ * We do not take results if approximate ( gmap status )
  * if no location from gmap, status = 10
  * call exemple : $resGMap = getLocationGMap(urlencode(utf8_decode(suppr_accents($loc.', Paris, France'))),'PHP',1);
  
- * return value : array('status'=>'OK','location'=>array(lat,lng),'address'=>array(street,arr,city,state,area,country,zip))
+ * return value : array('status'=>'OK','location'=>array(lat,lng),'address'=>array(street,arr,city,state,area,country,zip),'formatted_address'=>'2 rue des Amandiers')
  * */
 function getLocationGMap($q,$output = 'PHP',$debug = 0){
 	
 	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$q."&sensor=false";
-    echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
-    
+    //echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
+    echo '<br>--- URL CALLED : '.$url;
 	$ch = curl_init();
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
@@ -202,33 +376,90 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
     $json = json_decode($result);
     //var_dump($json);
     if(sizeof($json->results) > 0){
-	    //$res = $json->results[0]->geometry->location;
-		$res = $json->results[0];
-		$address = array("street_number"=>"","street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
-		foreach($res->address_components as $itemAddress){
-			if(in_array("street_number",$itemAddress->types)) 
-				$address['street_number'] = $itemAddress->long_name;
-			if(in_array("route",$itemAddress->types) || in_array("transit_station",$itemAddress->types)) 
-				$address['street'] = $itemAddress->long_name;
-			if(in_array("sublocality",$itemAddress->types))
-				$address['arr'] = $itemAddress->long_name;
-			if(in_array("locality",$itemAddress->types))
-				$address['city'] = $itemAddress->long_name;
-			if(in_array("administrative_area_level_2",$itemAddress->types))
-				$address['state'] = $itemAddress->long_name;
-			if(in_array("administrative_area_level_1",$itemAddress->types))
-				$address['area'] = $itemAddress->long_name;
-			if(in_array("country",$itemAddress->types))
-				$address['country']= $itemAddress->long_name;
-			if(in_array("postal_code",$itemAddress->types))
-				$address['zip']= $itemAddress->long_name;
-				
-		}
+	    
+		$status = $json->results[0]->geometry->location_type;
+		echo '<br>status '.$status;
+		//if($status != "APPROXIMATE"){
+			$res = $json->results[0];
+			$address = array("street_number"=>"","street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
+			foreach($res->address_components as $itemAddress){
+				if(in_array("street_number",$itemAddress->types)) 
+					$address['street_number'] = $itemAddress->long_name;
+				if(in_array("route",$itemAddress->types) || in_array("transit_station",$itemAddress->types)) 
+					$address['street'] = $itemAddress->long_name;
+				if(in_array("sublocality",$itemAddress->types))
+					$address['arr'] = $itemAddress->long_name;
+				if(in_array("locality",$itemAddress->types))
+					$address['city'] = $itemAddress->long_name;
+				if(in_array("administrative_area_level_2",$itemAddress->types))
+					$address['state'] = $itemAddress->long_name;
+				if(in_array("administrative_area_level_1",$itemAddress->types))
+					$address['area'] = $itemAddress->long_name;
+				if(in_array("country",$itemAddress->types))
+					$address['country']= $itemAddress->long_name;
+				if(in_array("postal_code",$itemAddress->types))
+					$address['zip']= $itemAddress->long_name;
+					
+			}
+			
+			if($debug==1){
+				echo '<br>---ADDRESS---<br>';
+				var_dump($address);
+			}	
+			$location = $json->results[0]->geometry->location;
+			
+			if($debug==1){
+				echo '<br>---LOCATION---<br>';
+				var_dump($location);
+			}	
+			$formatted_address = $json->results[0]->formatted_address;
+			
+			if($debug==1){
+				echo '<br>---FORMATTED ADDRESS---<br>';
+				var_dump($formatted_address);
+			}	
+			$res = array("formatted_address"=>$formatted_address,"address"=>$address,"location"=>array($location->lat,$location->lng),"status"=>$json->status);
+			if($output == 'JSON')    
+				$res = json_encode($res);
+			if($output == 'PHP')    
+				$res = $res;
+		/*}else{
+			$res=0;
+		}*/
 		
-		if($debug==1){
-			echo '<br>---ADDRESS---<br>';
-			var_dump($address);
-		}	
+    }else
+        $res = 0;
+     
+	 
+    return $res;
+    
+}
+
+	
+/* call to google place api
+ * retrun a php array(X,Y)
+ * ready to go in mongo
+ * can output JSON or PHP array
+ * if no location from gmap, status = 10
+ 
+ * return value : array('status'=>'OK','location'=>array(lat,lng),'address'=>array(street,arr,city,state,area,country,zip),'formatted_address'=>'2 rue des Amandiers')
+ * */
+function getPlaceGMap($q,$output = 'PHP',$debug = 0){
+	
+	//$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$q."&sensor=false";
+	$url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=".$q."&sensor=false&key=AIzaSyAbYNYyPVWQ78bvZIHHR_djLt-FMEfy2wY";
+    //echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
+    echo '<br>--- URL CALLED : '.$url;
+	$ch = curl_init();
+    curl_setopt($ch,CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    $result = curl_exec($ch);
+    curl_close($ch);
+	$json = json_decode($result);
+    if(sizeof($json->results) > 0){
+	    $res = $json->results[0];
+		
 		$location = $json->results[0]->geometry->location;
 		
 		if($debug==1){
@@ -241,11 +472,13 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 			echo '<br>---FORMATTED ADDRESS---<br>';
 			var_dump($formatted_address);
 		}	
-		$res = array("formatted_address"=>$formatted_address,"address"=>$address,"location"=>array($location->lat,$location->lng),"status"=>$json->status);
-	    if($output == 'JSON')    
-	        $res = json_encode($res);
-	    if($output == 'PHP')    
-	        $res = $res;
+		$res = array("formatted_address"=>$formatted_address,"address"=>array(),"location"=>array($location->lat,$location->lng),"status"=>$json->status);
+		if($output == 'JSON')    
+			$res = json_encode($res);
+		if($output == 'PHP')    
+			$res = $res;
+	
+		
     }else
         $res = 0;
      
@@ -258,123 +491,175 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
 //var_dump($res);
 
 
-/** Rewrite the arrondissements of Paris to fit gmap type
+/** Rewrite the arrondissements to fit gmap type
  * enter VIe or VIeme or VI�me
- * output 6�me arrondissement
+ * output 6ème arrondissement
  * 
  * */
-function rewriteArrondissementParis($romanLetters){
-	$output = $romanLetters;
-
+function rewriteArrondissement($romanLetters){
 	
 	$romanLetters = str_replace(array('(',')','arrondissement',',','.','-',' '),'',$romanLetters);
-	
+	$output = $romanLetters;
 	switch($romanLetters){
 		case 'Ier':
-		case 'Ie':
-		case ' Ier':	
+			case 'Ie':
+				case ' Ier':	
+					case ' 1e':
+						case ' 1er':
 			$output = '1er arrondissement';
 		break;
 		
         case 'IIe':
             case 'IIeme':
                 case 'IIème':
+					case '2e':
+						case '2eme':
+							case '2ème':
+							
             $output = '2e arrondissement';
         break;
         
         case 'IIIe':
             case 'IIIeme':
                 case 'IIIème':
+					case '3e':
+						case '3eme':
+							case '3ème':
             $output = '3e arrondissement';
         break;
         
         case 'IVe':
             case 'IVeme':
                 case 'IVème':
+					case '4e':
+						case '4eme':
+							case '4ème':
             $output = '4e arrondissement';
         break;
         
         case 'Ve':
             case 'Veme':
                 case 'Vème':
+					case '5e':
+						case '5eme':
+							case '5ème':
             $output = '5e arrondissement';
         break;
         
         case 'VIe':
             case 'VIeme':
                 case 'VIème':
+					case '6e':
+						case '6eme':
+							case '6ème':
             $output = '6e arrondissement';
         break;
         
         case 'VIIe':
             case 'VIIeme':
                 case 'VIIème':
+					case '7e':
+						case '7eme':
+							case '7ème':
             $output = '7e arrondissement';
         break;
         
         case 'VIIIe':
             case 'VIIIeme':
                 case 'VIIIème':
+					case '8e':
+						case '8eme':
+							case '8ème':
             $output = '8e arrondissement';
         break;
         
         case 'IXe':
             case 'IXeme':
                 case 'IXème':
+					case '9e':
+						case '9eme':
+							case '9ème':
             $output = '9e arrondissement';
         break;
         
         case 'Xe':
             case 'Xeme':
                 case 'Xème':
+					case '10e':
+						case '10eme':
+							case '10ème':
             $output = '10e arrondissement';
         break;
         
         case 'XIe':
         	case 'XIeme':
                 case 'XIème':
+					case '11e':
+						case '11eme':
+							case '11ème':
             $output = '11e arrondissement';
         break;
         
         case 'XIIe':
         	case 'XIIeme':
         		case 'XIIème':
+					case '12e':
+						case '12eme':
+							case '12ème':
             $output = '12e arrondissement';
         break;
         
         case 'XIIIe':
         	case 'XIIIeme':
         		case 'XIIIème':
+					case '13e':
+						case '13eme':
+							case '13ème':
             $output = '13e arrondissement';
         break;
         
         case 'XIVe':
         	case 'XIVeme':
         		case 'XIVème':
+					case '14e':
+						case '14eme':
+							case '14ème':
             $output = '14e arrondissement';
         break;
         
         case 'XVe':
         	case 'XVeme':
         		case 'XVème':
+					case '15e':
+						case '15eme':
+							case '15ème':
             $output = '15e arrondissement';
         break;
         
         case 'XVIe':
             case 'XVIeme':
         	   case 'XVIème':
+					case '16e':
+						case '16eme':
+							case '16ème':
             $output = '16e arrondissement';
         break;
         
         case 'XVIIe':
-        case 'XVIIeme':
-        	case 'XVII�ème':
+			case 'XVIIeme':
+				case 'XVIIème':
+					case '17e':
+						case '17eme':
+							case '17ème':
             $output = '17e arrondissement';
         break;
         
         case 'XVIIIe':
         	case 'XVIIIeme':
         		case 'XVIIIème':
+					case '18e':
+						case '18eme':
+							case '18ème':
         
             $output = '18e arrondissement';
         break;
@@ -382,13 +667,19 @@ function rewriteArrondissementParis($romanLetters){
         case 'XIXe':
         	case 'XIXeme':
         		case 'XIXème':
+					case '19e':
+						case '19eme':
+							case '19ème':
         
             $output = '19e arrondissement';
         break;
         
         case 'XXe':
-        case 'XXeme':
-        case 'XXème':
+			case 'XXeme':
+				case 'XXème':
+					case '20e':
+						case '20eme':
+							case '20ème':
             $output = '20e arrondissement';
         break;
         
@@ -407,8 +698,8 @@ var_dump($res);
 /*Clean all accentuated char
  **/
 
-function suppr_accents($str)
-{
+function suppr_accents($str){
+
   $avant = array('À','Á','Â','Ã','Ä','Å','Ā','Ă','Ą','Ǎ','Ǻ','Æ','Ǽ',
 'Ç','Ć','Ĉ','Ċ','Č','Ð','Ď','Đ',
 'É','È','Ê','Ë','Ē','Ĕ','Ė','Ę','Ě','Ĝ','Ğ','Ġ','Ģ',

@@ -16,17 +16,18 @@ $zone = $db->zone;
 $records = array();
 
 
-/*MARSEILLE*/
+
+/*MARSEILLE*/	
 $records[] = array(
 	"_id" => new MongoId("50c5e0601d22b34e440010a7"),
-	"name"=>"Bouches-du-Rhône",
+	"name"=>"Provence: 04,05,84,13",
 	"location" => array('lat'=>43.297198,'lng'=>5.365997),
 	"num"=>14,
-	"formatted_address"=> "Bouches du Rhône, France",
+	"formatted_address"=> "Marseille, France",
 	"address" => array(
 				'arr'=>'',
 				'city'=>'',
-				'state'=>"Bouches-du-Rhône",
+				'state'=>"",
 				'area'=>"Provence-Alpes-Côte-d'Azur",
 				'country'=>'France',
 				'zip'=>'13000',
@@ -34,7 +35,10 @@ $records[] = array(
 	"box"=>array(
 			'tl'=>array('lat'=>43.854336,'lng'=>4.514557),
 			'br'=>array('lat'=>43.197167,'lng'=>5.651642),
-	),
+			),
+	"status" => 1
+	);
+
 	
 /* BRETAGNE */
 $records[] = array(
@@ -51,10 +55,10 @@ $records[] = array(
 				'country'=>'France',
 				'zip'=>'',
 			),
-//	"box"=>array(
-//			'tl'=>array('lat'=>49.2415040,'lng'=>1.60873310),
-//			'br'=>array('lat'=>48.90867490,'lng'=>2.59497910),
-//	),
+	"box"=>array(
+			'tl'=>array('lat'=>48.839413,'lng'=>-4.878754),
+			'br'=>array('lat'=>47.309034,'lng'=>-1.181854),
+			),
 	"status" => 1
 );
 

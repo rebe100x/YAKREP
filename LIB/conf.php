@@ -12,11 +12,11 @@ include_once "contact.php";
 include_once "location.php";
 include_once "zone.php";
 include_once "stringUtil.php";
-include_once "cat.php";
+//include_once "cat.php";
 
 class conf
 {
-	private $deploy = 'devrenaud'; 
+	public $deploy = 'devrenaud'; 
     private $db;
 	private $fronturl;
 	private $backurl;
@@ -34,6 +34,7 @@ class conf
 				$this->thumburl = 'http://dev.batch.yakwala.fr/BACKEND/thumb/';
 				$this->thumbpath = '/YAKREP/BACKEND/thumb/';
 				$this->bigpath = '/YAKREP/BACKEND/big/';
+				$this->mediumpath = '/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/YAKREP/BACKEND/original/';
 				
 			break;
@@ -44,6 +45,7 @@ class conf
 				$this->thumburl = 'http://dev.batch.yakwala.fr/BACKEND/thumb/';
 				$this->thumbpath = '/BACKEND/thumb/';
 				$this->bigpath = '/BACKEND/big/';
+				$this->mediumpath = '/BACKEND/medium/';
 				$this->originalpath = '/BACKEND/original/';
 				
 			break;
@@ -54,6 +56,7 @@ class conf
 				$this->thumburl = 'http://batch.yakwala.fr/PREPROD/YAKREP/BACKEND/thumb';				
 				$this->thumbpath = '/PREPROD/YAKREP/BACKEND/thumb/';
 				$this->bigpath = '/PREPROD/YAKREP/BACKEND/big/';
+				$this->mediumpath = '/PREPROD/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/PREPROD/YAKREP/BACKEND/original/';
 				
 			break;
@@ -64,6 +67,7 @@ class conf
 				$this->thumburl = 'http://batch.yakwala.fr/YAKREP/BACKEND/thumb';				
 				$this->thumbpath = '/PROD/YAKREP/BACKEND/thumb/';
 				$this->bigpath = '/PROD/YAKREP/BACKEND/big/';
+				$this->mediumpath = '/PROD/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/PROD/YAKREP/BACKEND/original/';
 				
 			break;
@@ -101,7 +105,9 @@ class conf
 	public function bigpath() {
         return  $_SERVER["DOCUMENT_ROOT"] . $this->bigpath;
     }
-
+	public function mediumpath() {
+        return  $_SERVER["DOCUMENT_ROOT"] . $this->mediumpath;
+    }
 	public function originalpath() {
         return  $_SERVER["DOCUMENT_ROOT"] . $this->originalpath;
     }

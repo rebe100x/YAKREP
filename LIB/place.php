@@ -120,8 +120,8 @@ class Place
 	function getDuplicated($title,$zone,$thestatus=1){
 
 		$theString2Search = StringUtil::accentToRegex(preg_quote($title));
-		$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>$thestatus); // TODO : status 1 or 2  and 3 throw an alert
-
+		//$rangeQuery = array('title' => new MongoRegex("/.*{$theString2Search}.*/i"),'zone' => $zone,"status"=>$thestatus); // TODO : status 1 or 2  and 3 throw an alert
+		$rangeQuery = array('title' => $title,'zone' => $zone,"status"=>$thestatus); 
 		$doublon = $this->placeColl->findOne($rangeQuery);
 
 		return $doublon;
@@ -192,7 +192,7 @@ class Place
 			//print_r($record);
 		$doublon = $this->getDuplicated($this->title,$this->zone,$this->status);
 
-		var_dump($doublon);
+		//var_dump($doublon);
 		// if no duplicated
 		if (empty($doublon)) {
 			
@@ -203,7 +203,7 @@ class Place
 				$this->getLocationFromQuery($locationQuery, $res);
 			
 			} 
-
+//var_dump($record);exit;
 			$resSave = $this->savePlace($record);
 			//print_r($resSave);
 			$res['record'] = $record; // TODO : cast to array ???
@@ -256,7 +256,7 @@ class Place
 			&& (!empty($this->access))		
 			){
 			$test=$this->placeColl->save($record);
-			print_r($record);
+			//print_r($record);
 		$res['id'] = $record['_id'];
 	}else{
 		$res['error'] = "<br><b>Error:</b> A non nullable field is empty :<br>".

@@ -1,5 +1,6 @@
 #!/bin/bash
-lynx -dump http://batch.yakwala.fr/PREPROD/YAKREP/BATCH/DB2OntologyFull.php > /home/bitnami/stack/apache2/htdocs/LOG/PREPROD/ontoBuilderFull.log
+#ZONE1 YAKDICO
+lynx -dump http://ec2-54-246-84-102.eu-west-1.compute.amazonaws.com/PREPROD/YAKREP/BATCH/DB2OntologyFull.php > /home/bitnami/stack/nginx/html/PREPROD/LOG/ontoBuilderFull.log
 cp -R /home/bitnami/stack/nginx/html/PREPROD/YAKREP/BATCH/output/ontologies/ /home/bitnami/stack/exalead/cloudview-V6R2013.SP2.44163-linux-x64/resource/all-arch/yakwala/
 cd /home/bitnami/stack/exalead/cloudview-V6R2013.SP2.44163-linux-x64/resource/all-arch/yakwala/ontologies/
 for fi in `ls *.xml`

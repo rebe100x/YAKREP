@@ -655,13 +655,18 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				}
 			
 				/* THUMB  */
+				$thumbFlag = 0;
 				echo "<br>enclosre:".$enclosure;
 				if(!empty($enclosure)){
 					$res = createImgThumb($enclosure,$conf);
-					if($res == false)
-							$thumb = getApercite($outGoingLink);
-						else
-							$thumb = 'thumb/'.$res;
+					if($res == false){
+						$thumb = getApercite($outGoingLink);
+						$thumbFlag = 1;	
+					}
+					else{
+						$thumb = 'thumb/'.$res;
+						$thumbFlag = 2;	
+					}
 				}else{
 					if(!empty($content)){
 						$img = array();
@@ -675,13 +680,18 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							if(sizeof($img) > 0 && $img[0] != '' ){
 								$res = createImgThumb($img[0],$conf);
 								
-								if($res == false)
+								if($res == false){
 									$thumb = getApercite($outGoingLink);
-								else
+									$thumbFlag = 1;	
+								}
+								else{
+									$thumbFlag = 2;	
 									$thumb = 'thumb/'.$res;
-								
-							}else
+								}
+							}else{
 								$thumb = getApercite($outGoingLink);
+								$thumbFlag = 1;	
+							}
 						}
 					}
 				}
@@ -777,6 +787,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['content'] = $content;
 						$info['outGoingLink'] = $outGoingLink;
 						$info['thumb'] = $thumb;
+						$info['thumbFlag'] = $thumbFlag;						
 						$info['origin'] = $feed['humanName'];
 						$info['originLink'] = $feed['linkSource'];
 						$info['access'] = 2;

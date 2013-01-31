@@ -2,6 +2,7 @@ INFO
 	title
 	content
 	thumb : le thumbnail
+	thumbFlag : 0 = nothing 1: thumb only 2 : all
 	origin : source of the info ( leparisien.fr, username,  )
 	originLink : link to the source 
 	filesourceId = mongoId (can be null if data is not coming from a file parsed)

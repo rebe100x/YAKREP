@@ -332,7 +332,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							$quartier = $quartiertext; 
 						 else
 							$quartier = $quartiertitle; 
-							  
+							 
+						$quartier = str_replace('quartier','',$quartier);			
+						$quartier = str_replace('quartiers','',$quartier);			
+						$quartier = str_replace('secteur','',$quartier);			
+						$quartier = str_replace('secteurs','',$quartier);			
+						
 						 /*ARRONDISSEMENT*/   
 						 if($group->id == "arrondissementtitle")
 							   $arrondissementtitle = $category->title;
@@ -449,6 +454,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					}
 					
 					// la ville
+					var_dump($ville);
 					$laville = '';
 					if(sizeof($ville) > 0){
 						if(is_array($ville))
@@ -556,7 +562,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 											"origin"=>$feed['humanName'],    
 											"access"=> 2,
 											"licence"=> "Yakwala",
-											"outGoingLink" => $feed['link'],
+											"outGoingLink" => $feed['linkSource'],
 											"yakCat" => array(new MongoId($geolocYakCatId)), 
 											"creationDate" => new MongoDate(gmmktime()),
 											"lastModifDate" => new MongoDate(gmmktime()),
@@ -742,7 +748,15 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						//$tsPub = 1356998400;
 						//$tsEnd = 1388534400;
 							
-						echo "<br>adresse".sizeof($adresse)."<br>lieu".sizeof($lieu)."<br>yakdico".sizeof($yakdico)."<br>quartier".sizeof($quartier)."<br>arr".sizeof($arrondissement)."<br>geoinput".sizeof($geolocationInput)."<br>addressInput".$addressInput."  ".sizeof($addressInput)."<br>placeinput".sizeof($placeInput)."<br>ville".$ville.'  '.sizeof($ville);
+						echo "<br>adresse";var_dump($adresse);
+						echo "<br>lieu";var_dump($lieu);
+						echo "<br>yakdico";var_dump($yakdico);
+						echo "<br>quartier";var_dump($quartier);
+						echo "<br>arr";var_dump($arrondissement);
+						echo "<br>geoinput";var_dump($geolocationInput);
+						echo "<br>addressInput";var_dump($addressInput);
+						echo "<br>placeinput";var_dump($placeInput);
+						echo "<br>ville";var_dump($ville);
 						if( sizeof($adresse) == 0 
 							&& sizeof($lieu) == 0 
 							&& sizeof($yakdico) == 0 
@@ -764,7 +778,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['outGoingLink'] = $outGoingLink;
 						$info['thumb'] = $thumb;
 						$info['origin'] = $feed['humanName'];
-						$info['originLink'] = $feed['link'];
+						$info['originLink'] = $feed['linkSource'];
 						$info['access'] = 2;
 						$info['licence'] = "reserved";
 						$info['heat'] = "80";

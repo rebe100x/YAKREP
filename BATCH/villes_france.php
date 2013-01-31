@@ -68,11 +68,11 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
       elseif ($zn == "91")
 		$zone = 9;
       elseif ($zn == "92")
-		$zone = 11;//10
+		$zone = 10;//10
       elseif ($zn == "93")
-		$zone = 12;//11
+		$zone = 11;//11
       elseif ($zn == "94")
-		$zone = 10;//12
+		$zone = 12;//12
       elseif ($zn == "95")
 		$zone = 13;
       elseif ($zn == "34")

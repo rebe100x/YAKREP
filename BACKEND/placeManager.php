@@ -3489,6 +3489,36 @@ $records[] = array(
 	
 );	
 
+$records[] = array(
+	"_id" => new MongoId("510a3157fa9a95440f000085"),
+	"title"=>"Fontenay",
+	"content" =>"Fontenay-sous-Bois",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("507e5a9a1d22b30c44000068")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.851557,'lng'=>2.476044),
+	"formatted_address"=> "Fontenay-sous-Bois, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>'',
+				'arr'=>'',
+				'city'=>'',
+				'state'=>'',
+				'area'=>'',
+				'country'=>'Fontenay-sous-Bois',
+				'zip'=>'94120',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 12
+	
+);
+
 
 $records[] = array(
 	"_id" => new MongoId("5059750efa9a954014000058"),

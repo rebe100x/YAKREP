@@ -334,10 +334,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						 else
 							$quartier = $quartiertitle; 
 							 
+						/*
 						$quartier = str_replace('quartier','',$quartier);			
 						$quartier = str_replace('quartiers','',$quartier);			
 						$quartier = str_replace('secteur','',$quartier);			
 						$quartier = str_replace('secteurs','',$quartier);			
+						*/
 						
 						 /*ARRONDISSEMENT*/   
 						 if($group->id == "arrondissementtitle")
@@ -579,8 +581,9 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								$res = $placeColl->findOne(array('title'=>(empty($lieu))?$loc:$lieu,"status"=>1,"zone"=>$defaultPlace['zone']));
 								if(empty($res)){// The place is not in db
 									echo "<br> The location does not exist in db, we create it.";
-									$placeColl->save($place); 
+									$test = $placeColl->save($place); 
 									$placeColl->ensureIndex(array("location"=>"2d"));
+									$res['_id'] = $place['_id'];
 								}else{ // The place already in DB, we update if the flag tells us to
 									if($flagForceUpdate ==  1){
 										echo "<br> The location exists in db and we update it.";
@@ -817,6 +820,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						//$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
 						$info['address'] = $geolocItem['address'];
 						$info['placeId'] = new MongoId($geolocItem['_id']);
+						echo '<br>'.$geolocItem['_id'];
 						$info['contact'] = $geolocItem['contact'];
 						
 						
@@ -863,8 +867,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						}
 					}
 				}
-			echo 'EXIT';
-			exit;
 			
 			}
 			

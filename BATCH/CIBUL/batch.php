@@ -51,7 +51,7 @@ mettre la endprint à dateevent[last] +1
 
 // UpdateFlag is a query parameter, if 1, force update
 $updateFlag = empty($_GET['updateFlag'])?0:1;
-$updateFlag =1;
+
 // Array to store logs
 $results = array('row'=>0,'parse'=>0,'rejected'=>0,'duplicate'=>0,'insert'=>0,'locErr'=>0,'update'=>0,'callGMAP'=>0,"error"=>0,'record'=>array());
 
@@ -154,7 +154,8 @@ foreach ($urlset->url as $url) {
 			else {
 
 				/* Begin place insertion in mongodb */
-				foreach ($result->data->locations as $location) { print_r($result);
+				foreach ($result->data->locations as $location) {
+
 					$currentPlace = new Place();
 					$currentPlace->filesourceTitle = $fileTitle;
 					$currentPlace->title = $location->placename;
@@ -225,7 +226,19 @@ foreach ($urlset->url as $url) {
 						$info->content .= html_entity_decode($result->data->freeText->en);
 					}
 					// Using createImgThumb from /lib/library.php
-					$info->thumb = "/thumb/".createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
+					$thumbFlag = 0;
+					$res = createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
+					if($res == false){
+						$info->thumb = "";		
+					}else{
+						$thumbFlag = 1;
+						$size = getimagesize('http://'.ltrim($result->data->imageThumb, "/"));
+						if($size[0] > 320)
+							$thumbFlag = 2;	
+						else
+							$thumbFlag = 1;	
+						$info->thumb = "/thumb/".$res;
+					}
 
 					$info->origin = $origin;
 					$info->filesourceTitle = $fileTitle;
@@ -242,7 +255,8 @@ foreach ($urlset->url as $url) {
 					
 					$dateUpdatedAt = DateTime::createFromFormat('Y-m-d H:i:s', $result->data->updatedAt);
 					$info->pubDate = new MongoDate($dateUpdatedAt->getTimestamp());
-						// Heat set to 1 for new infos
+					
+					// Heat set to 1 for new infos
 					$info->heat = 80;
 
 					// Default yakCat
@@ -298,11 +312,6 @@ foreach ($urlset->url as $url) {
 					if(sizeof($location->dates) > 1)
 						echo '<div style=\'background-color:#00FF00\'>MULTIPLE DATE</div>';
 					$eventDate = array();
-					
-					echo " baba </br>";
-					print_r($location->dates);
-					echo "  </br> baba";
-					
 					foreach ($location->dates as $date) {
 						$eventDate = array();
 
@@ -364,7 +373,7 @@ foreach ($urlset->url as $url) {
 		print_debug("<hr />");
 	}
 
-	// Temporary break after 15 insertions
+	// Temporary break
 	if($row > 5)
 		break;
 }

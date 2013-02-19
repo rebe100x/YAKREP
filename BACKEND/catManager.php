@@ -220,6 +220,18 @@ $records[]= array(
 );
 
 $records[]= array(
+	"_id" => new MongoId("510bcee3fa9a95cc0c000003"),
+	"title"=> "Hôtel",
+	"path" => "Hôtel",
+	"pathN" => "HOTEL",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
+$records[]= array(
 	"_id" => new MongoId("50f7f315fa9a95880b0001e7"),
 	"title"=> "Energie",
 	"path" => "Energie",

@@ -95,7 +95,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			else
 				$origin ="";
 				
-			$url = "http://ec2-54-246-84-102.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$feed['XLconnector'].$origin."&of=json&b=0&hf=1000&s=document_item_date";
+			$url = "http://ec2-54-246-84-102.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$feed['XLconnector'].$origin."&of=json&b=0&hf=512000&s=document_item_date";
 			
 			echo '<br> Days back : <b>'.$feed['daysBack'].'</b>';
 			echo '<br> Url called : <b>'.$url.'</b>';
@@ -185,6 +185,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					
 					if($meta->name == "publicurl")
 						  $outGoingLink = $meta->value;
+					$outGoingLink = empty($outGoingLink)?$feed['linkSource']:$outGoingLink;
+					
 					if($meta->name == "image_enclosure")
 						  $enclosure = $meta->value;
 					if($meta->name == "item_geolocation")
@@ -251,15 +253,14 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							if($flagIncluded == 0)
 							   $villetext[]= $category->title;
 						 }
-						 
 						 // any city in the title has the priority,
 						 if(sizeof($villetitle) > 0){
 							if(sizeof($villetext) > 0){//  but need to check if the text has not the same address but more precise
 								$villetitleTMP = array();
-								foreach($villetitle as $adrtitle){
-									foreach($villetext as $adrtext){
-										if( preg_match("/".$adrtitle."/",$adrtext) > 0)
-											$villetitleTMP[] = $adrtext;  
+								foreach($villetitle as $vtitle){
+									foreach($villetext as $vtext){
+										if( preg_match("/".$vtitle."/",$vtext) > 0)
+											$villetitleTMP[] = $vtext;  
 									}
 								}
 							if(sizeof($villetitleTMP) > 0)
@@ -269,7 +270,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						 }else
 							$ville = $villetext;
 						
-						// filter in our zone
+						/*// filter in our zone
 						$villeTmp = array();
 						foreach($ville as $v){
 							$isInZone = $placeColl->findOne(array('title'=>$v,"zone"=>$defaultPlace['zone']));
@@ -277,7 +278,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								$villeTmp[] = $v;								
 						}
 						$ville = $villeTmp;	
-						
+						*/
 	
 						 /*address*/
 						 if($group->id == "adressetitle3"){
@@ -454,7 +455,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					}
 					
 					// la ville
-					var_dump($ville);
 					$laville = '';
 					if(sizeof($ville) > 0){
 						if(is_array($ville))
@@ -470,7 +470,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						
 						foreach($locationTmp as $loc){
 							
-							echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".$loc;
+							echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".(empty($lieu))?$loc:$lieu;
 							
 							//check if in db if the place exists
 							$place = $placeColl->findOne(array('title'=>$loc,"zone"=>$defaultPlace['zone']));
@@ -556,13 +556,13 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 												);
 								
 								$place = array(
-											"title"=> $loc,
+											"title"=> (empty($lieu))?$loc:$lieu,
 											"content" =>"",
 											"thumb" => "",
 											"origin"=>$feed['humanName'],    
 											"access"=> 2,
 											"licence"=> "Yakwala",
-											"outGoingLink" => $feed['linkSource'],
+											"outGoingLink" => $outGoingLink,
 											"yakCat" => array(new MongoId($geolocYakCatId)), 
 											"creationDate" => new MongoDate(gmmktime()),
 											"lastModifDate" => new MongoDate(gmmktime()),
@@ -576,12 +576,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 										  );
 										  
 										  
-								$res = $placeColl->findOne(array('title'=>$loc,"status"=>1,"zone"=>$defaultPlace['zone']));
-								
+								$res = $placeColl->findOne(array('title'=>(empty($lieu))?$loc:$lieu,"status"=>1,"zone"=>$defaultPlace['zone']));
 								if(empty($res)){// The place is not in db
 									echo "<br> The location does not exist in db, we create it.";
 									$placeColl->save($place); 
-									var_dump($place);
 									$placeColl->ensureIndex(array("location"=>"2d"));
 								}else{ // The place already in DB, we update if the flag tells us to
 									if($flagForceUpdate ==  1){
@@ -656,7 +654,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			
 				/* THUMB  */
 				$thumbFlag = 0;
-				echo "<br>enclosre:".$enclosure;
+				echo "<br>enclosure:".$enclosure;
 				if(!empty($enclosure)){
 					$res = createImgThumb($enclosure,$conf);
 					if($res == false){
@@ -665,7 +663,11 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					}
 					else{
 						$thumb = 'thumb/'.$res;
-						$thumbFlag = 2;	
+						$size = getimagesize($enclosure);
+						if($size[0] > 320)
+							$thumbFlag = 2;	
+						else
+							$thumbFlag = 1;	
 					}
 				}else{
 					if(!empty($content)){
@@ -685,7 +687,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									$thumbFlag = 1;	
 								}
 								else{
-									$thumbFlag = 2;	
+									$size = getimagesize($img[0]);
+									if($size[0] > 320)
+										$thumbFlag = 2;	
+									else
+										$thumbFlag = 1;	
+										
 									$thumb = 'thumb/'.$res;
 								}
 							}else{
@@ -791,7 +798,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['origin'] = $feed['humanName'];
 						$info['originLink'] = $feed['linkSource'];
 						$info['access'] = 2;
-						$info['licence'] = "reserved";
+						$info['licence'] = (!empty($feed['licence']))?$feed['licence']:"Yakwala";
 						$info['heat'] = "80";
 						$info['yakCat'] = $yakCatId;
 						$info['yakCatName'] = $yakCatName;
@@ -856,9 +863,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						}
 					}
 				}
+			echo 'EXIT';
+			exit;
+			
 			}
-			
-			
 			
 			
 			echo "<br><hr><hr><br><br>";

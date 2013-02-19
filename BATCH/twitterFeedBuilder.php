@@ -48,7 +48,7 @@ if(!empty($_GET['screen_name'])){
 		<item>
 		<title><![CDATA[".($tweet->text)."]]></title>
 		<description><![CDATA[]]></description>
-		<link><![CDATA[".$img."?".$tweet->id_str."]]></link>
+		<link><![CDATA[https://twitter.com/rebe100x/status/".$tweet->id_str."]]></link>
 		<pubDate>".$tweet->created_at."</pubDate>
 		<guid isPermaLink='false' ><![CDATA[".$tweet->id_str."]]></guid>
 		<enclosure url='".$img."' type='image/jpeg'/>

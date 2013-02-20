@@ -16,6 +16,19 @@ $records = array();
 
 /*LEVEL 1*/
 
+
+$records[] = array(
+	"_id" => new MongoId("51246d43fa9a95080b000000"),
+	"title"=> "Météo",
+	"path" => "METEO",
+	"pathN" => "METEO",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1
+);
+
 $records[] = array(
 	"_id" => new MongoId("50f00cecfa9a957c0c000001"),
 	"title"=> "Administration",

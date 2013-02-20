@@ -856,6 +856,40 @@ $records[] = array(
 
 */
 
+// METEO http://api.meteorologic.net/api/api/rss_simple.php?id=4330&
+// http://www.meteorologic.net/zone-rss.php?id=1945
+$records[] = array(
+	"_id" => new MongoId("51246fdafa9a95600b000003"),
+	"XLconnector"=>"parser",
+	"humanName"=>"Météo Marseille",	
+	"name"=>"meteo-marseille",
+	"linkSource"=>array("http://api.meteorologic.net/api/api/rss_simple.php?id=4330"),
+	"link"=>"http://www.meteorologic.net/meteo-france/Marseille_4330.html",
+	"fileSource"=>"",
+	"rootElement"=>"/rss/channel/item",
+	"lineToBegin"=>"0",
+	"parsingTemplate"=>array(
+						'title' => "#YKLtitle",
+						'content' => "#YKLdescription",
+						'thumb'=>"http://batch.yakwala.fr/PROD/YAKREP/BACKEND/batchthumb/meteo.jpg",
+						'outGoingLink' => "#YKLlink",
+						'pubDate'=>"#YKLpubDate",
+					),
+	"thumbFlag"=>1,				
+	"licence"=>"Reserved",
+	"yakCatNameArray" => array('Météo'),
+	"yakCatId"=>array(new MongoId("51246d43fa9a95080b000000")),
+	"persistDays" => 1,
+	"defaultPlaceId" => new MongoId('510a3b1a1d22b31e68003d87'),
+	"defaultPlaceSearchName" => "Marseille, France",
+	"yakType" => 1,
+	"feedType" => "RSS",
+	"defaultPrintFlag" => 2,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 5,
+	"zone" =>14,
+);
 
 
 //http://www.laprovence.com/rss/rss_om.xml

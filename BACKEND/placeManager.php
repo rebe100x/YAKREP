@@ -3280,6 +3280,36 @@ $records[] = array(
 );	
 
 $records[] = array(
+	"_id" => new MongoId("510a3b1a1d22b31e68003d87"),
+	"title"=>"Marseille",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")), // ATTENTION NOT IN YAKCAT VILLE : TOO BIG
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.294418,'lng'=>5.35999),
+	"formatted_address" => "Marseille, Bouches-du-Rhône, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>'',
+				'arr'=>'',
+				'city' => 'Marseille',
+				'country' => 'France',
+				'zip' => '13001',
+				'state' => 'Bouches-du-Rhône',
+				'area' => 'PROVENCE-ALPES-COTE D\'AZUR',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14
+	
+);	
+
+$records[] = array(
 	"_id" => new MongoId("50517fe1fa9a95040b000007"),
 	"title"=>"Paris",
 	"content" =>"",

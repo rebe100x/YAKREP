@@ -159,7 +159,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$opening = "";
 				$thumb = "";
 				$placeArray = array();	
-				
+				$laville = '';
 				
 				$metas = $hit->metas;
 				$groups = $hit->groups;
@@ -457,7 +457,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					}
 					
 					// la ville
-					$laville = '';
+					
 					if(sizeof($ville) > 0){
 						if(is_array($ville))
 							$laville = $ville[0];
@@ -656,6 +656,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				}
 			
 				/* THUMB  */
+				
 				$thumbFlag = 0;
 				echo "<br>enclosure:".$enclosure;
 				if(!empty($enclosure)){
@@ -706,6 +707,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					}
 				}
 				
+				// overwrite if set in the feed
+				if(!empty($feed['thumbFlag']))
+					$thumbFlag = $feed['thumbFlag'];
+				
 				// catch keyword words in title
 				// here we should look in the yakcat collection
 				if(!empty($title)){
@@ -738,7 +743,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			
 				
 				// clean :
-				$content = (!empty($content))?strip_tags($content):"";
+				$content = (!empty($content))?strip_tags($content,"<br><b><strong>"):"";
 				$title = strip_tags(trim($title));			
 				
 				
@@ -786,6 +791,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							&& sizeof($addressInput) == 0
 							&& sizeof($placeInput) == 0
 							&& ($laville == "Marseille" || $laville == "Paris")
+							&& $feed['defaultPrintFlag'] != 2
 						){
 							echo "NO PRINT";
 							$geolocItem['print'] = 0;
@@ -793,6 +799,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				
 						echo "<br>time: ".$datePubArrayT[0]."-".$datePubArrayT[1]."-".$datePubArrayT[2]."-".$datePubArrayD[0]."-".$datePubArrayD[1]."-".$datePubArrayD[2];
 						$info = array();
+						echo 'TITLE'.$title;
 						$info['title'] = $title;
 						$info['content'] = $content;
 						$info['outGoingLink'] = $outGoingLink;

@@ -107,7 +107,8 @@ function getFeedData($feed){
 		if($feed['feedType'] == 'RSS'){
 			foreach($res as $r){
 				try{
-					$tmp = @simplexml_load_string($r,'SimpleXMLElement', LIBXML_NOCDATA);
+					$rClean = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $r); 
+					$tmp = @simplexml_load_string($rClean,'SimpleXMLElement', LIBXML_NOCDATA);
 					if($tmp){
 						$tmp2 = $tmp->xpath($feed['rootElement']);
 						$data = array_merge(json_decode(json_encode((array) $tmp2), 1),$data);

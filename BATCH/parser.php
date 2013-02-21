@@ -121,6 +121,7 @@ if($q != ''){
 										preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
 									}else
 										preg_match_all('/(#YKL)(\w+)/', $val, $out);
+									
 									//var_dump($out);
 									$tmp = array();
 									$o1 = array();
@@ -128,16 +129,20 @@ if($q != ''){
 										if(strpos($o,'->')){
 											$o1 = explode('->',$o);
 											if(!empty($o1[1])){
-												$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]]['@attributes'][$o1[1]]) )? $item[$o1[0]]['@attributes'][$o1[1]] : '';
-											}else
+												if(sizeof($item[$o1[0]])>1)
+													$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]][0]['@attributes'][$o1[1]]) )? $item[$o1[0]][0]['@attributes'][$o1[1]] : '';
+												else
+													$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]]['@attributes'][$o1[1]]) )? $item[$o1[0]]['@attributes'][$o1[1]] : '';
+											}else{
 												$tmp[] = (empty($item[$o]))?'':$item[$o];
-										}else
+											}
+										}else{
 											$tmp[] = (empty($item[$o]))?'':$item[$o];
+										}
 									}
 									//var_dump( $o);
 									//var_dump( $item);
 									$thevalue = @preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
-									
 								}else
 									$thevalue = '';
 									

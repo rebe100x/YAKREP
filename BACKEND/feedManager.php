@@ -871,7 +871,7 @@ $records[] = array(
 	"parsingTemplate"=>array(
 						'title' => "#YKLtitle",
 						'content' => "#YKLdescription",
-						'thumb'=>"http://batch.yakwala.fr/PROD/YAKREP/BACKEND/batchthumb/meteo.jpg",
+						'thumb'=>"http://batch.yakwala.fr/PROD/YAKREP/BACKEND/batchthumb/meteo_#YKLmeteoweather->pictos_matin.jpg",
 						'outGoingLink' => "#YKLlink",
 						'pubDate'=>"#YKLpubDate",
 					),

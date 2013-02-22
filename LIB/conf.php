@@ -14,6 +14,9 @@ include_once "zone.php";
 include_once "stringUtil.php";
 //include_once "cat.php";
 
+require_once('aws-sdk/sdk.class.php');  
+$s3 = new AmazonS3();
+
 class conf
 {
 	public $deploy = 'devrenaud'; 

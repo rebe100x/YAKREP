@@ -49,6 +49,7 @@ $db = $m->selectDB($conf->db());
 $infoColl = $db->info;
 $placeColl = $db->place;
 $yakcatColl = $db->yakcat;
+$tagColl = $db->tag;
 $batchlogColl = $db->batchlog;
 $statColl = $db->stat;
 $feedColl = $db->feed;
@@ -739,7 +740,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				}
 				
 				
-				
 			
 				
 				// clean :
@@ -832,11 +832,23 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						
 						
 						// check if data is not in DB
-						$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$defaultPlace['zone']));
+						$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"pubDate"=>new MongoDate($tsPub),"zone"=>$defaultPlace['zone']));
 						//var_dump($dataExists);
 						if(empty($dataExists)){
 							echo "<br> The info does not exist in DB, we insert it.";
 							// we check if there is another info printed at this point :
+							
+							// add tags to the top collection
+							foreach($freeTag as $theTag){
+								$dataExists = $tagColl->findOne(array("title"=>$theTag,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.5)));
+								if(!$dataExists){
+									$tagColl->save(array("title"=>$theTag,"numUsed"=>1,"location"=>$info['location'],"lastUsageDate"=>new MongoDate($tsPub)));
+								}else{
+									$tagColl->update(array("_id"=> $dataExist['_id']), array("lastUsageDate"=>new MongoDate($tsPub),array('$inc'=>array("numUsed"=>1))));
+								}
+								$tagColl->ensureIndex(array("location"=>"2d"));
+							}
+							
 							$dataCount = 0;
 							// here we take only 30 days of max history
 							$dataCount = $infoColl->count(array(

@@ -117,6 +117,7 @@ if($q != ''){
 							foreach($canvas as $key=>$val){
 								$thevalue = '';
 								if(!empty($val)){
+									$val = str_replace('#YKLcurrent_french_date',date('d m Y'),$val);
 									if(strpos($val,'->')){
 										preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
 									}else

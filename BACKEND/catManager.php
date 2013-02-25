@@ -48,7 +48,7 @@ $records[] = array(
 );
 
 $records[] = array(
-	//"_id" => new MongoId(""),
+	"_id" => new MongoId("512b6dbcfa9a95300c000026 "),
 	"title"=> "Elections",
 	"path" => "ELECTIONS",
 	"pathN" => "ELECTIONS",
@@ -212,7 +212,7 @@ $records[] = array(
 );
 
 $records[] = array(
-	//"_id" => new MongoId(""),
+	"_id" => new MongoId("512b6dbcfa9a95300c000027 "),
 	"title"=> "Nature et Environnement",
 	"path" => "NATUREETENVIRONNEMENT",
 	"pathN" => "NATUREETENVIRONNEMENT",
@@ -227,7 +227,7 @@ $records[] = array(
 );
 
 $records[] = array(
-	//"_id" => new MongoId(""),
+	"_id" => new MongoId("512b6dbcfa9a95300c000028 "),
 	"title"=> "Santé",
 	"path" => "SANTE",
 	"pathN" => "SANTE",
@@ -242,7 +242,7 @@ $records[] = array(
 );
 
 $records[] = array(
-	//"_id" => new MongoId(""),
+	"_id" => new MongoId("512b6dbcfa9a95300c000029 "),
 	"title"=> "Solidarité",
 	"path" => "SOLIDARITE",
 	"pathN" => "SOLIDARITE",
@@ -313,7 +313,7 @@ $records[]= array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(112,125,126,124,123,132,133,134,129,135,138,139,140,136,137,141,1,218,143,197,198,199,200,202,268,146,150,,148,147,267,223,171,175,177,219,8,5,15,10,12,206,310,222,245,176,274,320,178,179,180,181,182,287,288,183,184)	
+		"of"=>array(112,125,126,124,123,132,133,134,129,135,138,139,140,136,137,141,1,218,143,197,198,199,200,202,268,146,150,148,147,267,223,171,175,177,219,8,5,15,10,12,206,310,222,245,176,274,320,178,179,180,181,182,287,288,183,184)	
 	)
 );
 

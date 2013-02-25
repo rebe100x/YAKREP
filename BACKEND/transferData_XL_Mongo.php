@@ -717,11 +717,17 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				if(!empty($title)){
 					if (preg_match("/FOOT/i", $title) || preg_match("/FOOTBALL/i", $title)) {
 							$yakCatId[] = new MongoId("50647e2d4a53041f91040000");
+							$yakCatName[] = "Football";
 						}
 					if (preg_match("/Tennis/i", $title)) {
 							$yakCatId[] = new MongoId("50647e2d4a53041f91060000");
+							$yakCatName[] = "Tennis";
 						}	
-						
+					if (preg_match("/Météo/i", $title)) {
+							$yakCatId[] = new MongoId("51246d43fa9a95080b000000	");
+							$yakCatName[] = "Météo";
+						}	
+					
 					if (preg_match("/MP 2013/i", $title) || preg_match("/Marseille-Provence 2013/i", $title) ) {
 							$freeTag[] = "MP2013";
 						}
@@ -832,7 +838,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						
 						
 						// check if data is not in DB
-						$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"pubDate"=>new MongoDate($tsPub),"zone"=>$defaultPlace['zone']));
+						//$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"pubDate"=>new MongoDate($tsPub),"zone"=>$defaultPlace['zone']));
+						$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$defaultPlace['zone']));
 						//var_dump($dataExists);
 						if(empty($dataExists)){
 							echo "<br> The info does not exist in DB, we insert it.";
@@ -842,9 +849,11 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							foreach($freeTag as $theTag){
 								$dataExists = $tagColl->findOne(array("title"=>$theTag,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.5)));
 								if(!$dataExists){
-									$tagColl->save(array("title"=>$theTag,"numUsed"=>1,"location"=>$info['location'],"lastUsageDate"=>new MongoDate($tsPub)));
+									$tagColl->save(array("title"=>$theTag,"numUsed"=>1,"location"=>$info['location'],"lastUsageDate"=>new MongoDate($tsPub),"print"=>$geolocItem['print']));
 								}else{
-									$tagColl->update(array("_id"=> $dataExist['_id']), array("lastUsageDate"=>new MongoDate($tsPub),array('$inc'=>array("numUsed"=>1))));
+									
+									//$tagColl->update(array("_id"=> $dataExists['_id']), array("title"=>$theTag,"location"=>$info['location'],"lastUsageDate"=>new MongoDate($tsPub),array($inc=>array("numUsed"=>1))),array("upsert" => true));
+									$tagColl->update(array("_id"=> $dataExists['_id']), array('$inc'=>array("numUsed"=>1),'print'=>$geolocItem['print']),array("upsert" => true));
 								}
 								$tagColl->ensureIndex(array("location"=>"2d"));
 							}

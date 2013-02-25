@@ -26,7 +26,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -38,7 +41,25 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(211,214,215,270,271,212,213,278,99,100,244,224,203,205,204,225,98,)	
+	)
+);
+
+$records[] = array(
+	//"_id" => new MongoId(""),
+	"title"=> "Elections",
+	"path" => "ELECTIONS",
+	"pathN" => "ELECTIONS",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(330,283,284,332,331,)	
+	)
 );
 
 $records[] = array(
@@ -50,7 +71,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -62,7 +86,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -74,7 +101,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -86,7 +116,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(119,120,121,265,269,4,154,195,276,30,153,)	
+	)
 );
 
 $records[] = array(
@@ -98,7 +131,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -110,7 +146,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -122,7 +161,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -134,7 +176,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -146,7 +191,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(107,108,109,110,111,273,280,128)	
+	)
 );
 $records[] = array(
 	"_id" => new MongoId("5077ebb1fa9a95600d0001dc"),
@@ -157,8 +205,57 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(72,73,74,75,185,226)	
+	)
 );
+
+$records[] = array(
+	//"_id" => new MongoId(""),
+	"title"=> "Nature et Environnement",
+	"path" => "NATUREETENVIRONNEMENT",
+	"pathN" => "NATUREETENVIRONNEMENT",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(187,194,77,78,275,79,76,188,193,190,191,192,)	
+	)
+);
+
+$records[] = array(
+	//"_id" => new MongoId(""),
+	"title"=> "Santé",
+	"path" => "SANTE",
+	"pathN" => "SANTE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(85,86)	
+	)
+);
+
+$records[] = array(
+	//"_id" => new MongoId(""),
+	"title"=> "Solidarité",
+	"path" => "SOLIDARITE",
+	"pathN" => "SOLIDARITE",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(91,92,93,94,96,97,)	
+	)
+);
+
 $records[] = array(
 	"_id" => new MongoId("504d89f4fa9a958808000001"),
 	"title"=> "Géolocalisation",
@@ -168,7 +265,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
@@ -181,7 +281,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[]= array(
@@ -193,7 +296,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[]= array(
@@ -205,7 +311,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(112,125,126,124,123,132,133,134,129,135,138,139,140,136,137,141,1,218,143,197,198,199,200,202,268,146,150,,148,147,267,223,171,175,177,219,8,5,15,10,12,206,310,222,245,176,274,320,178,179,180,181,182,287,288,183,184)	
+	)
 );
 
 $records[]= array(
@@ -217,7 +326,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(105,104,106,)	
+	)
 );
 
 $records[]= array(
@@ -229,7 +341,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[]= array(
@@ -241,7 +356,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[]= array(
@@ -253,7 +371,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 /*********/
 /*LEVEL 2*/
@@ -272,7 +393,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[]= array(
@@ -289,7 +413,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[]= array(
@@ -306,7 +433,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
@@ -325,7 +455,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[]= array(
@@ -342,8 +475,12 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(246)	
+	)
 );
+
 
 
 $records[]= array(
@@ -360,7 +497,10 @@ $records[]= array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
@@ -378,7 +518,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(7,144)	
+	)
 );
 
 
@@ -395,7 +538,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -411,7 +557,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -427,7 +576,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -443,7 +595,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -459,7 +614,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
@@ -481,7 +639,10 @@ $records[] = array(
 	"tag"=> array("Bibliothèque"),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -497,7 +658,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -513,7 +677,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(22,25,6,17,157,159,168,247,248,281,161,162,163,164,166,167,208,)	
+	)
 );
 
 $records[] = array(
@@ -529,7 +696,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
@@ -546,7 +716,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(149,)	
+	)
 );
 
 $records[] = array(
@@ -562,7 +735,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(207)	
+	)
 );
 
 $records[] = array(
@@ -578,7 +754,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
@@ -595,7 +774,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
@@ -608,7 +790,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array(112,113,114,115,116,117,118,289,201,217)	
+	)
 );
 
 $records[] = array(
@@ -624,7 +809,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
@@ -641,7 +829,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -657,7 +848,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -674,7 +868,10 @@ $records[] = array(
 	"tag"=> array("piscine, natation"),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -690,7 +887,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -707,7 +907,10 @@ $records[] = array(
 	"tag"=> array("football, foot"),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -723,7 +926,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -739,7 +945,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -755,7 +964,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -771,7 +983,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -787,16 +1002,19 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
 
 $records[] = array(
 	"_id" => new MongoId("506479f54a53042191020000"),
-	"title"=> "Station",
-	"path" => "Transport, Station",
-	"pathN" => "TRANSPORT#STATION",
+	"title"=> "Station de métro",
+	"path" => "Transport, Station de métro",
+	"pathN" => "TRANSPORT#STATIONDEMETRO",
 	"ancestors" => array("Transport"),
 	"parent" => "Transport",
 	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),
@@ -805,14 +1023,17 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
 	"_id" => new MongoId("50f049e6fa9a95d40c000004"),
 	"title"=> "Gare",
 	"path" => "Transport, Gare",
-	"pathN" => "TRANSPORT#GARRE",
+	"pathN" => "TRANSPORT#GARE",
 	"ancestors" => array("Transport"),
 	"parent" => "Transport",
 	"ancestorsId" => array(new MongoId("5077ebb1fa9a95600d0001dc")),
@@ -821,7 +1042,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -837,7 +1061,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
@@ -853,24 +1080,13 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
-$records[] = array(
-	"_id" => new MongoId("50696022fa9a95501400000b"),
-	"title"=> "Archive",
-	"path" => "Education, Archive",
-	"pathN" => "EDUCATION#ARCHIVE",
-	"ancestors" => array("Education"),
-	"parent" => "Education",
-	"ancestorsId" => array(new MongoId("504dbb06fa9a95680b000211")),
-	"parentId" => new MongoId("504dbb06fa9a95680b000211"),
-	"level" => 2,
-	"thumb" => "",
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
-);
+
 
 $records[] = array(
 	"_id" => new MongoId("506479f54a53042191040000"),
@@ -885,7 +1101,10 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 
@@ -894,9 +1113,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("50f90b48fa9a953809000000"),
-	"title"=> "Danse",
-	"path" => "Culture, Spectacle, Danse",
-	"pathN" => "CULTURE#SPECTACLE#DANSE",
+	"title"=> "Chorégraphie",
+	"path" => "Culture, Spectacle, Chorégraphie",
+	"pathN" => "CULTURE#SPECTACLE#CHOREGRAPHIE",
 	"ancestors" => array("Culture", "Spectacle"),
 	"parent" => "Spectacle",
 	"ancestorsId" => array(new MongoId("504d89cffa9a957004000001"),new MongoId("50696022fa9a955014000009")),
@@ -906,12 +1125,15 @@ $records[] = array(
 	"tag"=> array("Chorégraphie"),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $records[] = array(
 	"_id" => new MongoId("5061a0d3fa9a95f009000000"),
-	"title"=> "Primaire",
+	"title"=> "Ecole primaire",
 	"path" => "Education, Ecole, Primaire",
 	"pathN" => "EDUCATION#ECOLE#PRIMAIRE",
 	"ancestors" => array("Education", "Ecole"),
@@ -923,7 +1145,10 @@ $records[] = array(
 	"tag"=> array("Elémentaire","Maternelle"),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
 );
 
 $row1 = 0;	

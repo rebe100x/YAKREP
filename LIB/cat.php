@@ -45,28 +45,23 @@ function setAncestors($ancestorTitle, $ancestorPathN) {
 		$this->conf = new Conf();
 			$m = new Mongo(); 
 		$db = $m->selectDB($this->conf->db());
-		//$this -> id = $db->yakcat->find(array("pathN" => 'STATISTIQUES'));
-	  //$this->path='aa';
-	  $this->title = $title1;
-	  $this->path = $path1;
-	  $this->pathN = $pathN1;
-	  $this->level = $level1;
-	  $this->thumb = $thumb1;
-	  $this->status = $status1;
+		$this->title = $title1;
+		$this->path = $path1;
+		$this->pathN = $pathN1;
+		$this->level = $level1;
+		$this->thumb = $thumb1;
+		$this->status = $status1;
 	  
-	  //$db->yakcat->insert(array("title" => $this->title, "path" => $this->path));
-		
  	}
  	
  	
  	function getID_fromPathN($pathN) {
- 	 // print_r($this);
  	  
  	  	$m = new Mongo(); 
 		$db = $m->selectDB($this->conf->db());
  	  
- 	$result = $db->yakcat->find(array("pathN" => $pathN));
-	$result1 = key(iterator_to_array($result));
+		$result = $db->yakcat->find(array("pathN" => $pathN));
+		$result1 = key(iterator_to_array($result));
 	
 	$result2 = new MongoId($result1);
 //	echo $result2;

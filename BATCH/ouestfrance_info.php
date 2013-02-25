@@ -6,13 +6,11 @@
 </head>
 <body>
 <?php
-/* Read a xml file : the ontology xml file for EXALEAD
- * Introduce in mongodb the place ( collection PLACE )
+/* 
  * */
 
 ini_set ('max_execution_time', 0);
 set_time_limit(0);
-require_once("../LIB/library.php");
 require_once("../LIB/conf.php");
 ini_set('display_errors',1);
 $inputFile ='./input/westfrance.xml';

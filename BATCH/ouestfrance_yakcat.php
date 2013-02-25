@@ -1,14 +1,12 @@
 <!doctype html><html><head><meta charset="utf-8" /><title>YAKWALA BATCH</title></head><body>
 <?php 
-/* Read a xml file : the ontology xml file for EXALEAD
- * Introduce in mongodb the place ( collection PLACE )
+/* 
  * */
 ini_set ('max_execution_time', 0);
 set_time_limit(0);
-require_once("../LIB/library.php");
 require_once("../LIB/conf.php");
 ini_set('display_errors',1);
-$inputFile ='./input/dictcat.xml';
+$inputFile ='./input/ouestfrance_categories.xml';
 
 $catXML = simplexml_load_file($inputFile);
 $status = 5000;
@@ -63,9 +61,9 @@ $succes =	$categorie -> saveToMongo($level = 1);
 	$title2=$two;
 	$path2=$one.", ".$two;
   $pathN2 = $pathN."#".yakcatPathN($title2);
-	
-  $categorie -> setAncestors($one,$trimmed);
-  $categorie -> setParent($one,$trimmed);
+  echo "<br>".$pathN;
+  $categorie -> setAncestors($one,$pathN);
+  $categorie -> setParent($one,$pathN);
   $categorie -> title = $title2;
   $categorie -> path = $path2;
   $categorie -> pathN = $pathN2;

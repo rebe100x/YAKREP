@@ -22,8 +22,8 @@ if(!empty($_GET['screen_name'])){
 	$screen_name = $_GET['screen_name'];
 	$rss = "";
 				
-	//?screen_name=Century21_PP
 	$url = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=false&trim_user=false&count=20&exclude_replies=true&contributor_details=false&screen_name=".$screen_name;
+https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=false&trim_user=false&count=20&exclude_replies=true&contributor_details=false&screen_name=".$screen_name	//?screen_name=Century21_PP
 	
 	$ch = curl_init ($url);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -44,12 +44,13 @@ if(!empty($_GET['screen_name'])){
 	else
 		$img = $tweet->user->profile_background_image_url;
 	
+	$pubDate = date( 'D,j M Y G:i:s O', strtotime($tweet->created_at) );
 	$rss .= "
 		<item>
 		<title><![CDATA[".($tweet->text)."]]></title>
 		<description><![CDATA[]]></description>
 		<link><![CDATA[https://twitter.com/rebe100x/status/".$tweet->id_str."]]></link>
-		<pubDate>".$tweet->created_at."</pubDate>
+		<pubDate>".$pubDate."</pubDate>
 		<guid isPermaLink='false' ><![CDATA[".$tweet->id_str."]]></guid>
 		<enclosure url='".$img."' type='image/jpeg'/>
 		</item>

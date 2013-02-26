@@ -158,6 +158,8 @@ function buildXMLItem($itemArray){
 				<transportation><![CDATA[".(!empty($itemArray['transportation'])?$itemArray['transportation']:'')."]]></transportation>
 				<web><![CDATA[".(!empty($itemArray['web'])?$itemArray['web']:'')."]]></web>
 				<opening><![CDATA[".(!empty($itemArray['opening'])?$itemArray['opening']:'')."]]></opening>
+				<eventDate><![CDATA[".(!empty($itemArray['eventDate'])?$itemArray['eventDate']:'')."]]></eventDate>
+				
 			</item>
 		";
 	}
@@ -230,6 +232,7 @@ function createImgThumb($link,$conf){
 	$filePathDestMedium = $conf->mediumpath() .$hash.'.jpg';
 	$filePathDestBig = $conf->bigpath() .$hash.'.jpg';
 	$ch = curl_init ($link);
+	
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);

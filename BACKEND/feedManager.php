@@ -788,9 +788,10 @@ $records[] = array(
 	"humanName"=>"Marseille-Provence 2013",	
 	"linkSource"=>array("http://api.mp2013.fr/events?from=2013-01-01&to=2013-02-15&lang=fr&format=json&offset=0&limit=10"),
 	"link"=>"http://www.mp2013.fr",
+	"fileSource"=>"",
 	"licence"=>"Open",				
 	"yakCatNameArray" => array('Agenda','Culture'),
-	"yakCatId"=>array(),
+	"yakCatId"=>array('50923b9afa9a95d409000000','504d89cffa9a957004000001'),
  	"persistDays" => 3,
 	"defaultPlaceId" => new MongoId('50eefc29fa9a953c0a00001d'), // PACA
 	"yakType" => 2,
@@ -802,7 +803,27 @@ $records[] = array(
 	"zone" =>14,
 );
 
-
+$records[] = array(
+	"_id" => new MongoId("512c81dbfa9a95440b000015"),
+	"XLconnector"=>"parser",
+	"name"=>"ouest-france",
+	"humanName"=>"infolocale.fr",	
+	"linkSource"=>array(""),
+	"fileSource"=>"./input/ouestfrance_small.xml",
+	"link"=>"infolocale.fr",
+	"licence"=>"Ouest France",				
+	"yakCatNameArray" => array('Agenda'),
+	"yakCatId"=>array('50923b9afa9a95d409000000'),
+ 	"persistDays" => 3,
+	"defaultPlaceId" => new MongoId('512c8140fa9a95240b000028'), // PACA
+	"yakType" => 2,
+	"feedType" => "YAKMADE",
+	"defaultPrintFlag" => 1,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 365,
+	"zone" =>14,
+);
 
 
 

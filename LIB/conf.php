@@ -27,6 +27,7 @@ class conf
 	private $thumburl;
 	private $bigpath;
 	private $originalpath;
+	private $originalurl;
 	
 	function __construct(){
 		
@@ -36,6 +37,7 @@ class conf
 				$this->fronturl = 'http://dev.yakwala.fr';
 				$this->backurl = 'http://dev.batch.yakwala.fr';
 				$this->thumburl = 'http://dev.batch.yakwala.fr/BACKEND/thumb/';
+				$this->originalurl = 'http://dev.batch.yakwala.fr/BACKEND/original/';
 				$this->thumbpath = '/YAKREP/BACKEND/thumb/';
 				$this->bigpath = '/YAKREP/BACKEND/big/';
 				$this->mediumpath = '/YAKREP/BACKEND/medium/';
@@ -47,6 +49,7 @@ class conf
 				$this->fronturl = 'http://dev.yakwala.fr';
 				$this->backurl = 'http://dev.batch.yakwala.fr';
 				$this->thumburl = 'http://dev.batch.yakwala.fr/BACKEND/thumb/';
+				$this->originalurl = 'http://dev.batch.yakwala.fr/BACKEND/original/';
 				$this->thumbpath = '/BACKEND/thumb/';
 				$this->bigpath = '/BACKEND/big/';
 				$this->mediumpath = '/BACKEND/medium/';
@@ -57,7 +60,8 @@ class conf
 				$this->db = 'yakwala_preprod';
 				$this->fronturl = 'http://labs.yakwala.fr';
 				$this->backurl = 'http://batch.yakwala.fr/PREPROD/YAKREP/';
-				$this->thumburl = 'http://batch.yakwala.fr/PREPROD/YAKREP/BACKEND/thumb';				
+				$this->thumburl = 'http://batch.yakwala.fr/PREPROD/YAKREP/BACKEND/thumb';	
+				$this->originalurl = 'http://batch.yakwala.fr/PREPROD/YAKREP/BACKEND/original/';				
 				$this->thumbpath = '/PREPROD/YAKREP/BACKEND/thumb/';
 				$this->bigpath = '/PREPROD/YAKREP/BACKEND/big/';
 				$this->mediumpath = '/PREPROD/YAKREP/BACKEND/medium/';
@@ -67,8 +71,9 @@ class conf
 			case 'prod':
 				$this->db = 'yakwala';
 				$this->fronturl = 'http://labs.yakwala.fr';
-				$this->backurl = 'http://batch.yakwala.fr/YAKREP/';
-				$this->thumburl = 'http://batch.yakwala.fr/YAKREP/BACKEND/thumb';				
+				$this->backurl = 'http://batch.yakwala.fr/PROD/YAKREP/';
+				$this->thumburl = 'http://batch.yakwala.fr/PROD/YAKREP/BACKEND/thumb';	
+				$this->originalurl = 'http://batch.yakwala.fr/PROD/YAKREP/BACKEND/original/';				
 				$this->thumbpath = '/PROD/YAKREP/BACKEND/thumb/';
 				$this->bigpath = '/PROD/YAKREP/BACKEND/big/';
 				$this->mediumpath = '/PROD/YAKREP/BACKEND/medium/';
@@ -100,6 +105,10 @@ class conf
 	
 	public function thumburl() {
         return  $this->thumburl;
+    }
+	
+	public function originalurl() {
+        return  $this->originalurl;
     }
 
 	public function thumbpath() {

@@ -34,16 +34,16 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("50f00cecfa9a957c0c000001"),
-	"title"=> "Administration",
-	"path" => "ADMINISTRATION",
-	"pathN" => "ADMINISTRATION",
+	"title"=> "Administratif",
+	"path" => "ADMINISTRATIF",
+	"pathN" => "ADMINISTRATIF",
 	"level" => 1,
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(211,214,215,270,271,212,213,278,99,100,244,224,203,205,204,225,98,)	
+		"of"=>array('211','214','215','270','271','212','213','278','99','100','244','224','203','205','204','225','98')	
 	)
 );
 
@@ -58,7 +58,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(330,283,284,332,331,)	
+		"of"=>array('330','283','284','332','331')	
 	)
 );
 
@@ -118,7 +118,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(119,120,121,265,269,4,154,195,276,30,153,)	
+		"of"=>array('119','120','121','265','269','4','154','195','276','30','153',)	
 	)
 );
 
@@ -193,7 +193,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(107,108,109,110,111,273,280,128)	
+		"of"=>array('107','108','109','110','111','273','280','128')	
 	)
 );
 $records[] = array(
@@ -207,7 +207,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(72,73,74,75,185,226)	
+		"of"=>array('72','73','74','75','185','226')	
 	)
 );
 
@@ -222,7 +222,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(187,194,77,78,275,79,76,188,193,190,191,192,)	
+		"of"=>array('187','194','77','78','275','79','76','188','193','190','191','192',)	
 	)
 );
 
@@ -237,7 +237,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(85,86)	
+		"of"=>array('85','86')	
 	)
 );
 
@@ -252,7 +252,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(91,92,93,94,96,97,)	
+		"of"=>array('91','92','93','94','96','97',)	
 	)
 );
 
@@ -313,7 +313,7 @@ $records[]= array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(112,125,126,124,123,132,133,134,129,135,138,139,140,136,137,141,1,218,143,197,198,199,200,202,268,146,150,148,147,267,223,171,175,177,219,8,5,15,10,12,206,310,222,245,176,274,320,178,179,180,181,182,287,288,183,184)	
+		"of"=>array('112','125','126','124','123','132','133','134','129','135','138','139','140','136','137','141','1','218','143','197','198','199','200','202','268','146','150','148','147','267','223','171','175','177','219','8','5','15','10','12','206','310','222','245','176','274','320','178','179','180','181','182','287','288','183','184')	
 	)
 );
 
@@ -328,7 +328,7 @@ $records[]= array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(105,104,106,)	
+		"of"=>array('105','104','106',)	
 	)
 );
 
@@ -520,7 +520,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(7,144)	
+		"of"=>array('7','144')	
 	)
 );
 
@@ -679,7 +679,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(22,25,6,17,157,159,168,247,248,281,161,162,163,164,166,167,208,)	
+		"of"=>array('22','25','6','17','157','159','168','247','248','281','161','162','163','164','166','167','208')	
 	)
 );
 
@@ -718,7 +718,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(149,)	
+		"of"=>array('149')	
 	)
 );
 
@@ -737,7 +737,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(207)	
+		"of"=>array('207')	
 	)
 );
 
@@ -792,7 +792,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array(112,113,114,115,116,117,118,289,201,217)	
+		"of"=>array('112','113','114','115','116','117','118','289','201','217')	
 	)
 );
 

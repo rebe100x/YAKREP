@@ -168,20 +168,22 @@ $records[] = array(
 	"licence" => "Licence ouverte",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"tag" => array("offre" , "culture" , "france"),
+	"tag" => array("évènements culturels"),
 	"zone" => array(1,2,3,4),
 	);	
 
 
 
 $records[] = array(
- "_id" => new MongoId("50e42ac09bab884612000000"),
+	"_id" => new MongoId("50e42ac09bab884612000000"),
 	"title"=>"Ouest France",
 	"content" =>"Info de Ouest France.",
-	"licence" => "Licence ouverte",
+	"origin" => "infolocale.fr",
+	"licence" => "Licence Ouest France",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-
+	"tag" => array(""),
+	"zone" => array(15),
 	);	
 
 

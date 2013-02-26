@@ -645,9 +645,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$eventDate = array();
 				$i=0;
 				foreach ($eventDateInput as $date) {
+					
 					$fixedDate = str_replace('.0Z','Z',$date[0]);
 					$dateTimeFrom = DateTime::createFromFormat(DateTime::ISO8601, $fixedDate);
-					$eventDate[$i]['dateTimeFrom'] = new MongoDate(date_timestamp_get($dateTimeFrom));
+					$eventDate[$i]['dateTimeFrom'] = new MongoDate($dateTimeFrom->gettimestamp());
 
 					$fixedDate = str_replace('.0Z','Z',$date[1]);
 					$dateTimeEnd = DateTime::createFromFormat(DateTime::ISO8601, $fixedDate);

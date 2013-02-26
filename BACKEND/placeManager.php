@@ -609,6 +609,42 @@ $records[] = array(
 );
 
  
+ 
+ /************/
+/*BRETAGNE*/
+/***********/
+
+
+$records[] = array(
+	"_id" => new MongoId("512c8140fa9a95240b000028"),
+	"title"=>"Bretagne",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.206371,'lng'=>-2.927856),
+	"formatted_address"=> "Bretagne, France",
+	"address" => array(
+				'arr'=>'',
+				'city'=>'',
+				'state'=>"",
+				'area'=>"Bretagne",
+				'country'=>'France',
+				'zip'=>'',
+			),	
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 15,
+);
+
+
+
+
 /************/
 /*PACA*/
 /***********/

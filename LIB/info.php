@@ -210,7 +210,6 @@ require_once("conf.php");
 		
 		$this->setFilesourceId();
 		
-
 		// if we have a place geolocalized
 		if($this->placeName || $this->address){
 		
@@ -313,6 +312,7 @@ require_once("conf.php");
 			"zone"			=> 	$this->zone,
 			"placeid"		=>	$this->placeid,
 			);	
+			
 			$this->infoColl->save($record);
 			$this->infoColl->ensureIndex(array("location"=>"2d","pubDate"=>-1,"yakType"=>1,"print"=>1,"status"=>1));
 			print "$this->title : info saved in db.<br>";

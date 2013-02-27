@@ -1995,7 +1995,7 @@ $records[] = array(
 	"lineToBegin"=>"0",
 	"parsingTemplate"=>array(
 						'title' => "#YKLtitle",
-						'outGoingLink' => "YKLlink",
+						'outGoingLink' => "#YKLlink",
 						'thumb'=>"#YKLenclosure->url",
 						'pubDate'=>"#YKLpubDate",
 					),
@@ -2093,10 +2093,10 @@ $records[] = array(
 	"persistDays" => 7,
 	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'),
 	"yakType" => 1,
-	"defaultPrintFlag" => 1,
+	"defaultPrintFlag" => 0,
 	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 0,
-	"daysBack" => 5,
+	"status" => 1,
+	"daysBack" => 1,
 	"zone" =>1,
 );					
 				

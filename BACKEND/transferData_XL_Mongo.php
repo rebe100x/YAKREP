@@ -49,6 +49,7 @@ $db = $m->selectDB($conf->db());
 $infoColl = $db->info;
 $placeColl = $db->place;
 $yakcatColl = $db->yakcat;
+$yakNEColl = $db->yakNE;
 $tagColl = $db->tag;
 $batchlogColl = $db->batchlog;
 $statColl = $db->stat;
@@ -134,6 +135,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$yakdicoTmp = array();
 				$yakdicotitle = array();
 				$yakdicotext = array();
+				$yakNE = array();
 				$ville = array();
 				$villetitle = array();
 				$villetext = array();
@@ -366,6 +368,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						if($isInZone)
 							$yakdico = $yakdicoTmp;
 						
+						/*YAKWALA NAMED ENTITIES*/
+						if($group->id == "yakNE")
+							$yakNE[] = $category->title;
+						 	
 						 /*LIEU*/
 						 if(empty($placeInput)){
 							 if($group->id == "placetitle")
@@ -627,11 +633,42 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					}
 				}
 			
+				
+				// catch keyword words in title
+				if(!empty($title)){
+					// catch twitter hashtag in title
+					$matches = array();
+					if (preg_match_all('/#([^\s]+)/', $title, $matches)) {
+							$freeTag = array_merge($freeTag,$matches[1]);
+					}
+				
+				}
+				
+				$yakCatIdFromNE = array();
+				foreach($yakNE as $ne){
+					echo "<br>NE=".$ne;
+					$regexObj = new MongoRegex("/^$ne$/i"); 
+					$ynes = $yakNEColl->find(array('status'=>1,'match.title'=>$regexObj));
+					foreach( $ynes as $yne){
+						echo "<br>YNE".$yne['title'];
+						var_dump($yne);
+						$freeTag[] =  $yne['title'];
+						if(sizeof($yne['yakCatId'])>0)
+							$yakCatIdFromNE = array_merge($yakCatIdFromNE, $yne['yakCatId']);
+						echo '$yakCatIdFromNE';
+						var_dump($yakCatIdFromNE);
+					}
+				}
+				
+				
+				
+				
 				/* YAKCATS */
 				$yakCatIdArray = array();
 				$yakCatId = array();
 				$yakCatName = array();
-				$yakCatIdArray = array_merge($yakcatInput,$feed['yakCatId']);
+				$yakCatIdArray = array_merge($yakcatInput,$feed['yakCatId'],$yakCatIdFromNE);
+				$yakCatIdArray = array_unique($yakCatIdArray);
 				foreach ($yakCatIdArray as $id) {
 					$yc = ($yakcatColl->findOne(array('_id'=>new MongoId($id))));
 					if(!empty($yc)){
@@ -713,38 +750,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				if(!empty($feed['thumbFlag']))
 					$thumbFlag = $feed['thumbFlag'];
 				
-				// catch keyword words in title
-				// here we should look in the yakcat collection
-				if(!empty($title)){
-					if (preg_match("/FOOT/i", $title) || preg_match("/FOOTBALL/i", $title)) {
-							$yakCatId[] = new MongoId("50647e2d4a53041f91040000");
-							$yakCatName[] = "Football";
-						}
-					if (preg_match("/Tennis/i", $title)) {
-							$yakCatId[] = new MongoId("50647e2d4a53041f91060000");
-							$yakCatName[] = "Tennis";
-						}	
-					if (preg_match("/Météo/i", $title)) {
-							$yakCatId[] = new MongoId("51246d43fa9a95080b000000	");
-							$yakCatName[] = "Météo";
-						}	
-					
-					if (preg_match("/MP 2013/i", $title) || preg_match("/Marseille-Provence 2013/i", $title) ) {
-							$freeTag[] = "MP2013";
-						}
-					if (preg_match("/Midem/", $title) ) {
-							$freeTag[] = "Midem";
-						}	
-					if (preg_match("/Saint-Valentin/", $title) || preg_match("/St-Valentin/", $title) || preg_match("/St Valentin/", $title) || preg_match("/Saint Valentin/", $title) ) {
-							$freeTag[] = "StValentin";
-						}	
-					
-					// catch twitter hashtag in title
-					$matches = array();
-					if (preg_match_all('/#([^\s]+)/', $title, $matches)) {
-							$freeTag = array_merge($freeTag,$matches[1]);
-					}
-				}
 				
 				
 			
@@ -829,12 +834,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['print'] = $geolocItem['print'];
 						$info['status'] = $geolocItem['status'];
 						$info['user'] = 0;
+						$info['feed'] = $feed['_id'];
 						$info['zone'] = $defaultPlace['zone'];
 						$info['location'] = array("lat"=>$geolocItem['lat'],"lng"=>$geolocItem['lng']);
 						//$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
 						$info['address'] = $geolocItem['address'];
 						$info['placeId'] = new MongoId($geolocItem['_id']);
-						echo '<br>'.$geolocItem['_id'];
 						$info['contact'] = $geolocItem['contact'];
 						
 						

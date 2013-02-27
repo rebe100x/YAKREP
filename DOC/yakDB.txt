@@ -24,6 +24,7 @@ INFO
 	location : array('lat'=>float,'lng'=>float)
 	status : flag for the workflow : 1: OK ,2, wait for validation, 3 rejected,  10 alert gmap not found
 	user : id of the user who created the info ( 0 for a batch )
+	feed : id of the feed who created the info ( 0 for a user )
 	zone : used to speed up print by server : 1 Paris , 2, Mtplr, 3 Eghézéee, 4 Other
 	contact : object : only if different from the place contact ( ex: for an expo the museaum and the expo do not have the same contact )
 	address : the address human readable for printing ( formated address )

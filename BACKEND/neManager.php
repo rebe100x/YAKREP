@@ -205,6 +205,111 @@ $records[] = array(
 	"status" => 1,
 );
 
+$records[] = array(
+	"_id" => new MongoId("512e452d1d22b3836e015f05"),
+	"title"=> "FaitsDivers",
+	"match"=>array(
+		array(
+			"title"=>"un mort",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"criminel",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"crime",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"poignardé",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"assassin",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"assassiner",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"incendie",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"incendiaire",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"attaque à main armée",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"braquage",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"blessé",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"victime",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"cambrioleur",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"cambriolé",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"cambriolage",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"vol à main armée",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"empoisonné",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"empoisonnée",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"carambolage",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"été dérobé",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"été dérobée",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"été dérobés",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"été dérobées",
+			"level"=>"normalized"
+		),
+		
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(""),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
+
 						
 						
 

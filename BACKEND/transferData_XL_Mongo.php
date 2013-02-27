@@ -650,13 +650,9 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					$regexObj = new MongoRegex("/^$ne$/i"); 
 					$ynes = $yakNEColl->find(array('status'=>1,'match.title'=>$regexObj));
 					foreach( $ynes as $yne){
-						echo "<br>YNE".$yne['title'];
-						var_dump($yne);
 						$freeTag[] =  $yne['title'];
 						if(sizeof($yne['yakCatId'])>0)
 							$yakCatIdFromNE = array_merge($yakCatIdFromNE, $yne['yakCatId']);
-						echo '$yakCatIdFromNE';
-						var_dump($yakCatIdFromNE);
 					}
 				}
 				
@@ -825,7 +821,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['yakCat'] = $yakCatId;
 						$info['yakCatName'] = $yakCatName;
 						$info['yakType'] = $feed['yakType'];
-						$info['freeTag'] = $freeTag;
+						$info['freeTag'] = array_unique($freeTag);
 						$info['pubDate'] = new MongoDate($tsPub);
 						$info['eventDate'] = $eventDate;
 						$info['creationDate'] = new MongoDate(gmmktime());

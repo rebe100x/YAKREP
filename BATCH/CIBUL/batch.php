@@ -374,8 +374,8 @@ foreach ($urlset->url as $url) {
 	}
 
 	// Temporary break
-	if($row > 5)
-		break;
+	//if($row > 5)
+	//	break;
 }
 /* End sitemap parsing with simpleXml */
 

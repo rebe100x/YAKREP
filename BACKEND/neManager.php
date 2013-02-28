@@ -214,6 +214,26 @@ $records[] = array(
 			"level"=>"normalized"
 		),
 		array(
+			"title"=>"morts",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"blessé",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"blessés",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"blessée",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"blessées",
+			"level"=>"normalized"
+		),
+		array(
 			"title"=>"criminel",
 			"level"=>"normalized"
 		),
@@ -301,7 +321,11 @@ $records[] = array(
 			"title"=>"été dérobées",
 			"level"=>"normalized"
 		),
-		
+		array(
+			"title"=>"meurt",
+			"level"=>"exact"
+		),
+
 	),
 	"yakCatId"=>array(),
 	"yakCatName"=>array(""),
@@ -310,7 +334,220 @@ $records[] = array(
 	"status" => 1,
 );
 
-						
+
+$records[] = array(
+	"_id" => new MongoId("512f00b0fa9a95980b000003"),
+	"title"=> "Restaurant",
+	"match"=>array(
+		array(
+			"title"=>"restaurant",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"restau",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"bistro",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"brasserie",
+			"level"=>"normalized"
+		)
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
+
+$records[] = array(
+	"_id" => new MongoId("512f0cdb1d22b32e7a014b7b"),
+	"title"=> "Education",
+	"match"=>array(
+		array(
+			"title"=>"ouvertures de classe",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"enseignants",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"instituteurs",
+			"level"=>"normalized"
+		),
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
+
+$records[] = array(
+	"_id" => new MongoId("512f0d7dfa9a956c0b000003"),
+	"title"=> "Solidarité",
+	"match"=>array(
+		array(
+			"title"=>"MSF",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"médecins sans frontières",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"ONG",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Emmaüs",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"restaus du coeur",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"restos du cœur",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"Handicap International",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"CARE",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Cimade",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Croix-Rouge",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Fondation Abbé-Pierre",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Mmédecins du monde",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"MDM",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Fondation d'Auteuil",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Première Urgence",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Samu",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Secours catholique",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"Sidaction",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Secours populaire",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"Act Up",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Act Up-Paris",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Greenpeace",
+			"level"=>"exact"
+		),
+		array(
+			"title"=>"Greenpeace",
+			"level"=>"exact"
+		),
+
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
+
+$records[] = array(
+	"_id" => new MongoId("512f0d7dfa9a956c0b000004"),
+	"title"=> "Environnement",
+	"match"=>array(
+		array(
+			"title"=>"respect de l’environnement",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"Greenpeace",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"pollution",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"marée noire",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"écologie",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"écologistes",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"catastrophe écologique",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"agriculture biologique",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"préserver la biodiversité",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"préserver les écosystèmes",
+			"level"=>"normalized"
+		),
+		array(
+			"title"=>"préservation de l'écosystème",
+			"level"=>"normalized"
+		),
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
+
 						
 
 $row1 = 0;	

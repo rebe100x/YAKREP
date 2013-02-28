@@ -683,6 +683,40 @@ $records[] = array(
 /***********/
 
 $records[] = array(
+	"_id" => new MongoId("512f09e8fa9a95980b000006"),
+	"title"=>"La Fontaine d'Argent",
+	"content" =>"Le Café-théâtre de la Fontaine d'Argent existe depuis 1976.<br>En 35 ans, le théâtre a reçu plus de 200 artistes et accueille, chaque année, plus de 20 000 spectateurs, venus du Pays d’Aix et de ses alentours, mais également des visiteurs des quatre coins de la France.<br>Depuis 2006, pour clore la saison, le théâtre de la Fontaine d'Argent organise, pendant une semaine, son festival du rire.<br>Le café-théâtre dispense aussi des cours de théâtre pour adultes et enfants.",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MongoId("504df6b1fa9a957c0b000004"),new MongoId("504d89cffa9a957004000001")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.527681,'lng'=>5.453328),
+	"formatted_address"=> "5 rue Fontaine-d'Argent, 13100 Aix-en-Provence",
+	"address" => array(
+				'street_number'=>"5",
+				'street'=>"rue Fontaine-d'Argent",
+				'arr'=>"",
+				'city'=>"Aix-en-Provence",
+				'state'=>"Bouches-du-Rôhne",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>"France",
+				'zip'=>"13100",
+			),
+	"contact" => array(
+		'tel'=>"04 42 38 43 80",
+		'web'=>"http://www.lafontainedargent.com",
+	),			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
+
+
+$records[] = array(
 	"_id" => new MongoId("5101588dfa9a95000a000000"),
 	"title"=>"Stade Vélodrome",
 	"content" =>"",
@@ -713,7 +747,7 @@ $records[] = array(
 
 
 
-
+/*
 $records[] = array(
 	"_id" => new MongoId("5108edce1d22b37655000377"),
 	"title"=>"opéra-théâtre",
@@ -772,7 +806,7 @@ $records[] = array(
 	"user" => 0, 
 	"zone"=> 14,
 );
-
+*/
 
 $records[] = array(
 	"_id" => new MongoId("51077a72fa9a95ac0b000000"),

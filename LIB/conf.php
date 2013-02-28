@@ -4,6 +4,7 @@ ini_set ('max_execution_time', 0);
 set_time_limit(0);
 ini_set('display_errors',1);
 
+require_once("aws-sdk/sdk.class.php");  
 require_once("library.php");
 include_once "place.php";
 include_once "info.php";
@@ -15,8 +16,8 @@ include_once "stringUtil.php";
 include_once "cat.php";
 
 
-require_once('aws-sdk/sdk.class.php');  
-$s3 = new AmazonS3();
+
+
 
 class conf
 {
@@ -28,6 +29,8 @@ class conf
 	private $bigpath;
 	private $originalpath;
 	private $originalurl;
+	private $bucket;
+	
 	
 	function __construct(){
 		
@@ -42,6 +45,7 @@ class conf
 				$this->bigpath = '/YAKREP/BACKEND/big/';
 				$this->mediumpath = '/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/YAKREP/BACKEND/original/';
+				$this->bucket = 'yak1';
 				
 			break;
 			case 'devrenaud':
@@ -54,7 +58,7 @@ class conf
 				$this->bigpath = '/BACKEND/big/';
 				$this->mediumpath = '/BACKEND/medium/';
 				$this->originalpath = '/BACKEND/original/';
-				
+				$this->bucket = 'yak1';
 			break;
 			case 'preprod':
 				$this->db = 'yakwala_preprod';
@@ -66,7 +70,7 @@ class conf
 				$this->bigpath = '/PREPROD/YAKREP/BACKEND/big/';
 				$this->mediumpath = '/PREPROD/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/PREPROD/YAKREP/BACKEND/original/';
-				
+				$this->bucket = 'yak2';
 			break;
 			case 'prod':
 				$this->db = 'yakwala';
@@ -78,7 +82,7 @@ class conf
 				$this->bigpath = '/PROD/YAKREP/BACKEND/big/';
 				$this->mediumpath = '/PROD/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/PROD/YAKREP/BACKEND/original/';
-				
+				$this->bucket = 'yak3';
 			break;
 			
 		}
@@ -128,7 +132,9 @@ class conf
 	public function mdb() {
         return  $this->mdb;
     }
-	
+	public function bucket() {
+        return  $this->bucket;
+    }
 	
 }
 ?>

@@ -60,10 +60,6 @@ $feed = $feedColl->findOne(array('name'=>'MP2013'));
 			$yakcats = array('50923b9afa9a95d409000000','504d89cffa9a957004000001');
 			$description = substr($item['description'],0,strpos($item['description'],'==='));
 			
-			//$description = str_replace('â','A',$item['description']);
-			//$description = yakcatPathN($item['description'],1);
-			//$description = str_replace('...','DOTDOTDOT',$item['description']);
-			//$description = substr($description,0,2110);
 			if(!empty($item['event:location']['place:address']['address:name']))
 				$place = $item['event:location']['place:address']['address:name'];
 				

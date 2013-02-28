@@ -198,9 +198,10 @@ function getTeleportImg($spec){
 /* call to webservice to get and store a preview of the link 
  * return true if success
  * */
-function getApercite($link){
+function getApercite($link,$conf){
 	
-	$fullpath = "thumb/".md5($link).'.jpg';
+	$imgName = md5($link).'.jpg';
+	$fullpath = "thumb/".$imgName;
 	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;	
 	$ch = curl_init ($img);
     curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -214,6 +215,14 @@ function getApercite($link){
     $fp = fopen($fullpath,'x');
     fwrite($fp, $rawdata);
     fclose($fp);
+	
+	$s3 = new AmazonS3();
+	$response = $s3->create_object($conf->bucket(), '120_90/'.$imgName, array(
+        'fileUpload'  => $fullpath,
+       'contentType' => 'image/jpeg',
+        'acl'   =>  AmazonS3::ACL_PUBLIC
+    ));
+	
 	
     return $fullpath;
 	
@@ -248,12 +257,33 @@ function createImgThumb($link,$conf){
 	// create thumb and full size
 	
 	$res1 = redimg(array(0=>array('W'=>120,'H'=>90)),$filePathDestThumb,$filePathDestOriginal,0);
-	$res2 = redimg(array(0=>array('W'=>320,'H'=>240)),$filePathDestMedium,$filePathDestOriginal,0);   
-	$res3 = redimg(array(0=>array('W'=>560,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   
+	$res2 = redimg(array(0=>array('W'=>256,'H'=>0)),$filePathDestMedium,$filePathDestOriginal,0);   
+	$res3 = redimg(array(0=>array('W'=>512,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   
+	
+	require_once("aws-sdk/sdk.class.php");
+	$s3 = new AmazonS3();
+	$response = $s3->create_object($conf->bucket(), '120_90/'.$hash.'.jpg', array(
+        'fileUpload'  => $filePathDestThumb,
+       'contentType' => 'image/jpeg',
+        'acl'   =>  AmazonS3::ACL_PUBLIC
+    ));
+	
+	$response = $s3->create_object($conf->bucket(), '256_0/'.$hash.'.jpg', array(
+        'fileUpload'  => $filePathDestMedium,
+       'contentType' => 'image/jpeg',
+        'acl'   =>  AmazonS3::ACL_PUBLIC
+    ));
+	
+	$response = $s3->create_object($conf->bucket(), '512_0/'.$hash.'.jpg', array(
+        'fileUpload'  => $filePathDestBig,
+       'contentType' => 'image/jpeg',
+        'acl'   =>  AmazonS3::ACL_PUBLIC
+    ));
 	
 	if($res1 && $res2 && $res3)
 		$res = $hash.'.jpg';
-		
+	
+	
     return $res;
 }
 
@@ -356,9 +386,11 @@ function createImgThumb($link,$conf){
         
         //on ne conserve pas l'original
         if($flagClean == 1){
-            @unlink(filePathSrc); 
+            @unlink($filePathSrc); 
             
         }
+		
+		
 		return $res;
     } 
 	

@@ -2083,7 +2083,7 @@ $records[] = array(
 	"lineToBegin"=>"0",
 	"parsingTemplate"=>array(
 						'title' => "#YKLtitle",
-						'outGoingLink' => "YKLlink",
+						'outGoingLink' => "#YKLlink",
 						'thumb'=>"#YKLenclosure->url",
 						'pubDate'=>"#YKLpubDate",
 					),

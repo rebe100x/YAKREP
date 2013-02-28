@@ -697,7 +697,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				if(!empty($enclosure)){
 					$res = createImgThumb($enclosure,$conf);
 					if($res == false){
-						$thumb = getApercite($outGoingLink);
+						$thumb = getApercite($outGoingLink,$conf);
 						$thumbFlag = 1;	
 					}
 					else{
@@ -722,7 +722,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								$res = createImgThumb($img[0],$conf);
 								
 								if($res == false){
-									$thumb = getApercite($outGoingLink);
+									$thumb = getApercite($outGoingLink,$conf);
 									$thumbFlag = 1;	
 								}
 								else{
@@ -735,7 +735,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									$thumb = 'thumb/'.$res;
 								}
 							}else{
-								$thumb = getApercite($outGoingLink);
+								$thumb = getApercite($outGoingLink,$conf);
 								$thumbFlag = 1;	
 							}
 						}

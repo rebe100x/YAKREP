@@ -44,7 +44,7 @@ require_once("../LIB/conf.php");
 $conf = new conf();
 
 $m = new Mongo(); 
-$db = $m->selectDB($conf->db());
+$db = $conf->mdb();
 
 $infoColl = $db->info;
 $placeColl = $db->place;

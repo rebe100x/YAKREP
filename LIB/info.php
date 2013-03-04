@@ -158,14 +158,17 @@ require_once("conf.php");
 		if( !empty($this->location->lat) && !empty($this->location->lng) ){
 				//print_r($this->location);
 			
-				//$rangeQuery = array('title' => $this->title, "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
-				//$doublon = $this->infoColl->findOne($rangeQuery);
+				$rangeQuery = array('title' => $this->title, "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035));
+				$doublon = $this->infoColl->findOne($rangeQuery);
 				if(empty($doublon)){
 					$theString2Search = StringUtil::accentToRegex($this->title);
+					$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035,'zone' => $this->zone,"status"=>1));
+					/*
 					if(empty($this->evenDate['hreventdate']))
 						$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035,'zone' => $this->zone,"status"=>1));
 					else
 						$rangeQuery = array('title' => new MongoRegex('/^' .$theString2Search. '$/i'), "location"=>array('$near'=>$this->location,'$maxDistance'=>0.000035,'zone' => $this->zone,"status"=>1,'eventDate.$.hreventdate'=>$this->evenDate['hreventdate']));
+					*/
 					$doublon = $this->infoColl->findOne($rangeQuery);
 				}		
 			}

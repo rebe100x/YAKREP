@@ -237,7 +237,7 @@ foreach ($urlset->url as $url) {
 							$thumbFlag = 2;	
 						else
 							$thumbFlag = 1;	
-						$info->thumb = "/thumb/".$res;
+						$info->thumb = "thumb/".$res;
 					}
 
 					$info->origin = $origin;
@@ -246,13 +246,9 @@ foreach ($urlset->url as $url) {
 					$info->licence = $licence;
 
 					// Link to cibul description
-					$info->outGoingLink = $url->loc;
-
+					$info->outGoingLink = (string)($url->loc);
 					// Set timezone if not already set in php.ini
-					if( ! ini_get('date.timezone') ) {
-						date_default_timezone_set('Europe/Paris');
-					}
-					
+					date_default_timezone_set('Europe/Paris');
 					$dateUpdatedAt = DateTime::createFromFormat('Y-m-d H:i:s', $result->data->updatedAt);
 					$info->pubDate = new MongoDate($dateUpdatedAt->getTimestamp());
 					
@@ -312,12 +308,13 @@ foreach ($urlset->url as $url) {
 					if(sizeof($location->dates) > 1)
 						echo '<div style=\'background-color:#00FF00\'>MULTIPLE DATE</div>';
 					$eventDate = array();
+					
 					foreach ($location->dates as $date) {
 						$eventDate = array();
-
 						$dateTimeFrom = DateTime::createFromFormat('Y-m-d H:i:s', $date->date . " " . $date->timeStart);
 						$eventDate['dateTimeFrom'] = new MongoDate(date_timestamp_get($dateTimeFrom));
-
+						
+						
 						$dateTimeEnd = DateTime::createFromFormat('Y-m-d H:i:s', $date->date . " " . $date->timeEnd);
 						$eventDate['dateTimeEnd'] = new MongoDate(date_timestamp_get($dateTimeEnd));
 						$info->eventDate[] = $eventDate;

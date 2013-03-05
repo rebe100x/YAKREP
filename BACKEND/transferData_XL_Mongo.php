@@ -701,7 +701,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$thumbFlag = 1;	
 					}
 					else{
-						$thumb = 'thumb/'.$res;
+						$thumb = $res;
 						$size = getimagesize($enclosure);
 						if($size[0] > 320)
 							$thumbFlag = 2;	
@@ -732,7 +732,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									else
 										$thumbFlag = 1;	
 										
-									$thumb = 'thumb/'.$res;
+									$thumb = $res;
 								}
 							}else{
 								$thumb = getApercite($outGoingLink,$conf);

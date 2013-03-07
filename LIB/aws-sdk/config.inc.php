@@ -1,7 +1,7 @@
 <?php if (!class_exists('CFRuntime')) die('No direct access allowed.');
 
 
-/**
+/** test
  * Create a list of credential sets that can be used with the SDK.
  */
 CFCredentials::set(array(

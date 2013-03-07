@@ -55,12 +55,16 @@ $batchlogColl = $db->batchlog;
 $statColl = $db->stat;
 $feedColl = $db->feed;
 $logCallToGMap = 0;
-$logLocationInDB = 0;
-$logDataInserted = 0;
-$logDataUpdated = 0;
+$logInfoInserted  = 0;
+$logPlaceInserted  = 0;
 $logInfoAlreadyInDB = 0;
 $logPlaceAlreadyInDB = 0;
-
+$logPrint = 0;
+$logStatus10 = 0;
+$logStatus11 = 0;
+$logStatus12 = 0;
+$logCallToApercite = 0;
+$logPushToS3 = 0;
 
 $yakCatId = array(); 
 $placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
@@ -480,11 +484,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".(empty($lieu))?$loc:$lieu;
 							
 							//check if in db if the place exists
-							$place = $placeColl->findOne(array('title'=>$loc,"zone"=>$defaultPlace['zone']));
+							$place = $placeColl->findOne(array("title"=>$loc,"status"=>1,"zone"=>$defaultPlace['zone']));
 							//var_dump($place);
 							if($place){ // FROM DB
 								echo "<br> Location found in DB !";
-								$logLocationInDB++;
 								if($place['status'] == 3){ // if the place has been blacklisted by the operator
 									$status = 11; // alert status
 									$print = 0; // don't print on the map, but can be printed on the news feed
@@ -515,12 +518,13 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									echo '<br>$lieu'.$lieu;
 									
 									
-									$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) ) ? ', '.$laville:'').', '.$defaultPlaceTitle.'. '.$defaultPlace['address']['country'])));
+									//$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) ) ? ', '.$laville:'').', '.$defaultPlaceTitle.'. '.$defaultPlace['address']['country'])));
+									$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) && preg_match('/^'.$loc.'$/',$laville) === FALSE ) ? ', '.$laville:'').', '.$defaultPlaceTitle.' '.$defaultPlace['address']['country'])));
 									//echo 'LIEU'.sizeof($lieu);
 									if(sizeof($lieu)==0)
-										$resGMap = getLocationGMap($gQuery,'PHP',1);
+										$resGMap = getLocationGMap($gQuery,'PHP',1,$conf);
 									else
-										$resGMap = getPlaceGMap($gQuery,'PHP',1);
+										$resGMap = getPlaceGMap($gQuery,'PHP',1,$conf);
 									echo '___<br>';
 									if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlaceTitle.', '.$defaultPlace['address']['country']){
 										echo "<br> GMAP found the coordinates of this location ! ";
@@ -580,13 +584,14 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 											"address" => $addressGMAP,
 											"formatted_address" => $formatted_addressGMAP,
 											"contact"=>$contact,
+											"debugCallGmap" => $gQuery,
 										  );
 										  
 										  
-								$res = $placeColl->findOne(array('title'=>(empty($lieu))?$loc:$lieu,"status"=>1,"zone"=>$defaultPlace['zone']));
+								$res = $placeColl->findOne(array("title"=>(empty($lieu))?$loc:$lieu,"zone"=>$defaultPlace['zone']));
 								if(empty($res)){// The place is not in db
 									echo "<br> The location does not exist in db, we create it.";
-									$placeInserted++;
+									$logPlaceInserted++;
 									$test = $placeColl->save($place); 
 									$placeColl->ensureIndex(array("location"=>"2d"));
 									$res['_id'] = $place['_id'];
@@ -601,7 +606,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						
 					
 						
-					}else{
+					}else{
 							{ // Nothing found by XL
 							if(sizeof($lieu)==0 && sizeof($ville)==0 && sizeof($adresse)==0 && sizeof($yakdico)==0 && sizeof($arrondissement)==0 && sizeof($quartier)==0){
 								//echo "No interesting location detected by Exalead. The info is not transfered to Mongo.";
@@ -701,7 +706,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				foreach($placeArray as $geolocItem){
 					
 					
-					if(!empty($title) &&!empty($geolocItem['lat']) && !empty($geolocItem['lng'])){
+					if( ( !empty($title) && !empty($geolocItem['lat']) && !empty($geolocItem['lng']) ) || $status == 10){
 						
 						
 						$datePubArray1 = explode(' ',$datePub);
@@ -776,12 +781,22 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['placeId'] = new MongoId($geolocItem['_id']);
 						$info['contact'] = $geolocItem['contact'];
 						
+						// LOG
+						if($info['print'] == 1)
+							$logPrint++;
+						if($info['status'] == 10)
+							$logStatus10++;
+						if($info['status'] == 11)
+							$logStatus11++;
+						if($info['status'] == 12)
+							$logStatus12++;
+						
 						
 						// check if data is not in DB
 						//$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"pubDate"=>new MongoDate($tsPub),"zone"=>$defaultPlace['zone']));
 						$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$defaultPlace['zone']));
-						//var_dump($dataExists);
-						if(empty($dataExists)){
+
+						if(empty($dataExists) || $status == 10){
 							echo "<br> The info does not exist in DB, we insert it.";
 							
 							/* THUMB  */
@@ -790,9 +805,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							echo "<br>enclosure:".$enclosure;
 							if(!empty($enclosure)){
 								$res = createImgThumb($enclosure,$conf);
+								$logPushToS3 = $logPushToS3+3;
 								if($res == false){
 									if(!empty($outGoingLink) && ($outGoingLink[0] != "")){
 										$thumb = getApercite($outGoingLink,$conf);
+										$logCallToApercite++;
+										$logPushToS3++;
 										$thumbFlag = 1;	
 									}else{
 										$thumb = "";
@@ -819,10 +837,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 										}
 										if(sizeof($img) > 0 && $img[0] != '' ){
 											$res = createImgThumb($img[0],$conf);
-											
+											$logPushToS3 = $logPushToS3+3;
 											if($res == false){
 												if(!empty($outGoingLink) && ($outGoingLink[0] != "")){
 													$thumb = getApercite($outGoingLink,$conf);
+													$logPushToS3++;
+													$logCallToApercite++;
 													$thumbFlag = 1;
 												}else{
 													$thumb = "";
@@ -841,6 +861,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 										}else{
 											if(!empty($outGoingLink) && ($outGoingLink[0] != "")){
 												$thumb = getApercite($outGoingLink,$conf);
+												$logPushToS3++;
+												$logCallToApercite++;
 												$thumbFlag = 1;	
 											}else{
 												$thumb = "";
@@ -875,23 +897,24 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							// we check if there is another info printed at this point :
 							$dataCount = 0;
 							// here we take only 30 days of max history
-							$dataCount = $infoColl->count(array(
-																"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),
-																"pubDate"=>array('$gte'=>new MongoDate(gmmktime()-86400*30)),
-																"print"=>1,
-																"status"=>1	
-																)
-														); 
-							// if more than one info on the same location
-							if($dataCount > 0 && $print ==  1){
-								$lepas = ceil($dataCount/12);
-								$info['location'] = array("lat"=>(0.000015*sin(3.1415*$dataCount/6)+$geolocItem['lat']),"lng"=>(0.00002*cos(3.1415*$dataCount/6)+$geolocItem['lng']));
-							}
-							   
+							if($status == 1){
+								$dataCount = $infoColl->count(array(
+									"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),
+									"pubDate"=>array('$gte'=>new MongoDate(gmmktime()-86400*30)),
+									"print"=>1,
+									"status"=>1	
+									)
+								); 
+								// if more than one info on the same location
+								if($dataCount > 0 && $print ==  1){
+									$lepas = ceil($dataCount/12);
+									$info['location'] = array("lat"=>(0.000015*sin(3.1415*$dataCount/6)+$geolocItem['lat']),"lng"=>(0.00002*cos(3.1415*$dataCount/6)+$geolocItem['lng']));
+								}
+							}	
 							$infoColl->insert($info,array('fsync'=>true));
 							$infoColl->ensureIndex(array("location"=>"2d"));
 							$infoColl->ensureIndex(array("location"=>"2d","pubDate"=>-1,"yakType"=>1,"print"=>1,"status"=>1));
-							$logDataInserted++;    
+							$logInfoInserted++;
 								
 						}else{
 							$logInfoAlreadyInDB++;
@@ -907,7 +930,15 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 		}
 		
 		
-		$log = "<br><br><br><br><br>===BACTH SUMMARY====<br>Total data parsed : ".$item."<br> Total info already in db:".$logInfoAlreadyInDB.".<br> Total Data inserted: ".$logDataInserted.".<br> Total Data updated :".$logDataUpdated." (call &forceUpdate=1 to update)   <br>Call to gmap:".$logCallToGMap.". <br>Locations found in Yakwala DB :".$logLocationInDB."<br><br><br>";
+		$log = "<br><br><br><br><br>
+		===BACTH SUMMARY====
+		<br>Total data parsed : ".$item."
+		<br> Total info already in db:".$logInfoAlreadyInDB.".
+		<br> Total Info inserted: ".$logInfoInserted.".
+		<br> Total place already in db:".$logPlaceAlreadyInDB.".
+		<br> Total place inserted: ".$logPlaceInserted.".
+		<br>Call to gmap:".$logCallToGMap.".
+		<br><br><br>";
 
 		echo $log;
 
@@ -924,7 +955,14 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			"infoInserted"=>$logInfoInserted,
 			"placeInserted"=>$logPlaceInserted,
 			"callGMPA"=>$logCallToGMap,
-			"foundInDb"=>$logLocationInDB,
+			"pushS3"=>$logPushToS3,
+			"callAPERCITE"=>$logCallToApercite,
+			
+			"logPrint"=>$logPrint,
+			"logStatus10"=>$logStatus10,
+			"logStatus11"=>$logStatus11,
+			"logStatus12"=>$logStatus12,
+			
 			"daysBack"=>$feed['daysBack'],
 			));
 			
@@ -935,7 +973,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			array(
 			"batchName"=>$_SERVER['PHP_SELF'],
 			"datePassage"=>new MongoDate(gmmktime()),
-			"dateNextPassage"=>new MongoDate(2143152000), // far future = one shot batch
+			"dateNextPassage"=>new MongoDate(gmmktime()+3600), // every hour
 			"log"=>$log,
 			"status"=>1
 			));

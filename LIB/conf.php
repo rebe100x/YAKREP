@@ -14,7 +14,7 @@ include_once "location.php";
 include_once "zone.php";
 include_once "stringUtil.php";
 include_once "cat.php";
-
+include_once "conf_secret.php";
 
 
 
@@ -30,10 +30,11 @@ class conf
 	private $originalpath;
 	private $originalurl;
 	private $bucket;
+	private $conf_secret;
 	
 	
 	function __construct(){
-		
+		$this->conf_secret = new conf_secret();
 		switch($this->deploy){
 			case 'dev':
 				$this->db = 'yakwala';
@@ -141,6 +142,9 @@ class conf
     }
 	public function bucket() {
         return  $this->bucket;
+    }
+	public function conf_secret() {
+        return  $this->conf_secret;
     }
 	
 }

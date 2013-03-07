@@ -419,7 +419,7 @@ function createImgThumb($link,$conf){
  
  * return value : array('status'=>'OK','location'=>array(lat,lng),'address'=>array(street,arr,city,state,area,country,zip),'formatted_address'=>'2 rue des Amandiers')
  * */
-function getLocationGMap($q,$output = 'PHP',$debug = 0){
+function getLocationGMap($q,$output = 'PHP',$debug = 0, $conf=''){
 	
 	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$q."&sensor=false";
     //echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
@@ -500,12 +500,12 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0){
  
  * return value : array('status'=>'OK','location'=>array(lat,lng),'address'=>array(street,arr,city,state,area,country,zip),'formatted_address'=>'2 rue des Amandiers')
  * */
-function getPlaceGMap($q,$output = 'PHP',$debug = 0){
+function getPlaceGMap($q,$output = 'PHP',$debug = 0,$conf=''){
 	
 	//$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$q."&sensor=false";
-	$url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=".$q."&sensor=false&key=AIzaSyAbYNYyPVWQ78bvZIHHR_djLt-FMEfy2wY";
+	$url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=".$q."&sensor=false&key=".$conf->conf_secret()->googleAPIKey();
     //echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
-    echo '<br>--- URL CALLED : '.$url;
+    echo '<br>--- URL CALLED PLACE: '.$url;
 	$ch = curl_init();
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 

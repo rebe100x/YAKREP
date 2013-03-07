@@ -45,6 +45,7 @@ class conf
 				$this->bigpath = '/YAKREP/BACKEND/big/';
 				$this->mediumpath = '/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/YAKREP/BACKEND/original/';
+				$this->batchthumbpath = '/YAKREP/BACKEND/batchthumb/';
 				$this->bucket = 'yak1';
 				
 			break;
@@ -58,6 +59,7 @@ class conf
 				$this->bigpath = '/BACKEND/big/';
 				$this->mediumpath = '/BACKEND/medium/';
 				$this->originalpath = '/BACKEND/original/';
+				$this->batchthumbpath = '/BACKEND/batchthumb/';
 				$this->bucket = 'yak1';
 			break;
 			case 'preprod':
@@ -70,6 +72,7 @@ class conf
 				$this->bigpath = '/PREPROD/YAKREP/BACKEND/big/';
 				$this->mediumpath = '/PREPROD/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/PREPROD/YAKREP/BACKEND/original/';
+				$this->batchthumbpath = '/PREPROD/YAKREP/BACKEND/batchthumb/';
 				$this->bucket = 'yak2';
 			break;
 			case 'prod':
@@ -82,6 +85,7 @@ class conf
 				$this->bigpath = '/PROD/YAKREP/BACKEND/big/';
 				$this->mediumpath = '/PROD/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/PROD/YAKREP/BACKEND/original/';
+				$this->batchthumbpath = '/PROD/YAKREP/BACKEND/batchthumb/';
 				$this->bucket = 'yak3';
 			break;
 			
@@ -127,6 +131,9 @@ class conf
     }
 	public function originalpath() {
         return  $_SERVER["DOCUMENT_ROOT"] . $this->originalpath;
+    }
+	public function batchthumbpath() {
+        return  $_SERVER["DOCUMENT_ROOT"] . $this->batchthumbpath;
     }
 
 	public function mdb() {

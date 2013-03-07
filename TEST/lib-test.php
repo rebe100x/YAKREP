@@ -21,13 +21,9 @@ $logDataInserted = 0;
 $logDataUpdated = 0;
 $logDataAlreadyInDB = 0;
 
-$arr = '(14e)';
-$theArr = rewriteArrondissement($arr);
-echo $theArr;
-
-$str =  " 2013-03-19T09:30:00.0Z#2013-03-19T17:00:00.0Z 2013-03-20T09:30:00.0Z#2013-03-20T17:00:00.0Z ";
-$arr = explode(' ',$str);
-var_dump($arr);
+$outGoingLink = "http://www.ecoledesurfestagnots.com/club-de-plage-estagnots.html";
+$res = getApercite($outGoingLink,$conf);
+echo $res;
 ?>
 </body>
 </html>

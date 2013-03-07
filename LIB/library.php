@@ -199,9 +199,10 @@ function getTeleportImg($spec){
  * return true if success
  * */
 function getApercite($link,$conf){
-	
+	echo '<br> Call Apercite';
 	$imgName = md5($link).'.jpg';
-	$fullpath = "thumb/".$imgName;
+	//$fullpath = "thumb/".$imgName;
+	$fullpath = $conf->thumbpath().$imgName;
 	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;	
 	$ch = curl_init ($img);
     curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -209,22 +210,34 @@ function getApercite($link,$conf){
     curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
     $rawdata=curl_exec($ch);
     curl_close ($ch);
-    if(file_exists($fullpath)){
-        unlink($fullpath);
-    }
-    $fp = fopen($fullpath,'x');
-    fwrite($fp, $rawdata);
-    fclose($fp);
+    
+	// check if the image is not in creation process with apercite
+	echo $conf->batchthumbpath().'120x90.jpg';
+	$creationImgSignature = md5(file_get_contents($conf->batchthumbpath().'120x90.jpg'));
+	$infoImgSignature = md5($rawdata);
+	if ($creationImgSignature == $infoImgSignature) {
+		echo '<br>IMG UNDER CREATION';
+		sleep(20);
+		getApercite($link,$conf);
+	}else{
+		
+		
+		if(file_exists($fullpath)){
+			unlink($fullpath);
+		}
+		$fp = fopen($fullpath,'x');
+		fwrite($fp, $rawdata);
+		fclose($fp);
+		
+		$s3 = new AmazonS3();
+		$response = $s3->create_object($conf->bucket(), '120_90/'.$imgName, array(
+			'fileUpload'  => $fullpath,
+		   'contentType' => 'image/jpeg',
+			'acl'   =>  AmazonS3::ACL_PUBLIC
+		));
+	}	
 	
-	$s3 = new AmazonS3();
-	$response = $s3->create_object($conf->bucket(), '120_90/'.$imgName, array(
-        'fileUpload'  => $fullpath,
-       'contentType' => 'image/jpeg',
-        'acl'   =>  AmazonS3::ACL_PUBLIC
-    ));
-	
-	
-    return $fullpath;
+    return $imgName;
 	
 }
 

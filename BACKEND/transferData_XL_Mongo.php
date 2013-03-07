@@ -690,61 +690,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					$i++;
 				}
 			
-				/* THUMB  */
 				
-				$thumbFlag = 0;
-				echo "<br>enclosure:".$enclosure;
-				if(!empty($enclosure)){
-					$res = createImgThumb($enclosure,$conf);
-					if($res == false){
-						$thumb = getApercite($outGoingLink,$conf);
-						$thumbFlag = 1;	
-					}
-					else{
-						$thumb = $res;
-						$size = getimagesize($enclosure);
-						if($size[0] > 320)
-							$thumbFlag = 2;	
-						else
-							$thumbFlag = 1;	
-					}
-				}else{
-					if(!empty($content)){
-						$img = array();
-						$dom = new domDocument;
-						if($dom->loadHTML($content)){
-							$dom->preserveWhiteSpace = false;
-							$images = $dom->getElementsByTagName('img');
-							foreach ($images as $image) {
-								$img[] =  $image->getAttribute('src');
-							}
-							if(sizeof($img) > 0 && $img[0] != '' ){
-								$res = createImgThumb($img[0],$conf);
-								
-								if($res == false){
-									$thumb = getApercite($outGoingLink,$conf);
-									$thumbFlag = 1;	
-								}
-								else{
-									$size = getimagesize($img[0]);
-									if($size[0] > 320)
-										$thumbFlag = 2;	
-									else
-										$thumbFlag = 1;	
-										
-									$thumb = $res;
-								}
-							}else{
-								$thumb = getApercite($outGoingLink,$conf);
-								$thumbFlag = 1;	
-							}
-						}
-					}
-				}
-				
-				// overwrite if set in the feed
-				if(!empty($feed['thumbFlag']))
-					$thumbFlag = $feed['thumbFlag'];
 				
 				
 				
@@ -811,8 +757,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['title'] = $title;
 						$info['content'] = $content;
 						$info['outGoingLink'] = $outGoingLink;
-						$info['thumb'] = $thumb;
-						$info['thumbFlag'] = $thumbFlag;						
 						$info['origin'] = $feed['humanName'];
 						$info['originLink'] = $feed['linkSource'];
 						$info['access'] = 2;
@@ -833,7 +777,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['feed'] = $feed['_id'];
 						$info['zone'] = $defaultPlace['zone'];
 						$info['location'] = array("lat"=>$geolocItem['lat'],"lng"=>$geolocItem['lng']);
-						//$info['address'] = (!empty($locationTmp[$i++])?$locationTmp[$i++]:"");
 						$info['address'] = $geolocItem['address'];
 						$info['placeId'] = new MongoId($geolocItem['_id']);
 						$info['contact'] = $geolocItem['contact'];
@@ -845,8 +788,82 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						//var_dump($dataExists);
 						if(empty($dataExists)){
 							echo "<br> The info does not exist in DB, we insert it.";
-							// we check if there is another info printed at this point :
 							
+							/* THUMB  */
+							// create thumb and  push the image to S3
+							$thumbFlag = 0;
+							echo "<br>enclosure:".$enclosure;
+							if(!empty($enclosure)){
+								$res = createImgThumb($enclosure,$conf);
+								if($res == false){
+									if(!empty($outGoingLink) && ($outGoingLink[0] != "")){
+										$thumb = getApercite($outGoingLink,$conf);
+										$thumbFlag = 1;	
+									}else{
+										$thumb = "";
+										$thumbFlag = 0;	
+									}
+								}
+								else{
+									$thumb = $res;
+									$size = getimagesize($enclosure);
+									if($size[0] > 320)
+										$thumbFlag = 2;	
+									else
+										$thumbFlag = 1;	
+								}
+							}else{
+								if(!empty($content)){
+									$img = array();
+									$dom = new domDocument;
+									if($dom->loadHTML($content)){
+										$dom->preserveWhiteSpace = false;
+										$images = $dom->getElementsByTagName('img');
+										foreach ($images as $image) {
+											$img[] =  $image->getAttribute('src');
+										}
+										if(sizeof($img) > 0 && $img[0] != '' ){
+											$res = createImgThumb($img[0],$conf);
+											
+											if($res == false){
+												if(!empty($outGoingLink) && ($outGoingLink[0] != "")){
+													$thumb = getApercite($outGoingLink,$conf);
+													$thumbFlag = 1;
+												}else{
+													$thumb = "";
+													$thumbFlag = 0;
+												}		
+											}
+											else{
+												$size = getimagesize($img[0]);
+												if($size[0] > 320)
+													$thumbFlag = 2;	
+												else
+													$thumbFlag = 1;	
+													
+												$thumb = $res;
+											}
+										}else{
+											if(!empty($outGoingLink) && ($outGoingLink[0] != "")){
+												$thumb = getApercite($outGoingLink,$conf);
+												$thumbFlag = 1;	
+											}else{
+												$thumb = "";
+												$thumbFlag = 0;
+											}
+										}
+									}
+								}
+							}
+							
+							// overwrite if set in the feed
+							if(!empty($feed['thumbFlag']))
+								$thumbFlag = $feed['thumbFlag'];
+							
+							$info['thumb'] = $thumb;
+							$info['thumbFlag'] = $thumbFlag;						
+						
+						
 							// add tags to the top collection
 							foreach($freeTag as $theTag){
 								$dataExists = $tagColl->findOne(array("title"=>$theTag,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.5)));
@@ -860,6 +877,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								$tagColl->ensureIndex(array("location"=>"2d"));
 							}
 							
+							// we check if there is another info printed at this point :
 							$dataCount = 0;
 							// here we take only 30 days of max history
 							$dataCount = $infoColl->count(array(
@@ -869,10 +887,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 																"status"=>1	
 																)
 														); 
-							//$dataDebug = $infoColl->find(array("location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035)));
-							//var_dump(iterator_to_array($dataDebug));
-							
-							//echo $dataCount.'azerty<br>';  
 							// if more than one info on the same location
 							if($dataCount > 0 && $print ==  1){
 								$lepas = ceil($dataCount/12);
@@ -886,6 +900,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								
 						}else{
 							$logDataAlreadyInDB++;
+							
 							if($flagForceUpdate == 1){
 							  echo "<br> The info exists in DB, we force the update.";
 							  $info['lastModifDate'] = new MongoDate(gmmktime());

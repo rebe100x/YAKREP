@@ -58,18 +58,16 @@ $logCallToGMap = 0;
 $logLocationInDB = 0;
 $logDataInserted = 0;
 $logDataUpdated = 0;
-$logDataAlreadyInDB = 0;
+$logInfoAlreadyInDB = 0;
+$logPlaceAlreadyInDB = 0;
+
 
 $yakCatId = array(); 
 $placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
-$flagForceUpdate = (empty($_GET['forceUpdate']))?0:1;
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
 $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode this
 
     
-    if($flagForceUpdate)
-        echo "<br> <b>WARNING :</b> You are forcing update : we will always call GMAP for the location and any record in INFO will be updated.";
-            
               
 		$q = (empty($_GET['q']))?"":$_GET['q']; 
 	
@@ -484,7 +482,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							//check if in db if the place exists
 							$place = $placeColl->findOne(array('title'=>$loc,"zone"=>$defaultPlace['zone']));
 							//var_dump($place);
-							if($place && $flagForceUpdate != 1){ // FROM DB
+							if($place){ // FROM DB
 								echo "<br> Location found in DB !";
 								$logLocationInDB++;
 								if($place['status'] == 3){ // if the place has been blacklisted by the operator
@@ -496,7 +494,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								}
 								
 								$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print,'contact'=>$place['contact']);	
-							 }else{ // the place is not in db
+							}else{ // the place is not in db
 								
 								// FROM THE INPUT
 								if(!empty($geolocationInput) && !empty($addressInput)){
@@ -588,16 +586,13 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								$res = $placeColl->findOne(array('title'=>(empty($lieu))?$loc:$lieu,"status"=>1,"zone"=>$defaultPlace['zone']));
 								if(empty($res)){// The place is not in db
 									echo "<br> The location does not exist in db, we create it.";
+									$placeInserted++;
 									$test = $placeColl->save($place); 
 									$placeColl->ensureIndex(array("location"=>"2d"));
 									$res['_id'] = $place['_id'];
-								}else{ // The place already in DB, we update if the flag tells us to
-									if($flagForceUpdate ==  1){
-										echo "<br> The location exists in db and we update it.";
-										$placeColl->update(array("_id"=> $res['_id']),$place); 
-										$placeColl->ensureIndex(array("location"=>"2d"));
-									}else
-									   echo "<br> The location exists in db => doing nothing.";
+								}else{ // The place already in DB,
+									$logPlaceAlreadyInDB++;
+									echo "<br> The location exists in db => doing nothing.";
 								}
 								$placeArray[] = array('_id'=>$res['_id'],'lat'=>$geolocGMAP[0],'lng'=>$geolocGMAP[1],'address'=>$formatted_addressGMAP,'status'=>$status,'print'=>$print,'contact'=>$contact);
 							 
@@ -899,16 +894,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							$logDataInserted++;    
 								
 						}else{
-							$logDataAlreadyInDB++;
-							
-							if($flagForceUpdate == 1){
-							  echo "<br> The info exists in DB, we force the update.";
-							  $info['lastModifDate'] = new MongoDate(gmmktime());
-							  $infoColl->update(array("_id"=> $dataExists['_id']),$info);
-							  $infoColl->ensureIndex(array("location"=>"2d"));
-							  $logDataUpdated++;
-							}else
-							  echo "<br> The info exists in DB => doing nothing.";    
+							$logInfoAlreadyInDB++;
+							echo "<br> The info exists in DB => doing nothing.";    
 						}
 					}
 				}
@@ -920,7 +907,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 		}
 		
 		
-		$log = "<br><br><br><br><br>===BACTH SUMMARY====<br>Total data parsed : ".$item."<br> Total already in db:".$logDataAlreadyInDB.".<br> Total Data inserted: ".$logDataInserted.".<br> Total Data updated :".$logDataUpdated." (call &forceUpdate=1 to update)   <br>Call to gmap:".$logCallToGMap.". <br>Locations found in Yakwala DB :".$logLocationInDB."<br><br><br>";
+		$log = "<br><br><br><br><br>===BACTH SUMMARY====<br>Total data parsed : ".$item."<br> Total info already in db:".$logInfoAlreadyInDB.".<br> Total Data inserted: ".$logDataInserted.".<br> Total Data updated :".$logDataUpdated." (call &forceUpdate=1 to update)   <br>Call to gmap:".$logCallToGMap.". <br>Locations found in Yakwala DB :".$logLocationInDB."<br><br><br>";
 
 		echo $log;
 
@@ -932,9 +919,11 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			"argument"=>$q,
 			"datePassage"=>new MongoDate(gmmktime()),
 			"parsed"=>$item,
-			"alreadyInDb"=>$logDataAlreadyInDB,
-			"inserted"=>$logCallToGMap,
-			"callGMPA"=>$logDataUpdated,
+			"infoAlreadyInDb"=>$logInfoAlreadyInDB,
+			"placeAlreadyInDb"=>$logPlaceAlreadyInDB,
+			"infoInserted"=>$logInfoInserted,
+			"placeInserted"=>$logPlaceInserted,
+			"callGMPA"=>$logCallToGMap,
 			"foundInDb"=>$logLocationInDB,
 			"daysBack"=>$feed['daysBack'],
 			));

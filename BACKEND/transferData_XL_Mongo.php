@@ -40,6 +40,26 @@
  * */
 
 
+  /*INFO STATUS*/
+ /*
+ 1 : OK
+ 2 : Waiting for validation
+ 3 : blacklisted by operator
+ 10 : GMAP did not succeed to find a location
+ 11 : if the place the info is mapped to has been blacklisted by the operator
+ 12 : Location found is not in the feed zone
+ 13 : info not geolocalized and refused by parser defaultPrintFlag (= 0 )
+ 
+ */
+
+ /*FEED DEFAULT PRINT FLAG*/
+// "defaultPrintFlag" => 0, if not geolocalized, we localize at the default location but we don't print on the map ( only in the text feed )
+// "defaultPrintFlag" => 1,// if not geolocalized, we localize at the default location and we print on the map
+// "defaultPrintFlag" => 2,// do not perform a geoloc and locate on the default location of the feed
+// "defaultPrintFlag" => 3, if not geolocalized, we don't take the info -> stored in status 13
+ 
+
+ 
 require_once("../LIB/conf.php");
 $conf = new conf();
 
@@ -607,29 +627,25 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					
 						
 					}else{
-							{ // Nothing found by XL
-							if(sizeof($lieu)==0 && sizeof($ville)==0 && sizeof($adresse)==0 && sizeof($yakdico)==0 && sizeof($arrondissement)==0 && sizeof($quartier)==0){
-								//echo "No interesting location detected by Exalead. The info is not transfered to Mongo.";
-								// here we can choose to add the info in the db for the fils d'actu...
-								echo "No interesting location detected by Exalead. The info is transfered to Mongo with the feed's default location and the print flag to 0.";
-							}else{
-							 echo "Address no significative enough to find a localization : 
-							 <br>adresse= ".implode(',',$adresse)."
-							 <br>yakdico= ".implode(',',$yakdico)."
-							 <br>arrondissement = ".implode(',',$arrondissement)."
-							 <br>quartier = ".implode(',',$quartier);
-
-							}
-							
-							// if feedflag tell us to put the info on the default feed location	
-							if($feed['defaultPrintFlag'] == 1 || $feed['defaultPrintFlag'] == 0){
-								$print = $feed['defaultPrintFlag'] ;
+						// if the parser config tells us to forget about the info if not geolocalized
+							if($feed['defaultPrintFlag'] == 3){
+								echo "<br> NO location found, info is send with status 13";
+								$print = 0;
 								$geoloc = array($defaultPlace['location']);
-								$status = 1;
+								$status = 13;
 								$contact = array("tel"=>"","mobile"=>"","mail"=>"","transportation"=>"","web"=>"","opening"=>"",);
 								$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
 							}
+							
+						// if feedflag tell us to put the info on the default feed location	
+						if($feed['defaultPrintFlag'] == 1 || $feed['defaultPrintFlag'] == 0){
+							$print = $feed['defaultPrintFlag'] ;
+							$geoloc = array($defaultPlace['location']);
+							$status = 1;
+							$contact = array("tel"=>"","mobile"=>"","mail"=>"","transportation"=>"","web"=>"","opening"=>"",);
+							$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
 						}
+					
 					}
 				}
 			
@@ -644,11 +660,13 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				
 				}
 				
+				// YAKCATS & TAGS from NE
 				$yakCatIdFromNE = array();
 				foreach($yakNE as $ne){
 					echo "<br>NE=".$ne;
 					$regexObj = new MongoRegex("/^$ne$/i"); 
-					$ynes = $yakNEColl->find(array('status'=>1,'match.title'=>$regexObj));
+					//$ynes = $yakNEColl->find(array('status'=>1,'match.title'=>$regexObj));
+					$ynes = $yakNEColl->find(array('status'=>1,'match.title'=>$ne));
 					foreach( $ynes as $yne){
 						$freeTag[] =  $yne['title'];
 						if(sizeof($yne['yakCatId'])>0)
@@ -674,6 +692,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				}
 			
 				
+				
 				/* EVENT DATE */
 				$eventDate = array();
 				$i=0;
@@ -692,9 +711,16 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			
 				
 				
+				// clean duplicates cats and tags
+				$freeTag = array_unique($freeTag);
+				$yakCatName = array_unique($yakCatName);
+				$yakCatId = array_unique($yakCatId);
+				if(sizeof($freeTag)>0)
+					$freeTag = array_diff($freeTag,$yakCatName);
 				
-				
-			
+				$freeTag = (array) $freeTag;
+				$freeTagNew = array_values($freeTag);
+				$freeTag = $freeTagNew;
 				
 				// clean :
 				$content = (!empty($content))?strip_tags($content,"<br><b><strong>"):"";
@@ -703,6 +729,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				
 				// NOTE:  WE INTRODUCE MULTIPLE INFO IF WE HAVE MULTIPLE LOCATIONS
 				$i = 0;
+				$geolocItem = array();
 				foreach($placeArray as $geolocItem){
 					
 					
@@ -723,11 +750,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							$tsEnd = $tsPub + $feed['persistDays']*86400;
 						}
 					
-						// debug : all data shown this year
-						//$tsPub = 1356998400;
-						//$tsEnd = 1388534400;
-							
-						echo "<br>adresse";var_dump($adresse);
+						echo "<br>----LOC-----<br>";	
+						echo "adresse";var_dump($adresse);
 						echo "<br>lieu";var_dump($lieu);
 						echo "<br>yakdico";var_dump($yakdico);
 						echo "<br>quartier";var_dump($quartier);
@@ -736,6 +760,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						echo "<br>addressInput";var_dump($addressInput);
 						echo "<br>placeinput";var_dump($placeInput);
 						echo "<br>ville";var_dump($ville);
+						echo "<br>----CAT-----<br>";
+						echo "yakcat";var_dump($yakCatName);
+						echo "<br>tag";var_dump($freeTag);
+						// VERIFICATION : if the GMAP gives us a big city, we don't print it on the map
 						if( sizeof($adresse) == 0 
 							&& sizeof($lieu) == 0 
 							&& sizeof($yakdico) == 0 
@@ -747,7 +775,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							&& ($laville == "Marseille" || $laville == "Paris")
 							&& $feed['defaultPrintFlag'] != 2
 						){
-							echo "NO PRINT";
+							echo "<br> GEOLOC NOT PRECISE => NOT PRINTED ON THE MAP";
 							$geolocItem['print'] = 0;
 						}
 				
@@ -762,8 +790,8 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						$info['access'] = 2;
 						$info['licence'] = (!empty($feed['licence']))?$feed['licence']:"Yakwala";
 						$info['heat'] = "80";
-						$info['yakCat'] = $yakCatId;
-						$info['yakCatName'] = $yakCatName;
+						$info['yakCat'] = array_unique($yakCatId);
+						$info['yakCatName'] = array_unique($yakCatName);
 						$info['yakType'] = $feed['yakType'];
 						$info['freeTag'] = array_unique($freeTag);
 						$info['pubDate'] = new MongoDate($tsPub);
@@ -883,13 +911,22 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						
 							// add tags to the top collection
 							foreach($freeTag as $theTag){
-								$dataExists = $tagColl->findOne(array("title"=>$theTag,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.5)));
-								if(!$dataExists){
-									$tagColl->save(array("title"=>$theTag,"numUsed"=>1,"location"=>$info['location'],"lastUsageDate"=>new MongoDate($tsPub),"print"=>$geolocItem['print']));
-								}else{
+								if($info['yakType']==2)
+									$tagDate = $eventDate[0]['dateTimeFrom'];
+								else
+									$tagDate = new MongoDate($tsPub);
 									
-									//$tagColl->update(array("_id"=> $dataExists['_id']), array("title"=>$theTag,"location"=>$info['location'],"lastUsageDate"=>new MongoDate($tsPub),array($inc=>array("numUsed"=>1))),array("upsert" => true));
-									$tagColl->update(array("_id"=> $dataExists['_id']), array('$inc'=>array("numUsed"=>1),'print'=>$geolocItem['print']),array("upsert" => true));
+								$beginOfDay = strtotime("midnight", $tagDate->sec);
+								$endOfDay   = strtotime("tomorrow", $beginOfDay) - 1;
+								$dataExists = $tagColl->findOne(array("title"=>$theTag,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.5),"usageDate"=>array('$gte'=>new MongoDate($beginOfDay),'$lte'=>new MongoDate($endOfDay))));
+								
+								if(!$dataExists){
+									echo '<br>Tag does not ->exit we insert it as a hot tag';
+									$tagColl->save(array("title"=>$theTag,"numUsed"=>1,"location"=>$info['location'],"usageDate"=>$tagDate,"print"=>$geolocItem['print']));
+								}else{
+									echo '<br>Tag does exist -> we increment numUsed';
+									$tagColl->update(array("_id"=> $dataExists['_id']), array('$set'=>array("title"=>$theTag,"location"=>$info['location'],"usageDate"=>$tagDate)));
+									$tagColl->update(array("_id"=> $dataExists['_id']), array('$inc'=>array("numUsed"=>1)));
 								}
 								$tagColl->ensureIndex(array("location"=>"2d"));
 							}

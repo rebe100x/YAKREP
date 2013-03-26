@@ -230,11 +230,18 @@ function getApercite($link,$conf){
 		fclose($fp);
 		
 		$s3 = new AmazonS3();
-		$response = $s3->create_object($conf->bucket(), '120_90/'.$imgName, array(
-			'fileUpload'  => $fullpath,
-		   'contentType' => 'image/jpeg',
-			'acl'   =>  AmazonS3::ACL_PUBLIC
-		));
+		if(file_exists($fullpath)){
+			$response = $s3->create_object($conf->bucket(), '120_90/'.$imgName, array(
+				'fileUpload'  => $fullpath,
+			   'contentType' => 'image/jpeg',
+				'acl'   =>  AmazonS3::ACL_PUBLIC
+			));
+		}
+		
+		if($response->status==200 ){
+			unlink($fullpath);
+		}
+	
 	}	
 	
     return $imgName;
@@ -275,26 +282,49 @@ function createImgThumb($link,$conf){
 	
 	require_once("aws-sdk/sdk.class.php");
 	$s3 = new AmazonS3();
-	$response = $s3->create_object($conf->bucket(), '120_90/'.$hash.'.jpg', array(
-        'fileUpload'  => $filePathDestThumb,
-       'contentType' => 'image/jpeg',
-        'acl'   =>  AmazonS3::ACL_PUBLIC
-    ));
-	
-	$response = $s3->create_object($conf->bucket(), '256_0/'.$hash.'.jpg', array(
-        'fileUpload'  => $filePathDestMedium,
-       'contentType' => 'image/jpeg',
-        'acl'   =>  AmazonS3::ACL_PUBLIC
-    ));
-	
-	$response = $s3->create_object($conf->bucket(), '512_0/'.$hash.'.jpg', array(
-        'fileUpload'  => $filePathDestBig,
-       'contentType' => 'image/jpeg',
-        'acl'   =>  AmazonS3::ACL_PUBLIC
-    ));
+	if(file_exists($filePathDestThumb)){
+		$response1 = $s3->create_object($conf->bucket(), '120_90/'.$hash.'.jpg', array(
+			'fileUpload'  => $filePathDestThumb,
+		   'contentType' => 'image/jpeg',
+			'acl'   =>  AmazonS3::ACL_PUBLIC
+		));
+	}
+
+	if(file_exists($filePathDestMedium)){	
+		$response2 = $s3->create_object($conf->bucket(), '256_0/'.$hash.'.jpg', array(
+			'fileUpload'  => $filePathDestMedium,
+		   'contentType' => 'image/jpeg',
+			'acl'   =>  AmazonS3::ACL_PUBLIC
+		));
+	}
+
+	if(file_exists($filePathDestBig)){	
+		$response3 = $s3->create_object($conf->bucket(), '512_0/'.$hash.'.jpg', array(
+			'fileUpload'  => $filePathDestBig,
+		   'contentType' => 'image/jpeg',
+			'acl'   =>  AmazonS3::ACL_PUBLIC
+		));
+	}
 	
 	if($res1 && $res2 && $res3)
 		$res = $hash.'.jpg';
+	else
+		$res = 'Error resize';
+		
+	if($response1->status==200 && $response2->status==200 && $response3->status==200 ){
+		unlink($filePathDestOriginal);
+	}else
+		$res = "Error push img";
+	
+	if($response1->status==200 ){
+		unlink($filePathDestThumb);
+	}
+	if($response2->status==200){
+		unlink($filePathDestMedium);
+	}
+	if($response3->status==200 ){
+		unlink($filePathDestBig);
+	}
 	
 	
     return $res;

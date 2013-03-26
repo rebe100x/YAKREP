@@ -16,7 +16,7 @@ $records = array();
 
 /*LEVEL 1*/
 
-
+/*
 $records[] = array(
 	"_id" => new MongoId("51246d43fa9a95080b000000"),
 	"title"=> "Météo",
@@ -30,8 +30,9 @@ $records[] = array(
 	"ext_id"=>array(
 		"of"=>array()	
 	)
-);
+);*/
 
+/*
 $records[] = array(
 	"_id" => new MongoId("50f00cecfa9a957c0c000001"),
 	"title"=> "Administratif",
@@ -45,22 +46,9 @@ $records[] = array(
 	"ext_id"=>array(
 		"of"=>array('211','214','215','270','271','212','213','278','99','100','244','224','203','205','204','225','98')	
 	)
-);
+);*/
 
-$records[] = array(
-	"_id" => new MongoId("512b6dbcfa9a95300c000026 "),
-	"title"=> "Elections",
-	"path" => "ELECTIONS",
-	"pathN" => "ELECTIONS",
-	"level" => 1,
-	"thumb" => "",
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1,
-	"ext_id"=>array(
-		"of"=>array('330','283','284','332','331')	
-	)
-);
+
 
 $records[] = array(
 	"_id" => new MongoId("50efebbffa9a95b40c000000"),
@@ -73,7 +61,7 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array()	
+		"of"=>array('330','283','284','332','331')	
 	)
 );
 
@@ -92,6 +80,7 @@ $records[] = array(
 	)
 );
 
+/*
 $records[] = array(
 	"_id" => new MongoId("50f025f7fa9a957c0c000048"),
 	"title"=> "Commerce",
@@ -105,13 +94,13 @@ $records[] = array(
 	"ext_id"=>array(
 		"of"=>array()	
 	)
-);
+);*/
 
 $records[] = array(
 	"_id" => new MongoId("50923b9afa9a95d409000000"),
-	"title"=> "Agenda",
-	"path" => "AGENDA",
-	"pathN" => "AGENDA",
+	"title"=> "Sortir",
+	"path" => "SORTIR",
+	"pathN" => "SORTIR",
 	"level" => 1,
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
@@ -133,10 +122,10 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 	"ext_id"=>array(
-		"of"=>array()	
+		"of"=>array('211','214','215','270','271','212','213','278','99','100','244','224','203','205','204','225','98')		
 	)
 );
-
+/*
 $records[] = array(
 	"_id" => new MongoId("5092390bfa9a95f40c000000"),
 	"title"=> "Discussion",
@@ -167,6 +156,7 @@ $records[] = array(
 	)
 );
 
+
 $records[] = array(
 	"_id" => new MongoId("5077ec30fa9a95000f000028"),
 	"title"=> "Statistiques",
@@ -180,7 +170,7 @@ $records[] = array(
 	"ext_id"=>array(
 		"of"=>array()	
 	)
-);
+);*/
 
 $records[] = array(
 	"_id" => new MongoId("50696022fa9a95501400000a"),
@@ -212,10 +202,10 @@ $records[] = array(
 );
 
 $records[] = array(
-	"_id" => new MongoId("512b6dbcfa9a95300c000027 "),
-	"title"=> "Nature et Environnement",
-	"path" => "NATUREETENVIRONNEMENT",
-	"pathN" => "NATUREETENVIRONNEMENT",
+	"_id" => new MongoId("512b6dbcfa9a95300c000027"),
+	"title"=> "Environnement",
+	"path" => "ENVIRONNEMENT",
+	"pathN" => "ENVIRONNEMENT",
 	"level" => 1,
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
@@ -272,20 +262,6 @@ $records[] = array(
 );
 
 
-$records[] = array(
-	"_id" => new MongoId("50596c9cfa9a953c14000000"),
-	"title"=> "Loisir",
-	"path" => "Loisir",
-	"pathN" => "LOISIR",
-	"level" => 1,
-	"thumb" => "",
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1,
-	"ext_id"=>array(
-		"of"=>array()	
-	)
-);
 
 $records[]= array(
 	"_id" => new MongoId("504d89c5fa9a957004000000"),
@@ -332,6 +308,22 @@ $records[]= array(
 	)
 );
 
+$records[] = array(
+	"_id" => new MongoId("506479f54a53042191000000"),
+	"title"=> "Sport",
+	"path" => "SPORT",
+	"pathN" => "SPORT",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array('112','113','114','115','116','117','118','289','201','217')	
+	)
+);
+
+/*
 $records[]= array(
 	"_id" => new MongoId("50896423fa9a954c01000000"),
 	"title"=> "Restaurant",
@@ -376,9 +368,11 @@ $records[]= array(
 		"of"=>array()	
 	)
 );
+*/
 /*********/
 /*LEVEL 2*/
 /********/
+/*
 $records[]= array(
 	"_id" => new MongoId("50f7f334fa9a958c0b000000"),
 	"title"=> "Centrale nucléaire",
@@ -522,8 +516,7 @@ $records[] = array(
 	"ext_id"=>array(
 		"of"=>array('7','144')	
 	)
-);
-
+);*/
 
 $records[] = array(
 	"_id" => new MongoId("5056b7aafa9a95180b000000"),
@@ -538,7 +531,7 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1,
+	"status" => 0,
 	"ext_id"=>array(
 		"of"=>array()	
 	)
@@ -557,7 +550,7 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1,
+	"status" => 0,
 	"ext_id"=>array(
 		"of"=>array()	
 	)
@@ -576,12 +569,13 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1,
+	"status" => 0,
 	"ext_id"=>array(
 		"of"=>array()	
 	)
 );
 
+/*
 $records[] = array(
 	"_id" => new MongoId("5056b89bfa9a95180b000001"),
 	"title"=> "Ecole",
@@ -758,9 +752,9 @@ $records[] = array(
 	"ext_id"=>array(
 		"of"=>array()	
 	)
-);
+);*/
 
-
+/*
 $records[] = array(
 	"_id" => new MongoId("50596cdafa9a95401400004f"),
 	"title"=> "Espace vert",
@@ -779,23 +773,10 @@ $records[] = array(
 		"of"=>array()	
 	)
 );
+*/
 
 
-$records[] = array(
-	"_id" => new MongoId("506479f54a53042191000000"),
-	"title"=> "Sport",
-	"path" => "SPORT",
-	"pathN" => "SPORT",
-	"level" => 1,
-	"thumb" => "",
-	"creationDate" => new MongoDate(gmmktime()),
-	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1,
-	"ext_id"=>array(
-		"of"=>array('112','113','114','115','116','117','118','289','201','217')	
-	)
-);
-
+/*
 $records[] = array(
 	"_id" => new MongoId("50c5e0c91d22b3bf38000fb0"),
 	"title"=> "Cyclisme",
@@ -1084,10 +1065,10 @@ $records[] = array(
 	"ext_id"=>array(
 		"of"=>array()	
 	)
-);
+);*/
 
 
-
+/*
 $records[] = array(
 	"_id" => new MongoId("506479f54a53042191040000"),
 	"title"=> "Maison de Quartier",
@@ -1105,12 +1086,12 @@ $records[] = array(
 	"ext_id"=>array(
 		"of"=>array()	
 	)
-);
+);*/
 
 
 /*LEVEL 3*/
 
-
+/*
 $records[] = array(
 	"_id" => new MongoId("50f90b48fa9a953809000000"),
 	"title"=> "Chorégraphie",
@@ -1149,7 +1130,7 @@ $records[] = array(
 	"ext_id"=>array(
 		"of"=>array()	
 	)
-);
+);*/
 
 $row1 = 0;	
 $row2 = 0;	

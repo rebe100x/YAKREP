@@ -1,12 +1,12 @@
 <?php
-/* Read file from ousetfrance , match cats and create the xml file
+/* Read file from oueestfrance , match cats and create the xml file
  * */
 
 ini_set ('max_execution_time', 0);
 set_time_limit(0);
 require_once("../LIB/conf.php");
 ini_set('display_errors',1);
-$inputFile ='./input/OF/ouestfrance_small.xml';
+$inputFile ='./input/OF2/infolocale.xml';
 $fileTitle = "Ouest France";
 $file = "ouest-france.xml";
 

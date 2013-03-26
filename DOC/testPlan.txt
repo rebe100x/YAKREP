@@ -5,12 +5,22 @@ TEST PLAN
 2) Pull the YAKREP
 3) Delete your user
 4) Delete your cookies
-5) Create a user
-6) Validate your account
+5) Create a user with twitter
+6) Create a user with with email
+7) Validate your account
 7) TEST each  feature from left to right, top to bottom
 8) test each input with this test : 
 c'est l'été
 9) CHANGE your account type to 2 and try to post
 10) test different screen size : phone, tablet, medium and big screen
 11) test with different browser : Chrome, FF, IE10
+12) PAGES TO TEST :
+FIRST VISIT
+MAP
+POST
+FEED
+ALERTES
+PROFILE
+MOT DE PASSE
+
 

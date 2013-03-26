@@ -1803,6 +1803,7 @@ $records[] = array(
 );
 
 
+
 $records[] = array(
 	"_id" => new MongoId("51095062fa9a95280c000003"),
 	"title"=>"Var",
@@ -3950,6 +3951,39 @@ Placé sous le patronage de Buffon jusqu'en 1788, il s'étend sur une superficie
 );
 
 
+$records[] = array(
+	"_id" => new MongoId("51495a92fa9a958c06000000"),
+	"title"=>"Polka Galerie",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89cffa9a957004000001"),new MongoId("504df70ffa9a957c0b000006")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.857882,'lng'=>2.366652),
+	"formatted_address"=> "12 rue Saint Gilles, Paris 3ème",
+	"address" => array(
+				'street' => '12 rue Saint Gilles',
+				'arr' => '3eme',
+				'city' => 'Paris',
+				'state' => 'Paris',
+				'area' => 'Ile-de-France',
+				'country' => 'France',
+				'zip' => '75003',
+			),
+	"contact" => array(
+		'tel'=>'01 76 21 41 30',
+		'mobile'=>'06 76 80 97 05',
+		'transportation'=>'Metro 8,  Chemin Vert',
+		'opening'=>'Du mardi au samedi de 11h à 19h30',
+	),		
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1
+);
 
 $records[] = array(
 	"_id" => new MongoId("507bfe171d22b3954e00001a"),

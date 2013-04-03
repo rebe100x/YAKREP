@@ -311,6 +311,11 @@ function createImgThumb($link,$conf){
 	else
 		$res = 'Error resize';
 		
+	// NOTE :  your local server has to be on time to send images to S3	
+	//var_dump($response1);
+	//var_dump($response2);	
+	//var_dump($response3);	
+	
 	if($response1->status==200 && $response2->status==200 && $response3->status==200 ){
 		unlink($filePathDestOriginal);
 	}else
@@ -1029,6 +1034,17 @@ if(($pos = strpos($haystack, $what))!==false) return $pos;
 return false;
 }
 
+function convert_smart_quotes($string){ 
+    $search = array("’", 
+                    "‘", 
+                    "“", 
+                    "”");
+    $replace = array("'", 
+                     "'", 
+                     '"', 
+                     '"'); 
 
+    return str_replace($search, $replace, $string); 
+}
 
 ?>

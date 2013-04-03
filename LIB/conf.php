@@ -38,6 +38,7 @@ class conf
 		switch($this->deploy){
 			case 'dev':
 				$this->db = 'yakwala';
+				$this->dbtrack = 'yaktrack';
 				$this->fronturl = 'http://dev.yakwala.fr';
 				$this->backurl = 'http://dev.batch.yakwala.fr';
 				$this->thumburl = 'http://dev.batch.yakwala.fr/BACKEND/thumb/';
@@ -52,6 +53,7 @@ class conf
 			break;
 			case 'devrenaud':
 				$this->db = 'yakwala';
+				$this->dbtrack = 'yaktrack';
 				$this->fronturl = 'http://dev.yakwala.fr';
 				$this->backurl = 'http://dev.batch.yakwala.fr';
 				$this->thumburl = 'http://dev.batch.yakwala.fr/BACKEND/thumb/';
@@ -64,6 +66,7 @@ class conf
 				$this->bucket = 'yak1';
 			break;
 			case 'preprod':
+				$this->dbtrack = 'yaktrack_preprod';
 				$this->db = 'yakwala_preprod';
 				$this->fronturl = 'http://labs.yakwala.fr';
 				$this->backurl = 'http://batch.yakwala.fr/PREPROD/YAKREP/';
@@ -78,6 +81,7 @@ class conf
 			break;
 			case 'prod':
 				$this->db = 'yakwala';
+				$this->dbtrack = 'yaktrack';
 				$this->fronturl = 'http://labs.yakwala.fr';
 				$this->backurl = 'http://batch.yakwala.fr/PROD/YAKREP/';
 				$this->thumburl = 'http://batch.yakwala.fr/PROD/YAKREP/BACKEND/thumb';	
@@ -93,12 +97,19 @@ class conf
 		}
 		$m = new Mongo(); 
 		$this->mdb = $m->selectDB($this->db());
-
+		
+		$mTrack = new Mongo(); 
+		$this->mdbTrack = $m->selectDB($this->dbTrack());
+		
 	}
 
 	public function getDeploy() {
 		return $this->deploy;
 	}
+	
+	public function dbTrack() {
+        return  $this->dbtrack;
+    }
 	
     public function db() {
         return  $this->db;
@@ -140,6 +151,11 @@ class conf
 	public function mdb() {
         return  $this->mdb;
     }
+	
+	public function mdbTrack() {
+        return  $this->mdbTrack;
+    }
+	
 	public function bucket() {
         return  $this->bucket;
     }

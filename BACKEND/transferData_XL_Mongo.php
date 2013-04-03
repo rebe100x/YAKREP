@@ -722,9 +722,10 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				$freeTagNew = array_values($freeTag);
 				$freeTag = $freeTagNew;
 				
-				// clean :
-				$content = (!empty($content))?strip_tags($content,"<br><b><strong>"):"";
-				$title = strip_tags(trim($title));			
+				// clean curly quotes and html tags
+				$content = (!empty($content))?strip_tags(convert_smart_quotes($content),"<br><b><strong>"):"";
+				$title = strip_tags(trim(convert_smart_quotes($title)));	
+					
 				
 				
 				// NOTE:  WE INTRODUCE MULTIPLE INFO IF WE HAVE MULTIPLE LOCATIONS

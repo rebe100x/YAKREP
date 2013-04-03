@@ -1,0 +1,29 @@
+in tracks :
+userId date action param source
+
+1 create account {from:0 ykl 1: twitter 2 fb 3:g+}
+2 validate account
+3 login	{from:0 ykl 1: twitter 2 fb 3:g+}
+4 logout
+5 search	{location:, str : , fromDate: , type: , page:map/feed, range:(curPos.z)}
+6 read {infoId: , page:map/feed/top,}
+7 like {infoId: , page:map/feed/top,}
+8 share {infoId: , to:0:ykl/1:twitter/2:fb/3:g+,page:map/feed/top,}
+9 changeFavPlace
+10 post {infoId:}
+11 changeProfile
+12 changeAlert {type: user/feed/tag}
+13 changePassword
+14 mark as unappropriated
+15 add comment {infoId: , page:map/feed/top,}
+
+SOCIAL
+TW : 1
+FB : 2
+GP : 3
+
+YAKTYPE:
+ACTU 1
+AGENDA 2
+INFO PRAT 3
+DISC 4

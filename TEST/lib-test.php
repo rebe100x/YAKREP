@@ -21,9 +21,7 @@ $logDataInserted = 0;
 $logDataUpdated = 0;
 $logDataAlreadyInDB = 0;
 
-$outGoingLink = "http://www.ecoledesurfestagnots.com/club-de-plage-estagnots.html";
-$res = getApercite($outGoingLink,$conf);
-echo $res;
+echo chr(146);
 ?>
 </body>
 </html>

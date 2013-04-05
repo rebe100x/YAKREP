@@ -349,81 +349,83 @@ function createImgThumb($link,$conf){
         {
             if( file_exists($filePathSrc) ){
                 $data = file_get_contents($filePathSrc);
-                $im = imagecreatefromstring($data);
-				if($im){
-					if( file_exists($filePathDest) )
-						@unlink($filePathDest);
-				   
-				   $x = imagesx($im);
-				   $y = imagesy($im);
-				
+				if(!empty($data)){	
+					$im = imagecreatefromstring($data);
+					if($im){
+						if( file_exists($filePathDest) )
+							@unlink($filePathDest);
+					   
+					   $x = imagesx($im);
+					   $y = imagesy($im);
 					
 						
-					
-				   $ratioInput = ( $y>0 ) ? $x / $y : 1 ;
-				   
-				   if( $row['W'] == 0 && $row['H'] == 0 ){
-						$width = $x;
-						$height = $y;
-					}
-					else{
-						
-						if($x < $row['W'] && $y < $row['H']){
 							
-							$ratioOutput = 1;
-							$height = $row['H'];
-							$width = $row['W'];
+						
+					   $ratioInput = ( $y>0 ) ? $x / $y : 1 ;
+					   
+					   if( $row['W'] == 0 && $row['H'] == 0 ){
+							$width = $x;
+							$height = $y;
 						}
-						
-						if( $row['W'] > 0 && $row['H'] > 0){
-							$ratioOutput = $row['W'] /$row['H'];
+						else{
 							
-							if ($ratioOutput > $ratioInput) {
+							if($x < $row['W'] && $y < $row['H']){
+								
+								$ratioOutput = 1;
 								$height = $row['H'];
-								$width = $ratioInput * $row['H'];
-							} else {
-								$height = $row['W'] / $ratioInput;
 								$width = $row['W'];
 							}
-						
-							if ($height > $row['H']) {
-								$height = $row['H'];
+							
+							if( $row['W'] > 0 && $row['H'] > 0){
+								$ratioOutput = $row['W'] /$row['H'];
+								
+								if ($ratioOutput > $ratioInput) {
+									$height = $row['H'];
+									$width = $ratioInput * $row['H'];
+								} else {
+									$height = $row['W'] / $ratioInput;
+									$width = $row['W'];
+								}
+							
+								if ($height > $row['H']) {
+									$height = $row['H'];
+								}
+								if ($width > $row['W']) {
+									$height = $row['W'];
+								}
+							
+							}else{
+							   $width = ( $row['W'] > 0 ) ? ($row['W']) : ($row['H'] * $ratioInput);
+							   $height = ( $row['H'] > 0 ) ? ($row['H']) : ($row['W'] / $ratioInput); 
 							}
-							if ($width > $row['W']) {
-								$height = $row['W'];
-							}
-						
-						}else{
-						   $width = ( $row['W'] > 0 ) ? ($row['W']) : ($row['H'] * $ratioInput);
-						   $height = ( $row['H'] > 0 ) ? ($row['H']) : ($row['W'] / $ratioInput); 
 						}
-					}
-				  
-					if( $row['W'] > 0 && $row['H'] > 0)
-						$copyIm = ImageCreateTrueColor($row['W'],$row['H']);
-					else
-						 $copyIm = ImageCreateTrueColor($width,$height);
-						 
-					imagealphablending($copyIm, false);
-					imagesavealpha($copyIm, true);  
-					imagealphablending($im, true);
-					$transparent = imagecolorallocatealpha($copyIm, 255, 255, 255, 127);
-					if( $row['W'] > 0 && $row['H'] > 0)
-						imagefilledrectangle($copyIm, 0, 0, $row['W'],$row['H'], $transparent);
-					else
-						imagefilledrectangle($copyIm, 0, 0, $width, $height, $transparent);
-						
-					if( $row['W'] > 0 && $row['H'] > 0)
-						ImageCopyResampled($copyIm,$im,($row['W']-$width)/2, ($row['H']-$height)/2,0,0,$width,$height,$x,$y);
-					else
-						ImageCopyResampled($copyIm,$im,0,0,0,0,$width,$height,$x,$y);
-						
-						
-					imagejpeg($copyIm,$filePathDest,100);
-					chmod($filePathDest,0777);
-					$res = 1;
-				}else					
-					$res = 0;
+					  
+						if( $row['W'] > 0 && $row['H'] > 0)
+							$copyIm = ImageCreateTrueColor($row['W'],$row['H']);
+						else
+							 $copyIm = ImageCreateTrueColor($width,$height);
+							 
+						imagealphablending($copyIm, false);
+						imagesavealpha($copyIm, true);  
+						imagealphablending($im, true);
+						$transparent = imagecolorallocatealpha($copyIm, 255, 255, 255, 127);
+						if( $row['W'] > 0 && $row['H'] > 0)
+							imagefilledrectangle($copyIm, 0, 0, $row['W'],$row['H'], $transparent);
+						else
+							imagefilledrectangle($copyIm, 0, 0, $width, $height, $transparent);
+							
+						if( $row['W'] > 0 && $row['H'] > 0)
+							ImageCopyResampled($copyIm,$im,($row['W']-$width)/2, ($row['H']-$height)/2,0,0,$width,$height,$x,$y);
+						else
+							ImageCopyResampled($copyIm,$im,0,0,0,0,$width,$height,$x,$y);
+							
+							
+						imagejpeg($copyIm,$filePathDest,100);
+						chmod($filePathDest,0777);
+						$res = 1;
+					}else					
+						$res = 0;
+				}
             }
             else
             {

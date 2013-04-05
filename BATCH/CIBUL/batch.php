@@ -227,7 +227,10 @@ foreach ($urlset->url as $url) {
 					}
 					// Using createImgThumb from /lib/library.php
 					$thumbFlag = 0;
-					$res = createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
+					if(file_exists($result->data->imageThumb))
+						$res = createImgThumb(ltrim($result->data->imageThumb, "/"), $conf);
+					else
+						$res = 0;
 					if($res == false){
 						$info->thumb = "";		
 					}else{

@@ -56,6 +56,7 @@ $records[] = array(
 );
 
 
+
 $records[] = array(
 	"_id" => new MongoId("512dfb71fa9a95240c000073"),
 	"title"=> "MP2013",
@@ -65,6 +66,29 @@ $records[] = array(
 		array("title"=>"Marseille-Provence 2013","level"=>"normalized"),
 	),
 	"yakCatId"=>array(new MongoId("50923b9afa9a95d409000000")),
+	"yakCatName"=>array("Sortir"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
+
+$records[] = array(
+	"_id" => new MongoId(""),
+	"title"=> "Transport",
+	"match"=>array(
+		array("title"=>"réseau ferré","level"=>"normalized"),
+		array("title"=>"réseau ferroviaire","level"=>"normalized"),
+		array("title"=>"SNCF","level"=>"exact"),
+		array("title"=>"RER","level"=>"exact"),
+		array("title"=>"ligne de métro","level"=>"normalized"),
+		array("title"=>"station de métro","level"=>"normalized"),
+		array("title"=>"Thalys","level"=>"exact"),
+		array("title"=>"Intercités","level"=>"exact"),
+		array("title"=>"voyages-sncf.com","level"=>"exact"),
+		array("title"=>"Transiliens","level"=>"exact"),
+		
+	),
+	"yakCatId"=>array(new MongoId("5077ebb1fa9a95600d0001dc")),
 	"yakCatName"=>array("Sortir"),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
@@ -107,6 +131,13 @@ $records[] = array(
 	"_id" => new MongoId("512e452d1d22b3836e015f05"),
 	"title"=> "FaitsDivers",
 	"match"=>array(
+		array("title"=>"met fin à ses jours","level"=>"normalized"),
+		array("title"=>"condamné à","level"=>"normalized"),
+		array("title"=>"condamnée à","level"=>"normalized"),
+		array("title"=>"condamnées à","level"=>"normalized"),
+		array("title"=>"condamnés à","level"=>"normalized"),
+		array("title"=>"squatteurs","level"=>"normalized"),
+		array("title"=>"squatteur","level"=>"normalized"),
 		array("title"=>"un mort","level"=>"normalized"),
 		array("title"=>"morts","level"=>"normalized"),
 		array("title"=>"légèrement blesséé","level"=>"normalized"),
@@ -187,6 +218,9 @@ $records[] = array(
 	"_id" => new MongoId("512f0d7dfa9a956c0b000003"),
 	"title"=> "Solidarité",
 	"match"=>array(
+		
+		array("title"=>"téléthon","level"=>"normalized"),
+		array("title"=>"sidaction","level"=>"normalized"),
 		array("title"=>"MSF","level"=>"exact"),
 		array("title"=>"médecins sans frontières","level"=>"normalized"),
 		array("title"=>"ONG","level"=>"exact"),
@@ -542,8 +576,9 @@ $records[] = array(
 
 $records[] = array(
 	"_id" => new MongoId("514bfaddfa9a95100b000009"),
-	"title"=> "Formation",
+	"title"=> "Emploi",
 	"match"=>array(
+		array("title"=>"Pôle Emploi","level"=>"exact"),
 		array("title"=>"formation continue","level"=>"normalized"),
 		array("title"=>"les métiers du","level"=>"normalized"),
 		array("title"=>"les métiers et formations du","level"=>"normalized"),

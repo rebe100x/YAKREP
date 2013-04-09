@@ -97,11 +97,11 @@ if(!empty($user)){
 						else
 							$favTags[$tag] = $favTags[$tag] + $scoreMatrix[$t['actionid']];
 					}
-				
+					break;
 				
 				case 11:
 				case 12:
-					if(!empty($t['params'])){
+					if(!empty($t['params']['tags'])){
 						$tags = $t['params']['tags'];
 						
 						if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 ){

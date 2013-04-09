@@ -18,6 +18,74 @@ $records = array();
 */
 
 
+$records[] = array(
+	"_id" => new MongoId("5163b128fa9a95240b000021"),
+	"title"=>"Musée du Cinéma",
+	"content" =>"Longtemps installée au palais de Chaillot, la Cinémathèque française occupe depuis septembre 2005 un bâtiment moderne construit par l’architecte Frank Gehry, 51 rue de Bercy (Paris 12e), au coeur d’un quartier de Paris en plein développement.",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.cinematheque.fr/",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"freeTag" => array("Culture","Cinéma"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.837316,'lng'=>2.382563),
+	"formatted_address"=> "51 Rue de Bercy, 75012 Paris, France",
+	"address" => array(
+				'street_number'=>'51',
+				'street'=>"Rue de Bercy",
+				'arr'=>'12',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75012',
+			),
+	"contact"=>array(
+			'web'=>'http://www.cinematheque.fr/',
+			'tel'=>'01 71 19 33 33',
+	),		
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
+
+$records[] = array(
+	"_id" => new MongoId("5163b128fa9a95240b000022"),
+	"title"=>"Cinémathèque française",
+	"content" =>"Longtemps installée au palais de Chaillot, la Cinémathèque française occupe depuis septembre 2005 un bâtiment moderne construit par l’architecte Frank Gehry, 51 rue de Bercy (Paris 12e), au coeur d’un quartier de Paris en plein développement.",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.cinematheque.fr/",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"freeTag" => array("Culture","Cinéma"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.837316,'lng'=>2.382563),
+	"formatted_address"=> "51 Rue de Bercy, 75012 Paris, France",
+	"address" => array(
+				'street_number'=>'51',
+				'street'=>"Rue de Bercy",
+				'arr'=>'12',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75012',
+			),
+	"contact"=>array(
+			'web'=>'http://www.cinematheque.fr/',
+			'tel'=>'01 71 19 33 33',
+	),		
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
+
 
 $records[] = array(
 	"_id" => new MongoId("512da6edfa9a95480c00006a"),

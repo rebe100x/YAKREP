@@ -444,19 +444,19 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 							else   
 								$locationTmp[] = $adresse;
 						}else{	
-							if(!empty($lieu)){
-									if(is_array($lieu))
-										foreach($lieu as $l)
-											$locationTmp[] = $l;
-									else   
-										$locationTmp[] = $lieu;
-							}else{
-								if(!empty($yakdico)){
+							if(!empty($yakdico)){
 									if(is_array($yakdico))
 										foreach($yakdico as $dico)
 											$locationTmp[] = $dico;
 									else   
 										$locationTmp[] = $yakdico;
+							}else{
+								if(!empty($lieu)){
+									if(is_array($lieu))
+										foreach($lieu as $l)
+											$locationTmp[] = $l;
+									else   
+										$locationTmp[] = $lieu;
 								}else{    
 									if(!empty($quartier)){
 											if(is_array($quartier))
@@ -516,7 +516,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									$print = 1;
 								}
 								
-								$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print,'contact'=>$place['contact']);	
+								$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print,'contact'=>$place['contact']);
+								
+								// add tags to info tags
+								if(!empty($place['freeTag']))
+									$freeTag[] = $place['freeTag'];
+									
 							}else{ // the place is not in db
 								
 								// FROM THE INPUT
@@ -539,7 +544,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									
 									
 									//$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) ) ? ', '.$laville:'').', '.$defaultPlaceTitle.'. '.$defaultPlace['address']['country'])));
-									$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) && preg_match('/^'.$loc.'$/',$laville) === FALSE ) ? ', '.$laville:'').', '.$defaultPlaceTitle.' '.$defaultPlace['address']['country'])));
+									$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$laville) && preg_match('/^'.$loc.'$/',$laville) === FALSE ) ? ', '.$laville:'').', '.$defaultPlaceTitle.' '.$defaultPlace['address']['country'])));
 									//echo 'LIEU'.sizeof($lieu);
 									if(sizeof($lieu)==0)
 										$resGMap = getLocationGMap($gQuery,'PHP',1,$conf);

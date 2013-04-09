@@ -198,12 +198,14 @@ function getTeleportImg($spec){
 /* call to webservice to get and store a preview of the link 
  * return true if success
  * */
-function getApercite($link,$conf){
+function getApercite($link,$conf,$iter=0){
+	$iter++;
 	echo '<br> Call Apercite';
 	$imgName = md5($link).'.jpg';
 	//$fullpath = "thumb/".$imgName;
 	$fullpath = $conf->thumbpath().$imgName;
 	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;	
+	echo 'img= '.$img;
 	$ch = curl_init ($img);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -215,10 +217,10 @@ function getApercite($link,$conf){
 	echo $conf->batchthumbpath().'120x90.jpg';
 	$creationImgSignature = md5(file_get_contents($conf->batchthumbpath().'120x90.jpg'));
 	$infoImgSignature = md5($rawdata);
-	if ($creationImgSignature == $infoImgSignature) {
+	if ($creationImgSignature == $infoImgSignature && $iter < 	10 ) {
 		echo '<br>IMG UNDER CREATION';
 		sleep(20);
-		getApercite($link,$conf);
+		getApercite($link,$conf,1);
 	}else{
 		
 		
@@ -970,7 +972,8 @@ function indexForOntology($str)
 	 "[ÿ|ý|Ý]",
 	 "[ñ|Ñ]",
 	 "[Ð]",
-	 "[\']"
+	 "[\']",
+	 "[\.]"
 	 );
 
 	//replacement array
@@ -997,7 +1000,8 @@ function indexForOntology($str)
 		"y",
 		"n",
 		"d",
-		"&#x27;"
+		"&#x27;",
+		"&#x2e;"
 	);
 
 	

@@ -131,6 +131,8 @@ $records[] = array(
 	"_id" => new MongoId("512e452d1d22b3836e015f05"),
 	"title"=> "FaitsDivers",
 	"match"=>array(
+	
+		array("title"=>"un cadavre découvert","level"=>"normalized"),
 		array("title"=>"met fin à ses jours","level"=>"normalized"),
 		array("title"=>"condamné à","level"=>"normalized"),
 		array("title"=>"condamnée à","level"=>"normalized"),

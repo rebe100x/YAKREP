@@ -520,7 +520,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								
 								// add tags to info tags
 								if(!empty($place['freeTag']))
-									$freeTag[] = $place['freeTag'];
+									$freeTag = array_merge($freeTag,$place['freeTag']);
 									
 							}else{ // the place is not in db
 								

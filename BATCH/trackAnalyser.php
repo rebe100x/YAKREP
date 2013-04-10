@@ -56,7 +56,8 @@ if(!empty($user)){
 		$tracks = $trackColl->find(array('userid'=>$u['_id'],'actiondate'=>array('$gte'=>new Mongodate($tsLastWeek))));
 		$tracks->sort(array('actiondate'=>-1));	
 		foreach($tracks as $t){
-			echo '<br>'.$t['actionid'].' : ';
+			echo '<hr>'.$t['actionid'].' : ';
+			
 			switch($t['actionid']){
 				
 				case 6:
@@ -72,8 +73,8 @@ if(!empty($user)){
 							$favCats[$cat] = $favCats[$cat] + $scoreMatrix[$t['actionid']];
 					}
 					foreach($theInfo['freeTag'] as $tag){
-						echo '<br>tag:'.$tag.'<br>';
-						if($tag != ''){
+						echo 'tag : '.$tag.'<br>';
+						if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags)){
 							if(!array_key_exists($tag,$favTags))
 								$favTags[$tag] = $scoreMatrix[$t['actionid']];
 							else
@@ -84,27 +85,26 @@ if(!empty($user)){
 					break;
 				case 5:	
 					
-					
-					$tag = $t['params']['str'];
-					echo '<br>tag:'.$t['params']['str'].'<br>';
-					
-					if($tag != '' && $tag != null && $tag != 'null'){
-						if($tag[0]=="#")
-							$tag = substr($tag,1,strlen($tag));
+					$tags = strtolower($t['params']['str']);
+					echo ' tags : '.$tags.'<br>';
+					if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags) ){
+						echo 'leo';
+
+						if($tags[0]=="#")
+							$tags = substr($tags,1,strlen($tags));
 							
-						if(!array_key_exists($tag,$favTags))
-							$favTags[$tag] = $scoreMatrix[$t['actionid']];
+						if(!array_key_exists($tags,$favTags))
+							$favTags[$tags] = $scoreMatrix[$t['actionid']];
 						else
-							$favTags[$tag] = $favTags[$tag] + $scoreMatrix[$t['actionid']];
+							$favTags[$tags] = $favTags[$tags] + $scoreMatrix[$t['actionid']];
 					}
 					break;
-				
 				case 11:
 				case 12:
-					if(!empty($t['params']['tags'])){
+					if(!empty($t['params'])){
 						$tags = $t['params']['tags'];
-						
-						if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 ){
+						echo ' tags : '.$tags.'<br>';
+						if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags)){
 							foreach($tags as $tag){
 								if(!array_key_exists($tag,$favTags))
 									$favTags[$tag] = $scoreMatrix[$t['actionid']];
@@ -118,7 +118,8 @@ if(!empty($user)){
 					
 				
 					break;
-				
+				default:
+					echo 'not taken';
 			}
 			
 		}
@@ -128,7 +129,7 @@ if(!empty($user)){
 		if(!empty($u['tag'])){
 			$tags = $u['tag'];
 			
-			if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 ){
+			if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags)){
 				foreach($tags as $tag){
 					if(!array_key_exists($tag,$favTags))
 						$favTags[$tag] = $scoreMatrix[0];
@@ -142,8 +143,8 @@ if(!empty($user)){
 		// get user substags
 		if(!empty($u['tagsubs'])){
 			$tags = $u['tagsubs'];
-			
-			if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 ){
+			if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags) && $tags[0] != ''){
+				echo 'lolo';
 				foreach($tags as $tag){
 					if(!array_key_exists($tag,$favTags))
 						$favTags[$tag] = $scoreMatrix[0];
@@ -154,8 +155,10 @@ if(!empty($user)){
 			}
 		}
 		
-		
+		echo '<br><hr><br>';
+		echo 'favCats<br>';
 		var_dump($favCats);
+		echo '<br>favTags<br>';
 		var_dump($favTags);
 		
 		

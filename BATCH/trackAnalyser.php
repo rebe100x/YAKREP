@@ -74,7 +74,7 @@ if(!empty($user)){
 					}
 					foreach($theInfo['freeTag'] as $tag){
 						echo 'tag : '.$tag.'<br>';
-						if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags)){
+						if($tag != '' && $tag  != null && $tag  != 'null' && !empty($tags) && sizeof($tag )>0 && isset($tag )){
 							if(!array_key_exists($tag,$favTags))
 								$favTags[$tag] = $scoreMatrix[$t['actionid']];
 							else
@@ -88,8 +88,6 @@ if(!empty($user)){
 					$tags = strtolower($t['params']['str']);
 					echo ' tags : '.$tags.'<br>';
 					if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags) ){
-						echo 'leo';
-
 						if($tags[0]=="#")
 							$tags = substr($tags,1,strlen($tags));
 							
@@ -124,12 +122,12 @@ if(!empty($user)){
 			
 		}
 		
+			
 		// STATIC DATA : 
 		// get user's tags :
 		if(!empty($u['tag'])){
 			$tags = $u['tag'];
-			
-			if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags)){
+			if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags) && $tags[0] != ''){
 				foreach($tags as $tag){
 					if(!array_key_exists($tag,$favTags))
 						$favTags[$tag] = $scoreMatrix[0];
@@ -146,12 +144,12 @@ if(!empty($user)){
 			if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags) && $tags[0] != ''){
 				echo 'lolo';
 				foreach($tags as $tag){
+					$tag = strtolower($tag);
 					if(!array_key_exists($tag,$favTags))
 						$favTags[$tag] = $scoreMatrix[0];
 					else
 						$favTags[$tag] = $favTags[$tag] + $scoreMatrix[0];
-				}
-				
+				}			
 			}
 		}
 		

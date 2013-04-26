@@ -3,7 +3,7 @@
 /* 
 	Analyse YAKTRACK and create yaktag on user profile
 	
-	This batch targets 2 db : yakwala and yaktrack
+	This batch access 2 dbs : yakwala and yaktrack
 	
 */
 
@@ -50,13 +50,14 @@ $scoreMatrix = array(
 );
 if(!empty($user)){
 	foreach($user as $u){
-		$favTags = array();
-		$favCats = array();
-		echo '<br><b>'.$u['login'].' - id: </b>'.$u['_id'];
+		$favTags = array("not tag"=>0);
+		$favCats = array('no cat'=>0);
+		echo '<br><hr>User: <b>'.$u['login'].' - id: </b>'.$u['_id'];
+		
 		$tracks = $trackColl->find(array('userid'=>$u['_id'],'actiondate'=>array('$gte'=>new Mongodate($tsLastWeek))));
 		$tracks->sort(array('actiondate'=>-1));	
 		foreach($tracks as $t){
-			echo '<hr>'.$t['actionid'].' : ';
+			echo '<br> - '.$t['actionid'].' : ';
 			
 			switch($t['actionid']){
 				
@@ -66,31 +67,38 @@ if(!empty($user)){
 				case 14:
 				case 10:	
 					$theInfo = $infoColl->findOne(array('_id'=>new MongoId($t['params']['infoId'])));
-					foreach($theInfo['yakCatName'] as $cat){
-						if(!array_key_exists($cat,$favCats))
-							$favCats[$cat] = $scoreMatrix[$t['actionid']];
-						else
-							$favCats[$cat] = $favCats[$cat] + $scoreMatrix[$t['actionid']];
-					}
-					foreach($theInfo['freeTag'] as $tag){
-						echo 'tag : '.$tag.'<br>';
-						if($tag != '' && $tag  != null && $tag  != 'null' && !empty($tags) && sizeof($tag )>0 && isset($tag )){
-							if(!array_key_exists($tag,$favTags))
-								$favTags[$tag] = $scoreMatrix[$t['actionid']];
+					if(!empty($theInfo['yakCatName'])){
+						foreach($theInfo['yakCatName'] as $cat){
+							$cat = mb_strtolower($cat,'UTF-8');
+							echo 'cat : '.$cat.'<br>';
+							if(!array_key_exists($cat,$favCats))
+								$favCats[$cat] = $scoreMatrix[$t['actionid']];
 							else
-								$favTags[$tag] = $favTags[$tag] + $scoreMatrix[$t['actionid']];
+								$favCats[$cat] = $favCats[$cat] + $scoreMatrix[$t['actionid']];
 						}
 					}
-					
+					if(!empty($theInfo['freeTag'])){
+						foreach($theInfo['freeTag'] as $tag){
+							$tag = mb_strtolower($tag,'UTF-8');
+							echo 'tag : '.$tag.'<br>';
+							if($tag != '' && $tag  != null && $tag  != 'null' && !empty($tag) && sizeof($tag)>0 && isset($tag)){
+								if(!array_key_exists($tag,$favTags))
+									$favTags[$tag] = $scoreMatrix[$t['actionid']];
+								else
+									$favTags[$tag] = $favTags[$tag] + $scoreMatrix[$t['actionid']];
+							}
+							var_dump($favTags);
+						}
+					}
 					break;
 				case 5:	
 					
-					$tags = strtolower($t['params']['str']);
-					echo ' tags : '.$tags.'<br>';
+					$tags = mb_strtolower($t['params']['str'],'UTF-8');
+					echo ' search string : '.$tags.'<br>';
 					if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags) ){
 						if($tags[0]=="#")
 							$tags = substr($tags,1,strlen($tags));
-							
+						
 						if(!array_key_exists($tags,$favTags))
 							$favTags[$tags] = $scoreMatrix[$t['actionid']];
 						else
@@ -100,7 +108,7 @@ if(!empty($user)){
 				case 11:
 				case 12:
 					if(!empty($t['params'])){
-						$tags = $t['params']['tags'];
+						$tags = mb_strtolower($t['params']['tags'],'UTF-8');
 						echo ' tags : '.$tags.'<br>';
 						if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags)){
 							foreach($tags as $tag){
@@ -126,7 +134,7 @@ if(!empty($user)){
 		// STATIC DATA : 
 		// get user's tags :
 		if(!empty($u['tag'])){
-			$tags = $u['tag'];
+			$tags = mb_strtolower($u['tag'],'UTF-8');
 			if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags) && $tags[0] != ''){
 				foreach($tags as $tag){
 					if(!array_key_exists($tag,$favTags))
@@ -142,9 +150,8 @@ if(!empty($user)){
 		if(!empty($u['tagsubs'])){
 			$tags = $u['tagsubs'];
 			if($tags != '' && $tags != null && $tags != 'null' && !empty($tags) && sizeof($tags)>0 && isset($tags) && $tags[0] != ''){
-				echo 'lolo';
 				foreach($tags as $tag){
-					$tag = strtolower($tag);
+					$tag = mb_strtolower($tag,'UTF-8');
 					if(!array_key_exists($tag,$favTags))
 						$favTags[$tag] = $scoreMatrix[0];
 					else
@@ -154,9 +161,9 @@ if(!empty($user)){
 		}
 		
 		echo '<br><hr><br>';
-		echo 'favCats<br>';
+		echo '<b>favCats:</b><br>';
 		var_dump($favCats);
-		echo '<br>favTags<br>';
+		echo '<br><b>favTags:</b><br>';
 		var_dump($favTags);
 		
 		

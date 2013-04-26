@@ -57,6 +57,7 @@ if($q != ''){
 	//var_dump($feeds);
 
 	function mapIt($i){
+		$i = convert_smart_quotes($i); // clean rounded quotes from MSWord
 		return '/'.$i.'/';
 	}
 

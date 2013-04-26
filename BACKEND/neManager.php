@@ -29,6 +29,7 @@ $records[] = array(
 		array("title"=>"séance gratuite","level"=>"normalized"),
 		array("title"=>"gratis","level"=>"normalized"),
 		array("title"=>"entrée libre","level"=>"normalized"),
+		array("title"=>"accès libre","level"=>"normalized"),
 		array("title"=>"entrée gratuite","level"=>"normalized")
 	),
 	"yakCatId"=>array(new MongoId("50923b9afa9a95d409000000")),
@@ -38,7 +39,20 @@ $records[] = array(
 	"status" => 1,
 );
 
-
+$records[] = array(
+	"_id" => new MongoId("516679e6fa9a95500c000002"),
+	"title"=> "GrandParis",
+	"match"=>array(
+		array("title"=>"le grand Paris","level"=>"exact"),
+		array("title"=>"Grand Paris","level"=>"exact"),
+		array("title"=>"GrandParis","level"=>"exact"),
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
 
 $records[] = array(
 	"_id" => new MongoId("512dfb71fa9a95240c000070"),
@@ -73,7 +87,7 @@ $records[] = array(
 );
 
 $records[] = array(
-	"_id" => new MongoId(""),
+	"_id" => new MongoId("516679e6fa9a95500c000000"),
 	"title"=> "Transport",
 	"match"=>array(
 		array("title"=>"réseau ferré","level"=>"normalized"),
@@ -86,10 +100,15 @@ $records[] = array(
 		array("title"=>"Intercités","level"=>"exact"),
 		array("title"=>"voyages-sncf.com","level"=>"exact"),
 		array("title"=>"Transiliens","level"=>"exact"),
+		array("title"=>"sécurité routière","level"=>"normalized"),
+		array("title"=>"un péage à Paris","level"=>"normalized"),
+		array("title"=>"un péage routier","level"=>"normalized"),
+		
+		 
 		
 	),
 	"yakCatId"=>array(new MongoId("5077ebb1fa9a95600d0001dc")),
-	"yakCatName"=>array("Sortir"),
+	"yakCatName"=>array("Transport"),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
@@ -105,6 +124,49 @@ $records[] = array(
 		array("title"=>"la Saint Valentin","level"=>"normalized"),
 		array("title"=>"la St Valentin","level"=>"normalized"),
 		array("title"=>"la St-Valentin","level"=>"normalized"),
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("516679e6fa9a95500c000003"),
+	"title"=> "Emploi",
+	"match"=>array(
+		array("title"=>"grève","level"=>"normalized"),
+		array("title"=>"arrêt de travail","level"=>"normalized"),
+		array("title"=>"grèvistes","level"=>"normalized"),
+		array("title"=>"licenciment","level"=>"normalized"),
+		array("title"=>"licenciments","level"=>"normalized"),
+		array("title"=>"suppression de postes","level"=>"normalized"),
+		array("title"=>"perdre leur emploi","level"=>"normalized"),
+		array("title"=>"emplois supprimés","level"=>"normalized"),
+		array("title"=>"suppression d'emplois","level"=>"normalized"),
+		array("title"=>"taux de chômage","level"=>"normalized"),
+		array("title"=>"travail le dimanche","level"=>"normalized"),
+		 
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
+
+
+$records[] = array(
+	"_id" => new MongoId("516679e6fa9a95500c000004"),
+	"title"=> "Manif",
+	"match"=>array(
+		array("title"=>"manifestation","level"=>"normalized"),
+		array("title"=>"manif","level"=>"normalized"),
+		array("title"=>"grand rassemblement","level"=>"normalized"),
+		array("title"=>"débrayage","level"=>"normalized"),
+		array("title"=>"à l'appel des syndicats","level"=>"normalized"),
 	),
 	"yakCatId"=>array(),
 	"yakCatName"=>array(),
@@ -132,6 +194,9 @@ $records[] = array(
 	"title"=> "FaitsDivers",
 	"match"=>array(
 	
+	
+		array("title"=>"braqueurs","level"=>"normalized"),
+		array("title"=>"braqueur","level"=>"normalized"),
 		array("title"=>"un cadavre découvert","level"=>"normalized"),
 		array("title"=>"met fin à ses jours","level"=>"normalized"),
 		array("title"=>"condamné à","level"=>"normalized"),
@@ -157,6 +222,7 @@ $records[] = array(
 		array("title"=>"braquage","level"=>"normalized"),
 		array("title"=>"victime","level"=>"normalized"),
 		array("title"=>"cambrioleur","level"=>"normalized"),
+		array("title"=>"cambrioleurs","level"=>"normalized"),
 		array("title"=>"cambriolé","level"=>"normalized"),
 		array("title"=>"cambriolage","level"=>"normalized"),
 		array("title"=>"vol à main armée","level"=>"normalized"),
@@ -167,7 +233,12 @@ $records[] = array(
 		array("title"=>"été dérobée","level"=>"normalized"),
 		array("title"=>"été dérobés","level"=>"normalized"),
 		array("title"=>"été dérobées","level"=>"normalized"),
-		array("title"=>"mort accidentelle","level"=>"exact"),
+		array("title"=>"mort accidentelle","level"=>"normalized"),
+		array("title"=>"gang","level"=>"normalized"),
+		array("title"=>"incidents","level"=>"normalized"),
+		array("title"=>"à l’arme blanche","level"=>"normalized"),
+		 
+		
 	),
 	"yakCatId"=>array(new MongoId('504d89c5fa9a957004000000')),
 	"yakCatName"=>array("Actualités"),
@@ -176,6 +247,33 @@ $records[] = array(
 	"status" => 1,
 );
 
+$records[] = array(
+	"_id" => new MongoId("517a3d16fa9a95600a000000"),
+	"title"=> "Terrorisme",
+	"match"=>array(
+		array("title"=>"terrorisme","level"=>"normalized"),
+		array("title"=>"anti-terrorisme","level"=>"normalized"),
+		array("title"=>"terroriste","level"=>"normalized"),
+		array("title"=>"terroristes","level"=>"normalized"),
+		array("title"=>"attentat","level"=>"normalized"),
+		array("title"=>"attentats","level"=>"normalized"),
+		array("title"=>"voiture piégée","level"=>"normalized"),
+		array("title"=>"11 septembre","level"=>"normalized"),
+		array("title"=>"ETA","level"=>"exact"),
+		array("title"=>"al-qaida","level"=>"normalized"),
+		array("title"=>"al qaida","level"=>"normalized"),
+		array("title"=>"GIGN","level"=>"exact"),
+		array("title"=>"RAID","level"=>"exact"),
+		array("title"=>"Interpol","level"=>"exact"),
+		array("title"=>"Vigipirate","level"=>"exact"),
+		array("title"=>"UCLAT","level"=>"exact"),
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
 
 $records[] = array(
 	"_id" => new MongoId("512f00b0fa9a95980b000003"),
@@ -194,6 +292,28 @@ $records[] = array(
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"status" => 1,
 );
+
+$records[] = array(
+	"_id" => new MongoId("5179029f1d22b3836e01c41d"),
+	"title"=> "MariagePourTous",
+	"match"=>array(
+		array("title"=>"manif pour tous","level"=>"normalized"),
+		array("title"=>"mariage gay","level"=>"normalized"),
+		array("title"=>"mariage pour tous","level"=>"normalized"),
+		array("title"=>"mariage homo","level"=>"normalized"),
+		array("title"=>"anti-mariage homo","level"=>"normalized"),
+		array("title"=>"mariage homosexuel","level"=>"normalized"),
+		array("title"=>"Frigide Barjot","level"=>"exact"),
+		array("title"=>"anti-mariage pour tous","level"=>"normalized"),
+		
+	),
+	"yakCatId"=>array(),
+	"yakCatName"=>array(),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+);
+
 
 $records[] = array(
 	"_id" => new MongoId("512f0cdb1d22b32e7a014b7b"),
@@ -246,7 +366,14 @@ $records[] = array(
 		array("title"=>"Act Up-Paris","level"=>"exact"),
 		array("title"=>"Greenpeace","level"=>"exact"),
 		array("title"=>"Greenpeace","level"=>"exact"),
-
+		array("title"=>"contre le racisme","level"=>"normalized"),
+		array("title"=>"contre l'homophobie","level"=>"normalized"),
+		array("title"=>"contre la violence","level"=>"normalized"),
+		array("title"=>"contre la drogue","level"=>"normalized"),
+		array("title"=>"contre l'exclusion","level"=>"normalized"),
+		array("title"=>"contre la pauvreté","level"=>"normalized"),
+		array("title"=>"associations de lutte contre","level"=>"normalized"),
+		array("title"=>"association de lutte contre","level"=>"normalized"),
 	),
 	"yakCatId"=>array(new MongoId("512b6dbcfa9a95300c000029 ")),
 	"yakCatName"=>array("Solidarité"),

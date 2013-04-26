@@ -235,7 +235,7 @@ location : array(lat,lng)
 creationDate => new MongoDate
 lastModifDate => new MongoDate
 lastLoginDate => new MongoDate
-status => 1 ok, 2 waiting for validation , 3 blacklisted
+status => 1 ok, 2 waiting for validation , 3 disactivated , 4 need to fill the first visit
 apistatus =>2	//{type: Number, required: true, default: 2,index: true}
 apicode => ""      // { type: String }
 apiCodeCreationDate  => new MongoDate //  {type: Date}		

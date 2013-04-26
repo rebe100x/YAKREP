@@ -2907,7 +2907,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>48.8597777,'lng'=>2.3254996),
-	"formatted_address"=> "1 place de l'Hôtel de Ville - 75017 Paris",
+	"formatted_address"=> "7 rue de Lille, 75007 Paris",
 	"address" => array(
 				'street_number'=>'',
 				'street'=>"Rue de Lille",
@@ -2940,7 +2940,7 @@ $records[] = array(
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>48.857485,'lng'=>2.351517),
-	"formatted_address"=> "1 place de l'Hôtel de Ville - 75017 Paris",
+	"formatted_address"=> "1 place de l'Hôtel de Ville - 75004 Paris",
 	"address" => array(
 				'street_number'=>'1',
 				'street'=>"Place de l'Hôtel de Ville",

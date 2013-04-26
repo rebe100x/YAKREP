@@ -74,36 +74,25 @@ function isItWatter($lat,$lng) {
 /* load data form url or from file
 
 */
-function getFeedData($feed){
-	if( empty($feed['fileSource']) && !empty($feed['linkSource']) ){
+function getFeedData($feed){	
+	if( !empty($feed['linkSource']) && is_array($feed['linkSource']) && !empty($feed['linkSource'][0]) ){
 		$res = array();
 		$data = array();
-		if(is_array($feed['linkSource'])){
-			foreach($feed['linkSource'] as $link){
-				$chuid = curl_init();
-				curl_setopt($chuid, CURLOPT_URL, $link);	
-				//curl_setopt($chuid,CURLOPT_FOLLOWLOCATION,TRUE);
-				curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
-				curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
-				$res[] = trim(curl_exec($chuid));
-				curl_close($chuid);
-			}
-		}/*else{
+		foreach($feed['linkSource'] as $link){
 			$chuid = curl_init();
-			curl_setopt($chuid, CURLOPT_URL, $feed['linkSource']);
-			curl_setopt($chuid,CURLOPT_FOLLOWLOCATION,TRUE);
+			curl_setopt($chuid, CURLOPT_URL, $link);	
+			//curl_setopt($chuid,CURLOPT_FOLLOWLOCATION,TRUE);
 			curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
 			$res[] = trim(curl_exec($chuid));
 			curl_close($chuid);
-		}*/
-		
+		}
 		
 		if($feed['feedType'] == 'JSON'){
-			
 			foreach($res as $r)
 				$data = array_merge($data,object_to_array(json_decode($r)));
 		}
+		
 		if($feed['feedType'] == 'RSS'){
 			foreach($res as $r){
 				try{
@@ -121,7 +110,7 @@ function getFeedData($feed){
 		if($feed['feedType'] == 'CSV'){
 			
 		}
-	}elseif( !empty($feed['fileSource']) ){
+	}elseif( !empty($feed['fileSource']) && !empty($feed['fileSource'][0]) && is_array($feed['fileSource']) ){
 		if (($handle = fopen($feed['fileSource'], "r")) !== FALSE) {
 			while (($line = fgetcsv($handle, 10000, ";")) !== FALSE) {
 				$data[] = $line;
@@ -255,7 +244,7 @@ function createImgThumb($link,$conf){
 
 	// get the file
 	$hash = md5($link);
-	
+	$res = '';
 	//echo $link;
 
 	$filePathDestOriginal = $conf->originalpath() .$hash.'.jpg';
@@ -310,8 +299,6 @@ function createImgThumb($link,$conf){
 	
 	if($res1 && $res2 && $res3)
 		$res = $hash.'.jpg';
-	else
-		$res = 'Error resize';
 		
 	// NOTE :  your local server has to be on time to send images to S3	
 	//var_dump($response1);
@@ -320,9 +307,7 @@ function createImgThumb($link,$conf){
 	
 	if($response1->status==200 && $response2->status==200 && $response3->status==200 ){
 		unlink($filePathDestOriginal);
-	}else
-		$res = "Error push img";
-	
+	}
 	if($response1->status==200 ){
 		unlink($filePathDestThumb);
 	}

@@ -255,7 +255,7 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 1,
+	"status" => 0, // not found in the autocomplete
 	"ext_id"=>array(
 		"of"=>array()	
 	)
@@ -531,7 +531,7 @@ $records[] = array(
 	"thumb" => "",
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
-	"status" => 0,
+	"status" => 0, // not found in the autocomplete
 	"ext_id"=>array(
 		"of"=>array()	
 	)

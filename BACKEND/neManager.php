@@ -148,6 +148,8 @@ $records[] = array(
 		array("title"=>"suppression d'emplois","level"=>"normalized"),
 		array("title"=>"taux de chômage","level"=>"normalized"),
 		array("title"=>"travail le dimanche","level"=>"normalized"),
+		array("title"=>"ouverture dominicale","level"=>"normalized"),
+		
 		 
 	),
 	"yakCatId"=>array(),

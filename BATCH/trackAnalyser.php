@@ -37,16 +37,21 @@ $tsLastWeek = $tsNow - 7*24*60*60;
 	
 // actionId=>score	
 $scoreMatrix = array(
+	16=>-3, // blacklist info
 	5=>1, // search
 	8=>2, // share
 	14=>2, // unappropriated
 	7=>2, // like
 	6=>3, // read
-	14=>5, // comment
+	19=>3, // unblacklist info
+	15=>5, // comment
 	10=>6, // post
 	11=>7, // autotag
 	12=>10, // alert
+	
 	0=>15, // static tags
+	
+	
 );
 if(!empty($user)){
 	foreach($user as $u){
@@ -65,6 +70,9 @@ if(!empty($user)){
 				case 7:
 				case 8:
 				case 14:
+				case 15:
+				case 16:
+				case 19:
 				case 10:	
 					$theInfo = $infoColl->findOne(array('_id'=>new MongoId($t['params']['infoId'])));
 					if(!empty($theInfo['yakCatName'])){

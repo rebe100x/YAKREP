@@ -928,7 +928,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 								
 								if(!$dataExists){
 									echo '<br>Tag does not ->exit we insert it as a hot tag';
-									$tagColl->save(array("title"=>$theTag,"numUsed"=>1,"location"=>$info['location'],"usageDate"=>$tagDate,"print"=>$geolocItem['print']));
+									$tagColl->save(array("title"=>$theTag,"numUsed"=>1,"location"=>$info['location'],"usageDate"=>$tagDate,"creationDate"=>$tagDate,"print"=>$geolocItem['print']));
 								}else{
 									echo '<br>Tag does exist -> we increment numUsed';
 									$tagColl->update(array("_id"=> $dataExists['_id']), array('$set'=>array("title"=>$theTag,"location"=>$info['location'],"usageDate"=>$tagDate)));

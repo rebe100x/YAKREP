@@ -16,6 +16,14 @@ userId date action param source
 13 changePassword
 14 mark as unappropriated
 15 add comment {infoId: , page:map/feed/top,}
+16 blacklist info 
+17 blacklist feed
+18 blacklist user
+19 unblacklist info 
+20 unblacklist feed
+21 unblacklist user
+
+
 
 SOCIAL
 TW : 1

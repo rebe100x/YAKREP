@@ -13,12 +13,14 @@ $conf = new conf();
 
 $db =$conf->mdb();
 $dbTrack =$conf->mdbTrack();
-
+$trackColl = $dbTrack->tracks;
 
 $infoColl = $db->info;
 $tagColl = $db->tag;
 $userColl = $db->user;
 $blackListColl = $dbTrack->blacklist;
+
+echo '<hr>***** CLEAN BLACKLIST ******<br>';
 
 $q = (empty($_GET['q']))?"":$_GET['q']; 
 
@@ -62,24 +64,20 @@ if(!empty($user)){
 	}
 	
 }
-	
+echo '<br>***** END CLEAN BLACKLIST ******<br><br><br>';	
 	
 // CLEAN TAGS
-$tags = $tagColl->find(array('creationDate'=>array('$lte',new Mongodate($tsTenDaysAgo))));
-var_dump($tags);
-foreach($tags as $tag){
-	echo '<hr><br><b>DELETE Tag: '.$tag['title'].'</b><br>';
-	
-	
-	// DELETE
-	$tagColl->remove(array("_id"=> $tag['_id']), array("justOne" => true));
-	
-}
+echo '<hr>***** CLEAN TAGS ******<br>';
+$tags = $tagColl->remove(array('creationDate'=>array('$lte'=>new Mongodate($tsTenDaysAgo))));
+if($tags)
+	echo '<br>Delete history OK<br>';
+echo "<br>***** END CLEAN TAGS *****";
 	
 	
 
 	
 	
 ?>
+
 
 

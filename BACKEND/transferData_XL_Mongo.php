@@ -48,7 +48,7 @@
  10 : GMAP did not succeed to find a location
  11 : if the place the info is mapped to has been blacklisted by the operator
  12 : Location found is not in the feed zone
- 13 : info not geolocalized and refused by parser defaultPrintFlag (= 0 )
+ 13 : info not geolocalized and refused by parser defaultPrintFlag (= 3 )
  
  */
 
@@ -935,6 +935,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									$tagColl->update(array("_id"=> $dataExists['_id']), array('$inc'=>array("numUsed"=>1)));
 								}
 								$tagColl->ensureIndex(array("location"=>"2d"));
+								$tagColl->ensureIndex(array("creationDate"=>"1"));
 							}
 							
 							// we check if there is another info printed at this point :

@@ -3818,6 +3818,40 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("518254cbfa9a95c00c000002"),
+	"title"=>"Foire de Paris",
+	"content" =>"Venez découvrir LE rendez-vous des tendances déco, loisirs, bien-être, cultures du monde, gastronomie et la 1ère offre d’Europe pour l’aménagement de votre maison.",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.foiredeparis.fr/",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"freeTag"=>array("Parc des Expositions Porte de Verailles"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.833538,'lng'=>2.287461),
+	"address" => array(
+				'street' => '1 place de la Porte de Versailles',
+				'arr' => '15ème',
+				'city' => 'Paris',
+				'state' => 'Paris',
+				'area' => 'Ile-de-France',
+				'country' => 'France',
+				'zip' => '75015',
+			),
+	"contact" => array(
+		'tel'=>'01 49 20 45 13',
+		'transportation'=>'T3, T2, M12 : station Porte de Versailles, Parc des Expositions',
+		'web'=>'http://www.foiredeparis.fr/',
+		'mail'=>'foiredeparis@leni-france.com'
+	),		
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1
+);
+
+$records[] = array(
 	"_id" => new MongoId("506aa9b91d22b3496a00001e"),
 	"title"=>"parc des Expositions",
 	"content" =>"Paris Expo Porte de Versailles est le parc des expositions de toutes vos passions !",

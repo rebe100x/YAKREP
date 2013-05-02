@@ -19,9 +19,9 @@ $feedColl = $db->feed;
 
 $feed = $feedColl->findOne(array('name'=>'MP2013'));
 	
-	$url= "http://api.mp2013.fr/events?from=".date('Y')."-".date('m')."-".date('d')."&to=2013-12-31&lang=fr&format=json&offset=0&limit=2000";
-	$url= "http://api.mp2013.fr/events?from=2013-01-01&to=2013-12-31&lang=fr&format=json&offset=0&limit=20000";
-	
+	//$url= "http://api.mp2013.fr/events?from=".date('Y')."-".date('m')."-".date('d')."&to=2013-12-31&lang=fr&format=json&offset=0&limit=2000";
+	//$url= "http://api.mp2013.fr/events?from=2013-01-01&to=2013-12-31&lang=fr&format=json&offset=0&limit=20000";
+	$url = $feed["linkSource"][0];
 	$chuid = curl_init();
 	curl_setopt($chuid, CURLOPT_URL, $url);	
 	curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);

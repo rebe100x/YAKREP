@@ -927,6 +927,13 @@ function yakcatPathN($string,$toUpper=1) {
 }
 
 
+function to_camel_case($str, $capitalise_first_char = false) {
+	if($capitalise_first_char) {
+		$str[0] = strtoupper($str[0]);
+	}
+	$func = create_function('$c', 'return strtoupper($c[1]);');
+	return trim(preg_replace_callback('/[_-\s]([a-z])/', $func, $str));
+}
 
 function indexForOntology($str)
 {            

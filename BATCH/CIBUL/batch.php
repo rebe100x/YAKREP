@@ -38,17 +38,6 @@ $row = 0;
 $access = 1;
 $user = 0;
 
-/*
-http://cibul.net/event/stage-esprit-et-corps-surmonter-la-dualit-de-l-acteur-stage-en-anglais-traduit-en-fran-ais/fr#sClient=
-https://api.cibul.net/v1/events/28601182?key=22640375947e8efe580bbe056e4c7b60
-ne pas dupliquer
-entre le hreventdate : Le ou A partir du
-mettre la datepub à la date de pub
-mettre la endprint à dateevent[last] +1
-
-
-*/
-
 // UpdateFlag is a query parameter, if 1, force update
 $updateFlag = empty($_GET['updateFlag'])?0:1;
 

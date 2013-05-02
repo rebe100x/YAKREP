@@ -85,7 +85,7 @@ $logStatus11 = 0;
 $logStatus12 = 0;
 $logCallToApercite = 0;
 $logPushToS3 = 0;
-
+$gQuery = '';
 $yakCatId = array(); 
 $placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
@@ -748,7 +748,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						
 						
 						if($feed['yakType'] == 2){
-							$tsEnd = date_timestamp_get($dateTimeFrom) + $feed['persistDays']*86400;
+							$tsEnd = date_timestamp_get($dateTimeEnd) + $feed['persistDays']*86400;
 							$tsPub = $tsEnd - 15 * 86400;
 						}	
 						else{
@@ -828,9 +828,11 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						
 						// check if data is not in DB
 						//$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"pubDate"=>new MongoDate($tsPub),"zone"=>$defaultPlace['zone']));
-						$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$defaultPlace['zone']));
-
-						if(empty($dataExists) || $status == 10){
+						$dataExists1 = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$defaultPlace['zone']));
+						
+						$dataExists2 = $infoColl->findOne(array("outGoingLink"=>$info['originLink'],"status"=>1));
+						
+						if( ( empty($dataExists1) && empty($dataExists2) ) || $status == 10){
 							echo "<br> The info does not exist in DB, we insert it.";
 							
 							/* THUMB  */

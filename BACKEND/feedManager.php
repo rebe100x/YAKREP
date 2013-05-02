@@ -847,6 +847,28 @@ $records[] = array(
 	"daysBack" => 365,
 	"zone" =>14,
 );	
+
+$records[] = array(
+	"_id" => new MongoId("518280bafa9a95bc0c00002e"),
+	"XLconnector"=>"parser",
+	"name"=>"CIBUL",
+	"humanName"=>"Cibul",	
+	"linkSource"=>array("http://cibul.net/sitemap.xml"),
+	"link"=>"http://www.cibul.fr",
+	"fileSource"=>array(""),
+	"licence"=>"Cibul",				
+	"yakCatNameArray" => array('Agenda','Culture'),
+	"yakCatId"=>array('50923b9afa9a95d409000000','504d89cffa9a957004000001'),
+ 	"persistDays" => 3,
+	"defaultPlaceId" => new MongoId('50517fe1fa9a95040b000007'), // PARIS
+	"yakType" => 2,
+	"feedType" => "YAKMADE",
+	"defaultPrintFlag" => 1,
+	"creationDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"daysBack" => 365,
+	"zone" =>1,
+);
 	
 $records[] = array(
 	"_id" => new MongoId("50f90ebc1d22b32548000118"),

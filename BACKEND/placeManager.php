@@ -17,6 +17,35 @@ $records = array();
 
 */
 
+$records[] = array(
+	"_id" => new MongoId("5188b926fa9a95380b00005d"),
+	"title"=>"de Bastille à République",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.853195,'lng'=>2.368927),
+	"formatted_address"=> "Bastille-République, Paris, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75004',
+			),
+			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
 
 $records[] = array(
 	"_id" => new MongoId("5163b128fa9a95240b000021"),
@@ -749,6 +778,42 @@ $records[] = array(
 /************/
 /*PACA*/
 /***********/
+
+
+
+$records[] = array(
+	"_id" => new MongoId("5188b926fa9a95380b00005e"),
+	"title"=>"Fralib de Gémenos",
+	"content" =>"Usine Fralib",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"freeTag" => array("Fralib","Emploi"),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>43.279342,'lng'=>5.624061),
+	"formatted_address"=> "Unilever, Gémenos, France",
+	"address" => array(
+				'street_number'=>"",
+				'street'=>"Avenue du Col de l'Ange",
+				'arr'=>"",
+				'city'=>"Gémenos",
+				'state'=>"Bouches-du-Rôhne",
+				'area'=>"Provence-Alpes-Côte-d'Azur",
+				'country'=>"France",
+				'zip'=>"13420",
+			),
+	"contact" => array(
+		'tel'=>"",
+		'web'=>"",
+	),			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 14,
+);
 
 $records[] = array(
 	"_id" => new MongoId("512f09e8fa9a95980b000006"),

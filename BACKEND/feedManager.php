@@ -865,7 +865,7 @@ $records[] = array(
 	"feedType" => "YAKMADE",
 	"defaultPrintFlag" => 1,
 	"creationDate" => new MongoDate(gmmktime()),
-	"status" => 1,
+	"status" => 0,
 	"daysBack" => 365,
 	"zone" =>1,
 );

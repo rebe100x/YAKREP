@@ -104,9 +104,7 @@ foreach ($urlset->url as $url) {
 						|| preg_match("/75[0-9]{3}/i", $location->address) ) {
 						$zone = 1;
 					}else{
-						$results['rejected'] ++;	
-						$results['row'] ++;
-
+						
 						// Skip the rest of the loop
 						continue;
 					}

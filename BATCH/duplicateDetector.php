@@ -60,7 +60,8 @@ foreach($infos as $info){
 			$supprInfos[] = $suppr["_id"];
 			if($suppr["_id"] != $info['_id']){
 				echo '<br> Delete : '.$suppr["_id"];
-				$infoColl->remove(array('_id'=>$suppr["_id"]),array("justOne" => true));
+				if($del)
+					$infoColl->remove(array('_id'=>$suppr["_id"]),array("justOne" => true));
 			}
 		}
 	}

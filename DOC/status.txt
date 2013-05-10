@@ -35,3 +35,13 @@ ACTU 1
 AGENDA 2
 INFO PRAT 3
 DISC 4
+
+
+ACCOUNT TYPE:
+1 normal (front user)
+2 Media ( Premium front user)
+3 Association (Premium front user)
+4 Entreprise (Premimum front user)
+5 Institution (Premium front user)
+10 Operator (back user)
+11 Super Admin (back user)

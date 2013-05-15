@@ -157,10 +157,7 @@ if($q != ''){
 								$thevalueClean = $thevalue;
 								
 								if($key == 'freeTag' || $key == 'yakCats'){
-									if(is_array($thevalue))
-										$tmp = $thevalue;
-									else
-										$tmp = explode(',',$thevalue);
+									$tmp = explode(',',$thevalue);
 									$tmp = array_map('trimArray',$tmp);  
 									$thevalueClean = implode('#',$tmp);
 								}

@@ -62,8 +62,9 @@ if($q != ''){
 	}
 
 	foreach ($feeds as $feed) {
-		$file = $feed['name'].".xml";	
-		echo '<br> Process file '.$file;
+		$file = $feed['name'].".xml";
+		if(substr($conf->deploy,0,3) != 'dev')	
+			echo '<br> Process file '.$file;
 		if(!empty($feed['feedType'])){
 			$canvas = $feed['parsingTemplate'];
 			//var_dump($feed);
@@ -143,15 +144,23 @@ if($q != ''){
 										}
 									}
 									//var_dump( $o);
-									//var_dump( $item);
-									$thevalue = @preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
+									//var_dump( $tmp);
+									if(is_array($tmp[0]))
+										$t = implode(',',$tmp[0]);
+									else
+										$t = $tmp;
+									//var_dump($t);
+									$thevalue = @preg_replace(array_map('mapIt',$out[0]), $t, $val);
 								}else
 									$thevalue = '';
 									
 								$thevalueClean = $thevalue;
 								
 								if($key == 'freeTag' || $key == 'yakCats'){
-									$tmp = explode(',',$thevalue);
+									if(is_array($thevalue))
+										$tmp = $thevalue;
+									else
+										$tmp = explode(',',$thevalue);
 									$tmp = array_map('trimArray',$tmp);  
 									$thevalueClean = implode('#',$tmp);
 								}

@@ -516,7 +516,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									$print = 1;
 								}
 								
-								$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print,'contact'=>$place['contact']);
+								$placeArray[] = array('_id'=>$place['_id'],'lat'=>$place['location']['lat'],'lng'=>$place['location']['lng'],'address'=>$place['formatted_address'],'status'=>$status,'print'=>$print,'contact'=>empty($place['contact'])?'':$place['contact']);
 								
 								// add tags to info tags
 								if(!empty($place['freeTag']))

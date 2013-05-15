@@ -61,6 +61,10 @@ $records[] = array(
 		array("title"=>"foot","level"=>"normalized"),
 		array("title"=>"football","level"=>"normalized"),
 		array("title"=>"mercato","level"=>"normalized"),
+		array("title"=>"Ligue des Champions","level"=>"normalized"),
+		array("title"=>"PSG","level"=>"exact"),
+		
+		
 	),
 	"yakCatId"=>array(new MongoId('506479f54a53042191000000')),
 	"yakCatName"=>array("Sport"),
@@ -103,7 +107,7 @@ $records[] = array(
 		array("title"=>"sécurité routière","level"=>"normalized"),
 		array("title"=>"un péage à Paris","level"=>"normalized"),
 		array("title"=>"un péage routier","level"=>"normalized"),
-		
+		array("title"=>"Pass Navigo","level"=>"exact"),
 		 
 		
 	),
@@ -435,6 +439,13 @@ $records[] = array(
 		array("title"=>"Présidentielles:","level"=>"exact"),
 		array("title"=>"Sénatoriales:","level"=>"exact"),
 		array("title"=>"Européennes:","level"=>"exact"),
+		array("title"=>"Municipales 2014","level"=>"exact"),
+		array("title"=>"primaire de l'UMP","level"=>"normalized"),
+		array("title"=>"primaire UMP","level"=>"normalized"),
+		array("title"=>"primaires de l'UMP","level"=>"normalized"),
+		array("title"=>"primaires UMP","level"=>"normalized"),
+		array("title"=>"primaires socialiste","level"=>"normalized"),
+		array("title"=>"primaire socialiste","level"=>"normalized"),
 	),
 	"yakCatId"=>array(new MongoId('50efebbffa9a95b40c000000')),
 	"yakCatName"=>array('Politique'),

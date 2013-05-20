@@ -369,6 +369,7 @@ $records[] = array(
 		array("title"=>"Sidaction","level"=>"exact"),
 		array("title"=>"Secours populaire","level"=>"normalized"),
 		array("title"=>"Act Up","level"=>"exact"),
+		array("title"=>"Act up","level"=>"exact"),
 		array("title"=>"Act Up-Paris","level"=>"exact"),
 		array("title"=>"Greenpeace","level"=>"exact"),
 		array("title"=>"Greenpeace","level"=>"exact"),
@@ -446,6 +447,8 @@ $records[] = array(
 		array("title"=>"primaires UMP","level"=>"normalized"),
 		array("title"=>"primaires socialiste","level"=>"normalized"),
 		array("title"=>"primaire socialiste","level"=>"normalized"),
+		array("title"=>"carte électorale","level"=>"normalized"),
+		
 	),
 	"yakCatId"=>array(new MongoId('50efebbffa9a95b40c000000')),
 	"yakCatName"=>array('Politique'),

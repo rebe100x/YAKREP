@@ -19,9 +19,38 @@ $records = array();
 
 
 
+$records[] = array(
+	"_id" => new MongoId("5199c7f4fa9a95480c000000"),
+	"title"=>"La Défense",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.890815,'lng'=>2.240911),
+	"formatted_address"=> "Place de la Défense, Paris, France",
+	"address" => array(
+				'street_number'=>'',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'La Défense',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'92000',
+			),
+			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
 
 $records[] = array(
-	"_id" => new MongoId(""),
+	"_id" => new MongoId("5199c7f4fa9a95480c000001"),
 	"title"=>"au Trocadéro",
 	"content" =>"",
 	"thumb" => "",
@@ -49,8 +78,9 @@ $records[] = array(
 	"user" => 0, 
 	"zone"=> 1,
 );
+
 $records[] = array(
-	"_id" => new MongoId(""),
+	"_id" => new MongoId("5199c7f4fa9a95480c000002"),
 	"title"=>"autour du Trocadéro",
 	"content" =>"",
 	"thumb" => "",
@@ -79,7 +109,7 @@ $records[] = array(
 	"zone"=> 1,
 );
 $records[] = array(
-	"_id" => new MongoId(""),
+	"_id" => new MongoId("5199c7f4fa9a95480c000003"),
 	"title"=>"au Troca",
 	"content" =>"",
 	"thumb" => "",
@@ -108,7 +138,7 @@ $records[] = array(
 	"zone"=> 1,
 );
 $records[] = array(
-	"_id" => new MongoId(""),
+	"_id" => new MongoId("5199c7f4fa9a95480c000004"),
 	"title"=>"autour du Troca",
 	"content" =>"",
 	"thumb" => "",

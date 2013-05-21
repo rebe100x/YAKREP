@@ -17,6 +17,36 @@ $records = array();
 
 */
 
+$records[] = array(
+	"_id" => new MongoId("519b14f2fa9a95340b000000"),
+	"title"=>"prison de la Santé",
+	"content" =>"La maison d’arrêt de la Santé, ou plus simplement la prison de la Santé ou la Santé, est une prison située dans l’est du quartier du Montparnasse du 14e arrondissement de Paris, au 42, rue de la Santé.",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://fr.wikipedia.org/wiki/Prison_de_la_Sant%C3%A9",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.83399,'lng'=>2.341354),
+	"formatted_address"=> "42 rue de la Santé, Paris, France",
+	"address" => array(
+				'street_number'=>'42',
+				'street'=>"Rue de la Santé",
+				'arr'=>'14e',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75014',
+			),
+			
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
+
 
 
 $records[] = array(

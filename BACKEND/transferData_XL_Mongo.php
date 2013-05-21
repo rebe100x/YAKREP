@@ -544,7 +544,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 									
 									
 									//$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) ) ? ', '.$laville:'').', '.$defaultPlaceTitle.'. '.$defaultPlace['address']['country'])));
-									$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$laville) && preg_match('/^'.$loc.'$/',$laville) === FALSE ) ? ', '.$laville:'').', '.$defaultPlaceTitle.' '.$defaultPlace['address']['country'])));
+									$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && preg_match('/^'.$loc.'$/',$laville) === FALSE ) ? ', '.$laville:'').', '.$defaultPlaceTitle.' '.$defaultPlace['address']['country'])));
 									//echo 'LIEU'.sizeof($lieu);
 									if(sizeof($lieu)==0)
 										$resGMap = getLocationGMap($gQuery,'PHP',1,$conf);
@@ -758,18 +758,18 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						}
 					
 						echo "<br>----LOC-----<br>";	
-						echo "adresse";var_dump($adresse);
-						echo "<br>lieu";var_dump($lieu);
-						echo "<br>yakdico";var_dump($yakdico);
-						echo "<br>quartier";var_dump($quartier);
-						echo "<br>arr";var_dump($arrondissement);
-						echo "<br>geoinput";var_dump($geolocationInput);
-						echo "<br>addressInput";var_dump($addressInput);
-						echo "<br>placeinput";var_dump($placeInput);
-						echo "<br>ville";var_dump($ville);
+						echo "adresse: ";var_dump($adresse);
+						echo "<br>lieu: ";var_dump($lieu);
+						echo "<br>yakdico: ";var_dump($yakdico);
+						echo "<br>quartier: ";var_dump($quartier);
+						echo "<br>arr: ";var_dump($arrondissement);
+						echo "<br>geoinput: ";var_dump($geolocationInput);
+						echo "<br>addressInput: ";var_dump($addressInput);
+						echo "<br>placeinput: ";var_dump($placeInput);
+						echo "<br>ville: ";var_dump($ville);
 						echo "<br>----CAT-----<br>";
-						echo "yakcat";var_dump($yakCatName);
-						echo "<br>tag";var_dump($freeTag);
+						echo "yakcat: ";var_dump($yakCatName);
+						echo "<br>tag: ";var_dump($freeTag);
 						// VERIFICATION : if the GMAP gives us a big city, we don't print it on the map
 						if( sizeof($adresse) == 0 
 							&& sizeof($lieu) == 0 
@@ -829,7 +829,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						
 						// check if data is not in DB
 						//$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"pubDate"=>new MongoDate($tsPub),"zone"=>$defaultPlace['zone']));
-						$dataExists1 = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"zone"=>$defaultPlace['zone']));
+						$dataExists1 = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"zone"=>$defaultPlace['zone']));
 						
 						$dataExists2 = $infoColl->findOne(array("outGoingLink"=>$info['originLink'],"status"=>1));
 						

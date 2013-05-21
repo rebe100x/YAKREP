@@ -116,15 +116,20 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
           $titles[] = $title4;
         }
       }
+	  
       $titles = array_unique($titles);
-      if (trim($data[2]) == "L'")  {
+      
+	  if (trim($data[2]) == "L'")  {
         for ($i = 0; $i<sizeof($titles); $i++) {
           $titles[$i] = "L'".$titles[$i];
         }
-
       }
 	  
-	  
+	  if (trim($data[2]) == "L'")  {
+        for ($i = 0; $i<sizeof($titles); $i++) {
+          $titles[$i] = "l'".$titles[$i];
+        }
+      }
 	  
 	  $address['city'] = trim($data[3]);
       $address['country'] = $country;

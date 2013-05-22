@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>PARIS-LOUXOR</title>
+	<atom:link href="http://www.paris-louxor.fr/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.paris-louxor.fr</link>
+	<description>ACCOMPAGNER LE LOUXOR. BARBÈS, PARIS.</description>
+	<lastBuildDate>Fri, 10 May 2013 12:05:36 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.0.1</generator>
+		<item>
+		<title>NOS CINÉMAS DE QUARTIER, visites accompagnées</title>
+		<link>http://www.paris-louxor.fr/paris-louxor/agenda/nos-cinemas-de-quartier-visites-accompagnees/</link>
+		<comments>http://www.paris-louxor.fr/paris-louxor/agenda/nos-cinemas-de-quartier-visites-accompagnees/#comments</comments>
+		<pubDate>Fri, 10 May 2013 11:59:40 +0000</pubDate>
+		<dc:creator>PARIS-LOUXOR</dc:creator>
+				<category><![CDATA[Agenda]]></category>
+		<category><![CDATA[PARIS-LOUXOR]]></category>
+		<category><![CDATA[Exposition participative]]></category>
+		<category><![CDATA[Nos cinémas de quartier]]></category>
+		<category><![CDATA[Visite accompagnée]]></category>
+
+		<guid isPermaLink="false">http://www.paris-louxor.fr/?p=4669</guid>
+		<description><![CDATA[Deux visites de l'exposition "NOS CINÉMAS DE QUARTIER" en présence de l'équipe de Paris-Louxor et des intervenants, témoins etc. ]]></description>
+			<content:encoded><![CDATA[]]></content:encoded>
+			<wfw:commentRss>http://www.paris-louxor.fr/paris-louxor/agenda/nos-cinemas-de-quartier-visites-accompagnees/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>LA PREMIÈRE SÉANCE</title>
+		<link>http://www.paris-louxor.fr/quartier-louxor/la-premiere-seance/</link>
+		<comments>http://www.paris-louxor.fr/quartier-louxor/la-premiere-seance/#comments</comments>
+		<pubDate>Fri, 19 Apr 2013 08:16:51 +0000</pubDate>
+		<dc:creator>PARIS-LOUXOR</dc:creator>
+				<category><![CDATA[CINÉMA(s) ET CULTURE]]></category>
+		<category><![CDATA[Chroniques de quartier]]></category>
+		<category><![CDATA[Culture etc.]]></category>
+		<category><![CDATA[QUARTIER-LOUXOR]]></category>
+		<category><![CDATA[Louxor]]></category>
+		<category><![CDATA[Quartier]]></category>
+		<category><![CDATA[Séance]]></category>
+		<category><![CDATA[Spectateurs]]></category>
+		<category><![CDATA[témoignages]]></category>
+
+		<guid isPermaLink="false">http://www.paris-louxor.fr/?p=4629</guid>
+		<description><![CDATA[Rencontre avec les premiers spectateurs du Louxor]]></description>
+			<content:encoded><![CDATA[
+<script language="Javascript">
+	jQuery(document).ready(function($){
+		});
+	</script>
+
+<style type="text/css">
+	<!--
+	#style_cispm fieldset {
+		background-color: transparent;
+		margin: 0;
+		padding: 5px;
+	}
+-->
+</style>
+<p style="text-align: justify;">Le programme du Louxor et le premier billet, n°000001.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.paris-louxor.fr/quartier-louxor/la-premiere-seance/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>INAUGURATION DU LOUXOR retour en images</title>
+		<link>http://www.paris-louxor.fr/quartier-louxor/inauguration-du-louxor-retour-en-images/</link>
+		<comments>http://www.paris-louxor.fr/quartier-louxor/inauguration-du-louxor-retour-en-images/#comments</comments>
+		<pubDate>Thu, 18 Apr 2013 13:00:43 +0000</pubDate>
+		<dc:creator>PARIS-LOUXOR</dc:creator>
+				<category><![CDATA[PARIS-LOUXOR]]></category>
+		<category><![CDATA[PHOTO/VIDEO]]></category>
+		<category><![CDATA[Photo]]></category>
+		<category><![CDATA[QUARTIER-LOUXOR]]></category>
+		<category><![CDATA[Inauguration]]></category>
+		<category><![CDATA[Louxor]]></category>
+
+		<guid isPermaLink="false">http://www.paris-louxor.fr/?p=4650</guid>
+		<description><![CDATA[Retour sur la journée d'inauguration du Louxor - Palais du cinéma]]></description>
+			<content:encoded><![CDATA[]]></content:encoded>
+			<wfw:commentRss>http://www.paris-louxor.fr/quartier-louxor/inauguration-du-louxor-retour-en-images/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

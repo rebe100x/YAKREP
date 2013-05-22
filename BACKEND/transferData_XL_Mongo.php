@@ -87,7 +87,7 @@ $logCallToApercite = 0;
 $logPushToS3 = 0;
 $gQuery = '';
 $yakCatId = array(); 
-$placeArray = array(); // array of goeloc : ['lat'=>,'lng'=>,'_id'=>]
+$placeArray = array(); // array of geoloc : ['lat'=>,'lng'=>,'_id'=>]
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
 $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode this
 
@@ -417,8 +417,6 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 						 
 						 if($group->id == "Event")
 							   $freeTag[]= yakcatPathN($category->title,0);
-						
-						
 					 }
 				}
 					

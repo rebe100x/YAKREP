@@ -90,7 +90,8 @@ function getFeedData($feed){
 		
 		if($feed['feedType'] == 'JSON'){
 			foreach($res as $r)
-				$data = array_merge($data,object_to_array(json_decode($r)));
+				$allData = array_merge($data,object_to_array(json_decode($r)));
+				$data = $allData[$feed['rootElement']];
 		}
 		
 		if($feed['feedType'] == 'RSS'){

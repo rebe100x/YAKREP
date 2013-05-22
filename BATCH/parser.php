@@ -69,6 +69,7 @@ if($q != ''){
 			$canvas = $feed['parsingTemplate'];
 			//var_dump($feed);
 			$data = getFeedData($feed);
+			
 			if(!empty($data)){
 				$xml = "";
 				$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
@@ -132,7 +133,7 @@ if($q != ''){
 										if(strpos($o,'->')){
 											$o1 = explode('->',$o);
 											if(!empty($o1[1])){
-												if(sizeof($item[$o1[0]])>1)
+												if( !empty($item[$o1[0]]) && sizeof($item[$o1[0]]) > 1)
 													$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]][0]['@attributes'][$o1[1]]) )? $item[$o1[0]][0]['@attributes'][$o1[1]] : '';
 												else
 													$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]]['@attributes'][$o1[1]]) )? $item[$o1[0]]['@attributes'][$o1[1]] : '';
@@ -178,56 +179,37 @@ if($q != ''){
 							foreach($canvas as $key=>$val){
 								$thevalue = '';
 								if(!empty($val)){
-									if(strpos($val,'->')){
-										preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
-									}else
-										preg_match_all('/(#YKL)(\w+)/', $val, $out);
+									preg_match_all('/(#YKL)(\w+)/', $val, $out);
 									//var_dump($out);
 									$tmp = array();
 									$o1 = array();
 									foreach($out[2] as $o){
-										if(strpos($o,'->')){
-											$o1 = explode('->',$o);
-											if(!empty($o1[1])){
-												$varTmp = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]][$o1[1]]) )? $item[$o1[0]][$o1[1]] : '';
-												if(is_array($varTmp))
-													$varTmp2 = $varTmp[0];
-												else
-													$varTmp2 = $varTmp;
-													echo '<br>';var_dump($o1);
-												if(!empty($o1[2])){
-													$varTmp3 = $varTmp2[$o1[2]];
-												}else
-													$varTmp3 = $varTmp2;
-												//var_dump($varTmp3);	
-//												var_dump($item[$o1[0]][$o1[1]][0]['media_url']);
-												$tmp[] = $varTmp3;
-											}else
-												$tmp[] = (empty($item[$o]))?'':(string)$item[$o];
+										if(is_array($item[$o])){
+											$thevalue = implode('#',$item[$o]);
 										}else
-											$tmp[] = (empty($item[$o]))?'':(string)$item[$o];
+											$thevalue =  trim($item[$o]);
+											
+										
+										if($key == 'pubDate'){
+											//echo '<br>'.$thevalue.' '.date('r',$thevalue).'  '.(mktime()-10*24*60*60);
+											if((int)$thevalue > mktime()-10*24*60*60 && (int)$thevalue <= mktime() ){
+													
+												$thevalue = date('r',(int)$thevalue);
+											}
+										}
+
+
+										if($key == 'longitude' || $key == 'latitude'){
+											$thevalue = str_replace(',','.',$thevalue);
+											$thevalue = (float)$thevalue;
+										}	
+										if(!array_key_exists($key,$itemArray))
+											$itemArray[$key] = $thevalue;
+										else
+											$itemArray[$key] .= $thevalue;
+											
 									}
-									//var_dump( $o);
-									//var_dump( $item);
-									$thevalue = @preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
-									
-								}else
-									$thevalue = '';
-									
-								$thevalueClean = $thevalue;
-								
-								if($key == 'freeTag' || $key == 'yakCats'){
-									$tmp = explode(',',$thevalue);
-									$tmp = array_map('trimArray',$tmp);  
-									$thevalueClean = implode('#',$tmp);
 								}
-								//echo '<br>key:'.$key.' - '.$thevalueClean;
-								if($key == 'longitude' || $key == 'latitude'){
-									$thevalueClean = str_replace(',','.',$thevalueClean);
-									$thevalueClean = (float)$thevalueClean;
-								}
-								
-								$itemArray[$key] = $thevalueClean;
 							}
 						}
 						

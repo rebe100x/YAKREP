@@ -17,6 +17,47 @@ $records = array();
 
 */
 
+
+
+$records[] = array(
+	"_id" => new MongoId("519c9115fa9a957c09000000"),
+	"title"=>"la Pinacothèque",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.pinacotheque.com/",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.870707,'lng'=>2.325829),
+	"formatted_address"=> "28 Place de la Madeleine, Paris, France",
+	"address" => array(
+				'street_number'=>'28',
+				'street'=>"Place de la Madeleine",
+				'arr'=>'8e',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75008',
+			),
+	"contact" => array(
+		'tel'=>'01 42 68 02 01',
+		'transportation'=>'Métro Monceau',
+		'web'=>'http://www.ateliersdart.com',
+		'opening'=>'Tlj 10:30 – 17:45',
+		'closing'=>'Le 1er mai, le 14 juillet, le 25 décembre et le 1er janvier, Ouverture de 14h à 18h30',
+		'specialopening'=>'Tous les mercredis et les vendredis jusqu’à 21h'
+	),		
+		
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
+
+
 $records[] = array(
 	"_id" => new MongoId("519b14f2fa9a95340b000000"),
 	"title"=>"prison de la Santé",

@@ -69,7 +69,7 @@ if($q != ''){
 			$canvas = $feed['parsingTemplate'];
 			//var_dump($feed);
 			$data = getFeedData($feed);
-			
+			//var_dump($data);
 			if(!empty($data)){
 				$xml = "";
 				$header = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><items>";
@@ -115,17 +115,22 @@ if($q != ''){
 							}
 						}
 						
-						if($feed['feedType'] == 'RSS'){
+						if($feed['feedType'] == 'XML'){
+							//echo '<br>ITEM=';
 							//var_dump($item);
 							foreach($canvas as $key=>$val){
 								$thevalue = '';
 								if(!empty($val)){
 									$val = str_replace('#YKLcurrent_french_date',date('d m Y'),$val);
+									//echo '<br>'.$val;
 									if(strpos($val,'->')){
 										preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
 									}else
-										preg_match_all('/(#YKL)(\w+)/', $val, $out);
-									
+										if(strpos($val,':'))
+											preg_match_all('/(#YKL)(\w+:\w+)/', $val, $out);
+										else
+											preg_match_all('/(#YKL)(\w+)/', $val, $out);
+									//echo '<br>OUTPUT=';
 									//var_dump($out);
 									$tmp = array();
 									$o1 = array();
@@ -141,16 +146,23 @@ if($q != ''){
 												$tmp[] = (empty($item[$o]))?'':$item[$o];
 											}
 										}else{
+											if(strpos($o,':'))
+												$o = str_replace(':','',$o);
+											
 											$tmp[] = (empty($item[$o]))?'':$item[$o];
 										}
 									}
 									//var_dump( $o);
+									//echo '<br>TMP=';
 									//var_dump( $tmp);
 									if(is_array($tmp[0]))
 										$t = implode(',',$tmp[0]);
 									else
 										$t = $tmp;
+									//echo '<br>T=';	
 									//var_dump($t);
+									//echo '<br>VAL=';	
+									//var_dump($val);
 									$thevalue = @preg_replace(array_map('mapIt',$out[0]), $t, $val);
 								}else
 									$thevalue = '';

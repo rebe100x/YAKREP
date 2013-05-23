@@ -94,7 +94,7 @@ function getFeedData($feed){
 				$data = $allData[$feed['rootElement']];
 		}
 		
-		if($feed['feedType'] == 'RSS'){
+		if($feed['feedType'] == 'XML'){
 			foreach($res as $r){
 				try{
 					$rClean = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $r); 

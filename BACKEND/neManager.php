@@ -199,8 +199,10 @@ $records[] = array(
 	"_id" => new MongoId("512e452d1d22b3836e015f05"),
 	"title"=> "FaitsDivers",
 	"match"=>array(
-	
-	
+		
+		array("title"=>"Suicide","level"=>"normalized"),
+		array("title"=>"tentative de meurtre","level"=>"normalized"),
+		array("title"=>"à coups de couteau","level"=>"normalized"),
 		array("title"=>"braqueurs","level"=>"normalized"),
 		array("title"=>"braqueur","level"=>"normalized"),
 		array("title"=>"un cadavre découvert","level"=>"normalized"),
@@ -441,6 +443,7 @@ $records[] = array(
 		array("title"=>"Sénatoriales:","level"=>"exact"),
 		array("title"=>"Européennes:","level"=>"exact"),
 		array("title"=>"Municipales 2014","level"=>"exact"),
+		array("title"=>"Municipales à Paris","level"=>"exact"),
 		array("title"=>"primaire de l'UMP","level"=>"normalized"),
 		array("title"=>"primaire UMP","level"=>"normalized"),
 		array("title"=>"primaires de l'UMP","level"=>"normalized"),

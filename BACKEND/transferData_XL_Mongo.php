@@ -214,8 +214,18 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 					
 					if($meta->name == "image_enclosure")
 						  $enclosure = $meta->value;
-					if($meta->name == "item_geolocation")
-						  $geolocationInput = explode('#',trim($meta->value));
+					if($meta->name == "item_geolocation"){
+						if(strpos('#', $meta->value) !== false)
+							$geolocationInput = explode('#',trim($meta->value));
+						if(strpos(' ', trim($meta->value)) !== false)
+							$geolocationInput = explode('#',trim($meta->value));
+					}
+					if($meta->name == "item_latitude")
+						  $latInput = trim($meta->value);
+					if($meta->name == "item_longitude")
+						  $lngInput = trim($meta->value);
+					if( !empty($latInput) && !empty($lngInput) )
+						$geolocationInput = array($latInput, $lngInput);
 					if($meta->name == "item_address")
 						  $addressInput = $meta->value;
 					if($meta->name == "item_yakcat")

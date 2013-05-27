@@ -17,6 +17,74 @@ $records = array();
 
 */
 
+$records[] = array(
+	"_id" => new MongoId("51a3019ffa9a954409000003"),
+	"title"=>"Hénin-Beaumont",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.rolandgarros.com/index.html",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>50.420331,'lng'=>2.947716),
+	"formatted_address"=> "Hénin-Beaumont, 62110 France",
+	"address" => array(
+				'street_number'=>'2',
+				'street'=>"",
+				'arr'=>'',
+				'city'=>'Hénin-Beaumont',
+				'state'=>'Pas-de-Calais',
+				'area'=>'Nord-Pas-de-Calais',
+				'country'=>'France',
+				'zip'=>'62110',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
+
+
+
+$records[] = array(
+	"_id" => new MongoId("51a2fa2dfa9a954409000000"),
+	"title"=>"Roland-Garros",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://www.rolandgarros.com/index.html",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.847406,'lng'=>2.250992),
+	"formatted_address"=> "2 Avenue Gordon Bennett, 75016 Paris France",
+	"address" => array(
+				'street_number'=>'2',
+				'street'=>"Avenue Gordon Bennett",
+				'arr'=>'16e',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Ile-de-France',
+				'country'=>'France',
+				'zip'=>'75016',
+			),
+	"contact" => array(
+		'tel'=>'',
+		'transportation'=>"Métro Porte d'Autueil",
+		'web'=>'http://www.rolandgarros.com/fr_FR/index.html',
+		'opening'=>'',
+		'closing'=>'',
+		'specialopening'=>''
+	),		
+		
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
 
 
 $records[] = array(

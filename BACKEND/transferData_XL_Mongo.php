@@ -998,7 +998,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 		echo $log;
 
 		
-		
+		/*
 		$statColl->save(
 			array(
 			"batchName"=>$_SERVER['PHP_SELF'],
@@ -1020,7 +1020,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			
 			"daysBack"=>$feed['daysBack'],
 			));
-			
+			*/
 			
 
 			

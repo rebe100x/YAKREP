@@ -23,7 +23,10 @@ userId date action param source
 20 unblacklist feed
 21 unblacklist user
 
-
+FEED lastExecStatus
+0 CRASHED
+1 OK
+2 ERR
 
 SOCIAL
 TW : 1

@@ -106,6 +106,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 		
 		foreach ($feeds as $feed) {
 			
+			// echo 'Set Execution Status to 3 for the time of the fetching execution';
+			$feedColl->update(
+						array('_id'=>$feed['_id']),
+						array('$set'=>array('lastExecStatus'=>3,'lastExecDate'=>new MongoDate(gmmktime())))
+					);
+					
 			// get default PLACE
 			$defaultPlace = $placeColl->findOne(array('_id'=>$feed['defaultPlaceId']));
 			$defaultPlaceTitle = (empty($feed['defaultPlaceSearchName'])?$defaultPlace['title']:$feed['defaultPlaceSearchName']);		
@@ -114,7 +120,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			echo '<br> Parsing feed: <b>'.$feed['name'].'</b>';
 			echo '<br> Default location of the feed : <b>'.$defaultPlaceTitle.'</b>';
 			$searchDate = date('Y/m/d',(mktime()-86400*$feed['daysBack']));
-			if($feed['XLconnector']=='parser')
+			if($feed['XLconnector']=='parser' || $feed['XLconnector']=='parserPAPI')
 				$origin ="+AND+file_name%3D".$feed['name'].'.xml';
 			else
 				$origin ="";
@@ -980,23 +986,40 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			
 			}
 			
+			// echo 'Set Execution Status to 2 for the time of the parsing execution';
+			$feedColl->update(
+						array('_id'=>$feed['_id']),
+						array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate(gmmktime()))
+					);	
+					
+			$log = "<br><br><br><br><br>
+			===BACTH SUMMARY : ".$feed['humanName']."====
+			<br>Total data parsed : ".$item."
+			<br> Total info already in db:".$logInfoAlreadyInDB.".
+			<br> Total Info inserted: ".$logInfoInserted.".
+			<br> Total place already in db:".$logPlaceAlreadyInDB.".
+			<br> Total place inserted: ".$logPlaceInserted.".
+			<br>Call to gmap:".$logCallToGMap.".
+			<br><br><br>";
+
+			echo $log;
 			
-			echo "<br><hr><hr><br><br>";
-		}
+			
+			$batchlogColl->save(
+				array(
+				"batchName"=>$_SERVER['PHP_SELF'],
+				"datePassage"=>new MongoDate(gmmktime()),
+				"dateNextPassage"=>new MongoDate(gmmktime()+($feed['parsingFreq']*60)),
+				"log"=>$log,
+				"status"=>1
+			));
+			
+		} // END FEED LOOP
 		
 		
-		$log = "<br><br><br><br><br>
-		===BACTH SUMMARY====
-		<br>Total data parsed : ".$item."
-		<br> Total info already in db:".$logInfoAlreadyInDB.".
-		<br> Total Info inserted: ".$logInfoInserted.".
-		<br> Total place already in db:".$logPlaceAlreadyInDB.".
-		<br> Total place inserted: ".$logPlaceInserted.".
-		<br>Call to gmap:".$logCallToGMap.".
-		<br><br><br>";
+		
 
-		echo $log;
-
+		
 		
 		/*
 		$statColl->save(
@@ -1024,20 +1047,12 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			
 
 			
-		$batchlogColl->save(
-			array(
-			"batchName"=>$_SERVER['PHP_SELF'],
-			"datePassage"=>new MongoDate(gmmktime()),
-			"dateNextPassage"=>new MongoDate(gmmktime()+3600), // every hour
-			"log"=>$log,
-			"status"=>1
-			));
+		
 			   
-		
-		
-		   
-
+	
 	}
+	
+	
     echo "<br><br><hr><b>FEEDS:</b><br>";
 	echo "<br><a href=\"".$_SERVER['PHP_SELF']."?q=all\">ALL FEEDS</a>" ;
 	$feeds = $feedColl->find()->sort(array('humanName'=>'desc'));

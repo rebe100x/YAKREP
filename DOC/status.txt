@@ -24,9 +24,11 @@ userId date action param source
 21 unblacklist user
 
 FEED lastExecStatus
-0 CRASHED
 1 OK
-2 ERR
+2 PARSING CRASHED
+3 FETCHING CRASHED
+4 Alert
+
 
 SOCIAL
 TW : 1

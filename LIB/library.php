@@ -124,6 +124,48 @@ function getFeedData($feed){
 	return $data;	
 }
 
+/*Build PAI DOCUMENT*/
+function buildPAPIItem($itemArray,$file){
+	
+	$myPart = new Part(array('content' =>'',
+	'directives' =>
+	array('mimeHint' => 'text',
+		  'encoding' => 'utf-8')
+	)
+);
+$myDoc = new Document(
+	array(
+		'uri' => $itemArray['outGoingLink'],
+	   'parts' => $myPart,
+	   'metas' => array(
+			//'path' => 'Path/To/Example/1',
+			'file_name' => $file,
+			'item_title'=>$itemArray['title'],
+			'item_desc'=>$itemArray['content'],
+			'item_address'=>$itemArray['address'],
+			'item_geolocation'=>$itemArray['geolocation'],
+			'item_latitude'=>$itemArray['latitude'],
+			'item_longitude'=>$itemArray['longitude'],
+			'publicurl'=>$itemArray['outGoingLink'],
+			'image_enclosure'=>$itemArray['thumb'],
+			'item_yakcat'=>$itemArray['yakCats'],
+			'item_freetag'=>$itemArray['freeTag'],
+			'item_place'=>$itemArray['place'],
+			'item_eventDate'=>$itemArray['eventDate'],
+			'item_date'=>$itemArray['pubDate'],
+			'item_tel'=>$itemArray['telephone'],
+			'item_transportation'=>$itemArray['transportation'],
+			'item_web'=>$itemArray['web'],
+			'item_mail'=>$itemArray['mail'],
+			'item_opening'=>$itemArray['opening'],
+		)
+	   )
+ );
+ 
+return $myDoc;
+};
+
+
 /* Build an XML item of an XL feed crawler
 */
 function buildXMLItem($itemArray){

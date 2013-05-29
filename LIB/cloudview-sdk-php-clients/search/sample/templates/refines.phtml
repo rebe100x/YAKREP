@@ -1,0 +1,110 @@
+<?php
+function drawUserRefines($answer) {
+    if (get_class($answer) == 'SearchAnswer')
+    {
+        foreach ($answer->getRelatedTerms() as $term)
+        {
+            if ($term->getState() == '1') {
+                $infos = $term->getInfos();
+                if (CLOUDVIEW_VERSION == '5.0')
+                {
+                    $removeRefineParam = SearchParameter::$CANCEL_REFINE. "=" . $term->getId();
+                }
+                else if (CLOUDVIEW_VERSION == '4.6')
+                {
+                    $removeRefineParam = SearchParameter::$ZAP_REFINE. "=" . $infos['zapId'];
+                }
+                
+                echo "<li><a class='refine_remove' href='" . $_SERVER['PHP_SELF'] . "?" . http_build_query($_GET) . "&" . $removeRefineParam . "'>x</a>" .
+                    '+ ' . $term->getTitle() . "</li>";
+            }
+        }
+    }
+
+    foreach ($answer->getCategoryGroups() as $categoryGroup)
+    {
+        drawUserRefinesCategories($categoryGroup);
+    }
+}
+
+function drawUserRefinesCategories($categoryGroup)
+{
+    // needs leafIterator implementation
+    foreach ($categoryGroup->getCategories() as $cat)
+    {
+        if ($cat->getState() != '0')
+        {
+            $infos = $cat->getInfos();
+            echo "<li>" .
+                 "<a class='refine_remove' href='" . $_SERVER['PHP_SELF'] . "?" . http_build_query($_GET) . "&zr=" . $infos['zapId'] . "'>x</a><span>" .
+                 ($cat->getState() == '1' ? '+ ' : 'NOT ') . "</span> " . $cat->getTitle();
+
+            if (count($cat->getCategories()))
+                drawUserRefinesCategories($cat);
+            echo "</li>";
+        }
+    }
+}
+
+function drawRefines($categoryGroup) {
+  echo '<ul>';
+  foreach ($categoryGroup->getCategories() as $cat) {
+		if ($cat->getState() == '0') {
+			$infos = $cat->getInfos();
+			echo "<li>" .
+				 "<a class='refine_remove' href='" . $_SERVER['PHP_SELF'] . "?" . http_build_query($_GET) . "&" . SearchParameter::$REFINE . "=-" . $cat->getId() . "'>x</a>" .
+				 "<a href='" . $_SERVER['PHP_SELF'] . "?" . http_build_query($_GET) . "&" . SearchParameter::$REFINE . "=%2b" . $cat->getId() . "'>" . $cat->getTitle() . "</a> <i>(" . $infos['count'].")</i></li>";
+			if (count($cat->getCategories()))
+				drawRefines($cat);
+		}
+  }
+  echo '</ul>';
+}
+
+function drawRelatedTerm($term) {
+    echo '<ul>';
+	if ($term->getState() == '0') {
+		$infos = $term->getInfos();
+		echo "<a class='refine_remove' href='" . $_SERVER['PHP_SELF'] . "?" . http_build_query($_GET) . "&r=-" . $term->getId() . "'>x</a>" .
+			 "<a href='" . $_SERVER['PHP_SELF'] . "?" . http_build_query($_GET) . "&" . SearchParameter::$REFINE . "=%2b" . $term->getId() . "'>" . $term->getTitle() . "</a> <i>(" . $infos['count'].")</i>";
+	}
+    echo '</ul>';
+}
+?>
+
+<div id="refines">
+  <h2><?= L::narrow_search ?></h2>
+
+  <!-- User refines -->
+  <div class="refines" id="userRefines">
+    <h4><?= L::curr_refines ?></h4>
+<?php
+    drawUserRefines($answer);
+?>
+  </div>
+  
+<!-- Related Terms -->
+    <div class="refines">
+        <h4><?= L::related_terms ?></h4>
+<?php
+    foreach ($answer->getRelatedTerms() as $relatedTerm):
+?>
+		<? drawRelatedTerm($relatedTerm); ?>
+<?php
+    endforeach;
+?>
+    </div>
+  
+  <!-- Refines -->
+<?php
+    foreach ($answer->getCategoryGroups() as $categoryGroup):
+      if ($categoryGroup->getCategories()): ?>
+	  <div class="refines">
+		<h4><?= $categoryGroup->getName() ?></h4>
+		<? drawRefines($categoryGroup); ?>
+	  </div>
+<?php
+      endif;
+    endforeach;
+?>
+</div>

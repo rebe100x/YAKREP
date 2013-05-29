@@ -25,6 +25,7 @@ $statColl = $db->stat;
 
 $tsNow = gmmktime();
 $tsLastWeek = $tsNow - 7*24*60*60; 	
+$tsLast10days = $tsNow - 10*24*60*60; 	
 $tsYesterdayMorning = strtotime('yesterday midnight');
 $tsThisMorning = strtotime('today midnight');
 var_dump(date('d M Y H:i:s',$tsYesterdayMorning));	
@@ -86,8 +87,9 @@ $zones = $zoneColl->find()->sort(array('name'=>1));
 foreach($zones as $zone){
 	
 	$cond = array();
-	$cond['creationDate'] = array('$lte'=>new MongoDate($tsYesterdayMorning));
-	$cond['zone'] = $zone['num'];
+	$cond['creationDate'] = array('$gte'=>new MongoDate($tsLast10days));
+	$cond['location'] = array('$within'=>array('$box'=>$zone['box']));
+	
 	$stats['zone'][] = array('name' => $zone['name'], 'total' => $infoColl->count($cond));
 
 }

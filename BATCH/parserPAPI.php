@@ -50,6 +50,7 @@ if($q != ''){
 	foreach ($feeds as $feed) {
 		$file = $feed['name'].".xml";
 		echo 'Parsing feed : '.$feed['name'].'<br>';
+		echo 'Data : '.empty($feed['linkSource'])?$feed['fileSource']:$feed['linkSource'].'<br>';
 		echo 'Last Exection (GMT):'.date('Y/m/d H:i:s',$feed['lastExecDate']->sec) .'<br>';
 		echo 'Next Exection (GMT):'.date('Y/m/d H:i:s',$feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) .'<br>';
 		echo 'Time GMT now :'.date('Y/m/d H:i:s') .'<br>';

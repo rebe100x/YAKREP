@@ -120,11 +120,15 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			echo '<br> Parsing feed: <b>'.$feed['name'].'</b>';
 			echo '<br> Default location of the feed : <b>'.$defaultPlaceTitle.'</b>';
 			$searchDate = date('Y/m/d',(mktime()-86400*$feed['daysBack']));
+			
 			if($feed['XLconnector']=='parser' || $feed['XLconnector']=='parserPAPI')
 				$origin ="+AND+file_name%3D".$feed['name'].'.xml';
 			else
 				$origin ="";
-				
+			
+			// to change when go on prod
+			$feed['XLconnector'] = 'parserPAPI';
+			
 			$url = "http://ec2-54-246-84-102.eu-west-1.compute.amazonaws.com:62010/search-api/search?q=%23all+AND+document_item_date%3E%3D".$searchDate."+AND+source%3D".$feed['XLconnector'].$origin."&of=json&b=0&hf=512000&s=document_item_date";
 			
 			echo '<br> Days back : <b>'.$feed['daysBack'].'</b>';
@@ -989,7 +993,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			// echo 'Set Execution Status to 2 for the time of the parsing execution';
 			$feedColl->update(
 						array('_id'=>$feed['_id']),
-						array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate(gmmktime()))
+						array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate(gmmktime())))
 					);	
 					
 			$log = "<br><br><br><br><br>

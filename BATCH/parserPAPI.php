@@ -2,6 +2,7 @@
 
 /* 
 	read feeds and push to XL
+	runs in cron every 30 minutes
 */
 require_once("../LIB/conf.php");
 $conf = new conf();
@@ -20,6 +21,7 @@ $feedColl = $db->feed;
 $docsPAPI = array();
 
 $q = (empty($_GET['q']))?"":$_GET['q']; 
+$forceUpdate = (empty($_GET['forceUpdate']))?0:$_GET['forceUpdate']; 
 
 if($q != ''){
 	if($q == 'all') // we parse all valid feeds
@@ -48,242 +50,252 @@ if($q != ''){
 	foreach ($feeds as $feed) {
 		$file = $feed['name'].".xml";
 		echo 'Parsing feed : '.$feed['name'].'<br>';
-		// echo 'Set Execution Status to 2 for the time of the parsing execution';
-		$feedColl->update(
-						array('_id'=>$feed['_id']),
-						array('$set'=>array('lastExecStatus'=>2),'lastExecDate'=>new MongoDate(gmmktime()))
-					);
-		
-		
-		if(substr($conf->deploy,0,3) != 'dev')	
-			echo '<br> Process file '.$file;
-		if(!empty($feed['feedType'])){
-			$canvas = $feed['parsingTemplate'];
-			//var_dump($feed);
-			$data = getFeedData($feed);
-			//var_dump($data);
-			if(!empty($data)){
-				$line = 0;
-				foreach($data as $item){
-					
-					
-					if(!empty($canvas['title']) ){ // we don't take empty lines and header
-						//var_dump($item);
-						$itemArray = array();
-					
-						if($feed['feedType'] == 'CSV'){
-							if($line >= $feed['lineToBegin']){
+		echo 'Last Exection (GMT):'.date('Y/m/d H:i:s',$feed['lastExecDate']->sec) .'<br>';
+		echo 'Next Exection (GMT):'.date('Y/m/d H:i:s',$feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) .'<br>';
+		echo 'Time GMT now :'.date('Y/m/d H:i:s') .'<br>';
+		if(gmmktime() >= ($feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) || $forceUpdate == 1){
+			// echo 'Set Execution Status to 2 for the time of the parsing execution';
+			$feedColl->update(
+							array('_id'=>$feed['_id']),
+							array('$set'=>array('lastExecStatus'=>2),'lastExecDate'=>new MongoDate(gmmktime()))
+						);
+			
+			
+			if(substr($conf->deploy,0,3) != 'dev')	
+				echo '<br> Process file '.$file;
+			if(!empty($feed['feedType'])){
+				$canvas = $feed['parsingTemplate'];
+				//var_dump($feed);
+				$data = getFeedData($feed);
+				//var_dump($data);
+				if(!empty($data)){
+					$line = 0;
+					foreach($data as $item){
+						
+						
+						if(!empty($canvas['title']) ){ // we don't take empty lines and header
+							//var_dump($item);
+							$itemArray = array();
+						
+							if($feed['feedType'] == 'CSV'){
+								if($line >= $feed['lineToBegin']){
+									foreach($canvas as $key=>$val){
+										$thevalue = '';
+										if(!empty($val)){
+											
+											preg_match_all('/(#YKL)(\d+)/', $val, $out);
+											$tmp = array();
+											foreach($out[2] as $o)
+												$tmp[] = $item[$o];
+											$thevalue = preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
+											
+										}else
+											$thevalue = '';
+											
+										$thevalueClean = $thevalue;
+										
+										if($key == 'freeTag' || $key == 'yakCats'){
+											$tmp = explode(',',$thevalueClean);
+											$tmp = array_map('trimArray',$tmp);  
+											$thevalueClean = implode('#',$tmp);
+										}
+										if($key == 'longitude' || $key == 'latitude'){
+											$thevalueClean = str_replace(',','.',$thevalueClean);
+											$thevalueClean = (float)$thevalueClean;
+										}
+										
+										$itemArray[$key] = $thevalueClean;
+										
+									}
+								}
+							}
+							
+							if($feed['feedType'] == 'XML'){
+								//echo '<br>ITEM=';
+								//var_dump($item);
 								foreach($canvas as $key=>$val){
 									$thevalue = '';
 									if(!empty($val)){
-										
-										preg_match_all('/(#YKL)(\d+)/', $val, $out);
+										$val = str_replace('#YKLcurrent_french_date',date('d m Y'),$val);
+										//echo '<br>'.$val;
+										if(strpos($val,'->')){
+											preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
+										}else
+											if(strpos($val,':'))
+												preg_match_all('/(#YKL)(\w+:\w+)/', $val, $out);
+											else
+												preg_match_all('/(#YKL)(\w+)/', $val, $out);
+										//echo '<br>OUTPUT=';
+										//var_dump($out);
 										$tmp = array();
-										foreach($out[2] as $o)
-											$tmp[] = $item[$o];
-										$thevalue = preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
-										
+										$o1 = array();
+										foreach($out[2] as $o){
+											if(strpos($o,'->')){
+												$o1 = explode('->',$o);
+												if(!empty($o1[1])){
+													if( !empty($item[$o1[0]]) && sizeof($item[$o1[0]]) > 1)
+														$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]][0]['@attributes'][$o1[1]]) )? $item[$o1[0]][0]['@attributes'][$o1[1]] : '';
+													else
+														$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]]['@attributes'][$o1[1]]) )? $item[$o1[0]]['@attributes'][$o1[1]] : '';
+												}else{
+													$tmp[] = (empty($item[$o]))?'':$item[$o];
+												}
+											}else{
+												if(strpos($o,':'))
+													$o = str_replace(':','',$o);
+												
+												$tmp[] = (empty($item[$o]))?'':$item[$o];
+											}
+										}
+										//var_dump( $o);
+										//echo '<br>TMP=';
+										//var_dump( $tmp);
+										if(is_array($tmp[0]))
+											$t = implode(',',$tmp[0]);
+										else
+											$t = $tmp;
+										//echo '<br>T=';	
+										//var_dump($t);
+										//echo '<br>VAL=';	
+										//var_dump($val);
+										$thevalue = @preg_replace(array_map('mapIt',$out[0]), $t, $val);
 									}else
 										$thevalue = '';
 										
 									$thevalueClean = $thevalue;
 									
 									if($key == 'freeTag' || $key == 'yakCats'){
-										$tmp = explode(',',$thevalueClean);
+										$tmp = explode(',',$thevalue);
 										$tmp = array_map('trimArray',$tmp);  
 										$thevalueClean = implode('#',$tmp);
 									}
+									//echo '<br>key:'.$key.' - '.$thevalueClean;
 									if($key == 'longitude' || $key == 'latitude'){
 										$thevalueClean = str_replace(',','.',$thevalueClean);
 										$thevalueClean = (float)$thevalueClean;
 									}
 									
 									$itemArray[$key] = $thevalueClean;
-									
-								}
-							}
-						}
-						
-						if($feed['feedType'] == 'XML'){
-							//echo '<br>ITEM=';
-							//var_dump($item);
-							foreach($canvas as $key=>$val){
-								$thevalue = '';
-								if(!empty($val)){
-									$val = str_replace('#YKLcurrent_french_date',date('d m Y'),$val);
-									//echo '<br>'.$val;
-									if(strpos($val,'->')){
-										preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
-									}else
-										if(strpos($val,':'))
-											preg_match_all('/(#YKL)(\w+:\w+)/', $val, $out);
-										else
-											preg_match_all('/(#YKL)(\w+)/', $val, $out);
-									//echo '<br>OUTPUT=';
-									//var_dump($out);
-									$tmp = array();
-									$o1 = array();
-									foreach($out[2] as $o){
-										if(strpos($o,'->')){
-											$o1 = explode('->',$o);
-											if(!empty($o1[1])){
-												if( !empty($item[$o1[0]]) && sizeof($item[$o1[0]]) > 1)
-													$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]][0]['@attributes'][$o1[1]]) )? $item[$o1[0]][0]['@attributes'][$o1[1]] : '';
-												else
-													$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]]['@attributes'][$o1[1]]) )? $item[$o1[0]]['@attributes'][$o1[1]] : '';
-											}else{
-												$tmp[] = (empty($item[$o]))?'':$item[$o];
-											}
-										}else{
-											if(strpos($o,':'))
-												$o = str_replace(':','',$o);
-											
-											$tmp[] = (empty($item[$o]))?'':$item[$o];
-										}
-									}
-									//var_dump( $o);
-									//echo '<br>TMP=';
-									//var_dump( $tmp);
-									if(is_array($tmp[0]))
-										$t = implode(',',$tmp[0]);
-									else
-										$t = $tmp;
-									//echo '<br>T=';	
-									//var_dump($t);
-									//echo '<br>VAL=';	
-									//var_dump($val);
-									$thevalue = @preg_replace(array_map('mapIt',$out[0]), $t, $val);
-								}else
-									$thevalue = '';
-									
-								$thevalueClean = $thevalue;
-								
-								if($key == 'freeTag' || $key == 'yakCats'){
-									$tmp = explode(',',$thevalue);
-									$tmp = array_map('trimArray',$tmp);  
-									$thevalueClean = implode('#',$tmp);
-								}
-								//echo '<br>key:'.$key.' - '.$thevalueClean;
-								if($key == 'longitude' || $key == 'latitude'){
-									$thevalueClean = str_replace(',','.',$thevalueClean);
-									$thevalueClean = (float)$thevalueClean;
 								}
 								
-								$itemArray[$key] = $thevalueClean;
 							}
 							
-						}
-						
-						if($feed['feedType'] == 'JSON'){ // not working on progress
-							foreach($canvas as $key=>$val){
-								$thevalue = '';
-								if(!empty($val)){
-									preg_match_all('/(#YKL)(\w+)/', $val, $out);
-									//var_dump($out);
-									$tmp = array();
-									$o1 = array();
-									foreach($out[2] as $o){
-										if(is_array($item[$o])){
-											$thevalue = implode('#',$item[$o]);
-										}else
-											$thevalue =  trim($item[$o]);
+							if($feed['feedType'] == 'JSON'){ // not working on progress
+								foreach($canvas as $key=>$val){
+									$thevalue = '';
+									if(!empty($val)){
+										preg_match_all('/(#YKL)(\w+)/', $val, $out);
+										//var_dump($out);
+										$tmp = array();
+										$o1 = array();
+										foreach($out[2] as $o){
+											if(is_array($item[$o])){
+												$thevalue = implode('#',$item[$o]);
+											}else
+												$thevalue =  trim($item[$o]);
+												
 											
-										
-										if($key == 'pubDate'){
-											//echo '<br>'.$thevalue.' '.date('r',$thevalue).'  '.(mktime()-10*24*60*60);
-											if((int)$thevalue > mktime()-10*24*60*60 && (int)$thevalue <= mktime() ){
-													
-												$thevalue = date('r',(int)$thevalue);
+											if($key == 'pubDate'){
+												//echo '<br>'.$thevalue.' '.date('r',$thevalue).'  '.(mktime()-10*24*60*60);
+												if((int)$thevalue > mktime()-10*24*60*60 && (int)$thevalue <= mktime() ){
+														
+													$thevalue = date('r',(int)$thevalue);
+												}
 											}
-										}
 
-										if($key == 'longitude' || $key == 'latitude'){
-											$thevalue = str_replace(',','.',$thevalue);
-											$thevalue = (float)$thevalue;
-										}	
-										if(!array_key_exists($key,$itemArray))
-											$itemArray[$key] = $thevalue;
-										else
-											$itemArray[$key] .= $thevalue;
-											
+											if($key == 'longitude' || $key == 'latitude'){
+												$thevalue = str_replace(',','.',$thevalue);
+												$thevalue = (float)$thevalue;
+											}	
+											if(!array_key_exists($key,$itemArray))
+												$itemArray[$key] = $thevalue;
+											else
+												$itemArray[$key] .= $thevalue;
+												
+										}
 									}
 								}
 							}
-						}
-						
-						//var_dump($itemArray);
-						
-						try {
+							
+							//var_dump($itemArray);
+							
+							try {
 
-							//echo "Checking if document exists\n";
-							$stamp = $papi->getDocumentStatus($itemArray['outGoingLink']);
-							if ($stamp !== false) {
-								echo "Doc is already in XL<br>";
-							} else {
-								echo "Doc is new, we push to XL<br>";
-								$docsPAPI[] = buildPAPIItem($itemArray,$file);
+								//echo "Checking if document exists\n";
+								$stamp = $papi->getDocumentStatus($itemArray['outGoingLink']);
+								if ($stamp == false || $forceUpdate ==  1) {
+									echo "Doc is new, we push to XL<br>";
+									$docsPAPI[] = buildPAPIItem($itemArray,$file);
+								} else {
+									echo "Doc is already in XL<br>";
+								}
+							} catch(PushAPIFactory $e)  {
+								echo "Error: " . $e->getMessage() . "\n";
 							}
-						} catch(PushAPIFactory $e)  {
-							echo "Error: " . $e->getMessage() . "\n";
-						}
-						
-					}			
-					$line++;
-				}
-				
-				// PUSH DOCS TO XL
-				if(sizeof($docsPAPI) > 0){
-				
-					$resp = $papi->addDocument($docsPAPI);
-
-					//echo "Set checkpoint\n";
-					$serial = $papi->setCheckpoint(0, true);
-
-					$cp = $papi->enumerateCheckpointInfo();
-					/*foreach($cp as $k => $v) {
-						echo "Checkpoint: name='" . $k . "' value='" . $v . "'\n";
-					}*/
-
-					$rootUrlTmp = parse_url($itemArray['outGoingLink']);	
-					$rootUrl = $rootUrlTmp['scheme'].'://'.$rootUrlTmp['host'];
-					$se = $papi->enumerateSyncedEntries($rootUrl,PushAPI::RECURSIVE_DOCUMENTS);
-					/*foreach($se as $url => $stamp) {
-						echo "Entry: url='" . $url . "' stamp='" . $stamp . "'\n";
-					}*/
-
-					//echo "Waiting for checkpoint serial " . $serial . "\n";
-
-					//echo "Triggering indexing job\n";
-					$papi->triggerIndexingJob();
-
-					//echo "Waiting for documents to be searchable ..\n";
-					while(!$papi->areDocumentsSearchable($serial)) {
-						//echo "<br>Waiting .. current  checkpoint: " . $papi->getCheckpoint(). "        " . "\r";
-						sleep(3);
+							
+						}			
+						$line++;
 					}
-				  
-				  
-				  
-					echo "XL Build OK<br>";
-					echo "Begin Fetching<br>";	
-					$chuid = curl_init();
-					curl_setopt($chuid, CURLOPT_URL, $conf->backurl().'/BACKEND/transferData_XL_Mongo.php?q='.$feed['name']);	
-					curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
-					curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
-					$res = trim(curl_exec($chuid));
-					curl_close($chuid);		
-					echo $res;	
-				}else{
-					echo 'No docs to push!<br>';
-					$feedColl->update(
-						array('_id'=>$feed['_id']),
-						array('$set'=>array('lastExecStatus'=>4,'lastExecDate'=>new MongoDate(gmmktime()),'lastExecErr'=>'No doc to parse !'))
-					);
-				}
-			}else
-				echo 'No DATA';
-			
-			
+					
+					// PUSH DOCS TO XL
+					if(sizeof($docsPAPI) > 0){
+					
+						$resp = $papi->addDocument($docsPAPI);
+
+						//echo "Set checkpoint\n";
+						$serial = $papi->setCheckpoint(0, true);
+
+						$cp = $papi->enumerateCheckpointInfo();
+						/*foreach($cp as $k => $v) {
+							echo "Checkpoint: name='" . $k . "' value='" . $v . "'\n";
+						}*/
+
+						$rootUrlTmp = parse_url($itemArray['outGoingLink']);	
+						$rootUrl = $rootUrlTmp['scheme'].'://'.$rootUrlTmp['host'];
+						$se = $papi->enumerateSyncedEntries($rootUrl,PushAPI::RECURSIVE_DOCUMENTS);
+						/*foreach($se as $url => $stamp) {
+							echo "Entry: url='" . $url . "' stamp='" . $stamp . "'\n";
+						}*/
+
+						//echo "Waiting for checkpoint serial " . $serial . "\n";
+
+						//echo "Triggering indexing job\n";
+						$papi->triggerIndexingJob();
+
+						//echo "Waiting for documents to be searchable ..\n";
+						while(!$papi->areDocumentsSearchable($serial)) {
+							//echo "<br>Waiting .. current  checkpoint: " . $papi->getCheckpoint(). "        " . "\r";
+							sleep(3);
+						}
+					  
+					  
+					  
+						echo "XL Build OK<br>";
+					
+					
+						echo "Begin Fetching<br>";	
+						$chuid = curl_init();
+						curl_setopt($chuid, CURLOPT_URL, $conf->backurl().'/BACKEND/transferData_XL_Mongo.php?q='.$feed['name']);	
+						curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
+						curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
+						$res = trim(curl_exec($chuid));
+						curl_close($chuid);		
+						echo $res;	
+					}else{
+						echo 'No docs to push!<br>';
+						$feedColl->update(
+							array('_id'=>$feed['_id']),
+							array('$set'=>array('lastExecStatus'=>4,'lastExecDate'=>new MongoDate(gmmktime()),'lastExecErr'=>'No doc to parse !'))
+						);
+					}
+				}else
+					echo 'No DATA';
+				
+				
+			}
+		}else{
+			echo '=> No need to run '.$feed['humanName'].'<br>';
+			echo "To force update, call <a href=\"".$_SERVER["REQUEST_URI"]."&forceUpdate=1\">&forceUpdate=1</a>";    
 		}
 	}
 

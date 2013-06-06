@@ -1,26 +1,85 @@
-TEST PLAN
+TEST PLAN : https://github.com/rebe100x/YAKREP/blob/master/DOC/testPlan.txt
+
+How to test a page: 
+Foreach screen size : phone, tablet, medium and big screen{
+	Foreach browser : IE_, IE9 , IE10, FF, CHROME, SAFARI
+			TEST each feature from left to right, top to bottom on all browser.
+			TEST all inputs with : <script>alert('e');</script> and "c'est l'été"
+}
+
+
+Everytime we find a new bug, we add it to the test plan
+
 
 1) Pull the YAKFRONT
-1) Pull new data 
-2) Pull the YAKREP
-3) Delete your user
+1) Pull the YAKREP
+2) Pull new data 
+3) Delete users, info, illicites, stats, tag
 4) Delete your cookies
-5) Create a user with twitter
-6) Create a user with with email
-7) Validate your account
-7) TEST each  feature from left to right, top to bottom
-8) test each input with this test : 
-c'est l'été
-9) CHANGE your account type to 2 and try to post
-10) test different screen size : phone, tablet, medium and big screen
-11) test with different browser : Chrome, FF, IE10
-12) PAGES TO TEST :
+
+
+5) TEST PLAN:
+
+LOGIN
+	LOGIN
+	LOGOUT
+	ACCOUNT CREATION BY MAIL
+	ACCOUNT CREATION BY FB
+	ACCOUNT CREATION BY TW
+	ACCOUNT CREATION BY GP
+	SEND PASSWORD
+	REMEMBER ME
+	
+	
 FIRST VISIT
+
 MAP
-POST
+	NEWS
+		comment
+		like
+		blacklist
+		signaler
+		share
+		detailed news open/close
+	SEARCH TXT
+	SEARCH PLACE
+	TIME SLIDER
+	ZOOM
+	HOTTAGs
+	MODE ALERTE
+	MODE YASSALA
+	ENDROITS FAVORIS
+
 FEED
-ALERTES
-PROFILE
-MOT DE PASSE
+	NEWS
+		comment
+		like
+		blacklist
+		signaler
+		share
+		detailed news open/close
+	SEARCH TXT
+	SEARCH PLACE
+	TIME SLIDER
+	ZOOM
+	HOTTAGs
+	MODE ALERTE
+	MODE YASSALA
+	ENDROITS FAVORIS
+	
+POST
+	all possibilities of mixted media
+
+SETTINGS 
+	PROFIL
+	PROFIL PRIVE
+	ALERTES
+	LISTE NOIRE
+	MOT DE PASSE
 
 
+CODE OPTIMIZATION
+	javascript errors
+	page speed
+	check images
+	check scripts and css loading

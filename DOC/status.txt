@@ -50,3 +50,29 @@ ACCOUNT TYPE:
 5 Institution (Premium front user)
 10 Operator (back user)
 11 Super Admin (back user)
+
+
+INFO & PLACE STATUS:
+1: OK ,
+2: wait for validation, 
+3: rejected = blacklisted by operator
+10: alert gmap not found
+11: alert : the place matched by algo is in status 3 (rejected by operator )
+12: alert : location found is not in the defined zone
+13: no location found => no match
+
+CONTENU ILLICITE
+1 = TO BE PROCESSED
+2 = DONE
+
+USER
+1 ok,
+2 waiting for validation,
+3 disactivated,
+4 need to fill the first visit,
+
+
+COMMENTS:
+1 ok
+2 waiting for validation
+3 blacklisted

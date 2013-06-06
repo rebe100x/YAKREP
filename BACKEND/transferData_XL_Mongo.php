@@ -758,7 +758,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 				foreach($placeArray as $geolocItem){
 					
 					
-					if( ( !empty($title) && !empty($geolocItem['lat']) && !empty($geolocItem['lng']) ) || $status == 10){
+					if( ( !empty($title) && !empty($geolocItem['lat']) && !empty($geolocItem['lng']) ) || $status >= 10 ){
 						
 						
 						$datePubArray1 = explode(' ',$datePub);

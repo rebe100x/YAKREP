@@ -362,7 +362,7 @@ $records[] = array(
 		array("title"=>"Cimade","level"=>"exact"),
 		array("title"=>"Croix-Rouge","level"=>"exact"),
 		array("title"=>"Fondation Abbé-Pierre","level"=>"exact"),
-		array("title"=>"Mmédecins du monde","level"=>"normalized"),
+		array("title"=>"Médecins du monde","level"=>"normalized"),
 		array("title"=>"MDM","level"=>"exact"),
 		array("title"=>"Fondation d'Auteuil","level"=>"exact"),
 		array("title"=>"Première Urgence","level"=>"exact"),

@@ -48,6 +48,7 @@ if($q != ''){
 	}
 
 	foreach ($feeds as $feed) {
+		//var_dump($feed);
 		$file = $feed['name'].".xml";
 		echo 'Parsing feed : '.$feed['name'].'<br>';
 		echo 'Data : '.empty($feed['linkSource'])?$feed['fileSource']:$feed['linkSource'].'<br>';
@@ -181,7 +182,7 @@ if($q != ''){
 								
 							}
 							
-							if($feed['feedType'] == 'JSON'){ // not working on progress
+							if($feed['feedType'] == 'JSON'){ 
 								foreach($canvas as $key=>$val){
 									$thevalue = '';
 									if(!empty($val)){
@@ -190,6 +191,7 @@ if($q != ''){
 										$tmp = array();
 										$o1 = array();
 										foreach($out[2] as $o){
+											echo "<br>$o:".$o;
 											if(is_array($item[$o])){
 												$thevalue = implode('#',$item[$o]);
 											}else
@@ -199,15 +201,24 @@ if($q != ''){
 											if($key == 'pubDate'){
 												//echo '<br>'.$thevalue.' '.date('r',$thevalue).'  '.(mktime()-10*24*60*60);
 												if((int)$thevalue > mktime()-10*24*60*60 && (int)$thevalue <= mktime() ){
-														
 													$thevalue = date('r',(int)$thevalue);
 												}
 											}
-
+											
+											//if($key == 'content')
+											//	echo "CONTENT".$thevalue;
+											if($key == 'freeTag' || $key == 'yakCats'){
+												$tmp = explode(',',$thevalue);
+												$tmp = array_map('trimArray',$tmp);  
+												$thevalue = implode('#',$tmp);
+												
+											}
+											
 											if($key == 'longitude' || $key == 'latitude'){
 												$thevalue = str_replace(',','.',$thevalue);
 												$thevalue = (float)$thevalue;
 											}	
+											
 											if(!array_key_exists($key,$itemArray))
 												$itemArray[$key] = $thevalue;
 											else
@@ -227,6 +238,7 @@ if($q != ''){
 								if ($stamp == false || $forceUpdate ==  1) {
 									echo "Doc is new, we push to XL<br>";
 									$docsPAPI[] = buildPAPIItem($itemArray,$file);
+									//var_dump($docsPAPI);
 								} else {
 									echo "Doc is already in XL<br>";
 								}

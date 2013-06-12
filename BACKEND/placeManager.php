@@ -18,6 +18,35 @@ $records = array();
 */
 
 $records[] = array(
+	"_id" => new MongoId("51b6c8ddfa9a95fc0c000000"),
+	"title"=>"Frigos",
+	"content" =>"",
+	"thumb" => "",
+	"origin"=>"operator",	
+	"access"=> 1,
+	"licence"=> "Yakwala",
+	"outGoingLink" => "http://les-frigos.com/",
+	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000"),new MOngoId('50923b9afa9a95d409000000')),
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"location" => array('lat'=>48.83115,'lng'=>2.378944),
+	"formatted_address"=> "19 Rue des Frigos, 75013 Paris, France",
+	"address" => array(
+				'street_number'=>'19',
+				'street'=>"rue de Frigos",
+				'arr'=>'',
+				'city'=>'Paris',
+				'state'=>'Paris',
+				'area'=>'Paris',
+				'country'=>'France',
+				'zip'=>'75013',
+			),
+	"status" => 1,
+	"user" => 0, 
+	"zone"=> 1,
+);
+
+$records[] = array(
 	"_id" => new MongoId("51a3019ffa9a954409000003"),
 	"title"=>"Hénin-Beaumont",
 	"content" =>"",
@@ -25,14 +54,14 @@ $records[] = array(
 	"origin"=>"operator",	
 	"access"=> 1,
 	"licence"=> "Yakwala",
-	"outGoingLink" => "http://www.rolandgarros.com/index.html",
+	"outGoingLink" => "",
 	"yakCat" => array(new MongoId("504d89f4fa9a958808000001"),new MongoId("5056b7aafa9a95180b000000")),
 	"creationDate" => new MongoDate(gmmktime()),
 	"lastModifDate" => new MongoDate(gmmktime()),
 	"location" => array('lat'=>50.420331,'lng'=>2.947716),
 	"formatted_address"=> "Hénin-Beaumont, 62110 France",
 	"address" => array(
-				'street_number'=>'2',
+				'street_number'=>'',
 				'street'=>"",
 				'arr'=>'',
 				'city'=>'Hénin-Beaumont',
@@ -43,7 +72,7 @@ $records[] = array(
 			),
 	"status" => 1,
 	"user" => 0, 
-	"zone"=> 1,
+	"zone"=> 1, // should be something else ...
 );
 
 

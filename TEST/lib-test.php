@@ -21,7 +21,9 @@ $logDataInserted = 0;
 $logDataUpdated = 0;
 $logDataAlreadyInDB = 0;
 
-echo chr(146);
+//echo chr(146);
+
+echo trimArray('    elo the world');
 ?>
 </body>
 </html>

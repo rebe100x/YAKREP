@@ -2,7 +2,7 @@
 ini_set('display_errors',1);
 
 function trimArray($i){
-	return trim($i);	
+	return trim(str_replace(' ','',ucwords($i)));	
 }
 /*
  generate random point arround a center
@@ -140,24 +140,24 @@ $myDoc = new Document(
 	   'metas' => array(
 			//'path' => 'Path/To/Example/1',
 			'file_name' => $file,
-			'item_title'=>$itemArray['title'],
-			'item_desc'=>$itemArray['content'],
-			'item_address'=>$itemArray['address'],
-			'item_geolocation'=>$itemArray['geolocation'],
-			'item_latitude'=>$itemArray['latitude'],
-			'item_longitude'=>$itemArray['longitude'],
-			'publicurl'=>$itemArray['outGoingLink'],
-			'image_enclosure'=>$itemArray['thumb'],
-			'item_yakcat'=>$itemArray['yakCats'],
-			'item_freetag'=>$itemArray['freeTag'],
-			'item_place'=>$itemArray['place'],
-			'item_eventDate'=>$itemArray['eventDate'],
-			'item_date'=>$itemArray['pubDate'],
-			'item_tel'=>$itemArray['telephone'],
-			'item_transportation'=>$itemArray['transportation'],
-			'item_web'=>$itemArray['web'],
-			'item_mail'=>$itemArray['mail'],
-			'item_opening'=>$itemArray['opening'],
+			'item_title'=>(!empty($itemArray['title'])?$itemArray['title']:''),
+			'item_desc'=>(!empty($itemArray['content'])?$itemArray['content']:''),
+			'item_address'=>(!empty($itemArray['address'])?$itemArray['address']:''),
+			'item_geolocation'=>(!empty($itemArray['geolocation'])?$itemArray['geolocation']:''),
+			'item_latitude'=>(!empty($itemArray['latitude'])?$itemArray['latitude']:''),
+			'item_longitude'=>(!empty($itemArray['longitude'])?$itemArray['longitude']:''),
+			'publicurl'=>(!empty($itemArray['outGoingLink'])?$itemArray['outGoingLink']:''),
+			'image_enclosure'=>(!empty($itemArray['thumb'])?$itemArray['thumb']:''),
+			'item_yakcat'=>(!empty($itemArray['yakCats'])?$itemArray['yakCats']:''),
+			'item_freetag'=>(!empty($itemArray['freeTag'])?$itemArray['freeTag']:''),
+			'item_place'=>(!empty($itemArray['place'])?$itemArray['place']:''),
+			'item_eventDate'=>(!empty($itemArray['eventDate'])?$itemArray['eventDate']:''),
+			'item_date'=>(!empty($itemArray['pubDate'])?$itemArray['pubDate']:''),
+			'item_tel'=>(!empty($itemArray['telephone'])?$itemArray['telephone']:''),
+			'item_transportation'=>(!empty($itemArray['transportation'])?$itemArray['transportation']:''),
+			'item_web'=>(!empty($itemArray['web'])?$itemArray['web']:''),
+			'item_mail'=>(!empty($itemArray['mail'])?$itemArray['mail']:''),
+			'item_opening'=>(!empty($itemArray['opening'])?$itemArray['opening']:''),
 		)
 	   )
  );

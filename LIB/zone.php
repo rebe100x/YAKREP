@@ -25,10 +25,10 @@ class Zone
 	function findNumByLocation($location){
 		$res = array();
 		$query = array(
-							'box'=>array('$gt' => array('tl'=>array('lat'=>$location['lat']))),
-							'box'=>array('$lt' => array('br'=>array('lat'=>$location['lat']))),
-							'box'=>array('$gt' => array('br'=>array('lng'=>$location['lng']))),
-							'box'=>array('$lt' => array('tl'=>array('lng'=>$location['lng']))),
+							'box'=>array('$gt' => array('tr'=>array('lat'=>$location['lat']))),
+							'box'=>array('$lt' => array('bl'=>array('lat'=>$location['lat']))),
+							'box'=>array('$lt' => array('bl'=>array('lng'=>$location['lng']))),
+							'box'=>array('$gt' => array('tr'=>array('lng'=>$location['lng']))),
 							'status'=>1
 							);
 		$zones = $this->selfColl->find($query);

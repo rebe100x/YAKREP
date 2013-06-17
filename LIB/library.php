@@ -231,11 +231,18 @@ function getTeleportImg($spec){
  * return true if success
  * */
 function getApercite($link,$conf,$iter=0){
+
+	if( preg_match( "[\/usr\/share\/nginx\/html\/]",$conf->batchthumbpath()) )
+		$docroot = "";
+	else
+		$docroot = "/usr/share/nginx/html/";
+
+		
 	$iter++;
 	echo '<br> Call Apercite';
 	$imgName = md5($link).'.jpg';
 	//$fullpath = "thumb/".$imgName;
-	$fullpath = $conf->thumbpath().$imgName;
+	$fullpath = $docroot.$conf->thumbpath().$imgName;
 	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;	
 	echo 'img= '.$img;
 	$ch = curl_init ($img);
@@ -246,8 +253,9 @@ function getApercite($link,$conf,$iter=0){
     curl_close ($ch);
     
 	// check if the image is not in creation process with apercite
-	echo $conf->batchthumbpath().'120x90.jpg';
-	$creationImgSignature = md5(file_get_contents($conf->batchthumbpath().'120x90.jpg'));
+	
+	
+	$creationImgSignature = md5(file_get_contents($docroot.$conf->batchthumbpath().'120x90.jpg'));
 	$infoImgSignature = md5($rawdata);
 	if ($creationImgSignature == $infoImgSignature && $iter < 	10 ) {
 		echo '<br>IMG UNDER CREATION';
@@ -290,10 +298,15 @@ function createImgThumb($link,$conf){
 	$res = '';
 	//echo $link;
 
-	$filePathDestOriginal = $conf->originalpath() .$hash.'.jpg';
-	$filePathDestThumb = $conf->thumbpath() .$hash.'.jpg';
-	$filePathDestMedium = $conf->mediumpath() .$hash.'.jpg';
-	$filePathDestBig = $conf->bigpath() .$hash.'.jpg';
+	if( preg_match( "[\/usr\/share\/nginx\/html\/]",$conf->batchthumbpath()) )
+		$docroot = "";
+	else
+		$docroot = "/usr/share/nginx/html/";
+		
+	$filePathDestOriginal = $docroot.$conf->originalpath() .$hash.'.jpg';
+	$filePathDestThumb = $docroot.$conf->thumbpath() .$hash.'.jpg';
+	$filePathDestMedium = $docroot.$conf->mediumpath() .$hash.'.jpg';
+	$filePathDestBig = $docroot.$conf->bigpath() .$hash.'.jpg';
 	$ch = curl_init ($link);
 	
     curl_setopt($ch, CURLOPT_HEADER, 0);

@@ -20,7 +20,7 @@ $feedColl = $db->feed;
 
 $docsPAPI = array();
 
-$q = (empty($_GET['q']))?"":$_GET['q']; 
+$q = (empty($_GET['q']))?"all":$_GET['q']; 
 $forceUpdate = (empty($_GET['forceUpdate']))?0:$_GET['forceUpdate']; 
 
 if($q != ''){
@@ -46,25 +46,25 @@ if($q != ''){
 		$i = convert_smart_quotes($i); // clean rounded quotes from MSWord
 		return '/'.$i.'/';
 	}
-
+	
+	
 	foreach ($feeds as $feed) {
 		//var_dump($feed);
 		$file = $feed['name'].".xml";
 		echo 'Parsing feed : '.$feed['name'].'<br>';
-		echo 'Data : '.empty($feed['linkSource'])?$feed['fileSource']:$feed['linkSource'].'<br>';
-		echo 'Last Exection (GMT):'.date('Y/m/d H:i:s',$feed['lastExecDate']->sec) .'<br>';
-		echo 'Next Exection (GMT):'.date('Y/m/d H:i:s',$feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) .'<br>';
+		echo 'Data : '.empty($feed['linkSource'])?implode(' , ',$feed['fileSource']):implode(' , ',$feed['linkSource']).'<br>';
+		echo 'Last Execution (GMT):'.gmdate('Y/m/d H:i:s',$feed['lastExecDate']->sec) .'<br>';
+		echo 'Next Execution (GMT):'.gmdate('Y/m/d H:i:s',$feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) .'<br>';
 		echo 'Time GMT now :'.date('Y/m/d H:i:s') .'<br>';
-		if(gmmktime() >= ($feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) || $forceUpdate == 1){
+		
+		if( ( $feed['parsingFreq'] > 0 && gmmktime() >= ($feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) )  || $forceUpdate == 1){
 			// echo 'Set Execution Status to 2 for the time of the parsing execution';
 			$feedColl->update(
 							array('_id'=>$feed['_id']),
-							array('$set'=>array('lastExecStatus'=>2),'lastExecDate'=>new MongoDate(gmmktime()))
+							array('$set'=>array('lastExecStatus'=>2),'lastExecDate'=>new MongoDate())
 						);
 			
 			
-			if(substr($conf->deploy,0,3) != 'dev')	
-				echo '<br> Process file '.$file;
 			if(!empty($feed['feedType'])){
 				$canvas = $feed['parsingTemplate'];
 				//var_dump($feed);
@@ -287,18 +287,12 @@ if($q != ''){
 					
 					
 						echo "Begin Fetching<br>";	
-						$chuid = curl_init();
-						curl_setopt($chuid, CURLOPT_URL, $conf->backurl().'/BACKEND/transferData_XL_Mongo.php?q='.$feed['name']);	
-						curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
-						curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
-						$res = trim(curl_exec($chuid));
-						curl_close($chuid);		
-						echo $res;	
+						include('./fetchPAPI.php');
 					}else{
 						echo 'No docs to push!<br>';
 						$feedColl->update(
 							array('_id'=>$feed['_id']),
-							array('$set'=>array('lastExecStatus'=>4,'lastExecDate'=>new MongoDate(gmmktime()),'lastExecErr'=>'No doc to parse !'))
+							array('$set'=>array('lastExecStatus'=>4,'lastExecDate'=>new MongoDate(),'lastExecErr'=>'No doc to parse !'))
 						);
 					}
 				}else
@@ -315,6 +309,13 @@ if($q != ''){
 	//$papi->ping();	
 	$papi->close();
 	
+	// echo 'Set Execution Status to 1 for the time of the parsing execution';
+	$feedColl->update(
+				array('_id'=>$feed['_id']),
+				array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate()))
+			);	
+			
+			
 	
 }else{
 	echo "<!doctype html><html><head><meta charset='utf-8' /><title>YAKWALA BATCH</title></head><body>";

@@ -88,10 +88,18 @@ foreach($zones as $zone){
 	
 	$cond = array();
 	$cond['creationDate'] = array('$gte'=>new MongoDate($tsLast10days));
-	$cond['location'] = array('$within'=>array('$box'=>$zone['box']));
-	
+	$TR = $zone['box']['tr'];
+	$BL = $zone['box']['bl'];
+	$TL = array("lat"=>$TR['lat'],"lng"=>$BL['lng']);
+	$BR = array("lat"=>$BL['lat'],"lng"=>$TR['lng']);
+	$box = array(
+		"tl"=>$TL,
+		"br"=>$BR
+	);
+	$cond['location'] = array('$within'=>array('$box'=>$box));
+	//$cond['location'] = array('$within'=>array('$box'=>array(0,0),array(100,100)));
 	$stats['zone'][] = array('name' => $zone['name'], 'total' => $infoColl->count($cond));
-
+	echo "<br> COUNT=".$infoColl->count($cond);
 }
 
 

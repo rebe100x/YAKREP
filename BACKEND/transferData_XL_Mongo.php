@@ -109,7 +109,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			// echo 'Set Execution Status to 3 for the time of the fetching execution';
 			$feedColl->update(
 						array('_id'=>$feed['_id']),
-						array('$set'=>array('lastExecStatus'=>3,'lastExecDate'=>new MongoDate(gmmktime())))
+						array('$set'=>array('lastExecStatus'=>3,'lastExecDate'=>new MongoDate()))
 					);
 					
 			// get default PLACE
@@ -994,7 +994,7 @@ $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode 
 			// echo 'Set Execution Status to 2 for the time of the parsing execution';
 			$feedColl->update(
 						array('_id'=>$feed['_id']),
-						array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate(gmmktime())))
+						array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate()))
 					);	
 					
 			$log = "<br><br><br><br><br>

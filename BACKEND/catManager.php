@@ -538,6 +538,26 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("51c00669fa9a95b40b000036"),
+	"title"=> "Feed",
+	"path" => "Géolocalisation, Feed",
+	"pathN" => "GEOLOCALISATION#FEED",
+	"ancestors" => array("Géolocalisation"),
+	"parent" => "Géolocalisation",
+	"ancestorsId" => array(new MongoId("504d89f4fa9a958808000001")),
+	"parentId" => new MongoId("504d89f4fa9a958808000001"),
+	"level" => 2,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 0, // not found in the autocomplete
+	"ext_id"=>array(
+		"of"=>array()	
+	)
+);
+
+
+$records[] = array(
 	"_id" => new MongoId("507e5a9a1d22b30c44000068"),
 	"title"=> "Ville",
 	"path" => "Géolocalisation, Ville",

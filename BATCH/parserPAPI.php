@@ -4,7 +4,14 @@
 	read feeds and push to XL
 	runs in cron every 30 minutes
 */
-require_once("../LIB/conf.php");
+
+if(sizeof($_GET) == 0){
+	require_once("/home/bitnami/stack/nginx/html/PROD/YAKREP/LIB/conf.php");
+	include_once "/home/bitnami/stack/nginx/html/PROD/YAKREP/LIB/cloudview-sdk-php-clients/papi/PushAPI.inc";
+}else{
+	require_once("../LIB/conf.php");
+	include_once "../LIB/cloudview-sdk-php-clients/papi/PushAPI.inc";
+}
 $conf = new conf();
 
 
@@ -55,13 +62,20 @@ if($q != ''){
 		echo 'Data : '.empty($feed['linkSource'])?implode(' , ',$feed['fileSource']):implode(' , ',$feed['linkSource']).'<br>';
 		echo 'Last Execution (GMT):'.gmdate('Y/m/d H:i:s',$feed['lastExecDate']->sec) .'<br>';
 		echo 'Next Execution (GMT):'.gmdate('Y/m/d H:i:s',$feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) .'<br>';
-		echo 'Time GMT now :'.date('Y/m/d H:i:s') .'<br>';
-		
+		echo 'Time GMT now :'.gmdate('Y/m/d H:i:s') .'<br>';
+		//$forceUpdate = 1;
+		echo $feed['parsingFreq'] .'>'. 0 .'&&'. gmmktime() .'>='. ($feed['lastExecDate']->sec + ($feed['parsingFreq']*60)).'<br>';
+		/*
+		if( ( $feed['parsingFreq'] > 0 && gmmktime() >= ($feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) ) )
+			echo '<br>UPDATE NEEDED';
+		else
+			echo '<br>NO UPDATE NEEDED';
+		*/
 		if( ( $feed['parsingFreq'] > 0 && gmmktime() >= ($feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) )  || $forceUpdate == 1){
 			// echo 'Set Execution Status to 2 for the time of the parsing execution';
 			$feedColl->update(
 							array('_id'=>$feed['_id']),
-							array('$set'=>array('lastExecStatus'=>2),'lastExecDate'=>new MongoDate())
+							array('$set'=>array('lastExecStatus'=>2),'lastExecDate'=>new MongoDate(),'lastExecErr'=>'')
 						);
 			
 			
@@ -235,7 +249,7 @@ if($q != ''){
 
 								//echo "Checking if document exists\n";
 								$stamp = $papi->getDocumentStatus($itemArray['outGoingLink']);
-								if ($stamp == false || $forceUpdate ==  1) {
+								if ($stamp === false || $forceUpdate ==  1) {
 									echo "Doc is new, we push to XL<br>";
 									$docsPAPI[] = buildPAPIItem($itemArray,$file);
 									//var_dump($docsPAPI);
@@ -287,7 +301,12 @@ if($q != ''){
 					
 					
 						echo "Begin Fetching<br>";	
-						include('./fetchPAPI.php');
+						if(sizeof($_GET) == 0){
+							echo "FETCHING";
+							include("/home/bitnami/stack/nginx/html/PROD/YAKREP/BATCH/fetchPAPI.php");
+						}else{
+							include('./fetchPAPI.php');
+						}
 					}else{
 						echo 'No docs to push!<br>';
 						$feedColl->update(
@@ -297,25 +316,29 @@ if($q != ''){
 					}
 				}else
 					echo 'No DATA';
-				
-				
 			}
+			
+			// echo 'Set back Execution Status to 1';
+			$feedColl->update(
+				array('_id'=>$feed['_id']),
+				array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate(),'lastExecErr'=>''))
+			);	
+			
 		}else{
 			echo '=> No need to run '.$feed['humanName'].'<br>';
-			echo "To force update, call <a href=\"".$_SERVER["REQUEST_URI"]."&forceUpdate=1\">&forceUpdate=1</a>";    
+			//echo "To force update, call <a href=\"".$_SERVER["REQUEST_URI"]."&forceUpdate=1\">&forceUpdate=1</a>";    
 		}
+		
+		
+			
+			
+			
 	}
 
 	//$papi->ping();	
 	$papi->close();
 	
-	// echo 'Set Execution Status to 1 for the time of the parsing execution';
-	$feedColl->update(
-				array('_id'=>$feed['_id']),
-				array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate()))
-			);	
-			
-			
+	
 	
 }else{
 	echo "<!doctype html><html><head><meta charset='utf-8' /><title>YAKWALA BATCH</title></head><body>";

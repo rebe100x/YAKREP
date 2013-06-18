@@ -88,7 +88,7 @@ $feed['daysBack'] = 10;
 	// echo 'Set Execution Status to 3 for the time of the fetching execution';
 	$feedColl->update(
 				array('_id'=>$feed['_id']),
-				array('$set'=>array('lastExecStatus'=>3,'lastExecDate'=>new MongoDate(gmmktime())))
+				array('$set'=>array('lastExecStatus'=>3,'lastExecDate'=>new MongoDate(gmmktime()),'lastExecErr'=>''))
 			);
 			
 	// get default PLACE
@@ -844,6 +844,9 @@ $feed['daysBack'] = 10;
 						$res = createImgThumb($enclosure,$conf);
 						$logPushToS3 = $logPushToS3+3;
 						if($res == false){
+							$thumb = "";
+							$thumbFlag = 0;	
+							/*	
 							if(!empty($outGoingLink) && ($outGoingLink[0] != "")){
 								$thumb = getApercite($outGoingLink,$conf);
 								$logCallToApercite++;
@@ -852,7 +855,7 @@ $feed['daysBack'] = 10;
 							}else{
 								$thumb = "";
 								$thumbFlag = 0;	
-							}
+							}*/
 						}
 						else{
 							$thumb = $res;
@@ -876,6 +879,9 @@ $feed['daysBack'] = 10;
 									$res = createImgThumb($img[0],$conf);
 									$logPushToS3 = $logPushToS3+3;
 									if($res == false){
+										$thumb = "";
+										$thumbFlag = 0;	
+										/*
 										if(!empty($outGoingLink) && ($outGoingLink[0] != "")){
 											$thumb = getApercite($outGoingLink,$conf);
 											$logPushToS3++;
@@ -884,7 +890,7 @@ $feed['daysBack'] = 10;
 										}else{
 											$thumb = "";
 											$thumbFlag = 0;
-										}		
+										}	*/	
 									}
 									else{
 										$size = getimagesize($img[0]);
@@ -896,6 +902,9 @@ $feed['daysBack'] = 10;
 										$thumb = $res;
 									}
 								}else{
+									$thumb = "";
+									$thumbFlag = 0;	
+									/*
 									if(!empty($outGoingLink) && ($outGoingLink[0] != "")){
 										$thumb = getApercite($outGoingLink,$conf);
 										$logPushToS3++;
@@ -904,7 +913,7 @@ $feed['daysBack'] = 10;
 									}else{
 										$thumb = "";
 										$thumbFlag = 0;
-									}
+									}*/
 								}
 							}
 						}
@@ -972,10 +981,10 @@ $feed['daysBack'] = 10;
 	
 	}
 	
-	// echo 'Set Execution Status to 2 for the time of the parsing execution';
+	// echo 'Set back Execution Status to 1';
 	$feedColl->update(
 				array('_id'=>$feed['_id']),
-				array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate()))
+				array('$set'=>array('lastExecStatus'=>1,'lastExecDate'=>new MongoDate(),'lastExecErr'=>''))
 			);	
 	$log = "<br><br><br><br><br>
 	===BACTH SUMMARY : ".$feed['humanName']."====

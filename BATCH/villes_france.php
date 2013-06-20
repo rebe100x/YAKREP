@@ -8,7 +8,7 @@
 
 include_once "../LIB/conf.php";
 ini_set('display_errors',1);
-$filenameInput = "./input/francevilles_small.csv";
+$filenameInput = "./input/francevilles.csv";
 $origin = "Yakwala";
 $fileTitle = "Villes de France";
 $licence = "Yakwala";
@@ -79,9 +79,10 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
 		$zone = 2;
 	  elseif ($zn == "84" || $zn == "13" || $zn == "05" || $zn == "04" || $zn == "06" || $zn == "83")
 		$zone = 14;
-	  else{	  
+	  elseif ($zn == "97" || $zn == "98" )  
 		$zone = 0;
-      }
+      else
+		$zone = 17;
 	  
 	  
       $currentPlace->zone = $zone;
@@ -163,8 +164,8 @@ if (($handle = fopen($filenameInput, "r")) !== FALSE) {
   fclose($handle);
 
 
-  echo "REJECTED RESULTS: ".$results['rejected'];
-  echo "OVERALL RESULTS: ".$results['row'];
+  echo "<br>REJECTED RESULTS: ".$results['rejected'];
+  echo "<br>OVERALL RESULTS: ".$results['row'];
 
 
   // $currentPlace->prettyLog($results);

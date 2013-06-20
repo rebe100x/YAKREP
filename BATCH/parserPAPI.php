@@ -82,7 +82,7 @@ if($q != ''){
 			if(!empty($feed['feedType'])){
 				$canvas = $feed['parsingTemplate'];
 				//var_dump($feed);
-				$data = getFeedData($feed);
+				$data = getFeedData($feed,$conf);
 				//var_dump($data);
 				if(!empty($data)){
 					$line = 0;

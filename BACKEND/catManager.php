@@ -66,6 +66,21 @@ $records[] = array(
 );
 
 $records[] = array(
+	"_id" => new MongoId("51c17f1dfa9a95080c000002"),
+	"title"=> "Petites Annonces",
+	"path" => "PETITESANNONCES",
+	"pathN" => "PETITESANNONCES",
+	"level" => 1,
+	"thumb" => "",
+	"creationDate" => new MongoDate(gmmktime()),
+	"lastModifDate" => new MongoDate(gmmktime()),
+	"status" => 1,
+	"ext_id"=>array(
+		"of"=>array()	
+	)
+);
+
+$records[] = array(
 	"_id" => new MongoId("50efebbffa9a95b40c000001"),
 	"title"=> "Economie",
 	"path" => "ECONOMIE",

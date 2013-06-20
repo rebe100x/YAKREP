@@ -31,7 +31,7 @@ class conf
 	private $originalurl;
 	private $bucket;
 	private $conf_secret;
-	
+	private $filepath;
 	
 	function __construct(){
 		$this->conf_secret = new conf_secret();
@@ -48,6 +48,7 @@ class conf
 				$this->mediumpath = '/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/YAKREP/BACKEND/original/';
 				$this->batchthumbpath = '/YAKREP/BACKEND/batchthumb/';
+				$this->filepath = '/YAKFRONT/main/public/uploads/files/';
 				$this->bucket = 'yak1';
 				
 			break;
@@ -63,6 +64,7 @@ class conf
 				$this->mediumpath = '/BACKEND/medium/';
 				$this->originalpath = '/BACKEND/original/';
 				$this->batchthumbpath = '/BACKEND/batchthumb/';
+				$this->filepath = '/YAKFRONT/main/public/uploads/files/';
 				$this->bucket = 'yak1';
 			break;
 			case 'preprod':
@@ -77,6 +79,7 @@ class conf
 				$this->mediumpath = '/PREPROD/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/PREPROD/YAKREP/BACKEND/original/';
 				$this->batchthumbpath = '/PREPROD/YAKREP/BACKEND/batchthumb/';
+				$this->filepath = '/PREPROD/YAKFRONT/main/public/uploads/files/';
 				$this->bucket = 'yak2';
 			break;
 			case 'prod':
@@ -91,6 +94,7 @@ class conf
 				$this->mediumpath = '/PROD/YAKREP/BACKEND/medium/';
 				$this->originalpath = '/PROD/YAKREP/BACKEND/original/';
 				$this->batchthumbpath = '/PROD/YAKREP/BACKEND/batchthumb/';
+				$this->filepath = '/PREPROD/YAKFRONT/main/public/uploads/files/';
 				$this->bucket = 'yak3';
 			break;
 			
@@ -131,6 +135,10 @@ class conf
         return  $this->originalurl;
     }
 
+	public function filepath() {
+        return  $_SERVER["DOCUMENT_ROOT"] . $this->filepath;
+    }
+	
 	public function thumbpath() {
         return  $_SERVER["DOCUMENT_ROOT"] . $this->thumbpath;
     }

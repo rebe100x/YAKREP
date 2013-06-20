@@ -197,6 +197,7 @@ $feed['daysBack'] = 10;
 					$eventDateInput[]= explode('#',$val);
 			}
 			
+			//var_dump($content);
 			if($meta->name == "publicurl")
 				  $outGoingLink = $meta->value;
 			$outGoingLink = empty($outGoingLink)?$feed['linkSource']:$outGoingLink;
@@ -246,7 +247,7 @@ $feed['daysBack'] = 10;
 		
 		echo "<br><br>*******************************************************************************<br>";
 		echo "<b>".$title."</b> ( ".$datePub." )<br>";
-		
+		//$flagShowAllText = 1;
 		if($flagShowAllText == 1){
 		  echo "<br><b>Title XL : </b>".$titleXL."<br><b>Content : </b>".$content."<br><b>Content XL : </b>".$contentXL."<br><a target='_blank' href='".$outGoingLink."'>More</a><br> ";
 		}
@@ -432,9 +433,10 @@ $feed['daysBack'] = 10;
 			//logical construction of the address :
 			/*Priority :  ADDRESSINPUT -> ADDRESSE -> YAKDICO -> ARRONDISSEMENT -> QUARTIER -> VILLE*/
 			 // set address from input or from semantic factory
-			 if(!empty($addressInput) && !empty($geolocationInput)){
+			 if(!empty($addressInput)){
 				$locationTmp[] = $addressInput;
 			 }else{
+				
 				if(!empty($adresse)){
 					if(is_array($adresse))
 					   foreach($adresse as $ad)
@@ -495,6 +497,8 @@ $feed['daysBack'] = 10;
 			
 			 
 			// if there is a valid address, we get the location, first from db PLACE and if nothing in DB we use the gmap api
+			echo '<br>locationTmp';
+			var_dump($locationTmp);
 			if(sizeof($locationTmp ) > 0){
 				
 				foreach($locationTmp as $loc){
@@ -521,9 +525,10 @@ $feed['daysBack'] = 10;
 							$freeTag = array_merge($freeTag,$place['freeTag']);
 							
 					}else{ // the place is not in db
-						
+						echo "<br> Location NOT found in DB !";	
 						// FROM THE INPUT
 						if(!empty($geolocationInput) && !empty($addressInput)){
+							echo "<br>ADDRESS AND GEOLOC GIVEN";
 							$status = 1;
 							$geolocGMAP = array((float)$geolocationInput[0],(float)$geolocationInput[1]);
 							$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
@@ -665,6 +670,9 @@ $feed['daysBack'] = 10;
 		
 		}
 		
+		// add tags from feed
+		$freeTag[] = $feed['tag'];
+		
 		// YAKCATS & TAGS from NE
 		$yakCatIdFromNE = array();
 		foreach($yakNE as $ne){
@@ -688,6 +696,10 @@ $feed['daysBack'] = 10;
 		$yakCatName = array();
 		$yakCatIdArray = array_merge($yakcatInput,$feed['yakCatId'],$yakCatIdFromNE);
 		$yakCatIdArray = array_unique($yakCatIdArray);
+		/*
+		if(empty($yakCatIdArray) || $yakCatIdArray[0] == '' )
+			$yakCatIdArray = array("504d89c5fa9a957004000000");
+		*/
 		foreach ($yakCatIdArray as $id) {
 			$yc = ($yakcatColl->findOne(array('_id'=>new MongoId($id))));
 			if(!empty($yc)){
@@ -737,6 +749,8 @@ $feed['daysBack'] = 10;
 		// NOTE:  WE INTRODUCE MULTIPLE INFO IF WE HAVE MULTIPLE LOCATIONS
 		$i = 0;
 		$geolocItem = array();
+		echo '<br>placeArray';
+		var_dump($placeArray);
 		foreach($placeArray as $geolocItem){
 			
 			

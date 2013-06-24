@@ -1,8 +1,23 @@
 <?php
 
 /* 
-	read feeds and push to XL
-	runs in cron every 30 minutes
+	This script can be run as php script from the backend ( vwhen you click on the RUN command in the feed page ) or as a CLI script. So becarefull with your path and $_SERVER variables.
+	url to be run :
+	http://batch.yakwala.fr/PROD/YAKREP/BATCH/parserPAPI.php?q=FEED['HUMANNAME']&forceUpdate=1
+	
+	
+	DESCRIPTION : 
+	
+	1) Read feeds with getFeedData()
+	2) Parse the feed according to the parsing template with parseFeedData() ( in db : $canvas = $feed['parsingTemplate'] )
+	3) Push data to XL with the sdk Push API ( PAPI )
+	4) Trigger data analysis by XL and wait until done.
+	5) Trigger fetching batch : fetchPAPI.php which will get the data analysed by XL and enter it in db.
+	
+	Runs in cron every 30 minutes ( check crontab for frequency )
+	
+
+	
 */
 
 if(sizeof($_GET) == 0){
@@ -12,8 +27,8 @@ if(sizeof($_GET) == 0){
 	require_once("../LIB/conf.php");
 	include_once "../LIB/cloudview-sdk-php-clients/papi/PushAPI.inc";
 }
-$conf = new conf();
 
+$conf = new conf();
 
 $m = new Mongo(); 
 $db = $m->selectDB($conf->db());
@@ -63,21 +78,13 @@ if($q != ''){
 		echo 'Last Execution (GMT):'.gmdate('Y/m/d H:i:s',$feed['lastExecDate']->sec) .'<br>';
 		echo 'Next Execution (GMT):'.gmdate('Y/m/d H:i:s',$feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) .'<br>';
 		echo 'Time GMT now :'.gmdate('Y/m/d H:i:s') .'<br>';
-		//$forceUpdate = 1;
-		echo $feed['parsingFreq'] .'>'. 0 .'&&'. gmmktime() .'>='. ($feed['lastExecDate']->sec + ($feed['parsingFreq']*60)).'<br>';
-		/*
-		if( ( $feed['parsingFreq'] > 0 && gmmktime() >= ($feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) ) )
-			echo '<br>UPDATE NEEDED';
-		else
-			echo '<br>NO UPDATE NEEDED';
-		*/
+		
 		if( ( $feed['parsingFreq'] > 0 && gmmktime() >= ($feed['lastExecDate']->sec + ($feed['parsingFreq']*60)) )  || $forceUpdate == 1){
 			// echo 'Set Execution Status to 2 for the time of the parsing execution';
 			$feedColl->update(
 							array('_id'=>$feed['_id']),
 							array('$set'=>array('lastExecStatus'=>2),'lastExecDate'=>new MongoDate(),'lastExecErr'=>'')
 						);
-			
 			
 			if(!empty($feed['feedType'])){
 				$canvas = $feed['parsingTemplate'];
@@ -87,162 +94,10 @@ if($q != ''){
 				if(!empty($data)){
 					$line = 0;
 					foreach($data as $item){
-						
-						
 						if(!empty($canvas['title']) ){ // we don't take empty lines and header
 							//var_dump($item);
 							$itemArray = array();
-						
-							if($feed['feedType'] == 'CSV'){
-								if($line >= $feed['lineToBegin']){
-									foreach($canvas as $key=>$val){
-										$thevalue = '';
-										if(!empty($val)){
-											
-											preg_match_all('/(#YKL)(\d+)/', $val, $out);
-											$tmp = array();
-											foreach($out[2] as $o)
-												$tmp[] = $item[$o];
-											$thevalue = preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
-											
-										}else
-											$thevalue = '';
-											
-										$thevalueClean = $thevalue;
-										
-										if($key == 'freeTag' || $key == 'yakCats'){
-											$tmp = explode(',',$thevalueClean);
-											$tmp = array_map('trimArray',$tmp);  
-											$thevalueClean = implode('#',$tmp);
-										}
-										if($key == 'longitude' || $key == 'latitude'){
-											$thevalueClean = str_replace(',','.',$thevalueClean);
-											$thevalueClean = (float)$thevalueClean;
-										}
-										
-										$itemArray[$key] = $thevalueClean;
-										
-									}
-								}
-							}
-							
-							if($feed['feedType'] == 'XML'){
-								//echo '<br>ITEM=';
-								//var_dump($item);
-								foreach($canvas as $key=>$val){
-									$thevalue = '';
-									if(!empty($val)){
-										$val = str_replace('#YKLcurrent_french_date',date('d m Y'),$val);
-										//echo '<br>'.$val;
-										if(strpos($val,'->')){
-											preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
-										}else
-											if(strpos($val,':'))
-												preg_match_all('/(#YKL)(\w+:\w+)/', $val, $out);
-											else
-												preg_match_all('/(#YKL)(\w+)/', $val, $out);
-										//echo '<br>OUTPUT=';
-										//var_dump($out);
-										$tmp = array();
-										$o1 = array();
-										foreach($out[2] as $o){
-											if(strpos($o,'->')){
-												$o1 = explode('->',$o);
-												if(!empty($o1[1])){
-													if( !empty($item[$o1[0]]) && sizeof($item[$o1[0]]) > 1)
-														$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]][0]['@attributes'][$o1[1]]) )? $item[$o1[0]][0]['@attributes'][$o1[1]] : '';
-													else
-														$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]]['@attributes'][$o1[1]]) )? $item[$o1[0]]['@attributes'][$o1[1]] : '';
-												}else{
-													$tmp[] = (empty($item[$o]))?'':$item[$o];
-												}
-											}else{
-												if(strpos($o,':'))
-													$o = str_replace(':','',$o);
-												
-												$tmp[] = (empty($item[$o]))?'':$item[$o];
-											}
-										}
-										//var_dump( $o);
-										//echo '<br>TMP=';
-										//var_dump( $tmp);
-										if(is_array($tmp[0]))
-											$t = implode(',',$tmp[0]);
-										else
-											$t = $tmp;
-										//echo '<br>T=';	
-										//var_dump($t);
-										//echo '<br>VAL=';	
-										//var_dump($val);
-										$thevalue = @preg_replace(array_map('mapIt',$out[0]), $t, $val);
-									}else
-										$thevalue = '';
-										
-									$thevalueClean = $thevalue;
-									
-									if($key == 'freeTag' || $key == 'yakCats'){
-										$tmp = explode(',',$thevalue);
-										$tmp = array_map('trimArray',$tmp);  
-										$thevalueClean = implode('#',$tmp);
-									}
-									//echo '<br>key:'.$key.' - '.$thevalueClean;
-									if($key == 'longitude' || $key == 'latitude'){
-										$thevalueClean = str_replace(',','.',$thevalueClean);
-										$thevalueClean = (float)$thevalueClean;
-									}
-									
-									$itemArray[$key] = $thevalueClean;
-								}
-								
-							}
-							
-							if($feed['feedType'] == 'JSON'){ 
-								foreach($canvas as $key=>$val){
-									$thevalue = '';
-									if(!empty($val)){
-										preg_match_all('/(#YKL)(\w+)/', $val, $out);
-										//var_dump($out);
-										$tmp = array();
-										$o1 = array();
-										foreach($out[2] as $o){
-											echo "<br>$o:".$o;
-											if(is_array($item[$o])){
-												$thevalue = implode('#',$item[$o]);
-											}else
-												$thevalue =  trim($item[$o]);
-												
-											
-											if($key == 'pubDate'){
-												//echo '<br>'.$thevalue.' '.date('r',$thevalue).'  '.(mktime()-10*24*60*60);
-												if((int)$thevalue > mktime()-10*24*60*60 && (int)$thevalue <= mktime() ){
-													$thevalue = date('r',(int)$thevalue);
-												}
-											}
-											
-											//if($key == 'content')
-											//	echo "CONTENT".$thevalue;
-											if($key == 'freeTag' || $key == 'yakCats'){
-												$tmp = explode(',',$thevalue);
-												$tmp = array_map('trimArray',$tmp);  
-												$thevalue = implode('#',$tmp);
-												
-											}
-											
-											if($key == 'longitude' || $key == 'latitude'){
-												$thevalue = str_replace(',','.',$thevalue);
-												$thevalue = (float)$thevalue;
-											}	
-											
-											if(!array_key_exists($key,$itemArray))
-												$itemArray[$key] = $thevalue;
-											else
-												$itemArray[$key] .= $thevalue;
-												
-										}
-									}
-								}
-							}
-							
+							$itemArray = parseFeedData($feed,$item);
 							//var_dump($itemArray);
 							
 							try {
@@ -315,7 +170,7 @@ if($q != ''){
 						);
 					}
 				}else
-					echo 'No DATA';
+					echo '<br><b>Error: </b>We could not retrieve data from this feed !';
 			}
 			
 			// echo 'Set back Execution Status to 1';

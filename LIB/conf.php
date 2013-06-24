@@ -32,6 +32,8 @@ class conf
 	private $bucket;
 	private $conf_secret;
 	private $filepath;
+	private $docroot;
+	
 	
 	function __construct(){
 		$this->conf_secret = new conf_secret();
@@ -50,7 +52,11 @@ class conf
 				$this->batchthumbpath = '/YAKREP/BACKEND/batchthumb/';
 				$this->filepath = '/YAKFRONT/main/public/uploads/files/';
 				$this->bucket = 'yak1';
-				
+				if( !empty($_SERVER['PWD']) )
+					$this->docroot = "C:\wamp\www";
+				else
+					$this->docroot = $_SERVER["DOCUMENT_ROOT"];
+						
 			break;
 			case 'devrenaud':
 				$this->db = 'yakwala';
@@ -66,6 +72,10 @@ class conf
 				$this->batchthumbpath = '/BACKEND/batchthumb/';
 				$this->filepath = '/YAKFRONT/main/public/uploads/files/';
 				$this->bucket = 'yak1';
+				if( !empty($_SERVER['PWD']) )
+					$this->docroot = "C:\wamp\www";
+				else
+					$this->docroot = $_SERVER["DOCUMENT_ROOT"];
 			break;
 			case 'preprod':
 				$this->dbtrack = 'yaktrack_preprod';
@@ -81,6 +91,10 @@ class conf
 				$this->batchthumbpath = '/PREPROD/YAKREP/BACKEND/batchthumb/';
 				$this->filepath = '/PREPROD/YAKFRONT/main/public/uploads/files/';
 				$this->bucket = 'yak2';
+				if( !empty($_SERVER['PWD']) )
+					$this->docroot = "/usr/share/nginx/html/";
+				else
+					$this->docroot = $_SERVER["DOCUMENT_ROOT"];
 			break;
 			case 'prod':
 				$this->db = 'yakwala';
@@ -96,6 +110,10 @@ class conf
 				$this->batchthumbpath = '/PROD/YAKREP/BACKEND/batchthumb/';
 				$this->filepath = '/PREPROD/YAKFRONT/main/public/uploads/files/';
 				$this->bucket = 'yak3';
+				if( !empty($_SERVER['PWD']) )
+					$this->docroot = "/usr/share/nginx/html/";
+				else
+					$this->docroot = $_SERVER["DOCUMENT_ROOT"];
 			break;
 			
 		}
@@ -136,24 +154,24 @@ class conf
     }
 
 	public function filepath() {
-        return  $_SERVER["DOCUMENT_ROOT"] . $this->filepath;
+		return  $this->docroot . $this->filepath;
     }
 	
 	public function thumbpath() {
-        return  $_SERVER["DOCUMENT_ROOT"] . $this->thumbpath;
+        return  $this->docroot . $this->thumbpath;
     }
 
 	public function bigpath() {
-        return  $_SERVER["DOCUMENT_ROOT"] . $this->bigpath;
+        return  $this->docroot . $this->bigpath;
     }
 	public function mediumpath() {
-        return  $_SERVER["DOCUMENT_ROOT"] . $this->mediumpath;
+        return  $this->docroot . $this->mediumpath;
     }
 	public function originalpath() {
-        return  $_SERVER["DOCUMENT_ROOT"] . $this->originalpath;
+        return  $this->docroot . $this->originalpath;
     }
 	public function batchthumbpath() {
-        return  $_SERVER["DOCUMENT_ROOT"] . $this->batchthumbpath;
+        return  $this->docroot . $this->batchthumbpath;
     }
 
 	public function mdb() {

@@ -62,7 +62,7 @@ function isItWatter($lat,$lng) {
 	$blue = $color_tran['blue'] + $color_tran2['blue'] + $color_tran3['blue'];
 	
 	imagedestroy($image);
-	var_dump($red,$green,$blue);
+	//var_dump($red,$green,$blue);
 	//int(492) int(570) int(660) 
 	if($red == 492 && $green == 570 && $blue == 660)
 		return 1;
@@ -71,8 +71,8 @@ function isItWatter($lat,$lng) {
 }
 
 
-/* load data form url or from file
 
+/* load data form url or from file
 */
 function getFeedData($feed,$conf){	
 	if( !empty($feed['linkSource']) && is_array($feed['linkSource']) && !empty($feed['linkSource'][0]) ){
@@ -80,8 +80,8 @@ function getFeedData($feed,$conf){
 		$data = array();
 		foreach($feed['linkSource'] as $link){
 			$chuid = curl_init();
-			curl_setopt($chuid, CURLOPT_URL, $link);	
-			//curl_setopt($chuid,CURLOPT_FOLLOWLOCATION,TRUE);
+			curl_setopt($chuid, CURLOPT_URL, $link);
+				//curl_setopt($chuid,CURLOPT_FOLLOWLOCATION,TRUE);
 			curl_setopt($chuid, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($chuid, CURLOPT_SSL_VERIFYPEER, FALSE);
 			$res[] = trim(curl_exec($chuid));
@@ -96,16 +96,18 @@ function getFeedData($feed,$conf){
 		
 		if($feed['feedType'] == 'XML'){
 			foreach($res as $r){
-				try{
+				//var_dump($r);
+				//try{
 					$rClean = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $r); 
 					$tmp = @simplexml_load_string($rClean,'SimpleXMLElement', LIBXML_NOCDATA);
 					if($tmp){
 						$tmp2 = $tmp->xpath($feed['rootElement']);
 						$data = array_merge(json_decode(json_encode((array) $tmp2), 1),$data);
 					}
+					/*
 				}catch(Exception $e){
 					echo 'Exception reçue : ',  $e->getMessage(), "<br>";
-				}
+				}*/
 			}
 		}
 		if($feed['feedType'] == 'CSV'){
@@ -123,6 +125,164 @@ function getFeedData($feed,$conf){
 	}	
 
 	return $data;	
+}
+
+
+/* parse data according to canvas
+*/
+function parseFeedData($feed,$item){
+	$canvas = $feed['parsingTemplate'];
+	$itemArray = array();
+	if($feed['feedType'] == 'CSV'){
+		if($line >= $feed['lineToBegin']){
+			foreach($canvas as $key=>$val){
+				$thevalue = '';
+				if(!empty($val)){
+					preg_match_all('/(#YKL)(\d+)/', $val, $out);
+					$tmp = array();
+					foreach($out[2] as $o)
+						$tmp[] = $item[$o];
+					$thevalue = preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
+					
+				}else
+					$thevalue = '';
+					
+				$thevalueClean = $thevalue;
+				
+				if($key == 'freeTag' || $key == 'yakCats'){
+					$tmp = explode(',',$thevalueClean);
+					$tmp = array_map('trimArray',$tmp);  
+					$thevalueClean = implode('#',$tmp);
+				}
+				if($key == 'longitude' || $key == 'latitude'){
+					$thevalueClean = str_replace(',','.',$thevalueClean);
+					$thevalueClean = (float)$thevalueClean;
+				}
+				
+				$itemArray[$key] = $thevalueClean;
+				
+			}
+		}
+	}
+	
+	if($feed['feedType'] == 'XML'){
+		//echo '<br>ITEM=';
+		//var_dump($item);
+		foreach($canvas as $key=>$val){
+			$thevalue = '';
+			if(!empty($val)){
+				$val = str_replace('#YKLcurrent_french_date',date('d m Y'),$val);
+				//echo '<br>'.$val;
+				if(strpos($val,'->')){
+					preg_match_all('/(#YKL)(\w+->\w+)/', $val, $out);
+				}else
+					if(strpos($val,':'))
+						preg_match_all('/(#YKL)(\w+:\w+)/', $val, $out);
+					else
+						preg_match_all('/(#YKL)(\w+)/', $val, $out);
+				//echo '<br>OUTPUT=';
+				//var_dump($out);
+				$tmp = array();
+				$o1 = array();
+				foreach($out[2] as $o){
+					if(strpos($o,'->')){
+						$o1 = explode('->',$o);
+						if(!empty($o1[1])){
+							if( !empty($item[$o1[0]]) && sizeof($item[$o1[0]]) > 1)
+								$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]][0]['@attributes'][$o1[1]]) )? $item[$o1[0]][0]['@attributes'][$o1[1]] : '';
+							else
+								$tmp[] = ( !empty($item[$o1[0]]) && !empty($item[$o1[0]]['@attributes'][$o1[1]]) )? $item[$o1[0]]['@attributes'][$o1[1]] : '';
+						}else{
+							$tmp[] = (empty($item[$o]))?'':$item[$o];
+						}
+					}else{
+						if(strpos($o,':'))
+							$o = str_replace(':','',$o);
+						
+						$tmp[] = (empty($item[$o]))?'':$item[$o];
+					}
+				}
+				//var_dump( $o);
+				//echo '<br>TMP=';
+				//var_dump( $tmp);
+				if(is_array($tmp[0]))
+					$t = implode(',',$tmp[0]);
+				else
+					$t = $tmp;
+				//echo '<br>T=';	
+				//var_dump($t);
+				//echo '<br>VAL=';	
+				//var_dump($val);
+				$thevalue = @preg_replace(array_map('mapIt',$out[0]), $t, $val);
+			}else
+				$thevalue = '';
+				
+			$thevalueClean = $thevalue;
+			
+			if($key == 'freeTag' || $key == 'yakCats'){
+				$tmp = explode(',',$thevalue);
+				$tmp = array_map('trimArray',$tmp);  
+				$thevalueClean = implode('#',$tmp);
+			}
+			//echo '<br>key:'.$key.' - '.$thevalueClean;
+			if($key == 'longitude' || $key == 'latitude'){
+				$thevalueClean = str_replace(',','.',$thevalueClean);
+				$thevalueClean = (float)$thevalueClean;
+			}
+			
+			$itemArray[$key] = $thevalueClean;
+		}
+		
+	}
+	
+	if($feed['feedType'] == 'JSON'){ 
+		foreach($canvas as $key=>$val){
+			$thevalue = '';
+			if(!empty($val)){
+				preg_match_all('/(#YKL)(\w+)/', $val, $out);
+				//var_dump($out);
+				$tmp = array();
+				$o1 = array();
+				foreach($out[2] as $o){
+					//echo "<br>$o:".$o;
+					if(is_array($item[$o])){
+						$thevalue = implode('#',$item[$o]);
+					}else
+						$thevalue =  trim($item[$o]);
+						
+					
+					if($key == 'pubDate'){
+						//echo '<br>'.$thevalue.' '.date('r',$thevalue).'  '.(mktime()-10*24*60*60);
+						if((int)$thevalue > mktime()-10*24*60*60 && (int)$thevalue <= mktime() ){
+							$thevalue = date('r',(int)$thevalue);
+						}
+					}
+					
+					//if($key == 'content')
+					//	echo "CONTENT".$thevalue;
+					if($key == 'freeTag' || $key == 'yakCats'){
+						$tmp = explode(',',$thevalue);
+						$tmp = array_map('trimArray',$tmp);  
+						$thevalue = implode('#',$tmp);
+						
+					}
+					
+					if($key == 'longitude' || $key == 'latitude'){
+						$thevalue = str_replace(',','.',$thevalue);
+						$thevalue = (float)$thevalue;
+					}	
+					
+					if(!array_key_exists($key,$itemArray))
+						$itemArray[$key] = $thevalue;
+					else
+						$itemArray[$key] .= $thevalue;
+						
+				}
+			}
+		}
+	}
+	
+	return $itemArray;
 }
 
 /*Build PAPI DOCUMENT*/
@@ -153,7 +313,7 @@ $myDoc = new Document(
 			'item_yakcat'=>(!empty($itemArray['yakCats'])?$itemArray['yakCats']:''),
 			'item_freetag'=>(!empty($itemArray['freeTag'])?$itemArray['freeTag']:''),
 			'item_place'=>(!empty($itemArray['place'])?$itemArray['place']:''),
-			'item_eventDate'=>(!empty($itemArray['eventDate'])?$itemArray['eventDate']:''),
+			'item_eventdate'=>(!empty($itemArray['eventDate'])?$itemArray['eventDate']:''),
 			'item_date'=>(!empty($itemArray['pubDate'])?$itemArray['pubDate']:date('r')),
 			'item_tel'=>(!empty($itemArray['telephone'])?$itemArray['telephone']:''),
 			'item_transportation'=>(!empty($itemArray['transportation'])?$itemArray['transportation']:''),
@@ -235,19 +395,14 @@ function getTeleportImg($spec){
  * */
 function getApercite($link,$conf,$iter=0){
 
-	if( preg_match( "[\/usr\/share\/nginx\/html\/]",$conf->batchthumbpath()) )
-		$docroot = "";
-	else
-		$docroot = "/usr/share/nginx/html/";
-
+	
 		
 	$iter++;
 	echo '<br> Call Apercite';
 	$imgName = md5($link).'.jpg';
 	//$fullpath = "thumb/".$imgName;
-	$fullpath = $docroot.$conf->thumbpath().$imgName;
+	$fullpath = $$conf->thumbpath().$imgName;
 	$img = "http://www.apercite.fr/api/apercite/120x90/oui/oui/".$link;	
-	echo 'img= '.$img;
 	$ch = curl_init ($img);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -258,7 +413,7 @@ function getApercite($link,$conf,$iter=0){
 	// check if the image is not in creation process with apercite
 	
 	
-	$creationImgSignature = md5(file_get_contents($docroot.$conf->batchthumbpath().'120x90.jpg'));
+	$creationImgSignature = md5(file_get_contents($conf->batchthumbpath().'120x90.jpg'));
 	$infoImgSignature = md5($rawdata);
 	if ($creationImgSignature == $infoImgSignature && $iter < 	10 ) {
 		echo '<br>IMG UNDER CREATION';
@@ -299,83 +454,79 @@ function createImgThumb($link,$conf){
 	// get the file
 	$hash = md5($link);
 	$res = '';
-	//echo $link;
-
-	if( preg_match( "[\/usr\/share\/nginx\/html\/]",$conf->batchthumbpath()) )
-		$docroot = "";
-	else
-		$docroot = "/usr/share/nginx/html/";
-		
-	$filePathDestOriginal = $docroot.$conf->originalpath() .$hash.'.jpg';
-	$filePathDestThumb = $docroot.$conf->thumbpath() .$hash.'.jpg';
-	$filePathDestMedium = $docroot.$conf->mediumpath() .$hash.'.jpg';
-	$filePathDestBig = $docroot.$conf->bigpath() .$hash.'.jpg';
+	
+	$filePathDestOriginal = $conf->originalpath() .$hash.'.jpg';
+	$filePathDestThumb = $conf->thumbpath() .$hash.'.jpg';
+	$filePathDestMedium = $conf->mediumpath() .$hash.'.jpg';
+	$filePathDestBig = $conf->bigpath() .$hash.'.jpg';
 	$ch = curl_init ($link);
 	
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
-    $rawdata=curl_exec($ch);
+	$rawdata=curl_exec($ch);
     curl_close ($ch);
-   
-	if(file_exists($filePathDestOriginal)){
+   if(file_exists($filePathDestOriginal)){
         @unlink($filePathDestOriginal);
     }
 	$fp = fopen($filePathDestOriginal,'x');
     fwrite($fp, $rawdata);
     fclose($fp);
 	// create thumb and full size
-	
-	$res1 = redimg(array(0=>array('W'=>120,'H'=>90)),$filePathDestThumb,$filePathDestOriginal,0);
-	$res2 = redimg(array(0=>array('W'=>256,'H'=>0)),$filePathDestMedium,$filePathDestOriginal,0);   
-	$res3 = redimg(array(0=>array('W'=>512,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   
-	
-	require_once("aws-sdk/sdk.class.php");
-	$s3 = new AmazonS3();
-	if(file_exists($filePathDestThumb)){
-		$response1 = $s3->create_object($conf->bucket(), '120_90/'.$hash.'.jpg', array(
-			'fileUpload'  => $filePathDestThumb,
-		   'contentType' => 'image/jpeg',
-			'acl'   =>  AmazonS3::ACL_PUBLIC
-		));
-	}
-
-	if(file_exists($filePathDestMedium)){	
-		$response2 = $s3->create_object($conf->bucket(), '256_0/'.$hash.'.jpg', array(
-			'fileUpload'  => $filePathDestMedium,
-		   'contentType' => 'image/jpeg',
-			'acl'   =>  AmazonS3::ACL_PUBLIC
-		));
-	}
-
-	if(file_exists($filePathDestBig)){	
-		$response3 = $s3->create_object($conf->bucket(), '512_0/'.$hash.'.jpg', array(
-			'fileUpload'  => $filePathDestBig,
-		   'contentType' => 'image/jpeg',
-			'acl'   =>  AmazonS3::ACL_PUBLIC
-		));
-	}
-	
-	if($res1 && $res2 && $res3)
-		$res = $hash.'.jpg';
+	if($rawdata){
+		$res1 = redimg(array(0=>array('W'=>120,'H'=>90)),$filePathDestThumb,$filePathDestOriginal,0);
+		$res2 = redimg(array(0=>array('W'=>256,'H'=>0)),$filePathDestMedium,$filePathDestOriginal,0);   
+		$res3 = redimg(array(0=>array('W'=>512,'H'=>0)),$filePathDestBig,$filePathDestOriginal,0);   
 		
-	// NOTE :  your local server has to be on time to send images to S3	
-	//var_dump($response1);
-	//var_dump($response2);	
-	//var_dump($response3);	
+		require_once("aws-sdk/sdk.class.php");
+		$s3 = new AmazonS3();
+		if(file_exists($filePathDestThumb)){
+			$response1 = $s3->create_object($conf->bucket(), '120_90/'.$hash.'.jpg', array(
+				'fileUpload'  => $filePathDestThumb,
+			   'contentType' => 'image/jpeg',
+				'acl'   =>  AmazonS3::ACL_PUBLIC
+			));
+		}
+
+		if(file_exists($filePathDestMedium)){	
+			$response2 = $s3->create_object($conf->bucket(), '256_0/'.$hash.'.jpg', array(
+				'fileUpload'  => $filePathDestMedium,
+			   'contentType' => 'image/jpeg',
+				'acl'   =>  AmazonS3::ACL_PUBLIC
+			));
+		}
+
+		if(file_exists($filePathDestBig)){	
+			$response3 = $s3->create_object($conf->bucket(), '512_0/'.$hash.'.jpg', array(
+				'fileUpload'  => $filePathDestBig,
+			   'contentType' => 'image/jpeg',
+				'acl'   =>  AmazonS3::ACL_PUBLIC
+			));
+		}
+		
+		if($res1 && $res2 && $res3)
+			$res = $hash.'.jpg';
+			
+		// NOTE :  your local server has to be on time to send images to S3	
+		//var_dump($response1);
+		//var_dump($response2);	
+		//var_dump($response3);	
+		
+		if($response1->status==200 && $response2->status==200 && $response3->status==200 ){
+			unlink($filePathDestOriginal);
+		}
+		if($response1->status==200 ){
+			unlink($filePathDestThumb);
+		}
+		if($response2->status==200){
+			unlink($filePathDestMedium);
+		}
+		if($response3->status==200 ){
+			unlink($filePathDestBig);
+		}
+	}else
+		$res = '';
 	
-	if($response1->status==200 && $response2->status==200 && $response3->status==200 ){
-		unlink($filePathDestOriginal);
-	}
-	if($response1->status==200 ){
-		unlink($filePathDestThumb);
-	}
-	if($response2->status==200){
-		unlink($filePathDestMedium);
-	}
-	if($response3->status==200 ){
-		unlink($filePathDestBig);
-	}
 	
 	
     return $res;
@@ -390,7 +541,7 @@ function createImgThumb($link,$conf){
      * */
     function redimg($arrayDataOutput,$filePathDest,$filePathSrc,$flagClean=0){
 		
-        
+        $res = '';
 		foreach($arrayDataOutput as $row)
         {
             if( file_exists($filePathSrc) ){
@@ -506,7 +657,7 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0, $conf=''){
 	
 	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$q."&sensor=false";
     //echo ($debug==1)?'<br>--- URL CALLED : '.$url:"";
-    echo '<br>--- URL CALLED : '.$url;
+    echo '<br>--- URL CALLED ADDRESS: '.$url;
 	$ch = curl_init();
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 

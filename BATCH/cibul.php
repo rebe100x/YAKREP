@@ -77,11 +77,11 @@ foreach ($urlset->url as $url) {
 	if ($url->uid && $url->loc &&  $url->lastmod ) {	// Only parse events with an uid and a direct link and a modif date 
 		
 		$lastModificationDate = DateTime::createFromFormat('Y-m-d', $url->lastmod);
-		$fromDate = DateTime::createFromFormat('Y-m-d', date('Y-m-d',mktime()-30*24*60*60)); // last 30 days
+		$fromDate = DateTime::createFromFormat('Y-m-d', date('Y-m-d',mktime()-10*24*60*60)); // last 30 days
 		//var_dump($lastModificationDate);
 		if(!$lastModificationDate)
 			continue;
-		if( $lastModificationDate->getTimestamp() < $fromDate->getTimestamp() ) // take only last 30 days
+		if( $lastModificationDate->getTimestamp() < $fromDate->getTimestamp() ) 
 			continue;
 		
 		

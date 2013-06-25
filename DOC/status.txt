@@ -29,6 +29,11 @@ FEED lastExecStatus
 3 FETCHING CRASHED
 4 Alert
 
+FEED DEFAULT PRINT FLAG : 
+"defaultPrintFlag" => 0, if not geolocalized, we localize at the default location but we don't print on the map ( only in the text feed )
+"defaultPrintFlag" => 1,// if not geolocalized, we localize at the default location and we print on the map
+"defaultPrintFlag" => 2,// do not perform a geoloc and locate on the default location of the feed
+"defaultPrintFlag" => 3, if not geolocalized, we don't take the info -> stored in status 13
 
 SOCIAL
 TW : 1

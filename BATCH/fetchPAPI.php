@@ -169,12 +169,13 @@ $logStatus11 = 0;
 $logStatus12 = 0;
 $logCallToApercite = 0;
 $logPushToS3 = 0;
-$gQuery = ''; // the gmap query ( stored for debug in the INFO and in the PLACE, (should be deleted in production mode.)
+$gQuery = ''; // the gmap query params
+$fullgQuery = ''; // the gmap full query , includes the uri ( stored for debug in the INFO and in the PLACE, (should be deleted in production mode.)
 $yakCatId = array(); 
 $placeArray = array(); // array of geoloc : ['lat'=>,'lng'=>,'_id'=>]
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
 $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode this
-$feed['daysBack'] = 2;
+$feed['daysBack'] = 3;
     
 	// echo 'Set Execution Status to 3 for the time of the fetching execution';
 	$feedColl->update(
@@ -184,9 +185,11 @@ $feed['daysBack'] = 2;
 			
 	// get default PLACE
 	$defaultPlace = $placeColl->findOne(array('_id'=>$feed['defaultPlaceId']));
+	// we take the feed default location first and if not defined the default place location
 	$defaultPlaceTitle = (empty($feed['defaultPlaceSearchName'])?$defaultPlace['title']:$feed['defaultPlaceSearchName']);		
 	$defaultPlace['zone'] = (empty($feed['zone'])?$defaultPlace['zone']:$feed['zone']);		
 	$defaultPlace['zoneName'] = (empty($feed['zoneName'])?$defaultPlace['zoneName']:$feed['zoneName']);		
+	$defaultPlace['location'] = (empty($feed['defaultPlaceLocation'])?$defaultPlace['location']:$feed['defaultPlaceLocation']);		
 	
 	if(empty($defaultPlace['address']['country']))
 		$defaultPlace['address']['country'] = 'France';
@@ -642,6 +645,7 @@ $feed['daysBack'] = 2;
 							"location" => array("lat"=>$geoloc[0],"lng"=>$geoloc[1]),
 							"status" => $status,
 							"user" => 0,
+							"feed" => $feed['_id'],
 							"zone"=> $defaultPlace['zone'],
 							"address" => $address,
 							"formatted_address" => $formatted_addressToPrint,
@@ -713,19 +717,13 @@ $feed['daysBack'] = 2;
 						//$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) ) ? ', '.$laville:'').', '.$defaultPlaceTitle.'. '.$defaultPlace['address']['country'])));
 						
 						$gQuery = $loc;
-						if( strlen($laville)> 0 && $laville != $defaultPlaceTitle && preg_match('/^'.$gQuery.'$/',$laville) == 0 )
+						if( strlen($laville)> 0 && $laville != $defaultPlaceTitle && !preg_match('/\b'.$laville.'\b/',$gQuery))
 							$gQuery .= ', '.$laville;
 							
-						echo '<br>Q1='.$gQuery;
-						$resTMP = 	preg_match('/^'.$gQuery.'$/',$defaultPlaceTitle);
-						var_dump($resTMP);
-						if( preg_match('/^'.$gQuery.'$/',$defaultPlaceTitle) == 0 )	
+						if( !preg_match('/\b'.$defaultPlaceTitle.'\b/',$gQuery))	
 							$gQuery .= ', '.$defaultPlaceTitle;
 						
-						echo '<br>Q2= '.$gQuery;
-						$resTMP = 	preg_match('/^'.$gQuery.'$/',$defaultPlace['address']['country']);
-						var_dump($resTMP);
-						if( preg_match('/^'.$gQuery.'$/',$defaultPlace['address']['country'] ) == 0 && !empty($defaultPlace['address']['country']) )
+						if( !preg_match('/\b'.$defaultPlace['address']['country'].'\b/', $gQuery) && !empty($defaultPlace['address']['country']) )
 							$gQuery .= ', '. $defaultPlace['address']['country'];
 							
 						$gQuery = urlencode(utf8_decode(suppr_accents($gQuery)));
@@ -741,7 +739,11 @@ $feed['daysBack'] = 2;
 							$resGMap = getPlaceGMap($gQuery,'PHP',1,$conf);
 						else
 							$resGMap = '';
-							
+						
+						$fullgQuery = '';
+						if(!empty($resGMap['gQuery']))
+							$fullgQuery = $resGMap['gQuery'];	
+						
 						echo '<br>';
 						if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlaceTitle.', '.$defaultPlace['address']['country']){
 							echo "<br> GMAP found the coordinates of this location ! ";
@@ -793,11 +795,12 @@ $feed['daysBack'] = 2;
 									"location" => array("lat"=>$geolocGMAP[0],"lng"=>$geolocGMAP[1]),
 									"status" => $status,
 									"user" => 0,
+									"feed" => $feed['_id'],
 									"zone"=> $defaultPlace['zone'],
 									"address" => $addressGMAP,
 									"formatted_address" => $formatted_addressGMAP,
 									"contact"=>$contact,
-									"debugCallGmap" => $gQuery,
+									"debugCallGmap" => $fullgQuery,
 								  );
 								  
 								  
@@ -1010,7 +1013,7 @@ $feed['daysBack'] = 2;
 				$info['address'] = $geolocItem['address'];
 				$info['placeId'] = new MongoId($geolocItem['_id']);
 				$info['contact'] = $geolocItem['contact'];
-				$info["debugCallGmap"] = $gQuery;
+				$info["debugCallGmap"] = $fullgQuery;
 				
 				// LOG
 				if($info['print'] == 1)

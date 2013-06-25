@@ -285,6 +285,13 @@ function parseFeedData($feed,$item){
 	return $itemArray;
 }
 
+/*Test if a string is a valid timestamp*/
+function isValidTimeStamp($timestamp)
+{
+    return ((string) (int) $timestamp === $timestamp) 
+        && ($timestamp <= PHP_INT_MAX)
+        && ($timestamp >= ~PHP_INT_MAX);
+}
 /*Build PAPI DOCUMENT*/
 function buildPAPIItem($itemArray,$file){
 	
@@ -294,6 +301,13 @@ function buildPAPIItem($itemArray,$file){
 		  'encoding' => 'utf-8')
 	)
 );
+
+//var_dump($itemArray['pubDate']);
+
+if(isValidTimeStamp($itemArray['pubDate']))
+	$itemArray['pubDate'] = date('r',$itemArray['pubDate']);
+	
+var_dump($itemArray['pubDate']);	
 $myDoc = new Document(
 	array(
 		'uri' => $itemArray['outGoingLink'],
@@ -335,6 +349,7 @@ function buildXMLItem($itemArray){
 	$xml = "";
 	if(sizeof($itemArray)>0){	
 		$date = new DateTime();
+		
 		$xml = "
 			<item>
 				<title><![CDATA[".(!empty($itemArray['title'])?$itemArray['title']:'')."]]></title>
@@ -720,7 +735,7 @@ function getLocationGMap($q,$output = 'PHP',$debug = 0, $conf=''){
     }else
         $res = 0;
      
-	 
+	$res['gQuery'] = $url; 
     return $res;
     
 }
@@ -772,7 +787,7 @@ function getPlaceGMap($q,$output = 'PHP',$debug = 0,$conf=''){
     }else
         $res = 0;
      
-	 
+	$res['gQuery'] = $url; 
     return $res;
     
 }

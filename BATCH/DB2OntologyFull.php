@@ -7,7 +7,7 @@
 ini_set('display_errors',1);
 
 
-$yakcats = array('ville'=>new MongoId("507e5a9a1d22b30c44000068"),'yakdico'=>new MongoId("5056b7aafa9a95180b000000"),'adresse'=>new MongoId("50900846fa9a958c09000000"));
+$yakcats = array('ville'=>new MongoId("507e5a9a1d22b30c44000068"),'yakdico'=>new MongoId("5056b7aafa9a95180b000000"));
 
 
 $templateFile ='./input/ontologyTemplate.xml';

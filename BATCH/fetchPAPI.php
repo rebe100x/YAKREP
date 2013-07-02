@@ -167,6 +167,7 @@ $logPrint = 0;
 $logStatus10 = 0;
 $logStatus11 = 0;
 $logStatus12 = 0;
+$logStatus13 = 0;
 $logCallToApercite = 0;
 $logPushToS3 = 0;
 $gQuery = ''; // the gmap query params
@@ -529,7 +530,7 @@ $feed['daysBack'] = 3;
 		// if the news must be mapped on the default feed's location 	
 		if($feed['defaultPrintFlag'] == 2){
 			$print = 1;
-			$geoloc = array($defaultPlace['location']);
+			$geoloc = $defaultPlace['location'];
 			$status = 1;
 			$contact = array("tel"=>"","mobile"=>"","mail"=>"","transportation"=>"","web"=>"","opening"=>"",);
 			$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
@@ -605,6 +606,8 @@ $feed['daysBack'] = 3;
 				$formatted_addressToPrint = '';
 				$placeToPrint = '';
 				$addressToPrint = '';
+				$loc = '';
+				$place = array();
 				// in this case, we take the input address or place or default place title as the $loc
 				if(!empty($placeInput) || !empty($addressInput)){
 					if(!empty($placeInput)){
@@ -632,6 +635,7 @@ $feed['daysBack'] = 3;
 				$gQuery = 'No call to gmap, geoloc is given';
 				$place = array(
 							"title"=> $placeToPrint,
+							"slug"=> slugify($placeToPrint),
 							"content" =>"",
 							"thumb" => "",
 							"origin"=>$feed['humanName'],    
@@ -647,6 +651,7 @@ $feed['daysBack'] = 3;
 							"user" => 0,
 							"feed" => $feed['_id'],
 							"zone"=> $defaultPlace['zone'],
+							"zoneName"=> $defaultPlace['zoneName'],
 							"address" => $address,
 							"formatted_address" => $formatted_addressToPrint,
 							"contact"=>$contact,
@@ -676,13 +681,16 @@ $feed['daysBack'] = 3;
 				// => if no location in db, we call gmap
 				
 				foreach($locationTmp as $loc){
+					$fullgQuery = '';
 					echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".$loc;
 					
 					//check if in db if the place exists
-					$place = $placeColl->findOne(array("title"=>$loc,"status"=>1,"zone"=>$defaultPlace['zone']));
+					$place = $placeColl->findOne(array("title"=>$loc,"status"=>1, "zone"=>$defaultPlace['zone']));
 					//var_dump($place);
 					if($place){ // FROM DB
 						echo "<br> Location found in DB !";
+						// if place exist but out of zone, we erease the loc:
+						echo "<br>OK : Place is in the zone";
 						if($place['status'] == 3){ // if the place has been blacklisted by the operator
 							$status = 11; // alert status
 							$print = 0; // don't print on the map, but can be printed on the news feed
@@ -696,12 +704,15 @@ $feed['daysBack'] = 3;
 						// add tags to info tags
 						if(!empty($place['freeTag']))
 							$freeTag = array_merge($freeTag,$place['freeTag']);
-							
+						
+						
+						
+						
+
+						
 					}else{ // the place is not in db
 						echo "<br> Location NOT found in DB !";	
 						// FROM GMAP
-							
-						
 							
 						$logCallToGMap++;
 						
@@ -740,12 +751,12 @@ $feed['daysBack'] = 3;
 						else
 							$resGMap = '';
 						
-						$fullgQuery = '';
+						
 						if(!empty($resGMap['gQuery']))
 							$fullgQuery = $resGMap['gQuery'];	
 						
 						echo '<br>';
-						if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlaceTitle.', '.$defaultPlace['address']['country']){
+						if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlace['address']['country'] && $resGMap['formatted_address'] != $defaultPlaceTitle &&  $resGMap['formatted_address'] != $defaultPlaceTitle.', '.$defaultPlace['address']['country']){
 							echo "<br> GMAP found the coordinates of this location ! ";
 							// check if the result is in the zone
 							$zoneObj = new Zone();
@@ -753,10 +764,13 @@ $feed['daysBack'] = 3;
 							if(!in_array($feed['zone'],$zoneNums)){
 								echo "<br><b>Err:</b>Location found is not in the feed zone ( ".$feed['zone']." )";
 								$status = 12;
+								$geolocGMAP = array(0,0);
+								$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
 								$print = 0;
-							}else{
+								$formatted_addressGMAP = "";
+							}else{														
 								$status = 1;
-								$print = 1;
+								$print = 1;	
 							}
 							$geolocGMAP = $resGMap['location'];
 							$addressGMAP = $resGMap['address'];
@@ -782,6 +796,7 @@ $feed['daysBack'] = 3;
 						
 						$place = array(
 									"title"=> (empty($lieu))?$loc:$lieu,
+									"slug"=> (empty($lieu))?slugify($loc):slugify($lieu),
 									"content" =>"",
 									"thumb" => "",
 									"origin"=>$feed['humanName'],    
@@ -797,6 +812,7 @@ $feed['daysBack'] = 3;
 									"user" => 0,
 									"feed" => $feed['_id'],
 									"zone"=> $defaultPlace['zone'],
+									"zoneName"=> $defaultPlace['zoneName'],
 									"address" => $addressGMAP,
 									"formatted_address" => $formatted_addressGMAP,
 									"contact"=>$contact,
@@ -827,21 +843,17 @@ $feed['daysBack'] = 3;
 					if($feed['defaultPrintFlag'] == 3){
 						echo "<br> NO location found, info is send with status 13";
 						$print = 0;
-						$geoloc = array($defaultPlace['location']);
 						$status = 13;
-						$contact = array("tel"=>"","mobile"=>"","mail"=>"","transportation"=>"","web"=>"","opening"=>"",);
-						$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
 					}
 					
 				// if feedflag tell us to put the info on the default feed location	or only on the feed page
 				if($feed['defaultPrintFlag'] == 1 || $feed['defaultPrintFlag'] == 0){
 					$print = $feed['defaultPrintFlag'] ;
-					$geoloc = array($defaultPlace['location']);
+					$geoloc = $defaultPlace['location'];
 					$status = 1;
 					$contact = array("tel"=>"","mobile"=>"","mail"=>"","transportation"=>"","web"=>"","opening"=>"",);
 					$placeArray[] = array('_id'=>$defaultPlace['_id'],'lat'=>$defaultPlace['location']['lat'],'lng'=>$defaultPlace['location']['lng'],'address'=>$defaultPlaceTitle,'status'=>$status,'print'=>$print,'contact'=>$contact);	
 				}
-				
 			}
 		}
 	
@@ -988,6 +1000,7 @@ $feed['daysBack'] = 3;
 				$info = array();
 				echo 'TITLE'.$title;
 				$info['title'] = $title;
+				$info['slug'] = slugify($title);
 				$info['content'] = $content;
 				$info['outGoingLink'] = $outGoingLink;
 				$info['origin'] = $feed['humanName'];
@@ -1009,6 +1022,7 @@ $feed['daysBack'] = 3;
 				$info['user'] = 0;
 				$info['feed'] = $feed['_id'];
 				$info['zone'] = $defaultPlace['zone'];
+				$info['zoneName'] =  $defaultPlace['zoneName'];
 				$info['location'] = array("lat"=>$geolocItem['lat'],"lng"=>$geolocItem['lng']);
 				$info['address'] = $geolocItem['address'];
 				$info['placeId'] = new MongoId($geolocItem['_id']);
@@ -1024,15 +1038,16 @@ $feed['daysBack'] = 3;
 					$logStatus11++;
 				if($info['status'] == 12)
 					$logStatus12++;
-				
+				if($info['status'] == 13)
+					$logStatus13++;
 				
 				// check if data is not in DB
 				//$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"pubDate"=>new MongoDate($tsPub),"zone"=>$defaultPlace['zone']));
 				$dataExists1 = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"zone"=>$defaultPlace['zone']));
 				
-				$dataExists2 = $infoColl->findOne(array("outGoingLink"=>$info['originLink'],"status"=>1));
+				$dataExists2 = $infoColl->findOne(array("outGoingLink"=>$info['originLink']));
 				
-				if( ( empty($dataExists1) && empty($dataExists2) ) || $status == 10){
+				if( ( empty($dataExists1) && empty($dataExists2) )){
 					echo "<br> The info does not exist in DB, we insert it.";
 					
 					/* THUMB  */

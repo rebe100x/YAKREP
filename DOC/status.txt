@@ -46,6 +46,10 @@ AGENDA 2
 INFO PRAT 3
 DISC (YASSALA) 4
 
+YACAT STATUS:
+0 = Inactive
+1 = Active
+2 = Système
 
 ACCOUNT TYPE:
 1 normal (front user)
@@ -65,6 +69,8 @@ INFO & PLACE STATUS:
 11: alert : the place matched by algo is in status 3 (rejected by operator )
 12: alert : location found is not in the defined zone
 13: no location found => no match
+
+-133px 739px
 
 CONTENU ILLICITE
 1 = TO BE PROCESSED

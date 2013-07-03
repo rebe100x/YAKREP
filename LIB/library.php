@@ -258,8 +258,6 @@ function parseFeedData($feed,$item){
 						}
 					}
 					
-					//if($key == 'content')
-					//	echo "CONTENT".$thevalue;
 					if($key == 'freeTag' || $key == 'yakCats'){
 						$tmp = explode(',',$thevalue);
 						$tmp = array_map('trimArray',$tmp);  
@@ -306,8 +304,7 @@ function buildPAPIItem($itemArray,$file){
 
 if(isValidTimeStamp($itemArray['pubDate']))
 	$itemArray['pubDate'] = date('r',$itemArray['pubDate']);
-	
-var_dump($itemArray['pubDate']);	
+		
 $myDoc = new Document(
 	array(
 		'uri' => $itemArray['outGoingLink'],

@@ -298,21 +298,28 @@ $feed['daysBack'] = 3;
 			if($meta->name == "image_enclosure")
 				  $enclosure = $meta->value;
 			if($meta->name == "item_geolocation"){
-				
-				
 				// debug 
-				if(strpos('#', $meta->value) !== false)
+				echo '<br>GEOLOC ITEM';
+				if(strpos($meta->value,'#') !== false)
 					echo '<br>GEOLOC CONTAINS #<br>';
 				
-				if(strpos(' ', trim($meta->value)) !== false)
+				if(strpos(trim($meta->value),' ') !== false)
 					echo '<br>GEOLOC CONTAINS SPACE<br>';
 				
-				$geolocationInput = explode('#',trim($meta->value));
-				/*
-				if(strpos('#', $meta->value) !== false)
+				//$geolocationInput = explode('#',trim($meta->value));
+				
+				
+				if(strpos($meta->value,'#') !== false)
 					$geolocationInput = explode('#',trim($meta->value));
-				if(strpos(' ', trim($meta->value)) !== false)
-					$geolocationInput = explode(' ',trim($meta->value));*/
+				if(strpos(trim($meta->value),' ') !== false)
+					$geolocationInput = explode(' ',trim($meta->value));
+					
+				if($geolocationInput[0] < $geolocationInput[1]){	 // in our latitudes : lng < lat => we switch
+					$tmpLat = $geolocationInput[1];
+					$tmpLng = $geolocationInput[0];
+					$geolocationInput[1] = $tmpLng;
+					$geolocationInput[0] = $tmpLat;
+				}
 			}
 			
 			if($meta->name == "item_latitude")

@@ -23,7 +23,8 @@ if(!empty($_GET['screen_name'])){
 	$rss = "";
 				
 	$url = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=false&trim_user=false&count=20&exclude_replies=true&contributor_details=false&screen_name=".$screen_name;
-https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=false&trim_user=false&count=20&exclude_replies=true&contributor_details=false&screen_name=".$screen_name	//?screen_name=Century21_PP
+
+		//https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=false&trim_user=false&count=20&exclude_replies=true&contributor_details=false&screen_name=".$screen_name	//?screen_name=Century21_PP
 	
 	$ch = curl_init ($url);
 	curl_setopt($ch, CURLOPT_HEADER, 0);

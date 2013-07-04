@@ -91,7 +91,10 @@ function getFeedData($feed,$conf){
 		if($feed['feedType'] == 'JSON'){
 			foreach($res as $r)
 				$allData = array_merge($data,object_to_array(json_decode($r)));
-				$data = $allData[$feed['rootElement']];
+				if($feed['rootElement'])
+					$data = $allData[$feed['rootElement']];
+				else
+					$data = $allData;
 		}
 		
 		if($feed['feedType'] == 'XML'){

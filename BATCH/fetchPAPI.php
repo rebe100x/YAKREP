@@ -176,7 +176,7 @@ $yakCatId = array();
 $placeArray = array(); // array of geoloc : ['lat'=>,'lng'=>,'_id'=>]
 $flagShowAllText = (empty($_GET['showAllText']))?0:1;
 $geolocYakCatId = "504d89f4fa9a958808000001"; // YAKCAT GEOLOC : @TODO softcode this
-$feed['daysBack'] = 3;
+$feed['daysBack'] = 10;
     
 	// echo 'Set Execution Status to 3 for the time of the fetching execution';
 	$feedColl->update(
@@ -298,16 +298,6 @@ $feed['daysBack'] = 3;
 			if($meta->name == "image_enclosure")
 				  $enclosure = $meta->value;
 			if($meta->name == "item_geolocation"){
-				// debug 
-				echo '<br>GEOLOC ITEM';
-				if(strpos($meta->value,'#') !== false)
-					echo '<br>GEOLOC CONTAINS #<br>';
-				
-				if(strpos(trim($meta->value),' ') !== false)
-					echo '<br>GEOLOC CONTAINS SPACE<br>';
-				
-				//$geolocationInput = explode('#',trim($meta->value));
-				
 				
 				if(strpos($meta->value,'#') !== false)
 					$geolocationInput = explode('#',trim($meta->value));
@@ -688,17 +678,21 @@ $feed['daysBack'] = 3;
 				// => if no location in db, we call gmap
 				
 				foreach($locationTmp as $loc){
+				
+						
 					$fullgQuery = '';
 					echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".$loc;
 					
 					//check if in db if the place exists
-					$place = $placeColl->findOne(array("title"=>$loc,"status"=>1, "zone"=>$defaultPlace['zone']));
+					$place = $placeColl->findOne(array("title"=>$loc,"zone"=>$defaultPlace['zone']));
 					//var_dump($place);
-					if($place){ // FROM DB
+					if($place){ 
+						// FROM DB
 						echo "<br> Location found in DB !";
 						// if place exist but out of zone, we erease the loc:
 						echo "<br>OK : Place is in the zone";
 						if($place['status'] == 3){ // if the place has been blacklisted by the operator
+							echo "<br>WARN : Place is blacklisted";
 							$status = 11; // alert status
 							$print = 0; // don't print on the map, but can be printed on the news feed
 						}else{
@@ -732,9 +726,22 @@ $feed['daysBack'] = 3;
 						echo '<br>$lieu : '.var_dump($lieu);
 						
 						
-						//$gQuery = urlencode(utf8_decode(suppr_accents($loc.( (strlen($laville)> 0 && $laville != $defaultPlaceTitle && !in_array($loc,$ville) ) ? ', '.$laville:'').', '.$defaultPlaceTitle.'. '.$defaultPlace['address']['country'])));
+						
+						
+						// check if blacklisted loc:
+						$BLloc = $placeColl->findOne(array("title"=>$loc,"zone"=>$defaultPlace['zone'],"status"=>3));
+						if(!empty($BLloc)){
+							$loc = '';
+						}
+						// check if blacklisted ville:
+						$BLville = $placeColl->findOne(array('title'=>$laville,"zone"=>$defaultPlace['zone'],"status"=>3));
+						if(!empty($BLville)){
+							$laville = '';
+							$ville = array();
+						}
 						
 						$gQuery = $loc;
+						
 						if( strlen($laville)> 0 && $laville != $defaultPlaceTitle && !preg_match('/\b'.$laville.'\b/',$gQuery))
 							$gQuery .= ', '.$laville;
 							
@@ -788,7 +795,10 @@ $feed['daysBack'] = 3;
 							$geolocGMAP = array(0,0);
 							$addressGMAP = array("street"=>"","arr"=>"","city"=>"","state"=>"","area"=>"","country"=>"","zip"=>"");
 							$print = 0;
-							$formatted_addressGMAP = "";
+							if(!empty($resGMap['formatted_address']))
+								$formatted_addressGMAP = $resGMap['formatted_address'];
+							else
+								$formatted_addressGMAP = "";	
 						} 
 						
 						// we store the result in PLACE for next time
@@ -983,7 +993,7 @@ $feed['daysBack'] = 3;
 				echo "<br>geoinput: ";var_dump($geolocationInput);
 				echo "<br>addressInput: ";var_dump($addressInput);
 				echo "<br>placeinput: ";var_dump($placeInput);
-				echo "<br>ville: ";var_dump($ville);
+				echo "<br>laville: ";var_dump($laville);
 				echo "<br>----CAT-----<br>";
 				echo "yakcat: ";var_dump($yakCatName);
 				echo "<br>tag: ";var_dump($freeTag);
@@ -1155,16 +1165,19 @@ $feed['daysBack'] = 3;
 						$endOfDay   = strtotime("tomorrow", $beginOfDay) - 1;
 						$dataExists = $tagColl->findOne(array("title"=>$theTag,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.5),"usageDate"=>array('$gte'=>new MongoDate($beginOfDay),'$lte'=>new MongoDate($endOfDay))));
 						
-						if(!$dataExists){
-							echo '<br>Tag does not ->exit we insert it as a hot tag';
-							$tagColl->save(array("title"=>$theTag,"numUsed"=>1,"location"=>$info['location'],"usageDate"=>$tagDate,"creationDate"=>$tagDate,"print"=>$geolocItem['print']));
-						}else{
-							echo '<br>Tag does exist -> we increment numUsed';
-							$tagColl->update(array("_id"=> $dataExists['_id']), array('$set'=>array("title"=>$theTag,"location"=>$info['location'],"usageDate"=>$tagDate)));
-							$tagColl->update(array("_id"=> $dataExists['_id']), array('$inc'=>array("numUsed"=>1)));
-						}
-						$tagColl->ensureIndex(array("location"=>"2d"));
-						$tagColl->ensureIndex(array("creationDate"=>"1"));
+						if($info['status'] ==1){
+							if(!$dataExists){
+								echo '<br>Tag does not ->exit we insert it as a hot tag';
+								$tagColl->save(array("title"=>$theTag,"numUsed"=>1,"location"=>$info['location'],"usageDate"=>$tagDate,"creationDate"=>$tagDate,"print"=>$geolocItem['print']));
+							}else{
+								echo '<br>Tag does exist -> we increment numUsed';
+								$tagColl->update(array("_id"=> $dataExists['_id']), array('$set'=>array("title"=>$theTag,"location"=>$info['location'],"usageDate"=>$tagDate)));
+								$tagColl->update(array("_id"=> $dataExists['_id']), array('$inc'=>array("numUsed"=>1)));
+							}
+							$tagColl->ensureIndex(array("location"=>"2d"));
+							$tagColl->ensureIndex(array("creationDate"=>"1"));
+						}else
+							echo "<br>WARN : No tag inserted since info is not printed";
 					}
 					
 					// we check if there is another info printed at this point :

@@ -16,7 +16,7 @@ include_once "stringUtil.php";
 include_once "cat.php";
 include_once "conf_secret.php";
 include_once "../LIB/cloudview-sdk-php-clients/papi/PushAPI.inc";
-
+include_once "../LIB/twitterAPI/TwitterAPIExchange.php";
 
 
 class conf

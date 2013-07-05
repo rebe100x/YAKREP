@@ -718,12 +718,6 @@ $feed['daysBack'] = 10;
 						$logCallToGMap++;
 						
 						
-						echo '<br>loc: '.var_dump($loc);
-						echo '<br>laville : '.var_dump($laville);
-						echo '<br>addressInput : '.var_dump($addressInput);
-						echo '<br>$defaultPlace title : '.var_dump($defaultPlaceTitle);
-						echo '<br>$defaultPlace country : '.$defaultPlace['address']['country'];		
-						echo '<br>$lieu : '.var_dump($lieu);
 						
 						
 						
@@ -739,6 +733,20 @@ $feed['daysBack'] = 10;
 							$laville = '';
 							$ville = array();
 						}
+						
+						
+						echo '<br>loc: ';
+						var_dump($loc);
+						echo '<br>laville : ';
+						var_dump($laville);
+						echo '<br>addressInput : ';
+						var_dump($addressInput);
+						echo '<br>$defaultPlace title : ';
+						var_dump($defaultPlaceTitle);
+						echo '<br>$defaultPlace country : '.$defaultPlace['address']['country'];		
+						echo '<br>$lieu : ';
+						var_dump($lieu);
+						
 						
 						$gQuery = $loc;
 						
@@ -1015,7 +1023,6 @@ $feed['daysBack'] = 10;
 		
 				echo "<br>time: ".$datePubArrayT[0]."-".$datePubArrayT[1]."-".$datePubArrayT[2]."-".$datePubArrayD[0]."-".$datePubArrayD[1]."-".$datePubArrayD[2];
 				$info = array();
-				echo 'TITLE'.$title;
 				$info['title'] = $title;
 				$info['slug'] = slugify($title);
 				$info['content'] = $content;

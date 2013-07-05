@@ -5,18 +5,14 @@
  * */
 
 include_once "../LIB/conf.php";
+$conf = new conf();
 ini_set('display_errors',1);
 $res = '';
 
 if(!empty($_GET['screen_name'])){
 	/** Set access tokens here - see: https://dev.twitter.com/apps/ **/
-	$settings = array(
-		'oauth_access_token' => "6651492-1iMT5wqfJ0QcDHdAiVJKAUS0AVdSivMeqC9X0CXzlY",
-		'oauth_access_token_secret' => "Pk82ZR4LRrdTbTfIiGS97qdFM6NxTplGhM07k3YzM",
-		'consumer_key' => "0f7XLsWByRDCABFPeEQ",
-		'consumer_secret' => "9HsVyk4V2TWK1StkSSVBghMnvtXHo09Dgvi9RUywks"
-	);
-
+	$settings = $conf->conf_secret()->twitterAPIKey();
+	
 	/** URL for REST request, see: https://dev.twitter.com/docs/api/1.1/ **/
 	$url = 'https://api.twitter.com/1.1/blocks/create.json';
 	

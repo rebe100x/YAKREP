@@ -132,8 +132,14 @@ if($q != ''){
 							echo "Checkpoint: name='" . $k . "' value='" . $v . "'\n";
 						}*/
 
-						$rootUrlTmp = parse_url($itemArray['outGoingLink']);	
-						$rootUrl = $rootUrlTmp['scheme'].'://'.$rootUrlTmp['host'];
+						$rootUrlTmp = parse_url($itemArray['outGoingLink']);
+						if(!empty($rootUrlTmp['scheme']) && !empty($rootUrlTmp['host']) )
+							$rootUrl = $rootUrlTmp['scheme'].'://'.$rootUrlTmp['host'];
+						elseif(!empty($rootUrlTmp['path']))
+							$rootUrl = $rootUrlTmp['path'];
+						else
+							$rootUrl = mktime();
+							
 						$se = $papi->enumerateSyncedEntries($rootUrl,PushAPI::RECURSIVE_DOCUMENTS);
 						/*foreach($se as $url => $stamp) {
 							echo "Entry: url='" . $url . "' stamp='" . $stamp . "'\n";

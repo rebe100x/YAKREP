@@ -1,5 +1,17 @@
 <?php
-
+/*
+	styles
+*/
+echo "<!DOCTYPE html><html>
+<head><meta charset='utf8'/>
+<style>
+		.warning{background-color:#00FF00;font-weight:bold;}
+		.error{background-color:#FF0000;font-weight:bold;color:#FFFFFF;}
+		.message{background-color:#0000;font-weight:bold;}
+</style>
+</head>
+<body>
+";
 /* 
 	This script can be run as php script from the backend ( vwhen you click on the RUN command in the feed page ) or as a CLI script. So becarefull with your path and $_SERVER variables.
 	url to be run :

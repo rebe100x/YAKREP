@@ -149,20 +149,7 @@ Each town need to be entered in db with the 2 yakcats GEOLOCALISATION  and GEOLO
  
 // ================================================================================END DOCUMENTATION===============================================================================================
  
-/*
-	styles
-*/
-echo "
-<!DOCTYPE html><html><head><meta charset='utf8'/>
-<head>
-<style>
-		.warning{background-color:#00FF00;font-weight:bold;}
-		.error{background-color:#FF0000;font-weight:bold;color:#FFFFFF;}
-		.message{background-color:#0000;font-weight:bold;}
-</style>
-</head>
-<body>
-";
+
 $infoColl = $db->info;
 $placeColl = $db->place;
 $yakcatColl = $db->yakcat;
@@ -703,31 +690,27 @@ $feed['daysBack'] = 10;
 							"status"=>1,
 							'$or'=>array(
 								array('zone'=>'0'),
-								array('zone'=>$defaultPlace['zone'])
+								array('zone'=>$defaultPlace['zone']),
+								array('feed'=>'0'),
+								array('feed'=>(string)$feed['_id'])
 								)		
 							)
-						);		
-									
-					echo '<br>----BLACKLIST:'.$loc;
-					var_dump($BLloc);
+						);	
+
 					if(!empty($BLloc)){							
 						if($BLloc['caseSensitive'] == 1){
-							echo '<br><b>CASESENSITIVE</b>';
-							echo "<br>".$loc.' ==  '.$BLloc['title'];
 							if(strcasecmp($loc,$BLloc['title']) == 0){
-								echo '<br>DELELELETTE';
 								$loc = '';
-								echo '<br>Place is blacklisted';
+								echo '<br><b>WARN: </b>Place is blacklisted';
 							}
 						}else{
 							$loc = '';
-							echo '<br>Place is blacklisted';
+							echo '<br><b>WARN: </b>Place is blacklisted';
 						}
 					}
-					echo "<br> LOC=".$loc;
 						
 					$fullgQuery = '';
-					echo "<br><b class='waring'>Location found by XL :</b> ".$loc;
+					echo "<br><b class='warning'>Location found by XL :</b> ".$loc;
 					
 					//check if in db if the place exists
 					$place = $placeColl->findOne(array("title"=>$loc,"zone"=>$defaultPlace['zone']));
@@ -1127,10 +1110,10 @@ $feed['daysBack'] = 10;
 					/* THUMB  */
 					// create thumb and  push the image to S3
 					$thumbFlag = 0;
-					if(substr($enclosure,0,5) != 'http:')
+					if( !empty($enclosure) && substr($enclosure,0,5) != 'http:')
 						$enclosure = 'http:'.$enclosure;	
 					
-					if(substr($enclosure,0,7) != 'http://')
+					if( !empty($enclosure) && substr($enclosure,0,7) != 'http://')
 						$enclosure = 'http://'.$enclosure;	
 					
 					echo "<br>enclosure:".$enclosure;
@@ -1298,3 +1281,5 @@ $feed['daysBack'] = 10;
 
 			
 ?>
+</body>
+</html>

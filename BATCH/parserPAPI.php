@@ -103,9 +103,10 @@ if($q != ''){
 							try {
 
 								//echo "Checking if document exists\n";
+								echo "<br>-----<b>".$itemArray['title']."</b>---------";
 								$stamp = $papi->getDocumentStatus($itemArray['outGoingLink']);
 								if ($stamp === false || $forceUpdate ==  1) {
-									echo "Doc is new, we push to XL<br>";
+									echo "Doc is new, we push to XL";
 									$docsPAPI[] = buildPAPIItem($itemArray,$file);
 									//var_dump($docsPAPI);
 								} else {

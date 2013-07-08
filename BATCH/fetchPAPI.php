@@ -149,11 +149,25 @@ Each town need to be entered in db with the 2 yakcats GEOLOCALISATION  and GEOLO
  
 // ================================================================================END DOCUMENTATION===============================================================================================
  
- 
+/*
+	styles
+*/
+echo "
+<!DOCTYPE html><html><head><meta charset='utf8'/>
+<head>
+<style>
+		.warning{background-color:#00FF00;font-weight:bold;}
+		.error{background-color:#FF0000;font-weight:bold;color:#FFFFFF;}
+		.message{background-color:#0000;font-weight:bold;}
+</style>
+</head>
+<body>
+";
 $infoColl = $db->info;
 $placeColl = $db->place;
 $yakcatColl = $db->yakcat;
 $yakNEColl = $db->yakNE;
+$yakBLColl = $db->yakBL;
 $tagColl = $db->tag;
 $batchlogColl = $db->batchlog;
 $statColl = $db->stat;
@@ -197,6 +211,7 @@ $feed['daysBack'] = 10;
 							
 	echo '<br> Parsing feed: <b>'.$feed['name'].'</b>';
 	echo '<br> Default location of the feed : <b>'.$defaultPlaceTitle.'</b>';
+	echo '<br> Default zone = <b>'.$defaultPlace['zone'].'</b>, ZONE NAME = <b>'.$defaultPlace['zoneName'].'</b>';
 	$searchDate = date('Y/m/d',(mktime()-86400*$feed['daysBack']));
 	
 	$origin ="+AND+file_name%3D".$feed['name'].'.xml';
@@ -679,9 +694,40 @@ $feed['daysBack'] = 10;
 				
 				foreach($locationTmp as $loc){
 				
+					
+					// check if blacklisted loc:
+					$regexObj = new MongoRegex("/^$loc$/i"); 
+					$BLloc = $yakBLColl->findOne(
+						array(
+							"title"=>$regexObj,
+							"status"=>1,
+							'$or'=>array(
+								array('zone'=>'0'),
+								array('zone'=>$defaultPlace['zone'])
+								)		
+							)
+						);		
+									
+					echo '<br>----BLACKLIST:'.$loc;
+					var_dump($BLloc);
+					if(!empty($BLloc)){							
+						if($BLloc['caseSensitive'] == 1){
+							echo '<br><b>CASESENSITIVE</b>';
+							echo "<br>".$loc.' ==  '.$BLloc['title'];
+							if(strcasecmp($loc,$BLloc['title']) == 0){
+								echo '<br>DELELELETTE';
+								$loc = '';
+								echo '<br>Place is blacklisted';
+							}
+						}else{
+							$loc = '';
+							echo '<br>Place is blacklisted';
+						}
+					}
+					echo "<br> LOC=".$loc;
 						
 					$fullgQuery = '';
-					echo "<br><b style='background-color:#00FF00;'>Location found by XL :</b> ".$loc;
+					echo "<br><b class='waring'>Location found by XL :</b> ".$loc;
 					
 					//check if in db if the place exists
 					$place = $placeColl->findOne(array("title"=>$loc,"zone"=>$defaultPlace['zone']));
@@ -721,8 +767,12 @@ $feed['daysBack'] = 10;
 						
 						
 						
+							
 						
-						// check if blacklisted loc:
+						
+						
+						
+						/*
 						$BLloc = $placeColl->findOne(array("title"=>$loc,"zone"=>$defaultPlace['zone'],"status"=>3));
 						if(!empty($BLloc)){
 							$loc = '';
@@ -732,7 +782,7 @@ $feed['daysBack'] = 10;
 						if(!empty($BLville)){
 							$laville = '';
 							$ville = array();
-						}
+						}*/
 						
 						
 						echo '<br>loc: ';

@@ -680,7 +680,7 @@ $feed['daysBack'] = 10;
 				// => if no location in db, we call gmap
 				
 				foreach($locationTmp as $loc){
-				
+					$fullgQuery = '';
 					
 					// check if blacklisted loc:
 					$regexObj = new MongoRegex("/^$loc$/i"); 
@@ -702,14 +702,44 @@ $feed['daysBack'] = 10;
 							if(strcasecmp($loc,$BLloc['title']) == 0){
 								$loc = '';
 								echo '<br><b>WARN: </b>Place is blacklisted';
+								continue;
 							}
 						}else{
 							$loc = '';
 							echo '<br><b>WARN: </b>Place is blacklisted';
+							continue;
 						}
 					}
 						
-					$fullgQuery = '';
+					$regexObj = new MongoRegex("/^$laville$/i"); 
+					$BLloc = $yakBLColl->findOne(
+						array(
+							"title"=>$regexObj,
+							"status"=>1,
+							'$or'=>array(
+								array('zone'=>'0'),
+								array('zone'=>$defaultPlace['zone']),
+								array('feed'=>'0'),
+								array('feed'=>(string)$feed['_id'])
+								)		
+							)
+						);	
+
+					if(!empty($BLloc)){							
+						if($BLloc['caseSensitive'] == 1){
+							if(strcasecmp($loc,$BLloc['title']) == 0){
+								$laville = '';
+								echo '<br><b>WARN: </b>City is blacklisted';
+								continue;
+							}
+						}else{
+							$laville = '';
+							echo '<br><b>WARN: </b>City is blacklisted';
+							continue;
+						}
+					}
+					
+					
 					echo "<br><b class='warning'>Location found by XL :</b> ".$loc;
 					
 					//check if in db if the place exists
@@ -733,39 +763,12 @@ $feed['daysBack'] = 10;
 						
 						// add tags to info tags
 						if(!empty($place['freeTag']))
-							$freeTag = array_merge($freeTag,$place['freeTag']);
-						
-						
-						
-						
-
-						
+							$freeTag = array_merge($freeTag,$place['freeTag']);	
 					}else{ // the place is not in db
 						echo "<br> Location NOT found in DB !";	
 						// FROM GMAP
 							
 						$logCallToGMap++;
-						
-						
-						
-						
-						
-							
-						
-						
-						
-						
-						/*
-						$BLloc = $placeColl->findOne(array("title"=>$loc,"zone"=>$defaultPlace['zone'],"status"=>3));
-						if(!empty($BLloc)){
-							$loc = '';
-						}
-						// check if blacklisted ville:
-						$BLville = $placeColl->findOne(array('title'=>$laville,"zone"=>$defaultPlace['zone'],"status"=>3));
-						if(!empty($BLville)){
-							$laville = '';
-							$ville = array();
-						}*/
 						
 						
 						echo '<br>loc: ';
@@ -932,19 +935,15 @@ $feed['daysBack'] = 10;
 		// YAKCATS & TAGS from NE
 		$yakCatIdFromNE = array();
 		foreach($yakNE as $ne){
-			echo "<br>NE=".$ne;
 			$regexObj = new MongoRegex("/^$ne$/i"); 
-			//$ynes = $yakNEColl->find(array('status'=>1,'match.title'=>$regexObj));
 			$ynes = $yakNEColl->find(array('status'=>1,'match.title'=>$ne));
 			foreach( $ynes as $yne){
+				if( ($yne['zone'][0] == 0 || in_array($defaultPlace['zone'],$yne['zone'])) && ( ($yne['feed'][0] == '0' || in_array((string)$feed['_id'],$yne['feed'])) ) )
 				$freeTag[] =  $yne['title'];
 				if(sizeof($yne['yakCatId'])>0)
 					$yakCatIdFromNE = array_merge($yakCatIdFromNE, $yne['yakCatId']);
 			}
 		}
-		
-		
-		
 		
 		/* YAKCATS */
 		$yakCatIdArray = array();
@@ -995,6 +994,13 @@ $feed['daysBack'] = 10;
 		$freeTagNew = array_values($freeTag);
 		$freeTag = $freeTagNew;
 		
+		$freeTagClean = array();
+		echo '<br> DEBUG-----<br>';
+		foreach($freeTag as $t){
+			if(!(is_array($t)))
+				$freeTagClean[] = $t;
+		}
+		$freeTag = $freeTagClean;
 		// clean curly quotes and html tags
 		//$content = (!empty($content))?strip_tags(convert_smart_quotes($content),"<br><b><strong>"):"";
 		$content = (!empty($content))?convert_smart_quotes($content):"";
@@ -1196,6 +1202,7 @@ $feed['daysBack'] = 10;
 				
 					// add tags to the top collection
 					foreach($freeTag as $theTag){
+						
 						if($info['yakType']==2)
 							$tagDate = $eventDate[0]['dateTimeFrom'];
 						else

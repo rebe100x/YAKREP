@@ -942,8 +942,8 @@ $feed['daysBack'] = 10;
 			$regexObj = new MongoRegex("/^$ne$/i"); 
 			$ynes = $yakNEColl->find(array('status'=>1,'match.title'=>$ne));
 			foreach( $ynes as $yne){
-				if( ($yne['zone'][0] == 0 || in_array($defaultPlace['zone'],$yne['zone'])) && ( ($yne['feed'][0] == '0' || in_array((string)$feed['_id'],$yne['feed'])) ) )
-				$freeTag[] =  $yne['title'];
+				if( ( empty($yne['zone']) || $yne['zone'][0] == 0 || in_array($defaultPlace['zone'],$yne['zone'])) && ( ( empty($yne['feed']) || $yne['feed'][0] == '0' || in_array((string)$feed['_id'],$yne['feed'])) ) )
+					$freeTag[] =  $yne['title'];
 				if(sizeof($yne['yakCatId'])>0)
 					$yakCatIdFromNE = array_merge($yakCatIdFromNE, $yne['yakCatId']);
 			}
@@ -1112,7 +1112,7 @@ $feed['daysBack'] = 10;
 				//$dataExists = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"status"=>1,"pubDate"=>new MongoDate($tsPub),"zone"=>$defaultPlace['zone']));
 				$dataExists1 = $infoColl->findOne(array("title"=>$title,"location"=>array('$near'=>$info['location'],'$maxDistance'=>0.000035),"zone"=>$defaultPlace['zone']));
 				
-				$dataExists2 = $infoColl->findOne(array("outGoingLink"=>$info['originLink']));
+				$dataExists2 = $infoColl->findOne(array("outGoingLink"=>$info['outGoingLink']));
 				
 				if( ( empty($dataExists1) && empty($dataExists2) )){
 					echo "<br> The info does not exist in DB, we insert it.";

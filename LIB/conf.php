@@ -70,7 +70,7 @@ class conf
 				$this->mediumpath = '/BACKEND/medium/';
 				$this->originalpath = '/BACKEND/original/';
 				$this->batchthumbpath = '/BACKEND/batchthumb/';
-				$this->filepath = '/YAKFRONT/main/public/uploads/files/';
+				$this->filepath = '/../../../NODE/YAKFRONT/main/public/uploads/files/';
 				$this->bucket = 'yak1';
 				if( !empty($_SERVER['PWD']) )
 					$this->docroot = "C:\wamp\www";

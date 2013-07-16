@@ -186,12 +186,16 @@ $feed['daysBack'] = 10;
 			);
 			
 	// get default PLACE
+	
 	$defaultPlace = $placeColl->findOne(array('_id'=>$feed['defaultPlaceId']));
 	// we take the feed default location first and if not defined the default place location
 	$defaultPlaceTitle = (empty($feed['defaultPlaceSearchName'])?$defaultPlace['title']:$feed['defaultPlaceSearchName']);		
 	$defaultPlace['zone'] = (empty($feed['zone'])?$defaultPlace['zone']:$feed['zone']);		
 	$defaultPlace['zoneName'] = (empty($feed['zoneName'])?$defaultPlace['zoneName']:$feed['zoneName']);		
 	$defaultPlace['location'] = (empty($feed['defaultPlaceLocation'])?$defaultPlace['location']:$feed['defaultPlaceLocation']);		
+	
+	var_dump($defaultPlace);
+	var_dump($feed);
 	
 	if(empty($defaultPlace['address']['country']))
 		$defaultPlace['address']['country'] = 'France';
@@ -814,7 +818,7 @@ $feed['daysBack'] = 10;
 							$fullgQuery = $resGMap['gQuery'];	
 						
 						echo '<br>';
-						if(!empty($resGMap) &&  $resGMap['formatted_address'] != $defaultPlace['address']['country'] && $resGMap['formatted_address'] != $defaultPlaceTitle &&  $resGMap['formatted_address'] != $defaultPlaceTitle.', '.$defaultPlace['address']['country']){
+						if(!empty($resGMap) && !empty($resGMap['formatted_address']) && !empty($resGMap['location'])  &&  $resGMap['formatted_address'] != $defaultPlace['address']['country'] && $resGMap['formatted_address'] != $defaultPlaceTitle &&  $resGMap['formatted_address'] != $defaultPlaceTitle.', '.$defaultPlace['address']['country']){
 							echo "<br> GMAP found the coordinates of this location ! ";
 							// check if the result is in the zone
 							$zoneObj = new Zone();

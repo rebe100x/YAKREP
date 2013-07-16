@@ -91,9 +91,35 @@ function getFeedData($feed,$conf){
 		if($feed['feedType'] == 'JSON'){
 			foreach($res as $r)
 				$allData = array_merge($data,object_to_array(json_decode($r)));
-				if($feed['rootElement'])
-					$data = $allData[$feed['rootElement']];
-				else
+				
+				if(!empty($feed['rootElement'])){
+					$rE = $feed['rootElement'];
+					
+					$maxDepth = 0;
+					while($maxDepth < 5){
+						if(!empty($allData[$rE])){
+							$data = $allData[$rE];
+							break;
+						}else{
+							$keys = array_keys($allData);
+							$allData = $allData[$keys[0]];
+							$maxDepth++;
+							
+							foreach($keys as $key){
+								echo $key;
+								if($feed['rootElement'] == $key){
+									$rE = $key;
+									$data = $allData[$rE];
+									break;
+								}	
+							}
+						}
+					}
+					
+						
+					//$data = $allData[$rE];
+				
+				}else
 					$data = $allData;
 		}
 		
@@ -137,34 +163,31 @@ function parseFeedData($feed,$item){
 	$canvas = $feed['parsingTemplate'];
 	$itemArray = array();
 	if($feed['feedType'] == 'CSV'){
-		if($line >= $feed['lineToBegin']){
-			foreach($canvas as $key=>$val){
+		foreach($canvas as $key=>$val){
+			$thevalue = '';
+			if(!empty($val)){
+				preg_match_all('/(#YKL)(\d+)/', $val, $out);
+				$tmp = array();
+				foreach($out[2] as $o)
+					$tmp[] = $item[$o];
+				$thevalue = preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
+				
+			}else
 				$thevalue = '';
-				if(!empty($val)){
-					preg_match_all('/(#YKL)(\d+)/', $val, $out);
-					$tmp = array();
-					foreach($out[2] as $o)
-						$tmp[] = $item[$o];
-					$thevalue = preg_replace(array_map('mapIt',$out[0]), $tmp, $val);
-					
-				}else
-					$thevalue = '';
-					
-				$thevalueClean = $thevalue;
-				
-				if($key == 'freeTag' || $key == 'yakCats'){
-					$tmp = explode(',',$thevalueClean);
-					$tmp = array_map('trimArray',$tmp);  
-					$thevalueClean = implode('#',$tmp);
-				}
-				if($key == 'longitude' || $key == 'latitude'){
-					$thevalueClean = str_replace(',','.',$thevalueClean);
-					$thevalueClean = (float)$thevalueClean;
-				}
-				
-				$itemArray[$key] = $thevalueClean;
-				
+			$thevalueClean = $thevalue;
+			
+			if($key == 'freeTag' || $key == 'yakCats'){
+				$tmp = explode(',',$thevalueClean);
+				$tmp = array_map('trimArray',$tmp);  
+				$thevalueClean = implode('#',$tmp);
 			}
+			if($key == 'longitude' || $key == 'latitude'){
+				$thevalueClean = str_replace(',','.',$thevalueClean);
+				$thevalueClean = (float)$thevalueClean;
+			}
+			
+			$itemArray[$key] = $thevalueClean;
+			
 		}
 	}
 	
@@ -305,6 +328,8 @@ function buildPAPIItem($itemArray,$file){
 
 //var_dump($itemArray['pubDate']);
 
+if(empty($itemArray['pubDate']))
+	$itemArray['pubDate'] = date('r',mktime());
 if(isValidTimeStamp($itemArray['pubDate']))
 	$itemArray['pubDate'] = date('r',$itemArray['pubDate']);
 		

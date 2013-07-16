@@ -107,11 +107,24 @@ if($q != ''){
 					$line = 0;
 					foreach($data as $item){
 						if(!empty($canvas['title']) ){ // we don't take empty lines and header
-							//var_dump($item);
 							$itemArray = array();
-							$itemArray = parseFeedData($feed,$item);
-							//var_dump($itemArray);
+							if($feed['feedType'] == 'CSV'){
+								if($line >= $feed['lineToBegin']){
+									$itemArray = parseFeedData($feed,$item);
+									$line++;
+								}else{
+									$line++;
+									continue;
+								}
+							}else
+								$itemArray = parseFeedData($feed,$item);
 							
+							if(empty($itemArray['title']) || empty($itemArray['outGoingLink'])){
+								echo "<br><b>Erreur : </b> le titre et l'identifiant externe ne sont par remplis.";
+								echo '<br>Titre : '.$itemArray['title'];
+								echo '<br>Identifiant externe ( outGoingLink ) : '.$itemArray['outGoingLink'];
+								continue;
+							}
 							try {
 
 								//echo "Checking if document exists\n";
